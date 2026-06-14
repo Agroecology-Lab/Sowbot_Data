@@ -1,6 +1,0 @@
-
-basekit_driver_node:
-  ros__parameters:
-    port: "/dev/ttyACM1"
-    read_data:
-      list: ["battery", "encoder_left", "encoder_right"]
