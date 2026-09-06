@@ -39,8 +39,8 @@ No wheel-odometry topic (`/odom`, `/odom/wheels`) is required by this design.
 
 | Field | Value | Notes |
 |---|---|---|
-| `coordinate_frame` | `MAV_FRAME_BODY_NED` (8) | Makes `vx` = forward, `yaw_rate` = turn rate in the rover's own frame. Needs confirming against `mode_guided.cpp` — not yet checked whether GUIDED accepts body frame here or requires `LOCAL_NED`. |
-| `type_mask` | POS_IGNORE + ACC_IGNORE set, YAW_IGNORE set, VX/VY_IGNORE + YAW_RATE_IGNORE clear | If ACC_IGNORE is clear, ArduPilot rejects the whole message and does nothing. Numerically: 1479 (`0x5C7`) if VZ is left active, 1511 (`0x5E7`) if VZ_IGNORE is also set. Which one is correct isn't confirmed — needs a `mode_guided.cpp` read before hardcoding. |
+| `coordinate_frame` | `MAV_FRAME_BODY_NED` (8) | Makes `vx` = forward, `yaw_rate` = turn rate in the rover's own frame. **Confirmed**: Rover's own [Guided Mode MAVLink docs](https://ardupilot.org/dev/docs/mavlink-rover-commands.html) list frame 8 explicitly for Rover — "Velocity are relative to the vehicle's current heading. Use this to specify the speed forward or backwards." |
+| `type_mask` | `1511` (`0x5E7`) | **Confirmed, not 1479.** Rover's docs list this exact value as the named combo "Vel+Yaw Rate" (position ignored, VX/VY used, VZ ignored, acceleration ignored, yaw ignored, yaw_rate used) — i.e. VZ_IGNORE *is* set. 1479 isn't a documented Rover combination; don't use it. |
 | `vx` | `cmd_vel.linear.x` | — |
 | `vy` | `0` | — |
 | `yaw_rate` | `cmd_vel.angular.z` | — |
@@ -66,6 +66,6 @@ Handled by `AP_GPS_MAV` (ArduPilot's driver for "GPS data from an external compa
 1. **Get the physical MAVLink port on the RTU Master Controller.** Not in the RTU v4 spec (which lists only RTK2, RC receiver, and the internal 115200 baud link to the traction units). Ask Robotriks directly.
 2. **Pin down FusionCore's output rate and ROS message type.** Needed to set the `GPS_INPUT` publish rate and confirm it comfortably beats the 3 s `GUID_TIMEOUT`. Not yet specified — check the actual FusionCore node before assuming a number or message type.
 3. **Confirm EKF origin behaviour on first boot** when `GPS_INPUT` is the RTU's only GPS source. May need the bridge to send an initial `GPS_INPUT` burst before GUIDED commands will be accepted at all.
-4. **Check `type_mask` against `mode_guided.cpp` directly** before hardcoding a bitmask constant — resolve whether `VZ_IGNORE` should be set (1479 vs. 1511) and whether `MAV_FRAME_BODY_NED` is accepted for this message.
+4. ~~Check `type_mask` against `mode_guided.cpp` directly~~ — **done**. `type_mask=1511`, `coordinate_frame=MAV_FRAME_BODY_NED (8)`, both confirmed against Rover's own MAVLink Guided Mode docs (see table above). `Rover/mode_guided.cpp` on master has a distinct `SubMode::TurnRateAndSpeed` and a 3s no-update auto-stop, consistent with `set_desired_turn_rate_and_speed()` and `GUID_TIMEOUT` as described above — worth a full read of that file once hardware's in hand, but nothing here contradicts the design.
 5. **If reusing mavros:** check its `setpoint_velocity` plugin actually sets ACC_IGNORE the way this integration needs — don't assume compatibility.
 6. **Set `GPS1_TYPE=14` on the RTU** and move/disable the onboard RTK2 receiver so it doesn't collide with `GPS_INPUT`.
