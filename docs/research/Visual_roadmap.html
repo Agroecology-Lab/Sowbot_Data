@@ -1,0 +1,860 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vision System Roadmap — Sowbot / Avaota A1 &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9d891252"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Feldfreund DevKit ROS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Vision System Roadmap — Sowbot / Avaota A1</a><ul>
+<li><a class="reference internal" href="#crop-row-node-yolox-nano-weed-detection-ros-2"><code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> · YOLOX-Nano Weed Detection · ROS 2</a></li>
+<li><a class="reference internal" href="#current-state-assessment">1. Current State Assessment</a><ul>
+<li><a class="reference internal" href="#what-works-and-must-be-preserved">What works and must be preserved</a></li>
+<li><a class="reference internal" href="#the-core-fragility">The core fragility</a></li>
+<li><a class="reference internal" href="#the-architectural-conflict">The architectural conflict</a></li>
+<li><a class="reference internal" href="#image-topic-architecture-decided">Image topic architecture (decided)</a></li>
+<li><a class="reference internal" href="#latency-budget">Latency budget</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#immediate-harden-what-exists">2. Immediate — Harden What Exists</a><ul>
+<li><a class="reference internal" href="#no-model-training-no-npu-sdk-no-architectural-changes">(No model training. No NPU SDK. No architectural changes.)</a></li>
+<li><a class="reference internal" href="#m0-profile-on-device-week-1">M0 · Profile on-device (Week 1)</a></li>
+<li><a class="reference internal" href="#m1-normalised-exg-week-12">M1 · Normalised ExG (Week 1–2)</a></li>
+<li><a class="reference internal" href="#m2-weed-exclusion-mask-week-23">M2 · Weed exclusion mask (Week 2–3)</a></li>
+<li><a class="reference internal" href="#m2-1-parameterise-the-dilation-kernel-week-23">M2.1 · Parameterise the dilation kernel (Week 2–3)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#short-term-npu-weed-detection-deployment">3. Short-Term — NPU Weed Detection Deployment</a><ul>
+<li><a class="reference internal" href="#weeks-38">(Weeks 3–8)</a></li>
+<li><a class="reference internal" href="#m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35">M3 · Validate YOLOX-Nano on UK lettuce weeds (Week 3–5)</a></li>
+<li><a class="reference internal" href="#m4-npu-inference-latency-benchmark-week-46">M4 · NPU inference latency benchmark (Week 4–6)</a></li>
+<li><a class="reference internal" href="#m5-composable-node-container-integration-week-56">M5 · Composable node container integration (Week 5–6)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#medium-term-replace-exg-with-npu-segmentation">4. Medium-Term — Replace ExG with NPU Segmentation</a><ul>
+<li><a class="reference internal" href="#months-24">(Months 2–4)</a></li>
+<li><a class="reference internal" href="#m6-training-data-collection-months-13-parallel-workstream">M6 · Training data collection (Months 1–3, parallel workstream)</a></li>
+<li><a class="reference internal" href="#m7-segmentation-model-selection-and-training-month-24">M7 · Segmentation model selection and training (Month 2–4)</a></li>
+<li><a class="reference internal" href="#m8-integration-into-crop-row-node-month-34">M8 · Integration into <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> (Month 3–4)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#long-term-semantic-field-navigation">5. Long-Term — Semantic Field Navigation</a><ul>
+<li><a class="reference internal" href="#months-612">(Months 6–12)</a></li>
+<li><a class="reference internal" href="#m9-row-end-and-headland-detection-month-6">M9 · Row-end and headland detection (Month 6)</a></li>
+<li><a class="reference internal" href="#m10-row-identity-and-cross-row-localisation-month-78">M10 · Row identity and cross-row localisation (Month 7–8)</a></li>
+<li><a class="reference internal" href="#m11-weed-pressure-maps-month-89">M11 · Weed pressure maps (Month 8–9)</a></li>
+<li><a class="reference internal" href="#m12-multi-task-unified-network-month-912">M12 · Multi-task unified network (Month 9–12)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dependency-and-risk-register">Dependency and Risk Register</a></li>
+<li><a class="reference internal" href="#milestone-summary">Milestone Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Feldfreund DevKit ROS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Vision System Roadmap — Sowbot / Avaota A1</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/research/Visual_roadmap.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vision-system-roadmap-sowbot-avaota-a1">
+<h1>Vision System Roadmap — Sowbot / Avaota A1<a class="headerlink" href="#vision-system-roadmap-sowbot-avaota-a1" title="Link to this heading"></a></h1>
+<section id="crop-row-node-yolox-nano-weed-detection-ros-2">
+<h2><code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> · YOLOX-Nano Weed Detection · ROS 2<a class="headerlink" href="#crop-row-node-yolox-nano-weed-detection-ros-2" title="Link to this heading"></a></h2>
+<p><strong>Deployment targets:</strong> UK outdoor lettuce · India young crop weeding
+<strong>Platform:</strong> Allwinner T527 (8× A55, Zhouyi Z2 NPU &#64; 2 TOPS)</p>
+</section>
+<hr class="docutils" />
+<section id="current-state-assessment">
+<h2>1. Current State Assessment<a class="headerlink" href="#current-state-assessment" title="Link to this heading"></a></h2>
+<section id="what-works-and-must-be-preserved">
+<h3>What works and must be preserved<a class="headerlink" href="#what-works-and-must-be-preserved" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> architecture is sound and should not be restructured.
+Specifically:</p>
+<ul class="simple">
+<li><p>The <strong>Cherubini &amp; Chaumette visual servoing interaction matrix</strong> is
+mathematically correct for monocular row-following and well-suited to
+the slow-speed, low-inertia dynamics of a field weeding robot.</p></li>
+<li><p>The <strong>ROS 2 node design</strong> — AOC conditions on separate topics, heartbeat
+for <code class="docutils literal notranslate"><span class="pre">PERCEPTION_DEGRADED</span></code> (M10), service-gated <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> — is clean,
+safe, and should be treated as fixed architecture.</p></li>
+<li><p>The <strong>BSD-2 provenance chain</strong> from Agricultural-Robotics-Bonn is
+properly tracked. Keep it.</p></li>
+</ul>
+<p>None of the controller logic, topic structure, or service interface needs
+to change at any point in this roadmap.</p>
+</section>
+<hr class="docutils" />
+<section id="the-core-fragility">
+<h3>The core fragility<a class="headerlink" href="#the-core-fragility" title="Link to this heading"></a></h3>
+<p>The entire perception stack rests on one assumption:</p>
+<blockquote>
+<div><p><strong>Crop rows are the dominant source of green pixels in the image.</strong></p>
+</div></blockquote>
+<p>For UK outdoor lettuce this assumption holds reasonably well under the
+diffuse overcast light that dominates British growing conditions — which is
+actually close to the ideal case for ExG. However it breaks down in four
+conditions that will be encountered regularly:</p>
+<ul class="simple">
+<li><p><strong>Early crop stage</strong> — lettuce at emergence is small and sparse; weeds
+may be denser and larger than the crop itself</p></li>
+<li><p><strong>Weed pressure</strong> — weeds are ExG-positive by definition; the pipeline
+cannot distinguish crop green from weed green</p></li>
+<li><p><strong>Mud splash</strong> — wet UK field conditions deposit soil on lower leaves,
+suppressing green channel values and fragmenting contours</p></li>
+<li><p><strong>Indian deployment</strong> — stronger directional sunlight and greater
+illumination variation cause saturation and shadow artefacts that
+unnormalised ExG cannot handle</p></li>
+</ul>
+<p>The first two conditions are universal to both deployments.
+The last two are context-specific but both foreseeable.</p>
+</section>
+<hr class="docutils" />
+<section id="the-architectural-conflict">
+<h3>The architectural conflict<a class="headerlink" href="#the-architectural-conflict" title="Link to this heading"></a></h3>
+<p>The two subsystems are currently in direct competition:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Camera frame
+  │
+  ├─► ExG mask → contours → row centre    (consumes ALL green pixels)
+  │
+  └─► YOLOX-Nano → weed bounding boxes   (identifies a subset of green pixels)
+</pre></div>
+</div>
+<p>Weeds that YOLOX correctly detects are simultaneously being used by the
+row-following pipeline as evidence of crop row position. Under heavy weed
+pressure — precisely when weed detection matters most agronomically — the
+row-following steers toward weeds. This must be resolved before the system
+is considered reliable.</p>
+</section>
+<hr class="docutils" />
+<section id="image-topic-architecture-decided">
+<h3>Image topic architecture (decided)<a class="headerlink" href="#image-topic-architecture-decided" title="Link to this heading"></a></h3>
+<p>Both <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> and <code class="docutils literal notranslate"><span class="pre">weed_detect_node</span></code> subscribe to the same topic:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">caatinga_vision</span><span class="o">/</span><span class="n">row_nav</span><span class="o">/</span><span class="n">image_raw</span>
+</pre></div>
+</div>
+<p>Run both nodes as <strong>composable nodes in a shared container</strong> with
+intra-process communication. The camera image is published once, serialised
+once, and delivered as a shared pointer — zero copy between the two nodes
+on the same SBC. No code changes to either node are required; the topic
+name is identical in both.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># launch/vision.launch.py</span>
+<span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">ComposableNodeContainer</span>
+<span class="kn">from</span> <span class="nn">launch_ros.descriptions</span> <span class="kn">import</span> <span class="n">ComposableNode</span>
+
+<span class="n">container</span> <span class="o">=</span> <span class="n">ComposableNodeContainer</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;vision_container&#39;</span><span class="p">,</span>
+    <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">package</span><span class="o">=</span><span class="s1">&#39;rclcpp_components&#39;</span><span class="p">,</span>
+    <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;component_container&#39;</span><span class="p">,</span>
+    <span class="n">composable_node_descriptions</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">ComposableNode</span><span class="p">(</span>
+            <span class="n">package</span><span class="o">=</span><span class="s1">&#39;sowbot_vision&#39;</span><span class="p">,</span>
+            <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;sowbot_vision::CameraSourceNode&#39;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;camera_source_node&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">ComposableNode</span><span class="p">(</span>
+            <span class="n">package</span><span class="o">=</span><span class="s1">&#39;sowbot_vision&#39;</span><span class="p">,</span>
+            <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;sowbot_vision::CropRowNode&#39;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;crop_row_node&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">ComposableNode</span><span class="p">(</span>
+            <span class="n">package</span><span class="o">=</span><span class="s1">&#39;sowbot_vision&#39;</span><span class="p">,</span>
+            <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;sowbot_vision::WeedDetectNode&#39;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;weed_detect_node&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cv_bridge.imgmsg_to_cv2()</span></code> in each node still performs its own <code class="docutils literal notranslate"><span class="pre">Mat</span></code>
+allocation — at 640×480×3 this is ~1.8 MB peak simultaneous. This is
+not a bottleneck at these resolutions and should not be optimised until
+profiling demonstrates otherwise.</p>
+</section>
+<hr class="docutils" />
+<section id="latency-budget">
+<h3>Latency budget<a class="headerlink" href="#latency-budget" title="Link to this heading"></a></h3>
+<p>At 30 Hz the end-to-end budget is <strong>33 ms</strong> from image capture to
+<code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> publish. Estimated current pipeline (unverified —
+profile on-device before any optimisation):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Stage</p></th>
+<th class="head"><p>Estimated</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ROS 2 intra-process delivery</p></td>
+<td><p>&lt; 0.5 ms</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">imgmsg_to_cv2</span></code> decode</p></td>
+<td><p>1–3 ms</p></td>
+</tr>
+<tr class="row-even"><td><p>ExG + Otsu + dilation (640×480)</p></td>
+<td><p>3–8 ms</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">findContours</span></code> + centroids</p></td>
+<td><p>1–4 ms</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">detect_crop_rows</span></code> (polyfit × 8 windows)</p></td>
+<td><p>&lt; 1 ms</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">visual_servoing_ctl</span></code></p></td>
+<td><p>&lt; 1 ms</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td><p><strong>~6–17 ms</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>There is margin. <strong>Measure this first.</strong> Every subsequent change must be
+benchmarked against this baseline.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="immediate-harden-what-exists">
+<h2>2. Immediate — Harden What Exists<a class="headerlink" href="#immediate-harden-what-exists" title="Link to this heading"></a></h2>
+<section id="no-model-training-no-npu-sdk-no-architectural-changes">
+<h3>(No model training. No NPU SDK. No architectural changes.)<a class="headerlink" href="#no-model-training-no-npu-sdk-no-architectural-changes" title="Link to this heading"></a></h3>
+</section>
+<hr class="docutils" />
+<section id="m0-profile-on-device-week-1">
+<h3>M0 · Profile on-device (Week 1)<a class="headerlink" href="#m0-profile-on-device-week-1" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Measure header-stamp → publish latency on the debug image</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>delay<span class="w"> </span>/caatinga_vision/row_nav/debug_image
+
+<span class="c1"># Per-message timing</span>
+ros2<span class="w"> </span>run<span class="w"> </span>rqt_topic<span class="w"> </span>rqt_topic
+</pre></div>
+</div>
+<p>Record: mean latency, p95 latency, CPU core utilisation (<code class="docutils literal notranslate"><span class="pre">htop</span></code>),
+memory bandwidth (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">sar</span> <span class="pre">-b</span> <span class="pre">1</span></code>). This is the baseline. No claim about
+performance is valid without it.</p>
+</section>
+<hr class="docutils" />
+<section id="m1-normalised-exg-week-12">
+<h3>M1 · Normalised ExG (Week 1–2)<a class="headerlink" href="#m1-normalised-exg-week-12" title="Link to this heading"></a></h3>
+<p>The current ExG is unnormalised. Replace the calculation in
+<code class="docutils literal notranslate"><span class="pre">compute_exg_mask</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEFORE — unnormalised, saturates in bright sun</span>
+<span class="n">exg</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">g</span> <span class="o">-</span> <span class="n">r</span> <span class="o">-</span> <span class="n">b</span>
+
+<span class="c1"># AFTER — normalised to [−1, 1], illumination-robust</span>
+<span class="n">img_f</span> <span class="o">=</span> <span class="n">bgr_img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">img_f</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">img_f</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">img_f</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">total</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">g</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="mf">1e-6</span>
+<span class="n">exg</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">g</span><span class="o">/</span><span class="n">total</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="n">total</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span><span class="o">/</span><span class="n">total</span><span class="p">)</span>
+
+<span class="c1"># Scale to uint8 for Otsu (maps [−1,1] → [0,255])</span>
+<span class="n">exg_u8</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">((</span><span class="n">exg</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="mf">127.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Why this matters for UK lettuce:</strong> Even under consistent British overcast,
+the robot will operate at golden hour (early morning slots to avoid
+compaction on wet soil), under poly-tunnel edges, and in partial cloud
+transitions. Normalised ExG is stable across all of these at zero compute
+cost.</p>
+<p><strong>Why this matters for India:</strong> Strong directional sun causes channel
+saturation. Normalised ExG recovers correctly where unnormalised ExG
+collapses to zero contrast.</p>
+<p>This is a one-function change, no retraining, no SDK. Do it first.</p>
+</section>
+<hr class="docutils" />
+<section id="m2-weed-exclusion-mask-week-23">
+<h3>M2 · Weed exclusion mask (Week 2–3)<a class="headerlink" href="#m2-weed-exclusion-mask-week-23" title="Link to this heading"></a></h3>
+<p>Before ExG processing, zero out image regions that YOLOX-Nano has already
+confirmed as weeds. This resolves the architectural conflict described in
+section 1 at zero additional inference cost.</p>
+<p>Add a second subscriber and a temporal synchroniser to <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">message_filters</span> <span class="kn">import</span> <span class="n">ApproximateTimeSynchronizer</span><span class="p">,</span> <span class="n">Subscriber</span>
+<span class="kn">from</span> <span class="nn">vision_msgs.msg</span> <span class="kn">import</span> <span class="n">Detection2DArray</span>
+
+<span class="c1"># Replace the single image subscriber with a synchronised pair</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_img_sub</span> <span class="o">=</span> <span class="n">Subscriber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_topic</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_det_sub</span> <span class="o">=</span> <span class="n">Subscriber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Detection2DArray</span><span class="p">,</span> <span class="s2">&quot;/weed_detections&quot;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_sync</span> <span class="o">=</span> <span class="n">ApproximateTimeSynchronizer</span><span class="p">(</span>
+    <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_img_sub</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_det_sub</span><span class="p">],</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">slop</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_sync</span><span class="o">.</span><span class="n">registerCallback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_image_and_detections</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Masking function — called before <code class="docutils literal notranslate"><span class="pre">compute_exg_mask</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_mask_weed_regions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bgr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                        <span class="n">detections</span><span class="p">:</span> <span class="n">Detection2DArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="n">masked</span> <span class="o">=</span> <span class="n">bgr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">det</span> <span class="ow">in</span> <span class="n">detections</span><span class="o">.</span><span class="n">detections</span><span class="p">:</span>
+        <span class="n">bb</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">bbox</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">bb</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">bb</span><span class="o">.</span><span class="n">size_x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">y1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">bb</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">bb</span><span class="o">.</span><span class="n">size_y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_w</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">bb</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">bb</span><span class="o">.</span><span class="n">size_x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_h</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">bb</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">bb</span><span class="o">.</span><span class="n">size_y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">masked</span><span class="p">[</span><span class="n">y1</span><span class="p">:</span><span class="n">y2</span><span class="p">,</span> <span class="n">x1</span><span class="p">:</span><span class="n">x2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">masked</span>
+</pre></div>
+</div>
+<p>The 50 ms <code class="docutils literal notranslate"><span class="pre">slop</span></code> tolerance accommodates YOLOX-Nano running at 10–15 Hz
+while <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> runs at 30 Hz. A false weed detection that masks a
+crop cluster will degrade the row centre estimate — which is exactly why
+M3 (YOLOX validation) must precede relying on these boxes in production.</p>
+</section>
+<hr class="docutils" />
+<section id="m2-1-parameterise-the-dilation-kernel-week-23">
+<h3>M2.1 · Parameterise the dilation kernel (Week 2–3)<a class="headerlink" href="#m2-1-parameterise-the-dilation-kernel-week-23" title="Link to this heading"></a></h3>
+<p>The 10×10 dilation kernel is hard-coded for a specific crop density.
+Lettuce at emergence has different spacing than lettuce at canopy closure,
+and Indian crop rows may have different plant separation entirely.</p>
+<p>Move to <code class="docutils literal notranslate"><span class="pre">crop_row_params.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">crop_row_node</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># UK lettuce — adjust per crop stage</span>
+<span class="w">    </span><span class="nt">dilation_kernel_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">    </span><span class="c1"># px; increase at emergence, decrease at canopy</span>
+<span class="w">    </span><span class="nt">min_contour_area</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span><span class="w">      </span><span class="c1"># px²; increase to filter soil/mud splash noise</span>
+<span class="w">    </span><span class="nt">n_scan_windows</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">    </span><span class="nt">window_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</pre></div>
+</div>
+<p>Add a merge step that groups contour centres within <code class="docutils literal notranslate"><span class="pre">dilation_kernel_size</span></code>
+pixels of each other before passing to <code class="docutils literal notranslate"><span class="pre">detect_crop_rows</span></code>. This makes the
+system tuneable across crop stages without code changes.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="short-term-npu-weed-detection-deployment">
+<h2>3. Short-Term — NPU Weed Detection Deployment<a class="headerlink" href="#short-term-npu-weed-detection-deployment" title="Link to this heading"></a></h2>
+<section id="weeks-38">
+<h3>(Weeks 3–8)<a class="headerlink" href="#weeks-38" title="Link to this heading"></a></h3>
+</section>
+<hr class="docutils" />
+<section id="m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35">
+<h3>M3 · Validate YOLOX-Nano on UK lettuce weeds (Week 3–5)<a class="headerlink" href="#m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35" title="Link to this heading"></a></h3>
+<p>Before any NPU bounding boxes are trusted as exclusion masks (M2), verify
+the model’s performance on the actual target weed species. Common weeds in
+UK outdoor lettuce:</p>
+<ul class="simple">
+<li><p>Annual meadow grass (<em>Poa annua</em>)</p></li>
+<li><p>Fat hen (<em>Chenopodium album</em>)</p></li>
+<li><p>Chickweed (<em>Stellaria media</em>)</p></li>
+<li><p>Groundsel (<em>Senecio vulgaris</em>)</p></li>
+<li><p>Shepherd’s purse (<em>Capsella bursa-pastoris</em>)</p></li>
+<li><p>Field speedwell (<em>Veronica persica</em>)</p></li>
+</ul>
+<p>Collect a minimum <strong>300-image validation set</strong> from the target fields at
+multiple crop growth stages. Measure per-class precision and recall.</p>
+<p>A false positive (crop detected as weed) that triggers the exclusion mask
+directly corrupts the row-centre estimate. Set a <strong>high confidence threshold
+(≥ 0.55)</strong> for the exclusion mask even if this reduces recall, because the
+cost of a false positive here is a navigation error, not just a missed
+detection.</p>
+<p>For India, repeat this process locally before deployment — weed flora will
+differ substantially from UK species.</p>
+</section>
+<hr class="docutils" />
+<section id="m4-npu-inference-latency-benchmark-week-46">
+<h3>M4 · NPU inference latency benchmark (Week 4–6)<a class="headerlink" href="#m4-npu-inference-latency-benchmark-week-46" title="Link to this heading"></a></h3>
+<p>After completing the Zhouyi SDK setup (see companion deployment guide),
+establish actual on-device timing before committing to any inference
+frequency targets:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using the siengine runtime demo as the template</span>
+<span class="c1"># (from AI610-SDK-r1p3-AIoT/siengine/nn-runtime-user-case-example)</span>
+./weed_detect_bench<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>yolox_nano_weed.bin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--input<span class="w"> </span>test_640x480.jpg<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--iterations<span class="w"> </span><span class="m">200</span>
+</pre></div>
+</div>
+<p>Record: mean, p50, p95, p99 inference latency. Run with <code class="docutils literal notranslate"><span class="pre">sar</span> <span class="pre">-b</span> <span class="pre">1</span></code> in
+parallel to measure DDR bus utilisation during NPU inference — this
+quantifies memory contention with the CPU-side ExG pipeline.</p>
+<p>Targets to confirm before proceeding to M5:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Target</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>YOLOX-Nano mean inference</p></td>
+<td><p>&lt; 80 ms (≥ 12 Hz)</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPU pipeline latency during NPU inference</p></td>
+<td><p>&lt; 25 ms</p></td>
+</tr>
+<tr class="row-even"><td><p>DDR utilisation peak</p></td>
+<td><p>&lt; 70%</p></td>
+</tr>
+</tbody>
+</table>
+<p>If CPU pipeline latency degrades significantly during NPU inference,
+introduce a frame-skip strategy: NPU inference runs every N-th frame,
+<code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> runs every frame using the most recent available detections.</p>
+</section>
+<hr class="docutils" />
+<section id="m5-composable-node-container-integration-week-56">
+<h3>M5 · Composable node container integration (Week 5–6)<a class="headerlink" href="#m5-composable-node-container-integration-week-56" title="Link to this heading"></a></h3>
+<p>Formalise the shared-topic, intra-process architecture from section 1 into
+the production launch file. Verify with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>component<span class="w"> </span>list
+<span class="c1"># All three nodes should appear under /vision_container</span>
+
+ros2<span class="w"> </span>topic<span class="w"> </span>hz<span class="w"> </span>/caatinga_vision/row_nav/image_raw
+<span class="c1"># Single publisher at 30 Hz</span>
+</pre></div>
+</div>
+<p>Confirm that intra-process communication is active by checking ROS 2 logs
+for <code class="docutils literal notranslate"><span class="pre">&quot;Intra-process</span> <span class="pre">communication</span> <span class="pre">enabled&quot;</span></code> on startup for each subscribing
+composable node.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="medium-term-replace-exg-with-npu-segmentation">
+<h2>4. Medium-Term — Replace ExG with NPU Segmentation<a class="headerlink" href="#medium-term-replace-exg-with-npu-segmentation" title="Link to this heading"></a></h2>
+<section id="months-24">
+<h3>(Months 2–4)<a class="headerlink" href="#months-24" title="Link to this heading"></a></h3>
+<p>This is the highest-impact change and the most work. ExG with weed masking
+(M2) is the bridge — it must be stable in production before this work
+begins.</p>
+</section>
+<hr class="docutils" />
+<section id="m6-training-data-collection-months-13-parallel-workstream">
+<h3>M6 · Training data collection (Months 1–3, parallel workstream)<a class="headerlink" href="#m6-training-data-collection-months-13-parallel-workstream" title="Link to this heading"></a></h3>
+<p>This is the long-lead item that gates everything in section 4.
+Begin immediately in parallel with M0–M5.</p>
+<p><strong>Target: 1,200 pixel-wise labelled images, three classes:</strong>
+<code class="docutils literal notranslate"><span class="pre">{lettuce_row,</span> <span class="pre">weed,</span> <span class="pre">soil/background}</span></code></p>
+<p>Capture requirements for UK outdoor lettuce:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Condition</p></th>
+<th class="head"><p>Target images</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Overcast (typical UK)</p></td>
+<td><p>400</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bright sun / partial cloud</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-even"><td><p>Early morning / low-angle light</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-odd"><td><p>Post-rain / wet soil with mud splash</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-even"><td><p>Emergence stage (small, sparse plants)</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-odd"><td><p>Canopy closure stage</p></td>
+<td><p>150</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Semi-automatic labelling strategy</strong> — use existing models as labelling
+tools rather than labelling from scratch:</p>
+<ol class="arabic simple">
+<li><p>Run YOLOX-Nano detections → weak weed labels</p></li>
+<li><p>Run normalised ExG + Otsu → weak crop/soil labels</p></li>
+<li><p>Manually correct disagreements, edge cases, plant boundaries,
+mud-splashed leaves</p></li>
+</ol>
+<p>This reduces manual labelling effort by approximately 60–70% compared to
+labelling from scratch. Tools: CVAT (self-hosted), Label Studio, or
+Segments.ai.</p>
+<p><strong>Useful pretraining datasets</strong> (European, directly applicable to UK):</p>
+<ul class="simple">
+<li><p>CropAndWeed Dataset — Steininger et al., 2023</p></li>
+<li><p>PhenoBench — Weyler et al., 2023</p></li>
+<li><p>WeedMap — Ramirez et al., 2020</p></li>
+</ul>
+<p><strong>India adaptation:</strong> A separate 400-image set captured locally is required
+before Indian field deployment. Weed flora, soil colour, illumination
+conditions, and crop appearance differ enough from UK that a UK-trained
+model will degrade significantly without domain adaptation. Do not skip
+this step.</p>
+</section>
+<hr class="docutils" />
+<section id="m7-segmentation-model-selection-and-training-month-24">
+<h3>M7 · Segmentation model selection and training (Month 2–4)<a class="headerlink" href="#m7-segmentation-model-selection-and-training-month-24" title="Link to this heading"></a></h3>
+<p><strong>Target architecture: MobileNetV2 + LR-ASPP at 320×240 input.</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Architecture</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Est. Z2 NPU latency</p></th>
+<th class="head"><p>Verdict</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MobileNetV2 + LR-ASPP</p></td>
+<td><p>320×240</p></td>
+<td><p>~15–25 ms</p></td>
+<td><p>✅ Start here</p></td>
+</tr>
+<tr class="row-odd"><td><p>STDC-Seg (STDC1)</p></td>
+<td><p>320×240</p></td>
+<td><p>~10–20 ms</p></td>
+<td><p>✅ Evaluate second</p></td>
+</tr>
+<tr class="row-even"><td><p>ERFNet</p></td>
+<td><p>320×240</p></td>
+<td><p>~30–50 ms</p></td>
+<td><p>⚠️ Marginal budget</p></td>
+</tr>
+<tr class="row-odd"><td><p>SegNet</p></td>
+<td><p>any</p></td>
+<td><p>&gt; 60 ms</p></td>
+<td><p>❌ Too heavy</p></td>
+</tr>
+</tbody>
+</table>
+<p>Do not use 640×480 input for the first deployed version. 320×240 reduces
+NPU compute and DDR transfer by 4×. The downstream <code class="docutils literal notranslate"><span class="pre">detect_crop_rows</span></code>
+polyfit is stable at half resolution — lettuce rows are regular enough that
+sub-pixel row-centre accuracy is not required.</p>
+<p>All latency estimates are from comparable 2–4 TOPS embedded NPU benchmarks.
+Validate on T527 before committing.</p>
+<p><strong>Training procedure:</strong></p>
+<ol class="arabic simple">
+<li><p>Pretrain on CropAndWeed + PhenoBench (three classes remapped to
+<code class="docutils literal notranslate"><span class="pre">lettuce_row</span> <span class="pre">/</span> <span class="pre">weed</span> <span class="pre">/</span> <span class="pre">background</span></code>)</p></li>
+<li><p>Fine-tune on UK field dataset (M6)</p></li>
+<li><p>Quantise to INT8 using Zhouyi Compass Optimizer (<code class="docutils literal notranslate"><span class="pre">AIPUBuilder</span></code>) with UK
+field images as calibration data — do not use ImageNet calibration</p></li>
+<li><p>Acceptance criterion: INT8 mIoU must be within 3 percentage points of
+float model mIoU before deployment</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="m8-integration-into-crop-row-node-month-34">
+<h3>M8 · Integration into <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> (Month 3–4)<a class="headerlink" href="#m8-integration-into-crop-row-node-month-34" title="Link to this heading"></a></h3>
+<p>The segmentation output replaces exactly two function calls. Everything
+downstream is unchanged:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEFORE</span>
+<span class="n">mask</span>    <span class="o">=</span> <span class="n">compute_exg_mask</span><span class="p">(</span><span class="n">bgr</span><span class="p">)</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="n">get_plant_centers</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_area</span><span class="p">)</span>
+
+<span class="c1"># AFTER — seg_mask delivered via /seg_mask topic (mono8)</span>
+<span class="c1"># published by weed_detect_node after NPU inference</span>
+<span class="n">seg_mask</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_latest_seg_mask</span>          <span class="c1"># 0=soil, 1=crop, 2=weed</span>
+<span class="n">crop_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">seg_mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">*</span> <span class="mi">255</span>
+<span class="n">weed_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">seg_mask</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">*</span> <span class="mi">255</span>
+<span class="n">centers</span>   <span class="o">=</span> <span class="n">get_plant_centers</span><span class="p">(</span><span class="n">crop_mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_area</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The dense weed mask replaces the YOLOX bounding box exclusion from M2 —
+pixel-accurate, no confidence thresholding needed for the navigation path.</p>
+<p><strong>NPU time-sharing strategy</strong> (Zhouyi Z2 runs models sequentially):</p>
+<ul class="simple">
+<li><p><strong>Segmentation:</strong> every frame at 30 Hz (~15–25 ms), primary navigation input</p></li>
+<li><p><strong>YOLOX-Nano:</strong> every 3rd frame at 10 Hz, used for precise weed
+localisation to drive treatment actuation (sprayer trigger / mechanical
+weeder position), not for navigation</p></li>
+</ul>
+<p>At 0.15 m/s forward speed, 10 Hz YOLOX gives a weed position update every
+15 mm of travel — sufficient for actuation timing on a robot at this speed.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="long-term-semantic-field-navigation">
+<h2>5. Long-Term — Semantic Field Navigation<a class="headerlink" href="#long-term-semantic-field-navigation" title="Link to this heading"></a></h2>
+<section id="months-612">
+<h3>(Months 6–12)<a class="headerlink" href="#months-612" title="Link to this heading"></a></h3>
+</section>
+<hr class="docutils" />
+<section id="m9-row-end-and-headland-detection-month-6">
+<h3>M9 · Row-end and headland detection (Month 6)<a class="headerlink" href="#m9-row-end-and-headland-detection-month-6" title="Link to this heading"></a></h3>
+<p>The current node has no concept of reaching the end of a row. Add a
+<code class="docutils literal notranslate"><span class="pre">headland</span></code> class to the segmentation model trained in M7. Publish:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">aoc</span><span class="o">/</span><span class="n">conditions</span><span class="o">/</span><span class="n">row_end</span>   <span class="p">(</span><span class="n">std_msgs</span><span class="o">/</span><span class="n">Bool</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Limbic System uses this to trigger headland turning. This eliminates
+the need for a separate sensor or waypoint-based row-end detection.</p>
+</section>
+<hr class="docutils" />
+<section id="m10-row-identity-and-cross-row-localisation-month-78">
+<h3>M10 · Row identity and cross-row localisation (Month 7–8)<a class="headerlink" href="#m10-row-identity-and-cross-row-localisation-month-78" title="Link to this heading"></a></h3>
+<p>The polyfit gives row-relative position but no global field map. After
+segmentation is stable, add a row-counter derived from frame-to-frame
+tracking of the lateral phase of detected row positions. This allows the
+Limbic System to maintain which row the robot is in, enabling:</p>
+<ul class="simple">
+<li><p>Skip-row weeding patterns</p></li>
+<li><p>Per-row treatment records</p></li>
+<li><p>Return-to-row after interruption or e-stop</p></li>
+</ul>
+<p>No additional sensors required — derived entirely from the existing
+segmentation output.</p>
+</section>
+<hr class="docutils" />
+<section id="m11-weed-pressure-maps-month-89">
+<h3>M11 · Weed pressure maps (Month 8–9)<a class="headerlink" href="#m11-weed-pressure-maps-month-89" title="Link to this heading"></a></h3>
+<p>Accumulate weed detections across the field geo-referenced by wheel
+odometry or RTK-GPS. Publish as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">aoc</span><span class="o">/</span><span class="n">maps</span><span class="o">/</span><span class="n">weed_pressure</span>   <span class="p">(</span><span class="n">nav_msgs</span><span class="o">/</span><span class="n">OccupancyGrid</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This produces per-row, per-bed weed density estimates — the primary
+agronomic data output of the system. In UK commercial lettuce production
+this also supports the field records required under Red Tractor and LEAF
+Marque standards, even for mechanical weeding operations.</p>
+</section>
+<hr class="docutils" />
+<section id="m12-multi-task-unified-network-month-912">
+<h3>M12 · Multi-task unified network (Month 9–12)<a class="headerlink" href="#m12-multi-task-unified-network-month-912" title="Link to this heading"></a></h3>
+<p>Replace the two-model time-sharing arrangement with a single network:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Shared MobileNetV2 encoder
+  │
+  ├─► Segmentation head   (lettuce / weed / soil / headland)
+  └─► Detection head      (weed bounding boxes for actuation)
+</pre></div>
+</div>
+<p>Single NPU inference per frame. Shared feature extraction removes
+approximately 60% of redundant compute. Both outputs are temporally aligned
+with no synchroniser required.</p>
+<p>This is a 3–4 month model development project and should not be started
+before the single-task segmentation model (M7) has been validated and
+stable in production for at least one growing season.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="dependency-and-risk-register">
+<h2>Dependency and Risk Register<a class="headerlink" href="#dependency-and-risk-register" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Severity</p></th>
+<th class="head"><p>Status</p></th>
+<th class="head"><p>Mitigation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ExG corrupted by weed pressure</p></td>
+<td><p><strong>Critical</strong></p></td>
+<td><p>Active now</p></td>
+<td><p>M2 immediately; M8 resolves permanently</p></td>
+</tr>
+<tr class="row-odd"><td><p>YOLOX false positives corrupting row centre</p></td>
+<td><p><strong>High</strong></p></td>
+<td><p>Active when M2 deployed</p></td>
+<td><p>Confidence threshold ≥ 0.55; validate M3 first</p></td>
+</tr>
+<tr class="row-even"><td><p>T527 NPU latency unverified</p></td>
+<td><p><strong>High</strong></p></td>
+<td><p>Blocks M5+</p></td>
+<td><p>Benchmark (M4) before any Hz commitments</p></td>
+</tr>
+<tr class="row-odd"><td><p>UK field labelling dataset — long lead time</p></td>
+<td><p><strong>High</strong></p></td>
+<td><p>Begin immediately</p></td>
+<td><p>Semi-automatic labelling; parallel workstream from day 1</p></td>
+</tr>
+<tr class="row-even"><td><p>India domain shift vs UK-trained model</p></td>
+<td><p><strong>High</strong></p></td>
+<td><p>Future deployment</p></td>
+<td><p>400-image local adaptation set; re-quantise with local calibration</p></td>
+</tr>
+<tr class="row-odd"><td><p>DDR bus contention CPU + NPU concurrent</p></td>
+<td><p>Medium</p></td>
+<td><p>Measure at M4</p></td>
+<td><p>Frame-skip if needed; time-sharing in M8</p></td>
+</tr>
+<tr class="row-even"><td><p>Mud splash degrading ExG in wet UK conditions</p></td>
+<td><p>Medium</p></td>
+<td><p>Active</p></td>
+<td><p>M1 normalisation reduces impact; M8 resolves permanently</p></td>
+</tr>
+<tr class="row-odd"><td><p>Composable node intra-process not activating</p></td>
+<td><p>Low</p></td>
+<td><p>Verify at M5</p></td>
+<td><p>Check ROS 2 logs on startup; fall back to standard pub/sub if needed</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="milestone-summary">
+<h2>Milestone Summary<a class="headerlink" href="#milestone-summary" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Milestone</p></th>
+<th class="head"><p>When</p></th>
+<th class="head"><p>Output</p></th>
+<th class="head"><p>Prerequisite</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>M0</strong></p></td>
+<td><p>Baseline profiling</p></td>
+<td><p>Week 1</p></td>
+<td><p>Measured latency budget on T527</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M1</strong></p></td>
+<td><p>Normalised ExG</p></td>
+<td><p>Week 1–2</p></td>
+<td><p>Illumination-robust perception, one function</p></td>
+<td><p>M0</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>M2</strong></p></td>
+<td><p>Weed exclusion mask</p></td>
+<td><p>Week 2–3</p></td>
+<td><p>YOLOX boxes suppress ExG false positives</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M2.1</strong></p></td>
+<td><p>Parameterise dilation kernel</p></td>
+<td><p>Week 2–3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">crop_row_params.yaml</span></code> tuneable per crop stage</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>M3</strong></p></td>
+<td><p>YOLOX UK weed validation</p></td>
+<td><p>Week 3–5</p></td>
+<td><p>Per-species P/R, confidence threshold set</p></td>
+<td><p>M2 production trust</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M4</strong></p></td>
+<td><p>NPU latency benchmark</p></td>
+<td><p>Week 4–6</p></td>
+<td><p>Confirmed Hz budget, DDR contention profile</p></td>
+<td><p>M5, M7</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>M5</strong></p></td>
+<td><p>Composable node container</p></td>
+<td><p>Week 5–6</p></td>
+<td><p>Zero-copy image sharing, production launch</p></td>
+<td><p>M4</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M6</strong></p></td>
+<td><p>UK field dataset <em>(parallel)</em></p></td>
+<td><p>Month 1–3</p></td>
+<td><p>1,200 labelled images, three classes</p></td>
+<td><p>M7</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>M7</strong></p></td>
+<td><p>Segmentation model v1</p></td>
+<td><p>Month 2–4</p></td>
+<td><p>MobileNetV2+LR-ASPP, INT8, on NPU</p></td>
+<td><p>M6, M4</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M8</strong></p></td>
+<td><p>Unified segmentation pipeline</p></td>
+<td><p>Month 3–4</p></td>
+<td><p>ExG removed, seg 30 Hz, YOLOX 10 Hz</p></td>
+<td><p>M7 stable</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>M9</strong></p></td>
+<td><p>Row-end / headland detection</p></td>
+<td><p>Month 6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/aoc/conditions/row_end</span></code>, Limbic turning</p></td>
+<td><p>M8</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M10</strong></p></td>
+<td><p>Row identity tracking</p></td>
+<td><p>Month 7–8</p></td>
+<td><p>Row counter, return-to-row</p></td>
+<td><p>M8</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>M11</strong></p></td>
+<td><p>Weed pressure maps</p></td>
+<td><p>Month 8–9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">OccupancyGrid</span></code>, per-row agronomic records</p></td>
+<td><p>M10</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M12</strong></p></td>
+<td><p>Multi-task unified network</p></td>
+<td><p>Month 9–12</p></td>
+<td><p>Single NPU inference, seg + detection</p></td>
+<td><p>M8 one season stable</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Agroecology Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

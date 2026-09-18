@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coverage Planner Feature Comparison &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9d891252"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Feldfreund DevKit ROS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Coverage Planner Feature Comparison</a><ul>
+<li><a class="reference internal" href="#slic3r-coverage-planner-current-openmower-vs-fields2cover">slic3r_coverage_planner (current OpenMower) vs Fields2Cover</a></li>
+<li><a class="reference internal" href="#feature-by-feature-breakdown">Feature-by-feature breakdown</a><ul>
+<li><a class="reference internal" href="#outline-covered-by-rounds-inner-to-outer">1. Outline covered by rounds, inner to outer</a></li>
+<li><a class="reference internal" href="#rounds-around-obstacles">2. Rounds around obstacles</a></li>
+<li><a class="reference internal" href="#rounds-near-outline-and-obstacle-merged-into-one-track">3. Rounds near outline and obstacle merged into one track</a></li>
+<li><a class="reference internal" href="#smooth-transitions-between-rounds">4. Smooth transitions between rounds</a></li>
+<li><a class="reference internal" href="#fill-using-parallel-lines">5. Fill using parallel lines</a></li>
+<li><a class="reference internal" href="#multiple-fills-for-complex-concave-shapes">6. Multiple fills for complex/concave shapes</a></li>
+<li><a class="reference internal" href="#consistent-fill-angle-across-all-regions-easily-configurable">7. Consistent fill angle across all regions, easily configurable</a></li>
+<li><a class="reference internal" href="#half-circle-turns-between-fill-lines">8. Half-circle turns between fill lines</a></li>
+<li><a class="reference internal" href="#inter-path-navigation-done-at-runtime-via-costmap-not-pre-planned">9. Inter-path navigation done at runtime via costmap (not pre-planned)</a></li>
+<li><a class="reference internal" href="#paths-ordered-in-a-sensible-way">10. Paths ordered in a sensible way</a></li>
+<li><a class="reference internal" href="#input-as-polygon-with-holes-border-mower-centre-line">11. Input as polygon with holes; border = mower centre line</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#summary-matrix">Summary matrix</a></li>
+<li><a class="reference internal" href="#bottom-line">Bottom line</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Feldfreund DevKit ROS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Coverage Planner Feature Comparison</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/research/fields2coverVsSlicr.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coverage-planner-feature-comparison">
+<h1>Coverage Planner Feature Comparison<a class="headerlink" href="#coverage-planner-feature-comparison" title="Link to this heading"></a></h1>
+<section id="slic3r-coverage-planner-current-openmower-vs-fields2cover">
+<h2>slic3r_coverage_planner (current OpenMower) vs Fields2Cover<a class="headerlink" href="#slic3r-coverage-planner-current-openmower-vs-fields2cover" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>Reference: current slic3r behaviour as described by the OpenMower community.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="feature-by-feature-breakdown">
+<h2>Feature-by-feature breakdown<a class="headerlink" href="#feature-by-feature-breakdown" title="Link to this heading"></a></h2>
+<section id="outline-covered-by-rounds-inner-to-outer">
+<h3>1. Outline covered by rounds, inner to outer<a class="headerlink" href="#outline-covered-by-rounds-inner-to-outer" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>⚠️ Partial</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>Generates multiple perimeter passes as a native 3D-printing concept — inward offset rings are a first-class feature.</p></td>
+<td><p>The headland generator creates a single headland band of configurable width (expressed as multiples of robot width). There is currently <strong>only one headland generator</strong> (<code class="docutils literal notranslate"><span class="pre">ConstHL</span></code>), and it does not natively produce multiple inward-offset perimeter passes as separate driving tracks the way slic3r does. You would need to call it repeatedly with shrinking widths to replicate this.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="rounds-around-obstacles">
+<h3>2. Rounds around obstacles<a class="headerlink" href="#rounds-around-obstacles" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>⚠️ Requires workaround</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>Slic3r treats obstacles as island polygons and naturally generates perimeter passes around them, exactly as it does for the outer border.</p></td>
+<td><p>F2C v2.0 supports obstacles and non-convex fields via decomposition, but it does not generate dedicated perimeter passes <em>around obstacles</em> the way slic3r does. Obstacle areas are excluded from swaths; navigating around them in perimeter-pass style would need to be implemented separately.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="rounds-near-outline-and-obstacle-merged-into-one-track">
+<h3>3. Rounds near outline and obstacle merged into one track<a class="headerlink" href="#rounds-near-outline-and-obstacle-merged-into-one-track" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>❌ Not supported</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>When an obstacle is close enough to the outer boundary, slic3r intelligently merges the perimeter passes into a single combined track, avoiding a tiny gap that would be impractical to mow.</p></td>
+<td><p>Fields2Cover has no equivalent merging logic. Headland and obstacle exclusion zones are computed independently. A narrow strip between an obstacle’s exclusion zone and the field’s headland zone would either be included in the fill swaths (possibly poorly) or dropped entirely. This would need custom post-processing.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="smooth-transitions-between-rounds">
+<h3>4. Smooth transitions between rounds<a class="headerlink" href="#smooth-transitions-between-rounds" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>✅ Supported, and better</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>Slic3r generates smooth spiral-like transitions between perimeter rings.</p></td>
+<td><p>F2C’s path planner supports Dubins curves, Dubins with continuous curvature (CC), Reeds-Shepp curves, and Reeds-Shepp CC. The CC variants explicitly smooth out instantaneous curvature changes, making the result more physically accurate for a real vehicle with a minimum turning radius. This is <em>more</em> capable than slic3r’s transitions, but applies to swath-to-swath turns rather than ring-to-ring transitions specifically.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="fill-using-parallel-lines">
+<h3>5. Fill using parallel lines<a class="headerlink" href="#fill-using-parallel-lines" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>✅ Fully supported</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>Standard infill pattern from 3D printing.</p></td>
+<td><p>F2C’s swath generator produces parallel line fills natively. The <code class="docutils literal notranslate"><span class="pre">BruteForce</span></code> generator finds the optimal angle to minimise number of swaths. Multiple route ordering patterns are available: Boustrophedon (simple sequential), Snake (skip-one-return, reduces sharp turns), Spiral, and a fully optimised order via OR-Tools. This is richer than slic3r’s fill ordering.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="multiple-fills-for-complex-concave-shapes">
+<h3>6. Multiple fills for complex/concave shapes<a class="headerlink" href="#multiple-fills-for-complex-concave-shapes" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>✅ Supported, explicit step required</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>Slic3r automatically detects when a single fill region doesn’t work and splits into multiple regions — this is implicit and requires no configuration.</p></td>
+<td><p>F2C v2.0 achieves this via the <strong>cell decomposition</strong> step (Trapezoidal or Boustrophedon decomposition). For an L-shaped field, decomposing first then applying swath generation can reduce swath count dramatically (e.g. from 84 to 26 in the documented example). However, this is an <em>explicit</em> pipeline step — the user must decide when to decompose and configure it. It is not automatic. The decomposition also requires a specific two-pass headland workflow to keep the route planner connected across decomposed cells.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="consistent-fill-angle-across-all-regions-easily-configurable">
+<h3>7. Consistent fill angle across all regions, easily configurable<a class="headerlink" href="#consistent-fill-angle-across-all-regions-easily-configurable" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>✅ Fully supported</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>One angle parameter applies to all fill regions.</p></td>
+<td><p>F2C passes the sweep angle directly to the swath generator as a parameter. When using decomposition across multiple cells, all cells can be given the same angle. The <code class="docutils literal notranslate"><span class="pre">BruteForce</span></code> generator can also <em>find</em> the optimal angle automatically if you prefer that over a fixed value.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="half-circle-turns-between-fill-lines">
+<h3>8. Half-circle turns between fill lines<a class="headerlink" href="#half-circle-turns-between-fill-lines" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Ford</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>✅ Supported, and more flexible</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>Fixed half-circle U-turns between parallel swaths.</p></td>
+<td><p>F2C supports four turn types: straight, Dubins, Dubins-CC, and Reeds-Shepp(-CC). For a non-holonomic mower with a minimum turning radius, Dubins or Dubins-CC produces the shortest valid turn — which may be a half-circle or tighter, depending on the robot parameters. This is physically more correct than a fixed half-circle, but requires setting <code class="docutils literal notranslate"><span class="pre">robot.setMinTurningRadius()</span></code> correctly.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="inter-path-navigation-done-at-runtime-via-costmap-not-pre-planned">
+<h3>9. Inter-path navigation done at runtime via costmap (not pre-planned)<a class="headerlink" href="#inter-path-navigation-done-at-runtime-via-costmap-not-pre-planned" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Deliberate design choice</p></td>
+<td><p>✅ Pre-planned, but nav stack still usable</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>Transitions between outlines, obstacle rounds, and fill regions are not part of the planned path — the nav stack handles them dynamically using a costmap. This keeps the planner simple and lets obstacle avoidance handle surprises.</p></td>
+<td><p>F2C’s route planner (using OR-Tools or known patterns) generates the full ordered sequence of swaths <em>and</em> the headland traversal paths connecting them. The complete path including transitions is output as a single <code class="docutils literal notranslate"><span class="pre">F2CPath</span></code>. This is more deterministic and efficient, but means the pre-planned transitions could conflict with unexpected runtime obstacles — you still need a local planner (e.g. TEB) on top for safety.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="paths-ordered-in-a-sensible-way">
+<h3>10. Paths ordered in a sensible way<a class="headerlink" href="#paths-ordered-in-a-sensible-way" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works reasonably</p></td>
+<td><p>✅ More principled, and optimisable</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>Slic3r uses printing-derived heuristics to order paths in a practical way, but there is no formal optimisation.</p></td>
+<td><p>F2C offers multiple explicit strategies: Boustrophedon (simple sequential), Snake (fewer sharp turns), Spiral (useful for capacity-limited machines), and a full OR-Tools optimiser that finds the globally shortest route. A defined start/end point can also be enforced. This is strictly more capable, at the cost of needing to choose a strategy.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="input-as-polygon-with-holes-border-mower-centre-line">
+<h3>11. Input as polygon with holes; border = mower centre line<a class="headerlink" href="#input-as-polygon-with-holes-border-mower-centre-line" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>slic3r</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Status</strong></p></td>
+<td><p>✅ Works well</p></td>
+<td><p>✅ Fully supported</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Notes</strong></p></td>
+<td><p>The input polygon represents the area reachable by the mower’s centre, with holes for exclusion zones. Slic3r handles this natively.</p></td>
+<td><p>F2C accepts <code class="docutils literal notranslate"><span class="pre">F2CCells</span></code> (polygons with holes) as input. The headland generator shrinks the field boundary inward by the desired margin, so the border of the input polygon should be the mower’s centre-line boundary — exactly the same convention. GeoJSON input is also supported for real GPS-referenced fields.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<hr class="docutils" />
+<section id="summary-matrix">
+<h2>Summary matrix<a class="headerlink" href="#summary-matrix" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>slic3r (OpenMower)</p></th>
+<th class="head"><p>Fields2Cover</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Outline perimeter passes (multiple rounds)</p></td>
+<td><p>✅ Native</p></td>
+<td><p>⚠️ Manual multi-call workaround</p></td>
+</tr>
+<tr class="row-odd"><td><p>Perimeter passes around obstacles</p></td>
+<td><p>✅ Native</p></td>
+<td><p>⚠️ Not built-in</p></td>
+</tr>
+<tr class="row-even"><td><p>Merge nearby outline/obstacle rounds</p></td>
+<td><p>✅ Automatic</p></td>
+<td><p>❌ Not supported</p></td>
+</tr>
+<tr class="row-odd"><td><p>Smooth ring-to-ring transitions</p></td>
+<td><p>✅ Spiral-style</p></td>
+<td><p>✅ Kinematically correct curves</p></td>
+</tr>
+<tr class="row-even"><td><p>Parallel line fill</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p>Multiple fills for concave shapes</p></td>
+<td><p>✅ Automatic</p></td>
+<td><p>✅ Explicit decomposition step</p></td>
+</tr>
+<tr class="row-even"><td><p>Consistent configurable fill angle</p></td>
+<td><p>✅</p></td>
+<td><p>✅ (plus auto-optimise)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Half-circle / U-turn between swaths</p></td>
+<td><p>✅ Fixed half-circle</p></td>
+<td><p>✅ Kinematically optimal turns</p></td>
+</tr>
+<tr class="row-even"><td><p>Inter-path navigation pre-planned</p></td>
+<td><p>❌ Runtime costmap</p></td>
+<td><p>✅ Pre-planned (+ local planner still needed)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sensible path ordering</p></td>
+<td><p>✅ Heuristic</p></td>
+<td><p>✅ Multiple strategies + OR-Tools</p></td>
+</tr>
+<tr class="row-even"><td><p>Polygon-with-holes input, centre-line border</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="bottom-line">
+<h2>Bottom line<a class="headerlink" href="#bottom-line" title="Link to this heading"></a></h2>
+<p>Fields2Cover is <strong>more powerful</strong> on fill ordering, turn geometry, and route optimisation. However, slic3r has two behaviours that Fields2Cover <strong>does not replicate cleanly out of the box</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Perimeter passes around obstacles</strong> — F2C excludes obstacle areas but doesn’t orbit them with offset rings.</p></li>
+<li><p><strong>Automatic merging of obstacle rounds with outline rounds</strong> — this contextual geometry simplification is unique to slic3r’s approach and would require custom logic in F2C.</p></li>
+</ol>
+<p>For a migration to F2C, these two features would likely need bespoke implementation on top of the F2C primitives.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Agroecology Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

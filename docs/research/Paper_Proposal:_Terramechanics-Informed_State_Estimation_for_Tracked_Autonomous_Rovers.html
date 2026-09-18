@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paper Proposal: Terramechanics-Informed State Estimation for Tracked Autonomous Rovers &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9d891252"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Feldfreund DevKit ROS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Paper Proposal: Terramechanics-Informed State Estimation for Tracked Autonomous Rovers</a><ul>
+<li><a class="reference internal" href="#authors-affiliations">Authors &amp; Affiliations</a></li>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#introduction-and-motivation">1. Introduction and Motivation</a></li>
+<li><a class="reference internal" href="#system-architecture">2. System Architecture</a></li>
+<li><a class="reference internal" href="#experimental-validation-in-gazebo">3. Experimental Validation in Gazebo</a></li>
+<li><a class="reference internal" href="#bibliography-and-prior-work">4. Bibliography and Prior Work</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Feldfreund DevKit ROS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Paper Proposal: Terramechanics-Informed State Estimation for Tracked Autonomous Rovers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/research/Paper_Proposal:_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="paper-proposal-terramechanics-informed-state-estimation-for-tracked-autonomous-rovers">
+<h1>Paper Proposal: Terramechanics-Informed State Estimation for Tracked Autonomous Rovers<a class="headerlink" href="#paper-proposal-terramechanics-informed-state-estimation-for-tracked-autonomous-rovers" title="Link to this heading"></a></h1>
+<p><strong>Proposed Title:</strong> Terramechanics-Informed State Estimation for Tracked Autonomous Rovers: Integrating Direct Visual-Inertial Odometry and 23-State Adaptive Fusion in Gazebo
+<strong>Target Venue:</strong> <em>Journal of Field Robotics (JFR)</em> or <em>IEEE Robotics and Automation Letters (RA-L)</em></p>
+<section id="authors-affiliations">
+<h2>Authors &amp; Affiliations<a class="headerlink" href="#authors-affiliations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Khalid Bourr (Corresponding Author):</strong> Mechatronics &amp; Robotics Lab, University of Trieste, Italy (<em>unitsSpaceLab</em>).</p></li>
+<li><p><strong>Manan Kharwar:</strong> Independent Researcher, Hamilton, ON, Canada.</p></li>
+<li><p><strong>Suyash:</strong> Core Open-Source Maintainer.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading"></a></h2>
+<p>Autonomous tracked rovers operating in agricultural and forestry environments suffer from severe localization drift due to track-soil slip. Standard wheel odometry fails in deformable terrain (mud, loose soil), and visual-inertial odometry (VIO) degrades under heavy canopy occlusion or low-angle glare. This paper presents a cascaded, terramechanics-aware sensor fusion framework deployed on a tracked agricultural robot (“Sowbot”). By integrating a modernized ROS 2 direct VIO pipeline with a 23-state Unscented Kalman Filter (UKF), the system dynamically down-weights slipping track encoders in favor of visual velocity during soil shearing events. To validate the architecture across the “reality gap,” we introduce a comprehensive simulation pipeline using <code class="docutils literal notranslate"><span class="pre">Forest3D</span></code> and <code class="docutils literal notranslate"><span class="pre">gz-terramechanics</span></code>, allowing for the formal verification of the fusion software against genuine, non-linear track-soil interaction models in Gazebo prior to field deployment.</p>
+</section>
+<hr class="docutils" />
+<section id="introduction-and-motivation">
+<h2>1. Introduction and Motivation<a class="headerlink" href="#introduction-and-motivation" title="Link to this heading"></a></h2>
+<p>Tracked vehicles in agriculture require centimeter-level precision for tasks like automated seeding, yet rely on tracks that inherently slip and shear against the topsoil to steer. Traditional navigation stacks treat the ground as a rigid 2D plane. When the Sowbot traverses wet clay, track encoders report forward motion while the vehicle is actually digging into the soil.</p>
+<p>This paper solves this reality gap through a three-pillar architecture: a high-fidelity terramechanics simulation engine for validation, a local visual-inertial tracking engine, and a 23-state adaptive filter that cross-references physical slip against optical flow.</p>
+</section>
+<hr class="docutils" />
+<section id="system-architecture">
+<h2>2. System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading"></a></h2>
+<p>The proposed stack bridges high-rate VIO with adaptive state estimation, validated through procedural physics simulations.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Contributor</p></th>
+<th class="head"><p>Subsystem</p></th>
+<th class="head"><p>Function in the Stack</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Khalid Bourr</strong></p></td>
+<td><p><strong>Terramechanics Simulation</strong></p></td>
+<td><p>Leverages <code class="docutils literal notranslate"><span class="pre">Forest3D</span></code> to build complex DEM-based Gazebo worlds and <code class="docutils literal notranslate"><span class="pre">gz-terramechanics</span></code> to simulate physical sinkage, traction, and resistive torques. Generates the slip data that triggers the filter’s adaptive gating.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Suyash</strong></p></td>
+<td><p><strong>Local VIO Engine</strong></p></td>
+<td><p>Maintains the modernized ROS 2 ROVIO implementation. Processes high-rate camera and IMU data to produce a clean velocity vector (<code class="docutils literal notranslate"><span class="pre">/rovio/odometry</span></code>) independent of ground friction.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Manan Kharwar</strong></p></td>
+<td><p><strong>23-State UKF Fusion</strong></p></td>
+<td><p>Utilizes <code class="docutils literal notranslate"><span class="pre">FusionCore</span></code> to fuse VIO, IMU, and track data. Dynamically isolates the systematic yaw rate bias of the slipping tracks and coasts on VIO/IMU tracking when the physical tracks lose traction.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="experimental-validation-in-gazebo">
+<h2>3. Experimental Validation in Gazebo<a class="headerlink" href="#experimental-validation-in-gazebo" title="Link to this heading"></a></h2>
+<p>To prove the framework without risking physical hardware, the system is rigorously tested in a simulated high-slip environment:</p>
+<ol class="arabic simple">
+<li><p><strong>Environment Generation:</strong> High-resolution digital elevation models (DEM) of agricultural fields are processed using <code class="docutils literal notranslate"><span class="pre">Forest3D</span></code>. The resulting Gazebo world is populated with procedural vegetation to create realistic visual occlusions.</p></li>
+<li><p><strong>Physics Injection:</strong> The <code class="docutils literal notranslate"><span class="pre">gz-terramechanics</span></code> plugin is applied to the soil. As the simulated Sowbot executes skid-steer maneuvers, the tracks calculate real-time sinkage and shear, causing the simulated wheel encoders to spike out of sync with actual displacement.</p></li>
+<li><p><strong>Filter Intercept:</strong> <code class="docutils literal notranslate"><span class="pre">FusionCore</span></code> monitors the divergence between the VIO velocity and the track encoders. As the slip crosses the Mahalanobis chi-squared threshold, the filter drops the encoder weights, relying entirely on the visual map and IMU dead-reckoning to maintain an accurate trajectory.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="bibliography-and-prior-work">
+<h2>4. Bibliography and Prior Work<a class="headerlink" href="#bibliography-and-prior-work" title="Link to this heading"></a></h2>
+<p>The foundational frameworks enabling this research are rooted in the authors’ prior active developments in state estimation and simulation:</p>
+<p><strong>FusionCore &amp; State Estimation (Manan Kharwar)</strong></p>
+<ul class="simple">
+<li><p>Kharwar, M. (2026). <em>FusionCore: A 23-State Unscented Kalman Filter for IMU, Wheel Encoder, GPS, and Visual SLAM Fusion in ROS 2.</em> arXiv preprint arXiv:2605.25239. [Details the core UKF math, online bias estimation, and adaptive noise covariance used to intercept the VIO data].</p></li>
+</ul>
+<p><strong>Terramechanics &amp; Environment Generation (Khalid Bourr)</strong></p>
+<ul class="simple">
+<li><p>Scalera, L., Maset, E., Fasiolo, D. T., Bourr, K., Cottiga, S., De Lorenzo, A., Carabin, G., Alberti, G., Gasparetto, A., Mazzetto, F., &amp; Seriani, S. (2026). <em>Forest Surveying with Robotics and AI: SLAM-Based Mapping, Terrain-Aware Navigation, and Tree Parameter Estimation.</em> Machines.</p></li>
+<li><p>Bourr, K. (2026). <em>Forest3D - Terrain and Forest Generation for Gazebo.</em> unitsSpaceLab, GitHub. [Automated generation of Gazebo environments from DEM files and Blender assets].</p></li>
+<li><p>Bourr, K. (2026). <em>gz-terramechanics.</em> unitsSpaceLab, GitHub. [Gazebo Sim physics plugin computing real-time wheel/track sinkage, traction forces, and driving torques].</p></li>
+</ul>
+<p><strong>Visual-Inertial Odometry (Suyash &amp; ETH Zürich)</strong></p>
+<ul class="simple">
+<li><p>Bloesch, M., Omari, S., Hutter, M., &amp; Siegwart, R. (2015). <em>Robust visual inertial odometry using a direct EKF-based approach.</em> IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). [The foundational math modernized into ROS 2 by Suyash].</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Agroecology Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

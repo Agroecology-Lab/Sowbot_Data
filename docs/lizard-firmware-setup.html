@@ -1,0 +1,134 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Lizard Firmware Setup &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=9d891252"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Feldfreund DevKit ROS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Local Lizard Firmware Setup</a><ul>
+<li><a class="reference internal" href="#checkout">Checkout</a></li>
+<li><a class="reference internal" href="#build-and-flash">Build and flash</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Feldfreund DevKit ROS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Local Lizard Firmware Setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/lizard-firmware-setup.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="local-lizard-firmware-setup">
+<h1>Local Lizard Firmware Setup<a class="headerlink" href="#local-lizard-firmware-setup" title="Link to this heading"></a></h1>
+<p>Lizard firmware is developed and built in a separate checkout.
+This ROS repository intentionally contains no Lizard source tree or symlink under <code class="docutils literal notranslate"><span class="pre">src/</span></code>.</p>
+<section id="checkout">
+<h2>Checkout<a class="headerlink" href="#checkout" title="Link to this heading"></a></h2>
+<p>Clone Lizard outside this repository, for example beside it in your workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Agroecology-Lab/lizard.git<span class="w"> </span>../lizard
+<span class="nb">cd</span><span class="w"> </span>../lizard
+git<span class="w"> </span>checkout<span class="w"> </span>87ab4e198d3af2a274e60292ee204b722f939b5e
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+<p>The revision matches the <code class="docutils literal notranslate"><span class="pre">LIZARD_COMMIT</span></code> used by this repository’s Docker image.
+Use another revision only when the firmware and ROS integration are intentionally being updated together.</p>
+</section>
+<section id="build-and-flash">
+<h2>Build and flash<a class="headerlink" href="#build-and-flash" title="Link to this heading"></a></h2>
+<p>Follow the Lizard repository’s <a class="reference external" href="https://github.com/Agroecology-Lab/lizard/blob/87ab4e198d3af2a274e60292ee204b722f939b5e/README.md">build instructions</a> from that external checkout.
+They build ESP32-S3 firmware with the <code class="docutils literal notranslate"><span class="pre">espressif/idf:v5.3.1</span></code> container.</p>
+<p>After a successful build, flash the connected controller from the Lizard checkout:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>./espresso.py<span class="w"> </span>flash<span class="w"> </span>--device<span class="w"> </span>/dev/ttyACM0
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">/dev/ttyACM0</span></code> with the controller’s serial device.
+The serial device must not be in use by a ROS driver or monitor while flashing.</p>
+<p>Do not copy the Lizard checkout or its generated <code class="docutils literal notranslate"><span class="pre">build/</span></code> directory into this repository.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Agroecology Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
