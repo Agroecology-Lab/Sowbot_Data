@@ -1,0 +1,14 @@
+devkit\_ui.view\_models
+=======================
+
+.. automodule:: devkit_ui.view_models
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   global_view_model
+   run_view_model

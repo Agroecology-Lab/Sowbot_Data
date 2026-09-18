@@ -1,0 +1,12 @@
+devkit\_mavlink\_bridge.modules.gps\_input\_handler
+===================================================
+
+.. automodule:: devkit_mavlink_bridge.modules.gps_input_handler
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      fused_pose_to_gps_input
+   

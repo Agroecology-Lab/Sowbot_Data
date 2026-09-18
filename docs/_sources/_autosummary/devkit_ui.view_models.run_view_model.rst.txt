@@ -1,0 +1,12 @@
+devkit\_ui.view\_models.run\_view\_model
+========================================
+
+.. automodule:: devkit_ui.view_models.run_view_model
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RunViewModel
+   

@@ -1,0 +1,18 @@
+devkit\_ui.actions
+==================
+
+.. automodule:: devkit_ui.actions
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      action_ros_msgs
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ActionDef
+   

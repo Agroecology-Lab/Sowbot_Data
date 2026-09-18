@@ -1,0 +1,13 @@
+devkit\_ui.pages
+================
+
+.. automodule:: devkit_ui.pages
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   run

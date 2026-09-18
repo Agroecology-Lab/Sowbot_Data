@@ -1,0 +1,12 @@
+devkit\_ui.pages.run.node\_map\_card
+====================================
+
+.. automodule:: devkit_ui.pages.run.node_map_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      NodeMapCard
+   

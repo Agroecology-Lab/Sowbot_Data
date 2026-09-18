@@ -1,0 +1,13 @@
+﻿devkit\_f2c\_planner
+====================
+
+.. automodule:: devkit_f2c_planner
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   f2c_planner

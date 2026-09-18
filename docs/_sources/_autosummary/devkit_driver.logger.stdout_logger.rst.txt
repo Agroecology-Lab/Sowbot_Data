@@ -1,0 +1,12 @@
+devkit\_driver.logger.stdout\_logger
+====================================
+
+.. automodule:: devkit_driver.logger.stdout_logger
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      StdOutLogger
+   

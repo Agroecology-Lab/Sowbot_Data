@@ -1,0 +1,1497 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sowbot (ROS 2 stack) &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=9d891252"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Local Lizard Firmware Setup" href="lizard-firmware-setup.html" />
+    <link rel="prev" title="Feldfreund DevKit ROS (Sowbot) Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Feldfreund DevKit ROS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Navigation &amp; Architecture</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sowbot (ROS 2 stack)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sowbot-roadmap">Sowbot Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#collaboration">Collaboration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#rewrite-from-scratch-cost-estimate">Rewrite-from-Scratch Cost Estimate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#foundational-infra">Foundational infra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#packages-pulled-in-developed-in-house">Packages pulled in &amp; developed in house</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#total">Total</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#critical-safety-warning">⚠️ CRITICAL SAFETY WARNING:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#health-warning">Health Warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#supported-sbc-configuration">Supported SBC configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-dependencies">0. Install dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#linux">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mac">Mac</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#windows">Windows?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#clone-the-repository">1. Clone the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-launch">3. Build &amp; Launch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gazebo">Gazebo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#management-tools">Management &amp; Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#manage-py">manage.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#one-command-sim-launch-tmule">One-command sim launch (TMuLE)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tmux-basics">tmux basics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-shell">Interactive Shell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diagnostics">Diagnostics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#after-running-login-sh">After running ./login.sh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sketch-of-mvp-2026-architecture">Sketch of MVP 2026 architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-lizard-brain-rt-microcontroller">1. The Lizard Brain (RT Microcontroller)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-limbic-system-executive">2. The Limbic System (Executive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-neo-perception">3. The Neo (Perception)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sketch-of-possible-eventual-2027-architecture">Sketch of possible eventual ~2027 architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-lizard-brain-hardware-abstraction">1. The Lizard Brain (Hardware Abstraction)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. The Limbic System (Executive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3. The Neo (Perception)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#licenses-papers">Licenses &amp; papers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#sowbot-feldfreund-devkit-ros-dependency-licence-audit">Sowbot / feldfreund_devkit_ros — Dependency Licence Audit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#feldfreund-devkit-ros">Feldfreund DevKit ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#devkit-driver">DevKit driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#camera-system">Camera System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gnss-system">GNSS System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#devkit-ui">DevKit UI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-setup">Docker Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-docker-compose">Using Docker Compose</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#connect-to-ui">Connect to UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launch-files">Launch Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#axis-camera-authentication">AXIS Camera Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quickstart-guide">Quickstart guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1. Clone the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validate-configuration">2. Validate Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-with-docker">3. Build with Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#send-lizard-configuration">4. Send Lizard Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ready-to-go">5. Ready to Go</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#future-features">Future features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lizard-firmware-setup.html">Local Lizard Firmware Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lizard-firmware-setup.html#checkout">Checkout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lizard-firmware-setup.html#build-and-flash">Build and flash</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_driver.html">devkit_driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.course_over_ground.html">devkit_driver.course_over_ground</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.CourseOverGround"><code class="docutils literal notranslate"><span class="pre">CourseOverGround</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html">devkit_driver.devkit_driver_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver"><code class="docutils literal notranslate"><span class="pre">DevkitDriver</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.on_startup"><code class="docutils literal notranslate"><span class="pre">on_startup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.logger.html">devkit_driver.logger</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.logger.html">devkit_driver.logger.logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.ros_logger.html">devkit_driver.logger.ros_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.stdout_logger.html">devkit_driver.logger.stdout_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.modules.html">devkit_driver.modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.BMSHandler"><code class="docutils literal notranslate"><span class="pre">BMSHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.BumperHandler"><code class="docutils literal notranslate"><span class="pre">BumperHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler"><code class="docutils literal notranslate"><span class="pre">EStopHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ImuHandler"><code class="docutils literal notranslate"><span class="pre">ImuHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.OdomHandler"><code class="docutils literal notranslate"><span class="pre">OdomHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger"><code class="docutils literal notranslate"><span class="pre">ReconDEMLogger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.RobotBrainHandler"><code class="docutils literal notranslate"><span class="pre">RobotBrainHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler"><code class="docutils literal notranslate"><span class="pre">TwistHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.bms_handler.html">devkit_driver.modules.bms_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.bumper_handler.html">devkit_driver.modules.bumper_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.estop_handler.html">devkit_driver.modules.estop_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.imu_handler.html">devkit_driver.modules.imu_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.odom_handler.html">devkit_driver.modules.odom_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.recon_dem_logger.html">devkit_driver.modules.recon_dem_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.robot_brain_handler.html">devkit_driver.modules.robot_brain_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.twist_handler.html">devkit_driver.modules.twist_handler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.qos.html">devkit_driver.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.relposned_heading_shim.html">devkit_driver.relposned_heading_shim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.RelPosnedHeadingShim"><code class="docutils literal notranslate"><span class="pre">RelPosnedHeadingShim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.rtk_navsatfix_shim.html">devkit_driver.rtk_navsatfix_shim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim"><code class="docutils literal notranslate"><span class="pre">RtkNavSatFixShim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_f2c_planner.html">devkit_f2c_planner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_f2c_planner.f2c_planner.html">devkit_f2c_planner.f2c_planner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_ui.html">devkit_ui</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.actions.html">devkit_ui.actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef"><code class="docutils literal notranslate"><span class="pre">ActionDef</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.action_ros_msgs"><code class="docutils literal notranslate"><span class="pre">action_ros_msgs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.constants.html">devkit_ui.constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.dem.html">devkit_ui.dem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.build_elevation_grid"><code class="docutils literal notranslate"><span class="pre">build_elevation_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.elevation_to_traversable"><code class="docutils literal notranslate"><span class="pre">elevation_to_traversable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.load_recon_points"><code class="docutils literal notranslate"><span class="pre">load_recon_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.recon_csv_to_obstacle_rings"><code class="docutils literal notranslate"><span class="pre">recon_csv_to_obstacle_rings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_latlon"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_latlon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_xy"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_xy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore"><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.validate_mission"><code class="docutils literal notranslate"><span class="pre">validate_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.test_sqlite.html">devkit_ui.missions.test_sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.models.html">devkit_ui.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc"><code class="docutils literal notranslate"><span class="pre">TopoDoc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge"><code class="docutils literal notranslate"><span class="pre">TopoEdge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode"><code class="docutils literal notranslate"><span class="pre">TopoNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose"><code class="docutils literal notranslate"><span class="pre">TopoPose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties"><code class="docutils literal notranslate"><span class="pre">TopoProperties</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#threading-model">Threading model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#coordinate-frames">Coordinate frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.MissionDrawHandle"><code class="docutils literal notranslate"><span class="pre">MissionDrawHandle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager"><code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_obstacle_panel"><code class="docutils literal notranslate"><span class="pre">attach_mission_obstacle_panel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_sidebar_controls"><code class="docutils literal notranslate"><span class="pre">attach_mission_sidebar_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_nav_card"><code class="docutils literal notranslate"><span class="pre">attach_nav_card()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.circle_to_ring_ll"><code class="docutils literal notranslate"><span class="pre">circle_to_ring_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacle_to_ring_ll"><code class="docutils literal notranslate"><span class="pre">obstacle_to_ring_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacles_to_rings_ll"><code class="docutils literal notranslate"><span class="pre">obstacles_to_rings_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.validate_obstacle"><code class="docutils literal notranslate"><span class="pre">validate_obstacle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.pages.html">devkit_ui.pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.pages.run.html">devkit_ui.pages.run</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.parse.html">devkit_ui.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.dump_topo_yaml"><code class="docutils literal notranslate"><span class="pre">dump_topo_yaml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_json"><code class="docutils literal notranslate"><span class="pre">parse_topo_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_models.html">devkit_ui.test_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc"><code class="docutils literal notranslate"><span class="pre">TestTopoDoc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html">devkit_ui.test_navigation_goals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ActionClient"><code class="docutils literal notranslate"><span class="pre">ActionClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Goal"><code class="docutils literal notranslate"><span class="pre">Goal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.GoalHandle"><code class="docutils literal notranslate"><span class="pre">GoalHandle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.NavigationHarness"><code class="docutils literal notranslate"><span class="pre">NavigationHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal"><code class="docutils literal notranslate"><span class="pre">TestSendNavGoal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal"><code class="docutils literal notranslate"><span class="pre">TestSynchronousNavigationGoal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.load_navigation_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_parse.html">devkit_ui.test_parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html">devkit_ui.test_run_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeDialog"><code class="docutils literal notranslate"><span class="pre">FakeDialog</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement"><code class="docutils literal notranslate"><span class="pre">FakeElement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeTimer"><code class="docutils literal notranslate"><span class="pre">FakeTimer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi"><code class="docutils literal notranslate"><span class="pre">FakeUi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard"><code class="docutils literal notranslate"><span class="pre">TestDropNodeCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar"><code class="docutils literal notranslate"><span class="pre">TestNavigationSidebar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo"><code class="docutils literal notranslate"><span class="pre">TestObstacleUndo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard"><code class="docutils literal notranslate"><span class="pre">TestRowDiscoveryCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel"><code class="docutils literal notranslate"><span class="pre">TestRunViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_topo_renderer.html">devkit_ui.test_topo_renderer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels"><code class="docutils literal notranslate"><span class="pre">TestTopoRendererRowLabels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.row_labels"><code class="docutils literal notranslate"><span class="pre">row_labels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc"><code class="docutils literal notranslate"><span class="pre">now_utc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc_str"><code class="docutils literal notranslate"><span class="pre">now_utc_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.parse_ts"><code class="docutils literal notranslate"><span class="pre">parse_ts()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html">devkit_ui.ui_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode"><code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.load_css"><code class="docutils literal notranslate"><span class="pre">load_css()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.utils.html">devkit_ui.utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.utils.topo_renderer.html">devkit_ui.utils.topo_renderer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Research &amp; Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="research/Sim.html">Gazebo Simulation (Headless VNC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="research/Visual_roadmap.html">Vision System Roadmap — Sowbot / Avaota A1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#crop-row-node-yolox-nano-weed-detection-ros-2"><code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> · YOLOX-Nano Weed Detection · ROS 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#current-state-assessment">1. Current State Assessment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#what-works-and-must-be-preserved">What works and must be preserved</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#the-core-fragility">The core fragility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#the-architectural-conflict">The architectural conflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#image-topic-architecture-decided">Image topic architecture (decided)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#latency-budget">Latency budget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#immediate-harden-what-exists">2. Immediate — Harden What Exists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#no-model-training-no-npu-sdk-no-architectural-changes">(No model training. No NPU SDK. No architectural changes.)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m0-profile-on-device-week-1">M0 · Profile on-device (Week 1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m1-normalised-exg-week-12">M1 · Normalised ExG (Week 1–2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m2-weed-exclusion-mask-week-23">M2 · Weed exclusion mask (Week 2–3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m2-1-parameterise-the-dilation-kernel-week-23">M2.1 · Parameterise the dilation kernel (Week 2–3)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#short-term-npu-weed-detection-deployment">3. Short-Term — NPU Weed Detection Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#weeks-38">(Weeks 3–8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35">M3 · Validate YOLOX-Nano on UK lettuce weeds (Week 3–5)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m4-npu-inference-latency-benchmark-week-46">M4 · NPU inference latency benchmark (Week 4–6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m5-composable-node-container-integration-week-56">M5 · Composable node container integration (Week 5–6)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#medium-term-replace-exg-with-npu-segmentation">4. Medium-Term — Replace ExG with NPU Segmentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#months-24">(Months 2–4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m6-training-data-collection-months-13-parallel-workstream">M6 · Training data collection (Months 1–3, parallel workstream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m7-segmentation-model-selection-and-training-month-24">M7 · Segmentation model selection and training (Month 2–4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m8-integration-into-crop-row-node-month-34">M8 · Integration into <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> (Month 3–4)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#long-term-semantic-field-navigation">5. Long-Term — Semantic Field Navigation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#months-612">(Months 6–12)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m9-row-end-and-headland-detection-month-6">M9 · Row-end and headland detection (Month 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m10-row-identity-and-cross-row-localisation-month-78">M10 · Row identity and cross-row localisation (Month 7–8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m11-weed-pressure-maps-month-89">M11 · Weed pressure maps (Month 8–9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/Visual_roadmap.html#m12-multi-task-unified-network-month-912">M12 · Multi-task unified network (Month 9–12)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#dependency-and-risk-register">Dependency and Risk Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#milestone-summary">Milestone Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="research/fields2coverVsSlicr.html">Coverage Planner Feature Comparison</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="research/fields2coverVsSlicr.html#slic3r-coverage-planner-current-openmower-vs-fields2cover">slic3r_coverage_planner (current OpenMower) vs Fields2Cover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/fields2coverVsSlicr.html#feature-by-feature-breakdown">Feature-by-feature breakdown</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#outline-covered-by-rounds-inner-to-outer">1. Outline covered by rounds, inner to outer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#rounds-around-obstacles">2. Rounds around obstacles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#rounds-near-outline-and-obstacle-merged-into-one-track">3. Rounds near outline and obstacle merged into one track</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#smooth-transitions-between-rounds">4. Smooth transitions between rounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#fill-using-parallel-lines">5. Fill using parallel lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#multiple-fills-for-complex-concave-shapes">6. Multiple fills for complex/concave shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#consistent-fill-angle-across-all-regions-easily-configurable">7. Consistent fill angle across all regions, easily configurable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#half-circle-turns-between-fill-lines">8. Half-circle turns between fill lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#inter-path-navigation-done-at-runtime-via-costmap-not-pre-planned">9. Inter-path navigation done at runtime via costmap (not pre-planned)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#paths-ordered-in-a-sensible-way">10. Paths ordered in a sensible way</a></li>
+<li class="toctree-l3"><a class="reference internal" href="research/fields2coverVsSlicr.html#input-as-polygon-with-holes-border-mower-centre-line">11. Input as polygon with holes; border = mower centre line</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="research/fields2coverVsSlicr.html#summary-matrix">Summary matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/fields2coverVsSlicr.html#bottom-line">Bottom line</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html">Paper Proposal: Terramechanics-Informed State Estimation for Tracked Autonomous Rovers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#authors-affiliations">Authors &amp; Affiliations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#introduction-and-motivation">1. Introduction and Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#system-architecture">2. System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#experimental-validation-in-gazebo">3. Experimental Validation in Gazebo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#bibliography-and-prior-work">4. Bibliography and Prior Work</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Feldfreund DevKit ROS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sowbot (ROS 2 stack)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sowbot-ros-2-stack">
+<h1>Sowbot (ROS 2 stack)<a class="headerlink" href="#sowbot-ros-2-stack" title="Link to this heading"></a></h1>
+<p>An open-source, containerised ROS2 Jazzy stack for autonomous agricultural robotics. This repository provides the drivers and orchestration for the Sowbot platform, featuring RTK-GNSS localisation and ESP32-based hardware control.</p>
+<p>Development is led by the <a href="https://agroecologylab.org.uk" target="_blank">Agroecology Lab</a> building on the core developed by <a href="https://zauberzeug.com/" target="_blank">Zauberzeug</a>.</p>
+<p>Reference open hardware stack(s) under development at <a class="reference external" href="https://sowbot.co.uk">Sowbot.co.uk</a></p>
+<p><a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros#quick-start">Quick start</a></p>
+<p><strong>Collaborators welcome.</strong> See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst">CONTRIBUTING.md</span></a>.</p>
+<p>Contact: <a class="reference external" href="https://sowbot.co.uk/contact/">sowbot.co.uk</a></p>
+<!-- CI & Test Status -->
+<p><a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/test.yml?query=branch%3Acaatinga-dev"><img alt="Run Tests" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/test.yml/badge.svg?branch=caatinga-dev" /></a>
+<a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/industrial_ci.yml?query=branch%3Acaatinga-dev"><img alt="Industrial CI" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/industrial_ci.yml/badge.svg?branch=caatinga-dev" /></a>
+<a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/documentation.yml?query=branch%3Acaatinga-dev"><img alt="Documentation Deployment" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/documentation.yml/badge.svg?branch=caatinga-dev" /></a></p>
+<!-- Code Coverage -->
+<p><a class="reference external" href="https://codecov.io/gh/Agroecology-Lab/feldfreund_devkit_ros/branch/caatinga-dev"><img alt="Codecov" src="https://codecov.io/gh/Agroecology-Lab/feldfreund_devkit_ros/branch/caatinga-dev/graph/badge.svg" /></a></p>
+<p><strong>Milestone — multi-row mission following validated in Gazebo:</strong></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=A0CVNcp19vU"><img alt="Multi-row mission following in Gazebo" src="https://img.youtube.com/vi/A0CVNcp19vU/0.jpg" /></a></p>
+<section id="sowbot-roadmap">
+<h2>Sowbot Roadmap<a class="headerlink" href="#sowbot-roadmap" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Feature</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Status</p></th>
+<th class="head"><p>TRL</p></th>
+<th class="head"><p>Phase</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>FOUNDATION</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><strong>2025</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>F1</p></td>
+<td><p>Containerised deployment</p></td>
+<td><p>Full ROS 2 Jazzy stack managed via Docker and <code class="docutils literal notranslate"><span class="pre">manage.py</span></code>. Live volume mapping to <code class="docutils literal notranslate"><span class="pre">/workspace</span></code>. Build, full-build, and <code class="docutils literal notranslate"><span class="pre">+sim</span></code> build modes.</p></td>
+<td><p>Done</p></td>
+<td><p>6</p></td>
+<td><p>2025</p></td>
+</tr>
+<tr class="row-even"><td><p>F2</p></td>
+<td><p>Stable device addressing</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fixusb.py</span></code> with Jetson/generic architecture detection, kernel <code class="docutils literal notranslate"><span class="pre">low_latency</span></code> mode, and udev symlink generation. Writes <code class="docutils literal notranslate"><span class="pre">.env</span></code> consumed by all launch files. Note: <code class="docutils literal notranslate"><span class="pre">run_neo()</span></code> never calls <code class="docutils literal notranslate"><span class="pre">fixusb.py</span></code> so <code class="docutils literal notranslate"><span class="pre">.env</span></code> is not written for neo-only runs.</p></td>
+<td><p>Done</p></td>
+<td><p>6</p></td>
+<td><p>2025</p></td>
+</tr>
+<tr class="row-odd"><td><p>F3</p></td>
+<td><p>Teleop dashboard</p></td>
+<td><p>NiceGUI web cockpit on <code class="docutils literal notranslate"><span class="pre">:80</span></code>. Three-tab interface: <strong>Nav</strong> (joystick, e-stop, topo map, node-drop, track mode), <strong>Mission</strong> (fields2cover corner entry, F2C row plan generator, reorderable mission queue), <strong>System</strong> (telemetry, safety indicators, GPS leaflet map).</p></td>
+<td><p>Done</p></td>
+<td><p>6</p></td>
+<td><p>2025</p></td>
+</tr>
+<tr class="row-even"><td><p>F4</p></td>
+<td><p>ublox DGNSS driver</p></td>
+<td><p>Dual F9P moving-base configuration with dynamic port assignment via <code class="docutils literal notranslate"><span class="pre">fixusb.py</span></code>.</p></td>
+<td><p>Done</p></td>
+<td><p>6</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>F5</p></td>
+<td><p>Diagnostics TUI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">agbot-diagnostic.py</span></code> terminal status view of all hardware topics. Run inside container via <code class="docutils literal notranslate"><span class="pre">login.sh</span></code>.</p></td>
+<td><p>Done</p></td>
+<td><p>6</p></td>
+<td><p>2025</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>MVP FIELD</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><strong>2026</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>M1</p></td>
+<td><p>Agri Open Core platform integration</p></td>
+<td><p>Demonstrates AOC platform abstraction on affordable ARM hardware accessible to smallholders.</p></td>
+<td><p>Done</p></td>
+<td><p>3</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-even"><td><p>M2</p></td>
+<td><p>Topological navigation + Nav2</p></td>
+<td><p>LCAS <code class="docutils literal notranslate"><span class="pre">topological_navigation</span></code> (<code class="docutils literal notranslate"><span class="pre">aoc_refactor</span></code> branch) building in Dockerfile. RViz visualisation confirmed working. Self-contained <code class="docutils literal notranslate"><span class="pre">navigation2.py</span></code> with A* route planning, explicit state machine, and <code class="docutils literal notranslate"><span class="pre">row_traversal</span></code> / <code class="docutils literal notranslate"><span class="pre">NavigateToPose</span></code> / <code class="docutils literal notranslate"><span class="pre">goal_align</span></code> edge actions. <code class="docutils literal notranslate"><span class="pre">fake_nav2_server</span></code> with <code class="docutils literal notranslate"><span class="pre">/limbic_row_follow</span></code> stub enables full pipeline testing in sim. <code class="docutils literal notranslate"><span class="pre">sim_nav.launch.py</span></code> now routes through real Nav2. <strong>Multi-row mission following (entry/exit node pairs across boustrophedon rows) validated end-to-end in Gazebo.</strong> Pending: Jazzy field validation on hardware.</p></td>
+<td><p>~85% Done</p></td>
+<td><p>4</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>M2a</p></td>
+<td><p>fusioncore Nav2 bridge</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fusioncore_node</span></code> launched via <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code>. Nav2 topic remapping shim wired. Pending: end-to-end test on live hardware.</p></td>
+<td><p>~75% Done</p></td>
+<td><p>4</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-even"><td><p>M3</p></td>
+<td><p>Open-field row-crop scenario</p></td>
+<td><p>Live node-drop in UI. F2C row plan generator implemented in <code class="docutils literal notranslate"><span class="pre">ui_node.py</span></code> (corners → swaths → topo rows via <code class="docutils literal notranslate"><span class="pre">_run_f2c()</span></code>). YAML written to <code class="docutils literal notranslate"><span class="pre">/workspace/maps/</span></code>, <code class="docutils literal notranslate"><span class="pre">switch_topological_map</span></code> with fallback. Topo map auto-generated at container start. Multi-row traversal across generated swaths confirmed in sim. Pending: tmap2 authoring from real field survey; F2C obstacle costmap integration.</p></td>
+<td><p>~70% Done</p></td>
+<td><p>4</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>M4</p></td>
+<td><p>RTK-GNSS localisation</p></td>
+<td><p>Full pipeline implemented: dual F9P, shims, UKF fusion, NTRIP. Lever-arm offsets in <code class="docutils literal notranslate"><span class="pre">fusioncore.yaml</span></code> are zeroed placeholders (commented <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">measured</span></code> TODOs). Pending: antenna lever-arm measurement, live hardware test.</p></td>
+<td><p>~75% Done</p></td>
+<td><p>3</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-even"><td><p>M5</p></td>
+<td><p>Dual-SBC ROS 2 stack</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">manage.py</span></code> detects crossover interface, builds <code class="docutils literal notranslate"><span class="pre">CYCLONEDDS_URI</span></code> peer config and injects into Docker. <code class="docutils literal notranslate"><span class="pre">neo.launch.py</span></code> and <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code> finalised for Limbic+Neo split. DDS peer path is the active one.</p></td>
+<td><p>~90% Done</p></td>
+<td><p>3</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>M6</p></td>
+<td><p>Gazebo simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sowbot_sim.launch.py</span></code> + <code class="docutils literal notranslate"><span class="pre">sim_nav.launch.py</span></code> fully restructured. <code class="docutils literal notranslate"><span class="pre">kill_fake_nav2_on_clock</span></code> implemented. <code class="docutils literal notranslate"><span class="pre">use_sim_time=True</span></code> now threaded through topo stack. <strong>Multi-row mission following demonstrated end-to-end (see video above).</strong></p></td>
+<td><p>Done</p></td>
+<td><p>4</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-even"><td><p>M7</p></td>
+<td><p>Sentor safety monitoring</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sowbot_monitor.yaml</span></code> fully authored (e-stop, bumpers, battery, camera, odom, neo_vision heartbeat, node monitors). <code class="docutils literal notranslate"><span class="pre">sentor_node.py</span></code> wired into <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code>. Pending: smoke-test on live hardware; battery voltage cutoff needs field confirmation (<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">TODO:</span> <span class="pre">CONFIRM</span></code> in YAML).</p></td>
+<td><p>~75% Done</p></td>
+<td><p>3</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>M8</p></td>
+<td><p>Visual crop-row navigation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sowbot_row_follow</span></code> package implemented. ExG+Otsu, visual servo, <code class="docutils literal notranslate"><span class="pre">limbic_row_follow_node.py</span></code> as Nav2 action server. Cancel and heartbeat-loss safety. TSM row-swap hold with 6-second debounce implemented. Tested and iterated against a lettuce crop in the UK.</p></td>
+<td><p>~80% Done</p></td>
+<td><p>4</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>PRODUCTION</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><strong>~2027</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>P1</p></td>
+<td><p>STM32H7 + copper-rs MCU</p></td>
+<td><p>Replace ESP32/Lizard DSL with STM32H745 running copper-rs statically-scheduled Rust firmware. Hard real-time motor PID, hardware safety interlocks.</p></td>
+<td><p>Research</p></td>
+<td><p>2</p></td>
+<td><p>2027</p></td>
+</tr>
+<tr class="row-even"><td><p>P2</p></td>
+<td><p>CANopen bus</p></td>
+<td><p>ISO 11898 FDCAN at 500 kbit/s / 2 Mbit/s. lely-core CANopen master on T527 native M_CAN. DSP402 drive profile.</p></td>
+<td><p>Research</p></td>
+<td><p>2</p></td>
+<td><p>2027</p></td>
+</tr>
+<tr class="row-odd"><td><p>P3</p></td>
+<td><p>RT kernel + core isolation</p></td>
+<td><p>PREEMPT_RT on Limbic T527. <code class="docutils literal notranslate"><span class="pre">isolcpus=4-7</span></code>, RTK EKF on core 2 (SCHED_FIFO 60), AOC nav on cores 4-6, watchdog on core 5. GbE/CAN IRQ pinned to core 0.</p></td>
+<td><p>Planned</p></td>
+<td><p>2</p></td>
+<td><p>2027</p></td>
+</tr>
+<tr class="row-even"><td><p>P4</p></td>
+<td><p>ROFS image</p></td>
+<td><p>Read-only rootfs — Ubuntu Noble minimal or Yocto with RT kernel, pre-built LCAS topo nav, Nav2, <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code>. Immutable field deployment.</p></td>
+<td><p>Research</p></td>
+<td><p>1</p></td>
+<td><p>2027</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>END-EFFECTORS</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><strong>TBD</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>E1</p></td>
+<td><p>Delta weeding module</p></td>
+<td><p>Open-Weeding-Delta precision mechanical weeding. CANopen actuator node on delta controller.</p></td>
+<td><p>Research</p></td>
+<td><p>1</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-odd"><td><p>E2</p></td>
+<td><p>LASER weeding module</p></td>
+<td><p>Laudando LASER integration. Requires E-Stop interlocking with CANopen safety chain.</p></td>
+<td><p>Research</p></td>
+<td><p>1</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>DATASETS &amp; COLLABORATION</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><strong>Ongoing</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>D1</p></td>
+<td><p>UK open-field dataset</p></td>
+<td><p>Field imagery and GNSS logs from UK agroecological farm conditions. CC licence.</p></td>
+<td><p>Planned</p></td>
+<td><p>2</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-even"><td><p>D2</p></td>
+<td><p>Caatinga biome dataset</p></td>
+<td><p>Semi-arid row-crop imagery from caatingarobotics. Validated on T527 AIPU.</p></td>
+<td><p>Active</p></td>
+<td><p>5</p></td>
+<td><p>2026</p></td>
+</tr>
+</tbody>
+</table>
+<p><sub>TRL = Technology Readiness Level (1–9, ESA/NASA scale): 1–2 concept/formulation, 3 proof of concept, 4 validated in lab/simulation, 5 validated in relevant (non-lab) environment, 6 demonstrated in relevant environment, 7 operational prototype, 8 qualified system, 9 field-proven. Self-assessed per feature, not a formal review — adjust as needed.</sub></p>
+<section id="collaboration">
+<h3>Collaboration<a class="headerlink" href="#collaboration" title="Link to this heading"></a></h3>
+<p>This project is built on and aims to maintain upstream compatibility with <a class="reference external" href="https://github.com/zauberzeug/feldfreund_devkit_ros">zauberzeug/feldfreund_devkit_ros</a>.</p>
+<p>High Level navigation is developed from the work of <a class="reference external" href="https://lcas.lincoln.ac.uk">Lincoln Centre for Autonomous Systems (LCAS)</a> as part of the <a class="reference external" href="https://agri-opencore.org">Agri-OpenCore</a> open ROS 2 ecosystem for agricultural robotic</p>
+<p>Simulation configuration is partially derived from work by <a class="reference external" href="https://github.com/joaodemouragy-hash/caatingarobotics">caatingarobotics</a>,</p>
+</section>
+</section>
+</section>
+<section id="rewrite-from-scratch-cost-estimate">
+<h1>Rewrite-from-Scratch Cost Estimate<a class="headerlink" href="#rewrite-from-scratch-cost-estimate" title="Link to this heading"></a></h1>
+<p>Estimate for reimplementing the full stack pulled in by <code class="docutils literal notranslate"><span class="pre">feldfreund_devkit_ros/docker/Dockerfile</span></code> (caatinga-dev), instead of building on ROS 2 Jazzy + Nav2 + third-party packages.</p>
+<section id="foundational-infra">
+<h2>Foundational infra<a class="headerlink" href="#foundational-infra" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Rewrite hrs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ROS 2 core + Nav2</p></td>
+<td><p>120,000–250,000</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="packages-pulled-in-developed-in-house">
+<h2>Packages pulled in &amp; developed in house<a class="headerlink" href="#packages-pulled-in-developed-in-house" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>What it does</p></th>
+<th class="head"><p>Rewrite hrs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Gazebo Harmonic (<code class="docutils literal notranslate"><span class="pre">INSTALL_SIM</span></code>)</p></td>
+<td><p>Physics engine + rendering + SDF</p></td>
+<td><p>15,000–70,000</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">topological_navigation</span></code> (LCAS)</p></td>
+<td><p>Topo-nav stack</p></td>
+<td><p>4,000–8,000</p></td>
+</tr>
+<tr class="row-even"><td><p>Fields2Cover</p></td>
+<td><p>Coverage path planning</p></td>
+<td><p>2,500–5,000</p></td>
+</tr>
+<tr class="row-odd"><td><p>YOLOX</p></td>
+<td><p>Real-time object detector arch</p></td>
+<td><p>4,000–10,000</p></td>
+</tr>
+<tr class="row-even"><td><p>NiceGUI (web cockpit)</p></td>
+<td><p>Web UI framework</p></td>
+<td><p>4,000–8,000</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ublox_dgnss</span></code></p></td>
+<td><p>RTK GNSS driver</p></td>
+<td><p>1,200–2,500</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">septentrio_gnss_driver</span></code></p></td>
+<td><p>RTK GNSS driver</p></td>
+<td><p>1,200–2,500</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vision_opencv</span></code> (cv_bridge, image_geometry)</p></td>
+<td><p>ROS↔OpenCV bridge</p></td>
+<td><p>1,000–2,500</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fusioncore</span></code></p></td>
+<td><p>UKF GNSS/IMU fusion</p></td>
+<td><p>800–2,000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lizard</p></td>
+<td><p>ESP32 firmware bridge</p></td>
+<td><p>800–1,500</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">virtual_maize_field</span></code></p></td>
+<td><p>Gazebo row-crop world gen</p></td>
+<td><p>400–1,200</p></td>
+</tr>
+<tr class="row-odd"><td><p>Forest3D</p></td>
+<td><p>Procedural terrain gen</p></td>
+<td><p>400–1,200</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sentor</span></code>, <code class="docutils literal notranslate"><span class="pre">mongodb_store</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2graph_explorer</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2grapher</span></code></p></td>
+<td><p>Monitoring/dev-tool glue</p></td>
+<td><p>600–1,800</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sowbot_row_follow</span></code> TSM vision pipeline</p></td>
+<td><p>Line fitting, ExG masking, multi-row detection, gating</p></td>
+<td><p>800–1,800</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sowbot_row_follow</span></code> state machine + action server</p></td>
+<td><p>FOLLOW_ROW transitions, control loop integration</p></td>
+<td><p>550–1,300</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sowbot_row_follow</span></code> field tuning/debugging</p></td>
+<td><p>Reaching current maturity</p></td>
+<td><p>400–1,000</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Subtotal, non-core: ~37,750–120,100 hrs</strong></p>
+</section>
+<section id="total">
+<h2>Total<a class="headerlink" href="#total" title="Link to this heading"></a></h2>
+<p><strong>~157,750–370,100 engineering hours (≈76–183 person-years)</strong></p>
+<p>Excludes OpenCV, GDAL, Boost, Eigen, PyTorch — rewriting those too pushes this into the millions of hours and isn’t a serious option.</p>
+<p>At a $120/hr fully-loaded US engineering rate, that’s <strong>≈$18.9M–$44.4M</strong>.</p>
+</section>
+</section>
+<section id="critical-safety-warning">
+<h1>⚠️ CRITICAL SAFETY WARNING:<a class="headerlink" href="#critical-safety-warning" title="Link to this heading"></a></h1>
+<p>This software is under active development and may be broken at any given moment. For a stable reference implementation see the upstream Zauberzeug project.</p>
+<p><strong>THIS SOFTWARE COULD CONTROL PHYSICAL HARDWARE CAPABLE OF PRODUCING SIGNIFICANT KINETIC FORCE.</strong></p>
+<ol class="arabic simple">
+<li><p><strong>EXPERIMENTAL STATUS</strong>: This branch (‘sowbot’) contains experimental code generated and
+refined with AI assistance. It has NOT undergone full-scale field validation.</p></li>
+<li><p><strong>STATUTORY NOTICE (UK)</strong>: Usage of this software is at the user’s sole risk. While
+standard open-source licenses apply, users are reminded that operating agricultural
+robotics requires a professional duty of care.</p></li>
+<li><p><strong>MANDATORY HARDWARE SAFETY</strong>: Under no circumstances should this software be used
+to control a robot of any size without a independent, hard-wired, physical Emergency Stop (E-Stop)
+system. Software-based stops (such as /estop/soft) are NOT a substitute for
+Category 0 or 1 hardware safety stops.</p></li>
+<li><p><strong>NO LIABILITY</strong>: To the extent permitted by the laws of England and Wales, the
+contributors exclude all liability for property damage, crop loss, or indirect
+consequential damages.</p></li>
+</ol>
+<section id="health-warning">
+<h2>Health Warning<a class="headerlink" href="#health-warning" title="Link to this heading"></a></h2>
+<p>This repo may contain traces of LLM slop, We’ve done our best to mitigate this. If you are allergic to slop, please help us refactor.</p>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<section id="supported-sbc-configuration">
+<h3>Supported SBC configuration<a class="headerlink" href="#supported-sbc-configuration" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pine64.com/product/yuzuki-avaota-a1-single-board-computer-4gb-32gb/">Avaota A1</a></p></li>
+<li><p><a class="reference external" href="https://armbian.com/boards/avaota-a1">Armbian</a> (note flash with official Armbian flasher)</p></li>
+</ul>
+</section>
+<section id="install-dependencies">
+<h3>0. Install dependencies<a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h3>
+<section id="linux">
+<h4>Linux<a class="headerlink" href="#linux" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/git-guides/install-git">Git</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/install/debian/#install-using-the-repository">Docker</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-serial</span> <span class="pre">setserial</span> <span class="pre">v4l-utils</span></code></p></li>
+</ul>
+</section>
+<section id="mac">
+<h4>Mac<a class="headerlink" href="#mac" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>xcode-select –install</p></li>
+<li><p><a class="reference external" href="https://github.com/git-guides/install-git">Git</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/install/">Docker</a></p></li>
+<li><p>&amp; launch Gazebo in a browser from the WebUI.</p></li>
+</ul>
+</section>
+<section id="windows">
+<h4>Windows?<a class="headerlink" href="#windows" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/git-guides/install-git">Git</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/install/">Docker</a></p></li>
+<li><p>Untested!</p></li>
+</ul>
+</section>
+</section>
+<section id="clone-the-repository">
+<h3>1. Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading"></a></h3>
+<p>Open a terminal on your host machine and download the workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>caatinga-dev<span class="w"> </span>https://github.com/Agroecology-Lab/feldfreund_devkit_ros.git
+<span class="nb">cd</span><span class="w"> </span>feldfreund_devkit_ros
+</pre></div>
+</div>
+</section>
+<section id="build-launch">
+<h3>3. Build &amp; Launch<a class="headerlink" href="#build-launch" title="Link to this heading"></a></h3>
+<p>Use the management script to build the ROS 2 workspace and launch the robot stack. This script automatically handles hardware discovery and port permissions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./manage.py<span class="w"> </span>full-build
+xhost<span class="w"> </span>+local:docker
+./manage.py<span class="w"> </span>
+</pre></div>
+</div>
+<p>Access http://localhost to access the WebUI</p>
+<section id="id1">
+<h4>Linux<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<p>If you’re getting this error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="p">:</span> <span class="n">Error</span> <span class="n">response</span> <span class="kn">from</span> <span class="nn">daemon</span><span class="p">:</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">select</span> <span class="n">device</span> <span class="n">driver</span> <span class="s2">&quot;&quot;</span> <span class="k">with</span> <span class="n">capabilities</span><span class="p">:</span> <span class="p">[[</span><span class="n">gpu</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>You’ll need to install the <a class="reference external" href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">Nvidia Container runtime</a>.</p>
+</section>
+<section id="gazebo">
+<h4>Gazebo<a class="headerlink" href="#gazebo" title="Link to this heading"></a></h4>
+<p>If you’d like to use Gazebo then add a +sim argument to your build instruction</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./manage.py<span class="w"> </span>full-build<span class="w"> </span>+sim
+xhost<span class="w"> </span>+local:docker
+./manage.py<span class="w"> </span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="management-tools">
+<h2>Management &amp; Tools<a class="headerlink" href="#management-tools" title="Link to this heading"></a></h2>
+<section id="manage-py">
+<h3>manage.py<a class="headerlink" href="#manage-py" title="Link to this heading"></a></h3>
+<p>The primary entry point for the system. While it runs the full stack by default, it supports several optional arguments for development:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Command</p></th>
+<th class="head text-left"><p>Logic / Argument</p></th>
+<th class="head text-left"><p>Resulting Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./manage.py</span></code></p></td>
+<td class="text-left"><p>(No arguments)</p></td>
+<td class="text-left"><p>Runs <code class="docutils literal notranslate"><span class="pre">run_runtime()</span></code> immediately using live volumes.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">build</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">build</span></code></p></td>
+<td class="text-left"><p>local-only, fully cached including external clones</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">build</span> <span class="pre">+pull</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">build</span></code></p></td>
+<td class="text-left"><p>Re-clones the 9 external repos, keeps apt/pip/local layers cached</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">build</span> <span class="pre">+pull</span> <span class="pre">+sim</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">build</span> </code></p></td>
+<td class="text-left"><p>Same, plus INSTALL_SIM=true</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">full-build</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">full-build</span></code></p></td>
+<td class="text-left"><p>Runs <code class="docutils literal notranslate"><span class="pre">run_build(full=True)</span></code>. Cleans system &amp; Re-installs all system dependencies.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">neo</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">neo</span></code></p></td>
+<td class="text-left"><p>Runs <code class="docutils literal notranslate"><span class="pre">neo</span></code>. Runs only the line following code for the second ‘neo’(cortex) perception SBC. Then check <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">neo-tsm</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">neo-tsm</span></code></p></td>
+<td class="text-left"><p>Runs <code class="docutils literal notranslate"><span class="pre">neo-tsm</span></code>. Runs experimental line following informed by <a class="reference external" href="https://arxiv.org/pdf/2209.14003">Vision based Crop Row Navigation under Varying Field Conditions in Arable Fields - Rajitha de Silva1, Grzegorz Cielniak2 and Junfeng Gao</a>. Then check <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">pull-caatinga</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">pulls</span> <span class="pre">&amp;</span> <span class="pre">builds</span> <span class="pre">vision</span> <span class="pre">pipeline</span></code></p></td>
+<td class="text-left"><p>Requires the container to already be running</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="one-command-sim-launch-tmule">
+<h3>One-command sim launch (TMuLE)<a class="headerlink" href="#one-command-sim-launch-tmule" title="Link to this heading"></a></h3>
+<p>Whilst you can launch Gazebo and other tools from the webui, some may prefer the terminal, this makes terminal use a bit easier.</p>
+<p><a class="reference external" href="https://github.com/marc-hanheide/TMuLE">TMuLE</a> brings the whole row-following sim up in a single <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session — one window per process — instead of running the three launch steps by hand in separate terminals:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tmule<span class="w"> </span>-c<span class="w"> </span>tmule/row_follow_sim.yaml<span class="w"> </span>launch
+tmux<span class="w"> </span>attach<span class="w"> </span>-t<span class="w"> </span>row_follow_sim
+</pre></div>
+</div>
+<p>That starts <code class="docutils literal notranslate"><span class="pre">./manage.py</span> <span class="pre">--sim</span></code> (nav stack + Nav2 + UI), Gazebo (<code class="docutils literal notranslate"><span class="pre">sowbot_sim.launch.py</span></code>) and the crop-row CV node (<code class="docutils literal notranslate"><span class="pre">crop_row_nav.launch.py</span></code>), each in its own tmux window. <code class="docutils literal notranslate"><span class="pre">launch</span></code> returns immediately and leaves the session detached, so attach to watch the panes come up (and to type the <code class="docutils literal notranslate"><span class="pre">nav_stack</span></code> sudo password).</p>
+<p>Stop the stack with <code class="docutils literal notranslate"><span class="pre">tmule</span> <span class="pre">-c</span> <span class="pre">tmule/row_follow_sim.yaml</span> <span class="pre">stop</span></code>; re-attach later with <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">attach</span> <span class="pre">-t</span> <span class="pre">row_follow_sim</span></code>.</p>
+<blockquote>
+<div><p>If a runtime container is <strong>already running</strong>, the <code class="docutils literal notranslate"><span class="pre">nav_stack</span></code> window will fail on a <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> name collision. Either <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">sowbot_runtime</span></code> first, or launch just the windows that reuse the container: <code class="docutils literal notranslate"><span class="pre">tmule</span> <span class="pre">-c</span> <span class="pre">tmule/row_follow_sim.yaml</span> <span class="pre">launch</span> <span class="pre">-w</span> <span class="pre">gazebo</span></code>.</p>
+</div></blockquote>
+<section id="tmux-basics">
+<h4>tmux basics<a class="headerlink" href="#tmux-basics" title="Link to this heading"></a></h4>
+<p>The stack runs in a <em>detached</em> tmux session named <code class="docutils literal notranslate"><span class="pre">row_follow_sim</span></code>, so closing your terminal does not kill it — <strong>detaching is not stopping</strong>. The session holds one window per sub-system (plus a stray <code class="docutils literal notranslate"><span class="pre">0:</span> <span class="pre">bash</span></code> that tmux always creates):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span> <span class="n">bash</span>   <span class="mi">1</span><span class="p">:</span> <span class="n">nav_stack</span>   <span class="mi">2</span><span class="p">:</span> <span class="n">gazebo</span>   <span class="mi">3</span><span class="p">:</span> <span class="n">crop_row</span>
+</pre></div>
+</div>
+<p>Every shortcut starts with the prefix <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> — press and release it, then the next key:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Keys</p></th>
+<th class="head text-left"><p>Resulting Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> <code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td class="text-left"><p>Detach — leaves the whole stack running in the background</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> <code class="docutils literal notranslate"><span class="pre">w</span></code></p></td>
+<td class="text-left"><p>Interactive window picker (easiest way to move around)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> <code class="docutils literal notranslate"><span class="pre">1</span></code> / <code class="docutils literal notranslate"><span class="pre">2</span></code> / <code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td class="text-left"><p>Jump straight to <code class="docutils literal notranslate"><span class="pre">nav_stack</span></code> / <code class="docutils literal notranslate"><span class="pre">gazebo</span></code> / <code class="docutils literal notranslate"><span class="pre">crop_row</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> <code class="docutils literal notranslate"><span class="pre">n</span></code> / <code class="docutils literal notranslate"><span class="pre">p</span></code></p></td>
+<td class="text-left"><p>Next / previous window</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> <code class="docutils literal notranslate"><span class="pre">[</span></code></p></td>
+<td class="text-left"><p>Scroll back through ROS log output — arrows/PgUp, <code class="docutils literal notranslate"><span class="pre">q</span></code> to exit</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> <code class="docutils literal notranslate"><span class="pre">z</span></code></p></td>
+<td class="text-left"><p>Zoom the current pane fullscreen (press again to unzoom)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> <code class="docutils literal notranslate"><span class="pre">?</span></code></p></td>
+<td class="text-left"><p>List every binding</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tmux<span class="w"> </span>ls<span class="w">                              </span><span class="c1"># list sessions</span>
+tmux<span class="w"> </span>attach<span class="w"> </span>-t<span class="w"> </span>row_follow_sim<span class="w">        </span><span class="c1"># attach</span>
+tmux<span class="w"> </span>kill-session<span class="w"> </span>-t<span class="w"> </span>row_follow_sim<span class="w">  </span><span class="c1"># nuke the session</span>
+</pre></div>
+</div>
+<p>Scrolling back (<code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> <code class="docutils literal notranslate"><span class="pre">[</span></code>) is the one you’ll reach for most — it’s how you read ROS output that has already scrolled past. For mouse-wheel scrolling instead, add <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-g</span> <span class="pre">mouse</span> <span class="pre">on</span></code> to <code class="docutils literal notranslate"><span class="pre">~/.tmux.conf</span></code>.</p>
+<p>Scenario configs live in <a class="reference internal" href="#tmule/"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">tmule/</span></code></span></a> — see <a class="reference internal" href="#tmule/README.md"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">tmule/README.md</span></code></span></a> to tweak launch arguments or add your own scenario.</p>
+</section>
+</section>
+<section id="interactive-shell">
+<h3>Interactive Shell<a class="headerlink" href="#interactive-shell" title="Link to this heading"></a></h3>
+<p>To enter the running container for debugging or manual ROS 2 commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./login.sh
+</pre></div>
+</div>
+</section>
+<section id="diagnostics">
+<h3>Diagnostics<a class="headerlink" href="#diagnostics" title="Link to this heading"></a></h3>
+<p>If hardware is connected but topics are not flowing, run the diagnostic tool from inside the container:</p>
+<section id="after-running-login-sh">
+<h4>After running ./login.sh<a class="headerlink" href="#after-running-login-sh" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>agbot-diagnostic.py
+</pre></div>
+</div>
+<p><img alt="TUI Status." src="https://raw.githubusercontent.com/Agroecology-Lab/Open_agbot_devkit_ros/refs/heads/main/assets/Screenshot%20From%202026-01-21%2018-07-45.png" /></p>
+<p>You can also make it verbose with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>agbot-diagnostic.py<span class="w"> </span>full
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="sketch-of-mvp-2026-architecture">
+<h2>Sketch of MVP 2026 architecture<a class="headerlink" href="#sketch-of-mvp-2026-architecture" title="Link to this heading"></a></h2>
+<section id="the-lizard-brain-rt-microcontroller">
+<h3>1. The Lizard Brain (RT Microcontroller)<a class="headerlink" href="#the-lizard-brain-rt-microcontroller" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Hardware:</strong> ESP32 MCU.</p></li>
+<li><p><strong>Software:</strong> Lizard DSL.</p></li>
+<li><p><strong>Role:</strong> Hard Real-Time Execution.</p></li>
+<li><p><strong>Function:</strong> Motor PID control and physical safety (bumpers/cliffs).</p></li>
+<li><p><strong>I/O:</strong> 3.3V UART receiving $v, \omega$ via the <code class="docutils literal notranslate"><span class="pre">teleop_lizard</span></code> ROS 2 bridge.</p></li>
+</ul>
+</section>
+<section id="the-limbic-system-executive">
+<h3>2. The Limbic System (Executive)<a class="headerlink" href="#the-limbic-system-executive" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Hardware:</strong> Avaota A1 #1 (Allwinner T527).</p></li>
+<li><p><strong>Software:</strong> ROS 2 Jazzy + <code class="docutils literal notranslate"><span class="pre">topological_navigation</span></code> (AOC branch).</p></li>
+<li><p><strong>Role:</strong> Navigation Executive.</p></li>
+<li><p><strong>Function:</strong> Runs the Topological Navigation stack. UBLOX sensors Manages the move_base sequence and Action on Condition (AOC) logic.</p></li>
+<li><p><strong>I/O:</strong> Connects to u-blox via USB/UART using <code class="docutils literal notranslate"><span class="pre">ublox_dgnss</span></code> node. Translates graph goals into velocity commands for the Lizard Brain.</p></li>
+</ul>
+<p><strong>&lt;1GbE interconnect between 2&amp;3&gt;</strong></p>
+</section>
+<section id="the-neo-perception">
+<h3>3. The Neo (Perception)<a class="headerlink" href="#the-neo-perception" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>Hardware:</strong> Avaota A1 #2 (Allwinner T527 + NPU).</p></li>
+<li><p><strong>Software:</strong> Dockerised ROS 2 Jazzy.</p></li>
+<li><p><strong>Role:</strong> Asynchronous Perception.</p></li>
+<li><p><strong>Function:</strong> NPU-accelerated inference (YOLO/Object tracking) and sensor fusion.</p></li>
+<li><p><strong>Connectivity:</strong> Native Zenoh integration via <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code>. Publishes environment states and “Conditions” to the Zenoh network.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                    |
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="sketch-of-possible-eventual-2027-architecture">
+<h2>Sketch of possible eventual ~2027 architecture<a class="headerlink" href="#sketch-of-possible-eventual-2027-architecture" title="Link to this heading"></a></h2>
+<section id="the-lizard-brain-hardware-abstraction">
+<h3>1. The Lizard Brain (Hardware Abstraction)<a class="headerlink" href="#the-lizard-brain-hardware-abstraction" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Hardware:</strong> <a class="reference external" href="https://oshwhub.com/6676a/stm32h745zit6_core">STM32 H7 MCU</a>.</p></li>
+<li><p><strong>Software:</strong> copper-rs.</p></li>
+<li><p><strong>Role:</strong> Hard Real-Time Execution.</p></li>
+<li><p><strong>Function:</strong> Manages motor PID loops and hardware-level safety interlocks.</p></li>
+<li><p><strong>I/O:</strong> Canbus</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>2. The Limbic System (Executive)<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Hardware:</strong> Avaota A1 #1 (Allwinner T527).</p></li>
+<li><p><strong>Software:</strong> RT kernel, Buildroot <code class="docutils literal notranslate"><span class="pre">copper-rs</span></code></p></li>
+<li><p><strong>Role:</strong> Deterministic Executive.</p></li>
+<li><p><strong>Function:</strong> UBLOX sensors, Executes Action on Condition (AOC) logic for topological navigation.</p></li>
+<li><p><strong>Data Entry:</strong> Directly consumes Zenoh keys from the Neo board to trigger mission state transitions and motion planning.</p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Core(s)</p></th>
+<th class="head text-left"><p>Role</p></th>
+<th class="head text-left"><p>Allocation Strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Core 0</p></td>
+<td class="text-left"><p>OS / I/O</p></td>
+<td class="text-left"><p>Handles kernel house-keeping, SSH, and the 1GbE driver interrupts.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Core 1</p></td>
+<td class="text-left"><p>Zenoh / Neo-link</p></td>
+<td class="text-left"><p>Dedicated to the Zenoh router and serializing incoming “Nice-to-Have” data.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Cores 2-6</p></td>
+<td class="text-left"><p>The Pilot (Nav)</p></td>
+<td class="text-left"><p>This is where the RTK EKF, Path Planner, and Task Graph live.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Core 7</p></td>
+<td class="text-left"><p>The Bridge (Lizard)</p></td>
+<td class="text-left"><p>Dedicated to SocketCAN and the high-frequency heartbeat to the STM32 (Lizard).</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>&lt;1GbE interconnect between 2&amp;3&gt;</strong></p>
+</section>
+<section id="id3">
+<h3>3. The Neo (Perception)<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Hardware:</strong> Avaota A1 #2 (Allwinner T527 + NPU).</p></li>
+<li><p><strong>Software:</strong> Dockerised ROS 2 Jazzy &amp; Dockerised CV packages</p></li>
+<li><p><strong>Role:</strong> Asynchronous Perception.</p></li>
+<li><p><strong>Function:</strong> NPU-accelerated inference (YOLO/Object tracking) and sensor fusion.</p></li>
+<li><p><strong>Connectivity:</strong> Native Zenoh integration via <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code>. Publishes environment states and “Conditions” to the Zenoh network.</p></li>
+</ul>
+</section>
+</section>
+<section id="licenses-papers">
+<h2>Licenses &amp; papers<a class="headerlink" href="#licenses-papers" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="sowbot-feldfreund-devkit-ros-dependency-licence-audit">
+<h1>Sowbot / feldfreund_devkit_ros — Dependency Licence Audit<a class="headerlink" href="#sowbot-feldfreund-devkit-ros-dependency-licence-audit" title="Link to this heading"></a></h1>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Source</p></th>
+<th class="head"><p>Licence</p></th>
+<th class="head"><p>Commercial use</p></th>
+<th class="head"><p>Academic Paper</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>feldfreund_devkit_ros</strong> (root)</p></td>
+<td><p>your repo</p></td>
+<td><p>MIT (©Zauberzeug GmbH &amp; Agroecology Lab)</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (Local Project)</em></p></td>
+<td><p>Derivative of upstream field-friend; retain Zauberzeug notice</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>devkit_driver</strong></p></td>
+<td><p>local</p></td>
+<td><p>MIT (©ATB)</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (Utility Driver)</em></p></td>
+<td><p>Retain ATB copyright notice</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>devkit_ui</strong></p></td>
+<td><p>local</p></td>
+<td><p>MIT (©Agroecology Lab)</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (UI Extension)</em></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>devkit_bringup</strong></p></td>
+<td><p>local</p></td>
+<td><p>MIT</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (Config/Launch)</em></p></td>
+<td><p>Corrected from <code class="docutils literal notranslate"><span class="pre">proprietary</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>sowbot_row_follow</strong></p></td>
+<td><p>caatingarobotics</p></td>
+<td><p>BSD-2-Clause</p></td>
+<td><p>✅</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/2209.14003">de Silva et al., 2024</a></p></td>
+<td><p>LICENSE file fixed to match header/metadata; updated to use the Transition State Model (TSM) for visual crop row navigation; ©PRBonn + ©Agroecology Lab</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>caatingarobotics</strong> <em>(devkit_simulation, caatinga_nav, caatinga_vision)</em></p></td>
+<td><p>github.com/samuk</p></td>
+<td><p>Apache-2.0</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (Fork Infrastructure)</em></p></td>
+<td><p>Your fork (row_follow is the BSD-2 exception, above)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>topological_navigation</strong></p></td>
+<td><p>LCAS (<code class="docutils literal notranslate"><span class="pre">aoc_refactor</span></code>)</p></td>
+<td><p>Apache-2.0 (©LCAS)</p></td>
+<td><p>✅</p></td>
+<td><p><a class="reference external" href="https://www.researchgate.net/publication/282752920_Now_or_later_Predicting_and_maximising_success_of_navigation_actions_from_long-term_experience">Fentanes et al., 2015</a></p></td>
+<td><p>High-level planner; derived from the EU STRANDS long-term autonomy project framework</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>fusioncore</strong></p></td>
+<td><p>manankharwar</p></td>
+<td><p>Apache-2.0</p></td>
+<td><p>✅</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/2605.25239">Kharwar, 2026</a></p></td>
+<td><p>GNSS fusion; patched in-build; retain NOTICE if present</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Forest3D</strong></p></td>
+<td><p>unitsSpaceLab</p></td>
+<td><p>GPL (©UNITS Space Lab)</p></td>
+<td><p>Do not ship in final product</p></td>
+<td><p><a class="reference external" href="https://kbourr.com/#publications">Cottiga,S., Bourr, K., &amp; Seriani, S. (2026)</a></p></td>
+<td><p>Sim-only — 3D forestry /agriculture simulation environment</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ublox_dgnss</strong></p></td>
+<td><p>aussierobots</p></td>
+<td><p>Apache-2.0</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (Hardware Driver)</em></p></td>
+<td><p>GNSS driver</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>sentor</strong></p></td>
+<td><p>LCAS (fork of francescodelduchetto/sentor)</p></td>
+<td><p>MIT</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (Monitoring Tool)</em></p></td>
+<td><p>Topic- and node-monitoring health node</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ros2graph_explorer</strong></p></td>
+<td><p>nilseuropa</p></td>
+<td><p>BSD-3-Clause</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (Debug Tool)</em></p></td>
+<td><p>Dev/debug graph inspector</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Fields2Cover v2.0.0</strong></p></td>
+<td><p>Fields2Cover</p></td>
+<td><p>BSD-3-Clause</p></td>
+<td><p>✅</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.1109/LRA.2023.3248439">Mier et al., 2023</a></p></td>
+<td><p>Built from source; pulls OR-tools (Apache-2.0) + GDAL (MIT)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>lizard</strong></p></td>
+<td><p>Agroecology-Lab</p></td>
+<td><p>MIT (©Zauberzeug GmbH)</p></td>
+<td><p>✅</p></td>
+<td><p><em>None (Firmware Tool)</em></p></td>
+<td><p>ESP32 tooling; retain Zauberzeug notice</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>YOLOX 0.3.0</strong> + yolox_nano weights</p></td>
+<td><p>Megvii</p></td>
+<td><p>Apache-2.0</p></td>
+<td><p>✅</p></td>
+<td><p><a class="reference external" href="https://arxiv.org/abs/2107.08430">Ge et al., 2021</a></p></td>
+<td><p>Confirm weights terms for commercial use</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PyTorch (CPU)</strong></p></td>
+<td><p>Meta</p></td>
+<td><p>BSD-3-Clause</p></td>
+<td><p>✅</p></td>
+<td><p><a class="reference external" href="https://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library">Paszke et al., 2019</a></p></td>
+<td><p>Core machine learning runtime engine</p></td>
+</tr>
+</tbody>
+</table>
+<p>===============================================================</p>
+<section id="feldfreund-devkit-ros">
+<h2>Feldfreund DevKit ROS<a class="headerlink" href="#feldfreund-devkit-ros" title="Link to this heading"></a></h2>
+<p>(Below from original Zauberzeug forked repo)</p>
+<p>Feldfreund DevKit ROS is a comprehensive ROS2 package that handles the communication and configuration of various Feldfreund components:</p>
+<ul class="simple">
+<li><p>Communication with Lizard (ESP32) to control the Feldfreund</p></li>
+<li><p>GNSS positioning system</p></li>
+<li><p>Camera systems (USB and AXIS cameras)</p></li>
+<li><p>Example UI to control the robot</p></li>
+</ul>
+<p>All launch files and configuration files (except for the UI) are stored in the <code class="docutils literal notranslate"><span class="pre">devkit_bringup</span></code> package.</p>
+</section>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Link to this heading"></a></h2>
+<section id="devkit-driver">
+<h3>DevKit driver<a class="headerlink" href="#devkit-driver" title="Link to this heading"></a></h3>
+<p>The DevKit driver (based on <a class="reference external" href="https://github.com/ATB-potsdam-automation/field_friend_driver">ATB Potsdam’s field_friend_driver</a>) manages the communication with the ESP32 microcontroller running <a class="reference external" href="https://lizard.dev/">Lizard</a> firmware - a domain-specific language for defining hardware behavior on embedded systems.</p>
+<p>For the separate local Lizard firmware checkout, build, and flash workflow, see <a class="reference internal" href="#docs/lizard-firmware-setup.md"><span class="xref myst">Local Lizard Firmware Setup</span></a>.</p>
+<p>The package provides:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config/devkit.liz</span></code>: Basic Lizard configuration for DevKit robot</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config/devkit.yaml</span></code>: Corresponding ROS2 driver configuration</p></li>
+</ul>
+<p>Available ROS2 topics:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/cmd_vel</span></code> (geometry_msgs/Twist): Control robot movement</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/odom</span></code> (nav_msgs/Odometry): Robot odometry data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/battery_state</span></code> (sensor_msgs/BatteryState): Battery status information</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/bumper/front_top</span></code> (std_msgs/Bool): Front top bumper state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/bumper/front_bottom</span></code> (std_msgs/Bool): Front bottom bumper state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/bumper/back</span></code> (std_msgs/Bool): Back bumper state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/estop/soft</span></code> (std_msgs/Bool): Software emergency stop control</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/estop/front</span></code> (std_msgs/Bool): Hardware front emergency stop state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/estop/back</span></code> (std_msgs/Bool): Hardware back emergency stop state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/configure</span></code> (std_msgs/Empty): Trigger loading of the Lizard configuration file</p></li>
+</ul>
+</section>
+<section id="camera-system">
+<h3>Camera System<a class="headerlink" href="#camera-system" title="Link to this heading"></a></h3>
+<p>The camera system supports both USB cameras and AXIS cameras, managed through a unified launch system in <code class="docutils literal notranslate"><span class="pre">camera_system.launch.py</span></code> that handles USB cameras, AXIS cameras, and the Foxglove Bridge for remote viewing.</p>
+<p>The USB camera system provides video streaming through ROS2 topics using the <code class="docutils literal notranslate"><span class="pre">usb_cam</span></code> ROS2 package. Camera parameters can be configured through <code class="docutils literal notranslate"><span class="pre">config/camera.yaml</span></code>.</p>
+<p>The AXIS camera system integrates with the <a class="reference external" href="https://github.com/ros-drivers/axis_camera/tree/humble-devel">ROS2 AXIS camera driver</a> to support multiple IP cameras with individual streams. Each camera can be configured through <code class="docutils literal notranslate"><span class="pre">config/axis_camera.yaml</span></code>, with credentials managed through <code class="docutils literal notranslate"><span class="pre">config/secrets.yaml</span></code> (template provided in <code class="docutils literal notranslate"><span class="pre">config/secrets.yaml.template</span></code>). The cameras’ authentication mode (basic or digest) might need to be configured - see <a class="reference internal" href="#axis-camera-authentication">AXIS Camera Authentication</a> section for details.</p>
+<p>The visualization system integrates with <a class="reference external" href="https://foxglove.dev/">Foxglove Studio</a> for remote camera viewing, supporting compressed image transport. The Foxglove Bridge is accessible via WebSocket connection on port 8765.</p>
+</section>
+<section id="gnss-system">
+<h3>GNSS System<a class="headerlink" href="#gnss-system" title="Link to this heading"></a></h3>
+<p>The GNSS system uses the <a class="reference external" href="https://github.com/septentrio-gnss/septentrio_gnss_driver">Septentrio GNSS driver</a> with the default <code class="docutils literal notranslate"><span class="pre">config/gnss.yaml</span></code> configuration. Available topics:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/pvtgeodetic</span></code>: Position, velocity, and time in geodetic coordinates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/poscovgeodetic</span></code>: Position covariance in geodetic coordinates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/velcovgeodetic</span></code>: Velocity covariance in geodetic coordinates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/atteuler</span></code>: Attitude in Euler angles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/attcoveuler</span></code>: Attitude covariance</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gpsfix</span></code>: Detailed GPS fix information including satellites and quality</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/aimplusstatus</span></code>: AIM+ status information</p></li>
+</ul>
+</section>
+<section id="devkit-ui">
+<h3>DevKit UI<a class="headerlink" href="#devkit-ui" title="Link to this heading"></a></h3>
+<p>The example UI provides a robot control interface built with NiceGUI, featuring a joystick control similar to turtlesim. It gives you access to and visualization of all topics made available by the DevKit driver, including:</p>
+<ul class="simple">
+<li><p>Robot movement control through a joystick interface</p></li>
+<li><p>Real-time visualization of GNSS data</p></li>
+<li><p>Monitoring of safety systems (bumpers, emergency stops)</p></li>
+<li><p>Software emergency stop control</p></li>
+</ul>
+<p>The interface is accessible through a web browser at <code class="docutils literal notranslate"><span class="pre">http://&lt;ROBOT-IP&gt;:80</span></code> when the robot is running.</p>
+<div align="center">
+  <img src="assets/DevKitUI.png" alt="Example UI Screenshot" width="500"/>
+  <div style="font-size: 0.95em; color: #555; margin-top: 0.5em;">
+    Example UI: Control, data, safety, and GPS map in one interface.
+  </div>
+</div>
+</section>
+</section>
+<section id="docker-setup">
+<h2>Docker Setup<a class="headerlink" href="#docker-setup" title="Link to this heading"></a></h2>
+<section id="using-docker-compose">
+<h3>Using Docker Compose<a class="headerlink" href="#using-docker-compose" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Build and run the container:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docker
+docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Run in detached mode:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Attach to running container:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>devkit<span class="w"> </span>bash
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Stop containers:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>down
+</pre></div>
+</div>
+<p>The Docker setup includes:</p>
+<ul class="simple">
+<li><p>All necessary ROS2 packages</p></li>
+<li><p>Lizard communication tools</p></li>
+<li><p>Camera drivers</p></li>
+<li><p>GNSS drivers</p></li>
+</ul>
+</section>
+</section>
+<section id="connect-to-ui">
+<h2>Connect to UI<a class="headerlink" href="#connect-to-ui" title="Link to this heading"></a></h2>
+<p>To access the user interface (UI), follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Connect to the Robot’s Wi-Fi:</strong>
+Join the robot’s WLAN network.</p></li>
+<li><p><strong>Open the UI in your browser:</strong>
+Navigate to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">ROBOT</span><span class="o">-</span><span class="n">IP</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">80</span>
+</pre></div>
+</div>
+<p>(Replace <code class="docutils literal notranslate"><span class="pre">&lt;ROBOT-IP&gt;</span></code> with the actual IP address once you have it.)</p>
+</li>
+</ol>
+</section>
+<section id="launch-files">
+<h2>Launch Files<a class="headerlink" href="#launch-files" title="Link to this heading"></a></h2>
+<p>The system can be started using different launch files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code>: Launches all components</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">devkit_nocams.launch.py</span></code>: Launches all components without the cameras</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">devkit_driver.launch.py</span></code>: Launches only Feldfreund DevKit driver</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">camera_system.launch.py</span></code>: Launches complete camera system (USB + AXIS) and Foxglove Bridge</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usb_camera.launch.py</span></code>: Launches USB camera only</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">axis_cameras.launch.py</span></code>: Launches AXIS cameras only</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gnss.launch.py</span></code>: Launches GNSS system</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui.launch.py</span></code>: Launches the example UI node</p></li>
+</ul>
+<p>To launch the complete system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>devkit_bringup<span class="w"> </span>devkit.launch.py
+</pre></div>
+</div>
+</section>
+<section id="axis-camera-authentication">
+<h2>AXIS Camera Authentication<a class="headerlink" href="#axis-camera-authentication" title="Link to this heading"></a></h2>
+<p>The AXIS cameras can be configured to use either digest or basic authentication. To check and configure the authentication mode:</p>
+<ol class="arabic simple">
+<li><p>Check current authentication settings:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--digest<span class="w"> </span>-u<span class="w"> </span>root:pw<span class="w"> </span><span class="s2">&quot;http://192.168.42.3/axis-cgi/admin/param.cgi?action=list&amp;group=Network.HTTP&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cat
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Switch authentication mode (e.g., from digest to basic):</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--digest<span class="w"> </span>-u<span class="w"> </span>root:pw<span class="w"> </span><span class="s2">&quot;http://192.168.42.3/axis-cgi/admin/param.cgi?action=update&amp;Network.HTTP.AuthenticationPolicy=basic&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cat
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">root:pw</span></code> with your camera’s credentials and <code class="docutils literal notranslate"><span class="pre">192.168.42.3</span></code> with your camera’s IP address. The authentication mode can be set to either <code class="docutils literal notranslate"><span class="pre">basic</span></code> or <code class="docutils literal notranslate"><span class="pre">digest</span></code>. Note that you should always use the <code class="docutils literal notranslate"><span class="pre">--digest</span></code> flag in these commands even when switching to basic auth, as the camera’s current setting might be using digest authentication.</p>
+</section>
+<section id="quickstart-guide">
+<h2>Quickstart guide<a class="headerlink" href="#quickstart-guide" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>1. Clone the Repository<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/zauberzeug/devkit_ros.git
+<span class="nb">cd</span><span class="w"> </span>devkit_ros
+</pre></div>
+</div>
+</section>
+<section id="validate-configuration">
+<h3>2. Validate Configuration<a class="headerlink" href="#validate-configuration" title="Link to this heading"></a></h3>
+<p>Before building, check and adjust if needed:</p>
+<ol class="arabic simple">
+<li><p><strong>ROS2 Configuration</strong> (<code class="docutils literal notranslate"><span class="pre">devkit_bringup/config/devkit.yaml</span></code>):</p>
+<ul class="simple">
+<li><p>Verify <code class="docutils literal notranslate"><span class="pre">serial_port</span></code> matches your setup (default: “/dev/ttyTHS0”)</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">flash_parameters</span></code> for your hardware (default: “-j orin –nand”)</p></li>
+</ul>
+</li>
+<li><p><strong>Lizard Configuration</strong> (<code class="docutils literal notranslate"><span class="pre">devkit_bringup/config/devkit.liz</span></code>):</p>
+<ul class="simple">
+<li><p>Verify motor configuration matches your hardware</p></li>
+<li><p>Check pin assignments for bumpers and emergency stops</p></li>
+<li><p>Adjust any other hardware-specific settings</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="build-with-docker">
+<h3>3. Build with Docker<a class="headerlink" href="#build-with-docker" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./docker.sh<span class="w"> </span>u
+</pre></div>
+</div>
+</section>
+<section id="send-lizard-configuration">
+<h3>4. Send Lizard Configuration<a class="headerlink" href="#send-lizard-configuration" title="Link to this heading"></a></h3>
+<p>Once the system is running:</p>
+<ul class="simple">
+<li><p>Use the “Send Lizard Config” button in the UI</p></li>
+<li><p>Or use the <code class="docutils literal notranslate"><span class="pre">/configure</span></code> topic in ROS2</p></li>
+</ul>
+</section>
+<section id="ready-to-go">
+<h3>5. Ready to Go<a class="headerlink" href="#ready-to-go" title="Link to this heading"></a></h3>
+<p>Check the UI at <code class="docutils literal notranslate"><span class="pre">http://&lt;ROBOT-IP&gt;:80</span></code> to control and monitor your robot.</p>
+</section>
+</section>
+<section id="future-features">
+<h2>Future features<a class="headerlink" href="#future-features" title="Link to this heading"></a></h2>
+<p>This repository is still work in progress. Please feel free to contribute or reach out to us, if you need any unimplemented feature.</p>
+<ul class="simple">
+<li><p>Complete tf2 frames</p></li>
+<li><p>Handle camera calibrations</p></li>
+<li><p>Robot visualization</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Feldfreund DevKit ROS (Sowbot) Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lizard-firmware-setup.html" class="btn btn-neutral float-right" title="Local Lizard Firmware Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Agroecology Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+devkit\_driver.modules.imu\_handler
+===================================
+
+.. automodule:: devkit_driver.modules.imu_handler
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ImuHandler
+   

@@ -1,0 +1,18 @@
+devkit\_driver.rtk\_navsatfix\_shim
+===================================
+
+.. automodule:: devkit_driver.rtk_navsatfix_shim
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      main
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RtkNavSatFixShim
+   

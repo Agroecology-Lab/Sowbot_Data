@@ -1,0 +1,12 @@
+devkit\_driver.modules.bumper\_handler
+======================================
+
+.. automodule:: devkit_driver.modules.bumper_handler
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BumperHandler
+   

@@ -1,0 +1,12 @@
+devkit\_ui.pages.run.joystick\_control\_card
+============================================
+
+.. automodule:: devkit_ui.pages.run.joystick_control_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      JoystickControlCard
+   

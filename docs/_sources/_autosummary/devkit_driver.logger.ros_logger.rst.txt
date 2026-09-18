@@ -1,0 +1,12 @@
+devkit\_driver.logger.ros\_logger
+=================================
+
+.. automodule:: devkit_driver.logger.ros_logger
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ROSLogger
+   

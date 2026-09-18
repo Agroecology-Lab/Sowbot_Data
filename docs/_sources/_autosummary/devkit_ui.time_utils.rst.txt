@@ -1,0 +1,14 @@
+devkit\_ui.time\_utils
+======================
+
+.. automodule:: devkit_ui.time_utils
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      now_utc
+      now_utc_str
+      parse_ts
+   

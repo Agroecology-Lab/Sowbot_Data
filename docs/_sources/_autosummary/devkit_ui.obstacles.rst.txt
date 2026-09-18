@@ -1,0 +1,27 @@
+devkit\_ui.obstacles
+====================
+
+.. automodule:: devkit_ui.obstacles
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      attach_mission_obstacle_panel
+      attach_mission_sidebar_controls
+      attach_nav_card
+      circle_to_ring_ll
+      latlon_to_xy
+      obstacle_to_ring_ll
+      obstacles_to_rings_ll
+      validate_obstacle
+      xy_to_latlon
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MissionDrawHandle
+      ObstacleManager
+   

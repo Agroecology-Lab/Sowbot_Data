@@ -1,0 +1,1313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>devkit_ui.obstacles &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9d891252"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Feldfreund DevKit ROS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Navigation &amp; Architecture</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Sowbot (ROS 2 stack)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#sowbot-roadmap">Sowbot Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#collaboration">Collaboration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#rewrite-from-scratch-cost-estimate">Rewrite-from-Scratch Cost Estimate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#foundational-infra">Foundational infra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#packages-pulled-in-developed-in-house">Packages pulled in &amp; developed in house</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#total">Total</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#critical-safety-warning">⚠️ CRITICAL SAFETY WARNING:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#health-warning">Health Warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#supported-sbc-configuration">Supported SBC configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#install-dependencies">0. Install dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#linux">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#mac">Mac</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#windows">Windows?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#clone-the-repository">1. Clone the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#build-launch">3. Build &amp; Launch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#id1">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#gazebo">Gazebo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#management-tools">Management &amp; Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#manage-py">manage.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#one-command-sim-launch-tmule">One-command sim launch (TMuLE)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#tmux-basics">tmux basics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#interactive-shell">Interactive Shell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#diagnostics">Diagnostics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#after-running-login-sh">After running ./login.sh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#sketch-of-mvp-2026-architecture">Sketch of MVP 2026 architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#the-lizard-brain-rt-microcontroller">1. The Lizard Brain (RT Microcontroller)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#the-limbic-system-executive">2. The Limbic System (Executive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#the-neo-perception">3. The Neo (Perception)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#sketch-of-possible-eventual-2027-architecture">Sketch of possible eventual ~2027 architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#the-lizard-brain-hardware-abstraction">1. The Lizard Brain (Hardware Abstraction)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#id2">2. The Limbic System (Executive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#id3">3. The Neo (Perception)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#licenses-papers">Licenses &amp; papers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#sowbot-feldfreund-devkit-ros-dependency-licence-audit">Sowbot / feldfreund_devkit_ros — Dependency Licence Audit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#feldfreund-devkit-ros">Feldfreund DevKit ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#devkit-driver">DevKit driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#camera-system">Camera System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#gnss-system">GNSS System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#devkit-ui">DevKit UI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#docker-setup">Docker Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#using-docker-compose">Using Docker Compose</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#connect-to-ui">Connect to UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#launch-files">Launch Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#axis-camera-authentication">AXIS Camera Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#quickstart-guide">Quickstart guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#id4">1. Clone the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#validate-configuration">2. Validate Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#build-with-docker">3. Build with Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#send-lizard-configuration">4. Send Lizard Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#ready-to-go">5. Ready to Go</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#future-features">Future features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lizard-firmware-setup.html">Local Lizard Firmware Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lizard-firmware-setup.html#checkout">Checkout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lizard-firmware-setup.html#build-and-flash">Build and flash</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python_api.html">Python API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/devkit_driver.html">devkit_driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.course_over_ground.html">devkit_driver.course_over_ground</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.CourseOverGround"><code class="docutils literal notranslate"><span class="pre">CourseOverGround</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html">devkit_driver.devkit_driver_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver"><code class="docutils literal notranslate"><span class="pre">DevkitDriver</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.on_startup"><code class="docutils literal notranslate"><span class="pre">on_startup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.logger.html">devkit_driver.logger</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.logger.logger.html">devkit_driver.logger.logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.logger.ros_logger.html">devkit_driver.logger.ros_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.logger.stdout_logger.html">devkit_driver.logger.stdout_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html">devkit_driver.modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.BMSHandler"><code class="docutils literal notranslate"><span class="pre">BMSHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.BumperHandler"><code class="docutils literal notranslate"><span class="pre">BumperHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler"><code class="docutils literal notranslate"><span class="pre">EStopHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.ImuHandler"><code class="docutils literal notranslate"><span class="pre">ImuHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.OdomHandler"><code class="docutils literal notranslate"><span class="pre">OdomHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger"><code class="docutils literal notranslate"><span class="pre">ReconDEMLogger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.RobotBrainHandler"><code class="docutils literal notranslate"><span class="pre">RobotBrainHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler"><code class="docutils literal notranslate"><span class="pre">TwistHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.bms_handler.html">devkit_driver.modules.bms_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.bumper_handler.html">devkit_driver.modules.bumper_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.estop_handler.html">devkit_driver.modules.estop_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.imu_handler.html">devkit_driver.modules.imu_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.odom_handler.html">devkit_driver.modules.odom_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.recon_dem_logger.html">devkit_driver.modules.recon_dem_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.robot_brain_handler.html">devkit_driver.modules.robot_brain_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.twist_handler.html">devkit_driver.modules.twist_handler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.qos.html">devkit_driver.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.relposned_heading_shim.html">devkit_driver.relposned_heading_shim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.RelPosnedHeadingShim"><code class="docutils literal notranslate"><span class="pre">RelPosnedHeadingShim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.rtk_navsatfix_shim.html">devkit_driver.rtk_navsatfix_shim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim"><code class="docutils literal notranslate"><span class="pre">RtkNavSatFixShim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/devkit_f2c_planner.html">devkit_f2c_planner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html">devkit_f2c_planner.f2c_planner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/devkit_ui.html">devkit_ui</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.actions.html">devkit_ui.actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef"><code class="docutils literal notranslate"><span class="pre">ActionDef</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.actions.html#devkit_ui.actions.action_ros_msgs"><code class="docutils literal notranslate"><span class="pre">action_ros_msgs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.constants.html">devkit_ui.constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html">devkit_ui.dem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.build_elevation_grid"><code class="docutils literal notranslate"><span class="pre">build_elevation_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.elevation_to_traversable"><code class="docutils literal notranslate"><span class="pre">elevation_to_traversable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.load_recon_points"><code class="docutils literal notranslate"><span class="pre">load_recon_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.recon_csv_to_obstacle_rings"><code class="docutils literal notranslate"><span class="pre">recon_csv_to_obstacle_rings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_latlon"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_latlon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_xy"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_xy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore"><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.html#devkit_ui.missions.validate_mission"><code class="docutils literal notranslate"><span class="pre">validate_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.test_sqlite.html">devkit_ui.missions.test_sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html">devkit_ui.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc"><code class="docutils literal notranslate"><span class="pre">TopoDoc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge"><code class="docutils literal notranslate"><span class="pre">TopoEdge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode"><code class="docutils literal notranslate"><span class="pre">TopoNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose"><code class="docutils literal notranslate"><span class="pre">TopoPose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties"><code class="docutils literal notranslate"><span class="pre">TopoProperties</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#threading-model">Threading model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#coordinate-frames">Coordinate frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.MissionDrawHandle"><code class="docutils literal notranslate"><span class="pre">MissionDrawHandle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager"><code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_obstacle_panel"><code class="docutils literal notranslate"><span class="pre">attach_mission_obstacle_panel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_sidebar_controls"><code class="docutils literal notranslate"><span class="pre">attach_mission_sidebar_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_nav_card"><code class="docutils literal notranslate"><span class="pre">attach_nav_card()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.circle_to_ring_ll"><code class="docutils literal notranslate"><span class="pre">circle_to_ring_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacle_to_ring_ll"><code class="docutils literal notranslate"><span class="pre">obstacle_to_ring_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacles_to_rings_ll"><code class="docutils literal notranslate"><span class="pre">obstacles_to_rings_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.validate_obstacle"><code class="docutils literal notranslate"><span class="pre">validate_obstacle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.pages.html">devkit_ui.pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.pages.run.html">devkit_ui.pages.run</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.parse.html">devkit_ui.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.dump_topo_yaml"><code class="docutils literal notranslate"><span class="pre">dump_topo_yaml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_json"><code class="docutils literal notranslate"><span class="pre">parse_topo_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_models.html">devkit_ui.test_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc"><code class="docutils literal notranslate"><span class="pre">TestTopoDoc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html">devkit_ui.test_navigation_goals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ActionClient"><code class="docutils literal notranslate"><span class="pre">ActionClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Goal"><code class="docutils literal notranslate"><span class="pre">Goal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.GoalHandle"><code class="docutils literal notranslate"><span class="pre">GoalHandle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.NavigationHarness"><code class="docutils literal notranslate"><span class="pre">NavigationHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal"><code class="docutils literal notranslate"><span class="pre">TestSendNavGoal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal"><code class="docutils literal notranslate"><span class="pre">TestSynchronousNavigationGoal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.load_navigation_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_parse.html">devkit_ui.test_parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html">devkit_ui.test_run_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeDialog"><code class="docutils literal notranslate"><span class="pre">FakeDialog</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement"><code class="docutils literal notranslate"><span class="pre">FakeElement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeTimer"><code class="docutils literal notranslate"><span class="pre">FakeTimer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi"><code class="docutils literal notranslate"><span class="pre">FakeUi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard"><code class="docutils literal notranslate"><span class="pre">TestDropNodeCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar"><code class="docutils literal notranslate"><span class="pre">TestNavigationSidebar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo"><code class="docutils literal notranslate"><span class="pre">TestObstacleUndo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard"><code class="docutils literal notranslate"><span class="pre">TestRowDiscoveryCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel"><code class="docutils literal notranslate"><span class="pre">TestRunViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topo_renderer.html">devkit_ui.test_topo_renderer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels"><code class="docutils literal notranslate"><span class="pre">TestTopoRendererRowLabels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.row_labels"><code class="docutils literal notranslate"><span class="pre">row_labels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc"><code class="docutils literal notranslate"><span class="pre">now_utc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc_str"><code class="docutils literal notranslate"><span class="pre">now_utc_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.parse_ts"><code class="docutils literal notranslate"><span class="pre">parse_ts()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html">devkit_ui.ui_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode"><code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.load_css"><code class="docutils literal notranslate"><span class="pre">load_css()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.utils.html">devkit_ui.utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.utils.topo_renderer.html">devkit_ui.utils.topo_renderer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Research &amp; Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../research/Sim.html">Gazebo Simulation (Headless VNC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../research/Visual_roadmap.html">Vision System Roadmap — Sowbot / Avaota A1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#crop-row-node-yolox-nano-weed-detection-ros-2"><code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> · YOLOX-Nano Weed Detection · ROS 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#current-state-assessment">1. Current State Assessment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#what-works-and-must-be-preserved">What works and must be preserved</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#the-core-fragility">The core fragility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#the-architectural-conflict">The architectural conflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#image-topic-architecture-decided">Image topic architecture (decided)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#latency-budget">Latency budget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#immediate-harden-what-exists">2. Immediate — Harden What Exists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#no-model-training-no-npu-sdk-no-architectural-changes">(No model training. No NPU SDK. No architectural changes.)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m0-profile-on-device-week-1">M0 · Profile on-device (Week 1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m1-normalised-exg-week-12">M1 · Normalised ExG (Week 1–2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m2-weed-exclusion-mask-week-23">M2 · Weed exclusion mask (Week 2–3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m2-1-parameterise-the-dilation-kernel-week-23">M2.1 · Parameterise the dilation kernel (Week 2–3)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#short-term-npu-weed-detection-deployment">3. Short-Term — NPU Weed Detection Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#weeks-38">(Weeks 3–8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35">M3 · Validate YOLOX-Nano on UK lettuce weeds (Week 3–5)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m4-npu-inference-latency-benchmark-week-46">M4 · NPU inference latency benchmark (Week 4–6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m5-composable-node-container-integration-week-56">M5 · Composable node container integration (Week 5–6)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#medium-term-replace-exg-with-npu-segmentation">4. Medium-Term — Replace ExG with NPU Segmentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#months-24">(Months 2–4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m6-training-data-collection-months-13-parallel-workstream">M6 · Training data collection (Months 1–3, parallel workstream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m7-segmentation-model-selection-and-training-month-24">M7 · Segmentation model selection and training (Month 2–4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m8-integration-into-crop-row-node-month-34">M8 · Integration into <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> (Month 3–4)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#long-term-semantic-field-navigation">5. Long-Term — Semantic Field Navigation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#months-612">(Months 6–12)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m9-row-end-and-headland-detection-month-6">M9 · Row-end and headland detection (Month 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m10-row-identity-and-cross-row-localisation-month-78">M10 · Row identity and cross-row localisation (Month 7–8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m11-weed-pressure-maps-month-89">M11 · Weed pressure maps (Month 8–9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m12-multi-task-unified-network-month-912">M12 · Multi-task unified network (Month 9–12)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#dependency-and-risk-register">Dependency and Risk Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#milestone-summary">Milestone Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../research/fields2coverVsSlicr.html">Coverage Planner Feature Comparison</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#slic3r-coverage-planner-current-openmower-vs-fields2cover">slic3r_coverage_planner (current OpenMower) vs Fields2Cover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#feature-by-feature-breakdown">Feature-by-feature breakdown</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#outline-covered-by-rounds-inner-to-outer">1. Outline covered by rounds, inner to outer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#rounds-around-obstacles">2. Rounds around obstacles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#rounds-near-outline-and-obstacle-merged-into-one-track">3. Rounds near outline and obstacle merged into one track</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#smooth-transitions-between-rounds">4. Smooth transitions between rounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#fill-using-parallel-lines">5. Fill using parallel lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#multiple-fills-for-complex-concave-shapes">6. Multiple fills for complex/concave shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#consistent-fill-angle-across-all-regions-easily-configurable">7. Consistent fill angle across all regions, easily configurable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#half-circle-turns-between-fill-lines">8. Half-circle turns between fill lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#inter-path-navigation-done-at-runtime-via-costmap-not-pre-planned">9. Inter-path navigation done at runtime via costmap (not pre-planned)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#paths-ordered-in-a-sensible-way">10. Paths ordered in a sensible way</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#input-as-polygon-with-holes-border-mower-centre-line">11. Input as polygon with holes; border = mower centre line</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#summary-matrix">Summary matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#bottom-line">Bottom line</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html">Paper Proposal: Terramechanics-Informed State Estimation for Tracked Autonomous Rovers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#authors-affiliations">Authors &amp; Affiliations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#introduction-and-motivation">1. Introduction and Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#system-architecture">2. System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#experimental-validation-in-gazebo">3. Experimental Validation in Gazebo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#bibliography-and-prior-work">4. Bibliography and Prior Work</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Feldfreund DevKit ROS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">devkit_ui.obstacles</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for devkit_ui.obstacles</h1><div class="highlight"><pre>
+<span></span><span class="c1"># pylint: disable=duplicate-code</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Obstacle management for the Sowbot webui.</span>
+
+<span class="sd">Owns the obstacle list, its YAML persistence, the /obstacles publisher,</span>
+<span class="sd">and the UI cards rendered on the Nav and Mission tabs. Designed to be</span>
+<span class="sd">attached to a NiceGuiNode (see ObstacleManager.attach) so it can read</span>
+<span class="sd">the node&#39;s GPS/odom state and publish on its behalf, without inheriting</span>
+<span class="sd">from rclpy.node.Node itself.</span>
+
+<span class="sd">Threading model</span>
+<span class="sd">---------------</span>
+<span class="sd">self._obstacles is an immutable tuple. All writes replace it wholesale</span>
+<span class="sd">under self._lock, and bump self._version in the same critical section.</span>
+<span class="sd">Readers grab the tuple reference lock-free (CPython attribute reads are</span>
+<span class="sd">atomic) and walk a consistent snapshot.</span>
+
+<span class="sd">Two races are deliberately accepted:</span>
+
+<span class="sd">  1. Status string: two concurrent writers can race on obstacle_status;</span>
+<span class="sd">     last writer wins. The string is human-readable progress only, so a</span>
+<span class="sd">     late &quot;saved&quot; message can briefly mask an earlier &quot;writing…&quot; — never</span>
+<span class="sd">     misleading enough to matter.</span>
+
+<span class="sd">  2. Topic vs file: _persist_and_publish snapshots under the lock, then</span>
+<span class="sd">     writes the file, then publishes — both lock-free. An external topic</span>
+<span class="sd">     observer can therefore briefly see a state newer than what&#39;s on</span>
+<span class="sd">     disk (by milliseconds). The next save converges.</span>
+
+<span class="sd">Both are commented at the relevant call sites.</span>
+
+<span class="sd">Coordinate frames</span>
+<span class="sd">-----------------</span>
+<span class="sd">Obstacles are stored in WGS84 lat/lon — matches NavSatFix and Leaflet.</span>
+<span class="sd">They are projected to the local map frame at publish time using the</span>
+<span class="sd">(odom_xy ↔ gps_latlon) anchor from the host node&#39;s latest_odom and</span>
+<span class="sd">latest_gps. Without an anchor we cannot project, so we don&#39;t publish —</span>
+<span class="sd">a costmap subscriber would otherwise treat raw lat/lon as metric and</span>
+<span class="sd">place obstacles thousands of kilometres from the origin.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
+
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Point32</span><span class="p">,</span> <span class="n">PolygonStamped</span>
+<span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">DurabilityPolicy</span><span class="p">,</span> <span class="n">HistoryPolicy</span><span class="p">,</span> <span class="n">QoSProfile</span><span class="p">,</span> <span class="n">ReliabilityPolicy</span>
+
+<span class="c1"># ── Constants ────────────────────────────────────────────────────────────────</span>
+
+<span class="n">OBSTACLES_FILE</span> <span class="o">=</span> <span class="s1">&#39;/workspace/maps/obstacles.yaml&#39;</span>
+
+<span class="n">_NAME_RE</span>    <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[A-Z0-9_]+$&#39;</span><span class="p">)</span>
+<span class="n">_NAME_CLEAN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^A-Z0-9_]&#39;</span><span class="p">)</span>
+
+<span class="c1"># Latched profile — matches TMAP_QOS in ui_node so a costmap layer that</span>
+<span class="c1"># subscribes late still receives the current obstacle set on connect.</span>
+<span class="n">_OBS_QOS</span> <span class="o">=</span> <span class="n">QoSProfile</span><span class="p">(</span>
+    <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">reliability</span><span class="o">=</span><span class="n">ReliabilityPolicy</span><span class="o">.</span><span class="n">RELIABLE</span><span class="p">,</span>
+    <span class="n">durability</span><span class="o">=</span><span class="n">DurabilityPolicy</span><span class="o">.</span><span class="n">TRANSIENT_LOCAL</span><span class="p">,</span>
+    <span class="n">history</span><span class="o">=</span><span class="n">HistoryPolicy</span><span class="o">.</span><span class="n">KEEP_LAST</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># WGS84 semi-major axis (m). Equirectangular projection is good to</span>
+<span class="c1"># ~0.3% anywhere on the planet — comfortably inside metre-scale tolerance.</span>
+<span class="n">_R_EARTH</span> <span class="o">=</span> <span class="mf">6_378_137.0</span>
+
+
+<span class="c1"># ── Geometry helpers (pure, module-level so they&#39;re easy to test) ────────────</span>
+
+<div class="viewcode-block" id="latlon_to_xy">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.latlon_to_xy">[docs]</a>
+<span class="k">def</span> <span class="nf">latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                 <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert (lat, lon) to local ENU (x, y) metres relative to (lat0, lon0).&quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lon</span> <span class="o">-</span> <span class="n">lon0</span><span class="p">)</span> <span class="o">*</span> <span class="n">_R_EARTH</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat0</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat</span> <span class="o">-</span> <span class="n">lat0</span><span class="p">)</span> <span class="o">*</span> <span class="n">_R_EARTH</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span></div>
+
+
+
+<div class="viewcode-block" id="xy_to_latlon">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.xy_to_latlon">[docs]</a>
+<span class="k">def</span> <span class="nf">xy_to_latlon</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                 <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Inverse of latlon_to_xy.&quot;&quot;&quot;</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">lat0</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">y</span> <span class="o">/</span> <span class="n">_R_EARTH</span><span class="p">)</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">lon0</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">_R_EARTH</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat0</span><span class="p">))))</span>
+    <span class="k">return</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span></div>
+
+
+
+<div class="viewcode-block" id="circle_to_ring_ll">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.circle_to_ring_ll">[docs]</a>
+<span class="k">def</span> <span class="nf">circle_to_ring_ll</span><span class="p">(</span><span class="n">center_lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center_lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                      <span class="n">radius_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tessellate a circle into a closed WGS84 ring.</span>
+<span class="sd">    Side count scales with radius, clamped to [16, 64].&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">radius_m</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)))</span>
+    <span class="n">cos_lat</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">center_lat</span><span class="p">))</span>
+    <span class="n">pts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">a</span>  <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">n</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">radius_m</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">radius_m</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">center_lat</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">dy</span> <span class="o">/</span> <span class="n">_R_EARTH</span><span class="p">)</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="n">center_lon</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">dx</span> <span class="o">/</span> <span class="p">(</span><span class="n">_R_EARTH</span> <span class="o">*</span> <span class="n">cos_lat</span><span class="p">))</span>
+        <span class="n">pts</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pts</span></div>
+
+
+
+<div class="viewcode-block" id="obstacle_to_ring_ll">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacle_to_ring_ll">[docs]</a>
+<span class="k">def</span> <span class="nf">obstacle_to_ring_ll</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single obstacle dict → closed lat/lon ring, or [] for degenerate input.&quot;&quot;&quot;</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;circle&#39;</span><span class="p">:</span>
+        <span class="n">c</span>   <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">)</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">)</span>
+        <span class="n">r</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;radius_m&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">lat</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">lon</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">circle_to_ring_ll</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;polygon&#39;</span><span class="p">:</span>
+        <span class="n">ring</span> <span class="o">=</span> <span class="p">[(</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">obs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="k">if</span> <span class="s1">&#39;lat&#39;</span> <span class="ow">in</span> <span class="n">p</span> <span class="ow">and</span> <span class="s1">&#39;lon&#39;</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ring</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ring</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="p">[]</span></div>
+
+
+
+<div class="viewcode-block" id="obstacles_to_rings_ll">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacles_to_rings_ll">[docs]</a>
+<span class="k">def</span> <span class="nf">obstacles_to_rings_ll</span><span class="p">(</span>
+        <span class="n">obstacles</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;All obstacles → F2C-ready list of rings. Drops degenerate entries.&quot;&quot;&quot;</span>
+    <span class="n">rings</span> <span class="o">=</span> <span class="p">[</span><span class="n">obstacle_to_ring_ll</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">obstacles</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rings</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="validate_obstacle">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.validate_obstacle">[docs]</a>
+<span class="k">def</span> <span class="nf">validate_obstacle</span><span class="p">(</span><span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">,</span>
+                      <span class="n">points_ll</span><span class="p">)</span> <span class="o">-&gt;</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate add() inputs. Returns an error string or None.</span>
+
+<span class="sd">    Module-level so tests don&#39;t have to instantiate ObstacleManager.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;circle&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">lat</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">lon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;ERROR: lat/lon required&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">lat_f</span><span class="p">,</span> <span class="n">lon_f</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s1">&#39;ERROR: lat/lon must be numeric&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">lat_f</span><span class="p">)</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">lon_f</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;ERROR: lat/lon not finite (</span><span class="si">{</span><span class="n">lat</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">lon</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lat_f</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lon_f</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;ERROR: lat/lon are 0,0 (no fix?)&#39;</span>
+        <span class="k">if</span> <span class="n">radius_m</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;ERROR: radius must be &gt; 0&#39;</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;polygon&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">points_ll</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">points_ll</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;ERROR: polygon needs 3+ corners&#39;</span>
+        <span class="k">for</span> <span class="n">la</span><span class="p">,</span> <span class="n">lo</span> <span class="ow">in</span> <span class="n">points_ll</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">la</span><span class="p">))</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lo</span><span class="p">))):</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;ERROR: point not finite (</span><span class="si">{</span><span class="n">la</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">lo</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;ERROR: unknown kind </span><span class="si">{</span><span class="n">kind</span><span class="si">!r}</span><span class="s1">&#39;</span></div>
+
+
+
+<span class="c1"># ── Manager ──────────────────────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="ObstacleManager">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager">[docs]</a>
+<span class="k">class</span> <span class="nc">ObstacleManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Owns the obstacle list, persistence, and the ROS publisher.</span>
+
+<span class="sd">    After attach(node), the node exposes:</span>
+
+<span class="sd">        node.obstacles               : tuple[dict, ...]   read-only snapshot</span>
+<span class="sd">        node.obstacles_version       : int                bumps on every change</span>
+<span class="sd">        node.obstacle_status         : str                last-action status</span>
+<span class="sd">        node.default_obstacle_radius : float              shared by UI bindings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OBSTACLES_FILE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_path</span>       <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span>       <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_version</span><span class="p">:</span>   <span class="nb">int</span>              <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_node</span>                        <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_publisher</span>                   <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># _last_anchor tracks whether we&#39;ve ever successfully published.</span>
+        <span class="c1"># Used by the cold-start timer to fire exactly once when GPS+odom</span>
+        <span class="c1"># first become available, then never again (timer cancels itself).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_anchor</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_anchor_timer</span>                 <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># ── lifecycle ─────────────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="ObstacleManager.attach">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.attach">[docs]</a>
+    <span class="k">def</span> <span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wire into a NiceGuiNode. Creates publisher, kicks off background</span>
+<span class="sd">        load, starts the cold-start anchor watcher.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="o">=</span> <span class="n">node</span>
+
+        <span class="c1"># Initialise instance attributes the UI binds to.</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">obstacles</span>            <span class="o">=</span> <span class="p">()</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">obstacles_version</span>    <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">obstacle_status</span>      <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;default_obstacle_radius&#39;</span><span class="p">):</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">default_obstacle_radius</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_publisher</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span>
+            <span class="n">PolygonStamped</span><span class="p">,</span> <span class="s1">&#39;/obstacles&#39;</span><span class="p">,</span> <span class="n">_OBS_QOS</span><span class="p">)</span>
+
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_load</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="c1"># Cold-start watcher: at 2 Hz, check if GPS+odom have arrived. As</span>
+        <span class="c1"># soon as they have, publish whatever&#39;s loaded and cancel ourselves.</span>
+        <span class="c1"># After the first publish, all subsequent updates flow through</span>
+        <span class="c1"># _persist_and_publish, which calls _publish directly.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_anchor_timer</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span>
+            <span class="mf">0.5</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cold_start_publish</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ── public API ────────────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="ObstacleManager.add">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.add">[docs]</a>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+            <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">radius_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">points_ll</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a circle or polygon obstacle. Returns the allocated name on</span>
+<span class="sd">        success, None on failure (status carries the reason either way).&quot;&quot;&quot;</span>
+
+        <span class="n">err</span> <span class="o">=</span> <span class="n">validate_obstacle</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">,</span> <span class="n">points_ll</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">err</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">clean</span> <span class="o">=</span> <span class="n">_NAME_CLEAN</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+            <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">))</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">UTC</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y_%H-%M-%S&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Lock covers name allocation + tuple replacement + version bump.</span>
+        <span class="c1"># Disk write and publish happen after release, in a thread.</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="n">existing</span> <span class="o">=</span> <span class="p">{</span><span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">}</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">clean</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">while</span> <span class="sa">f</span><span class="s1">&#39;OBS_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">existing</span><span class="p">:</span>
+                    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">clean</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;OBS_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">_NAME_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">clean</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: invalid name </span><span class="si">{</span><span class="n">clean</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">elif</span> <span class="n">clean</span> <span class="ow">in</span> <span class="n">existing</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">clean</span><span class="si">}</span><span class="s1"> already exists&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;circle&#39;</span><span class="p">:</span>
+                <span class="n">obs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;name&#39;</span><span class="p">:</span>       <span class="n">clean</span><span class="p">,</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span>       <span class="s1">&#39;circle&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;center&#39;</span><span class="p">:</span>     <span class="p">{</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="mi">7</span><span class="p">)},</span>
+                    <span class="s1">&#39;radius_m&#39;</span><span class="p">:</span>   <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">radius_m</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="s1">&#39;dropped_by&#39;</span><span class="p">:</span> <span class="s1">&#39;webui&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span>  <span class="n">timestamp</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="n">desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;@ (</span><span class="si">{</span><span class="n">lat</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">lon</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">) r=</span><span class="si">{</span><span class="n">radius_m</span><span class="si">}</span><span class="s1">m&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">obs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;name&#39;</span><span class="p">:</span>       <span class="n">clean</span><span class="p">,</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span>       <span class="s1">&#39;polygon&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;points&#39;</span><span class="p">:</span>     <span class="p">[{</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">la</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="mi">7</span><span class="p">)}</span>
+                                   <span class="k">for</span> <span class="n">la</span><span class="p">,</span> <span class="n">lo</span> <span class="ow">in</span> <span class="n">points_ll</span><span class="p">],</span>
+                    <span class="s1">&#39;dropped_by&#39;</span><span class="p">:</span> <span class="s1">&#39;webui&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span>  <span class="n">timestamp</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="n">desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">points_ll</span><span class="p">)</span><span class="si">}</span><span class="s1"> pts)&#39;</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>  <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sync_node</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">clean</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">desc</span><span class="si">}</span><span class="s1"> — writing…&#39;</span><span class="p">)</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_persist_and_publish</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">clean</span><span class="si">}</span><span class="s1"> saved · </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">)</span><span class="si">}</span><span class="s1"> total&#39;</span><span class="p">,),</span>
+            <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">clean</span></div>
+
+
+<div class="viewcode-block" id="ObstacleManager.delete">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.delete">[docs]</a>
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">name</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s1"> not found&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">o</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span>
+                                    <span class="k">if</span> <span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>  <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sync_node</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;deleting </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> — writing…&#39;</span><span class="p">)</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_persist_and_publish</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;deleted </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> · </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">)</span><span class="si">}</span><span class="s1"> left&#39;</span><span class="p">,),</span>
+            <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="ObstacleManager.rings_ll">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.rings_ll">[docs]</a>
+    <span class="k">def</span> <span class="nf">rings_ll</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;F2C-ready snapshot. Safe to call from any thread.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">obstacles_to_rings_ll</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ── internals ─────────────────────────────────────────────────────────</span>
+
+    <span class="k">def</span> <span class="nf">_sync_node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mirror internal state onto the node. Called inside the lock.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">obstacles</span>         <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">obstacles_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>
+
+    <span class="k">def</span> <span class="nf">_set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Status setter — last-writer-wins race accepted (see module docs).&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">obstacle_status</span> <span class="o">=</span> <span class="n">s</span>
+
+    <span class="c1"># ── persistence ───────────────────────────────────────────────────────</span>
+
+    <span class="k">def</span> <span class="nf">_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">):</span>
+                <span class="k">return</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+                <span class="n">doc</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+            <span class="n">loaded</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;obstacles&#39;</span><span class="p">,</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">[]</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>  <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sync_node</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="si">}</span><span class="s1"> obstacles from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="c1"># Try to publish immediately. May no-op if no GPS yet — the</span>
+            <span class="c1"># cold-start timer will catch that case.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_publish</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Failed to load obstacles: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_persist_and_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success_msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Atomic write (tmp + os.replace), then publish.</span>
+
+<span class="sd">        Snapshot under lock, write + publish lock-free. The topic can</span>
+<span class="sd">        briefly reflect a state newer than disk (by ms) — see module docs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span> <span class="o">+</span> <span class="s1">&#39;.tmp&#39;</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+                <span class="n">snapshot</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+                <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span><span class="s1">&#39;obstacles&#39;</span><span class="p">:</span> <span class="n">snapshot</span><span class="p">},</span> <span class="n">fh</span><span class="p">,</span>
+                          <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">allow_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="n">success_msg</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Obstacles saved: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">snapshot</span><span class="p">)</span><span class="si">}</span><span class="s1"> total&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_publish</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;persist failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ── publishing ────────────────────────────────────────────────────────</span>
+
+    <span class="k">def</span> <span class="nf">_current_anchor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;(map_x, map_y, lat, lon) for projecting obstacles into the map</span>
+<span class="sd">        frame. Returns None if either odom or GPS is missing/degenerate.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">odom</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="p">,</span> <span class="s1">&#39;latest_odom&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">gps</span>  <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="p">,</span> <span class="s1">&#39;latest_gps&#39;</span><span class="p">,</span>  <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">odom</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">gps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">gps</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">gps</span><span class="o">.</span><span class="n">longitude</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">lon</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">odom</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">odom</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish each obstacle as a PolygonStamped in the map frame.</span>
+<span class="sd">        Silent no-op if there&#39;s no projection anchor.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_publisher</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">anchor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_anchor</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">anchor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">ax</span><span class="p">,</span> <span class="n">ay</span><span class="p">,</span> <span class="n">alat</span><span class="p">,</span> <span class="n">alon</span> <span class="o">=</span> <span class="n">anchor</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">snapshot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span>    <span class="c1"># tuple read is atomic in CPython</span>
+            <span class="n">stamp</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">snapshot</span><span class="p">:</span>
+                <span class="n">ring_ll</span> <span class="o">=</span> <span class="n">obstacle_to_ring_ll</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">ring_ll</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">PolygonStamped</span><span class="p">()</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span>    <span class="o">=</span> <span class="n">stamp</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s1">&#39;map&#39;</span>
+                <span class="k">for</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="ow">in</span> <span class="n">ring_ll</span><span class="p">:</span>
+                    <span class="n">mx</span><span class="p">,</span> <span class="n">my</span> <span class="o">=</span> <span class="n">latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alat</span><span class="p">,</span> <span class="n">alon</span><span class="p">)</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">Point32</span><span class="p">()</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ax</span> <span class="o">+</span> <span class="n">mx</span><span class="p">)</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ay</span> <span class="o">+</span> <span class="n">my</span><span class="p">)</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+                    <span class="n">msg</span><span class="o">.</span><span class="n">polygon</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_publisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_last_anchor</span> <span class="o">=</span> <span class="n">anchor</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;publish failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_cold_start_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run by a 2 Hz timer during cold start. Publishes once GPS+odom</span>
+<span class="sd">        arrive, then cancels itself — all subsequent updates flow through</span>
+<span class="sd">        _persist_and_publish.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_anchor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cancel_anchor_timer</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">:</span>
+            <span class="k">return</span>   <span class="c1"># nothing to publish yet</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_anchor</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>   <span class="c1"># GPS / odom not ready</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_publish</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_anchor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cancel_anchor_timer</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_cancel_anchor_timer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor_timer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_anchor_timer</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_anchor_timer</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<span class="c1"># ── UI: Nav-tab attachment ────────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="attach_nav_card">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_nav_card">[docs]</a>
+<span class="k">def</span> <span class="nf">attach_nav_card</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="n">ObstacleManager</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Render the “Mark Obstacle” card and keep its status display synchronized with the obstacle manager.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        node: UI node used to store the default radius, GPS data, and status.</span>
+<span class="sd">        manager (ObstacleManager): Manager used to add and remove obstacles.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;default_obstacle_radius&#39;</span><span class="p">):</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">default_obstacle_radius</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+    <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">()</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;padding:12px 14px;flex-shrink:0;min-width:200px&#39;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;items-baseline gap-2 mb-2&#39;</span><span class="p">):</span>
+            <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;Mark Obstacle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;font-semibold&#39;</span><span class="p">)</span>
+            <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;circle at current GPS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+                <span class="s1">&#39;color:#8c959f&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;items-center gap-2 w-full&#39;</span><span class="p">):</span>
+            <span class="n">obs_name</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">input</span><span class="p">(</span>
+                <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;blank → OBS_N&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;flex-1&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;items-center gap-2 w-full mt-1&#39;</span><span class="p">):</span>
+            <span class="n">ui</span><span class="o">.</span><span class="n">number</span><span class="p">(</span>
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Radius&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">default_obstacle_radius</span><span class="p">,</span>
+                <span class="nb">min</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-24&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">bind_value</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;default_obstacle_radius&#39;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">_mark_here</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Mark a circular obstacle at the latest GPS position.</span>
+
+<span class="sd">                If no GPS message is available, updates the obstacle status with an error.</span>
+<span class="sd">                On success, clears the obstacle name input and displays a temporary dialog</span>
+<span class="sd">                with an option to undo the addition.</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="n">gps</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;latest_gps&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">gps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">node</span><span class="o">.</span><span class="n">obstacle_status</span> <span class="o">=</span> <span class="s1">&#39;ERROR: no GPS message yet&#39;</span>
+                    <span class="k">return</span>
+                <span class="n">added</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                    <span class="s1">&#39;circle&#39;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">gps</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="n">gps</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+                    <span class="n">radius_m</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">default_obstacle_radius</span><span class="p">),</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">obs_name</span><span class="o">.</span><span class="n">value</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">added</span><span class="p">:</span>
+                    <span class="n">obs_name</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                    <span class="c1"># Using Dialog because NiceGUI notification dismissal cannot</span>
+                    <span class="c1"># reliably report whether Undo or its timeout closed the toast.</span>
+                    <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">dialog</span><span class="p">()</span> <span class="k">as</span> <span class="n">undo_dialog</span><span class="p">,</span> <span class="n">ui</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span>
+                            <span class="s1">&#39;obstacle-undo-notification&#39;</span><span class="p">):</span>
+                        <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;items-center gap-3&#39;</span><span class="p">):</span>
+                            <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Marked </span><span class="si">{</span><span class="n">added</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                            <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span>
+                                <span class="s1">&#39;Undo&#39;</span><span class="p">,</span>
+                                <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span>
+                                    <span class="n">manager</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">added</span><span class="p">),</span> <span class="n">_close_undo_dialog</span><span class="p">()),</span>
+                            <span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;flat dense&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-white&#39;</span><span class="p">)</span>
+                    <span class="n">undo_dialog</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;position=bottom seamless&#39;</span><span class="p">)</span>
+                    <span class="n">undo_dialog</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+                    <span class="k">def</span> <span class="nf">_close_undo_dialog</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">                        </span><span class="sd">&quot;&quot;&quot;Close the obstacle undo dialog if it is still available.&quot;&quot;&quot;</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">undo_dialog</span><span class="o">.</span><span class="n">is_deleted</span><span class="p">:</span>
+                            <span class="n">undo_dialog</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+                    <span class="n">ui</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">_close_undo_dialog</span><span class="p">,</span> <span class="n">once</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Mark here&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="n">_mark_here</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span>
+                <span class="s1">&#39;ml-auto&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;color=warning no-caps dense&#39;</span><span class="p">)</span>
+
+        <span class="n">status_lbl</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs font-mono mt-1&#39;</span><span class="p">)</span>
+
+    <span class="n">_prev</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_refresh</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">obstacle_status</span>
+        <span class="k">if</span> <span class="n">cur</span> <span class="o">==</span> <span class="n">_prev</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">return</span>
+        <span class="n">_prev</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur</span>
+        <span class="n">status_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+        <span class="n">status_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+            <span class="s1">&#39;color:#cf222e&#39;</span> <span class="k">if</span> <span class="n">cur</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span> <span class="k">else</span>
+            <span class="s1">&#39;color:#1a7f37&#39;</span> <span class="k">if</span> <span class="n">cur</span> <span class="k">else</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span>
+
+    <span class="n">ui</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">_refresh</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ── UI: Mission-tab attachment ────────────────────────────────────────────────</span>
+<span class="c1">#</span>
+<span class="c1"># Split in two — the controls go in the sidebar (narrow), the list panel</span>
+<span class="c1"># goes below the map (wide). The MissionDrawHandle returned by the first</span>
+<span class="c1"># call is passed to the second so they share in-progress drawing state and</span>
+<span class="c1"># the click handler.</span>
+
+<div class="viewcode-block" id="MissionDrawHandle">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.MissionDrawHandle">[docs]</a>
+<span class="k">class</span> <span class="nc">MissionDrawHandle</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;State + accessors shared between the sidebar controls and the list</span>
+<span class="sd">    panel. Created by attach_mission_sidebar_controls; consumed by</span>
+<span class="sd">    attach_mission_obstacle_panel.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="n">ObstacleManager</span><span class="p">,</span> <span class="n">mission_map</span><span class="p">,</span>
+                 <span class="n">obstacle_pad_widget</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span>         <span class="o">=</span> <span class="n">node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">manager</span>      <span class="o">=</span> <span class="n">manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mission_map</span>  <span class="o">=</span> <span class="n">mission_map</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obstacle_pad</span> <span class="o">=</span> <span class="n">obstacle_pad_widget</span>
+        <span class="c1"># In-progress polygon state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">corners</span><span class="p">:</span>  <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">:</span>    <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">markers</span><span class="p">:</span>  <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Rendered saved-obstacle layers keyed by name → leaflet layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rendered</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># Current draw mode + shape — set by toggle handlers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw_mode</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;boundary&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs_shape</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;circle&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="MissionDrawHandle.clear_in_progress">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.MissionDrawHandle.clear_in_progress">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear_in_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tear down any in-progress polygon. Called by the outer Clear</span>
+<span class="sd">        button so user intent (&#39;clear everything&#39;) actually clears.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">corners</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">run_method</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">markers</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">m</span><span class="o">.</span><span class="n">run_method</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">markers</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="attach_mission_sidebar_controls">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_sidebar_controls">[docs]</a>
+<span class="k">def</span> <span class="nf">attach_mission_sidebar_controls</span><span class="p">(</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="n">ObstacleManager</span><span class="p">,</span> <span class="n">mission_map</span><span class="p">,</span>
+        <span class="n">boundary_click</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">MissionDrawHandle</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders the Field/Obstacle draw-mode toggle, shape sub-toggle,</span>
+<span class="sd">    radius input, obstacle padding input, and Finish-polygon button in</span>
+<span class="sd">    the current ui context (the Mission sidebar column).</span>
+
+<span class="sd">    Also wires the mission_map&#39;s &#39;map-click&#39; handler to dispatch between</span>
+<span class="sd">    boundary-drawing (callback) and obstacle-drawing (manager.add).</span>
+
+<span class="sd">    Returns a handle the caller passes to attach_mission_obstacle_panel.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;default_obstacle_radius&#39;</span><span class="p">):</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">default_obstacle_radius</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+    <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;sec-label mt-3&quot;&gt;Draw mode&lt;/div&gt;&#39;</span><span class="p">)</span>
+    <span class="n">mode_toggle</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">toggle</span><span class="p">(</span>
+        <span class="p">{</span><span class="s1">&#39;boundary&#39;</span><span class="p">:</span> <span class="s1">&#39;Field&#39;</span><span class="p">,</span> <span class="s1">&#39;obstacle&#39;</span><span class="p">:</span> <span class="s1">&#39;Obstacle&#39;</span><span class="p">},</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;dense&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">column</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full gap-2 mt-2&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">obs_controls</span><span class="p">:</span>
+        <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;sec-label&quot;&gt;Obstacle shape&lt;/div&gt;&#39;</span><span class="p">)</span>
+        <span class="n">shape_toggle</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">toggle</span><span class="p">(</span>
+            <span class="p">{</span><span class="s1">&#39;circle&#39;</span><span class="p">:</span> <span class="s1">&#39;Circle&#39;</span><span class="p">,</span> <span class="s1">&#39;polygon&#39;</span><span class="p">:</span> <span class="s1">&#39;Polygon&#39;</span><span class="p">},</span>
+            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;dense&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
+
+        <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;sec-label&quot;&gt;Radius (circle)&lt;/div&gt;&#39;</span><span class="p">)</span>
+        <span class="n">ui</span><span class="o">.</span><span class="n">number</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">default_obstacle_radius</span><span class="p">,</span>
+                  <span class="nb">min</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                  <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">bind_value</span><span class="p">(</span>
+                      <span class="n">node</span><span class="p">,</span> <span class="s1">&#39;default_obstacle_radius&#39;</span><span class="p">)</span>
+
+        <span class="n">finish_btn</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Finish polygon&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
+            <span class="s1">&#39;outline no-caps dense&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
+
+    <span class="n">obs_controls</span><span class="o">.</span><span class="n">set_visibility</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;sec-label mt-3&quot;&gt;Obstacle padding&lt;/div&gt;&#39;</span><span class="p">)</span>
+    <span class="n">obstacle_pad</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">number</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
+    <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;robot clearance during planning&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span>
+        <span class="s1">&#39;text-xs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#8c959f&#39;</span><span class="p">)</span>
+
+    <span class="n">handle</span> <span class="o">=</span> <span class="n">MissionDrawHandle</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">manager</span><span class="p">,</span> <span class="n">mission_map</span><span class="p">,</span> <span class="n">obstacle_pad</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_mode</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+        <span class="n">handle</span><span class="o">.</span><span class="n">draw_mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span>
+        <span class="n">obs_controls</span><span class="o">.</span><span class="n">set_visibility</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span> <span class="o">==</span> <span class="s1">&#39;obstacle&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_shape</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+        <span class="n">handle</span><span class="o">.</span><span class="n">obs_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span>
+
+    <span class="n">mode_toggle</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;update:model-value&#39;</span><span class="p">,</span>  <span class="n">_on_mode</span><span class="p">)</span>
+    <span class="n">shape_toggle</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;update:model-value&#39;</span><span class="p">,</span> <span class="n">_on_shape</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_redraw_in_progress</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">handle</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">handle</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">run_method</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="n">handle</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">corners</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">latlngs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">la</span><span class="p">,</span> <span class="n">lo</span><span class="p">]</span> <span class="k">for</span> <span class="n">la</span><span class="p">,</span> <span class="n">lo</span> <span class="ow">in</span> <span class="n">handle</span><span class="o">.</span><span class="n">corners</span><span class="p">]</span>
+            <span class="n">handle</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mission_map</span><span class="o">.</span><span class="n">generic_layer</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="s1">&#39;polygon&#39;</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">latlngs</span><span class="p">,</span>
+                      <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;#cf222e&#39;</span><span class="p">,</span> <span class="s1">&#39;fillOpacity&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+                       <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;dashArray&#39;</span><span class="p">:</span> <span class="s1">&#39;4 3&#39;</span><span class="p">}],</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_finish_polygon</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">corners</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">obstacle_status</span> <span class="o">=</span> <span class="s1">&#39;ERROR: polygon needs 3+ corners&#39;</span>
+            <span class="k">return</span>
+        <span class="n">added</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;polygon&#39;</span><span class="p">,</span> <span class="n">points_ll</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">corners</span><span class="p">))</span>
+        <span class="c1"># On failure (dup name etc.) keep in-progress state for retry.</span>
+        <span class="c1"># Only tear down on success.</span>
+        <span class="k">if</span> <span class="n">added</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handle</span><span class="o">.</span><span class="n">clear_in_progress</span><span class="p">()</span>
+
+    <span class="n">finish_btn</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">_finish_polygon</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_map_click</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;latlng&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;latlng&#39;</span><span class="p">][</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">handle</span><span class="o">.</span><span class="n">draw_mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;boundary&#39;</span><span class="p">:</span>
+            <span class="n">boundary_click</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">handle</span><span class="o">.</span><span class="n">obs_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;circle&#39;</span><span class="p">:</span>
+            <span class="n">manager</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;circle&#39;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="n">lon</span><span class="p">,</span>
+                        <span class="n">radius_m</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">default_obstacle_radius</span><span class="p">))</span>
+            <span class="k">return</span>
+        <span class="c1"># polygon: accumulate corners</span>
+        <span class="n">handle</span><span class="o">.</span><span class="n">corners</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">))</span>
+        <span class="n">handle</span><span class="o">.</span><span class="n">markers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mission_map</span><span class="o">.</span><span class="n">marker</span><span class="p">(</span><span class="n">latlng</span><span class="o">=</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)))</span>
+        <span class="n">_redraw_in_progress</span><span class="p">()</span>
+
+    <span class="n">mission_map</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;map-click&#39;</span><span class="p">,</span> <span class="n">_on_map_click</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">handle</span></div>
+
+
+
+<div class="viewcode-block" id="attach_mission_obstacle_panel">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_obstacle_panel">[docs]</a>
+<span class="k">def</span> <span class="nf">attach_mission_obstacle_panel</span><span class="p">(</span><span class="n">handle</span><span class="p">:</span> <span class="n">MissionDrawHandle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders the obstacle list + Leaflet rendering panel in the current</span>
+<span class="sd">    ui context. Call from below the map (wide layout).&quot;&quot;&quot;</span>
+    <span class="n">node</span>        <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">node</span>
+    <span class="n">manager</span>     <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">manager</span>
+    <span class="n">mission_map</span> <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">mission_map</span>
+
+    <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full mt-3&#39;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;items-baseline gap-2 mb-2&#39;</span><span class="p">):</span>
+            <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;Obstacles&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;font-semibold&#39;</span><span class="p">)</span>
+            <span class="n">count_lbl</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#8c959f&#39;</span><span class="p">)</span>
+        <span class="n">list_col</span>   <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">column</span><span class="p">()</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;gap:2px;width:100%&#39;</span><span class="p">)</span>
+        <span class="n">status_lbl</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs font-mono mt-2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+            <span class="s1">&#39;color:#57606a;word-break:break-word&#39;</span><span class="p">)</span>
+
+    <span class="n">_prev</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_refresh</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">v</span>      <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">obstacles_version</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">obstacle_status</span>
+        <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">_prev</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">status</span> <span class="o">==</span> <span class="n">_prev</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]:</span>
+            <span class="k">return</span>
+        <span class="n">version_changed</span>  <span class="o">=</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">_prev</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span>
+        <span class="n">_prev</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="n">_prev</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">status</span>
+
+        <span class="n">status_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+        <span class="n">status_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+            <span class="s1">&#39;color:#cf222e&#39;</span> <span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span> <span class="k">else</span>
+            <span class="s1">&#39;color:#1a7f37&#39;</span> <span class="k">if</span> <span class="n">status</span> <span class="k">else</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">version_changed</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">obstacles</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">obstacles</span>
+        <span class="n">count_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">obstacles</span><span class="p">)</span><span class="si">}</span><span class="s1"> saved&#39;</span><span class="p">)</span>
+
+        <span class="n">list_col</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">obstacles</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">list_col</span><span class="p">:</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;No obstacles yet&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+                    <span class="s1">&#39;color:#8c959f&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">list_col</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">obstacles</span><span class="p">:</span>
+                    <span class="n">nm</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;?&#39;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;circle&#39;</span><span class="p">:</span>
+                        <span class="n">c</span>    <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="p">{})</span>
+                        <span class="n">desc</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;circle r=</span><span class="si">{</span><span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;radius_m&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">m  &#39;</span>
+                                <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lat&quot;</span><span class="p">)</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lon&quot;</span><span class="p">)</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;polygon (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]))</span><span class="si">}</span><span class="s1"> pts)&#39;</span>
+                    <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;items-center gap-2 w-full&#39;</span><span class="p">):</span>
+                        <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">nm</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-sm font-mono&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+                            <span class="s1">&#39;min-width:90px&#39;</span><span class="p">)</span>
+                        <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span>
+                            <span class="s1">&#39;text-xs font-mono flex-1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#8c959f&#39;</span><span class="p">)</span>
+                        <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span>
+                            <span class="s1">&#39;✕&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">nm</span><span class="p">:</span> <span class="n">manager</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">n</span><span class="p">),</span>
+                        <span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;flat dense&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+                            <span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Map layers: clear-all then redraw-all. Cheap at obstacle counts &lt; 1000.</span>
+        <span class="k">for</span> <span class="n">lyr</span> <span class="ow">in</span> <span class="n">handle</span><span class="o">.</span><span class="n">rendered</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">lyr</span><span class="o">.</span><span class="n">run_method</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="n">handle</span><span class="o">.</span><span class="n">rendered</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">obstacles</span><span class="p">:</span>
+            <span class="n">nm</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;?&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;circle&#39;</span><span class="p">:</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="n">handle</span><span class="o">.</span><span class="n">rendered</span><span class="p">[</span><span class="n">nm</span><span class="p">]</span> <span class="o">=</span> <span class="n">mission_map</span><span class="o">.</span><span class="n">generic_layer</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">,</span>
+                    <span class="n">args</span><span class="o">=</span><span class="p">[[</span><span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">),</span> <span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">)],</span>
+                          <span class="p">{</span><span class="s1">&#39;radius&#39;</span><span class="p">:</span>      <span class="nb">float</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;radius_m&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)),</span>
+                           <span class="s1">&#39;color&#39;</span><span class="p">:</span>       <span class="s1">&#39;#cf222e&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;fillColor&#39;</span><span class="p">:</span>   <span class="s1">&#39;#cf222e&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;fillOpacity&#39;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span>
+                           <span class="s1">&#39;weight&#39;</span><span class="p">:</span>      <span class="mi">2</span><span class="p">}],</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">latlngs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]]</span>
+                           <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span> <span class="p">[])]</span>
+                <span class="n">handle</span><span class="o">.</span><span class="n">rendered</span><span class="p">[</span><span class="n">nm</span><span class="p">]</span> <span class="o">=</span> <span class="n">mission_map</span><span class="o">.</span><span class="n">generic_layer</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;polygon&#39;</span><span class="p">,</span>
+                    <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">latlngs</span><span class="p">,</span>
+                          <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span>       <span class="s1">&#39;#cf222e&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;fillColor&#39;</span><span class="p">:</span>   <span class="s1">&#39;#cf222e&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;fillOpacity&#39;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span>
+                           <span class="s1">&#39;weight&#39;</span><span class="p">:</span>      <span class="mi">2</span><span class="p">}],</span>
+                <span class="p">)</span>
+
+    <span class="n">ui</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">_refresh</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Agroecology Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

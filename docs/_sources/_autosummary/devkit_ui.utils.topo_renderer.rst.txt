@@ -1,0 +1,14 @@
+devkit\_ui.utils.topo\_renderer
+===============================
+
+.. automodule:: devkit_ui.utils.topo_renderer
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build_robot_svg
+      build_svg
+      inject_click_js
+   

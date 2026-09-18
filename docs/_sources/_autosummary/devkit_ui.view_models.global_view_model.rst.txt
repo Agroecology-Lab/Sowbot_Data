@@ -1,0 +1,12 @@
+devkit\_ui.view\_models.global\_view\_model
+===========================================
+
+.. automodule:: devkit_ui.view_models.global_view_model
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      GlobalViewModel
+   

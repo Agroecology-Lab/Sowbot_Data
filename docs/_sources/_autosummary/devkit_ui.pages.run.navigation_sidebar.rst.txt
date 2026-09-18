@@ -1,0 +1,12 @@
+devkit\_ui.pages.run.navigation\_sidebar
+========================================
+
+.. automodule:: devkit_ui.pages.run.navigation_sidebar
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      NavigationSidebar
+   

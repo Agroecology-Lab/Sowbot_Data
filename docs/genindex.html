@@ -41,14 +41,318 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Navigation &amp; Architecture</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Sowbot (ROS 2 stack)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#sowbot-roadmap">Sowbot Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#collaboration">Collaboration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#rewrite-from-scratch-cost-estimate">Rewrite-from-Scratch Cost Estimate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#foundational-infra">Foundational infra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#packages-pulled-in-developed-in-house">Packages pulled in &amp; developed in house</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#total">Total</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#critical-safety-warning">⚠️ CRITICAL SAFETY WARNING:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#health-warning">Health Warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#supported-sbc-configuration">Supported SBC configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#install-dependencies">0. Install dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README.html#linux">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README.html#mac">Mac</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README.html#windows">Windows?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#clone-the-repository">1. Clone the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#build-launch">3. Build &amp; Launch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README.html#id1">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README.html#gazebo">Gazebo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#management-tools">Management &amp; Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#manage-py">manage.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#one-command-sim-launch-tmule">One-command sim launch (TMuLE)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README.html#tmux-basics">tmux basics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#interactive-shell">Interactive Shell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#diagnostics">Diagnostics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README.html#after-running-login-sh">After running ./login.sh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#sketch-of-mvp-2026-architecture">Sketch of MVP 2026 architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#the-lizard-brain-rt-microcontroller">1. The Lizard Brain (RT Microcontroller)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#the-limbic-system-executive">2. The Limbic System (Executive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#the-neo-perception">3. The Neo (Perception)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#sketch-of-possible-eventual-2027-architecture">Sketch of possible eventual ~2027 architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#the-lizard-brain-hardware-abstraction">1. The Lizard Brain (Hardware Abstraction)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#id2">2. The Limbic System (Executive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#id3">3. The Neo (Perception)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#licenses-papers">Licenses &amp; papers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#sowbot-feldfreund-devkit-ros-dependency-licence-audit">Sowbot / feldfreund_devkit_ros — Dependency Licence Audit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#feldfreund-devkit-ros">Feldfreund DevKit ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#devkit-driver">DevKit driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#camera-system">Camera System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#gnss-system">GNSS System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#devkit-ui">DevKit UI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#docker-setup">Docker Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#using-docker-compose">Using Docker Compose</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#connect-to-ui">Connect to UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#launch-files">Launch Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#axis-camera-authentication">AXIS Camera Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#quickstart-guide">Quickstart guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#id4">1. Clone the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#validate-configuration">2. Validate Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#build-with-docker">3. Build with Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#send-lizard-configuration">4. Send Lizard Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#ready-to-go">5. Ready to Go</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#future-features">Future features</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="lizard-firmware-setup.html">Local Lizard Firmware Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lizard-firmware-setup.html#checkout">Checkout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lizard-firmware-setup.html#build-and-flash">Build and flash</a></li>
 </ul>
 </li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_driver.html">devkit_driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.course_over_ground.html">devkit_driver.course_over_ground</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.CourseOverGround"><code class="docutils literal notranslate"><span class="pre">CourseOverGround</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html">devkit_driver.devkit_driver_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver"><code class="docutils literal notranslate"><span class="pre">DevkitDriver</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.on_startup"><code class="docutils literal notranslate"><span class="pre">on_startup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.logger.html">devkit_driver.logger</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.logger.html">devkit_driver.logger.logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.ros_logger.html">devkit_driver.logger.ros_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.stdout_logger.html">devkit_driver.logger.stdout_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.modules.html">devkit_driver.modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.BMSHandler"><code class="docutils literal notranslate"><span class="pre">BMSHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.BumperHandler"><code class="docutils literal notranslate"><span class="pre">BumperHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler"><code class="docutils literal notranslate"><span class="pre">EStopHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ImuHandler"><code class="docutils literal notranslate"><span class="pre">ImuHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.OdomHandler"><code class="docutils literal notranslate"><span class="pre">OdomHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger"><code class="docutils literal notranslate"><span class="pre">ReconDEMLogger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.RobotBrainHandler"><code class="docutils literal notranslate"><span class="pre">RobotBrainHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler"><code class="docutils literal notranslate"><span class="pre">TwistHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.bms_handler.html">devkit_driver.modules.bms_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.bumper_handler.html">devkit_driver.modules.bumper_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.estop_handler.html">devkit_driver.modules.estop_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.imu_handler.html">devkit_driver.modules.imu_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.odom_handler.html">devkit_driver.modules.odom_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.recon_dem_logger.html">devkit_driver.modules.recon_dem_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.robot_brain_handler.html">devkit_driver.modules.robot_brain_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.modules.twist_handler.html">devkit_driver.modules.twist_handler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.qos.html">devkit_driver.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.relposned_heading_shim.html">devkit_driver.relposned_heading_shim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.RelPosnedHeadingShim"><code class="docutils literal notranslate"><span class="pre">RelPosnedHeadingShim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.rtk_navsatfix_shim.html">devkit_driver.rtk_navsatfix_shim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim"><code class="docutils literal notranslate"><span class="pre">RtkNavSatFixShim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_f2c_planner.html">devkit_f2c_planner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_f2c_planner.f2c_planner.html">devkit_f2c_planner.f2c_planner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_ui.html">devkit_ui</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.actions.html">devkit_ui.actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef"><code class="docutils literal notranslate"><span class="pre">ActionDef</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.action_ros_msgs"><code class="docutils literal notranslate"><span class="pre">action_ros_msgs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.constants.html">devkit_ui.constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.dem.html">devkit_ui.dem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.build_elevation_grid"><code class="docutils literal notranslate"><span class="pre">build_elevation_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.elevation_to_traversable"><code class="docutils literal notranslate"><span class="pre">elevation_to_traversable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.load_recon_points"><code class="docutils literal notranslate"><span class="pre">load_recon_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.recon_csv_to_obstacle_rings"><code class="docutils literal notranslate"><span class="pre">recon_csv_to_obstacle_rings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_latlon"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_latlon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_xy"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_xy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore"><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.validate_mission"><code class="docutils literal notranslate"><span class="pre">validate_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.test_sqlite.html">devkit_ui.missions.test_sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.models.html">devkit_ui.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc"><code class="docutils literal notranslate"><span class="pre">TopoDoc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge"><code class="docutils literal notranslate"><span class="pre">TopoEdge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode"><code class="docutils literal notranslate"><span class="pre">TopoNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose"><code class="docutils literal notranslate"><span class="pre">TopoPose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties"><code class="docutils literal notranslate"><span class="pre">TopoProperties</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#threading-model">Threading model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#coordinate-frames">Coordinate frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.MissionDrawHandle"><code class="docutils literal notranslate"><span class="pre">MissionDrawHandle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager"><code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_obstacle_panel"><code class="docutils literal notranslate"><span class="pre">attach_mission_obstacle_panel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_sidebar_controls"><code class="docutils literal notranslate"><span class="pre">attach_mission_sidebar_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_nav_card"><code class="docutils literal notranslate"><span class="pre">attach_nav_card()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.circle_to_ring_ll"><code class="docutils literal notranslate"><span class="pre">circle_to_ring_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacle_to_ring_ll"><code class="docutils literal notranslate"><span class="pre">obstacle_to_ring_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacles_to_rings_ll"><code class="docutils literal notranslate"><span class="pre">obstacles_to_rings_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.validate_obstacle"><code class="docutils literal notranslate"><span class="pre">validate_obstacle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.pages.html">devkit_ui.pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.pages.run.html">devkit_ui.pages.run</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.parse.html">devkit_ui.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.dump_topo_yaml"><code class="docutils literal notranslate"><span class="pre">dump_topo_yaml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_json"><code class="docutils literal notranslate"><span class="pre">parse_topo_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_models.html">devkit_ui.test_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc"><code class="docutils literal notranslate"><span class="pre">TestTopoDoc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html">devkit_ui.test_navigation_goals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ActionClient"><code class="docutils literal notranslate"><span class="pre">ActionClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Goal"><code class="docutils literal notranslate"><span class="pre">Goal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.GoalHandle"><code class="docutils literal notranslate"><span class="pre">GoalHandle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.NavigationHarness"><code class="docutils literal notranslate"><span class="pre">NavigationHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal"><code class="docutils literal notranslate"><span class="pre">TestSendNavGoal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal"><code class="docutils literal notranslate"><span class="pre">TestSynchronousNavigationGoal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.load_navigation_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_parse.html">devkit_ui.test_parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html">devkit_ui.test_run_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeDialog"><code class="docutils literal notranslate"><span class="pre">FakeDialog</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement"><code class="docutils literal notranslate"><span class="pre">FakeElement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeTimer"><code class="docutils literal notranslate"><span class="pre">FakeTimer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi"><code class="docutils literal notranslate"><span class="pre">FakeUi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard"><code class="docutils literal notranslate"><span class="pre">TestDropNodeCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar"><code class="docutils literal notranslate"><span class="pre">TestNavigationSidebar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo"><code class="docutils literal notranslate"><span class="pre">TestObstacleUndo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard"><code class="docutils literal notranslate"><span class="pre">TestRowDiscoveryCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel"><code class="docutils literal notranslate"><span class="pre">TestRunViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_topo_renderer.html">devkit_ui.test_topo_renderer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels"><code class="docutils literal notranslate"><span class="pre">TestTopoRendererRowLabels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.row_labels"><code class="docutils literal notranslate"><span class="pre">row_labels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc"><code class="docutils literal notranslate"><span class="pre">now_utc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc_str"><code class="docutils literal notranslate"><span class="pre">now_utc_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.parse_ts"><code class="docutils literal notranslate"><span class="pre">parse_ts()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html">devkit_ui.ui_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode"><code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.load_css"><code class="docutils literal notranslate"><span class="pre">load_css()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.utils.html">devkit_ui.utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.utils.topo_renderer.html">devkit_ui.utils.topo_renderer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Research &amp; Notes</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="research/Sim.html">Gazebo Simulation (Headless VNC)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="research/Visual_roadmap.html">Vision System Roadmap — Sowbot / Avaota A1</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#crop-row-node-yolox-nano-weed-detection-ros-2"><code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> · YOLOX-Nano Weed Detection · ROS 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="research/Visual_roadmap.html#current-state-assessment">1. Current State Assessment</a><ul>
@@ -151,8 +455,1694 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
  
 </div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver.__init__">__init__() (devkit_driver.devkit_driver_node.DevkitDriver method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#devkit_driver.logger.ros_logger.ROSLogger.__init__">(devkit_driver.logger.ros_logger.ROSLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.recon_dem_logger.html#devkit_driver.modules.recon_dem_logger.ReconDEMLogger.__init__">(devkit_driver.modules.recon_dem_logger.ReconDEMLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger.__init__">(devkit_driver.modules.ReconDEMLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode.__init__">(devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.__init__">(devkit_ui.models.TopoDoc method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.__init__">(devkit_ui.models.TopoNode method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.drop_node_card.html#devkit_ui.pages.run.drop_node_card.DropNodeCard.__init__">(devkit_ui.pages.run.drop_node_card.DropNodeCard method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.joystick_control_card.html#devkit_ui.pages.run.joystick_control_card.JoystickControlCard.__init__">(devkit_ui.pages.run.joystick_control_card.JoystickControlCard method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.navigation_sidebar.html#devkit_ui.pages.run.navigation_sidebar.NavigationSidebar.__init__">(devkit_ui.pages.run.navigation_sidebar.NavigationSidebar method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.node_map_card.html#devkit_ui.pages.run.node_map_card.NodeMapCard.__init__">(devkit_ui.pages.run.node_map_card.NodeMapCard method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.row_discovery_card.html#devkit_ui.pages.run.row_discovery_card.RowDiscoveryCard.__init__">(devkit_ui.pages.run.row_discovery_card.RowDiscoveryCard method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.track_card.html#devkit_ui.pages.run.track_card.TrackCard.__init__">(devkit_ui.pages.run.track_card.TrackCard method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.__init__">(devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.global_view_model.html#devkit_ui.view_models.global_view_model.GlobalViewModel.__init__">(devkit_ui.view_models.global_view_model.GlobalViewModel method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.__init__">(devkit_ui.view_models.run_view_model.RunViewModel method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge.action">action (devkit_ui.models.TopoEdge attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.action_ros_msgs">action_ros_msgs() (in module devkit_ui.actions)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ActionClient">ActionClient (class in devkit_ui.test_navigation_goals)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef">ActionDef (class in devkit_ui.actions)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.actions">actions (devkit_ui.models.TopoDoc property)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Discovery.active">active (devkit_ui.view_models.run_view_model.RunViewModel.Discovery attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.add">add() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.add">(devkit_ui.missions.sqlite.MissionSqliteStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.add">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#devkit_ui.missions.yaml.MissionYamlStore.add">(devkit_ui.missions.yaml.MissionYamlStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.add">(devkit_ui.obstacles.ObstacleManager method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future.add_done_callback">add_done_callback() (devkit_ui.test_navigation_goals.Future method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.add_edge">add_edge() (devkit_ui.models.TopoNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.add_metadata">add_metadata() (devkit_ui.models.TopoNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.add_node">add_node() (devkit_ui.models.TopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.archive_and_clear_map">archive_and_clear_map() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata.assert_row_metadata">assert_row_metadata() (devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.attach">attach() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.attach">(devkit_ui.missions.sqlite.MissionSqliteStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.attach">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#devkit_ui.missions.yaml.MissionYamlStore.attach">(devkit_ui.missions.yaml.MissionYamlStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.attach">(devkit_ui.obstacles.ObstacleManager method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_obstacle_panel">attach_mission_obstacle_panel() (in module devkit_ui.obstacles)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_sidebar_controls">attach_mission_sidebar_controls() (in module devkit_ui.obstacles)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_nav_card">attach_nav_card() (in module devkit_ui.obstacles)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.modules.estop_handler.html#devkit_driver.modules.estop_handler.EStopHandler.BACK_ID">BACK_ID (devkit_driver.modules.estop_handler.EStopHandler attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler.BACK_ID">(devkit_driver.modules.EStopHandler attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.bind_enabled_from">bind_enabled_from() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.bind_text_from">bind_text_from() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.bind_value">bind_value() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.bind_value_from">bind_value_from() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.BMSHandler">BMSHandler (class in devkit_driver.modules)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.bms_handler.html#devkit_driver.modules.bms_handler.BMSHandler">(class in devkit_driver.modules.bms_handler)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.build_elevation_grid">build_elevation_grid() (in module devkit_ui.dem)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.utils.topo_renderer.html#devkit_ui.utils.topo_renderer.build_robot_svg">build_robot_svg() (in module devkit_ui.utils.topo_renderer)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.utils.topo_renderer.html#devkit_ui.utils.topo_renderer.build_svg">build_svg() (in module devkit_ui.utils.topo_renderer)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.BumperHandler">BumperHandler (class in devkit_driver.modules)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.bumper_handler.html#devkit_driver.modules.bumper_handler.BumperHandler">(class in devkit_driver.modules.bumper_handler)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.button">button() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.cancel_mission">cancel_mission() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.NavigationHarness.cancel_nav_goal">cancel_nav_goal() (devkit_ui.test_navigation_goals.NavigationHarness method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.cancel_nav_goal">(devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.checkbox">checkbox() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.circle_to_ring_ll">circle_to_ring_ll() (in module devkit_ui.obstacles)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.classes">classes() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.clear">clear() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.MissionDrawHandle.clear_in_progress">clear_in_progress() (devkit_ui.obstacles.MissionDrawHandle method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.clone_empty">clone_empty() (devkit_ui.models.TopoDoc method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.modules.recon_dem_logger.html#devkit_driver.modules.recon_dem_logger.ReconDEMLogger.close">close() (devkit_driver.modules.recon_dem_logger.ReconDEMLogger method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger.close">(devkit_driver.modules.ReconDEMLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.close">(devkit_ui.missions.sqlite.MissionSqliteStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.close">(devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.column">column() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.confirm_delete_node">confirm_delete_node() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.confirm_delete_row">confirm_delete_row() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.content">content() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.CourseOverGround">CourseOverGround (class in devkit_driver.course_over_ground)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Topo.current_node">current_node (devkit_ui.view_models.run_view_model.RunViewModel.Topo attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.logger.logger.html#devkit_driver.logger.logger.Logger.debug">debug() (devkit_driver.logger.logger.Logger method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#devkit_driver.logger.ros_logger.ROSLogger.debug">(devkit_driver.logger.ros_logger.ROSLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.debug">(devkit_driver.logger.stdout_logger.StdOutLogger method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.definitions">definitions (devkit_ui.models.TopoDoc property)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.delete">delete() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.delete">(devkit_ui.missions.sqlite.MissionSqliteStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.delete">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#devkit_ui.missions.yaml.MissionYamlStore.delete">(devkit_ui.missions.yaml.MissionYamlStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.delete">(devkit_ui.obstacles.ObstacleManager method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.delete_row">delete_row() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Topo.delete_status">delete_status (devkit_ui.view_models.run_view_model.RunViewModel.Topo attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.delete_topo_node">delete_topo_node() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver.destroy_node">destroy_node() (devkit_driver.devkit_driver_node.DevkitDriver method)</a>
+</li>
+      <li>
+    devkit_driver
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.html#module-devkit_driver">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.course_over_ground
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.course_over_ground.html#module-devkit_driver.course_over_ground">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.devkit_driver_node
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#module-devkit_driver.devkit_driver_node">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.logger
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.html#module-devkit_driver.logger">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.logger.logger
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.logger.html#module-devkit_driver.logger.logger">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.logger.ros_logger
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#module-devkit_driver.logger.ros_logger">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.logger.stdout_logger
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#module-devkit_driver.logger.stdout_logger">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#module-devkit_driver.modules">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules.bms_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.bms_handler.html#module-devkit_driver.modules.bms_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules.bumper_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.bumper_handler.html#module-devkit_driver.modules.bumper_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules.estop_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.estop_handler.html#module-devkit_driver.modules.estop_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules.imu_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.imu_handler.html#module-devkit_driver.modules.imu_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules.odom_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.odom_handler.html#module-devkit_driver.modules.odom_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules.recon_dem_logger
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.recon_dem_logger.html#module-devkit_driver.modules.recon_dem_logger">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules.robot_brain_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.robot_brain_handler.html#module-devkit_driver.modules.robot_brain_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.modules.twist_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.twist_handler.html#module-devkit_driver.modules.twist_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.qos
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.qos.html#module-devkit_driver.qos">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.relposned_heading_shim
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.relposned_heading_shim.html#module-devkit_driver.relposned_heading_shim">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.rtk_navsatfix_shim
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#module-devkit_driver.rtk_navsatfix_shim">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_f2c_planner
+
+      <ul>
+        <li><a href="_autosummary/devkit_f2c_planner.html#module-devkit_f2c_planner">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_f2c_planner.f2c_planner
+
+      <ul>
+        <li><a href="_autosummary/devkit_f2c_planner.f2c_planner.html#module-devkit_f2c_planner.f2c_planner">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_mavlink_bridge
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.html#module-devkit_mavlink_bridge">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_mavlink_bridge.mavlink_bridge_node
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#module-devkit_mavlink_bridge.mavlink_bridge_node">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_mavlink_bridge.modules
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.html#module-devkit_mavlink_bridge.modules">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_mavlink_bridge.modules.gps_input_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html#module-devkit_mavlink_bridge.modules.gps_input_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_mavlink_bridge.modules.position_target_handler
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html#module-devkit_mavlink_bridge.modules.position_target_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.html#module-devkit_ui">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.actions
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.actions.html#module-devkit_ui.actions">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    devkit_ui.constants
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.constants.html#module-devkit_ui.constants">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.dem
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.dem.html#module-devkit_ui.dem">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.missions
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.html#module-devkit_ui.missions">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.missions.sqlite
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#module-devkit_ui.missions.sqlite">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.missions.store
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#module-devkit_ui.missions.store">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.missions.test_sqlite
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#module-devkit_ui.missions.test_sqlite">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.missions.yaml
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#module-devkit_ui.missions.yaml">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.models
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.models.html#module-devkit_ui.models">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.obstacles
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.obstacles.html#module-devkit_ui.obstacles">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.pages
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.pages.html#module-devkit_ui.pages">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.pages.run
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.pages.run.html#module-devkit_ui.pages.run">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.pages.run.drop_node_card
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.pages.run.drop_node_card.html#module-devkit_ui.pages.run.drop_node_card">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.pages.run.joystick_control_card
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.pages.run.joystick_control_card.html#module-devkit_ui.pages.run.joystick_control_card">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.pages.run.navigation_sidebar
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.pages.run.navigation_sidebar.html#module-devkit_ui.pages.run.navigation_sidebar">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.pages.run.node_map_card
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.pages.run.node_map_card.html#module-devkit_ui.pages.run.node_map_card">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.pages.run.row_discovery_card
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.pages.run.row_discovery_card.html#module-devkit_ui.pages.run.row_discovery_card">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.pages.run.track_card
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.pages.run.track_card.html#module-devkit_ui.pages.run.track_card">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.parse
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.parse.html#module-devkit_ui.parse">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.terrain_mask
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.terrain_mask.html#module-devkit_ui.terrain_mask">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.test_f2c_row_metadata
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#module-devkit_ui.test_f2c_row_metadata">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.test_models
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_models.html#module-devkit_ui.test_models">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.test_navigation_goals
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#module-devkit_ui.test_navigation_goals">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.test_parse
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_parse.html#module-devkit_ui.test_parse">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.test_run_ui
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#module-devkit_ui.test_run_ui">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.test_topo_renderer
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_topo_renderer.html#module-devkit_ui.test_topo_renderer">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.time_utils
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.time_utils.html#module-devkit_ui.time_utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.ui_node
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.ui_node.html#module-devkit_ui.ui_node">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.utils
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.utils.html#module-devkit_ui.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.utils.topo_renderer
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.utils.topo_renderer.html#module-devkit_ui.utils.topo_renderer">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.view_models
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.view_models.html#module-devkit_ui.view_models">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.view_models.global_view_model
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.view_models.global_view_model.html#module-devkit_ui.view_models.global_view_model">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.view_models.run_view_model
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#module-devkit_ui.view_models.run_view_model">module</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver">DevkitDriver (class in devkit_driver.devkit_driver_node)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.dialog">dialog() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.drop_topo_node">drop_topo_node() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.pages.run.drop_node_card.html#devkit_ui.pages.run.drop_node_card.DropNodeCard">DropNodeCard (class in devkit_ui.pages.run.drop_node_card)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.dropped_by">dropped_by (devkit_ui.models.TopoProperties attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.dump_topo_yaml">dump_topo_yaml() (in module devkit_ui.parse)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge.edge_id">edge_id (devkit_ui.models.TopoEdge attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.edges">edges (devkit_ui.models.TopoNode property)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.element">element() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.elevation_to_traversable">elevation_to_traversable() (in module devkit_ui.dem)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.ensure_meta">ensure_meta() (devkit_ui.models.TopoDoc method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.ensure_meta">(devkit_ui.models.TopoNode method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.logger.logger.html#devkit_driver.logger.logger.Logger.error">error() (devkit_driver.logger.logger.Logger method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#devkit_driver.logger.ros_logger.ROSLogger.error">(devkit_driver.logger.ros_logger.ROSLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.error">(devkit_driver.logger.stdout_logger.StdOutLogger method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler">EStopHandler (class in devkit_driver.modules)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.estop_handler.html#devkit_driver.modules.estop_handler.EStopHandler">(class in devkit_driver.modules.estop_handler)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness">F2CSaveHarness (class in devkit_ui.test_f2c_row_metadata)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeDialog">FakeDialog (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement">FakeElement (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeTimer">FakeTimer (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi">FakeUi (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy">field_centroid_xy() (in module devkit_f2c_planner.f2c_planner)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.find">find() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.find">(devkit_ui.missions.sqlite.MissionSqliteStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.find">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#devkit_ui.missions.yaml.MissionYamlStore.find">(devkit_ui.missions.yaml.MissionYamlStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.find">(devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.find_by_name">find_by_name() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.find_by_name">(devkit_ui.missions.sqlite.MissionSqliteStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.find_by_name">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#devkit_ui.missions.yaml.MissionYamlStore.find_by_name">(devkit_ui.missions.yaml.MissionYamlStore method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_driver.modules.imu_handler.html#devkit_driver.modules.imu_handler.ImuHandler.FRAME_ID">FRAME_ID (devkit_driver.modules.imu_handler.ImuHandler attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ImuHandler.FRAME_ID">(devkit_driver.modules.ImuHandler attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_driver.modules.estop_handler.html#devkit_driver.modules.estop_handler.EStopHandler.FRONT_ID">FRONT_ID (devkit_driver.modules.estop_handler.EStopHandler attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler.FRONT_ID">(devkit_driver.modules.EStopHandler attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html#devkit_mavlink_bridge.modules.gps_input_handler.fused_pose_to_gps_input">fused_pose_to_gps_input() (in module devkit_mavlink_bridge.modules.gps_input_handler)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future">Future (class in devkit_ui.test_navigation_goals)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.get_node">get_node() (devkit_ui.models.TopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.GoalHandle.get_result_async">get_result_async() (devkit_ui.test_navigation_goals.GoalHandle method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.global_view_model.html#devkit_ui.view_models.global_view_model.GlobalViewModel">GlobalViewModel (class in devkit_ui.view_models.global_view_model)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Goal">Goal (class in devkit_ui.test_navigation_goals)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.GoalHandle">GoalHandle (class in devkit_ui.test_navigation_goals)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.gps_fix_type">gps_fix_type (devkit_ui.models.TopoProperties attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.gps_hdop">gps_hdop (devkit_ui.models.TopoProperties attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.gps_lat">gps_lat (devkit_ui.models.TopoProperties attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.gps_lon">gps_lon (devkit_ui.models.TopoProperties attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.modules.twist_handler.html#devkit_driver.modules.twist_handler.TwistHandler.handle_twist">handle_twist() (devkit_driver.modules.twist_handler.TwistHandler method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler.handle_twist">(devkit_driver.modules.TwistHandler method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.has_node">has_node() (devkit_ui.models.TopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.html">html() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef.icon">icon (devkit_ui.actions.ActionDef attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ImmediateThread">ImmediateThread (class in devkit_ui.test_navigation_goals)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ImuHandler">ImuHandler (class in devkit_driver.modules)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.imu_handler.html#devkit_driver.modules.imu_handler.ImuHandler">(class in devkit_driver.modules.imu_handler)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_driver.logger.logger.html#devkit_driver.logger.logger.Logger.info">info() (devkit_driver.logger.logger.Logger method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#devkit_driver.logger.ros_logger.ROSLogger.info">(devkit_driver.logger.ros_logger.ROSLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.info">(devkit_driver.logger.stdout_logger.StdOutLogger method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.utils.topo_renderer.html#devkit_ui.utils.topo_renderer.inject_click_js">inject_click_js() (in module devkit_ui.utils.topo_renderer)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.input">input() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.insert_node">insert_node() (devkit_ui.models.TopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Track.interval">interval (devkit_ui.view_models.run_view_model.RunViewModel.Track attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.is_connected_to">is_connected_to() (devkit_ui.models.TopoNode method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.pages.run.joystick_control_card.html#devkit_ui.pages.run.joystick_control_card.JoystickControlCard">JoystickControlCard (class in devkit_ui.pages.run.joystick_control_card)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef.label">label (devkit_ui.actions.ActionDef attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.label">label() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.latlon_to_xy">latlon_to_xy() (in module devkit_ui.obstacles)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy">(in module devkit_ui.test_f2c_row_metadata)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.load_css">load_css() (in module devkit_ui.ui_node)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness">load_f2c_save_harness() (in module devkit_ui.test_f2c_row_metadata)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.load_navigation_harness">load_navigation_harness() (in module devkit_ui.test_navigation_goals)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.load_recon_points">load_recon_points() (in module devkit_ui.dem)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.logger.logger.html#devkit_driver.logger.logger.Logger">Logger (class in devkit_driver.logger.logger)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.main">main() (in module devkit_driver.course_over_ground)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.main">(in module devkit_driver.devkit_driver_node)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.main">(in module devkit_driver.relposned_heading_shim)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.main">(in module devkit_driver.rtk_navsatfix_shim)</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main">(in module devkit_mavlink_bridge.mavlink_bridge_node)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.main">(in module devkit_ui.ui_node)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.make_node">make_node() (in module devkit_ui.test_f2c_row_metadata)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.make_node">(in module devkit_ui.test_navigation_goals)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.NodeMap.map_svg">map_svg (devkit_ui.view_models.run_view_model.RunViewModel.NodeMap attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode">MavlinkBridgeNode (class in devkit_mavlink_bridge.mavlink_bridge_node)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.meta">meta (devkit_ui.models.TopoNode property)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.Node.meta">(devkit_ui.test_run_ui.Node attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.MissionDrawHandle">MissionDrawHandle (class in devkit_ui.obstacles)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.missions">missions (devkit_ui.missions.sqlite.MissionSqliteStore property)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#devkit_ui.missions.yaml.MissionYamlStore.missions">(devkit_ui.missions.yaml.MissionYamlStore property)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore">MissionSqliteStore (class in devkit_ui.missions.sqlite)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore">MissionStore (class in devkit_ui.missions)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore">(class in devkit_ui.missions.store)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.missions.yaml.html#devkit_ui.missions.yaml.MissionYamlStore">MissionYamlStore (class in devkit_ui.missions.yaml)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.html#module-devkit_driver">devkit_driver</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.course_over_ground.html#module-devkit_driver.course_over_ground">devkit_driver.course_over_ground</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#module-devkit_driver.devkit_driver_node">devkit_driver.devkit_driver_node</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.logger.html#module-devkit_driver.logger">devkit_driver.logger</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.logger.logger.html#module-devkit_driver.logger.logger">devkit_driver.logger.logger</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#module-devkit_driver.logger.ros_logger">devkit_driver.logger.ros_logger</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#module-devkit_driver.logger.stdout_logger">devkit_driver.logger.stdout_logger</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.html#module-devkit_driver.modules">devkit_driver.modules</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.bms_handler.html#module-devkit_driver.modules.bms_handler">devkit_driver.modules.bms_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.bumper_handler.html#module-devkit_driver.modules.bumper_handler">devkit_driver.modules.bumper_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.estop_handler.html#module-devkit_driver.modules.estop_handler">devkit_driver.modules.estop_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.imu_handler.html#module-devkit_driver.modules.imu_handler">devkit_driver.modules.imu_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.odom_handler.html#module-devkit_driver.modules.odom_handler">devkit_driver.modules.odom_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.recon_dem_logger.html#module-devkit_driver.modules.recon_dem_logger">devkit_driver.modules.recon_dem_logger</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.robot_brain_handler.html#module-devkit_driver.modules.robot_brain_handler">devkit_driver.modules.robot_brain_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.twist_handler.html#module-devkit_driver.modules.twist_handler">devkit_driver.modules.twist_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.qos.html#module-devkit_driver.qos">devkit_driver.qos</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.relposned_heading_shim.html#module-devkit_driver.relposned_heading_shim">devkit_driver.relposned_heading_shim</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#module-devkit_driver.rtk_navsatfix_shim">devkit_driver.rtk_navsatfix_shim</a>
+</li>
+        <li><a href="_autosummary/devkit_f2c_planner.html#module-devkit_f2c_planner">devkit_f2c_planner</a>
+</li>
+        <li><a href="_autosummary/devkit_f2c_planner.f2c_planner.html#module-devkit_f2c_planner.f2c_planner">devkit_f2c_planner.f2c_planner</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.html#module-devkit_mavlink_bridge">devkit_mavlink_bridge</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#module-devkit_mavlink_bridge.mavlink_bridge_node">devkit_mavlink_bridge.mavlink_bridge_node</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.html#module-devkit_mavlink_bridge.modules">devkit_mavlink_bridge.modules</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html#module-devkit_mavlink_bridge.modules.gps_input_handler">devkit_mavlink_bridge.modules.gps_input_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html#module-devkit_mavlink_bridge.modules.position_target_handler">devkit_mavlink_bridge.modules.position_target_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.html#module-devkit_ui">devkit_ui</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.actions.html#module-devkit_ui.actions">devkit_ui.actions</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.constants.html#module-devkit_ui.constants">devkit_ui.constants</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.dem.html#module-devkit_ui.dem">devkit_ui.dem</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.html#module-devkit_ui.missions">devkit_ui.missions</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#module-devkit_ui.missions.sqlite">devkit_ui.missions.sqlite</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#module-devkit_ui.missions.store">devkit_ui.missions.store</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#module-devkit_ui.missions.test_sqlite">devkit_ui.missions.test_sqlite</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#module-devkit_ui.missions.yaml">devkit_ui.missions.yaml</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.models.html#module-devkit_ui.models">devkit_ui.models</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.obstacles.html#module-devkit_ui.obstacles">devkit_ui.obstacles</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.html#module-devkit_ui.pages">devkit_ui.pages</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.html#module-devkit_ui.pages.run">devkit_ui.pages.run</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.drop_node_card.html#module-devkit_ui.pages.run.drop_node_card">devkit_ui.pages.run.drop_node_card</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.joystick_control_card.html#module-devkit_ui.pages.run.joystick_control_card">devkit_ui.pages.run.joystick_control_card</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.navigation_sidebar.html#module-devkit_ui.pages.run.navigation_sidebar">devkit_ui.pages.run.navigation_sidebar</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.node_map_card.html#module-devkit_ui.pages.run.node_map_card">devkit_ui.pages.run.node_map_card</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.row_discovery_card.html#module-devkit_ui.pages.run.row_discovery_card">devkit_ui.pages.run.row_discovery_card</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.pages.run.track_card.html#module-devkit_ui.pages.run.track_card">devkit_ui.pages.run.track_card</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.parse.html#module-devkit_ui.parse">devkit_ui.parse</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.terrain_mask.html#module-devkit_ui.terrain_mask">devkit_ui.terrain_mask</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#module-devkit_ui.test_f2c_row_metadata">devkit_ui.test_f2c_row_metadata</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_models.html#module-devkit_ui.test_models">devkit_ui.test_models</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#module-devkit_ui.test_navigation_goals">devkit_ui.test_navigation_goals</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_parse.html#module-devkit_ui.test_parse">devkit_ui.test_parse</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#module-devkit_ui.test_run_ui">devkit_ui.test_run_ui</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_topo_renderer.html#module-devkit_ui.test_topo_renderer">devkit_ui.test_topo_renderer</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.time_utils.html#module-devkit_ui.time_utils">devkit_ui.time_utils</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.ui_node.html#module-devkit_ui.ui_node">devkit_ui.ui_node</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.utils.html#module-devkit_ui.utils">devkit_ui.utils</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.utils.topo_renderer.html#module-devkit_ui.utils.topo_renderer">devkit_ui.utils.topo_renderer</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.html#module-devkit_ui.view_models">devkit_ui.view_models</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.global_view_model.html#module-devkit_ui.view_models.global_view_model">devkit_ui.view_models.global_view_model</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#module-devkit_ui.view_models.run_view_model">devkit_ui.view_models.run_view_model</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.name">name (devkit_ui.models.TopoDoc property)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.name">(devkit_ui.models.TopoNode property)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.Node.name">(devkit_ui.test_run_ui.Node attribute)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.DropNode.name">(devkit_ui.view_models.run_view_model.RunViewModel.DropNode attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Topo.nav_status">nav_status (devkit_ui.view_models.run_view_model.RunViewModel.Topo attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Topo.navigating">navigating (devkit_ui.view_models.run_view_model.RunViewModel.Topo attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.NavigationHarness">NavigationHarness (class in devkit_ui.test_navigation_goals)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.pages.run.navigation_sidebar.html#devkit_ui.pages.run.navigation_sidebar.NavigationSidebar">NavigationSidebar (class in devkit_ui.pages.run.navigation_sidebar)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.next_due_in_hours">next_due_in_hours() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.next_due_in_hours">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode">NiceGuiNode (class in devkit_ui.ui_node)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.Node">Node (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge.node">node (devkit_ui.models.TopoEdge attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.pages.run.node_map_card.html#devkit_ui.pages.run.node_map_card.NodeMapCard">NodeMapCard (class in devkit_ui.pages.run.node_map_card)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.nodes">nodes (devkit_ui.models.TopoDoc property)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc">now_utc() (in module devkit_ui.time_utils)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc_str">now_utc_str() (in module devkit_ui.time_utils)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.number">number() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacle_to_ring_ll">obstacle_to_ring_ll() (in module devkit_ui.obstacles)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager">ObstacleManager (class in devkit_ui.obstacles)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacles_to_rings_ll">obstacles_to_rings_ll() (in module devkit_ui.obstacles)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.OdomHandler">OdomHandler (class in devkit_driver.modules)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.odom_handler.html#devkit_driver.modules.odom_handler.OdomHandler">(class in devkit_driver.modules.odom_handler)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.on">on() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.on_startup">on_startup() (in module devkit_driver.devkit_driver_node)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.open">open() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose.orientation">orientation (devkit_ui.models.TopoPose property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef.param_schema">param_schema (devkit_ui.actions.ActionDef attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_json">parse_topo_json() (in module devkit_ui.parse)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml">parse_topo_yaml() (in module devkit_ui.parse)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.parse_ts">parse_ts() (in module devkit_ui.time_utils)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.patch_role">patch_role() (devkit_ui.models.TopoNode method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Joystick.pose_lbl">pose_lbl (devkit_ui.view_models.run_view_model.RunViewModel.Joystick attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose.position">position (devkit_ui.models.TopoPose property)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Track.prefix">prefix (devkit_ui.view_models.run_view_model.RunViewModel.Track attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.props">props() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.odom_handler.html#devkit_driver.modules.odom_handler.OdomHandler.publish_odom">publish_odom() (devkit_driver.modules.odom_handler.OdomHandler method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.OdomHandler.publish_odom">(devkit_driver.modules.OdomHandler method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.recon_csv_to_obstacle_rings">recon_csv_to_obstacle_rings() (in module devkit_ui.dem)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger">ReconDEMLogger (class in devkit_driver.modules)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.recon_dem_logger.html#devkit_driver.modules.recon_dem_logger.ReconDEMLogger">(class in devkit_driver.modules.recon_dem_logger)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.record_run">record_run() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.record_run">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.refresh_binding">refresh_binding() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.RelPosnedHeadingShim">RelPosnedHeadingShim (class in devkit_driver.relposned_heading_shim)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.remove_edge">remove_edge() (devkit_ui.models.TopoNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.remove_edges">remove_edges() (devkit_ui.models.TopoNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.remove_node">remove_node() (devkit_ui.models.TopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.remove_nodes">remove_nodes() (devkit_ui.models.TopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.pages.run.navigation_sidebar.html#devkit_ui.pages.run.navigation_sidebar.NavigationSidebar.render_nodes">render_nodes() (devkit_ui.pages.run.navigation_sidebar.NavigationSidebar method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.repair_row_connectivity">repair_row_connectivity() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.resample_row_xy">resample_row_xy() (in module devkit_ui.test_f2c_row_metadata)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.reset">reset() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.reset">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.reset">(devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future.result">result() (devkit_ui.test_navigation_goals.Future method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.rings_ll">rings_ll() (devkit_ui.obstacles.ObstacleManager method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.NodeMap.robot_svg">robot_svg (devkit_ui.view_models.run_view_model.RunViewModel.NodeMap attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.RobotBrainHandler">RobotBrainHandler (class in devkit_driver.modules)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.robot_brain_handler.html#devkit_driver.modules.robot_brain_handler.RobotBrainHandler">(class in devkit_driver.modules.robot_brain_handler)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.ros_main">ros_main() (in module devkit_driver.devkit_driver_node)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main">(in module devkit_ui.ui_node)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#devkit_driver.logger.ros_logger.ROSLogger">ROSLogger (class in devkit_driver.logger.ros_logger)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.row">row() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.DropNode.row_hint">row_hint (devkit_ui.view_models.run_view_model.RunViewModel.DropNode attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.row_id">row_id (devkit_ui.models.TopoProperties attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.DropNode.row_id">(devkit_ui.view_models.run_view_model.RunViewModel.DropNode attribute)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Track.row_id">(devkit_ui.view_models.run_view_model.RunViewModel.Track attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.row_labels">row_labels() (in module devkit_ui.test_topo_renderer)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.row_role">row_role (devkit_ui.models.TopoProperties attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.DropNode.row_role">(devkit_ui.view_models.run_view_model.RunViewModel.DropNode attribute)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Track.row_role">(devkit_ui.view_models.run_view_model.RunViewModel.Track attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.pages.run.row_discovery_card.html#devkit_ui.pages.run.row_discovery_card.RowDiscoveryCard">RowDiscoveryCard (class in devkit_ui.pages.run.row_discovery_card)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim">RtkNavSatFixShim (class in devkit_driver.rtk_navsatfix_shim)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Track.running">running (devkit_ui.view_models.run_view_model.RunViewModel.Track attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel">RunViewModel (class in devkit_ui.view_models.run_view_model)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Discovery">RunViewModel.Discovery (class in devkit_ui.view_models.run_view_model)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.DropNode">RunViewModel.DropNode (class in devkit_ui.view_models.run_view_model)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Joystick">RunViewModel.Joystick (class in devkit_ui.view_models.run_view_model)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.NodeMap">RunViewModel.NodeMap (class in devkit_ui.view_models.run_view_model)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Topo">RunViewModel.Topo (class in devkit_ui.view_models.run_view_model)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Track">RunViewModel.Track (class in devkit_ui.view_models.run_view_model)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness.save_f2c_rows_to_topo">save_f2c_rows_to_topo() (devkit_ui.test_f2c_row_metadata.F2CSaveHarness method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.save_f2c_rows_to_topo">(devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.scroll_area">scroll_area() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.seed_actions">seed_actions() (devkit_ui.models.TopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_latlon">select_reference_contour_latlon() (in module devkit_ui.dem)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_xy">select_reference_contour_xy() (in module devkit_ui.dem)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Topo.selected_node">selected_node (devkit_ui.view_models.run_view_model.RunViewModel.Topo attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ActionClient.send_goal_async">send_goal_async() (devkit_ui.test_navigation_goals.ActionClient method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.NavigationHarness.send_nav_goal">send_nav_goal() (devkit_ui.test_navigation_goals.NavigationHarness method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.send_nav_goal">(devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.send_speed">send_speed() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.separator">separator() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.set_active">set_active() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.set_active">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.set_level">set_level() (devkit_driver.logger.stdout_logger.StdOutLogger method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.set_text">set_text() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.set_value">set_value() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.setUp">setUp() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal.setUp">(devkit_ui.test_navigation_goals.TestSendNavGoal method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal.setUp">(devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard.setUp">(devkit_ui.test_run_ui.TestDropNodeCard method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar.setUp">(devkit_ui.test_run_ui.TestNavigationSidebar method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo.setUp">(devkit_ui.test_run_ui.TestObstacleUndo method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard.setUp">(devkit_ui.test_run_ui.TestRowDiscoveryCard method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.modules.estop_handler.html#devkit_driver.modules.estop_handler.EStopHandler.soft_estop_callback">soft_estop_callback() (devkit_driver.modules.estop_handler.EStopHandler method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler.soft_estop_callback">(devkit_driver.modules.EStopHandler method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ImmediateThread.start">start() (devkit_ui.test_navigation_goals.ImmediateThread method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.start_discovery">start_discovery() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.start_track">start_track() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Discovery.status">status (devkit_ui.view_models.run_view_model.RunViewModel.Discovery attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.DropNode.status">(devkit_ui.view_models.run_view_model.RunViewModel.DropNode attribute)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Track.status">(devkit_ui.view_models.run_view_model.RunViewModel.Track attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger">StdOutLogger (class in devkit_driver.logger.stdout_logger)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.stop_discovery">stop_discovery() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.stop_track">stop_track() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.store_battery">store_battery() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.store_fake_gps">store_fake_gps() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.store_gps">store_gps() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.style">style() (devkit_ui.test_run_ui.FakeElement method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.tearDown">tearDown() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar.test_action_buttons_enforce_selection_navigation_and_estop_guards">test_action_buttons_enforce_selection_navigation_and_estop_guards() (devkit_ui.test_run_ui.TestNavigationSidebar method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal.test_action_server_timeout_clears_navigation_flag">test_action_server_timeout_clears_navigation_flag() (devkit_ui.test_navigation_goals.TestSendNavGoal method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.test_add_and_find_round_trip">test_add_and_find_round_trip() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc.test_add_node_constructs_reverse_edges">test_add_node_constructs_reverse_edges() (devkit_ui.test_models.TestTopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard.test_confirm_starts_and_unticking_stops_discovery">test_confirm_starts_and_unticking_stops_discovery() (devkit_ui.test_run_ui.TestRowDiscoveryCard method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata.test_contour_waypoint_metadata_matches_entry_and_exit_metadata">test_contour_waypoint_metadata_matches_entry_and_exit_metadata() (devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel.test_defaults_match_idle_run_state">test_defaults_match_idle_run_state() (devkit_ui.test_run_ui.TestRunViewModel method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.test_delete_removes_mission">test_delete_removes_mission() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard.test_drop_uses_latest_bound_state">test_drop_uses_latest_bound_state() (devkit_ui.test_run_ui.TestDropNodeCard method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo.test_dump_and_restore_yaml_round_trip">test_dump_and_restore_yaml_round_trip() (devkit_ui.test_parse.TestParseTopo method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo.test_edge_action_survives_yaml_round_trip">test_edge_action_survives_yaml_round_trip() (devkit_ui.test_parse.TestParseTopo method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata.test_entry_and_exit_metadata_is_saved_for_each_row">test_entry_and_exit_metadata_is_saved_for_each_row() (devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.test_find_by_name_returns_matching_mission">test_find_by_name_returns_matching_mission() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard.test_hint_current_node_and_status_bindings_cover_boundary_states">test_hint_current_node_and_status_bindings_cover_boundary_states() (devkit_ui.test_run_ui.TestDropNodeCard method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc.test_init_with_list_of_dict_nodes">test_init_with_list_of_dict_nodes() (devkit_ui.test_models.TestTopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc.test_init_with_list_of_toponodes">test_init_with_list_of_toponodes() (devkit_ui.test_models.TestTopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel.test_instances_do_not_share_nested_state">test_instances_do_not_share_nested_state() (devkit_ui.test_run_ui.TestRunViewModel method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels.test_known_row_roles_use_distinct_glyphs">test_known_row_roles_use_distinct_glyphs() (devkit_ui.test_topo_renderer.TestTopoRendererRowLabels method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo.test_marked_obstacle_can_be_undone">test_marked_obstacle_can_be_undone() (devkit_ui.test_run_ui.TestObstacleUndo method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal.test_missing_action_support_does_not_start_navigation">test_missing_action_support_does_not_start_navigation() (devkit_ui.test_navigation_goals.TestSendNavGoal method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo.test_missing_gps_reports_error_without_creating_undo_prompt">test_missing_gps_reports_error_without_creating_undo_prompt() (devkit_ui.test_run_ui.TestObstacleUndo method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.test_missions_getter_returns_all_missions_in_id_order">test_missions_getter_returns_all_missions_in_id_order() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal.test_rejected_goal_clears_view_model_navigation_flag">test_rejected_goal_clears_view_model_navigation_flag() (devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal.test_rejects_reentrant_and_estopped_submissions_without_mutating_state">test_rejects_reentrant_and_estopped_submissions_without_mutating_state() (devkit_ui.test_navigation_goals.TestSendNavGoal method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc.test_remove_node_removes_related_edges">test_remove_node_removes_related_edges() (devkit_ui.test_models.TestTopoDoc method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar.test_render_nodes_replaces_stale_entries">test_render_nodes_replaces_stale_entries() (devkit_ui.test_run_ui.TestNavigationSidebar method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar.test_render_nodes_sorts_marks_and_selects_each_node">test_render_nodes_sorts_marks_and_selects_each_node() (devkit_ui.test_run_ui.TestNavigationSidebar method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal.test_result_updates_view_model_for_success_and_failure">test_result_updates_view_model_for_success_and_failure() (devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard.test_row_id_binding_normalizes_numbers_and_blank_values">test_row_id_binding_normalizes_numbers_and_blank_values() (devkit_ui.test_run_ui.TestDropNodeCard method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels.test_row_label_escapes_non_numeric_identifier">test_row_label_escapes_non_numeric_identifier() (devkit_ui.test_topo_renderer.TestTopoRendererRowLabels method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard.test_start_requires_explicit_confirmation">test_start_requires_explicit_confirmation() (devkit_ui.test_run_ui.TestRowDiscoveryCard method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar.test_status_bindings_distinguish_success_failure_error_and_idle">test_status_bindings_distinguish_success_failure_error_and_idle() (devkit_ui.test_run_ui.TestNavigationSidebar method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal.test_submits_goal_and_marks_navigation_in_progress">test_submits_goal_and_marks_navigation_in_progress() (devkit_ui.test_navigation_goals.TestSendNavGoal method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal.test_unavailable_server_never_marks_navigation_active">test_unavailable_server_never_marks_navigation_active() (devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo.test_undo_prompt_times_out_once_but_ignores_deleted_dialog">test_undo_prompt_times_out_once_but_ignores_deleted_dialog() (devkit_ui.test_run_ui.TestObstacleUndo method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels.test_unknown_and_missing_roles_have_safe_fallback_glyphs">test_unknown_and_missing_roles_have_safe_fallback_glyphs() (devkit_ui.test_topo_renderer.TestTopoRendererRowLabels method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.test_update_allows_partial_mutable_fields">test_update_allows_partial_mutable_fields() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard">TestDropNodeCard (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata">TestF2CRowMetadata (class in devkit_ui.test_f2c_row_metadata)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore">TestMissionSqliteStore (class in devkit_ui.missions.test_sqlite)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar">TestNavigationSidebar (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo">TestObstacleUndo (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo">TestParseTopo (class in devkit_ui.test_parse)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard">TestRowDiscoveryCard (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel">TestRunViewModel (class in devkit_ui.test_run_ui)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal">TestSendNavGoal (class in devkit_ui.test_navigation_goals)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal">TestSynchronousNavigationGoal (class in devkit_ui.test_navigation_goals)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc">TestTopoDoc (class in devkit_ui.test_models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels">TestTopoRendererRowLabels (class in devkit_ui.test_topo_renderer)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.timer">timer() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.timestamp">timestamp (devkit_ui.models.TopoProperties attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.to_dict">to_dict() (devkit_ui.models.TopoDoc method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.to_dict">(devkit_ui.models.TopoNode method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose.to_dict">(devkit_ui.models.TopoPose method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.today_queue">today_queue() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.today_queue">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.toggle">toggle() (devkit_ui.test_run_ui.FakeUi method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.toggle_estop">toggle_estop() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef.tool_topic">tool_topic (devkit_ui.actions.ActionDef attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.imu_handler.html#devkit_driver.modules.imu_handler.ImuHandler.TOPIC">TOPIC (devkit_driver.modules.imu_handler.ImuHandler attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ImuHandler.TOPIC">(devkit_driver.modules.ImuHandler attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc">TopoDoc (class in devkit_ui.models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge">TopoEdge (class in devkit_ui.models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode">TopoNode (class in devkit_ui.models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose">TopoPose (class in devkit_ui.models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties">TopoProperties (class in devkit_ui.models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.pages.run.track_card.html#devkit_ui.pages.run.track_card.TrackCard">TrackCard (class in devkit_ui.pages.run.track_card)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.transformation">transformation (devkit_ui.models.TopoDoc property)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings">traversability_mask_to_latlon_rings() (in module devkit_ui.terrain_mask)</a>
+</li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html#devkit_mavlink_bridge.modules.position_target_handler.twist_to_position_target">twist_to_position_target() (in module devkit_mavlink_bridge.modules.position_target_handler)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler">TwistHandler (class in devkit_driver.modules)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.twist_handler.html#devkit_driver.modules.twist_handler.TwistHandler">(class in devkit_driver.modules.twist_handler)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement.ui">ui (devkit_ui.test_run_ui.FakeElement attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.update">update() (devkit_ui.missions.MissionStore method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.update">(devkit_ui.missions.sqlite.MissionSqliteStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.update">(devkit_ui.missions.store.MissionStore method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.missions.yaml.html#devkit_ui.missions.yaml.MissionYamlStore.update">(devkit_ui.missions.yaml.MissionYamlStore method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.update_bumper_back">update_bumper_back() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.update_bumper_front_bottom">update_bumper_front_bottom() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.update_bumper_front_top">update_bumper_front_top() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.update_estop_back">update_estop_back() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.update_estop_front">update_estop_front() (devkit_ui.ui_node.NiceGuiNode method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.validate_mission">validate_mission() (in module devkit_ui.missions)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.validate_mission">(in module devkit_ui.missions.store)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.validate_obstacle">validate_obstacle() (in module devkit_ui.obstacles)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2">Vector2 (class in devkit_ui.models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3">Vector3 (class in devkit_ui.models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4">Vector4 (class in devkit_ui.models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4.w">w (devkit_ui.models.Vector4 attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ActionClient.wait_for_server">wait_for_server() (devkit_ui.test_navigation_goals.ActionClient method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_driver.logger.logger.html#devkit_driver.logger.logger.Logger.warn">warn() (devkit_driver.logger.logger.Logger method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#devkit_driver.logger.ros_logger.ROSLogger.warn">(devkit_driver.logger.ros_logger.ROSLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.warn">(devkit_driver.logger.stdout_logger.StdOutLogger method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.x">x (devkit_ui.models.TopoNode property)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2.x">(devkit_ui.models.Vector2 attribute)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3.x">(devkit_ui.models.Vector3 attribute)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4.x">(devkit_ui.models.Vector4 attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.xy_goal_tolerance">xy_goal_tolerance (devkit_ui.models.TopoProperties attribute)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.xy_to_latlon">xy_to_latlon() (in module devkit_ui.obstacles)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.xy_to_latlon">(in module devkit_ui.test_f2c_row_metadata)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.y">y (devkit_ui.models.TopoNode property)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2.y">(devkit_ui.models.Vector2 attribute)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3.y">(devkit_ui.models.Vector3 attribute)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4.y">(devkit_ui.models.Vector4 attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.yaw_goal_tolerance">yaw_goal_tolerance (devkit_ui.models.TopoProperties attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3.z">z (devkit_ui.models.Vector3 attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4.z">(devkit_ui.models.Vector4 attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
 
 
            </div>

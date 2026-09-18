@@ -1,0 +1,14 @@
+﻿devkit\_mavlink\_bridge
+=======================
+
+.. automodule:: devkit_mavlink_bridge
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   mavlink_bridge_node
+   modules

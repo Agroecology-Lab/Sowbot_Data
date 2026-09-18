@@ -1,0 +1,18 @@
+devkit\_driver.course\_over\_ground
+===================================
+
+.. automodule:: devkit_driver.course_over_ground
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      main
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CourseOverGround
+   

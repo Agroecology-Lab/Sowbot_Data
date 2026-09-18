@@ -1,0 +1,12 @@
+devkit\_ui.pages.run.row\_discovery\_card
+=========================================
+
+.. automodule:: devkit_ui.pages.run.row_discovery_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RowDiscoveryCard
+   

@@ -1,0 +1,17 @@
+devkit\_ui.dem
+==============
+
+.. automodule:: devkit_ui.dem
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build_elevation_grid
+      elevation_to_traversable
+      load_recon_points
+      recon_csv_to_obstacle_rings
+      select_reference_contour_latlon
+      select_reference_contour_xy
+   

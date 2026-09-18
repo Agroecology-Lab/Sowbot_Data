@@ -1,0 +1,14 @@
+devkit\_mavlink\_bridge.modules
+===============================
+
+.. automodule:: devkit_mavlink_bridge.modules
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   gps_input_handler
+   position_target_handler

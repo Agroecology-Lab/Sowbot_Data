@@ -1,0 +1,12 @@
+devkit\_ui.pages.run.drop\_node\_card
+=====================================
+
+.. automodule:: devkit_ui.pages.run.drop_node_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DropNodeCard
+   

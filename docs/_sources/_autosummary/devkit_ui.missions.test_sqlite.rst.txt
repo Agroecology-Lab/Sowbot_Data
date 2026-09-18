@@ -1,0 +1,12 @@
+devkit\_ui.missions.test\_sqlite
+================================
+
+.. automodule:: devkit_ui.missions.test_sqlite
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TestMissionSqliteStore
+   

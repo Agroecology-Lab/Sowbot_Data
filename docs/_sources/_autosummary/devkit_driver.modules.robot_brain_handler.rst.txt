@@ -1,0 +1,12 @@
+devkit\_driver.modules.robot\_brain\_handler
+============================================
+
+.. automodule:: devkit_driver.modules.robot_brain_handler
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RobotBrainHandler
+   

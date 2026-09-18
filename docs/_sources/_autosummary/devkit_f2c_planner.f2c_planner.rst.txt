@@ -1,0 +1,12 @@
+devkit\_f2c\_planner.f2c\_planner
+=================================
+
+.. automodule:: devkit_f2c_planner.f2c_planner
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      field_centroid_xy
+   

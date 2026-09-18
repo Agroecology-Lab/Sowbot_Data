@@ -1,0 +1,12 @@
+devkit\_mavlink\_bridge.modules.position\_target\_handler
+=========================================================
+
+.. automodule:: devkit_mavlink_bridge.modules.position_target_handler
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      twist_to_position_target
+   

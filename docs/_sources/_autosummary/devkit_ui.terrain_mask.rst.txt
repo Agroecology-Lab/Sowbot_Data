@@ -1,0 +1,12 @@
+devkit\_ui.terrain\_mask
+========================
+
+.. automodule:: devkit_ui.terrain_mask
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      traversability_mask_to_latlon_rings
+   

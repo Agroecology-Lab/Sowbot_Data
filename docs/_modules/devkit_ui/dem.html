@@ -1,0 +1,979 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>devkit_ui.dem &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9d891252"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Feldfreund DevKit ROS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Navigation &amp; Architecture</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Sowbot (ROS 2 stack)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#sowbot-roadmap">Sowbot Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#collaboration">Collaboration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#rewrite-from-scratch-cost-estimate">Rewrite-from-Scratch Cost Estimate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#foundational-infra">Foundational infra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#packages-pulled-in-developed-in-house">Packages pulled in &amp; developed in house</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#total">Total</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#critical-safety-warning">⚠️ CRITICAL SAFETY WARNING:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#health-warning">Health Warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#supported-sbc-configuration">Supported SBC configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#install-dependencies">0. Install dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#linux">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#mac">Mac</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#windows">Windows?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#clone-the-repository">1. Clone the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#build-launch">3. Build &amp; Launch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#id1">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#gazebo">Gazebo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#management-tools">Management &amp; Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#manage-py">manage.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#one-command-sim-launch-tmule">One-command sim launch (TMuLE)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#tmux-basics">tmux basics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#interactive-shell">Interactive Shell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#diagnostics">Diagnostics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#after-running-login-sh">After running ./login.sh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#sketch-of-mvp-2026-architecture">Sketch of MVP 2026 architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#the-lizard-brain-rt-microcontroller">1. The Lizard Brain (RT Microcontroller)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#the-limbic-system-executive">2. The Limbic System (Executive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#the-neo-perception">3. The Neo (Perception)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#sketch-of-possible-eventual-2027-architecture">Sketch of possible eventual ~2027 architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#the-lizard-brain-hardware-abstraction">1. The Lizard Brain (Hardware Abstraction)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#id2">2. The Limbic System (Executive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#id3">3. The Neo (Perception)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#licenses-papers">Licenses &amp; papers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#sowbot-feldfreund-devkit-ros-dependency-licence-audit">Sowbot / feldfreund_devkit_ros — Dependency Licence Audit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#feldfreund-devkit-ros">Feldfreund DevKit ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#devkit-driver">DevKit driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#camera-system">Camera System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#gnss-system">GNSS System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#devkit-ui">DevKit UI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#docker-setup">Docker Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#using-docker-compose">Using Docker Compose</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#connect-to-ui">Connect to UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#launch-files">Launch Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#axis-camera-authentication">AXIS Camera Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#quickstart-guide">Quickstart guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#id4">1. Clone the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#validate-configuration">2. Validate Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#build-with-docker">3. Build with Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#send-lizard-configuration">4. Send Lizard Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#ready-to-go">5. Ready to Go</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#future-features">Future features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lizard-firmware-setup.html">Local Lizard Firmware Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lizard-firmware-setup.html#checkout">Checkout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lizard-firmware-setup.html#build-and-flash">Build and flash</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python_api.html">Python API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/devkit_driver.html">devkit_driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.course_over_ground.html">devkit_driver.course_over_ground</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.CourseOverGround"><code class="docutils literal notranslate"><span class="pre">CourseOverGround</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html">devkit_driver.devkit_driver_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver"><code class="docutils literal notranslate"><span class="pre">DevkitDriver</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.on_startup"><code class="docutils literal notranslate"><span class="pre">on_startup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.logger.html">devkit_driver.logger</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.logger.logger.html">devkit_driver.logger.logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.logger.ros_logger.html">devkit_driver.logger.ros_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.logger.stdout_logger.html">devkit_driver.logger.stdout_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html">devkit_driver.modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.BMSHandler"><code class="docutils literal notranslate"><span class="pre">BMSHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.BumperHandler"><code class="docutils literal notranslate"><span class="pre">BumperHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler"><code class="docutils literal notranslate"><span class="pre">EStopHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.ImuHandler"><code class="docutils literal notranslate"><span class="pre">ImuHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.OdomHandler"><code class="docutils literal notranslate"><span class="pre">OdomHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger"><code class="docutils literal notranslate"><span class="pre">ReconDEMLogger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.RobotBrainHandler"><code class="docutils literal notranslate"><span class="pre">RobotBrainHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler"><code class="docutils literal notranslate"><span class="pre">TwistHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.bms_handler.html">devkit_driver.modules.bms_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.bumper_handler.html">devkit_driver.modules.bumper_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.estop_handler.html">devkit_driver.modules.estop_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.imu_handler.html">devkit_driver.modules.imu_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.odom_handler.html">devkit_driver.modules.odom_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.recon_dem_logger.html">devkit_driver.modules.recon_dem_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.robot_brain_handler.html">devkit_driver.modules.robot_brain_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.twist_handler.html">devkit_driver.modules.twist_handler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.qos.html">devkit_driver.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.relposned_heading_shim.html">devkit_driver.relposned_heading_shim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.RelPosnedHeadingShim"><code class="docutils literal notranslate"><span class="pre">RelPosnedHeadingShim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.rtk_navsatfix_shim.html">devkit_driver.rtk_navsatfix_shim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim"><code class="docutils literal notranslate"><span class="pre">RtkNavSatFixShim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/devkit_f2c_planner.html">devkit_f2c_planner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html">devkit_f2c_planner.f2c_planner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/devkit_ui.html">devkit_ui</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.actions.html">devkit_ui.actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.actions.html#devkit_ui.actions.ActionDef"><code class="docutils literal notranslate"><span class="pre">ActionDef</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.actions.html#devkit_ui.actions.action_ros_msgs"><code class="docutils literal notranslate"><span class="pre">action_ros_msgs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.constants.html">devkit_ui.constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html">devkit_ui.dem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.build_elevation_grid"><code class="docutils literal notranslate"><span class="pre">build_elevation_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.elevation_to_traversable"><code class="docutils literal notranslate"><span class="pre">elevation_to_traversable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.load_recon_points"><code class="docutils literal notranslate"><span class="pre">load_recon_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.recon_csv_to_obstacle_rings"><code class="docutils literal notranslate"><span class="pre">recon_csv_to_obstacle_rings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_latlon"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_latlon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_xy"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_xy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore"><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.html#devkit_ui.missions.validate_mission"><code class="docutils literal notranslate"><span class="pre">validate_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.test_sqlite.html">devkit_ui.missions.test_sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html">devkit_ui.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc"><code class="docutils literal notranslate"><span class="pre">TopoDoc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge"><code class="docutils literal notranslate"><span class="pre">TopoEdge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode"><code class="docutils literal notranslate"><span class="pre">TopoNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose"><code class="docutils literal notranslate"><span class="pre">TopoPose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties"><code class="docutils literal notranslate"><span class="pre">TopoProperties</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#threading-model">Threading model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#coordinate-frames">Coordinate frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.MissionDrawHandle"><code class="docutils literal notranslate"><span class="pre">MissionDrawHandle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager"><code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_obstacle_panel"><code class="docutils literal notranslate"><span class="pre">attach_mission_obstacle_panel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_mission_sidebar_controls"><code class="docutils literal notranslate"><span class="pre">attach_mission_sidebar_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.attach_nav_card"><code class="docutils literal notranslate"><span class="pre">attach_nav_card()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.circle_to_ring_ll"><code class="docutils literal notranslate"><span class="pre">circle_to_ring_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacle_to_ring_ll"><code class="docutils literal notranslate"><span class="pre">obstacle_to_ring_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacles_to_rings_ll"><code class="docutils literal notranslate"><span class="pre">obstacles_to_rings_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.validate_obstacle"><code class="docutils literal notranslate"><span class="pre">validate_obstacle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.pages.html">devkit_ui.pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.pages.run.html">devkit_ui.pages.run</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.parse.html">devkit_ui.parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.dump_topo_yaml"><code class="docutils literal notranslate"><span class="pre">dump_topo_yaml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_json"><code class="docutils literal notranslate"><span class="pre">parse_topo_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_models.html">devkit_ui.test_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc"><code class="docutils literal notranslate"><span class="pre">TestTopoDoc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html">devkit_ui.test_navigation_goals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ActionClient"><code class="docutils literal notranslate"><span class="pre">ActionClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Goal"><code class="docutils literal notranslate"><span class="pre">Goal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.GoalHandle"><code class="docutils literal notranslate"><span class="pre">GoalHandle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.NavigationHarness"><code class="docutils literal notranslate"><span class="pre">NavigationHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal"><code class="docutils literal notranslate"><span class="pre">TestSendNavGoal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal"><code class="docutils literal notranslate"><span class="pre">TestSynchronousNavigationGoal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.load_navigation_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_parse.html">devkit_ui.test_parse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html">devkit_ui.test_run_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeDialog"><code class="docutils literal notranslate"><span class="pre">FakeDialog</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement"><code class="docutils literal notranslate"><span class="pre">FakeElement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeTimer"><code class="docutils literal notranslate"><span class="pre">FakeTimer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi"><code class="docutils literal notranslate"><span class="pre">FakeUi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard"><code class="docutils literal notranslate"><span class="pre">TestDropNodeCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestNavigationSidebar"><code class="docutils literal notranslate"><span class="pre">TestNavigationSidebar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo"><code class="docutils literal notranslate"><span class="pre">TestObstacleUndo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard"><code class="docutils literal notranslate"><span class="pre">TestRowDiscoveryCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel"><code class="docutils literal notranslate"><span class="pre">TestRunViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topo_renderer.html">devkit_ui.test_topo_renderer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels"><code class="docutils literal notranslate"><span class="pre">TestTopoRendererRowLabels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.row_labels"><code class="docutils literal notranslate"><span class="pre">row_labels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc"><code class="docutils literal notranslate"><span class="pre">now_utc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc_str"><code class="docutils literal notranslate"><span class="pre">now_utc_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html#devkit_ui.time_utils.parse_ts"><code class="docutils literal notranslate"><span class="pre">parse_ts()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html">devkit_ui.ui_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode"><code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.load_css"><code class="docutils literal notranslate"><span class="pre">load_css()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.utils.html">devkit_ui.utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.utils.topo_renderer.html">devkit_ui.utils.topo_renderer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Research &amp; Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../research/Sim.html">Gazebo Simulation (Headless VNC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../research/Visual_roadmap.html">Vision System Roadmap — Sowbot / Avaota A1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#crop-row-node-yolox-nano-weed-detection-ros-2"><code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> · YOLOX-Nano Weed Detection · ROS 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#current-state-assessment">1. Current State Assessment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#what-works-and-must-be-preserved">What works and must be preserved</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#the-core-fragility">The core fragility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#the-architectural-conflict">The architectural conflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#image-topic-architecture-decided">Image topic architecture (decided)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#latency-budget">Latency budget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#immediate-harden-what-exists">2. Immediate — Harden What Exists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#no-model-training-no-npu-sdk-no-architectural-changes">(No model training. No NPU SDK. No architectural changes.)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m0-profile-on-device-week-1">M0 · Profile on-device (Week 1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m1-normalised-exg-week-12">M1 · Normalised ExG (Week 1–2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m2-weed-exclusion-mask-week-23">M2 · Weed exclusion mask (Week 2–3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m2-1-parameterise-the-dilation-kernel-week-23">M2.1 · Parameterise the dilation kernel (Week 2–3)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#short-term-npu-weed-detection-deployment">3. Short-Term — NPU Weed Detection Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#weeks-38">(Weeks 3–8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35">M3 · Validate YOLOX-Nano on UK lettuce weeds (Week 3–5)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m4-npu-inference-latency-benchmark-week-46">M4 · NPU inference latency benchmark (Week 4–6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m5-composable-node-container-integration-week-56">M5 · Composable node container integration (Week 5–6)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#medium-term-replace-exg-with-npu-segmentation">4. Medium-Term — Replace ExG with NPU Segmentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#months-24">(Months 2–4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m6-training-data-collection-months-13-parallel-workstream">M6 · Training data collection (Months 1–3, parallel workstream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m7-segmentation-model-selection-and-training-month-24">M7 · Segmentation model selection and training (Month 2–4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m8-integration-into-crop-row-node-month-34">M8 · Integration into <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> (Month 3–4)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#long-term-semantic-field-navigation">5. Long-Term — Semantic Field Navigation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#months-612">(Months 6–12)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m9-row-end-and-headland-detection-month-6">M9 · Row-end and headland detection (Month 6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m10-row-identity-and-cross-row-localisation-month-78">M10 · Row identity and cross-row localisation (Month 7–8)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m11-weed-pressure-maps-month-89">M11 · Weed pressure maps (Month 8–9)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/Visual_roadmap.html#m12-multi-task-unified-network-month-912">M12 · Multi-task unified network (Month 9–12)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#dependency-and-risk-register">Dependency and Risk Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Visual_roadmap.html#milestone-summary">Milestone Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../research/fields2coverVsSlicr.html">Coverage Planner Feature Comparison</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#slic3r-coverage-planner-current-openmower-vs-fields2cover">slic3r_coverage_planner (current OpenMower) vs Fields2Cover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#feature-by-feature-breakdown">Feature-by-feature breakdown</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#outline-covered-by-rounds-inner-to-outer">1. Outline covered by rounds, inner to outer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#rounds-around-obstacles">2. Rounds around obstacles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#rounds-near-outline-and-obstacle-merged-into-one-track">3. Rounds near outline and obstacle merged into one track</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#smooth-transitions-between-rounds">4. Smooth transitions between rounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#fill-using-parallel-lines">5. Fill using parallel lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#multiple-fills-for-complex-concave-shapes">6. Multiple fills for complex/concave shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#consistent-fill-angle-across-all-regions-easily-configurable">7. Consistent fill angle across all regions, easily configurable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#half-circle-turns-between-fill-lines">8. Half-circle turns between fill lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#inter-path-navigation-done-at-runtime-via-costmap-not-pre-planned">9. Inter-path navigation done at runtime via costmap (not pre-planned)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#paths-ordered-in-a-sensible-way">10. Paths ordered in a sensible way</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#input-as-polygon-with-holes-border-mower-centre-line">11. Input as polygon with holes; border = mower centre line</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#summary-matrix">Summary matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/fields2coverVsSlicr.html#bottom-line">Bottom line</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html">Paper Proposal: Terramechanics-Informed State Estimation for Tracked Autonomous Rovers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#authors-affiliations">Authors &amp; Affiliations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#introduction-and-motivation">1. Introduction and Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#system-architecture">2. System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#experimental-validation-in-gazebo">3. Experimental Validation in Gazebo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../research/Paper_Proposal%3A_Terramechanics-Informed_State_Estimation_for_Tracked_Autonomous_Rovers.html#bibliography-and-prior-work">4. Bibliography and Prior Work</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Feldfreund DevKit ROS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">devkit_ui.dem</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for devkit_ui.dem</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">dem.py</span>
+<span class="sd">──────</span>
+<span class="sd">Builds a DEM (elevation grid) from sparse recon points — the CSV logged by</span>
+<span class="sd">devkit_driver/modules/recon_dem_logger.py — then derives a traversability</span>
+<span class="sd">mask from it. This is the missing link between recon logging and</span>
+<span class="sd">terrain_mask.py&#39;s ring vectorizer (see repo issue #110):</span>
+
+<span class="sd">    recon.csv --[this module]--&gt; elevation grid --[this module]--&gt; traversable</span>
+<span class="sd">        mask --[terrain_mask.py]--&gt; obstacle_rings --[f2c_planner]--&gt; _run_f2c()</span>
+
+<span class="sd">Interpolation backend: scipy.interpolate.RBFInterpolator. RTK recon points</span>
+<span class="sd">are metres apart, not point-cloud density, so a thin-plate spline is enough</span>
+<span class="sd">— no need for grid_map_pcl or a C++ dependency. `_interpolate_elevation()`</span>
+<span class="sd">is the single seam to swap in verde.Spline later if RBF proves too crude on</span>
+<span class="sd">real field data; the points-in/grid-out shape is the same for both, so that</span>
+<span class="sd">swap should be a one-function change, not a rewrite. (Measured against</span>
+<span class="sd">verde.Spline on synthetic noisy data: comparable accuracy at matched</span>
+<span class="sd">regularization — the RBF-vs-Spline choice isn&#39;t the thing that matters</span>
+<span class="sd">here, see below.)</span>
+
+<span class="sd">`_choose_smoothing()`&#39;s cross-validation loop is adapted from</span>
+<span class="sd">verde.SplineCV&#39;s approach — grid-search a set of regularization candidates,</span>
+<span class="sd">score each against held-out folds, keep the lowest-error one — credit:</span>
+<span class="sd">fatiando/verde (github.com/fatiando/verde), BSD-3-Clause License,</span>
+<span class="sd">Copyright (c) 2017 The Verde Developers. Reimplemented directly on top of</span>
+<span class="sd">RBFInterpolator instead of depending on verde.SplineCV, because Verde&#39;s</span>
+<span class="sd">*only* runtime dependency this module would actually use is that CV loop —</span>
+<span class="sd">`import verde` unconditionally pulls in pandas, xarray, scikit-learn, dask,</span>
+<span class="sd">and pooch (measured: ~2.4s import time) for a package meant to run on an</span>
+<span class="sd">embedded SBC (Avaota A1). Not worth it for one grid-search loop.</span>
+
+<span class="sd">`elevation_to_traversable()` mirrors the slope math in</span>
+<span class="sd">devkit_bringup/config/terrain_traversability_filters.yaml&#39;s filter3/filter4</span>
+<span class="sd">(acos(normal_z) threshold) so behaviour matches if that grid_map_filters</span>
+<span class="sd">chain is ever wired in instead of this.</span>
+
+<span class="sd">Pure functions, no ROS dependency — callers read the CSV themselves and</span>
+<span class="sd">pass plain numpy arrays, same convention as terrain_mask.py.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RBFInterpolator</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
+
+<span class="c1"># pylint: disable=import-error</span>
+<span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_planner</span> <span class="kn">import</span> <span class="n">_f2c_latlon_to_xy</span><span class="p">,</span> <span class="n">_f2c_xy_to_latlon</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.terrain_mask</span> <span class="kn">import</span> <span class="n">traversability_mask_to_latlon_rings</span>
+
+<span class="c1"># Candidate RBFInterpolator `smoothing` values tried by _choose_smoothing().</span>
+<span class="c1"># 0.0 = exact interpolation (fits noise); higher values damp it out more.</span>
+<span class="c1"># Matches the order of magnitude verde.SplineCV&#39;s own damping search swept</span>
+<span class="c1"># in practice (1e-4..1) but doesn&#39;t need to match exactly — this is a coarse</span>
+<span class="c1"># grid, not a claim that these are the optimal candidates for RTK data.</span>
+<span class="n">_SMOOTHING_CANDIDATES</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Below this many points, k-fold CV folds are too small to give a stable</span>
+<span class="c1"># smoothing estimate — CV error on 1-2 held-out points per fold is noise,</span>
+<span class="c1"># not signal. Fall back to a fixed mid-range default instead.</span>
+<span class="n">_MIN_POINTS_FOR_CV</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Above this many points, skip CV — RBFInterpolator fit cost is roughly</span>
+<span class="c1"># O(N^3), and _choose_smoothing() fits len(_SMOOTHING_CANDIDATES) * n_folds</span>
+<span class="c1"># interpolators to search. Flagged (not measured) as a real cost for large</span>
+<span class="c1"># recon drives — revisit this cutoff once you have field data at real scale.</span>
+<span class="n">_MAX_POINTS_FOR_CV</span> <span class="o">=</span> <span class="mi">2000</span>
+
+<span class="c1"># Neighbours cap shared between _choose_smoothing()&#39;s cross-validation and</span>
+<span class="c1"># _interpolate_elevation()&#39;s production fit — CV must score the same</span>
+<span class="c1"># neighbours-limited estimator that actually gets used, or the smoothing</span>
+<span class="c1"># value it picks is tuned for a different (global, neighbors=None) model.</span>
+<span class="n">_INTERP_NEIGHBORS</span> <span class="o">=</span> <span class="mi">150</span>
+
+<span class="c1"># Maximum grid cells allowed in build_elevation_grid. Protects against</span>
+<span class="c1"># OOM/excessive computation when resolution_m is too fine or the field is</span>
+<span class="c1"># unexpectedly large. 4M cells (e.g. 2000x2000 grid) is roughly the upper</span>
+<span class="c1"># bound for a large field at 0.5m resolution without hitting memory issues</span>
+<span class="c1"># on typical hardware.</span>
+<span class="n">_MAX_GRID_CELLS</span> <span class="o">=</span> <span class="mi">4_000_000</span>
+
+
+<div class="viewcode-block" id="load_recon_points">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.load_recon_points">[docs]</a>
+<span class="k">def</span> <span class="nf">load_recon_points</span><span class="p">(</span><span class="n">csv_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read recon_dem_logger.py&#39;s CSV.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        xy: (N, 2) array of local x,y metres (the same columns</span>
+<span class="sd">            recon_dem_logger.py writes from /odom — no re-projection here).</span>
+<span class="sd">            This is recon_dem_logger.py&#39;s own /odom-anchored frame, NOT</span>
+<span class="sd">            necessarily anchored at any particular lat/lon — callers that</span>
+<span class="sd">            need xy in a frame anchored at a specific lat/lon (e.g.</span>
+<span class="sd">            corners_ll[0], to match f2c_planner&#39;s contract that origin_xy</span>
+<span class="sd">            and corners_ll[0] share an anchor) must re-project using</span>
+<span class="sd">            latlon below, not use this xy directly.</span>
+<span class="sd">        elevation: (N,) array of altitude, metres.</span>
+<span class="sd">        latlon: (N, 2) array of lat,lon — the real-world position of each</span>
+<span class="sd">            xy point, for re-anchoring into a different local frame.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: if the CSV has fewer than 3 points — RBFInterpolator</span>
+<span class="sd">            needs at least that many to fit a surface, and 3 points can&#39;t</span>
+<span class="sd">            usefully be flagged as a bad fit for slope, so callers should</span>
+<span class="sd">            treat this as &quot;recon drive too short, log more points&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">alts</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">lons</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="n">xs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]))</span>
+            <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]))</span>
+            <span class="n">alts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;alt&#39;</span><span class="p">]))</span>
+            <span class="n">lats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]))</span>
+            <span class="n">lons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]))</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;recon CSV has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span><span class="si">}</span><span class="s1"> points, need &gt;= 3 to fit a DEM surface &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;(got: </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+    <span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">])</span>
+    <span class="n">elevation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">alts</span><span class="p">)</span>
+    <span class="n">latlon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">lats</span><span class="p">,</span> <span class="n">lons</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">xy</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">latlon</span></div>
+
+
+
+<div class="viewcode-block" id="build_elevation_grid">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.build_elevation_grid">[docs]</a>
+<span class="k">def</span> <span class="nf">build_elevation_grid</span><span class="p">(</span>
+    <span class="n">xy</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">elevation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">resolution_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">padding_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">smoothing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Interpolate scattered recon points onto a regular elevation grid.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        xy: (N, 2) local x,y metres of recon points (see load_recon_points).</span>
+<span class="sd">        elevation: (N,) altitude, metres.</span>
+<span class="sd">        resolution_m: metres per cell — should match whatever</span>
+<span class="sd">            terrain_traversability_filters.yaml / the traversable-mask</span>
+<span class="sd">            consumer expects.</span>
+<span class="sd">        padding_m: extend the grid this far past the recon points&#39; bounding</span>
+<span class="sd">            box in each direction. RBFInterpolator will happily extrapolate</span>
+<span class="sd">            right to the field edge, but extrapolation quality degrades fast</span>
+<span class="sd">            past the convex hull of the input points — pad a little, don&#39;t</span>
+<span class="sd">            rely on it for the whole field boundary.</span>
+<span class="sd">        smoothing: RBFInterpolator&#39;s `smoothing` parameter, or &#39;auto&#39; (the</span>
+<span class="sd">            default) to pick it via _choose_smoothing()&#39;s cross-validation.</span>
+<span class="sd">            Pass an explicit float to skip CV (e.g. for reproducible tests,</span>
+<span class="sd">            or once you have a field-validated value you trust more).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        elevation_grid: 2D array, elevation_grid[0, 0] is the grid&#39;s</span>
+<span class="sd">            southwest-most cell (row = y, col = x, matching terrain_mask.py&#39;s</span>
+<span class="sd">            (row, col) -&gt; (x, y) convention).</span>
+<span class="sd">        origin_xy: (x, y) of elevation_grid[0, 0], in the same local-XY frame</span>
+<span class="sd">            as `xy` — pass this straight through to</span>
+<span class="sd">            traversability_mask_to_latlon_rings()&#39;s origin_xy argument.</span>
+<span class="sd">        smoothing_used: the smoothing value actually applied — inspect this</span>
+<span class="sd">            when smoothing=&#39;auto&#39; to see what CV picked; log it, don&#39;t</span>
+<span class="sd">            discard it, if this ever misbehaves in the field.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">xy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;need &gt;= 3 points to interpolate, got </span><span class="si">{</span><span class="n">xy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">resolution_m</span><span class="p">)</span> <span class="ow">and</span> <span class="n">resolution_m</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;resolution_m must be finite and positive, got </span><span class="si">{</span><span class="n">resolution_m</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">smoothing</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span><span class="p">:</span>
+        <span class="n">smoothing</span> <span class="o">=</span> <span class="n">_choose_smoothing</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">elevation</span><span class="p">)</span>
+
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">=</span> <span class="n">xy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">padding_m</span>
+    <span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">xy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding_m</span>
+
+    <span class="n">n_cols</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution_m</span><span class="p">)))</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">resolution_m</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="n">n_rows</span> <span class="o">*</span> <span class="n">n_cols</span> <span class="o">&gt;</span> <span class="n">_MAX_GRID_CELLS</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;requested grid size </span><span class="si">{</span><span class="n">n_rows</span><span class="si">}</span><span class="s1"> x </span><span class="si">{</span><span class="n">n_cols</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">n_rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_cols</span><span class="si">}</span><span class="s1"> cells &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;exceeds _MAX_GRID_CELLS=</span><span class="si">{</span><span class="n">_MAX_GRID_CELLS</span><span class="si">}</span><span class="s1"> &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;(field extent: </span><span class="si">{</span><span class="n">x_max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x_min</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">m x </span><span class="si">{</span><span class="n">y_max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y_min</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">m, &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;resolution_m=</span><span class="si">{</span><span class="n">resolution_m</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+    <span class="n">grid_x</span><span class="p">,</span> <span class="n">grid_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+        <span class="n">x_min</span> <span class="o">+</span> <span class="n">resolution_m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_cols</span><span class="p">),</span>
+        <span class="n">y_min</span> <span class="o">+</span> <span class="n">resolution_m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_rows</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">elevation_grid</span> <span class="o">=</span> <span class="n">_interpolate_elevation</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">grid_x</span><span class="p">,</span> <span class="n">grid_y</span><span class="p">,</span> <span class="n">smoothing</span><span class="p">)</span>
+    <span class="n">origin_xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">elevation_grid</span><span class="p">,</span> <span class="n">origin_xy</span><span class="p">,</span> <span class="n">smoothing</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_choose_smoothing</span><span class="p">(</span>
+    <span class="n">xy</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">elevation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">candidates</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">_SMOOTHING_CANDIDATES</span><span class="p">,</span>
+    <span class="n">n_folds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pick an RBFInterpolator `smoothing` value by k-fold cross-validation.</span>
+
+<span class="sd">    Approach adapted from verde.SplineCV (see module docstring for</span>
+<span class="sd">    attribution): hold out folds of the recon points, fit each candidate</span>
+<span class="sd">    smoothing on the rest, score against the held-out points, keep whichever</span>
+<span class="sd">    candidate has the lowest held-out RMSE. This replaces the hardcoded</span>
+<span class="sd">    smoothing=0.1 this module used before — that value was never validated</span>
+<span class="sd">    against anything.</span>
+
+<span class="sd">    Falls back to a fixed mid-range candidate, skipping CV entirely, when</span>
+<span class="sd">    there aren&#39;t enough points to fold meaningfully (&lt; _MIN_POINTS_FOR_CV)</span>
+<span class="sd">    or there are too many for the O(N^3) refit cost to be worth it</span>
+<span class="sd">    (&gt; _MAX_POINTS_FOR_CV) — see those constants&#39; comments.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">xy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">_MIN_POINTS_FOR_CV</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">_MAX_POINTS_FOR_CV</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">candidates</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">fold_ids</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="n">n_folds</span>
+
+    <span class="n">best_smoothing</span> <span class="o">=</span> <span class="n">candidates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">best_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
+        <span class="n">squared_errors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_folds</span><span class="p">):</span>
+            <span class="n">test_mask</span> <span class="o">=</span> <span class="n">fold_ids</span> <span class="o">==</span> <span class="n">fold</span>
+            <span class="n">train_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">test_mask</span>
+            <span class="k">if</span> <span class="n">test_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">train_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">neighbors</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">_INTERP_NEIGHBORS</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">train_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+            <span class="n">interpolator</span> <span class="o">=</span> <span class="n">RBFInterpolator</span><span class="p">(</span>
+                <span class="n">xy</span><span class="p">[</span><span class="n">train_mask</span><span class="p">],</span> <span class="n">elevation</span><span class="p">[</span><span class="n">train_mask</span><span class="p">],</span>
+                <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;thin_plate_spline&#39;</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="n">candidate</span><span class="p">,</span>
+                <span class="n">neighbors</span><span class="o">=</span><span class="n">neighbors</span><span class="p">)</span>
+            <span class="n">predicted</span> <span class="o">=</span> <span class="n">interpolator</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="n">test_mask</span><span class="p">])</span>
+            <span class="n">squared_errors</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predicted</span> <span class="o">-</span> <span class="n">elevation</span><span class="p">[</span><span class="n">test_mask</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">squared_errors</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">squared_errors</span><span class="p">))))</span>
+        <span class="k">if</span> <span class="n">rmse</span> <span class="o">&lt;</span> <span class="n">best_rmse</span><span class="p">:</span>
+            <span class="n">best_rmse</span> <span class="o">=</span> <span class="n">rmse</span>
+            <span class="n">best_smoothing</span> <span class="o">=</span> <span class="n">candidate</span>
+
+    <span class="k">return</span> <span class="n">best_smoothing</span>
+
+
+<span class="k">def</span> <span class="nf">_interpolate_elevation</span><span class="p">(</span>
+    <span class="n">xy</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">elevation</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">grid_x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">grid_y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">smoothing</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single seam for the interpolation backend — swap for verde.Spline</span>
+<span class="sd">    here if RBF turns out too crude on real field data. Both take</span>
+<span class="sd">    (N, 2) point coords + (N,) values in, and return values on arbitrary</span>
+<span class="sd">    query points out, so the swap shouldn&#39;t touch build_elevation_grid().</span>
+
+<span class="sd">    thin_plate_spline is the RBF kernel closest to Verde&#39;s default</span>
+<span class="sd">    biharmonic spline (same r^2*log(r) Green&#39;s function, see module</span>
+<span class="sd">    docstring) — measured comparable accuracy between the two at matched</span>
+<span class="sd">    regularization, so this isn&#39;t the seam that needs fixing right now;</span>
+<span class="sd">    _choose_smoothing() picking the regularization was.</span>
+
+<span class="sd">    Bounds neighbors to avoid O(n^3) memory/CPU blowup on large point sets:</span>
+<span class="sd">    RBFInterpolator with neighbors=None (the default) uses all input points</span>
+<span class="sd">    for every query, which is fine for sparse recon data (~hundreds of</span>
+<span class="sd">    points) but degenerates quickly past that. 150 neighbors is enough to</span>
+<span class="sd">    capture local terrain variation at typical recon densities without the</span>
+<span class="sd">    full-matrix cost.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Limit neighbors to avoid O(n^3) cost when xy is large. RTK recon points</span>
+    <span class="c1"># are metres apart, so local interpolation with ~150 nearest neighbors</span>
+    <span class="c1"># captures the terrain without needing the full point set.</span>
+    <span class="n">neighbors</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">_INTERP_NEIGHBORS</span><span class="p">,</span> <span class="n">xy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">interpolator</span> <span class="o">=</span> <span class="n">RBFInterpolator</span><span class="p">(</span>
+        <span class="n">xy</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;thin_plate_spline&#39;</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="n">smoothing</span><span class="p">,</span>
+        <span class="n">neighbors</span><span class="o">=</span><span class="n">neighbors</span><span class="p">)</span>
+    <span class="n">query_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">grid_x</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">grid_y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+    <span class="k">return</span> <span class="n">interpolator</span><span class="p">(</span><span class="n">query_points</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">grid_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="elevation_to_traversable">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.elevation_to_traversable">[docs]</a>
+<span class="k">def</span> <span class="nf">elevation_to_traversable</span><span class="p">(</span>
+    <span class="n">elevation_grid</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">resolution_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">max_slope_deg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">15.0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Slope -&gt; binary traversable mask (1 = safe, 0 = unsafe), matching</span>
+<span class="sd">    terrain_mask.py&#39;s expected convention.</span>
+
+<span class="sd">    Same acos(normal_z)*180/pi formula as</span>
+<span class="sd">    terrain_traversability_filters.yaml&#39;s filter3/filter4, but normal_z here</span>
+<span class="sd">    comes from a finite-difference gradient (np.gradient over adjacent</span>
+<span class="sd">    cells), not that filter chain&#39;s NormalVectorsFilter (least-squares plane</span>
+<span class="sd">    fit over a 0.2m radius neighbourhood). The two will diverge on anything</span>
+<span class="sd">    but a locally planar surface — don&#39;t assume swapping one for the other</span>
+<span class="sd">    is a no-op without checking against real elevation data.</span>
+<span class="sd">    max_slope_deg is still the placeholder from that yaml — untuned against</span>
+<span class="sd">    real field slope data (issue #110), unchanged here.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">grad_y</span><span class="p">,</span> <span class="n">grad_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">elevation_grid</span><span class="p">,</span> <span class="n">resolution_m</span><span class="p">)</span>
+    <span class="n">normal_z</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">grad_x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">grad_y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">slope_deg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">normal_z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">slope_deg</span> <span class="o">&lt;=</span> <span class="n">max_slope_deg</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="recon_csv_to_obstacle_rings">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.recon_csv_to_obstacle_rings">[docs]</a>
+<span class="k">def</span> <span class="nf">recon_csv_to_obstacle_rings</span><span class="p">(</span>
+    <span class="n">csv_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">resolution_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">anchor_lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">anchor_lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">max_slope_deg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">15.0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;End to end: recon CSV -&gt; obstacle_rings ready for f2c_planner._run_f2c().</span>
+
+<span class="sd">    anchor_lat/anchor_lon MUST be the same anchor _run_f2c() will use for</span>
+<span class="sd">    corners_ll[0]. Recon points are re-anchored onto anchor_lat/lon (via</span>
+<span class="sd">    their own lat/lon columns) before the elevation grid is built, so</span>
+<span class="sd">    origin_xy ends up in the same frame corners_ll[0] projects to,</span>
+<span class="sd">    regardless of whatever frame recon_dem_logger.py originally logged</span>
+<span class="sd">    xy in — see traversability_mask_to_latlon_rings()&#39;s warning on</span>
+<span class="sd">    mismatched anchors silently misaligning the rings against the field.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_xy_native</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">latlon</span> <span class="o">=</span> <span class="n">load_recon_points</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+    <span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_f2c_latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">anchor_lat</span><span class="p">,</span> <span class="n">anchor_lon</span><span class="p">)</span>
+                   <span class="k">for</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="ow">in</span> <span class="n">latlon</span><span class="p">])</span>
+    <span class="n">elevation_grid</span><span class="p">,</span> <span class="n">origin_xy</span><span class="p">,</span> <span class="n">_smoothing_used</span> <span class="o">=</span> <span class="n">build_elevation_grid</span><span class="p">(</span>
+        <span class="n">xy</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">resolution_m</span><span class="p">)</span>
+    <span class="n">traversable</span> <span class="o">=</span> <span class="n">elevation_to_traversable</span><span class="p">(</span><span class="n">elevation_grid</span><span class="p">,</span> <span class="n">resolution_m</span><span class="p">,</span> <span class="n">max_slope_deg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">traversability_mask_to_latlon_rings</span><span class="p">(</span>
+        <span class="n">traversable</span><span class="p">,</span> <span class="n">resolution_m</span><span class="p">,</span> <span class="n">origin_xy</span><span class="p">,</span> <span class="n">anchor_lat</span><span class="p">,</span> <span class="n">anchor_lon</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># CONTOUR ROWS: reference-line selection for f2c_planner._run_contour_f2c().</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;Sensible reference line&quot; = the elevation isoline through the field&#39;s</span>
+<span class="c1"># centroid, not an arbitrary level. Offsetting a curve at constant distance</span>
+<span class="c1"># only approximates true elevation contours near that curve — the</span>
+<span class="c1"># approximation gets worse the further you offset, in proportion to how</span>
+<span class="c1"># much the terrain bends between the reference and the offset row (see the</span>
+<span class="c1"># discussion this landed on: strict constant row spacing is being kept,</span>
+<span class="c1"># so that drift is an accepted trade-off, not a bug to chase out).</span>
+<span class="c1">#</span>
+<span class="c1"># Centring the reference line spatially is the one lever available to keep</span>
+<span class="c1"># that drift small everywhere rather than large on one side: every offset</span>
+<span class="c1"># row travels at most ~half the field&#39;s cross-slope extent before running</span>
+<span class="c1"># off the boundary, instead of the full width if the reference started at</span>
+<span class="c1"># an edge. Using the *centroid&#39;s own elevation* as the contour level is a</span>
+<span class="c1"># cheap way to get a centred line without a real optimisation — the</span>
+<span class="c1"># isoline through a point necessarily passes through that point.</span>
+<span class="n">_LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Emit a diagnostic message via the module logger.&quot;&quot;&quot;</span>
+    <span class="n">_LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="select_reference_contour_xy">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_xy">[docs]</a>
+<span class="k">def</span> <span class="nf">select_reference_contour_xy</span><span class="p">(</span>
+    <span class="n">elevation_grid</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">resolution_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">origin_xy</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">centroid_xy</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">simplify_tolerance_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">min_length_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pick and return the elevation isoline through `centroid_xy`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        elevation_grid, resolution_m, origin_xy: as returned by</span>
+<span class="sd">            build_elevation_grid() — elevation_grid[row, col] sits at</span>
+<span class="sd">            (origin_xy[0] + col*resolution_m, origin_xy[1] + row*resolution_m),</span>
+<span class="sd">            matching terrain_mask.py&#39;s (row=y, col=x) convention.</span>
+<span class="sd">        centroid_xy: (x, y) point to centre the reference line on — pass</span>
+<span class="sd">            the field boundary polygon&#39;s centroid, in the same local-xy</span>
+<span class="sd">            frame as origin_xy.</span>
+<span class="sd">        simplify_tolerance_m: Douglas-Peucker tolerance applied to the</span>
+<span class="sd">            traced contour before returning it. RBF-interpolated DEMs from</span>
+<span class="sd">            sparse recon points are noisy at row-spacing wavelength;</span>
+<span class="sd">            skipping this lets that noise get amplified into loops when</span>
+<span class="sd">            f2c_planner offsets the line. Defaults to 1.5 * resolution_m</span>
+<span class="sd">            when None — untuned against real field data, same caveat as</span>
+<span class="sd">            elevation_to_traversable()&#39;s max_slope_deg.</span>
+<span class="sd">        min_length_m: discard contour components shorter than this — noise</span>
+<span class="sd">            specks, not a usable reference line.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of (x, y) points tracing the isoline nearest centroid_xy, or</span>
+<span class="sd">        None if no usable contour exists at the centroid&#39;s elevation (e.g.</span>
+<span class="sd">        a field flat enough that find_contours returns nothing, or the</span>
+<span class="sd">        centroid falling outside the interpolated grid). Callers should</span>
+<span class="sd">        treat None as &quot;this field doesn&#39;t need contour rows, fall back to</span>
+<span class="sd">        _run_f2c()&#39;s straight swaths&quot; rather than an error.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">simplify_tolerance_m</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">simplify_tolerance_m</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">resolution_m</span>
+
+    <span class="n">n_rows</span><span class="p">,</span> <span class="n">n_cols</span> <span class="o">=</span> <span class="n">elevation_grid</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">col_f</span> <span class="o">=</span> <span class="p">(</span><span class="n">centroid_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">origin_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">resolution_m</span>
+    <span class="n">row_f</span> <span class="o">=</span> <span class="p">(</span><span class="n">centroid_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">origin_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">resolution_m</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">row_f</span> <span class="o">&lt;=</span> <span class="n">n_rows</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">col_f</span> <span class="o">&lt;=</span> <span class="n">n_cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;centroid (</span><span class="si">{</span><span class="n">centroid_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">centroid_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">) falls &#39;</span>
+             <span class="sa">f</span><span class="s1">&#39;outside the elevation grid — no reference contour&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Bilinear-ish: nearest cell is enough here, this only sets *which*</span>
+    <span class="c1"># isoline we trace, not a value anything downstream depends on being</span>
+    <span class="c1"># exact.</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elevation_grid</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">row_f</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">col_f</span><span class="p">)])</span>
+
+    <span class="n">contours_rc</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">find_contours</span><span class="p">(</span><span class="n">elevation_grid</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">contours_rc</span><span class="p">:</span>
+        <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;no contour found at centroid elevation </span><span class="si">{</span><span class="n">level</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">m&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_to_xy</span><span class="p">(</span><span class="n">contour_rc</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert contour (row, col) grid indices to real-world xy coordinates.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">origin_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">col</span> <span class="o">*</span> <span class="n">resolution_m</span><span class="p">,</span> <span class="n">origin_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span> <span class="o">*</span> <span class="n">resolution_m</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">contour_rc</span><span class="p">]</span>
+
+    <span class="n">centroid_pt</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">centroid_xy</span><span class="p">)</span>
+    <span class="n">best_line</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">best_dist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">contour_rc</span> <span class="ow">in</span> <span class="n">contours_rc</span><span class="p">:</span>
+        <span class="n">pts_xy</span> <span class="o">=</span> <span class="n">_to_xy</span><span class="p">(</span><span class="n">contour_rc</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts_xy</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">(</span><span class="n">pts_xy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="n">min_length_m</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">centroid_pt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dist</span> <span class="o">&lt;</span> <span class="n">best_dist</span><span class="p">:</span>
+            <span class="n">best_dist</span> <span class="o">=</span> <span class="n">dist</span>
+            <span class="n">best_line</span> <span class="o">=</span> <span class="n">line</span>
+
+    <span class="k">if</span> <span class="n">best_line</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">contours_rc</span><span class="p">)</span><span class="si">}</span><span class="s1"> contour piece(s) at level </span><span class="si">{</span><span class="n">level</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">m, &#39;</span>
+             <span class="sa">f</span><span class="s1">&#39;all below min_length_m=</span><span class="si">{</span><span class="n">min_length_m</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">simplified</span> <span class="o">=</span> <span class="n">best_line</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">simplify_tolerance_m</span><span class="p">,</span> <span class="n">preserve_topology</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;reference contour: level=</span><span class="si">{</span><span class="n">level</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">m, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">best_line</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span><span class="si">}</span><span class="s1"> pts &#39;</span>
+         <span class="sa">f</span><span class="s1">&#39;-&gt; </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">simplified</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span><span class="si">}</span><span class="s1"> after simplify, &#39;</span>
+         <span class="sa">f</span><span class="s1">&#39;centroid_dist=</span><span class="si">{</span><span class="n">best_dist</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">m&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">simplified</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="select_reference_contour_latlon">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_latlon">[docs]</a>
+<span class="k">def</span> <span class="nf">select_reference_contour_latlon</span><span class="p">(</span>
+    <span class="n">elevation_grid</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">resolution_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">origin_xy</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">centroid_xy</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">anchor_lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">anchor_lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">simplify_tolerance_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">min_length_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;select_reference_contour_xy(), reprojected to lat/lon.</span>
+
+<span class="sd">    anchor_lat/anchor_lon MUST be the same anchor _run_contour_f2c() will</span>
+<span class="sd">    use for corners_ll[0] — same warning as</span>
+<span class="sd">    traversability_mask_to_latlon_rings(): mismatched anchors silently</span>
+<span class="sd">    misalign the reference line against the field boundary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">line_xy</span> <span class="o">=</span> <span class="n">select_reference_contour_xy</span><span class="p">(</span>
+        <span class="n">elevation_grid</span><span class="p">,</span> <span class="n">resolution_m</span><span class="p">,</span> <span class="n">origin_xy</span><span class="p">,</span> <span class="n">centroid_xy</span><span class="p">,</span>
+        <span class="n">simplify_tolerance_m</span><span class="p">,</span> <span class="n">min_length_m</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">line_xy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">_f2c_xy_to_latlon</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">anchor_lat</span><span class="p">,</span> <span class="n">anchor_lon</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">line_xy</span><span class="p">]</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Agroecology Lab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
