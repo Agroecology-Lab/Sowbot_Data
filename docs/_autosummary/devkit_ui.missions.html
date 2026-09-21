@@ -233,6 +233,8 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.test_sqlite.html">devkit_ui.missions.test_sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.test_store.html">devkit_ui.missions.test_store</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.test_yaml.html">devkit_ui.missions.test_yaml</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
 </ul>
 </li>
@@ -277,6 +279,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_actions.html">devkit_ui.test_actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_actions.html#devkit_ui.test_actions.TestActionRosMsgs"><code class="docutils literal notranslate"><span class="pre">TestActionRosMsgs</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
@@ -319,6 +325,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo"><code class="docutils literal notranslate"><span class="pre">TestObstacleUndo</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard"><code class="docutils literal notranslate"><span class="pre">TestRowDiscoveryCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel"><code class="docutils literal notranslate"><span class="pre">TestRunViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_time_utils.html">devkit_ui.test_time_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_time_utils.html#devkit_ui.test_time_utils.TestTimeUtils"><code class="docutils literal notranslate"><span class="pre">TestTimeUtils</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topo_renderer.html">devkit_ui.test_topo_renderer</a><ul>
@@ -497,6 +507,12 @@ Status carries the reason either way.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.missions.MissionStore.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.MissionStore.close" title="Link to this definition"></a></dt>
+<dd><p>Release backend resources (the SQLite connection). A no-op for the YAML backend.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.missions.MissionStore.delete">
 <span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.MissionStore.delete" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -545,6 +561,7 @@ path) so the repeat interval re-arms from actual robot activity
 regardless of who triggered the run.</p>
 <p>Side effect: one-shot missions (repeat_every_hours is None) that
 complete successfully are auto-deactivated.</p>
+<p>Returns False for an unknown ID; otherwise returns whether the backend accepted the update.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -559,7 +576,8 @@ the next scheduled executor pass.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Does not touch repeat_every_hours, rows, or action.</p>
+<p>Does not modify other mission fields.
+Returns False for an unknown ID; otherwise returns whether the backend accepted the update.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -602,6 +620,12 @@ callers should do the same or pass name=’’ to use the id default.</p>
 <td><p>Mission storage and scheduling for the Sowbot webui.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="devkit_ui.missions.test_sqlite.html#module-devkit_ui.missions.test_sqlite" title="devkit_ui.missions.test_sqlite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_sqlite</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="devkit_ui.missions.test_store.html#module-devkit_ui.missions.test_store" title="devkit_ui.missions.test_store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_store</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="devkit_ui.missions.test_yaml.html#module-devkit_ui.missions.test_yaml" title="devkit_ui.missions.test_yaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_yaml</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="devkit_ui.missions.yaml.html#module-devkit_ui.missions.yaml" title="devkit_ui.missions.yaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">yaml</span></code></a></p></td>

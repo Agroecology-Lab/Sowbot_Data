@@ -230,6 +230,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.test_sqlite.html">devkit_ui.missions.test_sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.test_store.html">devkit_ui.missions.test_store</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.test_yaml.html">devkit_ui.missions.test_yaml</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
 </ul>
 </li>
@@ -274,6 +276,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_actions.html">devkit_ui.test_actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_actions.html#devkit_ui.test_actions.TestActionRosMsgs"><code class="docutils literal notranslate"><span class="pre">TestActionRosMsgs</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
@@ -316,6 +322,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo"><code class="docutils literal notranslate"><span class="pre">TestObstacleUndo</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard"><code class="docutils literal notranslate"><span class="pre">TestRowDiscoveryCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel"><code class="docutils literal notranslate"><span class="pre">TestRunViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_time_utils.html">devkit_ui.test_time_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_time_utils.html#devkit_ui.test_time_utils.TestTimeUtils"><code class="docutils literal notranslate"><span class="pre">TestTimeUtils</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_topo_renderer.html">devkit_ui.test_topo_renderer</a><ul>
@@ -459,7 +469,11 @@
 
 <span class="kn">from</span> <span class="nn">devkit_ui.time_utils</span> <span class="kn">import</span> <span class="n">now_utc_str</span>
 
-<span class="n">_MUTABLE_COLUMNS</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">[</span><span class="nb">str</span><span class="p">]((</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">,</span> <span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="s1">&#39;action_params&#39;</span><span class="p">,</span> <span class="s1">&#39;repeat_every_hours&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">))</span>
+<span class="n">_MUTABLE_COLUMNS</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">[</span><span class="nb">str</span><span class="p">]((</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">,</span> <span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="s1">&#39;action_params&#39;</span><span class="p">,</span> <span class="s1">&#39;repeat_every_hours&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">,</span>
+    <span class="c1"># Run history: written by MissionStore.record_run()/reset(), not by operator edits.</span>
+    <span class="s1">&#39;last_run_at&#39;</span><span class="p">,</span> <span class="s1">&#39;last_run_success&#39;</span><span class="p">,</span>
+<span class="p">))</span>
 
 <div class="viewcode-block" id="MissionSqliteStore">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore">[docs]</a>
@@ -568,7 +582,8 @@
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates mutable fields on a mission.</span>
 
-<span class="sd">        Allowed fields: name, rows, action, repeat_every_hours, active</span>
+<span class="sd">        Allowed fields: name, rows, action, action_params, repeat_every_hours, active,</span>
+<span class="sd">        last_run_at, last_run_success. Other keys are ignored.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">serialized_fields</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_serialize_row</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
@@ -675,7 +690,7 @@
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">mission_id</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;MISSION_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_deserialize_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_row</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Row</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deserialize a mission row from what was stored in the database.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a mission dict with its ID, JSON fields, and boolean fields decoded.&quot;&quot;&quot;</span>
         <span class="n">row</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">db_row</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="o">**</span><span class="n">row</span><span class="p">,</span>
@@ -683,6 +698,7 @@
             <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rows&#39;</span><span class="p">,</span> <span class="s1">&#39;[]&#39;</span><span class="p">)),</span>
             <span class="s1">&#39;action_params&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;action_params&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">)),</span>
             <span class="s1">&#39;active&#39;</span><span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;last_run_success&#39;</span><span class="p">:</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;last_run_success&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">bool</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;last_run_success&#39;</span><span class="p">]),</span>
         <span class="p">}</span></div>
 
 </pre></div>

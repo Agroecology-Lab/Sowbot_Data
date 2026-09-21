@@ -1,0 +1,15 @@
+devkit\_ui.missions.test\_store
+===============================
+
+.. automodule:: devkit_ui.missions.test_store
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TestMissionStoreEditing
+      TestMissionStoreRunHistory
+      TestMissionStoreScheduling
+      TestValidateMission
+   

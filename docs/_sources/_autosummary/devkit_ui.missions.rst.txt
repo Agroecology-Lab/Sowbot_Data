@@ -13,4 +13,6 @@ devkit\_ui.missions
    sqlite
    store
    test_sqlite
+   test_store
+   test_yaml
    yaml

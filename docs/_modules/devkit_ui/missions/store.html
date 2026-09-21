@@ -230,6 +230,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.test_sqlite.html">devkit_ui.missions.test_sqlite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.test_store.html">devkit_ui.missions.test_store</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.test_yaml.html">devkit_ui.missions.test_yaml</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
 </ul>
 </li>
@@ -274,6 +276,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_actions.html">devkit_ui.test_actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_actions.html#devkit_ui.test_actions.TestActionRosMsgs"><code class="docutils literal notranslate"><span class="pre">TestActionRosMsgs</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
@@ -316,6 +322,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo"><code class="docutils literal notranslate"><span class="pre">TestObstacleUndo</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard"><code class="docutils literal notranslate"><span class="pre">TestRowDiscoveryCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel"><code class="docutils literal notranslate"><span class="pre">TestRunViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_time_utils.html">devkit_ui.test_time_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_time_utils.html#devkit_ui.test_time_utils.TestTimeUtils"><code class="docutils literal notranslate"><span class="pre">TestTimeUtils</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_topo_renderer.html">devkit_ui.test_topo_renderer</a><ul>
@@ -625,6 +635,14 @@
 
     <span class="c1"># ── lifecycle ─────────────────────────────────────────────────────────</span>
 
+<div class="viewcode-block" id="MissionStore.close">
+<a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.close">[docs]</a>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Release backend resources (the SQLite connection). A no-op for the YAML backend.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="p">,</span> <span class="n">MissionSqliteStore</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
 <div class="viewcode-block" id="MissionStore.attach">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.attach">[docs]</a>
     <span class="k">def</span> <span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -749,15 +767,15 @@
 <span class="sd">          - a failed mission the operator wants to retry without waiting for</span>
 <span class="sd">            the next scheduled executor pass.</span>
 
-<span class="sd">        Does not touch repeat_every_hours, rows, or action.</span>
+<span class="sd">        Does not modify other mission fields.</span>
+<span class="sd">        Returns False for an unknown ID; otherwise returns whether the backend accepted the update.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-                <span class="n">mid</span><span class="p">,</span>
-                <span class="n">last_run_at</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">last_run_success</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="p">)</span></div>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">mid</span><span class="si">!r}</span><span class="s1"> not found&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mid</span><span class="si">}</span><span class="s1"> re-armed — writing…&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_run_state</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">last_run_at</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_run_success</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MissionStore.record_run">
@@ -769,6 +787,8 @@
 
 <span class="sd">        Side effect: one-shot missions (repeat_every_hours is None) that</span>
 <span class="sd">        complete successfully are auto-deactivated.</span>
+
+<span class="sd">        Returns False for an unknown ID; otherwise returns whether the backend accepted the update.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
@@ -784,7 +804,8 @@
             <span class="k">if</span> <span class="n">target</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;repeat_every_hours&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">success</span><span class="p">:</span>
                 <span class="n">patch</span><span class="p">[</span><span class="s1">&#39;active&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="o">**</span><span class="n">patch</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mid</span><span class="si">}</span><span class="s1"> run recorded — writing…&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_run_state</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="o">**</span><span class="n">patch</span><span class="p">)</span></div>
 
 
     <span class="c1"># ── derived views (lock-free snapshots) ──────────────────────────────</span>
@@ -867,6 +888,16 @@
 
 
     <span class="c1"># ── internals ────────────────────────────────────────────────────────</span>
+
+    <span class="k">def</span> <span class="nf">_write_run_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Persist run state, increment the version, and refresh attached node state.</span>
+
+<span class="sd">        The caller must hold self._lock.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sync_node</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span>
 
     <span class="k">def</span> <span class="nf">_sync_node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mirror internal state onto the node. Always called inside the lock.&quot;&quot;&quot;</span>

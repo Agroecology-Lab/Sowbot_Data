@@ -19,11 +19,13 @@
    pages
    parse
    terrain_mask
+   test_actions
    test_f2c_row_metadata
    test_models
    test_navigation_goals
    test_parse
    test_run_ui
+   test_time_utils
    test_topo_renderer
    time_utils
    ui_node
