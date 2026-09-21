@@ -83,6 +83,10 @@ pre-commit install
 - Clean up background tasks on teardown
 - Handle resource cleanup properly in async contexts
 
+## ROS2 best practices
+
+We plan to work towards [https://henkirobotics.com/ros-2-best-practices/](Henki ROS2 best practices)
+
 ## Workflow Guidelines
 
 ### Before You Start
