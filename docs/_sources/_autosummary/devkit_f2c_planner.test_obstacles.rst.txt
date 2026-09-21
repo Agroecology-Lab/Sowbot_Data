@@ -1,0 +1,21 @@
+devkit\_f2c\_planner.test\_obstacles
+====================================
+
+.. automodule:: devkit_f2c_planner.test_obstacles
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build
+      clip
+      square
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BuildObstaclePolysTest
+      ClipLinesAgainstObstaclesTest
+   

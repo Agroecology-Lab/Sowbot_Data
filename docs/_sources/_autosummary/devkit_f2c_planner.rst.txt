@@ -11,3 +11,8 @@
    :recursive:
 
    f2c_planner
+   f2c_test_helpers
+   test_contour_rows
+   test_obstacles
+   test_projection
+   test_run_f2c

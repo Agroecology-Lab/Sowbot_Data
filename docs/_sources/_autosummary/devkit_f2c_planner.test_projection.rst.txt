@@ -1,0 +1,19 @@
+devkit\_f2c\_planner.test\_projection
+=====================================
+
+.. automodule:: devkit_f2c_planner.test_projection
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      haversine_m
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      FieldCentroidTest
+      ProjectionTest
+   
