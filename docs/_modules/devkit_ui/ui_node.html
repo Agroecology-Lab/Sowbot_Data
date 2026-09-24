@@ -2198,6 +2198,8 @@
     <span class="c1"># ── existing helpers below ───────────────────────────────────────────────</span>
 
     <span class="k">def</span> <span class="nf">_patch_node_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="p">:</span>
+            <span class="k">return</span>
         <span class="n">map_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">name</span>
         <span class="n">map_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;/workspace/maps/</span><span class="si">{</span><span class="n">map_name</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">def</span> <span class="nf">_write</span><span class="p">():</span>
@@ -2291,7 +2293,7 @@
         <span class="k">def</span> <span class="nf">on_node_clicked</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Selects the clicked topology node when it exists in the current map.&quot;&quot;&quot;</span>
             <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">n</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">selected_node</span> <span class="o">=</span> <span class="n">n</span>
         <span class="n">ui</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;topo_node_clicked&#39;</span><span class="p">,</span> <span class="n">on_node_clicked</span><span class="p">)</span>
 
@@ -2311,6 +2313,10 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">pose_lbl</span> <span class="o">=</span> <span class="s1">&#39;no odom&#39;</span>
 
+            <span class="n">topo_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span>
+            <span class="k">if</span> <span class="n">topo_doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
+
             <span class="n">current_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">current_node</span>
 
             <span class="n">rp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_pose</span><span class="p">()</span>
@@ -2321,7 +2327,7 @@
                 <span class="s1">&#39;cur&#39;</span><span class="p">:</span> <span class="n">current_node</span><span class="p">,</span>
                 <span class="s1">&#39;stat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">nav_status</span><span class="p">,</span>
                 <span class="s1">&#39;nav&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">navigating</span><span class="p">,</span>
-                <span class="s1">&#39;nodes&#39;</span><span class="p">:</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+                <span class="s1">&#39;nodes&#39;</span><span class="p">:</span> <span class="nb">set</span><span class="p">(</span><span class="n">topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
                 <span class="s1">&#39;robot&#39;</span><span class="p">:</span> <span class="n">rp_key</span>
             <span class="p">}</span>
             <span class="k">nonlocal</span> <span class="n">_prev</span>
@@ -2331,11 +2337,11 @@
             <span class="n">_prev</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">snap</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">changed</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;robot&#39;</span><span class="p">,</span> <span class="s1">&#39;nodes&#39;</span><span class="p">}:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">node_map</span><span class="o">.</span><span class="n">robot_svg</span> <span class="o">=</span> <span class="n">build_robot_svg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span> <span class="n">rp</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">node_map</span><span class="o">.</span><span class="n">robot_svg</span> <span class="o">=</span> <span class="n">build_robot_svg</span><span class="p">(</span><span class="n">topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span> <span class="n">rp</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">changed</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;sel&#39;</span><span class="p">,</span> <span class="s1">&#39;cur&#39;</span><span class="p">,</span> <span class="s1">&#39;nodes&#39;</span><span class="p">}:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">node_map</span><span class="o">.</span><span class="n">map_svg</span> <span class="o">=</span> <span class="n">build_svg</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="p">,</span>
+                    <span class="n">topo_doc</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">selected_node</span><span class="p">,</span>
                     <span class="n">current_node</span><span class="p">,</span>
                 <span class="p">)</span>
@@ -2343,7 +2349,7 @@
 
             <span class="k">if</span> <span class="n">changed</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;sel&#39;</span><span class="p">,</span> <span class="s1">&#39;nodes&#39;</span><span class="p">}:</span>
                 <span class="n">navigation_sidebar</span><span class="o">.</span><span class="n">render_nodes</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span>
+                    <span class="n">topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">selected_node</span><span class="p">,</span>
                 <span class="p">)</span>
 
@@ -2651,16 +2657,19 @@
 
         <span class="k">async</span> <span class="k">def</span> <span class="nf">do_repair</span><span class="p">():</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Open a dialog to repair row connectivity and optionally connect the repaired chain to a base node.&quot;&quot;&quot;</span>
+            <span class="n">topo_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span>
+            <span class="k">if</span> <span class="n">topo_doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
             <span class="n">cur</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">current_node</span>
             <span class="n">selected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">selected_node</span>
             <span class="n">default_base</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-            <span class="k">if</span> <span class="n">cur</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;—&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">cur</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">cur</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;—&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="n">topo_doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">cur</span><span class="p">):</span>
                 <span class="n">default_base</span> <span class="o">=</span> <span class="n">cur</span>
-            <span class="k">elif</span> <span class="n">selected</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">selected</span><span class="p">):</span>
+            <span class="k">elif</span> <span class="n">selected</span> <span class="ow">and</span> <span class="n">topo_doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">selected</span><span class="p">):</span>
                 <span class="n">default_base</span> <span class="o">=</span> <span class="n">selected</span>
 
             <span class="n">row_count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
-                <span class="mi">1</span> <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">nodes</span>
+                <span class="mi">1</span> <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">topo_doc</span><span class="o">.</span><span class="n">nodes</span>
                 <span class="k">if</span> <span class="n">nd</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_id&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="ow">and</span> <span class="n">nd</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_role&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;entry&#39;</span>
             <span class="p">)</span>
@@ -2694,7 +2703,7 @@
                 <span class="k">return</span>
 
             <span class="n">base</span> <span class="o">=</span> <span class="p">(</span><span class="n">base_input</span><span class="o">.</span><span class="n">value</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">base</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">base</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">base</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">topo_doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">base</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">f2c_save_status</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;ERROR: base node </span><span class="si">{</span><span class="n">base</span><span class="si">!r}</span><span class="s1"> not in map&#39;</span>
                 <span class="k">return</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">repair_row_connectivity</span><span class="p">(</span><span class="n">connect_to</span><span class="o">=</span><span class="n">base</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">)</span>
@@ -2840,12 +2849,15 @@
             <span class="k">def</span> <span class="nf">_refresh_available</span><span class="p">():</span>
 <span class="w">                </span><span class="sd">&quot;&quot;&quot;Refresh available rows after the topology snapshot stabilizes.&quot;&quot;&quot;</span>
                 <span class="k">nonlocal</span> <span class="n">_avail_prev</span>
-                <span class="n">snap</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+                <span class="n">topo_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span>
+                <span class="k">if</span> <span class="n">topo_doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">return</span>
+                <span class="n">snap</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
                 <span class="n">prev</span><span class="p">,</span> <span class="n">_avail_prev</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">_avail_prev</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">snap</span>
                 <span class="k">if</span> <span class="n">snap</span> <span class="o">!=</span> <span class="n">prev</span><span class="p">:</span>
                     <span class="k">return</span>
                 <span class="n">rows</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
                     <span class="n">meta</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">meta</span>
                     <span class="n">rid</span>  <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_id&#39;</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">rid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_role&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;entry&#39;</span><span class="p">:</span>
@@ -2904,9 +2916,11 @@
                         <span class="c1"># This is a protected method, we should probably find a better way of bubbling up the error.</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_mission_store</span><span class="o">.</span><span class="n">_set_status</span><span class="p">(</span><span class="s1">&#39;ERROR: queue is empty&#39;</span><span class="p">)</span>  <span class="c1"># pylint: disable=protected-access</span>
                         <span class="k">return</span>
+                    <span class="n">topo_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span>
+                    <span class="n">topo_nodes</span> <span class="o">=</span> <span class="n">topo_doc</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="n">topo_doc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
                     <span class="n">rows_for_store</span> <span class="o">=</span> <span class="p">[</span>
                         <span class="nb">next</span><span class="p">(</span>
-                            <span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">nodes</span>
+                            <span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">topo_nodes</span>
                              <span class="k">if</span> <span class="n">nd</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">rid</span>
                              <span class="ow">and</span> <span class="n">nd</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_role&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;entry&#39;</span><span class="p">),</span>
                             <span class="sa">f</span><span class="s1">&#39;ROW_</span><span class="si">{</span><span class="n">rid</span><span class="si">}</span><span class="s1">_IN&#39;</span><span class="p">,</span>
@@ -3025,6 +3039,8 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tool_publisher</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">is_float</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="n">Float64</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+                        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unsupported tool value type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span>
                     <span class="n">msg</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                 <span class="n">pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
@@ -3049,6 +3065,10 @@
             <span class="k">return</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">_ACTION_OK</span><span class="p">:</span>
             <span class="n">status_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;ERROR: action client unavailable&#39;</span><span class="p">)</span>
+            <span class="n">status_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="p">:</span>
+            <span class="n">status_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;ERROR: no topology map loaded&#39;</span><span class="p">)</span>
             <span class="n">status_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
             <span class="k">return</span>
 
@@ -3747,6 +3767,10 @@
                             <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
                             <span class="n">check</span><span class="o">=</span><span class="kc">False</span>
                         <span class="p">)</span>
+                        <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">_gazebo_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;rebuild cancelled&#39;</span><span class="p">)</span>
+                            <span class="n">_gazebo_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
+                            <span class="k">return</span>
                         <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                             <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">stderr</span> <span class="ow">or</span> <span class="n">r</span><span class="o">.</span><span class="n">stdout</span> <span class="ow">or</span> <span class="s1">&#39;unknown error&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
                             <span class="n">_gazebo_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;rebuild failed: </span><span class="si">{</span><span class="n">err</span><span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">:]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -4211,6 +4235,10 @@
                         <span class="k">return</span>
                     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
                         <span class="n">_soil_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;import failed: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="n">_soil_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
+                        <span class="k">return</span>
+                    <span class="k">if</span> <span class="n">names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">_soil_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;import cancelled&#39;</span><span class="p">)</span>
                         <span class="n">_soil_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
                         <span class="k">return</span>
                     <span class="n">summary</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">_classify_map</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
