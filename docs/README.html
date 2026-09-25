@@ -646,29 +646,43 @@
 <td><p><strong>~2027</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>P1</p></td>
-<td><p>STM32H7 + copper-rs MCU</p></td>
-<td><p>Replace ESP32/Lizard DSL with STM32H745 running copper-rs statically-scheduled Rust firmware. Hard real-time motor PID, hardware safety interlocks.</p></td>
+<td><p>Phase 1: dev platform (current)</p></td>
+<td><p>ESP32 + Lizard DSL remains the controller for this phase. Audience: university labs, ag-tech researchers, software startups. No compliance claimed, standards used as informal design reference only, user’s own risk per README. Product status <a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/blob/caatinga-dev/safety_roadmap.md#product-classification">Partly completed machinery</a></p></td>
+<td><p>Done</p></td>
+<td><p>4</p></td>
+<td><p>2026</p></td>
+</tr>
+<tr class="row-even"><td><p>P2</p></td>
+<td><p>Phase 2: OEM modular subsystems (Cerebri/Zephyr migration)</p></td>
+<td><p>Replaces ESP32/Lizard DSL with <a class="reference external" href="https://github.com/Agroecology-Lab/cerebri#cerebri-roadmap">Cerebri on Zephyr RTOS, targeting the NXP FRDM-A-S32K358 (dual-core Cortex-M7 lockstep, ASIL D target)</a>.  IEC 61508 architecture review follow. Audience: startups integrating Sowbot’s core. No third-party certification needed yet, formal internal assessment only. Can offer <a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/blob/caatinga-dev/safety_roadmap.md">PLc/d hardware subsystem</a></p></td>
 <td><p>Research</p></td>
 <td><p>2</p></td>
 <td><p>2027</p></td>
 </tr>
-<tr class="row-even"><td><p>P2</p></td>
+<tr class="row-odd"><td><p>P3</p></td>
+<td><p>Phase 3: commercial sale to farmers (Cerebri/Zephyr hardened)</p></td>
+<td><p>Same <a class="reference external" href="https://github.com/Agroecology-Lab/cerebri#cerebri-roadmap">Cerebri/Zephyr (FRDM-A-S32K358) controller</a>, hardened and certified for commercial sale: full ISO 18497 compliance, ISO 13849 PLc certification (or equivalent), third-party safety audit, field trial history, and an insurance/liability structure. All required before sale, none yet scoped.</p></td>
+<td><p>Planned</p></td>
+<td><p>1</p></td>
+<td><p>2027+</p></td>
+</tr>
+<tr class="row-even"><td><p>P4</p></td>
 <td><p>CANopen bus</p></td>
 <td><p>ISO 11898 FDCAN at 500 kbit/s / 2 Mbit/s. lely-core CANopen master on T527 native M_CAN. DSP402 drive profile.</p></td>
 <td><p>Research</p></td>
 <td><p>2</p></td>
 <td><p>2027</p></td>
 </tr>
-<tr class="row-odd"><td><p>P3</p></td>
+<tr class="row-odd"><td><p>P5</p></td>
 <td><p>RT kernel + core isolation</p></td>
 <td><p>PREEMPT_RT on Limbic T527. <code class="docutils literal notranslate"><span class="pre">isolcpus=4-7</span></code>, RTK EKF on core 2 (SCHED_FIFO 60), AOC nav on cores 4-6, watchdog on core 5. GbE/CAN IRQ pinned to core 0.</p></td>
 <td><p>Planned</p></td>
 <td><p>2</p></td>
 <td><p>2027</p></td>
 </tr>
-<tr class="row-even"><td><p>P4</p></td>
+<tr class="row-even"><td><p>P6</p></td>
 <td><p>ROFS image</p></td>
-<td><p>Read-only rootfs — Ubuntu Noble minimal or Yocto with RT kernel, pre-built LCAS topo nav, Nav2, <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code>. Immutable field deployment.</p></td>
+<td><p>Read-only rootfs, Ubuntu Noble minimal or Yocto with RT kernel, pre-built LCAS topo nav, Nav2, <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code>. Immutable field deployment.</p></td>
 <td><p>Research</p></td>
 <td><p>1</p></td>
 <td><p>2027</p></td>
