@@ -513,7 +513,7 @@
                  <span class="n">topo_state</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="o">.</span><span class="n">Topo</span><span class="p">,</span>
                  <span class="n">on_go</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">],</span>
                  <span class="n">on_cancel</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">],</span>
-                 <span class="n">on_delete</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]],</span>
+                 <span class="n">on_delete</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
                  <span class="n">on_select</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                 Initialize the navigation sidebar and bind its controls to the run state.</span>
@@ -523,7 +523,7 @@
 <span class="sd">                     topo_state (RunViewModel.Topo): Run state containing node selection and navigation statuses.</span>
 <span class="sd">                     on_go (Callable[[], None]): Callback invoked to start navigation.</span>
 <span class="sd">                     on_cancel (Callable[[], None]): Callback invoked to cancel navigation.</span>
-<span class="sd">                     on_delete (Callable[[], None | Awaitable[None]]): Callback invoked to delete the selected node.</span>
+<span class="sd">                     on_delete (Callable[[], Awaitable[None] | None]): Callback invoked to delete the selected node.</span>
 <span class="sd">                     on_select (Callable[[str], None]): Callback invoked with the name of the selected node.</span>
 <span class="sd">                 &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
