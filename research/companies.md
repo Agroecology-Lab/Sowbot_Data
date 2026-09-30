@@ -1,6 +1,3 @@
-# Climate/Crop Robotics Companies — GitHub Summary (sorted for Sowbot relevance)
-
-The "confirmed GitHub presence" table below is sorted with the entries most directly useful to Sowbot's actual stack (ROS 2, dual F9P RTK GNSS + BNO085 IMU, FusionCore sensor fusion, TSM/Sentor crop-row navigation, terrain/mesh nav, MAVLink→Cerebri/Zephyr transition) at the top, tapering down to entries included only for completeness. The "no public GitHub" table isn't sorted — nothing in it has code to be relevant to.
 
 ## Confirmed GitHub presence, most relevant first
 
