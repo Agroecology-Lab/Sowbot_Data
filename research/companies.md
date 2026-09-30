@@ -1,84 +1,96 @@
+# Climate-robotics companies: GitHub presence, ranked for Agroecology-Lab / Sowbot
+
+Ranked against `feldfreund_devkit_ros` (docker/Dockerfile): ROS 2 Jazzy, Nav2, Fields2Cover, LCAS `topological_navigation`, `caatingarobotics`, FusionCore, `ublox_dgnss`, Lizard/ESP32, rosys/NiceGUI, YOLOX, Forest3D, sentor, ros2_medkit, foxglove, rosbag2-mcap. Org repos also considered: `cerebri`, `ardupilot`, `acorn-precision-farming-rover`, `Open-Weeding-Delta`, `farmbot_*`, `TSM`.
 
 ## Confirmed GitHub presence, most relevant first
 
 | Company | GitHub | ROS status | Why it's relevant to Sowbot |
 |---|---|---|---|
-| Nature Robots | [github.com/naturerobots](https://github.com/naturerobots) | Heavy ROS 1/2 | `mesh_navigation`/`mesh_tools` does 3D-mesh terrain navigation instead of 2D grid maps — directly on point for the terrain/`caatinga-dev` branch work. `move_base_flex` is a close architectural cousin to `NavigationGateway`. |
-| Sabanto | [github.com/sabantoag](https://github.com/sabantoag) | Heavy ROS 1, looks historic | RTK-GPS driver patterns (`ublox_f9p`, `ntrip_ros`) and `gps_goal_server` are close cousins of the dual-F9P RTK setup and `GPS_INPUT`-style bridging. |
-| JABAS.AI | [github.com/jabasai](https://github.com/jabasai) | Heavy ROS 2 | `topological_navigation` is graph-based nav specifically for crop-row layouts — same problem space as `sowbot_row_follow`/TSM. |
-| BlueWhite | [github.com/bw-robotics](https://github.com/bw-robotics) | Heavy ROS 1/2 | Forks of `kiss-icp` and `robot_localization` for tractor state estimation sit close to what FusionCore's UKF + wheel-slip detection is doing. |
-| CHCNAV (Huace) | [github.com/HuaceNav](https://github.com/HuaceNav) | ROS drivers | Drivers for RTK-GNSS receivers and CGI-610 INS units — directly relevant to the dual-F9P GNSS and geofence-device u-blox F9P work. |
-| Bonsai Robotics | [github.com/BonsaiRobotics](https://github.com/BonsaiRobotics) | Heavy ROS 2 | Amiga SDK, GNSS drivers, drive-by-wire kit, general ROS 2 tooling and `rosbag2` handling — broad overlap with the devkit stack. |
-| Avular | [github.com/avular-robotics](https://github.com/avular-robotics) | ROS 2 (SDK level) | Nav2, behaviour trees, perception examples — useful as an architecture reference for the ROS 2 stack generally. |
-| Blue Robotics | [github.com/bluerobotics](https://github.com/bluerobotics) | Not ROS (own stack) | Their ArduSub fork is the same ArduPilot lineage as the (now superseded) MAVLink bridge work — relevant as prior art even though the plan has moved to Cerebri/Zephyr. |
-| Twisted Fields | [github.com/Twisted-Fields](https://github.com/Twisted-Fields) | Not ROS | Acorn is the closest thing on this list to an open-hardware Sowbot peer — KiCad PCB designs and RP2040 motor controller firmware, genuinely open. |
-| ClearPath Robotics | [github.com/clearpathrobotics](https://github.com/clearpathrobotics) | Heavy ROS/ROS 2 | 300+ repos of general ROS 2 platform infrastructure — useful as a reference for patterns, less so for ag-specific code. |
-| TerraClear | [github.com/TerraClear](https://github.com/TerraClear) | ROS 1, unmaintained | `move_base` local planner and GNSS driver for an ag robot, but stale and mixed with unrelated repos. |
-| FarmWise | [github.com/FarmWise](https://github.com/FarmWise) | ROS 1, all archived | Ag-robot ROS packages, but archived and no longer maintained. |
-| Naïo Technologies | [github.com/NaioTechnologies](https://github.com/NaioTechnologies) | Not ROS-native | Ag-robot competitor, but own proprietary protocol with only a stale ROS-adjacent fork — reference value only. |
-| AgriRobot | [github.com/AgriRobotAI](https://github.com/AgriRobotAI) | Unconfirmed | PyTorch/YOLO weed-detection scripts — tangential to the plant-disease-detection YOLOX work, not crop-row nav. |
-| Bosch / Bosch Research | [github.com/bosch](https://github.com/bosch), [github.com/boschresearch](https://github.com/boschresearch) | Heavy ROS 1/2 | `usb_cam` is a generic ROS camera driver — useful if a plain V4L2 camera node is ever needed, not ag-specific. |
-| Boston Dynamics | [github.com/boston-dynamics](https://github.com/boston-dynamics), [github.com/bdaiinstitute](https://github.com/bdaiinstitute) | AI Institute arm has `spot_ros2` | General ROS 2 reference only — Spot isn't a wheeled ag platform. |
-| Opentrons | [github.com/Opentrons](https://github.com/Opentrons) | Not ROS, not agricultural | Included for completeness — lab-automation robot, no direct overlap with Sowbot. |
-| Agtonomy | [github.com/agtonomy](https://github.com/agtonomy) | Not ROS | `trellis` is a non-ROS middleware alternative — worth knowing about, not directly usable. |
-| Wingtra | [github.com/wingtra](https://github.com/wingtra) | PX4, not ROS | Drone autopilot, different vehicle class and ecosystem entirely. |
-| Hexagon | [github.com/hexagon-geo-surv](https://github.com/hexagon-geo-surv) | Not ROS | Almost entirely upstream mirrors (Zephyr, u-boot) with no custom application code — only relevant as confirmation that Zephyr is used in production elsewhere. |
-| aitronik | [github.com/aitronik](https://github.com/aitronik) | Unclear | Student/thesis SLAM repos, not agricultural. |
-| dailyrobotics | [github.com/dailyrobotics](https://github.com/dailyrobotics) | No ROS | Manipulation/robot-learning research, unrelated to field robotics. |
-| RobotMakers | [github.com/robotmakers](https://github.com/robotmakers) | Unknown | No public repos — nothing to draw on. |
-| Topcon | [github.com/Topcon](https://github.com/Topcon) | Contradictory data | One repo called `empty`; contradictory secondary source. Not usable as-is. |
+| Nature Robots | [naturerobots](https://github.com/naturerobots) | Heavy ROS 1/2 | `mesh_navigation`/`mesh_tools` does 3D-mesh terrain navigation instead of 2D grid maps. On point for the terrain/`caatinga-dev` branch work. `move_base_flex` is a close cousin of `NavigationGateway`. |
+| Burro (Augean Robotics) | [burro-robotics](https://github.com/burro-robotics) | ROS forks, 35 repos | Has a `Fields2Cover-fork`, the same library the Dockerfile builds in Stage 3.5. Also `witmotion_IMU_ros`, a Livox Mid-360 sim plugin, `burro-sdk`. Ownership inferred from repo content; profile has no website link. |
+| Angsa Robotics | [angsa-robotics](https://github.com/angsa-robotics) | ROS 2, 36 repos, 1 original | Forks of `navigation2`, `opennav_coverage`, `robot_localization`, `ntrip_client`, `ublox`, `nmea_navsat_driver`, `rosbag2_snapshot`, `foxglove-py`, `ros2_control`, `teb_local_planner`. Nearly the devkit's dependency list, with their own patches (`ntrip_client`, `ublox`, `rviz_satellite`). `opennav_coverage` sits next to `devkit_f2c_planner`. |
+| Earth Rover | [earthrover](https://github.com/earthrover) | ROS 1 (Catkin) | `OpenER` is an open-source ROS robot with mechanical design. Also `earth_rover_localization` (`robot_localization` EKF config), `er_vision_pipeline` (OpenCV + PCL), Piksi GNSS release repos. Closest ag peer to Sowbot after Twisted Fields. |
+| farm-ng | [farm-ng](https://github.com/farm-ng) | ROS bridge + own SDK | `amiga-ros-bridge`, `amiga-ros-bridge-v1` (Rust), `farm-ng-core`, `amiga-dev-kit`, `amiga-dora-bridge`. Commercial ag rover with an open dev kit and a ROS bridge. |
+| JABAS.AI | [jabasai](https://github.com/jabasai) | Heavy ROS 2 | `topological_navigation` is graph-based nav for crop-row layouts, same problem space as `sowbot_row_follow`/TSM. The Dockerfile pins LCAS's `topological_navigation`. |
+| Twisted Fields | [Twisted-Fields](https://github.com/Twisted-Fields) | Not ROS | Acorn is the nearest open-hardware peer: KiCad PCBs, RP2040 motor controller firmware. Matches the org's `acorn-*` and `rp2040-motor-controller` repos. |
+| Robotics 88 | [robotics-88](https://github.com/robotics-88) | ROS 2, 51 repos, 32 original | Original ROS 2 nodes: `trail-follower`, `path-manager`, `task-manager`, `bag_recorder_2`, `mp4-to-ros2`, `octomap-slice`, `ros-messages-88`. MAVROS repos (`airsim-mavros-wrapper`, `range-data-to-mavros`) relate to the org's `ardupilot` fork and `devkit_mavlink_bridge`. |
+| Bonsai Robotics | [BonsaiRobotics](https://github.com/BonsaiRobotics) | Heavy ROS 2 | Amiga SDK, GNSS drivers, drive-by-wire kit, `rosbag2` handling. Broad overlap with the devkit stack. |
+| Sabanto | [sabantoag](https://github.com/sabantoag) | Heavy ROS 1, historic | RTK-GPS driver patterns (`ublox_f9p`, `ntrip_ros`), `gps_goal_server`. Cousins of the dual-F9P setup and `GPS_INPUT`-style bridging. |
+| BlueWhite | [bw-robotics](https://github.com/bw-robotics) | Heavy ROS 1/2 | Forks of `kiss-icp` and `robot_localization` for tractor state estimation. Close to FusionCore's UKF and wheel-slip detection. |
+| CHCNAV (Huace) | [HuaceNav](https://github.com/HuaceNav) | ROS drivers | Drivers for RTK-GNSS receivers and CGI-610 INS units. Relevant to the dual-F9P GNSS work. |
+| Swap Robotics | [swaprobotics](https://github.com/swaprobotics) | ROS 2 forks, 20 repos | Forks of `RTKLIB`, `ros-foxglove-bridge`, `mqtt_client`, `rosx_introspection`, `zed-ros2-wrapper`, `ros1_bridge`. Solar-farm vegetation robot on a stack similar to the devkit's. Ownership inferred. |
+| Urban Machine | [urbanmachine](https://github.com/urbanmachine) | ROS 2, 6 original | `node_helpers` (ROS 2 framework), `create-ros-app` (production template), `colcon-poetry-ros`, `onshape-urdf-exporter`. Not ag. Reference for Docker/colcon/pyproject structure. |
+| Avular | [avular-robotics](https://github.com/avular-robotics) | ROS 2 (SDK level) | Nav2, behaviour trees, perception examples. Architecture reference. |
+| Scythe Robotics | [scythe-robotics](https://github.com/scythe-robotics) | C++, 1 original | `canfetti` is a CANopen stack in C++. Possibly useful for the CAN/DroneCAN ESC work on the Lizard fork. 5 other repos are forks. |
+| Cosmic Robotics | [cosmic-robotics](https://github.com/cosmic-robotics) | ROS 2 forks | Forks of `YOLOX-ROS` (devkit uses YOLOX), `BehaviorTree.ROS2`, `moveit2`. Solar-panel installer; only `CADLock` is original. |
+| Greenfield Robotics | [greenfieldrobotics](https://github.com/greenfieldrobotics) | 6 forks | Forks of `rmf_traffic_editor`/`free_fleet`, `IBusBM`, `TeensyProgramFlasher`. Weeding-robot fleet company; ownership inferred. |
+| SwarmFarm | [swarmfarm](https://github.com/swarmfarm) | ROS forks, 2 original | Forks of `ouster-ros`, `tf2_web_republisher`, `LMS1xx`, `jsk_recognition`, `yolact_edge`. Sensor/web-UI stack of an ag swarm platform. |
+| Blue Robotics | [bluerobotics](https://github.com/bluerobotics) | Not ROS | ArduSub fork, same ArduPilot lineage as the superseded MAVLink bridge. Prior art only; plan moved to Cerebri/Zephyr. |
+| ClearPath Robotics | [clearpathrobotics](https://github.com/clearpathrobotics) | Heavy ROS/ROS 2 | 300+ repos of general ROS 2 platform infrastructure. Pattern reference, little ag-specific code. |
+| 3Farmate Robotics | [3farmate-robotics](https://github.com/3farmate-robotics) | ROS 1 forks | 12 forks (`navigation`, `diffbot`, `gps-waypoint-based-autonomous-navigation-in-ros`, `Sawppy_Rover`). No original code. |
+| Mission Robotics | [mission-robotics](https://github.com/mission-robotics) | C++/Arduino | Forks of `arduino-CAN`, `ODriveArduino`, `xsens_public_sdk`. Marine; only CAN/ODrive forks overlap. |
+| Blue River Technology | [bluerivertechnology](https://github.com/bluerivertechnology) | Mostly forks | 28 of 30 repos are forks (incl. `ros2-web-bridge`). Originals: `CoPilot-Workshop`, `tf_sample`. |
+| TerraClear | [TerraClear](https://github.com/TerraClear) | ROS 1, unmaintained | `move_base` local planner and GNSS driver for an ag robot. Stale, mixed with unrelated repos. |
+| FarmWise | [FarmWise](https://github.com/FarmWise) | ROS 1, all archived | Ag-robot ROS packages, archived. |
+| Naïo Technologies | [NaioTechnologies](https://github.com/NaioTechnologies) | Not ROS-native | Own protocol, stale ROS-adjacent fork. Reference only. |
+| AgriRobot | [AgriRobotAI](https://github.com/AgriRobotAI) | Unconfirmed | PyTorch/YOLO weed-detection scripts. Tangential to the YOLOX disease work. |
+| ICON | [iconbuild](https://github.com/iconbuild) | ROS 2 forks | Husarion and Fixposition forks (`fixposition_driver`, `navigation2`, `depthai-ros`, `foxglove-bridge-docker`). Construction 3D printing; GNSS/VIO driver is the only overlap. |
+| Botlink | [botlink](https://github.com/botlink) | C++/Go | `botlink-xrd-sdk` (drone datalink), MAVLink Go libs. Different vehicle class. |
+| WildDrone | [wilddrone](https://github.com/wilddrone) | Python/Kotlin | `SkyLoop` (multi-drone relay), `WildBridge` (DJI ground station). Drones, not ground robots. |
+| EyeROV | [eyerov](https://github.com/eyerov) | ROS fork | `rplidar_ros` fork plus data-collector backend. Underwater; little overlap. |
+| PaintJet | [paintjet](https://github.com/paintjet) | ROS 1 | `roomba-autonomy`, DWM1001 UWB interface, rosbag analysis. Low. |
+| GrayMatter Robotics | [graymatter-robotics](https://github.com/graymatter-robotics) | ROS forks | `zivid-ros`, `trajopt`, `ros1_bridge` forks. Industrial sanding; low. |
+| Bosch / Bosch Research | [bosch](https://github.com/bosch), [boschresearch](https://github.com/boschresearch) | Heavy ROS 1/2 | `usb_cam` (generic V4L2 driver; Dockerfile already installs `ros-jazzy-usb-cam`). |
+| Boston Dynamics | [boston-dynamics](https://github.com/boston-dynamics), [bdaiinstitute](https://github.com/bdaiinstitute) | AI Institute has `spot_ros2` | General ROS 2 reference. Not a wheeled ag platform. |
+| Sofar Ocean | [sofarocean](https://github.com/sofarocean) | Python | Spotter buoy data tooling (`roguewave`, `spotter-sd-parser`). No ROS. |
+| Otherlab | [otherlab](https://github.com/otherlab) | C++/Python | `geode`, `simplicity`, `petiga`: computational geometry and FEM. No ROS. |
+| Meteomatics | [meteomatics](https://github.com/meteomatics) | None | Weather-API connector libraries only. |
+| Agtonomy | [agtonomy](https://github.com/agtonomy) | Not ROS | `trellis` is a non-ROS middleware alternative. |
+| Wingtra | [wingtra](https://github.com/wingtra) | PX4, not ROS | Drone autopilot. Different vehicle class. |
+| Hexagon | [hexagon-geo-surv](https://github.com/hexagon-geo-surv) | Not ROS | Mostly upstream mirrors (Zephyr, u-boot). Confirms Zephyr is used in production elsewhere. |
+| Opentrons | [Opentrons](https://github.com/Opentrons) | Not ROS, not ag | Lab automation. No overlap. |
+| aitronik | [aitronik](https://github.com/aitronik) | Unclear | Student/thesis SLAM repos. |
+| dailyrobotics | [dailyrobotics](https://github.com/dailyrobotics) | No ROS | Manipulation research. |
+| RobotMakers | [robotmakers](https://github.com/robotmakers) | Unknown | No public repos. |
+| Topcon | [Topcon](https://github.com/Topcon) | Contradictory data | One repo called `empty`. Not usable as-is. |
 
 ## No public GitHub found / unrelated
 
 | Company | Notes |
 |---|---|
-| Cerea | Unrelated — GitHub presence is an academic fluid-dynamics lab, not Cerea Autosteer. |
-| Uncrewed | Unrelated — resolves to university drone-club repos, not a company. |
-| FarmDroid (Farmdroid) | Org exists, zero public repositories. |
-| BudBreak | No public repositories. |
-| Croptimal | No public repositories. |
-| AVL Motion | No public repositories. |
-| Agmove-Robotics | Guessed org login doesn't resolve — wrong slug or private/deleted. |
-| Asteria Aerospace | No GitHub org tied to the actual company found. |
-| Microdrones | No GitHub org tied to the actual company found. |
-| Skyfront | No GitHub org tied to the actual company found. |
-| TensorField Ag | No GitHub org tied to the actual company found. |
-| Carbon Robotics | No GitHub presence — proprietary, closed-source (LaserWeeder, "Carbon AI" Large Plant Model). |
-| Garford | Traditional machinery manufacturer, no public engineering presence. |
-| Hagie | Traditional machinery manufacturer, no public engineering presence. |
-| Lemken | Traditional machinery manufacturer, no public engineering presence. |
-| Autopickr | No GitHub org tied to the actual company found. |
-| Agrobotics Inc | No GitHub org tied to the actual company found. |
-| Monarch Tractor | No official corporate org. Company has largely ceased operations (assets acquired piecemeal by Caterpillar, April 2026); a community-run GitHub group has sprung up independently to keep existing MK-V tractors running. |
-| AnyBotics | No corporate org — only individual employees' personal GitHub accounts with forked robotics tooling. |
-| Saga Robotics (Thorvald) | No corporate org found. Software was originally published as ROS packages via NMBU academic research (2018 paper), but no current public repo located. |
-| EarthSense (TerraSentia) | No corporate org. Platform is widely used in academic ROS research (University of Illinois ROS-bag datasets, crop-row navigation papers) even though EarthSense's own code isn't public. |
-| WindBorne Systems | No corporate org. Data/forecast API is partner-only; one unaffiliated fan-made visualisation project exists on GitHub. |
-| SailDrone | No corporate org. Public Mission API is the only open surface; a few unrelated academic/NOAA repos process Saildrone-collected data. |
-| Nauticus Robotics | No GitHub presence — closed-source cloud/autonomy software for subsea robots. |
-| Hullbot | No GitHub presence. |
-| Ocean Aero | No GitHub presence. |
-| Teledyne Marine | No GitHub presence for the marine robotics division specifically. |
-| Genrobotic Innovations | No GitHub presence — closed-source, Bandicoot manhole-cleaning robot. |
-| Dendra Systems | No GitHub presence — closed-source RestorationOS platform (aerial seeding, ecology ML). |
-| Pyka | No GitHub presence — proprietary autonomous electric aircraft stack. |
-| Taranis | No GitHub presence — closed SaaS crop-intelligence platform. |
-| TreeSwift | No GitHub presence — UPenn GRASP Lab spinoff, but SwiftCruise's code isn't public. |
-| Outreach Robotics | No GitHub presence found. |
-| Q-Bot | No GitHub presence found. |
-| ARIX Tech | No GitHub presence found. |
-| ZenRobotics | No GitHub presence — acquired by Terex in 2022, closed-source sorting AI. |
-| Recycleye | No GitHub presence found. |
-| AMP Robotics (AMP) | No GitHub presence — closed-source AMP Vision/Neuron waste-sorting AI. |
-| Kubota Corporation | No GitHub org. Publishes OSS license-compliance pages only, no actual repos. |
-| Aigen | No GitHub presence — proprietary solar-powered weeding robot. |
-| Outrider | No GitHub presence — autonomous yard-truck logistics, closed-source. |
-| Built Robotics | No GitHub presence found. |
-| Icefin (Georgia Tech / Cornell) | No public repo found, despite being a long-running, well-documented academic AUV project. |
-| OceanOneK (Stanford) | No public repo found — Stanford's tactile underwater humanoid robot project. |
-| Impossible Metals | No GitHub presence — proprietary seabed-mining AUV (Eureka series). |
-| Hydromea | No GitHub presence — proprietary underwater drones and optical comms. |
+| Cerea | Unrelated: GitHub presence is an academic fluid-dynamics lab, not Cerea Autosteer. |
+| Uncrewed | Unrelated: resolves to university drone-club repos. |
+| FarmDroid | Org exists, zero public repositories. |
+| BudBreak, Croptimal, AVL Motion | No public repositories. |
+| Agmove-Robotics | Guessed org login doesn't resolve. |
+| Asteria Aerospace, Microdrones, Skyfront, TensorField Ag, Autopickr, Agrobotics Inc | No GitHub org tied to the actual company found. |
+| Carbon Robotics | No GitHub presence; proprietary (LaserWeeder, "Carbon AI"). |
+| Garford, Hagie, Lemken | Traditional machinery manufacturers, no public engineering presence. |
+| Monarch Tractor | No official org. Largely ceased operations (assets acquired piecemeal by Caterpillar, April 2026); a community-run GitHub group keeps existing MK-V tractors running. |
+| AnyBotics | No corporate org; only employees' personal forks. |
+| Saga Robotics (Thorvald) | No corporate org. Original ROS packages came via NMBU academic research (2018), no current public repo located. |
+| EarthSense (TerraSentia) | No corporate org. Widely used in academic ROS research, but own code isn't public. |
+| WindBorne Systems | No corporate org. API is partner-only; one unaffiliated fan project. |
+| SailDrone | No corporate org. Only the public Mission API. |
+| Nauticus Robotics, Hullbot, Ocean Aero, Teledyne Marine | No GitHub presence (Nauticus closed-source). |
+| Genrobotic Innovations, Dendra Systems, Pyka, Taranis, AMP Robotics, Aigen, Outrider, ZenRobotics, Impossible Metals, Hydromea | No GitHub presence; closed-source. |
+| TreeSwift | No GitHub presence; UPenn GRASP spinoff, SwiftCruise code not public. |
+| Outreach Robotics, Q-Bot, ARIX Tech, Recycleye, Built Robotics, Icefin, OceanOneK | No GitHub presence found. |
+| Kubota Corporation | No org; OSS licence-compliance pages only. |
+| Air Forestry, Charge Robotics, EarthForce, Elythor, ACWA Robotics, Gravis Robotics, Logiqs, Okibo, Hyperion Robotics, Silana, RanMarine, Insight Robotics | Org exists, no public repos listed. |
+| Kestrix, Terabase Energy, Neptune Robotics, Toggle Robotics, CleanRobotics, Baubot, Flash Forest, Open Ocean Robotics | Org exists with 1-4 repos, all forks or trivial (Baubot: `ctrlx-automation-sdk-ros2` fork). |
+| Bear Flag Robotics, Bloomfield Robotics, Solinftec | Org exists. Only website repo, docs/support and changelog templates; no robot code. |
+| Airseed | `airseed` org points to airseed.com, not airseedtech.com: different company. API client libraries only. |
+| Terran Robotics | Org exists but the company builds homes, not weeding robots (sheet row looks wrong). Only `usb_cam`/`apriltag` forks. |
+| BladeBUG, Easy Floor Robotics, Korechi, Reefgen, Terradepth, NixieDip, Windracers, Windbotix, Borobotics, GreenDigger, Sudoyantra, PV Circonomy, Recirculate | No GitHub account found under any candidate slug. |
+| Beewise, Tertill, Dusty Robotics, Yarbo, Zordi, Rain, Pave Robotics, Ripe Robotics, Floating Robotics, Harvest Automation, Enerkite, PIX Moving | Candidate accounts exist but couldn't be tied to the company. Tertill's is a game-dev account; Dusty's has `symforce`/`symengine` forks only. |
 
+## Still outstanding
+
+- About 100 rows (mostly marine, construction, recycling, drone, lab entries) had no verified org. Method was slug probing plus website match, not full web search.
+- Next: web search on ag-relevant unconfirmed ones: Ecorobotix, Agrobot, Tortuga, Korechi, Ripe Robotics, Harvest CROO, FarmRobo, Yarbo, Zordi.
+- Repo lists only; commit recency and licences not checked.
+- Burro, Swap, Greenfield ownership inferred (no website link on profile).
 ## Still outstanding
 
 Roughly 190 rows remain unchecked from the original ~250-company climate-robotics spreadsheet.
