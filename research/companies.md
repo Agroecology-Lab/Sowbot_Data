@@ -1,7 +1,5 @@
 # Climate-robotics companies: GitHub presence, ranked for Agroecology-Lab / Sowbot
 
-Ranked against `feldfreund_devkit_ros` (docker/Dockerfile): ROS 2 Jazzy, Nav2, Fields2Cover, LCAS `topological_navigation`, `caatingarobotics`, FusionCore, `ublox_dgnss`, Lizard/ESP32, rosys/NiceGUI, YOLOX, Forest3D, sentor, ros2_medkit, foxglove, rosbag2-mcap. Org repos also considered: `cerebri`, `ardupilot`, `acorn-precision-farming-rover`, `Open-Weeding-Delta`, `farmbot_*`, `TSM`.
-
 ## Confirmed GitHub presence, most relevant first
 
 | Company | GitHub | ROS status | Why it's relevant to Sowbot |
