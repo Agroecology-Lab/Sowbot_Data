@@ -194,6 +194,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="devkit_f2c_planner.html">devkit_f2c_planner</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_f2c_planner.f2c_planner</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.tag_rows"><code class="docutils literal notranslate"><span class="pre">tag_rows()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_f2c_planner.f2c_test_helpers.html">devkit_f2c_planner.f2c_test_helpers</a><ul>
@@ -226,6 +227,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_f2c_planner.test_run_f2c.html">devkit_f2c_planner.test_run_f2c</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest"><code class="docutils literal notranslate"><span class="pre">RunF2CTest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_f2c_planner.test_shapely_backend.html">devkit_f2c_planner.test_shapely_backend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ParityTest"><code class="docutils literal notranslate"><span class="pre">ParityTest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest"><code class="docutils literal notranslate"><span class="pre">ShapelyBackendTest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.TagRowsTest"><code class="docutils literal notranslate"><span class="pre">TagRowsTest</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -307,6 +314,12 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_import.html">devkit_ui.plan_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.Plan"><code class="docutils literal notranslate"><span class="pre">Plan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.PlanError"><code class="docutils literal notranslate"><span class="pre">PlanError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.parse_plan"><code class="docutils literal notranslate"><span class="pre">parse_plan()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
 </ul>
@@ -352,6 +365,14 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_parse.html">devkit_ui.test_parse</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_import.html">devkit_ui.test_plan_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest"><code class="docutils literal notranslate"><span class="pre">ParsePlanTest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_process_cleanup.html">devkit_ui.test_process_cleanup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_process_cleanup.html#devkit_ui.test_process_cleanup.TestProcessCleanup"><code class="docutils literal notranslate"><span class="pre">TestProcessCleanup</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_run_ui.html">devkit_ui.test_run_ui</a><ul>
@@ -530,6 +551,9 @@ same-package import.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.field_centroid_xy" title="devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_centroid_xy</span></code></a>(corners_ll)</p></td>
 <td><p>Field boundary's spatial centroid, in the same local-xy frame _run_f2c()/_run_contour_f2c() use (anchored at corners_ll[0]).</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.tag_rows" title="devkit_f2c_planner.f2c_planner.tag_rows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tag_rows</span></code></a>(rows_ll, corners_ll, angle_deg)</p></td>
+<td><p>Return (row, frag) for each swath returned by _run_f2c().</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py function">
@@ -540,6 +564,16 @@ _run_f2c()/_run_contour_f2c() use (anchored at corners_ll[0]).</p>
 <p>Callers pass this straight through as dem.select_reference_contour_xy()’s
 centroid_xy argument, to get a reference contour centred on the field —
 see that function’s docstring for why centring keeps drift symmetric.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_f2c_planner.f2c_planner.tag_rows">
+<span class="sig-prename descclassname"><span class="pre">devkit_f2c_planner.f2c_planner.</span></span><span class="sig-name descname"><span class="pre">tag_rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows_ll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corners_ll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_deg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/devkit_f2c_planner/f2c_planner.html#tag_rows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_f2c_planner.f2c_planner.tag_rows" title="Link to this definition"></a></dt>
+<dd><p>Return (row, frag) for each swath returned by _run_f2c().</p>
+<p>Obstacle clipping splits one row into consecutive swaths. Those share a
+perpendicular offset (to the swath direction), so group on that. Row
+numbers count from 0 in order of first appearance; frag counts from 0
+within a row.</p>
 </dd></dl>
 
 </section>

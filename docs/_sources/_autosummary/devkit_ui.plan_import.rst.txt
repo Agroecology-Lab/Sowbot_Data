@@ -1,0 +1,24 @@
+devkit\_ui.plan\_import
+=======================
+
+.. automodule:: devkit_ui.plan_import
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      parse_plan
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Plan
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      PlanError
+   

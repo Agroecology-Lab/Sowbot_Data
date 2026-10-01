@@ -1,0 +1,14 @@
+devkit\_f2c\_planner.test\_shapely\_backend
+===========================================
+
+.. automodule:: devkit_f2c_planner.test_shapely_backend
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ParityTest
+      ShapelyBackendTest
+      TagRowsTest
+   

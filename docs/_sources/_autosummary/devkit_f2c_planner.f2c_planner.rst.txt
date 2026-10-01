@@ -9,4 +9,5 @@ devkit\_f2c\_planner.f2c\_planner
    .. autosummary::
    
       field_centroid_xy
+      tag_rows
    
