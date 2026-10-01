@@ -891,6 +891,7 @@ consequential damages.</p></li>
 <li><p><a class="reference external" href="https://github.com/git-guides/install-git">Git</a></p></li>
 <li><p><a class="reference external" href="https://docs.docker.com/engine/install/debian/#install-using-the-repository">Docker</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-serial</span> <span class="pre">setserial</span> <span class="pre">v4l-utils</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">pipx</span> <span class="pre">&amp;&amp;</span> <span class="pre">pipx</span> <span class="pre">install</span> <span class="pre">'glances[web]'</span> <span class="pre">&amp;&amp;</span> <span class="pre">pipx</span> <span class="pre">ensurepath</span> <span class="pre">&amp;&amp;</span> <span class="pre">(nohup</span> <span class="pre">~/.local/bin/glances</span> <span class="pre">-w</span> <span class="pre">--bind</span> <span class="pre">127.0.0.1</span> <span class="pre">&gt;</span> <span class="pre">/tmp/glances.log</span> <span class="pre">2&gt;&amp;1</span> <span class="pre">&lt;</span> <span class="pre">/dev/null</span> <span class="pre">&amp;)</span></code></p></li>
 </ul>
 </section>
 <section id="mac">
