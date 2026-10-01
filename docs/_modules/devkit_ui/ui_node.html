@@ -322,6 +322,14 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html">devkit_ui.test_medkit_gateway</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway"><code class="docutils literal notranslate"><span class="pre">TestMedkitGateway</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.build_controls"><code class="docutils literal notranslate"><span class="pre">build_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.load_controls_builder"><code class="docutils literal notranslate"><span class="pre">load_controls_builder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_controls"><code class="docutils literal notranslate"><span class="pre">make_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_process"><code class="docutils literal notranslate"><span class="pre">make_process()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_models.html">devkit_ui.test_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc"><code class="docutils literal notranslate"><span class="pre">TestTopoDoc</span></code></a></li>
 </ul>
@@ -515,6 +523,7 @@
 <span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">html</span> <span class="kn">import</span> <span class="n">escape</span>
 <span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">resources</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">pairwise</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
@@ -3560,6 +3569,93 @@
                     <span class="s1">&#39;font-family:</span><span class="se">\&#39;</span><span class="s1">Courier New</span><span class="se">\&#39;</span><span class="s1">,monospace;&quot;&gt;&#39;</span>
                     <span class="s1">&#39;↗ RViz (noVNC)&lt;/a&gt;&#39;</span>
                 <span class="p">)</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">separator</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full my-1&#39;</span><span class="p">)</span>
+
+                <span class="c1"># ── Medkit Gateway ───────────────────────────────────────</span>
+                <span class="n">_medkit_proc</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+                <span class="n">_medkit_stopping</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">_medkit_lbl</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs font-mono&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span>
+                <span class="k">def</span> <span class="nf">_start_medkit</span><span class="p">():</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;Launch Medkit on loopback unless this tab&#39;s process is running.</span>
+
+<span class="sd">                    Display process creation errors in the status label. A successful</span>
+<span class="sd">                    start reports the launch PID without checking gateway readiness.</span>
+<span class="sd">                    &quot;&quot;&quot;</span>
+                    <span class="k">if</span> <span class="n">_medkit_stopping</span><span class="p">:</span>
+                        <span class="k">return</span>
+                    <span class="k">if</span> <span class="n">_medkit_proc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">_medkit_proc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;already running&#39;</span><span class="p">)</span>
+                        <span class="k">return</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">_medkit_proc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+                            <span class="p">[</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;ros2_medkit_gateway&#39;</span><span class="p">,</span> <span class="s1">&#39;bringup.launch.py&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;server_host:=127.0.0.1&#39;</span><span class="p">],</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span><span class="p">,</span>
+                        <span class="p">)</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;started (pid </span><span class="si">{</span><span class="n">_medkit_proc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#1a7f37&#39;</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
+                <span class="k">async</span> <span class="k">def</span> <span class="nf">_stop_medkit</span><span class="p">():</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;Reap the launch process before releasing its handle, off the UI loop.&quot;&quot;&quot;</span>
+                    <span class="k">nonlocal</span> <span class="n">_medkit_stopping</span>
+                    <span class="k">if</span> <span class="n">_medkit_stopping</span><span class="p">:</span>
+                        <span class="k">return</span>
+                    <span class="n">_medkit_stopping</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">_medkit_proc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;stopping&#39;</span><span class="p">)</span>
+                            <span class="k">await</span> <span class="n">ng_run</span><span class="o">.</span><span class="n">io_bound</span><span class="p">(</span><span class="n">_shutdown_medkit</span><span class="p">,</span> <span class="n">_medkit_proc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                            <span class="n">_medkit_proc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">)</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="p">(</span><span class="ne">OSError</span><span class="p">,</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">TimeoutExpired</span><span class="p">)</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="n">_medkit_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
+                    <span class="k">finally</span><span class="p">:</span>
+                        <span class="n">_medkit_stopping</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="k">def</span> <span class="nf">_shutdown_medkit</span><span class="p">(</span><span class="n">proc</span><span class="p">):</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;Allow ROS launch to stop its children before escalating on timeout.&quot;&quot;&quot;</span>
+                    <span class="n">proc</span><span class="o">.</span><span class="n">send_signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">proc</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">TimeoutExpired</span><span class="p">:</span>
+                        <span class="n">proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">proc</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+                        <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">TimeoutExpired</span><span class="p">:</span>
+                            <span class="n">proc</span><span class="o">.</span><span class="n">kill</span><span class="p">()</span>
+                            <span class="n">proc</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Start Medkit Gateway&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="n">_start_medkit</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
+                    <span class="s1">&#39;outline no-caps&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;px-4&#39;</span><span class="p">)</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Stop Medkit Gateway&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="n">_stop_medkit</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
+                    <span class="s1">&#39;outline no-caps&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;px-4&#39;</span><span class="p">)</span>
+                <span class="n">_medkit_host</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">hostname</span>
+                <span class="k">if</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="n">_medkit_host</span><span class="p">:</span>
+                    <span class="n">_medkit_host</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">_medkit_host</span><span class="si">}</span><span class="s1">]&#39;</span>
+                <span class="n">_medkit_host</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">_medkit_host</span><span class="p">,</span> <span class="n">quote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;http://</span><span class="si">{</span><span class="n">_medkit_host</span><span class="si">}</span><span class="s1">:8080/&quot; target=&quot;_blank&quot; &#39;</span>
+                    <span class="s1">&#39;style=&quot;font-size:13px;color:var(--blue);text-decoration:none;&#39;</span>
+                    <span class="s1">&#39;padding:6px 12px;border:1px solid var(--blue);border-radius:4px;&#39;</span>
+                    <span class="s1">&#39;font-family:</span><span class="se">\&#39;</span><span class="s1">Courier New</span><span class="se">\&#39;</span><span class="s1">,monospace;&quot;&gt;&#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;↗ Gateway (</span><span class="si">{</span><span class="n">_medkit_host</span><span class="si">}</span><span class="s1">:8080)&lt;/a&gt;&#39;</span>
+                <span class="p">)</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">(</span>
+                    <span class="s1">&#39;&lt;div style=&quot;font-size:11px;color:var(--txt-muted);&#39;</span>
+                    <span class="s1">&#39;font-family:</span><span class="se">\&#39;</span><span class="s1">Courier New</span><span class="se">\&#39;</span><span class="s1">,monospace;line-height:1.5;&quot;&gt;&#39;</span>
+                    <span class="s1">&#39;SOVD web UI runs on the host, not in this container. On host:&lt;br&gt;&#39;</span>
+                    <span class="s1">&#39;&lt;code&gt;docker run -p 3000:80 ghcr.io/selfpatch/sovd_web_ui:latest&lt;/code&gt;&lt;br&gt;&#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;Then open &lt;a href=&quot;http://</span><span class="si">{</span><span class="n">_medkit_host</span><span class="si">}</span><span class="s1">:3000/&quot; target=&quot;_blank&quot; &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;style=&quot;color:var(--blue);text-decoration:none;&quot;&gt;</span><span class="si">{</span><span class="n">_medkit_host</span><span class="si">}</span><span class="s1">:3000&lt;/a&gt; &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;and set its gateway URL to &lt;code&gt;http://</span><span class="si">{</span><span class="n">_medkit_host</span><span class="si">}</span><span class="s1">:8080&lt;/code&gt;.&lt;br&gt;&#39;</span>
+                    <span class="s1">&#39;The gateway starts on loopback for host-local use. Remote access requires &#39;</span>
+                    <span class="s1">&#39;authentication, TLS, and restricted network access.&#39;</span>
+                    <span class="s1">&#39;&lt;/div&gt;&#39;</span>
+                <span class="p">)</span>
+
                 <span class="n">ui</span><span class="o">.</span><span class="n">separator</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full my-1&#39;</span><span class="p">)</span>
 
                 <span class="c1"># ── Gazebo Sim ───────────────────────────────────────────</span>

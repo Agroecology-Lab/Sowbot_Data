@@ -1,0 +1,20 @@
+devkit\_ui.test\_medkit\_gateway
+================================
+
+.. automodule:: devkit_ui.test_medkit_gateway
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      load_controls_builder
+      make_controls
+      make_process
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TestMedkitGateway
+   

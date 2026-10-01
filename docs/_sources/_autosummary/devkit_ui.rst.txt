@@ -21,6 +21,7 @@
    terrain_mask
    test_actions
    test_f2c_row_metadata
+   test_medkit_gateway
    test_models
    test_navigation_goals
    test_parse

@@ -325,6 +325,14 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">xy_to_latlon()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_medkit_gateway.html">devkit_ui.test_medkit_gateway</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway"><code class="docutils literal notranslate"><span class="pre">TestMedkitGateway</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.build_controls"><code class="docutils literal notranslate"><span class="pre">build_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.load_controls_builder"><code class="docutils literal notranslate"><span class="pre">load_controls_builder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_controls"><code class="docutils literal notranslate"><span class="pre">make_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_process"><code class="docutils literal notranslate"><span class="pre">make_process()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_models.html">devkit_ui.test_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc"><code class="docutils literal notranslate"><span class="pre">TestTopoDoc</span></code></a></li>
 </ul>
@@ -1366,6 +1374,11 @@ tmux<span class="w"> </span>kill-session<span class="w"> </span>-t<span class="w
 <li><p>Software emergency stop control</p></li>
 </ul>
 <p>The interface is accessible through a web browser at <code class="docutils literal notranslate"><span class="pre">http://&lt;ROBOT-IP&gt;:80</span></code> when the robot is running.</p>
+<p>The System tab’s Medkit Gateway button binds the gateway to <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> for host-local use.
+Stop sends SIGINT, waits for shutdown, and escalates to termination and kill only on timeout.
+Gateway and SOVD links use the host serving the page, on ports 8080 and 3000 respectively.
+Remote gateway access requires a separately configured deployment with authentication, TLS, and restricted network access; the button does not enable remote binding.
+For a TLS deployment, use its configured HTTPS endpoint in the browser and SOVD settings.</p>
 <div align="center">
   <img src="assets/DevKitUI.png" alt="Example UI Screenshot" width="500"/>
   <div style="font-size: 0.95em; color: #555; margin-top: 0.5em;">
