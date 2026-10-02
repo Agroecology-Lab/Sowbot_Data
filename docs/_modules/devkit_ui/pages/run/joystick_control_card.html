@@ -327,6 +327,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
@@ -547,11 +548,14 @@
 <span class="sd">                 Initialize the joystick control card with its state and control callbacks.</span>
 
 <span class="sd">                 Parameters:</span>
-<span class="sd">                     global_store (GlobalViewModel): Global application state containing the emergency-stop status.</span>
+<span class="sd">                     global_store (GlobalViewModel): Global application state containing the</span>
+<span class="sd">                     emergency-stop status.</span>
 <span class="sd">                     state (RunViewModel.Joystick): Joystick state containing the displayed pose.</span>
-<span class="sd">                     on_move (Callable[[float, float], None]): Callback invoked with the joystick&#39;s y and x coordinates.</span>
+<span class="sd">                     on_move (Callable[[float, float], None]): Callback invoked with the joystick&#39;s</span>
+<span class="sd">                     y and x coordinates.</span>
 <span class="sd">                     on_stop (Callable[[], None]): Callback invoked when joystick movement ends.</span>
-<span class="sd">                     on_estop (Callable[[], None]): Callback invoked when the emergency-stop button is pressed.</span>
+<span class="sd">                     on_estop (Callable[[], None]): Callback invoked when the emergency-stop button</span>
+<span class="sd">                     is pressed.</span>
 <span class="sd">                 &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
@@ -591,7 +595,8 @@
 
                     <span class="c1"># Pose label</span>
                     <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">()</span><span class="o">.</span><span class="n">bind_text_from</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">,</span> <span class="s1">&#39;pose_lbl&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span>
-                        <span class="s1">&#39;text-xs font-mono text-[#57606a] text-center max-w-[130px] whitespace-pre-line&#39;</span>
+                        <span class="s1">&#39;text-xs font-mono text-[#57606a] text-center &#39;</span>
+                        <span class="s1">&#39;max-w-[130px] whitespace-pre-line&#39;</span>
                     <span class="p">)</span></div>
 </div>
 

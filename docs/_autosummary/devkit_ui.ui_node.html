@@ -330,6 +330,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
@@ -560,8 +561,11 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.__init__" title="Link to this definition"></a></dt>
-<dd><p>Initialize the ROS node, GUI view models, navigation interfaces, sensor state, and mission-planning components.</p>
-<p>In simulation, configure the dedicated fallback GPS source used when no recent real GPS fix is available. Register the NiceGUI root page and initialize topology, obstacle, mission, safety, and navigation state.</p>
+<dd><p>Initialize the ROS node, GUI view models, navigation interfaces, sensor state, and
+mission-planning components.</p>
+<p>In simulation, configure the dedicated fallback GPS source used when no recent real GPS fix
+is available. Register the NiceGUI root page and initialize topology, obstacle, mission,
+safety, and navigation state.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -628,12 +632,14 @@ goal cannot be accepted in the meantime.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.drop_topo_node">
 <span class="sig-name descname"><span class="pre">drop_topo_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'entry'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.drop_topo_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.drop_topo_node" title="Link to this definition"></a></dt>
-<dd><p>Add a topology node at the current robot position and persist it to the active map.</p>
+<dd><p>Add a topology node at the current robot position and persist it to the
+active map.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<em>str</em>) – Name for the new node.</p></li>
-<li><p><strong>row_id</strong> (<em>int</em><em> | </em><em>None</em>) – Row identifier to associate with the node, or None for a navigation node.</p></li>
+<li><p><strong>row_id</strong> (<em>int</em><em> | </em><em>None</em>) – Row identifier to associate with the node, or None for</p></li>
+<li><p><strong>node.</strong> (<em>a navigation</em>)</p></li>
 <li><p><strong>row_role</strong> (<em>str</em>) – Role of the node within its row, such as “entry” or “exit”.</p></li>
 </ul>
 </dd>
@@ -650,10 +656,14 @@ goal cannot be accepted in the meantime.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.repair_row_connectivity">
 <span class="sig-name descname"><span class="pre">repair_row_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connect_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.repair_row_connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.repair_row_connectivity" title="Link to this definition"></a></dt>
-<dd><p>Rebuild missing in-row and headland connections for existing rows in the loaded topology map.</p>
+<dd><p>Rebuild missing in-row and headland connections for existing rows in the loaded topology
+map.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>connect_to</strong> (<em>str</em><em> | </em><em>None</em>) – Optional node name to connect bidirectionally to the first row entry and last row exit.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connect_to</strong> (<em>str</em><em> | </em><em>None</em>) – Optional node name to connect bidirectionally to the first row</p></li>
+<li><p><strong>exit.</strong> (<em>entry and last row</em>)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -661,13 +671,15 @@ goal cannot be accepted in the meantime.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.save_f2c_rows_to_topo">
 <span class="sig-name descname"><span class="pre">save_f2c_rows_to_topo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_id_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.save_f2c_rows_to_topo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.save_f2c_rows_to_topo" title="Link to this definition"></a></dt>
-<dd><p>Save the most recently planned F2C swaths as rows in the loaded topology map.</p>
+<dd><p>Save the most recently planned F2C swaths as rows in the loaded
+topology map.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>prefix</strong> (<em>str</em>) – Prefix used to name the generated row nodes.</p></li>
 <li><p><strong>row_id_start</strong> (<em>int</em>) – Identifier assigned to the first planned row.</p></li>
-<li><p><strong>overwrite</strong> (<em>bool</em>) – Whether to replace existing nodes with the specified prefix.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Whether to replace existing nodes with the</p></li>
+<li><p><strong>prefix.</strong> (<em>specified</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -715,7 +727,8 @@ goal cannot be accepted in the meantime.</p>
 <li><p><strong>prefix</strong> (<em>str</em>) – Prefix used for numbered node names after normalization.</p></li>
 <li><p><strong>interval</strong> (<em>float</em>) – Time in seconds between recorded nodes.</p></li>
 <li><p><strong>row_id</strong> (<em>int</em><em> | </em><em>None</em>) – Optional row identifier associated with each node.</p></li>
-<li><p><strong>row_role</strong> (<em>str</em><em> | </em><em>None</em>) – Role assigned to recorded nodes when no row identifier is provided.</p></li>
+<li><p><strong>row_role</strong> (<em>str</em><em> | </em><em>None</em>) – Role assigned to recorded nodes when no row</p></li>
+<li><p><strong>provided.</strong> (<em>identifier is</em>)</p></li>
 </ul>
 </dd>
 </dl>

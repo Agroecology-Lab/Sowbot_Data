@@ -330,6 +330,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
@@ -543,6 +544,11 @@
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_plan_import.</span></span><span class="sig-name descname"><span class="pre">ParsePlanTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_plan_import.html#ParsePlanTest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_plan_import.ParsePlanTest" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_plan_import.ParsePlanTest.test_contour_may_be_missing_or_boolean">
+<span class="sig-name descname"><span class="pre">test_contour_may_be_missing_or_boolean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_plan_import.html#ParsePlanTest.test_contour_may_be_missing_or_boolean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_plan_import.ParsePlanTest.test_contour_may_be_missing_or_boolean" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_plan_import.ParsePlanTest.test_distance_guard">
 <span class="sig-name descname"><span class="pre">test_distance_guard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_plan_import.html#ParsePlanTest.test_distance_guard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_plan_import.ParsePlanTest.test_distance_guard" title="Link to this definition"></a></dt>
 <dd><p>Verify plans near the robot are accepted and distant plans are rejected.</p>
@@ -565,6 +571,11 @@
 <span class="sig-name descname"><span class="pre">test_rejects_bad_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_plan_import.html#ParsePlanTest.test_rejects_bad_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_plan_import.ParsePlanTest.test_rejects_bad_input" title="Link to this definition"></a></dt>
 <dd><p>Verify malformed plans, invalid coordinates, and invalid row IDs raise PlanError.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_plan_import.ParsePlanTest.test_rejects_present_non_boolean_contour">
+<span class="sig-name descname"><span class="pre">test_rejects_present_non_boolean_contour</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_plan_import.html#ParsePlanTest.test_rejects_present_non_boolean_contour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_plan_import.ParsePlanTest.test_rejects_present_non_boolean_contour" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_plan_import.ParsePlanTest.test_swaps_lonlat_to_latlon">

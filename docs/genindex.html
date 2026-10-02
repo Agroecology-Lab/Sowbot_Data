@@ -327,6 +327,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
@@ -2209,6 +2210,8 @@
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_boundary_is_projected_with_the_first_corner_as_origin">test_boundary_is_projected_with_the_first_corner_as_origin() (devkit_f2c_planner.test_run_f2c.RunF2CTest method)</a>
 </li>
+      <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest.test_break_indices_follow_splits_and_dropped_fragments">test_break_indices_follow_splits_and_dropped_fragments() (devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest method)</a>
+</li>
       <li><a href="_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_clipped_fragments_follow_the_snake_direction">test_clipped_fragments_follow_the_snake_direction() (devkit_f2c_planner.test_run_f2c.RunF2CTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_store.html#devkit_ui.missions.test_store.TestMissionStoreEditing.test_close_is_a_no_op_for_the_yaml_backend">test_close_is_a_no_op_for_the_yaml_backend() (devkit_ui.missions.test_store.TestMissionStoreEditing method)</a>
@@ -2220,6 +2223,8 @@
       <li><a href="_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_concave_field_gives_fragments">test_concave_field_gives_fragments() (devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard.test_confirm_starts_and_unticking_stops_discovery">test_confirm_starts_and_unticking_stops_discovery() (devkit_ui.test_run_ui.TestRowDiscoveryCard method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest.test_contour_may_be_missing_or_boolean">test_contour_may_be_missing_or_boolean() (devkit_ui.test_plan_import.ParsePlanTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata.test_contour_waypoint_metadata_matches_entry_and_exit_metadata">test_contour_waypoint_metadata_matches_entry_and_exit_metadata() (devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata method)</a>
 </li>
@@ -2240,6 +2245,8 @@
       <li><a href="_autosummary/devkit_ui.test_actions.html#devkit_ui.test_actions.TestActionRosMsgs.test_drive_has_no_tool_topic_so_yields_no_messages">test_drive_has_no_tool_topic_so_yields_no_messages() (devkit_ui.test_actions.TestActionRosMsgs method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard.test_drop_uses_latest_bound_state">test_drop_uses_latest_bound_state() (devkit_ui.test_run_ui.TestDropNodeCard method)</a>
+</li>
+      <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest.test_dropped_rows_create_breaks_only_between_surviving_rows">test_dropped_rows_create_breaks_only_between_surviving_rows() (devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo.test_dump_and_restore_yaml_round_trip">test_dump_and_restore_yaml_round_trip() (devkit_ui.test_parse.TestParseTopo method)</a>
 </li>
@@ -2274,6 +2281,10 @@
       <li><a href="_autosummary/devkit_ui.missions.test_yaml.html#devkit_ui.missions.test_yaml.TestMissionYamlStore.test_find_and_find_by_name">test_find_and_find_by_name() (devkit_ui.missions.test_yaml.TestMissionYamlStore method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.test_find_by_name_returns_matching_mission">test_find_by_name_returns_matching_mission() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans">test_fragment_breaks_reach_topo_and_reset_for_straight_plans() (devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning method)</a>
+</li>
+      <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_fragment_breaks_survive_snaking_and_obstacle_clipping">test_fragment_breaks_survive_snaking_and_obstacle_clipping() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest.test_fragment_exactly_at_the_minimum_length_is_dropped">test_fragment_exactly_at_the_minimum_length_is_dropped() (devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest method)</a>
 </li>
@@ -2419,6 +2430,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest.test_rejects_bad_input">test_rejects_bad_input() (devkit_ui.test_plan_import.ParsePlanTest method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest.test_rejects_present_non_boolean_contour">test_rejects_present_non_boolean_contour() (devkit_ui.test_plan_import.ParsePlanTest method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal.test_rejects_reentrant_and_estopped_submissions_without_mutating_state">test_rejects_reentrant_and_estopped_submissions_without_mutating_state() (devkit_ui.test_navigation_goals.TestSendNavGoal method)</a>
@@ -2463,6 +2476,8 @@
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest.test_row_missing_the_obstacle_is_unchanged">test_row_missing_the_obstacle_is_unchanged() (devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest method)</a>
 </li>
+      <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_row_that_reenters_the_field_keeps_all_its_pieces">test_row_that_reenters_the_field_keeps_all_its_pieces() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
+</li>
       <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest.test_row_through_the_obstacle_is_split_at_its_edges">test_row_through_the_obstacle_is_split_at_its_edges() (devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_rows_are_spaced_by_the_tool_width_and_span_the_field">test_rows_are_spaced_by_the_tool_width_and_span_the_field() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
@@ -2471,11 +2486,17 @@
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_sqlite.html#devkit_ui.missions.test_sqlite.TestMissionSqliteStore.test_run_history_is_persisted_and_can_be_cleared">test_run_history_is_persisted_and_can_be_cleared() (devkit_ui.missions.test_sqlite.TestMissionSqliteStore method)</a>
 </li>
+      <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_self_crossing_extension_keeps_original_reference">test_self_crossing_extension_keeps_original_reference() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
+</li>
       <li><a href="_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.FieldCentroidTest.test_self_intersecting_boundary_does_not_raise">test_self_intersecting_boundary_does_not_raise() (devkit_f2c_planner.test_projection.FieldCentroidTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.BuildObstaclePolysTest.test_self_intersecting_ring_is_repaired_or_dropped_never_returned_invalid">test_self_intersecting_ring_is_repaired_or_dropped_never_returned_invalid() (devkit_f2c_planner.test_obstacles.BuildObstaclePolysTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_store.html#devkit_ui.missions.test_store.TestMissionStoreEditing.test_set_active_toggles_the_mission">test_set_active_toggles_the_mission() (devkit_ui.missions.test_store.TestMissionStoreEditing method)</a>
+</li>
+      <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_short_reference_is_extended_so_rows_span_the_field">test_short_reference_is_extended_so_rows_span_the_field() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
+</li>
+      <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_short_reference_without_extension_keeps_rows_short">test_short_reference_without_extension_keeps_rows_short() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_shutdown_escalates_only_after_each_timeout">test_shutdown_escalates_only_after_each_timeout() (devkit_ui.test_medkit_gateway.TestMedkitGateway method)</a>
 </li>
@@ -2580,6 +2601,8 @@
       <li><a href="_autosummary/devkit_ui.test_actions.html#devkit_ui.test_actions.TestActionRosMsgs">TestActionRosMsgs (class in devkit_ui.test_actions)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_yaml.html#devkit_ui.missions.test_yaml.TestCoerceRecord">TestCoerceRecord (class in devkit_ui.missions.test_yaml)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning">TestDirectContourPlanning (class in devkit_ui.test_f2c_row_metadata)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard">TestDropNodeCard (class in devkit_ui.test_run_ui)</a>
 </li>

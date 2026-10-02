@@ -327,6 +327,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
@@ -886,11 +887,14 @@
 
 
 <span class="k">def</span> <span class="nf">_clip_lines_against_obstacles</span><span class="p">(</span><span class="n">raw_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">obstacle_polys_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
-                                   <span class="n">min_fragment_len_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_log</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+                                   <span class="n">min_fragment_len_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_log</span><span class="p">,</span>
+                                   <span class="n">break_after</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;line.difference(obstacle_union) for every row, dropping fragments</span>
 <span class="sd">    too short to be worth driving. Shared post-clip step for both swath</span>
 <span class="sd">    styles — see the OBSTACLE comment above _run_f2c() for why this is</span>
 <span class="sd">    done in shapely rather than trusted to F2C&#39;s own hole handling.</span>
+<span class="sd">    When provided, break_after is remapped in place and includes new gaps</span>
+<span class="sd">    introduced by obstacle clipping.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">obstacles_union</span> <span class="o">=</span> <span class="n">unary_union</span><span class="p">(</span><span class="n">obstacle_polys_xy</span><span class="p">)</span>
     <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;obstacle union: type=</span><span class="si">{</span><span class="n">obstacles_union</span><span class="o">.</span><span class="n">geom_type</span><span class="si">}</span><span class="s1"> &#39;</span>
@@ -903,22 +907,37 @@
              <span class="sa">f</span><span class="s1">&#39;to (</span><span class="si">{</span><span class="n">sample</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">sample</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
     <span class="n">clipped</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">clipped_breaks</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">pending_break</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">clipped_count</span><span class="p">,</span> <span class="n">dropped_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">pts</span> <span class="ow">in</span> <span class="n">raw_xy</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">pts</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">raw_xy</span><span class="p">):</span>
+        <span class="n">pending_break</span> <span class="o">|=</span> <span class="n">break_after</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">break_after</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clipped</span><span class="p">)</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
         <span class="n">intersects</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">obstacles_union</span><span class="p">)</span>
         <span class="n">remaining</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">obstacles_union</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">remaining</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span>
             <span class="n">dropped_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">pending_break</span> <span class="o">|=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">clipped</span><span class="p">)</span>
             <span class="k">continue</span>
         <span class="n">geoms</span> <span class="o">=</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">remaining</span><span class="o">.</span><span class="n">geoms</span><span class="p">)</span>
                  <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">remaining</span><span class="p">,</span> <span class="n">MultiLineString</span><span class="p">)</span>
                  <span class="k">else</span> <span class="p">[</span><span class="n">remaining</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">geoms</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">sub</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="n">min_fragment_len_m</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">clipped</span> <span class="ow">and</span> <span class="n">pending_break</span><span class="p">:</span>
+                    <span class="n">clipped_breaks</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clipped</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="n">clipped</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">coords</span><span class="p">))</span>
+                <span class="n">pending_break</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">if</span> <span class="n">intersects</span><span class="p">:</span>
                     <span class="n">clipped_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">clipped</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">pending_break</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">clipped</span><span class="p">:</span>
+            <span class="n">pending_break</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">break_after</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">break_after</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">break_after</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">clipped_breaks</span><span class="p">)</span>
     <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;clipped </span><span class="si">{</span><span class="n">clipped_count</span><span class="si">}</span><span class="s1"> rows against obstacles, &#39;</span>
          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dropped_count</span><span class="si">}</span><span class="s1"> fully dropped, final=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">clipped</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">clipped</span>
@@ -953,6 +972,29 @@
 <span class="c1"># than emitted looped/garbled — flagged as follow-up work once there&#39;s</span>
 <span class="c1"># real field DEM data to know how often this actually bites, rather than</span>
 <span class="c1"># guessed at now.</span>
+<span class="k">def</span> <span class="nf">_extend_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">probe_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LineString</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extend both ends of line along their end tangents by dist metres.</span>
+
+<span class="sd">    The reference contour only exists where the DEM does, so it is usually</span>
+<span class="sd">    shorter than the field. Offsetting it as-is leaves the rest of the field</span>
+<span class="sd">    uncovered. The tangent is taken over probe_m (not the last segment) so a</span>
+<span class="sd">    noisy end vertex doesn&#39;t swing the extension.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dist</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">line</span>
+    <span class="n">probe</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">probe_m</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">pts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_tip</span><span class="p">(</span><span class="n">end_pt</span><span class="p">,</span> <span class="n">inner_pt</span><span class="p">):</span>
+        <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">end_pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inner_pt</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">end_pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">inner_pt</span><span class="o">.</span><span class="n">y</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">(</span><span class="n">end_pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">/</span> <span class="n">n</span> <span class="o">*</span> <span class="n">dist</span><span class="p">,</span> <span class="n">end_pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">/</span> <span class="n">n</span> <span class="o">*</span> <span class="n">dist</span><span class="p">)</span>
+
+    <span class="n">tail</span> <span class="o">=</span> <span class="n">_tip</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="n">probe</span><span class="p">))</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="n">_tip</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">probe</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">LineString</span><span class="p">([</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">pts</span><span class="p">,</span> <span class="n">tail</span><span class="p">])</span>
+
+
 <span class="k">def</span> <span class="nf">_run_contour_f2c</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
                       <span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
                       <span class="n">reference_line_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
@@ -960,8 +1002,15 @@
                       <span class="n">obstacle_pad_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
                       <span class="n">headland_width_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
                       <span class="n">snake_order</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-                      <span class="n">max_rows_each_side</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate contour-following rows offset from a reference line, clipped to the field.&quot;&quot;&quot;</span>
+                      <span class="n">max_rows_each_side</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+                      <span class="n">extend_reference</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                      <span class="o">*</span><span class="p">,</span> <span class="n">break_after</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate contour rows; fill break_after with indices of gaps between fragments.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">break_after</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">break_after</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">break_after</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write a prefixed diagnostic line to stderr.&quot;&quot;&quot;</span>
@@ -997,6 +1046,12 @@
         <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;reference line has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ref_xy</span><span class="p">)</span><span class="si">}</span><span class="s1"> pts, need &gt;= 2 — returning no rows&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[]</span>
     <span class="n">ref_line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">(</span><span class="n">ref_xy</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">extend_reference</span><span class="p">:</span>
+        <span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="n">swath_poly</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="n">extended</span> <span class="o">=</span> <span class="n">_extend_line</span><span class="p">(</span><span class="n">ref_line</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">maxx</span> <span class="o">-</span> <span class="n">minx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">-</span> <span class="n">miny</span><span class="p">),</span>
+                                <span class="mi">3</span> <span class="o">*</span> <span class="n">tool_width</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">extended</span><span class="o">.</span><span class="n">is_simple</span><span class="p">:</span>
+            <span class="n">ref_line</span> <span class="o">=</span> <span class="n">extended</span>
 
     <span class="c1"># ── Offset outward from the reference line until we run off the field ──</span>
     <span class="k">def</span> <span class="nf">_row_at</span><span class="p">(</span><span class="n">offset_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -1018,7 +1073,9 @@
         <span class="n">clipped</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">swath_poly</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">clipped</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">clipped</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span> <span class="k">if</span> <span class="n">clipped</span><span class="o">.</span><span class="n">geom_type</span> <span class="o">==</span> <span class="s1">&#39;LineString&#39;</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">clipped</span><span class="p">]</span> <span class="k">if</span> <span class="n">clipped</span><span class="o">.</span><span class="n">geom_type</span> <span class="o">==</span> <span class="s1">&#39;LineString&#39;</span> <span class="k">else</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">clipped</span><span class="p">,</span> <span class="s1">&#39;geoms&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">pieces</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">parts</span> <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">geom_type</span> <span class="o">==</span> <span class="s1">&#39;LineString&#39;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">pieces</span> <span class="ow">or</span> <span class="kc">None</span>
 
     <span class="n">rows_by_offset</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">center</span> <span class="o">=</span> <span class="n">_row_at</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
@@ -1035,18 +1092,24 @@
                 <span class="k">break</span>
             <span class="n">rows_by_offset</span><span class="p">[</span><span class="n">offset_m</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
 
-    <span class="n">raw_xy</span> <span class="o">=</span> <span class="p">[</span><span class="n">rows_by_offset</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rows_by_offset</span><span class="p">)]</span>
-    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">raw_xy</span><span class="p">)</span><span class="si">}</span><span class="s1"> contour rows before obstacle clipping&#39;</span><span class="p">)</span>
-
     <span class="c1"># ── Snake ordering, same as _run_f2c() ────────────────────────────</span>
-    <span class="k">if</span> <span class="n">snake_order</span> <span class="ow">and</span> <span class="n">raw_xy</span><span class="p">:</span>
-        <span class="n">raw_xy</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">pts</span><span class="p">))</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
-                  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pts</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">raw_xy</span><span class="p">)]</span>
+    <span class="c1"># A row that re-enters the field (concave boundary) yields several</span>
+    <span class="c1"># pieces; flipping reverses the order of the pieces as well as each one.</span>
+    <span class="n">raw_xy</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">rows_by_offset</span><span class="p">)):</span>
+        <span class="n">pieces</span> <span class="o">=</span> <span class="n">rows_by_offset</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">snake_order</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">pieces</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">pc</span><span class="p">))</span> <span class="k">for</span> <span class="n">pc</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">pieces</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">fragment</span><span class="p">,</span> <span class="n">pc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">fragment</span><span class="p">:</span>
+                <span class="n">break_after</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">raw_xy</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">raw_xy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pc</span><span class="p">))</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">raw_xy</span><span class="p">)</span><span class="si">}</span><span class="s1"> contour rows before obstacle clipping&#39;</span><span class="p">)</span>
 
     <span class="c1"># ── Post-clip against obstacle union ──────────────────────────────</span>
     <span class="k">if</span> <span class="n">obstacle_polys_xy</span><span class="p">:</span>
         <span class="n">raw_xy</span> <span class="o">=</span> <span class="n">_clip_lines_against_obstacles</span><span class="p">(</span>
-            <span class="n">raw_xy</span><span class="p">,</span> <span class="n">obstacle_polys_xy</span><span class="p">,</span> <span class="n">tool_width</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">_log</span><span class="p">)</span>
+            <span class="n">raw_xy</span><span class="p">,</span> <span class="n">obstacle_polys_xy</span><span class="p">,</span> <span class="n">tool_width</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">_log</span><span class="p">,</span> <span class="n">break_after</span><span class="p">)</span>
 
     <span class="n">result</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">pts_xy</span> <span class="ow">in</span> <span class="n">raw_xy</span><span class="p">:</span>

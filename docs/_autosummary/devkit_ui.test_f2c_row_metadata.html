@@ -330,6 +330,7 @@
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.test_f2c_row_metadata</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
@@ -556,7 +557,10 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.F2CSaveHarness" title="devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata" title="devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a>([methodName])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning" title="devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a>([methodName])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata" title="devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a>([methodName])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -568,17 +572,30 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.F2CSaveHarness.save_f2c_rows_to_topo">
 <span class="sig-name descname"><span class="pre">save_f2c_rows_to_topo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_id_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.F2CSaveHarness.save_f2c_rows_to_topo" title="Link to this definition"></a></dt>
-<dd><p>Save the most recently planned F2C swaths as rows in the loaded topology map.</p>
+<dd><p>Save the most recently planned F2C swaths as rows in the loaded
+topology map.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>prefix</strong> (<em>str</em>) – Prefix used to name the generated row nodes.</p></li>
 <li><p><strong>row_id_start</strong> (<em>int</em>) – Identifier assigned to the first planned row.</p></li>
-<li><p><strong>overwrite</strong> (<em>bool</em>) – Whether to replace existing nodes with the specified prefix.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Whether to replace existing nodes with the</p></li>
+<li><p><strong>prefix.</strong> (<em>specified</em>)</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_f2c_row_metadata.</span></span><span class="sig-name descname"><span class="pre">TestDirectContourPlanning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#TestDirectContourPlanning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IsolatedAsyncioTestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_fragment_breaks_reach_topo_and_reset_for_straight_plans</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

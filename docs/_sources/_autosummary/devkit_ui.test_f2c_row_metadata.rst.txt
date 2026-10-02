@@ -19,5 +19,6 @@ devkit\_ui.test\_f2c\_row\_metadata
    .. autosummary::
    
       F2CSaveHarness
+      TestDirectContourPlanning
       TestF2CRowMetadata
    
