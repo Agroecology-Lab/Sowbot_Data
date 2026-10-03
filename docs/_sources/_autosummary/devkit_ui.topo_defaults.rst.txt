@@ -1,0 +1,13 @@
+devkit\_ui.topo\_defaults
+=========================
+
+.. automodule:: devkit_ui.topo_defaults
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      default_actions
+      default_definitions
+   

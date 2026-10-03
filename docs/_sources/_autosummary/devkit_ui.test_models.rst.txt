@@ -4,6 +4,13 @@ devkit\_ui.test\_models
 .. automodule:: devkit_ui.test_models
 
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      test_renamed_copy_follows_new_name_and_leaves_original
+      test_set_row_action_only_touches_row_edges
+   
    .. rubric:: Classes
 
    .. autosummary::

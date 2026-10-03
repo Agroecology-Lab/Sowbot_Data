@@ -21,17 +21,23 @@
    plan_import
    terrain_mask
    test_actions
+   test_drop_topo_node
    test_f2c_row_metadata
+   test_map_failures
+   test_map_operations
    test_medkit_gateway
    test_models
    test_navigation_goals
    test_parse
    test_plan_import
    test_process_cleanup
+   test_row_actions
    test_run_ui
    test_time_utils
+   test_topo_defaults
    test_topo_renderer
    time_utils
+   topo_defaults
    ui_node
    utils
    view_models

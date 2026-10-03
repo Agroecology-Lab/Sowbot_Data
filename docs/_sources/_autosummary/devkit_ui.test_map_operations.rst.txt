@@ -1,0 +1,18 @@
+devkit\_ui.test\_map\_operations
+================================
+
+.. automodule:: devkit_ui.test_map_operations
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      load_map_harness
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TestMapOperations
+   
