@@ -559,9 +559,11 @@
   <section id="sowbot-ros-2-stack">
 <h1>Sowbot (ROS 2 stack)<a class="headerlink" href="#sowbot-ros-2-stack" title="Link to this heading"></a></h1>
 <!-- CI & Test Status -->
-<p><a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/test.yml?query=branch%3Acaatinga-dev"><img alt="Run Tests" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/test.yml/badge.svg?branch=caatinga-dev" /></a>
-<a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/industrial_ci.yml?query=branch%3Acaatinga-dev"><img alt="Industrial CI" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/industrial_ci.yml/badge.svg?branch=caatinga-dev" /></a>
-<a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/documentation.yml?query=branch%3Acaatinga-dev"><img alt="Documentation Deployment" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/documentation.yml/badge.svg?branch=caatinga-dev" /></a></p>
+<p><a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/industrial_ci.yml?query=branch%3Acaatinga-dev"><img alt="Industrial CI" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/industrial_ci.yml/badge.svg?branch=caatinga-dev" /></a>
+<a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/test.yml"><img alt="Run Tests" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/test.yml/badge.svg" /></a>
+<a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/github-code-scanning/codeql"><img alt="CodeQL" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/github-code-scanning/codeql/badge.svg" /></a>
+<a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/github-code-quality/codeql"><img alt="CodeQL Code Quality" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/github-code-quality/codeql/badge.svg" /></a>
+<a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/documentation.yml"><img alt="Docs" src="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/actions/workflows/documentation.yml/badge.svg" /></a></p>
 <!-- Code Coverage -->
 <p><a class="reference external" href="https://codecov.io/gh/Agroecology-Lab/feldfreund_devkit_ros/branch/caatinga-dev"><img alt="Codecov" src="https://codecov.io/gh/Agroecology-Lab/feldfreund_devkit_ros/branch/caatinga-dev/graph/badge.svg" /></a></p>
 <p>An open-source, containerised ROS2 Jazzy stack for autonomous agricultural robotics. This repository provides the drivers and orchestration for the Sowbot platform, featuring RTK-GNSS localisation and ESP32-based hardware control.</p>
@@ -714,15 +716,15 @@
 <td><p>2026</p></td>
 </tr>
 <tr class="row-even"><td><p>P2</p></td>
-<td><p>Phase 2: OEM modular subsystems (Cerebri/Zephyr migration)</p></td>
-<td><p>Replaces ESP32/Lizard DSL with <a class="reference external" href="https://github.com/Agroecology-Lab/cerebri#cerebri-roadmap">Cerebri on Zephyr RTOS, targeting the NXP FRDM-A-S32K358 (dual-core Cortex-M7 lockstep, ASIL D target)</a>.  IEC 61508 architecture review follow. Audience: startups integrating Sowbot’s core. No third-party certification needed yet, formal internal assessment only. Can offer <a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/blob/caatinga-dev/safety_roadmap.md">PLc/d hardware subsystem</a></p></td>
+<td><p>Phase 2: OEM modular subsystems (Ardupilot migration)</p></td>
+<td><p>Replaces ESP32/Lizard DSL with <a class="reference external" href="https://github.com/piecol/LEVIA-H7">Ardupilot on Levia STM32 H7</a>.  Audience: startups integrating Sowbot’s core. No third-party certification needed yet, formal internal assessment only. Can offer <a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/blob/caatinga-dev/safety_roadmap.md">PLd hardware subsystem</a></p></td>
 <td><p>Research</p></td>
 <td><p>2</p></td>
 <td><p>2027</p></td>
 </tr>
 <tr class="row-odd"><td><p>P3</p></td>
-<td><p>Phase 3: commercial sale to farmers (Cerebri/Zephyr hardened)</p></td>
-<td><p>Same <a class="reference external" href="https://github.com/Agroecology-Lab/cerebri#cerebri-roadmap">Cerebri/Zephyr (FRDM-A-S32K358) controller</a>, hardened and certified for commercial sale: full ISO 18497 compliance, ISO 13849 PLc certification (or equivalent), third-party safety audit, field trial history, and an insurance/liability structure. All required before sale, none yet scoped.</p></td>
+<td><p>Phase 3: commercial sale to farmers <a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros/blob/caatinga-dev/safety_roadmap.md">(Safety sub-systems hardened)</a></p></td>
+<td><p>Full ISO 18497 compliance, ISO 13849 PLc certification (or equivalent), third-party safety audit, field trial history, and an insurance/liability structure. All required before sale, none yet scoped.</p></td>
 <td><p>Planned</p></td>
 <td><p>1</p></td>
 <td><p>2027+</p></td>
