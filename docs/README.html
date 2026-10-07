@@ -1052,6 +1052,12 @@ xhost<span class="w"> </span>+local:docker
 </section>
 <section id="one-command-sim-launch-tmule">
 <h3>One-command sim launch (TMuLE)<a class="headerlink" href="#one-command-sim-launch-tmule" title="Link to this heading"></a></h3>
+<p>The simulation launch accepts <code class="docutils literal notranslate"><span class="pre">use_camera:=false</span></code> to disable the simulated camera:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>devkit_bringup<span class="w"> </span>sowbot_sim.launch.py<span class="w"> </span>use_camera:<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">camera_width</span></code>, <code class="docutils literal notranslate"><span class="pre">camera_height</span></code>, and <code class="docutils literal notranslate"><span class="pre">camera_rate</span></code> to override the default 320×240 image at 10 Hz.
+These arguments also work with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">devkit_simulation</span> <span class="pre">sim.launch.py</span></code>.</p>
 <p>Whilst you can launch Gazebo and other tools from the webui, some may prefer the terminal, this makes terminal use a bit easier.</p>
 <p><a class="reference external" href="https://github.com/marc-hanheide/TMuLE">TMuLE</a> brings the whole row-following sim up in a single <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session — one window per process — instead of running the three launch steps by hand in separate terminals:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tmule<span class="w"> </span>-c<span class="w"> </span>tmule/row_follow_sim.yaml<span class="w"> </span>launch
