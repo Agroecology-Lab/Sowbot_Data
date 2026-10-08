@@ -604,6 +604,8 @@
 <span class="sd">  /gnss/fix                     sensor_msgs/NavSatFix   corrected status</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
 <span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 <span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">DurabilityPolicy</span><span class="p">,</span> <span class="n">QoSProfile</span><span class="p">,</span> <span class="n">ReliabilityPolicy</span>
@@ -640,6 +642,11 @@
 <span class="c1"># so fusioncore sees something rather than nothing on a slow-starting receiver.</span>
 <span class="n">_PVT_TIMEOUT_S</span> <span class="o">=</span> <span class="mf">5.0</span>
 
+<span class="c1"># Upper bound on fixes buffered while waiting for the first PVT. 100 covers the</span>
+<span class="c1"># 5 s wait at 20 Hz, so normal use drops nothing, but the buffer can never grow</span>
+<span class="c1"># without limit.</span>
+<span class="n">_MAX_HELD_FIXES</span> <span class="o">=</span> <span class="mi">100</span>
+
 <span class="n">_SENSOR_QOS</span> <span class="o">=</span> <span class="n">QoSProfile</span><span class="p">(</span>
     <span class="n">depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">reliability</span><span class="o">=</span><span class="n">ReliabilityPolicy</span><span class="o">.</span><span class="n">BEST_EFFORT</span><span class="p">,</span>
@@ -662,13 +669,22 @@
 <div class="viewcode-block" id="RtkNavSatFixShim">
 <a class="viewcode-back" href="../../_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim">[docs]</a>
 <span class="k">class</span> <span class="nc">RtkNavSatFixShim</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<div class="viewcode-block" id="RtkNavSatFixShim.__init__">
+<a class="viewcode-back" href="../../_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribe to rover fixes and PVT and publish corrected fixes on /gnss/fix.</span>
+
+<span class="sd">        Start a five-second timer for the first PVT, retaining at most the</span>
+<span class="sd">        newest 100 fixes while waiting, and a periodic statistics timer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;rtk_navsatfix_shim&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_carr_soln</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_CARR_SOLN_NONE</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pvt_received</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pvt_timed_out</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pub_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_held_fixes</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># fixes buffered while waiting for first PVT</span>
+        <span class="c1"># fixes buffered while waiting for first PVT (bounded)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_held_fixes</span><span class="p">:</span> <span class="n">deque</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">_MAX_HELD_FIXES</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">NavSatFix</span><span class="p">,</span> <span class="s1">&#39;/gnss/fix&#39;</span><span class="p">,</span> <span class="n">_PUB_QOS</span><span class="p">)</span>
 
@@ -687,7 +703,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_stats</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="sa">f</span><span class="s1">&#39;rtk_navsatfix_shim ready — buffering fixes for up to </span><span class="si">{</span><span class="n">_PVT_TIMEOUT_S</span><span class="si">}</span><span class="s1">s &#39;</span>
-            <span class="sa">f</span><span class="s1">&#39;awaiting first UBXNavPVT&#39;</span><span class="p">)</span>
+            <span class="sa">f</span><span class="s1">&#39;awaiting first UBXNavPVT&#39;</span><span class="p">)</span></div>
+
 
     <span class="k">def</span> <span class="nf">_pvt_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">UBXNavPVT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># carr_soln is a wrapped CarrSoln message in this ublox_ubx_msgs build,</span>
@@ -705,27 +722,47 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_held_fixes</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_pvt_timeout_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;PVT never arrived within timeout — flush held fixes with NO_FIX status.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancel the timeout timer and handle a missing first PVT.</span>
+
+<span class="sd">        If PVT has arrived, do nothing further. Otherwise, publish and clear</span>
+<span class="sd">        held fixes with NO_FIX status and forward later fixes with that status</span>
+<span class="sd">        until the first PVT arrives.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pvt_timeout_timer</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvt_received</span><span class="p">:</span>
             <span class="k">return</span>
+        <span class="c1"># From here on _fix_cb forwards fixes as NO_FIX instead of buffering</span>
+        <span class="c1"># them, until the first PVT arrives.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pvt_timed_out</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="sa">f</span><span class="s1">&#39;No UBXNavPVT received within </span><span class="si">{</span><span class="n">_PVT_TIMEOUT_S</span><span class="si">}</span><span class="s1">s — &#39;</span>
-            <span class="sa">f</span><span class="s1">&#39;forwarding </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_held_fixes</span><span class="p">)</span><span class="si">}</span><span class="s1"> held fix(es) as NO_FIX. &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;forwarding </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_held_fixes</span><span class="p">)</span><span class="si">}</span><span class="s1"> held fix(es) as NO_FIX, and &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;all later fixes too until PVT arrives. &#39;</span>
             <span class="sa">f</span><span class="s1">&#39;carr_soln correction inactive until PVT stream starts.&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">held</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_held_fixes</span><span class="p">:</span>
-            <span class="c1"># Emit with NO_FIX so fusioncore knows quality is unknown</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_fix</span><span class="p">(</span><span class="n">held</span><span class="p">)</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">NavSatStatus</span><span class="o">.</span><span class="n">STATUS_NO_FIX</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_pub_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_publish_no_fix</span><span class="p">(</span><span class="n">held</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_held_fixes</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_fix_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvt_received</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish using the latest PVT status, or NO_FIX after the startup timeout.</span>
+
+<span class="sd">        Before either event, retain the fix, dropping the oldest when the</span>
+<span class="sd">        100-fix buffer is full. Once PVT has arrived, use its latest carr_soln</span>
+<span class="sd">        regardless of its age.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvt_received</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_publish_corrected</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pvt_timed_out</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_publish_no_fix</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_held_fixes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="k">return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_publish_corrected</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_publish_no_fix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Forward a fix with NO_FIX status: carr_soln is unknown, so quality is too.&quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_fix</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">NavSatStatus</span><span class="o">.</span><span class="n">STATUS_NO_FIX</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pub_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">_publish_corrected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_fix</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>

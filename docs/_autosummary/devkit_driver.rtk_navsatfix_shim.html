@@ -628,6 +628,14 @@ carr_soln updates at 1 Hz or better).</p>
 <dt class="sig sig-object py" id="devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_driver.rtk_navsatfix_shim.</span></span><span class="sig-name descname"><span class="pre">RtkNavSatFixShim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_driver/rtk_navsatfix_shim.html#RtkNavSatFixShim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_driver/rtk_navsatfix_shim.html#RtkNavSatFixShim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim.__init__" title="Link to this definition"></a></dt>
+<dd><p>Subscribe to rover fixes and PVT and publish corrected fixes on /gnss/fix.</p>
+<p>Start a five-second timer for the first PVT, retaining at most the
+newest 100 fixes while waiting, and a periodic statistics timer.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
