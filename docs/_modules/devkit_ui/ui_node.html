@@ -2283,15 +2283,6 @@
                 <span class="s1">&#39;repair: row nodes lack x/y coords — cannot classify headland &#39;</span>
                 <span class="s1">&#39;ends; skipping headland edges (in-row edges still restored)&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">connect_to</span><span class="p">:</span>
-            <span class="n">first_in</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="n">sorted_rids</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entry&#39;</span><span class="p">)</span>
-            <span class="n">last_out</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="n">sorted_rids</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">tgt</span> <span class="ow">in</span> <span class="p">(</span><span class="n">first_in</span><span class="p">,</span> <span class="n">last_out</span><span class="p">):</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">tgt</span> <span class="ow">or</span> <span class="n">tgt</span> <span class="o">==</span> <span class="n">connect_to</span><span class="p">:</span>
-                    <span class="k">continue</span>
-                <span class="n">wanted_edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">connect_to</span><span class="p">,</span> <span class="n">tgt</span><span class="p">,</span> <span class="n">NAV_ACTION</span><span class="p">))</span>
-                <span class="n">wanted_edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tgt</span><span class="p">,</span> <span class="n">connect_to</span><span class="p">,</span> <span class="n">NAV_ACTION</span><span class="p">))</span>
-
         <span class="n">new_topo_nodes</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">}</span>
         <span class="n">added_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">src</span><span class="p">,</span> <span class="n">tgt</span><span class="p">,</span> <span class="n">_action</span> <span class="ow">in</span> <span class="n">wanted_edges</span><span class="p">:</span>
