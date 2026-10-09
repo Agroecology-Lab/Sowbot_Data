@@ -11,17 +11,14 @@
    :recursive:
 
    actions
-   application_services
    constants
    dem
-   domain_services
    missions
    models
    obstacles
    pages
    parse
    plan_import
-   ros_gateway
    terrain_mask
    test_actions
    test_drop_topo_node
@@ -39,10 +36,8 @@
    test_time_utils
    test_topo_defaults
    test_topo_renderer
-   test_topology_services
    time_utils
    topo_defaults
-   topo_test_fakes
    ui_node
    utils
    view_models
