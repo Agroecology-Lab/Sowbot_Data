@@ -12,3 +12,4 @@ devkit\_ui.view\_models
 
    global_view_model
    run_view_model
+   topology_view_model

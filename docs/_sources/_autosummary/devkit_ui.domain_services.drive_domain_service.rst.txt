@@ -1,0 +1,12 @@
+devkit\_ui.domain\_services.drive\_domain\_service
+==================================================
+
+.. automodule:: devkit_ui.domain_services.drive_domain_service
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DriveDomainService
+   
