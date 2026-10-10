@@ -1,4 +1,4 @@
-# Sowbot: an open reference architecture for a small autonomous field robot
+# Sowbot: an open reference architecture for autonomous field robots
 
 | | |
 |---|---|
@@ -268,8 +268,8 @@ A compute unit on a stackable 10 cm × 10 cm standard, in a sealed aluminum encl
 ### 6.2 Platforms
 
 - **Sowbot (full size):** ~100cm x ~100cm > ~200cm adjustable tracked platform: modular aluminum chassis, NEMA 34 motors, ODrive CAN drivers and sodium-ion batteries.
-- **Sowbot Mini:** ~one-third scale [72cm x 58cm brushed driver platform]( https://www.aliexpress.com/item/1005012966135942.html).
-- **Sowbot Pico:** [29 x 18 cm small tracked chassis]()https://www.hiwonder.com/products/suspended-shock-absorbing-tracked-chassis?variant=40410257195095&_pos=1&_sid=fd651db2a&_ss=r], tested as a physical platform. The ArduPilot driver for its motor board compiles but has not run on hardware.
+- **Sowbot Mini:** ~one-third scale [72cm x 58cm brushed driver platform](https://www.aliexpress.com/item/1005012966135942.html).
+- **Sowbot Pico:** [29 x 18 cm small tracked chassis](https://www.hiwonder.com/products/suspended-shock-absorbing-tracked-chassis?variant=40410257195095&_pos=1&_sid=fd651db2a&_ss=r), tested as a physical platform. The ArduPilot driver for its motor board compiles but has not run on hardware.
 
 ### 6.3 LEVIA-H7 ArduPilot port
 
