@@ -1,0 +1,26 @@
+flowchart LR
+  classDef g fill:#f3f3f3,stroke:#888,color:#111
+  classDef w fill:#ffffff,stroke:#222,stroke-width:2px,color:#111
+
+  subgraph SW["Tiers 1 to 3: software, outside the rated function"]
+    direction LR
+    NEO["Tier 3: Neo<br/>Avaota A1 #2<br/>crop_row_node"]
+    LIM["Tier 2: Limbic<br/>Avaota A1 #1<br/>FusionCore, topological nav,<br/>Nav2, sentor, ros2_medkit"]
+    MCU["Tier 1: flight controller<br/>ArduPilot Rover<br/>on LEVIA-H7"]
+    NEO -- "ROS 2, 1 GbE" --> LIM
+    LIM -- "MAVLink" --> MCU
+  end
+
+  subgraph HW["Tier 0: rated 24 V safety loop, PLd target"]
+    direction LR
+    IN["E-stops, bumpers,<br/>radars"] --> CU["Inxpect C203A<br/>rated, proprietary"] --> K["SW180 contactors ×2"]
+  end
+
+  DRV["Motor drivers"]
+  MCU --> DRV
+  K -- "breaks 48 V B+" --> DRV
+
+  class NEO,LIM,MCU,DRV g
+  class IN,CU,K w
+  style SW fill:#fafafa,stroke:#aaa,color:#111
+  style HW fill:#ffffff,stroke:#aaa,color:#111
