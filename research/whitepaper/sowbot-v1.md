@@ -4,20 +4,20 @@
 |---|---|
 | **Version** | 2.1.0 (draft), 9 October 2026 |
 | **Basis** | Sowbot Safety Roadmap v0.6.9; `feldfreund_devkit_ros`, branch `caatinga-dev`; sowbot.co.uk/hardware |
-| **Licence** | ROS 2 and Python software: MIT and Apache-2.0, by package. ArduPilot layer: GPL-3.0. Hardware: CERN-OHL-S-2.0 [confirm: the site says "open licences" and the repository names none] |
+| **Licence** | ROS 2 and Python software: MIT and Apache-2.0, by package. ArduPilot layer: GPL-3.0. Hardware: CERN-OHL-S-2.0 |
 | **Platform** | Sowbot DevKit on the Open Core compute module. Sowbot Mini and Sowbot Pico are development chassis |
 
 ---
 
 ## Summary
 
-Sowbot is an open-source ROS 2 stack and open hardware design for a small autonomous field robot. It is developed by the Agroecology Lab and builds on the Zauberzeug Feldfreund devkit.
+Sowbot is an open-source ROS 2 stack and open hardware design for autonomous field robots. It is developed by the Agroecology Lab and builds on the Zauberzeug Feldfreund devkit.
 
 Two ARM single-board computers run navigation, state estimation and vision. A flight controller running ArduPilot Rover drives the motors. A separate 24 V safety loop, built around the Inxpect C203A safety controller, cuts the 48 V traction supply on an E-stop, a bumper contact or a radar detection.
 
-The C203A runs Inxpect's certified firmware. It is the only proprietary controller in the design. The stop function does not depend on any Sowbot software, so the rest of the stack can be open and can change without re-assessing the safety function.
+The C203A (PL d) runs Inxpect's certified firmware. It is the only proprietary controller in the design. The stop function does not depend on any Sowbot software, so the rest of the stack can be open and can change without re-assessing the safety function.
 
-The safety loop targets ISO 13849-1 Performance Level d (PLd). No PLd calculation is complete, no third party has assessed the design, and no compliance with any standard is claimed.
+The safety loop targets ISO 13849-1 Performance Level d (PLd). No PLd calculation is yet complete, no third party has assessed the design, and no compliance with any standard is yet claimed.
 
 ---
 
@@ -29,7 +29,7 @@ Two problems sit at the centre of field robotics. The first is driving along a c
 
 Sowbot builds on the Zauberzeug Feldfreund devkit and is developed by the Agroecology Lab. The aim is a small robot whose whole stack is open, safety design included, and which a university lab or a smallholding could run. The navigation, vision and drive code are open source. The one closed part is the certified safety controller. It is bought in because certified firmware cannot sensibly be written from scratch, and it allows everything else to stay open and to change without re-assessing the stop function.
 
-The pieces now exist and have been run in simulation or on the bench. Multi-row missions run in Gazebo, a row follower has been tested against a lettuce crop in the UK, and the whole stack builds with one command. The work ahead is to put these together on a vehicle in the field and to finish the safety loop. This paper records where each piece stands.
+The pieces now exist and have been run in simulation or on the bench. Multi-row missions run in Gazebo, a row follower has been tested against a lettuce crop in the UK, and the whole stack builds with one command. The work ahead is to put these together on a vehicle in the field and to finish the safety loop. 
 
 ---
 
@@ -75,7 +75,6 @@ Most items below have been tested in simulation or on the bench. Full-vehicle fi
 - All geofencing is supervisory until the independent geofence is built and assessed.
 - The rated function stops the vehicle. It does not cover implements, PTO or manipulators.
 - The stop depends on one vendor's closed controller.
-- The hardware licence is not yet stated in the repository.
 
 ---
 
@@ -146,7 +145,6 @@ Tracked and skid-steer machines slip, and odometry from slipping tracks over-rep
 - The PAA5100 is the short-range variant, so sensor height has to be checked against chassis ground clearance.
 - The sensor's pixel-to-distance scale is proprietary and set by a tuning parameter.
 
-The repository also contains a research proposal on terramechanics-informed estimation, which is at simulation stage.
 
 ### 4.4 Row detection
 
@@ -265,13 +263,13 @@ Open items: where the outputs enter the 24 V loop, an independent plausibility s
 
 ### 6.1 Open Core module
 
-A compute unit on a stackable 10 cm × 10 cm standard, in a sealed aluminium enclosure with M12 connectors. It holds the two Avaota boards, CAN, two RTK receivers and power regulation. Status: fabricated, under test. The flight controller is the LEVIA-H7. The site's bill of materials lists M22 connectors for the enclosure, which needs resolving.
+A compute unit on a stackable 10 cm × 10 cm standard, in a sealed aluminum enclosure with M12 connectors. It holds the two Avaota boards, CAN, two RTK receivers and power regulation. Status: fabricated, under test. The flight controller is the LEVIA-H7. The site's bill of materials lists M22 connectors for the enclosure, which needs resolving.
 
 ### 6.2 Platforms
 
-- **Sowbot (full size):** modular aluminium chassis, NEMA 34 motors, ODrive CAN drivers and sodium-ion batteries. The project is moving this platform to tracks and the body bill of materials is under review.
-- **Sowbot Mini:** one-third scale on 1515 extrusion with Lynx tracks. Needs assembly and testing.
-- **Sowbot Pico:** small tracked chassis, tested as a physical platform. The ArduPilot driver for its motor board compiles but has not run on hardware.
+- **Sowbot (full size):** ~100cm x ~100cm > ~200cm adjustable tracked platform: modular aluminum chassis, NEMA 34 motors, ODrive CAN drivers and sodium-ion batteries.
+- **Sowbot Mini:** ~one-third scale [72cm x 58cm brushed driver platform]( https://www.aliexpress.com/item/1005012966135942.html).
+- **Sowbot Pico:** [29 x 18 cm small tracked chassis]()https://www.hiwonder.com/products/suspended-shock-absorbing-tracked-chassis?variant=40410257195095&_pos=1&_sid=fd651db2a&_ss=r], tested as a physical platform. The ArduPilot driver for its motor board compiles but has not run on hardware.
 
 ### 6.3 LEVIA-H7 ArduPilot port
 
