@@ -1,0 +1,6 @@
+flowchart LR
+  classDef g fill:#f3f3f3,stroke:#888,color:#111
+  A["Row 1 entry"] -- "limbic_row_follow" --> B["Row 1 exit"]
+  B -- "NavigateToPose<br/>(headland turn)" --> C["Row 2 entry"]
+  C -- "limbic_row_follow" --> D["Row 2 exit"]
+  class A,B,C,D g

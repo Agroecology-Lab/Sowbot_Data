@@ -1,0 +1,12 @@
+flowchart LR
+  classDef g fill:#f3f3f3,stroke:#888,color:#111
+  P["+24 V safety supply"] --> E["E-stops ×2<br/>Schneider XALK178"] --> C["Inxpect C203A<br/>rated firmware<br/>SIL 2 / PLd"]
+  BU["ASO Sentir bumpers ×2<br/>4-wire"] --> C
+  R["Inxpect S101A radars ×3<br/>M12 CAN"] --> C
+  C --> K1["SW180 #1 coil"]
+  C --> K2["SW180 #2 coil"]
+  B["48 V battery B+"] --> S1["SW180 #1 contacts"] --> S2["SW180 #2 contacts"] --> M["Motor controllers"]
+  K1 -.-> S1
+  K2 -.-> S2
+  S1 -. "contactor feedback" .-> C
+  class P,E,C,BU,R,K1,K2,B,S1,S2,M g
