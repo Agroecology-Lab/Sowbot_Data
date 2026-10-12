@@ -8,8 +8,7 @@ devkit\_ui.test\_navigation\_goals
 
    .. autosummary::
    
-      load_navigation_harness
-      make_node
+      make_domain
    
    .. rubric:: Classes
 
@@ -19,8 +18,7 @@ devkit\_ui.test\_navigation\_goals
       Future
       Goal
       GoalHandle
-      ImmediateThread
-      NavigationHarness
-      TestSendNavGoal
-      TestSynchronousNavigationGoal
+      TestNavigationApplicationService
+      TestNavigationDomainService
+      TestRunViewModelNavigation
    

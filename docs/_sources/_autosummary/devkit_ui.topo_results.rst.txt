@@ -1,0 +1,15 @@
+devkit\_ui.topo\_results
+========================
+
+.. automodule:: devkit_ui.topo_results
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DiscoveryResult
+      NavUpdate
+      PersistResult
+      SwitchResult
+   

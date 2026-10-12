@@ -1,0 +1,16 @@
+devkit\_ui.test\_drive\_services
+================================
+
+.. automodule:: devkit_ui.test_drive_services
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      FakeBool
+      FakeTwist
+      TestDriveServices
+      TestPoseLabel
+      TestRosGateway
+   

@@ -1,0 +1,12 @@
+devkit\_ui.domain\_services.row\_discovery\_domain\_service
+===========================================================
+
+.. automodule:: devkit_ui.domain_services.row_discovery_domain_service
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RowDiscoveryDomainService
+   

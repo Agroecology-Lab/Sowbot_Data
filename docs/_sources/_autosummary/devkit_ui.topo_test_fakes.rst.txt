@@ -1,0 +1,19 @@
+devkit\_ui.topo\_test\_fakes
+============================
+
+.. automodule:: devkit_ui.topo_test_fakes
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      attach_topology
+      patch_store_io
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      FakeTopologyDomain
+   

@@ -8,6 +8,7 @@ devkit\_ui.test\_run\_ui
 
    .. autosummary::
    
+      FakeContext
       FakeDialog
       FakeElement
       FakeTimer

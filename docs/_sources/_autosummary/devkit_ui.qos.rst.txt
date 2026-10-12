@@ -1,0 +1,6 @@
+devkit\_ui.qos
+==============
+
+.. automodule:: devkit_ui.qos
+
+   

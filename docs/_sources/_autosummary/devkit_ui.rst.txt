@@ -11,16 +11,21 @@
    :recursive:
 
    actions
+   application_services
    constants
    dem
+   domain_services
    missions
    models
    obstacles
    pages
    parse
    plan_import
+   qos
+   ros_gateway
    terrain_mask
    test_actions
+   test_drive_services
    test_drop_topo_node
    test_f2c_row_metadata
    test_map_failures
@@ -28,16 +33,24 @@
    test_medkit_gateway
    test_models
    test_navigation_goals
+   test_navigation_service_wiring
    test_parse
    test_plan_import
    test_process_cleanup
+   test_robot_brain_and_discovery_services
    test_row_actions
+   test_run_service_cards
    test_run_ui
+   test_telemetry_services
    test_time_utils
    test_topo_defaults
    test_topo_renderer
+   test_topology_persistence
+   test_topology_services
    time_utils
    topo_defaults
+   topo_results
+   topo_test_fakes
    ui_node
    utils
    view_models

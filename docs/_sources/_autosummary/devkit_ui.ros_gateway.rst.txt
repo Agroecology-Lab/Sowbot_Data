@@ -1,0 +1,18 @@
+devkit\_ui.ros\_gateway
+=======================
+
+.. automodule:: devkit_ui.ros_gateway
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RosGateway
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      TransformUnavailable
+   

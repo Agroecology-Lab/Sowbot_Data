@@ -1,0 +1,12 @@
+devkit\_ui.domain\_services.telemetry\_domain\_service
+======================================================
+
+.. automodule:: devkit_ui.domain_services.telemetry_domain_service
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TelemetryDomainService
+   

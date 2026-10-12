@@ -1,0 +1,12 @@
+devkit\_ui.domain\_services.robot\_brain\_domain\_service
+=========================================================
+
+.. automodule:: devkit_ui.domain_services.robot_brain_domain_service
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RobotBrainDomainService
+   

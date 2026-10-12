@@ -1,0 +1,18 @@
+devkit\_ui.application\_services
+================================
+
+.. automodule:: devkit_ui.application_services
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   drive_application_service
+   navigation_application_service
+   robot_brain_application_service
+   row_discovery_application_service
+   telemetry_application_service
+   topology_application_service

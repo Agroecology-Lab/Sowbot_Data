@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>devkit_ui.ui_node &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+  <title>devkit_ui.test_navigation_service_wiring &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_ui.utils" href="devkit_ui.utils.html" />
-    <link rel="prev" title="devkit_ui.topo_defaults" href="devkit_ui.topo_defaults.html" /> 
+    <link rel="next" title="devkit_ui.test_parse" href="devkit_ui.test_parse.html" />
+    <link rel="prev" title="devkit_ui.test_navigation_goals" href="devkit_ui.test_navigation_goals.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -256,6 +256,15 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.actions.html#devkit_ui.actions.action_ros_msgs"><code class="docutils literal notranslate"><span class="pre">action_ros_msgs()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.application_services.html">devkit_ui.application_services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.drive_application_service.html">devkit_ui.application_services.drive_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.navigation_application_service.html">devkit_ui.application_services.navigation_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.constants.html">devkit_ui.constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.dem.html">devkit_ui.dem</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.dem.html#devkit_ui.dem.build_elevation_grid"><code class="docutils literal notranslate"><span class="pre">build_elevation_grid()</span></code></a></li>
@@ -264,6 +273,16 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.dem.html#devkit_ui.dem.recon_csv_to_obstacle_rings"><code class="docutils literal notranslate"><span class="pre">recon_csv_to_obstacle_rings()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_latlon"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_latlon()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_xy"><code class="docutils literal notranslate"><span class="pre">select_reference_contour_xy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.domain_services.html">devkit_ui.domain_services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.drive_domain_service.html">devkit_ui.domain_services.drive_domain_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.navigation_domain_service.html">devkit_ui.domain_services.navigation_domain_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.robot_brain_domain_service.html">devkit_ui.domain_services.robot_brain_domain_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.row_discovery_domain_service.html">devkit_ui.domain_services.row_discovery_domain_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.telemetry_domain_service.html">devkit_ui.domain_services.telemetry_domain_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.topo_map_store.html">devkit_ui.domain_services.topo_map_store</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.missions.html">devkit_ui.missions</a><ul>
@@ -320,12 +339,26 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.parse_plan"><code class="docutils literal notranslate"><span class="pre">parse_plan()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.qos.html">devkit_ui.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.ros_gateway.html">devkit_ui.ros_gateway</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.RosGateway"><code class="docutils literal notranslate"><span class="pre">RosGateway</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.TransformUnavailable"><code class="docutils literal notranslate"><span class="pre">TransformUnavailable</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.terrain_mask.html#devkit_ui.terrain_mask.traversability_mask_to_latlon_rings"><code class="docutils literal notranslate"><span class="pre">traversability_mask_to_latlon_rings()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_actions.html">devkit_ui.test_actions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_actions.html#devkit_ui.test_actions.TestActionRosMsgs"><code class="docutils literal notranslate"><span class="pre">TestActionRosMsgs</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_drive_services.html">devkit_ui.test_drive_services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.FakeBool"><code class="docutils literal notranslate"><span class="pre">FakeBool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.FakeTwist"><code class="docutils literal notranslate"><span class="pre">FakeTwist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices"><code class="docutils literal notranslate"><span class="pre">TestDriveServices</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestPoseLabel"><code class="docutils literal notranslate"><span class="pre">TestPoseLabel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestRosGateway"><code class="docutils literal notranslate"><span class="pre">TestRosGateway</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_drop_topo_node.html">devkit_ui.test_drop_topo_node</a><ul>
@@ -372,12 +405,15 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Goal"><code class="docutils literal notranslate"><span class="pre">Goal</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.GoalHandle"><code class="docutils literal notranslate"><span class="pre">GoalHandle</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.NavigationHarness"><code class="docutils literal notranslate"><span class="pre">NavigationHarness</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSendNavGoal"><code class="docutils literal notranslate"><span class="pre">TestSendNavGoal</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestSynchronousNavigationGoal"><code class="docutils literal notranslate"><span class="pre">TestSynchronousNavigationGoal</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.load_navigation_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_harness()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestNavigationApplicationService"><code class="docutils literal notranslate"><span class="pre">TestNavigationApplicationService</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestNavigationDomainService"><code class="docutils literal notranslate"><span class="pre">TestNavigationDomainService</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestRunViewModelNavigation"><code class="docutils literal notranslate"><span class="pre">TestRunViewModelNavigation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.make_domain"><code class="docutils literal notranslate"><span class="pre">make_domain()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.test_navigation_service_wiring</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring"><code class="docutils literal notranslate"><span class="pre">TestNavigationServiceWiring</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_navigation_service_wiring.load_navigation_service_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_service_harness()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_parse.html">devkit_ui.test_parse</a><ul>
@@ -392,11 +428,27 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_process_cleanup.html#devkit_ui.test_process_cleanup.TestProcessCleanup"><code class="docutils literal notranslate"><span class="pre">TestProcessCleanup</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html">devkit_ui.test_robot_brain_and_discovery_services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeEmpty"><code class="docutils literal notranslate"><span class="pre">FakeEmpty</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeString"><code class="docutils literal notranslate"><span class="pre">FakeString</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeTrigger"><code class="docutils literal notranslate"><span class="pre">FakeTrigger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_row_actions.html">devkit_ui.test_row_actions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_row_actions.html#devkit_ui.test_row_actions.TestRowActions"><code class="docutils literal notranslate"><span class="pre">TestRowActions</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_run_service_cards.html">devkit_ui.test_run_service_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_service_cards.html#devkit_ui.test_run_service_cards.TestJoystickControlCard"><code class="docutils literal notranslate"><span class="pre">TestJoystickControlCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_service_cards.html#devkit_ui.test_run_service_cards.TestNodeMapCard"><code class="docutils literal notranslate"><span class="pre">TestNodeMapCard</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_run_ui.html">devkit_ui.test_run_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeContext"><code class="docutils literal notranslate"><span class="pre">FakeContext</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeDialog"><code class="docutils literal notranslate"><span class="pre">FakeDialog</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeElement"><code class="docutils literal notranslate"><span class="pre">FakeElement</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeTimer"><code class="docutils literal notranslate"><span class="pre">FakeTimer</span></code></a></li>
@@ -407,6 +459,22 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo"><code class="docutils literal notranslate"><span class="pre">TestObstacleUndo</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRowDiscoveryCard"><code class="docutils literal notranslate"><span class="pre">TestRowDiscoveryCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestRunViewModel"><code class="docutils literal notranslate"><span class="pre">TestRunViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_telemetry_services.html">devkit_ui.test_telemetry_services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.FakeNavSatFix"><code class="docutils literal notranslate"><span class="pre">FakeNavSatFix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.FakeRos"><code class="docutils literal notranslate"><span class="pre">FakeRos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TelemetryDomainTestCase"><code class="docutils literal notranslate"><span class="pre">TelemetryDomainTestCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestApplicationServiceAndViewModel"><code class="docutils literal notranslate"><span class="pre">TestApplicationServiceAndViewModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestFakeGps"><code class="docutils literal notranslate"><span class="pre">TestFakeGps</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestGps"><code class="docutils literal notranslate"><span class="pre">TestGps</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestOdometry"><code class="docutils literal notranslate"><span class="pre">TestOdometry</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestRobotPose"><code class="docutils literal notranslate"><span class="pre">TestRobotPose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestSensorInputs"><code class="docutils literal notranslate"><span class="pre">TestSensorInputs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestWiring"><code class="docutils literal notranslate"><span class="pre">TestWiring</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.fix"><code class="docutils literal notranslate"><span class="pre">fix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.odom"><code class="docutils literal notranslate"><span class="pre">odom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.transform"><code class="docutils literal notranslate"><span class="pre">transform()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_time_utils.html">devkit_ui.test_time_utils</a><ul>
@@ -422,6 +490,22 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.row_labels"><code class="docutils literal notranslate"><span class="pre">row_labels()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topology_persistence.html">devkit_ui.test_topology_persistence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.FakeDomain"><code class="docutils literal notranslate"><span class="pre">FakeDomain</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.ServiceCase"><code class="docutils literal notranslate"><span class="pre">ServiceCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.TestDomainSwitchMap"><code class="docutils literal notranslate"><span class="pre">TestDomainSwitchMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.TestDropNode"><code class="docutils literal notranslate"><span class="pre">TestDropNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.TestPatchNodeRole"><code class="docutils literal notranslate"><span class="pre">TestPatchNodeRole</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.TestPersistAndReload"><code class="docutils literal notranslate"><span class="pre">TestPersistAndReload</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.TestTopoMapStore"><code class="docutils literal notranslate"><span class="pre">TestTopoMapStore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.live_doc"><code class="docutils literal notranslate"><span class="pre">live_doc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topology_services.html">devkit_ui.test_topology_services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack"><code class="docutils literal notranslate"><span class="pre">TestTopologyStack</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.make_stack"><code class="docutils literal notranslate"><span class="pre">make_stack()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc"><code class="docutils literal notranslate"><span class="pre">now_utc()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.time_utils.html#devkit_ui.time_utils.now_utc_str"><code class="docutils literal notranslate"><span class="pre">now_utc_str()</span></code></a></li>
@@ -433,11 +517,17 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_definitions"><code class="docutils literal notranslate"><span class="pre">default_definitions()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.ui_node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.ui_node.NiceGuiNode"><code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.ui_node.load_css"><code class="docutils literal notranslate"><span class="pre">load_css()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.ui_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.ui_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_results.html">devkit_ui.topo_results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_results.html#devkit_ui.topo_results.DiscoveryResult"><code class="docutils literal notranslate"><span class="pre">DiscoveryResult</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_results.html#devkit_ui.topo_results.NavUpdate"><code class="docutils literal notranslate"><span class="pre">NavUpdate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_results.html#devkit_ui.topo_results.PersistResult"><code class="docutils literal notranslate"><span class="pre">PersistResult</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_results.html#devkit_ui.topo_results.SwitchResult"><code class="docutils literal notranslate"><span class="pre">SwitchResult</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_test_fakes.html">devkit_ui.topo_test_fakes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.FakeTopologyDomain"><code class="docutils literal notranslate"><span class="pre">FakeTopologyDomain</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.attach_topology"><code class="docutils literal notranslate"><span class="pre">attach_topology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.patch_store_io"><code class="docutils literal notranslate"><span class="pre">patch_store_io()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.utils.html">devkit_ui.utils</a><ul>
@@ -447,6 +537,8 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.topology_view_model.html">devkit_ui.view_models.topology_view_model</a></li>
 </ul>
 </li>
 </ul>
@@ -548,9 +640,9 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../python_api.html">Python API Reference</a></li>
           <li class="breadcrumb-item"><a href="devkit_ui.html">devkit_ui</a></li>
-      <li class="breadcrumb-item active">devkit_ui.ui_node</li>
+      <li class="breadcrumb-item active">devkit_ui.test_navigation_service_wiring</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_autosummary/devkit_ui.ui_node.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/devkit_ui.test_navigation_service_wiring.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -558,338 +650,96 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-devkit_ui.ui_node">
-<span id="devkit-ui-ui-node"></span><h1>devkit_ui.ui_node<a class="headerlink" href="#module-devkit_ui.ui_node" title="Link to this heading"></a></h1>
-<p>ui_node.py — Sowbot web cockpit on :80</p>
+  <section id="module-devkit_ui.test_navigation_service_wiring">
+<span id="devkit-ui-test-navigation-service-wiring"></span><h1>devkit_ui.test_navigation_service_wiring<a class="headerlink" href="#module-devkit_ui.test_navigation_service_wiring" title="Link to this heading"></a></h1>
+<p>Exercise changed NiceGuiNode methods with isolated ROS and UI boundaries.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.ui_node.load_css" title="devkit_ui.ui_node.load_css"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_css</span></code></a>()</p></td>
-<td><p>Return the bundled app stylesheet from the package resources.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.ui_node.main" title="devkit_ui.ui_node.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.ui_node.ros_main" title="devkit_ui.ui_node.ros_main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ros_main</span></code></a>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_navigation_service_wiring.load_navigation_service_harness" title="devkit_ui.test_navigation_service_wiring.load_navigation_service_harness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_navigation_service_harness</span></code></a>()</p></td>
+<td><p>Load the real methods, following the existing navigation test harness pattern.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.ui_node.NiceGuiNode" title="devkit_ui.ui_node.NiceGuiNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring" title="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestNavigationServiceWiring</span></code></a>([methodName])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.ui_node.</span></span><span class="sig-name descname"><span class="pre">NiceGuiNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_navigation_service_wiring.</span></span><span class="sig-name descname"><span class="pre">TestNavigationServiceWiring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.__init__" title="Link to this definition"></a></dt>
-<dd><p>Initialize the ROS node, GUI view models, navigation interfaces, sensor state, and
-mission-planning components.</p>
-<p>In simulation, configure the dedicated fallback GPS source used when no recent real GPS fix
-is available. Register the NiceGUI root page and initialize topology, obstacle, mission,
-safety, and navigation state.</p>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.setUp" title="Link to this definition"></a></dt>
+<dd><p>Build a navigation UI harness with shared view models and synthetic telemetry.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.archive_and_clear_map">
-<span class="sig-name descname"><span class="pre">archive_and_clear_map</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.archive_and_clear_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.archive_and_clear_map" title="Link to this definition"></a></dt>
-<dd><p>Copy current map file to /workspace/maps/&lt;name&gt;_&lt;N&gt;, then write a
-fresh empty map doc back to the original path and attempt to publish it.</p>
-<p>Choose the first unused suffix starting at 1. Archive the persisted map,
-or the in-memory map if no file exists. Reset actions and definitions to
-repository defaults and row driving to geometry mode.</p>
-<p>Return an archive status or an ‘ERROR:’ status for a missing map or a
-read/write failure. Publishing errors are ignored, and earlier writes
-are not rolled back if a later step fails.</p>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_browser_disconnect_releases_the_joystick">
+<span class="sig-name descname"><span class="pre">test_browser_disconnect_releases_the_joystick</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_browser_disconnect_releases_the_joystick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_browser_disconnect_releases_the_joystick" title="Link to this definition"></a></dt>
+<dd><p>Verify the run page registers the joystick release for a dropped browser connection.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.cancel_mission">
-<span class="sig-name descname"><span class="pre">cancel_mission</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.cancel_mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.cancel_mission" title="Link to this definition"></a></dt>
-<dd><p>Signal the executor thread to stop after the current row.</p>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_cards_receive_shared_topology_and_pose_state">
+<span class="sig-name descname"><span class="pre">test_cards_receive_shared_topology_and_pose_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_cards_receive_shared_topology_and_pose_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_cards_receive_shared_topology_and_pose_state" title="Link to this definition"></a></dt>
+<dd><p>Verify cards receive the shared topology, run, and global view models.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.cancel_nav_goal">
-<span class="sig-name descname"><span class="pre">cancel_nav_goal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.cancel_nav_goal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.cancel_nav_goal" title="Link to this definition"></a></dt>
-<dd><p>Cancel the active navigation goal.</p>
-<p>If the goal has already been accepted, cancel it now. If a send is still
-in flight (accepted status not yet known), flag it so <cite>_nav_accepted</cite>
-cancels it the moment it arrives, and keep <cite>navigating</cite> set so a second
-goal cannot be accepted in the meantime.</p>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_commands_delegate_without_overwriting_measured_velocity">
+<span class="sig-name descname"><span class="pre">test_commands_delegate_without_overwriting_measured_velocity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_commands_delegate_without_overwriting_measured_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_commands_delegate_without_overwriting_measured_velocity" title="Link to this definition"></a></dt>
+<dd><p>Verify drive commands delegate while measured odometry velocities stay unchanged.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.confirm_delete_node">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">confirm_delete_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.confirm_delete_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.confirm_delete_node" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.confirm_delete_row">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">confirm_delete_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.confirm_delete_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.confirm_delete_row" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.content">
-<span class="sig-name descname"><span class="pre">content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.content" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.delete_row">
-<span class="sig-name descname"><span class="pre">delete_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.delete_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.delete_row" title="Link to this definition"></a></dt>
-<dd><p>Delete all topology nodes belonging to a row and persist the updated map.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>row_id</strong> (<em>int</em>) – Identifier of the row whose nodes should be deleted.</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_document_property_follows_view_model_replacement">
+<span class="sig-name descname"><span class="pre">test_document_property_follows_view_model_replacement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_document_property_follows_view_model_replacement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_document_property_follows_view_model_replacement" title="Link to this definition"></a></dt>
+<dd><p>Verify the node document property follows replacement and clearing in the view model.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.delete_topo_node">
-<span class="sig-name descname"><span class="pre">delete_topo_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.delete_topo_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.delete_topo_node" title="Link to this definition"></a></dt>
-<dd><p>Delete a topology node and persist the updated map.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the topology node to delete.</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_losing_odometry_and_robot_pose_clears_display_state">
+<span class="sig-name descname"><span class="pre">test_losing_odometry_and_robot_pose_clears_display_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_losing_odometry_and_robot_pose_clears_display_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_losing_odometry_and_robot_pose_clears_display_state" title="Link to this definition"></a></dt>
+<dd><p>Verify lost telemetry clears the pose label and robot overlay state.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.drop_topo_node">
-<span class="sig-name descname"><span class="pre">drop_topo_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'entry'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.drop_topo_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.drop_topo_node" title="Link to this definition"></a></dt>
-<dd><p>Add a topology node at the current robot position and persist it to the
-active map.</p>
-<p>Add the node in memory immediately, then save and reload in a background
-thread. Use (0, 0) in simulation if odometry is unavailable. Connect to the
-current node, or the selected node as a fallback; save the outgoing edge
-only if its target is already on disk. Row nodes use the selected row action.
-Validation failures and worker exceptions set drop_node.status; a failed
-save does not roll back the initial in-memory addition.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – Name, stripped and uppercased, with spaces replaced by</p></li>
-<li><p><strong>A-Z</strong> (<em>underscores and characters outside</em>)</p></li>
-<li><p><strong>0-9</strong></p></li>
-<li><p><strong>removed.</strong> (<em>and underscore</em>)</p></li>
-<li><p><strong>row_id</strong> (<em>int</em><em> | </em><em>None</em>) – Row identifier to associate with the node, or None for</p></li>
-<li><p><strong>node.</strong> (<em>a navigation</em>)</p></li>
-<li><p><strong>row_role</strong> (<em>str</em>) – Role of the node within its row, such as “entry” or “exit”.</p></li>
-</ul>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_node_click_ignores_invalid_payloads_and_selects_existing_node">
+<span class="sig-name descname"><span class="pre">test_node_click_ignores_invalid_payloads_and_selects_existing_node</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_node_click_ignores_invalid_payloads_and_selects_existing_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_node_click_ignores_invalid_payloads_and_selects_existing_node" title="Link to this definition"></a></dt>
+<dd><p>Verify node clicks select existing nodes and tolerate invalid data or a missing map.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.import_plan_geojson">
-<span class="sig-name descname"><span class="pre">import_plan_geojson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.import_plan_geojson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.import_plan_geojson" title="Link to this definition"></a></dt>
-<dd><p>Load a web-planner plan into the F2C state so ‘Save as Topo Rows’ can build nodes.</p>
-<p>Returns a status string; does not touch the topo map itself.</p>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_refresh_uses_odometry_velocity_and_forwards_latest_pose">
+<span class="sig-name descname"><span class="pre">test_refresh_uses_odometry_velocity_and_forwards_latest_pose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_refresh_uses_odometry_velocity_and_forwards_latest_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_refresh_uses_odometry_velocity_and_forwards_latest_pose" title="Link to this definition"></a></dt>
+<dd><p>Verify refresh updates telemetry without rebuilding an unchanged node list.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.repair_row_connectivity">
-<span class="sig-name descname"><span class="pre">repair_row_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connect_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.repair_row_connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.repair_row_connectivity" title="Link to this definition"></a></dt>
-<dd><p>Rebuild missing in-row and headland connections for existing rows in the loaded topology
-map.</p>
-<p>New in-row connections use the selected row action; existing edge actions are preserved.
-Update memory immediately and persist in the background, reporting validation failures
-and worker errors in f2c_save_status. Ignore an unknown connect_to node.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>connect_to</strong> (<em>str</em><em> | </em><em>None</em>) – Optional node name to connect bidirectionally to the first row</p></li>
-<li><p><strong>exit.</strong> (<em>entry and last row</em>)</p></li>
-</ul>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_refresh_without_map_still_updates_telemetry">
+<span class="sig-name descname"><span class="pre">test_refresh_without_map_still_updates_telemetry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_refresh_without_map_still_updates_telemetry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_refresh_without_map_still_updates_telemetry" title="Link to this definition"></a></dt>
+<dd><p>Verify telemetry updates without a map while map-specific refresh work is skipped.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.save_f2c_rows_to_topo">
-<span class="sig-name descname"><span class="pre">save_f2c_rows_to_topo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_id_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.save_f2c_rows_to_topo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.save_f2c_rows_to_topo" title="Link to this definition"></a></dt>
-<dd><p>Save the most recently planned F2C swaths as rows in the loaded
-topology map.</p>
-<p>In-row edges use the selected row action; headland edges use
-point-to-point navigation. Persistence runs in the background,
-with validation failures and worker errors in f2c_save_status.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>prefix</strong> (<em>str</em>) – Prefix used to name the generated row nodes.</p></li>
-<li><p><strong>row_id_start</strong> (<em>int</em>) – Identifier assigned to the first planned row.</p></li>
-<li><p><strong>overwrite</strong> (<em>bool</em>) – Whether to replace existing nodes with the</p></li>
-<li><p><strong>prefix.</strong> (<em>specified</em>)</p></li>
-</ul>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_sidebar_actions_use_latest_selection_and_separate_navigation_state">
+<span class="sig-name descname"><span class="pre">test_sidebar_actions_use_latest_selection_and_separate_navigation_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#TestNavigationServiceWiring.test_sidebar_actions_use_latest_selection_and_separate_navigation_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring.test_sidebar_actions_use_latest_selection_and_separate_navigation_state" title="Link to this definition"></a></dt>
+<dd><p>Verify sidebar commands use the current selection and distinct navigation state.</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.save_map_as">
-<span class="sig-name descname"><span class="pre">save_map_as</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.save_map_as"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.save_map_as" title="Link to this definition"></a></dt>
-<dd><p>Save a named copy of the current map to /workspace/maps/&lt;name&gt;.</p>
-<p>The live map is left as it is. Refuses to overwrite an existing file.
-Prefer the persisted map, falling back to memory only if its file is absent.
-Strip surrounding whitespace from name; require 1-64 ASCII letters, digits,
-underscores, or hyphens, starting with a letter or digit.</p>
-<p>Return ‘saved → &lt;name&gt;’ on success or an ‘ERROR:’ status for a missing or empty
-map, an invalid or occupied name, or an exception while reading or saving.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.send_nav_goal">
-<span class="sig-name descname"><span class="pre">send_nav_goal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.send_nav_goal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.send_nav_goal" title="Link to this definition"></a></dt>
-<dd><p>Send a navigation goal to the specified topology node.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – Name of the topology node to navigate to.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.send_speed">
-<span class="sig-name descname"><span class="pre">send_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.send_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.send_speed" title="Link to this definition"></a></dt>
-<dd><p>Publish a velocity command and update the stored velocity values.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em>) – Linear velocity command.</p></li>
-<li><p><strong>y</strong> (<em>float</em>) – Angular velocity command.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.set_row_action">
-<span class="sig-name descname"><span class="pre">set_row_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.set_row_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.set_row_action" title="Link to this definition"></a></dt>
-<dd><p>Switch row driving between geometry-only and vision following.</p>
-<p>Applies to rows added from now on and rewrites the row edges already in
-the map, so the same map can be seeded with row_traversal and then run
-with limbic_row_follow once a crop exists.</p>
-<p>Ignore unsupported or unchanged actions. Update the session selection immediately;
-if the loaded map has matching edges to change, persist and reload in the background.
-Worker errors are reported in drop_node.status without reverting the selection.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.start_discovery">
-<span class="sig-name descname"><span class="pre">start_discovery</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.start_discovery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.start_discovery" title="Link to this definition"></a></dt>
-<dd><p>Initiate row discovery through the configured ROS 2 Trigger service.</p>
-<p>Updates the discovery status as the request starts, completes, or fails.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.start_track">
-<span class="sig-name descname"><span class="pre">start_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.start_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.start_track" title="Link to this definition"></a></dt>
-<dd><p>Start periodic recording of topology nodes using the specified naming prefix.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>prefix</strong> (<em>str</em>) – Prefix used for numbered node names after normalization.</p></li>
-<li><p><strong>interval</strong> (<em>float</em>) – Time in seconds between recorded nodes.</p></li>
-<li><p><strong>row_id</strong> (<em>int</em><em> | </em><em>None</em>) – Optional row identifier associated with each node.</p></li>
-<li><p><strong>row_role</strong> (<em>str</em><em> | </em><em>None</em>) – Role assigned to recorded nodes when no row</p></li>
-<li><p><strong>provided.</strong> (<em>identifier is</em>)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.stop_discovery">
-<span class="sig-name descname"><span class="pre">stop_discovery</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.stop_discovery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.stop_discovery" title="Link to this definition"></a></dt>
-<dd><p>Stop row discovery and update its status when the request completes.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.stop_track">
-<span class="sig-name descname"><span class="pre">stop_track</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.stop_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.stop_track" title="Link to this definition"></a></dt>
-<dd><p>Stop tracking and mark the last tracked node as the row exit when applicable.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.store_battery">
-<span class="sig-name descname"><span class="pre">store_battery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs.msg.BatteryState</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.store_battery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.store_battery" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.store_fake_gps">
-<span class="sig-name descname"><span class="pre">store_fake_gps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs.msg.NavSatFix</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.store_fake_gps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.store_fake_gps" title="Link to this definition"></a></dt>
-<dd><p>Consume the sim shim’s fix as a fallback ONLY (see _FAKE_GPS_TOPIC
-setup docstring). This topic is never seen by fusioncore, so this is
-purely for the UI’s own use (e.g. the topo-map save path needing a
-finite fix at cold start before the real bridge has published one).
-Content-gated rather than topic-gated: only takes effect if no real
-fix has arrived recently, so a slow-starting real bridge doesn’t
-leave the UI without any fix while it comes up.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.store_gps">
-<span class="sig-name descname"><span class="pre">store_gps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs.msg.NavSatFix</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.store_gps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.store_gps" title="Link to this definition"></a></dt>
-<dd><p>Cache the latest real GNSS fix and refresh the wall-clock staleness timestamp.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.toggle_estop">
-<span class="sig-name descname"><span class="pre">toggle_estop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.toggle_estop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.toggle_estop" title="Link to this definition"></a></dt>
-<dd><p>Toggle the soft emergency-stop state and publish the updated value.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.update_bumper_back">
-<span class="sig-name descname"><span class="pre">update_bumper_back</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">std_msgs.msg.Bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.update_bumper_back"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.update_bumper_back" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.update_bumper_front_bottom">
-<span class="sig-name descname"><span class="pre">update_bumper_front_bottom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">std_msgs.msg.Bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.update_bumper_front_bottom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.update_bumper_front_bottom" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.update_bumper_front_top">
-<span class="sig-name descname"><span class="pre">update_bumper_front_top</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">std_msgs.msg.Bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.update_bumper_front_top"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.update_bumper_front_top" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.update_estop_back">
-<span class="sig-name descname"><span class="pre">update_estop_back</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">std_msgs.msg.Bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.update_estop_back"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.update_estop_back" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.NiceGuiNode.update_estop_front">
-<span class="sig-name descname"><span class="pre">update_estop_front</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">std_msgs.msg.Bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#NiceGuiNode.update_estop_front"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.NiceGuiNode.update_estop_front" title="Link to this definition"></a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.load_css">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.ui_node.</span></span><span class="sig-name descname"><span class="pre">load_css</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#load_css"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.load_css" title="Link to this definition"></a></dt>
-<dd><p>Return the bundled app stylesheet from the package resources.</p>
+<dt class="sig sig-object py" id="devkit_ui.test_navigation_service_wiring.load_navigation_service_harness">
+<span class="sig-prename descclassname"><span class="pre">devkit_ui.test_navigation_service_wiring.</span></span><span class="sig-name descname"><span class="pre">load_navigation_service_harness</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_navigation_service_wiring.html#load_navigation_service_harness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_navigation_service_wiring.load_navigation_service_harness" title="Link to this definition"></a></dt>
+<dd><p>Load the real methods, following the existing navigation test harness pattern.</p>
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.main">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.ui_node.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.main" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.ui_node.ros_main">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.ui_node.</span></span><span class="sig-name descname"><span class="pre">ros_main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ui_node.html#ros_main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ui_node.ros_main" title="Link to this definition"></a></dt>
-<dd></dd></dl>
 
 </section>
 
@@ -897,8 +747,8 @@ leave the UI without any fix while it comes up.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_ui.topo_defaults.html" class="btn btn-neutral float-left" title="devkit_ui.topo_defaults" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_ui.utils.html" class="btn btn-neutral float-right" title="devkit_ui.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_ui.test_navigation_goals.html" class="btn btn-neutral float-left" title="devkit_ui.test_navigation_goals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_ui.test_parse.html" class="btn btn-neutral float-right" title="devkit_ui.test_parse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,12 @@
+devkit\_ui.application\_services.robot\_brain\_application\_service
+===================================================================
+
+.. automodule:: devkit_ui.application_services.robot_brain_application_service
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RobotBrainApplicationService
+   
