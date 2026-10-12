@@ -11,5 +11,13 @@ devkit\_ui.topo\_results
       DiscoveryResult
       NavUpdate
       PersistResult
+      StagedDrop
+      StagedEdit
       SwitchResult
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      TopologyEditError
    

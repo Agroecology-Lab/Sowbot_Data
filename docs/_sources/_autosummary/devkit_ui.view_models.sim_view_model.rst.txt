@@ -1,0 +1,12 @@
+devkit\_ui.view\_models.sim\_view\_model
+========================================
+
+.. automodule:: devkit_ui.view_models.sim_view_model
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SimViewModel
+   

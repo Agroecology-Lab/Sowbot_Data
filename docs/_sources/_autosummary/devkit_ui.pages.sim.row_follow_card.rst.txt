@@ -1,0 +1,12 @@
+devkit\_ui.pages.sim.row\_follow\_card
+======================================
+
+.. automodule:: devkit_ui.pages.sim.row_follow_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RowFollowCard
+   

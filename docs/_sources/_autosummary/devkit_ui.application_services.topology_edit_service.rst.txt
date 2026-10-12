@@ -1,0 +1,18 @@
+devkit\_ui.application\_services.topology\_edit\_service
+========================================================
+
+.. automodule:: devkit_ui.application_services.topology_edit_service
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      clean_name
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TopologyEditService
+   

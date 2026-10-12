@@ -1,0 +1,18 @@
+devkit\_ui.test\_telemetry\_gateway
+===================================
+
+.. automodule:: devkit_ui.test_telemetry_gateway
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      stub_module
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TestTelemetryGateway
+   

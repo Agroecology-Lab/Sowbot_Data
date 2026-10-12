@@ -1,0 +1,12 @@
+devkit\_ui.pages.system.battery\_card
+=====================================
+
+.. automodule:: devkit_ui.pages.system.battery_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BatteryCard
+   

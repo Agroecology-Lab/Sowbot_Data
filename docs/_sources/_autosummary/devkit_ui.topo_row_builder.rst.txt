@@ -1,0 +1,24 @@
+devkit\_ui.topo\_row\_builder
+=============================
+
+.. automodule:: devkit_ui.topo_row_builder
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      add_missing_edges
+      apply_row_nodes
+      build_row_nodes
+      plan_row_repair
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      RepairPlan
+      RowAnchor
+      RowBuild
+      RowBuildSettings
+   

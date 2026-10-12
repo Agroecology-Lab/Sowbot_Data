@@ -8,9 +8,6 @@ devkit\_ui.obstacles
 
    .. autosummary::
    
-      attach_mission_obstacle_panel
-      attach_mission_sidebar_controls
-      attach_nav_card
       circle_to_ring_ll
       latlon_to_xy
       obstacle_to_ring_ll
@@ -22,6 +19,5 @@ devkit\_ui.obstacles
 
    .. autosummary::
    
-      MissionDrawHandle
       ObstacleManager
    

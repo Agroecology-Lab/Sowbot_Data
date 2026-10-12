@@ -1,0 +1,13 @@
+devkit\_ui.pages.sim.plant\_placement\_card
+===========================================
+
+.. automodule:: devkit_ui.pages.sim.plant_placement_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PlantPlacementCard
+      PlantSettings
+   

@@ -11,6 +11,7 @@ devkit\_ui.test\_f2c\_row\_metadata
       latlon_to_xy
       load_f2c_save_harness
       make_node
+      patch_row_geometry
       resample_row_xy
       xy_to_latlon
    

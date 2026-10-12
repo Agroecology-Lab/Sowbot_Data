@@ -1,0 +1,19 @@
+devkit\_ui.pages.sim
+====================
+
+.. automodule:: devkit_ui.pages.sim
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   gazebo_card
+   map_archive_card
+   plant_placement_card
+   row_follow_card
+   sim_page
+   soil_texture_card
+   uploads

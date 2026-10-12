@@ -1,0 +1,12 @@
+devkit\_ui.pages.sim.map\_archive\_card
+=======================================
+
+.. automodule:: devkit_ui.pages.sim.map_archive_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MapArchiveCard
+   

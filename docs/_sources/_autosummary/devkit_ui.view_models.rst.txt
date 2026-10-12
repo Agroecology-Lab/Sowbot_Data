@@ -11,6 +11,10 @@ devkit\_ui.view\_models
    :recursive:
 
    global_view_model
+   mission_view_model
+   obstacle_view_model
+   robot_brain_view_model
    run_view_model
+   sim_view_model
    telemetry_view_model
    topology_view_model

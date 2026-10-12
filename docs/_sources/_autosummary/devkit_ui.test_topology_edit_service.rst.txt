@@ -1,0 +1,22 @@
+devkit\_ui.test\_topology\_edit\_service
+========================================
+
+.. automodule:: devkit_ui.test_topology_edit_service
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      make_service
+      row_node
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TestCleanName
+      TestDeleteStaging
+      TestDropStaging
+      TestF2CSaveStaging
+   

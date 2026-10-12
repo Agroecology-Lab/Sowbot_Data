@@ -1,0 +1,20 @@
+devkit\_ui.pages.obstacle\_cards
+================================
+
+.. automodule:: devkit_ui.pages.obstacle_cards
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      attach_mission_obstacle_panel
+      attach_mission_sidebar_controls
+      attach_nav_card
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MissionDrawHandle
+   

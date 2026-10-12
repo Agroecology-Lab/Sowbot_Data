@@ -1,0 +1,12 @@
+devkit\_ui.pages.sim.uploads
+============================
+
+.. automodule:: devkit_ui.pages.sim.uploads
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      read_upload
+   

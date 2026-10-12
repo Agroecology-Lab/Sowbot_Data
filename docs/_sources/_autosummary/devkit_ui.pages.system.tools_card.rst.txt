@@ -1,0 +1,12 @@
+devkit\_ui.pages.system.tools\_card
+===================================
+
+.. automodule:: devkit_ui.pages.system.tools_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ToolsCard
+   

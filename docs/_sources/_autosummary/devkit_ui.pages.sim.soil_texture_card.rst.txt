@@ -1,0 +1,12 @@
+devkit\_ui.pages.sim.soil\_texture\_card
+========================================
+
+.. automodule:: devkit_ui.pages.sim.soil_texture_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SoilTextureCard
+   

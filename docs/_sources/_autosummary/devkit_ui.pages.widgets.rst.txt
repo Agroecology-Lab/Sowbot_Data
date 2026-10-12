@@ -1,0 +1,16 @@
+devkit\_ui.pages.widgets
+========================
+
+.. automodule:: devkit_ui.pages.widgets
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      doc_link
+      link_button
+      report_if_exited
+      request_host
+      restore_label
+   

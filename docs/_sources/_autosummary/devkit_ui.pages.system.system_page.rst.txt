@@ -1,0 +1,12 @@
+devkit\_ui.pages.system.system\_page
+====================================
+
+.. automodule:: devkit_ui.pages.system.system_page
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SystemPage
+   

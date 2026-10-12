@@ -1,0 +1,19 @@
+devkit\_ui.process\_registry
+============================
+
+.. automodule:: devkit_ui.process_registry
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      alive
+      ensure_xvfb
+      kill_group
+      shared
+      shutdown_tools
+      spawn_logged
+      start_vnc_stack
+      stop_all
+   

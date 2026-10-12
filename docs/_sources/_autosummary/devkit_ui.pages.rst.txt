@@ -10,4 +10,8 @@ devkit\_ui.pages
    :toctree:
    :recursive:
 
+   obstacle_cards
    run
+   sim
+   system
+   widgets

@@ -11,6 +11,7 @@ devkit\_ui.domain\_services
    :recursive:
 
    drive_domain_service
+   mission_domain_service
    navigation_domain_service
    robot_brain_domain_service
    row_discovery_domain_service

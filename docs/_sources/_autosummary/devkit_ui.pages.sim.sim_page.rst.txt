@@ -1,0 +1,12 @@
+devkit\_ui.pages.sim.sim\_page
+==============================
+
+.. automodule:: devkit_ui.pages.sim.sim_page
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SimPage
+   

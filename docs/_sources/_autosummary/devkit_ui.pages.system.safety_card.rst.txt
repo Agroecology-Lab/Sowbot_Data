@@ -1,0 +1,12 @@
+devkit\_ui.pages.system.safety\_card
+====================================
+
+.. automodule:: devkit_ui.pages.system.safety_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SafetyCard
+   

@@ -1,0 +1,18 @@
+devkit\_ui.test\_system\_page\_cards
+====================================
+
+.. automodule:: devkit_ui.test_system_page_cards
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TestBatteryCard
+      TestEspCard
+      TestMapArchiveCard
+      TestPlantSettings
+      TestRobotBrainViewModel
+      TestSafetyCard
+      TestSimViewModel
+   

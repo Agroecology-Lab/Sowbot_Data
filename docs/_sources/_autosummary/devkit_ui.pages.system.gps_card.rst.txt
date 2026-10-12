@@ -1,0 +1,12 @@
+devkit\_ui.pages.system.gps\_card
+=================================
+
+.. automodule:: devkit_ui.pages.system.gps_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      GpsCard
+   

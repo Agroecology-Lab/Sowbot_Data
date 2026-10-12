@@ -1,0 +1,19 @@
+devkit\_ui.pages.system
+=======================
+
+.. automodule:: devkit_ui.pages.system
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   battery_card
+   esp_card
+   gps_card
+   odometry_card
+   safety_card
+   system_page
+   tools_card
