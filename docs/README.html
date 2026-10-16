@@ -962,45 +962,70 @@
 <p>An open-source, containerised ROS2 Jazzy stack for autonomous agricultural robotics. This repository provides the drivers and orchestration for the Sowbot platform, featuring RTK-GNSS localisation and STM32-based hardware control.</p>
 <p><a class="reference external" href="https://github.com/Agroecology-Lab/feldfreund_devkit_ros#quick-start">Quick start</a></p>
 <p><a class="reference external" href="https://agroecology-lab.github.io/Sowbot_Data/python_api.html">Docs</a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---------------------------------------------------------------------------------------------------------+</span>
-<span class="o">|</span>                                    <span class="n">ROS</span> <span class="mi">2</span> <span class="n">DUAL</span> <span class="n">SBC</span> <span class="n">Open</span> <span class="n">Core</span>                                             <span class="o">|</span>
-<span class="o">|</span>                                                                                                         <span class="o">|</span>
-<span class="o">|</span>  <span class="o">+-------------------------------------+</span>             <span class="o">+-----------------------------------------------+</span>  <span class="o">|</span>
-<span class="o">|</span>  <span class="o">|</span>              <span class="n">NEO</span> <span class="n">SBC</span>                <span class="o">|</span>             <span class="o">|</span>                  <span class="n">LIMBIC</span> <span class="n">SBC</span>                   <span class="o">|</span>  <span class="o">|</span>
-<span class="o">|</span>  <span class="o">|</span> <span class="o">-</span> <span class="n">Camera</span> <span class="n">Streams</span> <span class="p">(</span><span class="n">YOLO</span> <span class="o">/</span> <span class="n">ExG</span><span class="p">)</span>       <span class="o">|</span>  <span class="n">Ethernet</span>   <span class="o">|</span> <span class="o">-</span> <span class="n">NiceGUI</span> <span class="n">Web</span> <span class="n">Dashboard</span> <span class="n">UI</span>                    <span class="o">|</span>  <span class="o">|</span>
-<span class="o">|</span>  <span class="o">|</span> <span class="o">-</span> <span class="n">Visual</span> <span class="n">Servoing</span> <span class="o">/</span> <span class="n">Crop</span> <span class="n">Processing</span> <span class="o">|&lt;===========&gt;|</span> <span class="o">-</span> <span class="n">Nav2</span> <span class="o">/</span> <span class="n">LCAS</span> <span class="n">TopoNav</span> <span class="o">/</span> <span class="n">Fields2Cover</span>          <span class="o">|</span>  <span class="o">|</span>
-<span class="o">|</span>  <span class="o">|</span> <span class="o">-</span> <span class="n">High</span><span class="o">-</span><span class="n">Throughput</span> <span class="n">Perception</span>        <span class="o">|</span>   <span class="n">Gigabit</span>   <span class="o">|</span> <span class="o">-</span> <span class="n">devkit_mavlink_bridge</span> <span class="n">Node</span>                  <span class="o">|</span>  <span class="o">|</span>
-<span class="o">|</span>  <span class="o">+-------------------------------------+</span>             <span class="o">|</span> <span class="o">*</span> <span class="n">Plan</span> <span class="n">Services</span> <span class="p">(</span><span class="o">/</span><span class="n">plan</span><span class="o">/</span><span class="n">upload</span><span class="p">,</span> <span class="n">clear</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>  <span class="o">|</span>  <span class="o">|</span>
-<span class="o">|</span>                                                      <span class="o">|</span> <span class="o">*</span> <span class="n">Telemetry</span> <span class="n">Relay</span> <span class="p">(</span><span class="o">/</span><span class="n">odom</span><span class="p">,</span> <span class="o">/</span><span class="n">navsat</span><span class="o">/</span><span class="n">fix</span><span class="p">,</span> <span class="o">/</span><span class="n">imu</span><span class="p">)</span>  <span class="o">|</span>  <span class="o">|</span>
-<span class="o">|</span>                                                      <span class="o">|</span> <span class="o">*</span> <span class="n">MAVLink</span> <span class="n">Heartbeat</span> <span class="o">&amp;</span> <span class="n">Cmd</span> <span class="n">Translation</span>         <span class="o">|</span>  <span class="o">|</span>
-<span class="o">|</span>                                                      <span class="o">+-----------------------+-----------------------+</span>  <span class="o">|</span>
-<span class="o">+------------------------------------------------------------------------------^--------------------------+</span>
-                                                                               <span class="o">|</span>
-                                                                        <span class="n">Serial</span> <span class="n">MAVLink</span>
-                                                                      <span class="p">(</span><span class="n">UART</span> <span class="o">/</span> <span class="n">TTL</span> <span class="mi">921600</span><span class="p">)</span>
-                                                                               <span class="o">|</span>
-<span class="o">+------------------------------------------------------------------------------</span><span class="n">v</span><span class="o">--------------------------+</span>
-<span class="o">|</span>                                      <span class="n">ARDUPILOT</span> <span class="n">FLIGHT</span> <span class="n">CONTROLLER</span>                                        <span class="o">|</span>
-<span class="o">|</span>                                  <span class="p">(</span><span class="n">Levia</span> <span class="n">running</span> <span class="n">ArduRover</span> <span class="n">Firmware</span><span class="p">)</span>                                     <span class="o">|</span>
-<span class="o">|</span>                                                                                                         <span class="o">|</span>
-<span class="o">|</span> <span class="o">-</span> <span class="n">Geofence</span><span class="p">:</span> <span class="n">EKF3</span> <span class="n">Sensor</span> <span class="n">Fusion</span>                      <span class="o">-</span> <span class="n">Failsafes</span><span class="p">:</span> <span class="n">Heartbeat</span> <span class="n">Loss</span><span class="p">,</span> <span class="n">Geofence</span><span class="p">,</span> <span class="n">Estop</span>        <span class="o">|</span>
-<span class="o">|</span> <span class="o">-</span> <span class="n">Arming</span> <span class="n">State</span> <span class="n">Machine</span> <span class="o">&amp;</span> <span class="n">Pre</span><span class="o">-</span><span class="n">Arm</span> <span class="n">Checks</span>             <span class="o">-</span> <span class="n">Direct</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="p">:</span> <span class="n">Hardware</span> <span class="n">Safety</span> <span class="n">Switch</span><span class="p">,</span> <span class="n">Bumpers</span>       <span class="o">|</span>
-<span class="o">+-------------------+------------------------------------------------------------------+------------------+</span>
-                    <span class="o">|</span>                                                                  <span class="o">|</span>
-           <span class="n">DroneCAN</span> <span class="o">/</span> <span class="n">CANsimple</span>                                                 <span class="n">Dual</span> <span class="n">u</span><span class="o">-</span><span class="n">blox</span> <span class="n">F9P</span>
-                 <span class="p">(</span><span class="n">CAN</span> <span class="n">Bus</span><span class="p">)</span>                                                         <span class="n">RTK</span> <span class="n">GNSS</span>
-                    <span class="o">|</span>                                                                  
-<span class="o">+-------------------</span><span class="n">v</span><span class="o">-------------------+</span>                                              
-<span class="o">|</span>    <span class="n">ODrive</span><span class="o">/</span> <span class="n">Dronecan</span> <span class="n">Motor</span> <span class="n">Controllers</span> <span class="o">|</span>                                              
-<span class="o">+------------------+--------------------+</span>                                              
-                   <span class="o">|</span>                                                                   
-<span class="o">+------------------</span><span class="n">v</span><span class="o">---------------------------------------------------------------------------+</span>
-<span class="o">|</span>                               <span class="n">PHYSICAL</span> <span class="n">ROBOT</span> <span class="n">FRAME</span>                                           <span class="o">|</span>
-<span class="o">|</span>  <span class="o">-</span> <span class="n">Safety</span> <span class="n">Subsystem</span> <span class="p">(</span><span class="n">Level</span> <span class="mi">0</span><span class="p">)</span>                      <span class="o">-</span> <span class="n">Differential</span> <span class="n">Drive</span> <span class="n">tracked</span> <span class="n">platform</span>     <span class="o">|</span>
-<span class="o">+----------------------------------------------------------------------------------------------+</span>
+<p>+——————————————————-+
+|               ROS 2 DUAL SBC Open Core                |
+| +———————-+     +———————-+ |
+| |       NEO SBC        | Gig |      LIMBIC SBC      | |
+| | - Camera Streams     | Eth | - NiceGUI Dashboard  | |
+| |   (YOLO / ExG)       |&lt;===&gt;| - Nav2/LCAS TopoNav  | |
+| | - Visual Servoing    |     | - devkit_mavlink node| |
+| | - Crop Processing    |     | * Plan Services      | |
+| | - High-Throughput    |     | * Telemetry Relay    | |
+| |   Perception         |     | * MAVLink Translation| |
+| +———————-+     +———————-+ |
++—————————v—————————+
+|
+Serial MAVLink
+(UART / TTL 921600)
+|
++—————————v—————————+
+|              ARDUPILOT FLIGHT CONTROLLER              |</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>(Levia running ArduRover Firmware)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>- Geofence: EKF3 Fusion   - Failsafes: Heartbeat loss,</p></td>
+</tr>
+<tr class="row-odd"><td><p>- Arming State Machine      Geofence, Estop</p></td>
+</tr>
+<tr class="row-even"><td><p>- Pre-Arm Checks          - Direct I/O: Safety Switch,</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bumpers</p></td>
+</tr>
+<tr class="row-even"><td><p>+————+———————————+——–+</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>         |                                 |
+ DroneCAN/CANsimple                  Dual u-blox
+     (CAN Bus)                       F9P RTK GNSS
+         |
 </pre></div>
 </div>
-<p>Reference open hardware stack(s) under development at <a class="reference external" href="https://sowbot.co.uk/hardware">Sowbot.co.uk</a> Contact: <a class="reference external" href="https://sowbot.co.uk/contact/">sowbot.co.uk/contact</a></p>
+<p>+————v————-+
+| ODrive/DroneCAN Motor    |
+| Controllers              |
++————+————-+
+|
++————v——————————————+</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>PHYSICAL ROBOT FRAME</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>- Safety Subsystem (Level 0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>- Differential Drive tracked platform</p></td>
+</tr>
+<tr class="row-even"><td><p>+——————————————————-+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reference open hardware stack(s) under development at <a class="reference external" href="https://sowbot.co.uk/hardware">Sowbot.co.uk</a> Contact: <a class="reference external" href="https://sowbot.co.uk/contact/">sowbot.co.uk/contact</a></p></td>
+</tr>
+</tbody>
+</table>
 <p>Development is led by the <a href="https://agroecologylab.org.uk" target="_blank">Agroecology Lab</a> building on the core developed by <a href="https://zauberzeug.com/" target="_blank">Zauberzeug</a>.</p>
 <p>We have a <a class="reference external" href="https://agroecology-lab.github.io/feldfreund_devkit_ros/">Online version of swath planner</a></p>
 <p><strong>Collaborators welcome.</strong> See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst">CONTRIBUTING.md</span></a>.</p>
