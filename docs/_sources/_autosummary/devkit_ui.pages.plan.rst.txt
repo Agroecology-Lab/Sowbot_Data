@@ -1,0 +1,18 @@
+devkit\_ui.pages.plan
+=====================
+
+.. automodule:: devkit_ui.pages.plan
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   boundary_map_card
+   mission_queue_card
+   mission_store_card
+   plan_controls_card
+   plan_page
+   repair_dialog

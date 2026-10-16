@@ -8,6 +8,10 @@ devkit\_f2c\_planner.f2c\_planner
 
    .. autosummary::
    
+      f2c_latlon_to_xy
+      f2c_xy_to_latlon
       field_centroid_xy
+      run_contour_f2c
+      run_f2c
       tag_rows
    

@@ -1,0 +1,12 @@
+devkit\_ui.pages.plan.boundary\_map\_card
+=========================================
+
+.. automodule:: devkit_ui.pages.plan.boundary_map_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BoundaryMapCard
+   

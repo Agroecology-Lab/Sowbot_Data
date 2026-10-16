@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="devkit_ui.pages.run.drop_node_card" href="devkit_ui.pages.run.drop_node_card.html" />
-    <link rel="prev" title="devkit_ui.pages.obstacle_cards" href="devkit_ui.pages.obstacle_cards.html" /> 
+    <link rel="prev" title="devkit_ui.pages.plan.repair_dialog" href="devkit_ui.pages.plan.repair_dialog.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -194,7 +194,11 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="devkit_f2c_planner.html">devkit_f2c_planner</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html">devkit_f2c_planner.f2c_planner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">f2c_latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">f2c_xy_to_latlon()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_contour_f2c"><code class="docutils literal notranslate"><span class="pre">run_contour_f2c()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_f2c"><code class="docutils literal notranslate"><span class="pre">run_f2c()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.tag_rows"><code class="docutils literal notranslate"><span class="pre">tag_rows()</span></code></a></li>
 </ul>
 </li>
@@ -261,6 +265,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.drive_application_service.html">devkit_ui.application_services.drive_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.mission_application_service.html">devkit_ui.application_services.mission_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.navigation_application_service.html">devkit_ui.application_services.navigation_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.plan_application_service.html">devkit_ui.application_services.plan_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
@@ -327,6 +332,7 @@
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="devkit_ui.pages.html">devkit_ui.pages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.obstacle_cards.html">devkit_ui.pages.obstacle_cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.plan.html">devkit_ui.pages.plan</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_ui.pages.run</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.sim.html">devkit_ui.pages.sim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.system.html">devkit_ui.pages.system</a></li>
@@ -339,10 +345,33 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_fake_ui.html">devkit_ui.plan_fake_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.BoundaryMapCard"><code class="docutils literal notranslate"><span class="pre">BoundaryMapCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.Deferred"><code class="docutils literal notranslate"><span class="pre">Deferred</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.MissionQueueCard"><code class="docutils literal notranslate"><span class="pre">MissionQueueCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.MissionStoreCard"><code class="docutils literal notranslate"><span class="pre">MissionStoreCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.PlanControlsCard"><code class="docutils literal notranslate"><span class="pre">PlanControlsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.PlanPage"><code class="docutils literal notranslate"><span class="pre">PlanPage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.good"><code class="docutils literal notranslate"><span class="pre">good()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.planned"><code class="docutils literal notranslate"><span class="pre">planned()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.run_to_end"><code class="docutils literal notranslate"><span class="pre">run_to_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.texts"><code class="docutils literal notranslate"><span class="pre">texts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.walk"><code class="docutils literal notranslate"><span class="pre">walk()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_import.html">devkit_ui.plan_import</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.Plan"><code class="docutils literal notranslate"><span class="pre">Plan</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.PlanError"><code class="docutils literal notranslate"><span class="pre">PlanError</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.parse_plan"><code class="docutils literal notranslate"><span class="pre">parse_plan()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_types.html">devkit_ui.plan_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.ImportOutcome"><code class="docutils literal notranslate"><span class="pre">ImportOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanFailure"><code class="docutils literal notranslate"><span class="pre">PlanFailure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanMode"><code class="docutils literal notranslate"><span class="pre">PlanMode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanOutcome"><code class="docutils literal notranslate"><span class="pre">PlanOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanRequest"><code class="docutils literal notranslate"><span class="pre">PlanRequest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlannedRows"><code class="docutils literal notranslate"><span class="pre">PlannedRows</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.process_registry.html">devkit_ui.process_registry</a><ul>
@@ -390,11 +419,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.PlanHarness"><code class="docutils literal notranslate"><span class="pre">PlanHarness</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.patch_row_geometry"><code class="docutils literal notranslate"><span class="pre">patch_row_geometry()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
@@ -498,8 +526,53 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_application_service.html">devkit_ui.test_plan_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestImportPlan"><code class="docutils literal notranslate"><span class="pre">TestImportPlan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestPlan"><code class="docutils literal notranslate"><span class="pre">TestPlan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestPlanOutcome"><code class="docutils literal notranslate"><span class="pre">TestPlanOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWithoutRows"><code class="docutils literal notranslate"><span class="pre">TestSaveWithoutRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWritesTheRowsItIsGiven"><code class="docutils literal notranslate"><span class="pre">TestSaveWritesTheRowsItIsGiven</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestViewModel"><code class="docutils literal notranslate"><span class="pre">TestViewModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestWrites"><code class="docutils literal notranslate"><span class="pre">TestWrites</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_cards.html">devkit_ui.test_plan_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.ControlsCase"><code class="docutils literal notranslate"><span class="pre">ControlsCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestBoundaryMapCard"><code class="docutils literal notranslate"><span class="pre">TestBoundaryMapCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestPlanControlsCard"><code class="docutils literal notranslate"><span class="pre">TestPlanControlsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestRepair"><code class="docutils literal notranslate"><span class="pre">TestRepair</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_import.html">devkit_ui.test_plan_import</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest"><code class="docutils literal notranslate"><span class="pre">ParsePlanTest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_page_state.html">devkit_ui.test_plan_page_state</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestMissionQueue"><code class="docutils literal notranslate"><span class="pre">TestMissionQueue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanPageState"><code class="docutils literal notranslate"><span class="pre">TestPlanPageState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanViewModelPageHelpers"><code class="docutils literal notranslate"><span class="pre">TestPlanViewModelPageHelpers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.good"><code class="docutils literal notranslate"><span class="pre">good()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.planned"><code class="docutils literal notranslate"><span class="pre">planned()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html">devkit_ui.test_plan_queue_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionQueueCard"><code class="docutils literal notranslate"><span class="pre">TestMissionQueueCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionStoreCard"><code class="docutils literal notranslate"><span class="pre">TestMissionStoreCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPage"><code class="docutils literal notranslate"><span class="pre">TestPlanPage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html">devkit_ui.test_plan_service_boundaries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.PlanServiceCase"><code class="docutils literal notranslate"><span class="pre">PlanServiceCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestImportGPSBoundaries"><code class="docutils literal notranslate"><span class="pre">TestImportGPSBoundaries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestPlanningBoundaries"><code class="docutils literal notranslate"><span class="pre">TestPlanningBoundaries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestStagedWrites"><code class="docutils literal notranslate"><span class="pre">TestStagedWrites</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.gps"><code class="docutils literal notranslate"><span class="pre">gps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_types.html">devkit_ui.test_plan_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.TestPlanRequestFromForm"><code class="docutils literal notranslate"><span class="pre">TestPlanRequestFromForm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.form"><code class="docutils literal notranslate"><span class="pre">form()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_process_cleanup.html">devkit_ui.test_process_cleanup</a><ul>
@@ -519,6 +592,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_log_forwarding.html#devkit_ui.test_ros_log_forwarding.TestRosLogForwarding"><code class="docutils literal notranslate"><span class="pre">TestRosLogForwarding</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_row_actions.html">devkit_ui.test_row_actions</a><ul>
@@ -757,6 +834,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.obstacle_view_model.html">devkit_ui.view_models.obstacle_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
@@ -905,7 +983,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_ui.pages.obstacle_cards.html" class="btn btn-neutral float-left" title="devkit_ui.pages.obstacle_cards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_ui.pages.plan.repair_dialog.html" class="btn btn-neutral float-left" title="devkit_ui.pages.plan.repair_dialog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="devkit_ui.pages.run.drop_node_card.html" class="btn btn-neutral float-right" title="devkit_ui.pages.run.drop_node_card" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -8,5 +8,6 @@ devkit\_ui.view\_models.mission\_view\_model
 
    .. autosummary::
    
+      MissionQueue
       MissionViewModel
    

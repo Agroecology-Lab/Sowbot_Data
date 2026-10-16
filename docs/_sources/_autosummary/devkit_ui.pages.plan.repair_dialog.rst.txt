@@ -1,0 +1,12 @@
+devkit\_ui.pages.plan.repair\_dialog
+====================================
+
+.. automodule:: devkit_ui.pages.plan.repair_dialog
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      ask_repair_base
+   

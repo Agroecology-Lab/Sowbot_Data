@@ -11,6 +11,7 @@ devkit\_ui.pages
    :recursive:
 
    obstacle_cards
+   plan
    run
    sim
    system

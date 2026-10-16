@@ -20,7 +20,9 @@
    obstacles
    pages
    parse
+   plan_fake_ui
    plan_import
+   plan_types
    process_registry
    qos
    ros_gateway
@@ -46,10 +48,17 @@
    test_obstacle_view_model
    test_page_composition
    test_parse
+   test_plan_application_service
+   test_plan_cards
    test_plan_import
+   test_plan_page_state
+   test_plan_queue_cards
+   test_plan_service_boundaries
+   test_plan_types
    test_process_cleanup
    test_process_registry
    test_robot_brain_and_discovery_services
+   test_ros_log_forwarding
    test_row_actions
    test_row_planning
    test_row_planning_pipeline

@@ -1,0 +1,12 @@
+devkit\_ui.pages.plan.plan\_controls\_card
+==========================================
+
+.. automodule:: devkit_ui.pages.plan.plan_controls_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PlanControlsCard
+   

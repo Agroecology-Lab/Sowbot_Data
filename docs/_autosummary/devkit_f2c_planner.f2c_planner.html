@@ -194,7 +194,11 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="devkit_f2c_planner.html">devkit_f2c_planner</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_f2c_planner.f2c_planner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">f2c_latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">f2c_xy_to_latlon()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.run_contour_f2c"><code class="docutils literal notranslate"><span class="pre">run_contour_f2c()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.run_f2c"><code class="docutils literal notranslate"><span class="pre">run_f2c()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.tag_rows"><code class="docutils literal notranslate"><span class="pre">tag_rows()</span></code></a></li>
 </ul>
 </li>
@@ -261,6 +265,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.drive_application_service.html">devkit_ui.application_services.drive_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.mission_application_service.html">devkit_ui.application_services.mission_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.navigation_application_service.html">devkit_ui.application_services.navigation_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.plan_application_service.html">devkit_ui.application_services.plan_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
@@ -327,6 +332,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.pages.html">devkit_ui.pages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.obstacle_cards.html">devkit_ui.pages.obstacle_cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.plan.html">devkit_ui.pages.plan</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.run.html">devkit_ui.pages.run</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.sim.html">devkit_ui.pages.sim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.system.html">devkit_ui.pages.system</a></li>
@@ -339,10 +345,33 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_fake_ui.html">devkit_ui.plan_fake_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.BoundaryMapCard"><code class="docutils literal notranslate"><span class="pre">BoundaryMapCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.Deferred"><code class="docutils literal notranslate"><span class="pre">Deferred</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.MissionQueueCard"><code class="docutils literal notranslate"><span class="pre">MissionQueueCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.MissionStoreCard"><code class="docutils literal notranslate"><span class="pre">MissionStoreCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.PlanControlsCard"><code class="docutils literal notranslate"><span class="pre">PlanControlsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.PlanPage"><code class="docutils literal notranslate"><span class="pre">PlanPage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.good"><code class="docutils literal notranslate"><span class="pre">good()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.planned"><code class="docutils literal notranslate"><span class="pre">planned()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.run_to_end"><code class="docutils literal notranslate"><span class="pre">run_to_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.texts"><code class="docutils literal notranslate"><span class="pre">texts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.walk"><code class="docutils literal notranslate"><span class="pre">walk()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_import.html">devkit_ui.plan_import</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.Plan"><code class="docutils literal notranslate"><span class="pre">Plan</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.PlanError"><code class="docutils literal notranslate"><span class="pre">PlanError</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.parse_plan"><code class="docutils literal notranslate"><span class="pre">parse_plan()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_types.html">devkit_ui.plan_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.ImportOutcome"><code class="docutils literal notranslate"><span class="pre">ImportOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanFailure"><code class="docutils literal notranslate"><span class="pre">PlanFailure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanMode"><code class="docutils literal notranslate"><span class="pre">PlanMode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanOutcome"><code class="docutils literal notranslate"><span class="pre">PlanOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanRequest"><code class="docutils literal notranslate"><span class="pre">PlanRequest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlannedRows"><code class="docutils literal notranslate"><span class="pre">PlannedRows</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.process_registry.html">devkit_ui.process_registry</a><ul>
@@ -390,11 +419,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.PlanHarness"><code class="docutils literal notranslate"><span class="pre">PlanHarness</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.patch_row_geometry"><code class="docutils literal notranslate"><span class="pre">patch_row_geometry()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
@@ -498,8 +526,53 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_application_service.html">devkit_ui.test_plan_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestImportPlan"><code class="docutils literal notranslate"><span class="pre">TestImportPlan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestPlan"><code class="docutils literal notranslate"><span class="pre">TestPlan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestPlanOutcome"><code class="docutils literal notranslate"><span class="pre">TestPlanOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWithoutRows"><code class="docutils literal notranslate"><span class="pre">TestSaveWithoutRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWritesTheRowsItIsGiven"><code class="docutils literal notranslate"><span class="pre">TestSaveWritesTheRowsItIsGiven</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestViewModel"><code class="docutils literal notranslate"><span class="pre">TestViewModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestWrites"><code class="docutils literal notranslate"><span class="pre">TestWrites</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_cards.html">devkit_ui.test_plan_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.ControlsCase"><code class="docutils literal notranslate"><span class="pre">ControlsCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestBoundaryMapCard"><code class="docutils literal notranslate"><span class="pre">TestBoundaryMapCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestPlanControlsCard"><code class="docutils literal notranslate"><span class="pre">TestPlanControlsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestRepair"><code class="docutils literal notranslate"><span class="pre">TestRepair</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_import.html">devkit_ui.test_plan_import</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest"><code class="docutils literal notranslate"><span class="pre">ParsePlanTest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_page_state.html">devkit_ui.test_plan_page_state</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestMissionQueue"><code class="docutils literal notranslate"><span class="pre">TestMissionQueue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanPageState"><code class="docutils literal notranslate"><span class="pre">TestPlanPageState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanViewModelPageHelpers"><code class="docutils literal notranslate"><span class="pre">TestPlanViewModelPageHelpers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.good"><code class="docutils literal notranslate"><span class="pre">good()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.planned"><code class="docutils literal notranslate"><span class="pre">planned()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html">devkit_ui.test_plan_queue_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionQueueCard"><code class="docutils literal notranslate"><span class="pre">TestMissionQueueCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionStoreCard"><code class="docutils literal notranslate"><span class="pre">TestMissionStoreCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPage"><code class="docutils literal notranslate"><span class="pre">TestPlanPage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html">devkit_ui.test_plan_service_boundaries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.PlanServiceCase"><code class="docutils literal notranslate"><span class="pre">PlanServiceCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestImportGPSBoundaries"><code class="docutils literal notranslate"><span class="pre">TestImportGPSBoundaries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestPlanningBoundaries"><code class="docutils literal notranslate"><span class="pre">TestPlanningBoundaries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestStagedWrites"><code class="docutils literal notranslate"><span class="pre">TestStagedWrites</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.gps"><code class="docutils literal notranslate"><span class="pre">gps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_types.html">devkit_ui.test_plan_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.TestPlanRequestFromForm"><code class="docutils literal notranslate"><span class="pre">TestPlanRequestFromForm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.form"><code class="docutils literal notranslate"><span class="pre">form()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_process_cleanup.html">devkit_ui.test_process_cleanup</a><ul>
@@ -519,6 +592,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_log_forwarding.html#devkit_ui.test_ros_log_forwarding.TestRosLogForwarding"><code class="docutils literal notranslate"><span class="pre">TestRosLogForwarding</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_row_actions.html">devkit_ui.test_row_actions</a><ul>
@@ -757,6 +834,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.obstacle_view_model.html">devkit_ui.view_models.obstacle_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
@@ -887,34 +965,109 @@ projection — anchored at the same lat0/lon0 — without reaching into
 ui_node’s internals. Promoted to its own package because “planning core”
 and “web UI” are different concerns with different reasons to change, and
 nothing about this module actually depends on devkit_ui.</p>
-<p>devkit_ui still owns the manual-drawing UI and calls _run_f2c() the same
+<p>devkit_ui still owns the manual-drawing UI and calls run_f2c() the same
 way it always did, now via the devkit_f2c_planner dependency instead of a
 same-package import.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy" title="devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">f2c_latlon_to_xy</span></code></a>(lat, lon, lat0, lon0)</p></td>
+<td><p>Project latitude/longitude degrees to (east, north) meters about (lat0, lon0).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon" title="devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">f2c_xy_to_latlon</span></code></a>(x, y, lat0, lon0)</p></td>
+<td><p>Return (latitude, longitude) degrees from local (east, north) meters.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.field_centroid_xy" title="devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_centroid_xy</span></code></a>(corners_ll)</p></td>
-<td><p>Field boundary's spatial centroid, in the same local-xy frame _run_f2c()/_run_contour_f2c() use (anchored at corners_ll[0]).</p></td>
+<td><p>Field boundary's spatial centroid, in the same local-xy frame run_f2c()/run_contour_f2c() use (anchored at corners_ll[0]).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.run_contour_f2c" title="devkit_f2c_planner.f2c_planner.run_contour_f2c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_contour_f2c</span></code></a>(corners_ll, obstacle_rings, ...)</p></td>
+<td><p>Generate rows at constant offsets from a reference curve, clipped to the field.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.run_f2c" title="devkit_f2c_planner.f2c_planner.run_f2c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_f2c</span></code></a>(corners_ll, obstacle_rings, ...[, ...])</p></td>
+<td><p>Generate straight-swath field rows for the boundary, clipped around obstacles.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#devkit_f2c_planner.f2c_planner.tag_rows" title="devkit_f2c_planner.f2c_planner.tag_rows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tag_rows</span></code></a>(rows_ll, corners_ll, angle_deg)</p></td>
-<td><p>Return (row, frag) for each swath returned by _run_f2c().</p></td>
+<td><p>Return (row, frag) for each swath returned by run_f2c().</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
+<dt class="sig sig-object py" id="devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy">
+<span class="sig-prename descclassname"><span class="pre">devkit_f2c_planner.f2c_planner.</span></span><span class="sig-name descname"><span class="pre">f2c_latlon_to_xy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_f2c_planner/f2c_planner.html#f2c_latlon_to_xy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy" title="Link to this definition"></a></dt>
+<dd><p>Project latitude/longitude degrees to (east, north) meters about (lat0, lon0).</p>
+<p>The anchor is also in degrees; the projection uses a local equirectangular approximation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon">
+<span class="sig-prename descclassname"><span class="pre">devkit_f2c_planner.f2c_planner.</span></span><span class="sig-name descname"><span class="pre">f2c_xy_to_latlon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_f2c_planner/f2c_planner.html#f2c_xy_to_latlon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon" title="Link to this definition"></a></dt>
+<dd><p>Return (latitude, longitude) degrees from local (east, north) meters.</p>
+<p>Use the same anchor (lat0, lon0), in degrees, as f2c_latlon_to_xy.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="devkit_f2c_planner.f2c_planner.field_centroid_xy">
 <span class="sig-prename descclassname"><span class="pre">devkit_f2c_planner.f2c_planner.</span></span><span class="sig-name descname"><span class="pre">field_centroid_xy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corners_ll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_f2c_planner/f2c_planner.html#field_centroid_xy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_f2c_planner.f2c_planner.field_centroid_xy" title="Link to this definition"></a></dt>
 <dd><p>Field boundary’s spatial centroid, in the same local-xy frame
-_run_f2c()/_run_contour_f2c() use (anchored at corners_ll[0]).</p>
+run_f2c()/run_contour_f2c() use (anchored at corners_ll[0]).</p>
 <p>Callers pass this straight through as dem.select_reference_contour_xy()’s
 centroid_xy argument, to get a reference contour centred on the field —
 see that function’s docstring for why centring keeps drift symmetric.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="devkit_f2c_planner.f2c_planner.run_contour_f2c">
+<span class="sig-prename descclassname"><span class="pre">devkit_f2c_planner.f2c_planner.</span></span><span class="sig-name descname"><span class="pre">run_contour_f2c</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corners_ll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacle_rings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_line_ll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tool_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacle_pad_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headland_width_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snake_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rows_each_side</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend_reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">break_after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/devkit_f2c_planner/f2c_planner.html#run_contour_f2c"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_f2c_planner.f2c_planner.run_contour_f2c" title="Link to this definition"></a></dt>
+<dd><p>Generate rows at constant offsets from a reference curve, clipped to the field.</p>
+<p>corners_ll, obstacle_rings and reference_line_ll contain (latitude, longitude)
+points in degrees, projected about corners_ll[0]. tool_width is positive row
+spacing in meters. Positive obstacle_pad_m expands obstacles; positive
+headland_width_m insets the field, falling back to the full boundary if the
+inset is empty or is not a single polygon.</p>
+<p>extend_reference extends both ends along their end directions when the result
+does not cross itself. Try up to max_rows_each_side offsets on each side, stopping
+each side at its first unusable offset. Offset-curve errors are caught and stop
+that side; other geometry errors propagate. These offsets approximate terrain
+contours away from the reference line.</p>
+<p>Return swaths as lists of (latitude, longitude) points, ordered by signed offset.
+snake_order reverses alternate rows, including fragment order. With obstacles,
+fragments at most half a tool width long are dropped. Return an empty list for
+fewer than two reference points or when no rows survive. Empty corners_ll
+raises IndexError.</p>
+<p>If supplied, break_after is cleared and filled with zero-based output indices
+after which links must be skipped because of field or obstacle gaps.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_f2c_planner.f2c_planner.run_f2c">
+<span class="sig-prename descclassname"><span class="pre">devkit_f2c_planner.f2c_planner.</span></span><span class="sig-name descname"><span class="pre">run_f2c</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corners_ll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacle_rings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tool_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_deg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacle_pad_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headland_width_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snake_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/devkit_f2c_planner/f2c_planner.html#run_f2c"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_f2c_planner.f2c_planner.run_f2c" title="Link to this definition"></a></dt>
+<dd><p>Generate straight-swath field rows for the boundary, clipped around obstacles.</p>
+<p>corners_ll and obstacle_rings contain (latitude, longitude) points in degrees.
+The first boundary corner anchors the local projection. tool_width is positive
+row spacing in meters; angle_deg is counterclockwise from east, modulo 180.
+Positive obstacle_pad_m expands obstacles and positive headland_width_m insets
+the field, both in meters. An empty inset, or failed F2C headland generation,
+falls back to the full boundary. snake_order reverses alternate swaths before
+obstacle clipping; clipped fragments at most half a tool width long are dropped.</p>
+<p>backend: ‘f2c’ (Fields2Cover), ‘shapely’ (pure Python, runs in Pyodide)
+or ‘auto’ (f2c if importable, else shapely).</p>
+<p>Returns lists of (latitude, longitude) points in traversal order, or an empty
+list when no swaths survive. Uncaught geometry and swath-generation errors propagate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – backend is unknown.</p></li>
+<li><p><strong>ImportError</strong> – backend=’f2c’ is requested but Fields2Cover is unavailable.</p></li>
+<li><p><strong>IndexError</strong> – corners_ll is empty.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="devkit_f2c_planner.f2c_planner.tag_rows">
 <span class="sig-prename descclassname"><span class="pre">devkit_f2c_planner.f2c_planner.</span></span><span class="sig-name descname"><span class="pre">tag_rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows_ll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corners_ll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_deg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/devkit_f2c_planner/f2c_planner.html#tag_rows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_f2c_planner.f2c_planner.tag_rows" title="Link to this definition"></a></dt>
-<dd><p>Return (row, frag) for each swath returned by _run_f2c().</p>
+<dd><p>Return (row, frag) for each swath returned by run_f2c().</p>
 <p>Obstacle clipping splits one row into consecutive swaths. Those share a
 perpendicular offset (to the swath direction), so group on that. Row
 numbers count from 0 in order of first appearance; frag counts from 0

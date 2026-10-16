@@ -194,7 +194,11 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="devkit_f2c_planner.html">devkit_f2c_planner</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html">devkit_f2c_planner.f2c_planner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">f2c_latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">f2c_xy_to_latlon()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_contour_f2c"><code class="docutils literal notranslate"><span class="pre">run_contour_f2c()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_f2c"><code class="docutils literal notranslate"><span class="pre">run_f2c()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.tag_rows"><code class="docutils literal notranslate"><span class="pre">tag_rows()</span></code></a></li>
 </ul>
 </li>
@@ -261,6 +265,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.drive_application_service.html">devkit_ui.application_services.drive_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.mission_application_service.html">devkit_ui.application_services.mission_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.navigation_application_service.html">devkit_ui.application_services.navigation_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.plan_application_service.html">devkit_ui.application_services.plan_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
@@ -327,6 +332,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.pages.html">devkit_ui.pages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.obstacle_cards.html">devkit_ui.pages.obstacle_cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.plan.html">devkit_ui.pages.plan</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.run.html">devkit_ui.pages.run</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.sim.html">devkit_ui.pages.sim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.system.html">devkit_ui.pages.system</a></li>
@@ -339,10 +345,33 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_fake_ui.html">devkit_ui.plan_fake_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.BoundaryMapCard"><code class="docutils literal notranslate"><span class="pre">BoundaryMapCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.Deferred"><code class="docutils literal notranslate"><span class="pre">Deferred</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.MissionQueueCard"><code class="docutils literal notranslate"><span class="pre">MissionQueueCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.MissionStoreCard"><code class="docutils literal notranslate"><span class="pre">MissionStoreCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.PlanControlsCard"><code class="docutils literal notranslate"><span class="pre">PlanControlsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.PlanPage"><code class="docutils literal notranslate"><span class="pre">PlanPage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.good"><code class="docutils literal notranslate"><span class="pre">good()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.planned"><code class="docutils literal notranslate"><span class="pre">planned()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.run_to_end"><code class="docutils literal notranslate"><span class="pre">run_to_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.texts"><code class="docutils literal notranslate"><span class="pre">texts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.walk"><code class="docutils literal notranslate"><span class="pre">walk()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_import.html">devkit_ui.plan_import</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.Plan"><code class="docutils literal notranslate"><span class="pre">Plan</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.PlanError"><code class="docutils literal notranslate"><span class="pre">PlanError</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_import.html#devkit_ui.plan_import.parse_plan"><code class="docutils literal notranslate"><span class="pre">parse_plan()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.plan_types.html">devkit_ui.plan_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.ImportOutcome"><code class="docutils literal notranslate"><span class="pre">ImportOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanFailure"><code class="docutils literal notranslate"><span class="pre">PlanFailure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanMode"><code class="docutils literal notranslate"><span class="pre">PlanMode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanOutcome"><code class="docutils literal notranslate"><span class="pre">PlanOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlanRequest"><code class="docutils literal notranslate"><span class="pre">PlanRequest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.plan_types.html#devkit_ui.plan_types.PlannedRows"><code class="docutils literal notranslate"><span class="pre">PlannedRows</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.process_registry.html">devkit_ui.process_registry</a><ul>
@@ -390,11 +419,10 @@
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.test_f2c_row_metadata</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.PlanHarness"><code class="docutils literal notranslate"><span class="pre">PlanHarness</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.patch_row_geometry"><code class="docutils literal notranslate"><span class="pre">patch_row_geometry()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
@@ -498,8 +526,53 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_application_service.html">devkit_ui.test_plan_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestImportPlan"><code class="docutils literal notranslate"><span class="pre">TestImportPlan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestPlan"><code class="docutils literal notranslate"><span class="pre">TestPlan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestPlanOutcome"><code class="docutils literal notranslate"><span class="pre">TestPlanOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWithoutRows"><code class="docutils literal notranslate"><span class="pre">TestSaveWithoutRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWritesTheRowsItIsGiven"><code class="docutils literal notranslate"><span class="pre">TestSaveWritesTheRowsItIsGiven</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestViewModel"><code class="docutils literal notranslate"><span class="pre">TestViewModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestWrites"><code class="docutils literal notranslate"><span class="pre">TestWrites</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_cards.html">devkit_ui.test_plan_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.ControlsCase"><code class="docutils literal notranslate"><span class="pre">ControlsCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestBoundaryMapCard"><code class="docutils literal notranslate"><span class="pre">TestBoundaryMapCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestPlanControlsCard"><code class="docutils literal notranslate"><span class="pre">TestPlanControlsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestRepair"><code class="docutils literal notranslate"><span class="pre">TestRepair</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_import.html">devkit_ui.test_plan_import</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest"><code class="docutils literal notranslate"><span class="pre">ParsePlanTest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_page_state.html">devkit_ui.test_plan_page_state</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestMissionQueue"><code class="docutils literal notranslate"><span class="pre">TestMissionQueue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanPageState"><code class="docutils literal notranslate"><span class="pre">TestPlanPageState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanViewModelPageHelpers"><code class="docutils literal notranslate"><span class="pre">TestPlanViewModelPageHelpers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.good"><code class="docutils literal notranslate"><span class="pre">good()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.planned"><code class="docutils literal notranslate"><span class="pre">planned()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html">devkit_ui.test_plan_queue_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionQueueCard"><code class="docutils literal notranslate"><span class="pre">TestMissionQueueCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionStoreCard"><code class="docutils literal notranslate"><span class="pre">TestMissionStoreCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPage"><code class="docutils literal notranslate"><span class="pre">TestPlanPage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html">devkit_ui.test_plan_service_boundaries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.PlanServiceCase"><code class="docutils literal notranslate"><span class="pre">PlanServiceCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestImportGPSBoundaries"><code class="docutils literal notranslate"><span class="pre">TestImportGPSBoundaries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestPlanningBoundaries"><code class="docutils literal notranslate"><span class="pre">TestPlanningBoundaries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestStagedWrites"><code class="docutils literal notranslate"><span class="pre">TestStagedWrites</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.gps"><code class="docutils literal notranslate"><span class="pre">gps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_types.html">devkit_ui.test_plan_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.TestPlanRequestFromForm"><code class="docutils literal notranslate"><span class="pre">TestPlanRequestFromForm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.form"><code class="docutils literal notranslate"><span class="pre">form()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_process_cleanup.html">devkit_ui.test_process_cleanup</a><ul>
@@ -519,6 +592,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_log_forwarding.html#devkit_ui.test_ros_log_forwarding.TestRosLogForwarding"><code class="docutils literal notranslate"><span class="pre">TestRosLogForwarding</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_row_actions.html">devkit_ui.test_row_actions</a><ul>
@@ -757,6 +834,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.obstacle_view_model.html">devkit_ui.view_models.obstacle_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
@@ -881,19 +959,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.latlon_to_xy" title="devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">latlon_to_xy</span></code></a>(lat, lon, anchor_lat, anchor_lon)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness" title="devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_f2c_save_harness</span></code></a>()</p></td>
-<td><p>Load only the F2C save method, avoiding ui_node's ROS and web-server imports.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.make_node" title="devkit_ui.test_f2c_row_metadata.make_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_node</span></code></a>(swaths, *[, contour_used])</p></td>
+<td><p>Build a plan harness holding the supplied swaths, with in-memory persistence.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.make_node" title="devkit_ui.test_f2c_row_metadata.make_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_node</span></code></a>(swaths, *[, contour_used])</p></td>
-<td><p>Build a simulated F2C save harness with supplied swaths and in-memory persistence.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.patch_row_geometry" title="devkit_ui.test_f2c_row_metadata.patch_row_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch_row_geometry</span></code></a>(test)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.patch_row_geometry" title="devkit_ui.test_f2c_row_metadata.patch_row_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch_row_geometry</span></code></a>(test)</p></td>
 <td><p>Replace projection and resampling with simple stand-ins so expected poses stay readable.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.resample_row_xy" title="devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resample_row_xy</span></code></a>(_points, _anchor_lat, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.resample_row_xy" title="devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resample_row_xy</span></code></a>(_points, _anchor_lat, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.xy_to_latlon" title="devkit_ui.test_f2c_row_metadata.xy_to_latlon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy_to_latlon</span></code></a>(x, y, anchor_lat, anchor_lon)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.xy_to_latlon" title="devkit_ui.test_f2c_row_metadata.xy_to_latlon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xy_to_latlon</span></code></a>(x, y, anchor_lat, anchor_lon)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -901,8 +976,8 @@
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.F2CSaveHarness" title="devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.PlanHarness" title="devkit_ui.test_f2c_row_metadata.PlanHarness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanHarness</span></code></a>(swaths[, contour_used])</p></td>
+<td><p>The real plan service and view model over an in-memory map, GPS, odometry and selection.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning" title="devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a>([methodName])</p></td>
 <td><p></p></td>
@@ -913,52 +988,96 @@
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.F2CSaveHarness">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_f2c_row_metadata.</span></span><span class="sig-name descname"><span class="pre">F2CSaveHarness</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.F2CSaveHarness" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_f2c_row_metadata.</span></span><span class="sig-name descname"><span class="pre">PlanHarness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">swaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contour_used</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#PlanHarness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The real plan service and view model over an in-memory map, GPS, odometry and selection.</p>
+<p>Writes run inline and are applied to <code class="docutils literal notranslate"><span class="pre">doc</span></code> unless queue_writes() defers them.
+The planned rows are set through swaths, origin_ll, contour_used and break_after.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.break_after">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">break_after</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.break_after" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.F2CSaveHarness.repair_row_connectivity">
-<span class="sig-name descname"><span class="pre">repair_row_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connect_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.F2CSaveHarness.repair_row_connectivity" title="Link to this definition"></a></dt>
-<dd><p>Rebuild missing in-row and headland edges for rows already in the loaded map.</p>
-<p>New in-row edges use the selected row action, and existing edge actions are
-kept. The in-memory map is updated immediately and the change is persisted in
-the background. Validation failures and worker errors are reported in
-<code class="docutils literal notranslate"><span class="pre">f2c_save_status</span></code>. No persistence is scheduled if no edges are added.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>connect_to</strong> (<em>str</em><em> | </em><em>None</em>) – Optional node name used only in the success status
-text; it does not add connections. An unknown node is ignored.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>OverflowError</strong> – Row metadata contains an infinite row ID; propagated
-    from <code class="docutils literal notranslate"><span class="pre">plan_row_repair</span></code> before any edges are added.</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.captured_modify">
+<span class="sig-name descname"><span class="pre">captured_modify</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#PlanHarness.captured_modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.captured_modify" title="Link to this definition"></a></dt>
+<dd><p>Run the queued write without applying it to doc and return its map edit.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.contour_used">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">contour_used</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.contour_used" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.current_node">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">current_node</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.current_node" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.import_plan">
+<span class="sig-name descname"><span class="pre">import_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#PlanHarness.import_plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.import_plan" title="Link to this definition"></a></dt>
+<dd><p>Import as the page does: keep the rows of a successful import as the draft.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.is_sim">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_sim</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.is_sim" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.origin_ll">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origin_ll</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.origin_ll" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.plan">
+<span class="sig-name descname"><span class="pre">plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#PlanHarness.plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.plan" title="Link to this definition"></a></dt>
+<dd><p>Plan as the page does: keep the rows of a successful run as the draft.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.F2CSaveHarness.save_f2c_rows_to_topo">
-<span class="sig-name descname"><span class="pre">save_f2c_rows_to_topo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_id_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.F2CSaveHarness.save_f2c_rows_to_topo" title="Link to this definition"></a></dt>
-<dd><p>Save the most recently planned F2C swaths as rows in the loaded topology map.</p>
-<p>In-row edges use the selected row action and headland edges use point-to-point
-navigation. Validation failures (no prefix, planned swaths, GPS fix, map or
-odometry, or unusable GPS coordinates) are reported in <code class="docutils literal notranslate"><span class="pre">f2c_save_status</span></code> and
-write nothing. Persistence runs in the background, and worker errors are also
-reported in <code class="docutils literal notranslate"><span class="pre">f2c_save_status</span></code>. Errors from <code class="docutils literal notranslate"><span class="pre">build_row_nodes</span></code> propagate
-synchronously before persistence is scheduled. The rules live in
-TopologyEditService.stage_f2c_save.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>prefix</strong> – Prefix for the generated node names. Surrounding whitespace is
-stripped, letters are uppercased, spaces become underscores, and
-characters outside <code class="docutils literal notranslate"><span class="pre">A-Z</span></code>, <code class="docutils literal notranslate"><span class="pre">0-9</span></code> and <code class="docutils literal notranslate"><span class="pre">_</span></code> are removed.</p></li>
-<li><p><strong>row_id_start</strong> – Row id given to the first planned swath.</p></li>
-<li><p><strong>overwrite</strong> – Replace existing <code class="docutils literal notranslate"><span class="pre">&lt;prefix&gt;_R*</span></code> nodes instead of skipping
-names that are already taken.</p></li>
-</ul>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.queue_writes">
+<span class="sig-name descname"><span class="pre">queue_writes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#PlanHarness.queue_writes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.queue_writes" title="Link to this definition"></a></dt>
+<dd><p>Hold writes back so the status shown while writing can be checked.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.repair">
+<span class="sig-name descname"><span class="pre">repair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connect_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#PlanHarness.repair"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.repair" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.row_action">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">row_action</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.row_action" title="Link to this definition"></a></dt>
+<dd><p>Return the row action as the Run tab holds it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_id_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#PlanHarness.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.save" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.save_status">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">save_status</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.save_status" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.selected_node">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">selected_node</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.selected_node" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.swaths">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">swaths</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.swaths" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.PlanHarness.topo_doc">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">topo_doc</span></span><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.PlanHarness.topo_doc" title="Link to this definition"></a></dt>
+<dd><p>The loaded map, as the topology view model would mirror it.</p>
 </dd></dl>
 
 </dd></dl>
@@ -966,7 +1085,7 @@ names that are already taken.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_f2c_row_metadata.</span></span><span class="sig-name descname"><span class="pre">TestDirectContourPlanning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#TestDirectContourPlanning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IsolatedAsyncioTestCase</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning.setUp">
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#TestDirectContourPlanning.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning.setUp" title="Link to this definition"></a></dt>
@@ -975,7 +1094,7 @@ names that are already taken.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_fragment_breaks_reach_topo_and_reset_for_straight_plans</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_fragment_breaks_reach_topo_and_reset_for_straight_plans</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning.test_fragment_breaks_reach_topo_and_reset_for_straight_plans" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1031,15 +1150,9 @@ names that are already taken.</p></li>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.load_f2c_save_harness">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.test_f2c_row_metadata.</span></span><span class="sig-name descname"><span class="pre">load_f2c_save_harness</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#load_f2c_save_harness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness" title="Link to this definition"></a></dt>
-<dd><p>Load only the F2C save method, avoiding ui_node’s ROS and web-server imports.</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="devkit_ui.test_f2c_row_metadata.make_node">
 <span class="sig-prename descclassname"><span class="pre">devkit_ui.test_f2c_row_metadata.</span></span><span class="sig-name descname"><span class="pre">make_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">swaths</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">contour_used</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_f2c_row_metadata.html#make_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_f2c_row_metadata.make_node" title="Link to this definition"></a></dt>
-<dd><p>Build a simulated F2C save harness with supplied swaths and in-memory persistence.</p>
+<dd><p>Build a plan harness holding the supplied swaths, with in-memory persistence.</p>
 </dd></dl>
 
 <dl class="py function">

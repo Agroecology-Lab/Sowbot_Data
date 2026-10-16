@@ -1,0 +1,12 @@
+devkit\_ui.pages.plan.mission\_queue\_card
+==========================================
+
+.. automodule:: devkit_ui.pages.plan.mission_queue_card
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MissionQueueCard
+   

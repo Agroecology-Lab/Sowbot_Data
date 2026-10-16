@@ -192,7 +192,11 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../_autosummary/devkit_f2c_planner.html">devkit_f2c_planner</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_f2c_planner.f2c_planner.html">devkit_f2c_planner.f2c_planner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">f2c_latlon_to_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon"><code class="docutils literal notranslate"><span class="pre">f2c_xy_to_latlon()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy"><code class="docutils literal notranslate"><span class="pre">field_centroid_xy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_contour_f2c"><code class="docutils literal notranslate"><span class="pre">run_contour_f2c()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_f2c"><code class="docutils literal notranslate"><span class="pre">run_f2c()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.tag_rows"><code class="docutils literal notranslate"><span class="pre">tag_rows()</span></code></a></li>
 </ul>
 </li>
@@ -259,6 +263,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.application_services.drive_application_service.html">devkit_ui.application_services.drive_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.application_services.mission_application_service.html">devkit_ui.application_services.mission_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.application_services.navigation_application_service.html">devkit_ui.application_services.navigation_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.application_services.plan_application_service.html">devkit_ui.application_services.plan_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
@@ -325,6 +330,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.pages.html">devkit_ui.pages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.pages.obstacle_cards.html">devkit_ui.pages.obstacle_cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.pages.plan.html">devkit_ui.pages.plan</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.pages.run.html">devkit_ui.pages.run</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.pages.sim.html">devkit_ui.pages.sim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.pages.system.html">devkit_ui.pages.system</a></li>
@@ -337,10 +343,33 @@
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml"><code class="docutils literal notranslate"><span class="pre">parse_topo_yaml()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html">devkit_ui.plan_fake_ui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.BoundaryMapCard"><code class="docutils literal notranslate"><span class="pre">BoundaryMapCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.Deferred"><code class="docutils literal notranslate"><span class="pre">Deferred</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.MissionQueueCard"><code class="docutils literal notranslate"><span class="pre">MissionQueueCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.MissionStoreCard"><code class="docutils literal notranslate"><span class="pre">MissionStoreCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.PlanControlsCard"><code class="docutils literal notranslate"><span class="pre">PlanControlsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.PlanPage"><code class="docutils literal notranslate"><span class="pre">PlanPage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.good"><code class="docutils literal notranslate"><span class="pre">good()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.planned"><code class="docutils literal notranslate"><span class="pre">planned()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.run_to_end"><code class="docutils literal notranslate"><span class="pre">run_to_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.texts"><code class="docutils literal notranslate"><span class="pre">texts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.walk"><code class="docutils literal notranslate"><span class="pre">walk()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.plan_import.html">devkit_ui.plan_import</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_import.html#devkit_ui.plan_import.Plan"><code class="docutils literal notranslate"><span class="pre">Plan</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_import.html#devkit_ui.plan_import.PlanError"><code class="docutils literal notranslate"><span class="pre">PlanError</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_import.html#devkit_ui.plan_import.parse_plan"><code class="docutils literal notranslate"><span class="pre">parse_plan()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.plan_types.html">devkit_ui.plan_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.ImportOutcome"><code class="docutils literal notranslate"><span class="pre">ImportOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanFailure"><code class="docutils literal notranslate"><span class="pre">PlanFailure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanMode"><code class="docutils literal notranslate"><span class="pre">PlanMode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanOutcome"><code class="docutils literal notranslate"><span class="pre">PlanOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanRequest"><code class="docutils literal notranslate"><span class="pre">PlanRequest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlannedRows"><code class="docutils literal notranslate"><span class="pre">PlannedRows</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.process_registry.html">devkit_ui.process_registry</a><ul>
@@ -388,11 +417,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.F2CSaveHarness"><code class="docutils literal notranslate"><span class="pre">F2CSaveHarness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.PlanHarness"><code class="docutils literal notranslate"><span class="pre">PlanHarness</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestDirectContourPlanning"><code class="docutils literal notranslate"><span class="pre">TestDirectContourPlanning</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata"><code class="docutils literal notranslate"><span class="pre">TestF2CRowMetadata</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.latlon_to_xy"><code class="docutils literal notranslate"><span class="pre">latlon_to_xy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.load_f2c_save_harness"><code class="docutils literal notranslate"><span class="pre">load_f2c_save_harness()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.make_node"><code class="docutils literal notranslate"><span class="pre">make_node()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.patch_row_geometry"><code class="docutils literal notranslate"><span class="pre">patch_row_geometry()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
@@ -496,8 +524,53 @@
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo"><code class="docutils literal notranslate"><span class="pre">TestParseTopo</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_application_service.html">devkit_ui.test_plan_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestImportPlan"><code class="docutils literal notranslate"><span class="pre">TestImportPlan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestPlan"><code class="docutils literal notranslate"><span class="pre">TestPlan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestPlanOutcome"><code class="docutils literal notranslate"><span class="pre">TestPlanOutcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWithoutRows"><code class="docutils literal notranslate"><span class="pre">TestSaveWithoutRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWritesTheRowsItIsGiven"><code class="docutils literal notranslate"><span class="pre">TestSaveWritesTheRowsItIsGiven</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestViewModel"><code class="docutils literal notranslate"><span class="pre">TestViewModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestWrites"><code class="docutils literal notranslate"><span class="pre">TestWrites</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_cards.html">devkit_ui.test_plan_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.ControlsCase"><code class="docutils literal notranslate"><span class="pre">ControlsCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestBoundaryMapCard"><code class="docutils literal notranslate"><span class="pre">TestBoundaryMapCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestPlanControlsCard"><code class="docutils literal notranslate"><span class="pre">TestPlanControlsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestRepair"><code class="docutils literal notranslate"><span class="pre">TestRepair</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_import.html">devkit_ui.test_plan_import</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest"><code class="docutils literal notranslate"><span class="pre">ParsePlanTest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_page_state.html">devkit_ui.test_plan_page_state</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestMissionQueue"><code class="docutils literal notranslate"><span class="pre">TestMissionQueue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanPageState"><code class="docutils literal notranslate"><span class="pre">TestPlanPageState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanViewModelPageHelpers"><code class="docutils literal notranslate"><span class="pre">TestPlanViewModelPageHelpers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.good"><code class="docutils literal notranslate"><span class="pre">good()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.planned"><code class="docutils literal notranslate"><span class="pre">planned()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_queue_cards.html">devkit_ui.test_plan_queue_cards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionQueueCard"><code class="docutils literal notranslate"><span class="pre">TestMissionQueueCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionStoreCard"><code class="docutils literal notranslate"><span class="pre">TestMissionStoreCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPage"><code class="docutils literal notranslate"><span class="pre">TestPlanPage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_service_boundaries.html">devkit_ui.test_plan_service_boundaries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.PlanServiceCase"><code class="docutils literal notranslate"><span class="pre">PlanServiceCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestImportGPSBoundaries"><code class="docutils literal notranslate"><span class="pre">TestImportGPSBoundaries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestPlanningBoundaries"><code class="docutils literal notranslate"><span class="pre">TestPlanningBoundaries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestStagedWrites"><code class="docutils literal notranslate"><span class="pre">TestStagedWrites</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.gps"><code class="docutils literal notranslate"><span class="pre">gps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_types.html">devkit_ui.test_plan_types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.TestPlanRequestFromForm"><code class="docutils literal notranslate"><span class="pre">TestPlanRequestFromForm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.form"><code class="docutils literal notranslate"><span class="pre">form()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_process_cleanup.html">devkit_ui.test_process_cleanup</a><ul>
@@ -517,6 +590,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.test_ros_log_forwarding.html#devkit_ui.test_ros_log_forwarding.TestRosLogForwarding"><code class="docutils literal notranslate"><span class="pre">TestRosLogForwarding</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../_autosummary/devkit_ui.test_row_actions.html">devkit_ui.test_row_actions</a><ul>
@@ -755,6 +832,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.view_models.obstacle_view_model.html">devkit_ui.view_models.obstacle_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_autosummary/devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
@@ -871,55 +949,54 @@
              
   <section id="what-the-stack-does">
 <h1>What the stack does<a class="headerlink" href="#what-the-stack-does" title="Link to this heading"></a></h1>
-<p>The aim of #116 is to get logic out of <code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code> (<code class="docutils literal notranslate"><span class="pre">ui_node.py</span></code>) into layers. On <code class="docutils literal notranslate"><span class="pre">caatinga-dev</span></code> it was 4,195 lines. On <code class="docutils literal notranslate"><span class="pre">ui-116-run-plan-sim-system</span></code> (head <code class="docutils literal notranslate"><span class="pre">caa70b9</span></code>) it is 1,589.</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>PR</p></th>
-<th class="head"><p>Change</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>#152 Alan services</p></td>
-<td><p>Drive, robot brain, row discovery and navigation as domain services, application services and view models</p></td>
-</tr>
-<tr class="row-odd"><td><p>#153 Telemetry</p></td>
-<td><p>Odometry and GPS state moves into <code class="docutils literal notranslate"><span class="pre">TelemetryDomainService</span></code>, <code class="docutils literal notranslate"><span class="pre">TelemetryApplicationService</span></code> and <code class="docutils literal notranslate"><span class="pre">TelemetryViewModel</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>#156 Topo rows</p></td>
-<td><p>Row geometry, contour planning, row building and repair become pure modules (<code class="docutils literal notranslate"><span class="pre">row_planning</span></code>, <code class="docutils literal notranslate"><span class="pre">topo_row_builder</span></code>, <code class="docutils literal notranslate"><span class="pre">plan_import</span></code>), with regression tests</p></td>
-</tr>
-<tr class="row-odd"><td><p>#158 RosGateway</p></td>
-<td><p>Subscriptions, timers and tool publishers go through <code class="docutils literal notranslate"><span class="pre">RosGateway</span></code>. The mission executor moves into <code class="docutils literal notranslate"><span class="pre">MissionDomainService</span></code>, and <code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code> and <code class="docutils literal notranslate"><span class="pre">MissionStore</span></code> use the gateway too</p></td>
-</tr>
-<tr class="row-even"><td><p>#161 Obstacles</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ObstacleViewModel</span></code>, and the obstacle cards move to <code class="docutils literal notranslate"><span class="pre">pages/obstacle_cards.py</span></code>. Saved missions sit behind <code class="docutils literal notranslate"><span class="pre">MissionViewModel</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>#162 Topology edits</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">TopologyEditService</span></code> holds the rules for dropping a node, saving F2C rows, repairing and deleting. The node methods become thin wrappers</p></td>
-</tr>
-<tr class="row-even"><td><p>#163 Sim assets</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SimAssetService</span></code> handles crop-model upload validation and writing, plus the soil zip import</p></td>
-</tr>
-<tr class="row-odd"><td><p>Branch <code class="docutils literal notranslate"><span class="pre">ui-116-run-plan-sim-system</span></code> (PR number to add)</p></td>
-<td><p>UI split into Run, Plan, Sim and System tabs. <code class="docutils literal notranslate"><span class="pre">SimPage</span></code> and <code class="docutils literal notranslate"><span class="pre">SystemPage</span></code> are classes with their cards under <code class="docutils literal notranslate"><span class="pre">pages/sim/</span></code> and <code class="docutils literal notranslate"><span class="pre">pages/system/</span></code>. <code class="docutils literal notranslate"><span class="pre">SimWorldService</span></code> rebuilds the Gazebo world. Tool processes move into <code class="docutils literal notranslate"><span class="pre">process_registry</span></code>. Map archive goes behind <code class="docutils literal notranslate"><span class="pre">TopologyViewModel</span></code>. Layer rules are enforced with import-linter in CI (six contracts). 57 test files</p></td>
-</tr>
-</tbody>
+<p>The aim of #116 is to get logic out of <code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code> (<code class="docutils literal notranslate"><span class="pre">ui_node.py</span></code>) into layers.
+On <code class="docutils literal notranslate"><span class="pre">caatinga-dev</span></code> it was 4,195 lines.
+On <code class="docutils literal notranslate"><span class="pre">ui-116-run-plan-sim-system</span></code> (head <code class="docutils literal notranslate"><span class="pre">caa70b9</span></code>) it is 1,589.
+On <code class="docutils literal notranslate"><span class="pre">ui-116-Plan-service-fixes</span></code> it is 838.</p>
+<table>
+<tr><th>PR</th><th>Change</th></tr>
+<tr><td>#152 Alan services</td><td>Drive, robot brain, row discovery and navigation as domain services, application services and view models</td></tr>
+<tr><td>#153 Telemetry</td><td>Odometry and GPS state moves into <code>TelemetryDomainService</code>, <code>TelemetryApplicationService</code> and <code>TelemetryViewModel</code></td></tr>
+<tr><td>#156 Topo rows</td><td>Row geometry, contour planning, row building and repair become pure modules (<code>row_planning</code>, <code>topo_row_builder</code>, <code>plan_import</code>), with regression tests</td></tr>
+<tr><td>#158 RosGateway</td><td>Subscriptions, timers and tool publishers go through <code>RosGateway</code>.
+The mission executor moves into <code>MissionDomainService</code>, and <code>ObstacleManager</code> and <code>MissionStore</code> use the gateway too</td></tr>
+<tr><td>#161 Obstacles</td><td><code>ObstacleViewModel</code>, and the obstacle cards move to <code>pages/obstacle_cards.py</code>.
+Saved missions sit behind <code>MissionViewModel</code></td></tr>
+<tr><td>#162 Topology edits</td><td><code>TopologyEditService</code> holds the rules for dropping a node, saving F2C rows, repairing and deleting.
+The node methods become thin wrappers</td></tr>
+<tr><td>#163 Sim assets</td><td><code>SimAssetService</code> handles crop-model upload validation and writing, plus the soil zip import</td></tr>
+<tr><td>Branch <code>ui-116-run-plan-sim-system</code> (PR number to add)</td><td>UI split into Run, Plan, Sim and System tabs.
+<code>SimPage</code> and <code>SystemPage</code> are classes with their cards under <code>pages/sim/</code> and <code>pages/system/</code>.
+<code>SimWorldService</code> rebuilds the Gazebo world.
+Tool processes move into <code>process_registry</code>.
+Map archive goes behind <code>TopologyViewModel</code>.
+Layer rules are enforced with import-linter in CI (six contracts).
+57 test files</td></tr>
+<tr><td>Branch <code>ui-116-Plan-service-fixes</code> (PR number to add)</td><td><code>PlanApplicationService</code> plans rows, imports plans and saves them.
+It returns plain data and keeps no draft.
+<code>PlanViewModel</code> words the status and opens a <code>PlanPageState</code> per browser session (boundary, draft, status, button state).
+The Plan tab is <code>PlanPage</code>, with its cards under <code>pages/plan/</code>: boundary map, controls, repair dialog, mission queue, mission store.
+A planning result that arrives after Clear is discarded.
+A seventh import-linter contract keeps the node, pages and view models off the F2C planner, <code>row_planning</code> and <code>plan_import</code></td></tr>
 </table>
 <p>#155 (optical flow in Docker) and #157 (vendored skills) are unrelated to the refactor.</p>
 <p>The three items listed as outstanding in the 9 October comment are done: the subscription, timer and tool publishers go through <code class="docutils literal notranslate"><span class="pre">RosGateway</span></code>, the mission executor is in <code class="docutils literal notranslate"><span class="pre">MissionDomainService</span></code>, and the F2C-to-topo glue is in <code class="docutils literal notranslate"><span class="pre">TopologyEditService.stage_f2c_save</span></code>.</p>
 </section>
 <section id="diagram-as-built">
 <h1>Diagram as built<a class="headerlink" href="#diagram-as-built" title="Link to this heading"></a></h1>
-<p>Solid arrows follow the dependency rule. Dashed arrows and red dashed boxes are known deviations, each listed under “Still open” below. The dotted arrows labelled “callback” and “live doc getter” are runtime callbacks.</p>
+<p>Solid arrows follow the dependency rule.
+Dashed arrows and red dashed boxes are known deviations, each listed under “Still open” below.
+The dotted arrows labelled “callback” and “live doc getter” are runtime callbacks.</p>
 <div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart TB
-  subgraph P1[&quot;Phase 1: same NiceGUI ROS node (NiceGuiNode, ui_node.py, 1,589 lines)&quot;]
+  subgraph P1[&quot;Phase 1: same NiceGUI ROS node (NiceGuiNode, ui_node.py, 838 lines)&quot;]
     subgraph UI[&quot;View (NiceGUI)&quot;]
       Content[&quot;content(): four tabs&quot;]
       RunTab[&quot;Run tab&lt;br/&gt;_run_content (method on node, ~110 lines)&quot;]
-      PlanTab[&quot;Plan tab&lt;br/&gt;_plan_content (method on node, ~650 lines)&quot;]
+      PlanPage[&quot;PlanPage (class)&quot;]
       SimPage[&quot;SimPage (class)&quot;]
       SystemPage[&quot;SystemPage (class)&quot;]
       RunCards[&quot;pages/run cards&lt;br/&gt;(drop node, joystick, track,&lt;br/&gt;row discovery, node map, sidebar)&quot;]
+      PlanCards[&quot;pages/plan cards&lt;br/&gt;(boundary map, controls, repair dialog,&lt;br/&gt;mission queue, mission store)&quot;]
       SimCards[&quot;pages/sim cards&lt;br/&gt;(plant placement, Gazebo, row follow,&lt;br/&gt;soil texture, map archive)&quot;]
       SysCards[&quot;pages/system cards&lt;br/&gt;(odometry, battery, safety, ESP, GPS, tools)&quot;]
       ObsCards[&quot;pages/obstacle_cards&quot;]
@@ -936,7 +1013,8 @@
       TopoVM[&quot;TopologyViewModel&lt;br/&gt;(mirrors the live TopoDoc, map archive)&quot;]
       TelemetryVM[&quot;TelemetryViewModel&quot;]
       RobotBrainVM[&quot;RobotBrainViewModel&quot;]
-      MissionVM[&quot;MissionViewModel&quot;]
+      PlanVM[&quot;PlanViewModel&lt;br/&gt;(plan status wording, PlanPageState per session)&quot;]
+      MissionVM[&quot;MissionViewModel&lt;br/&gt;(saved missions, MissionQueue per session)&quot;]
       ObstacleVM[&quot;ObstacleViewModel&quot;]
       SimVM[&quot;SimViewModel&quot;]
     end
@@ -949,6 +1027,7 @@
       TelemetryApp[&quot;TelemetryApplicationService&quot;]
       TopologyApp[&quot;TopologyApplicationService&lt;br/&gt;(save, save-as, archive, go-live, role patch)&quot;]
       TopologyEdit[&quot;TopologyEditService&lt;br/&gt;(stage drop, F2C save, repair, delete)&quot;]
+      PlanApp[&quot;PlanApplicationService&lt;br/&gt;(plan rows, import plan, save rows; keeps no draft)&quot;]
       MissionApp[&quot;MissionApplicationService&quot;]
       SimAssets[&quot;SimAssetService&lt;br/&gt;(crop models, soil textures; files only)&quot;]
       SimWorld[&quot;SimWorldService&lt;br/&gt;(rebuild Gazebo world via worldgen.sh)&quot;]
@@ -967,7 +1046,7 @@
     subgraph PURE[&quot;Pure modules and packages (no ROS, no UI)&quot;]
       RowBuilder[&quot;topo_row_builder&lt;br/&gt;(build and repair row nodes)&quot;]
       RowPlanning[&quot;row_planning, plan_import&quot;]
-      F2CPkg[&quot;devkit_f2c_planner&lt;br/&gt;(separate package, _run_f2c)&quot;]
+      F2CPkg[&quot;devkit_f2c_planner&lt;br/&gt;(separate package, run_f2c)&quot;]
     end
 
     subgraph INFRA[&quot;Infrastructure&quot;]
@@ -979,12 +1058,13 @@
   end
 
   Content --&gt; RunTab
-  Content --&gt; PlanTab
+  Content --&gt; PlanPage
   Content --&gt; SimPage
   Content --&gt; SystemPage
   RunTab --&gt; RunCards
   RunTab --&gt; ObsCards
-  PlanTab --&gt; ObsCards
+  PlanPage --&gt; PlanCards
+  PlanCards --&gt; ObsCards
   SimPage --&gt; SimCards
   SystemPage --&gt; SysCards
 
@@ -992,8 +1072,10 @@
   RunCards --&gt; GlobalVM
   RunCards --&gt; TopoVM
   RunTab --&gt; TelemetryVM
-  PlanTab --&gt; MissionVM
-  PlanTab --&gt; TopoVM
+  PlanCards --&gt; PlanVM
+  PlanCards --&gt; MissionVM
+  PlanVM -.-&gt;|&quot;reads map&quot;| TopoVM
+  PlanVM -.-&gt;|&quot;reads row action&quot;| RunVM
   SimCards --&gt; SimVM
   SimCards --&gt; TopoVM
   SysCards --&gt; TelemetryVM
@@ -1005,10 +1087,6 @@
   SysCards -.-&gt; Medkit
 
   RunTab -.-&gt; TopologyEdit
-  PlanTab -.-&gt; TopologyEdit
-  PlanTab -.-&gt; RowPlanning
-  PlanTab -.-&gt; F2CPkg
-  PlanTab -.-&gt; MissionDom
 
   GlobalVM --&gt; DriveApp
   RunVM --&gt; DriveApp
@@ -1017,11 +1095,17 @@
   TopoVM --&gt; TopologyApp
   TelemetryVM --&gt; TelemetryApp
   RobotBrainVM --&gt; RobotBrainApp
+  PlanVM --&gt; PlanApp
   MissionVM --&gt; MissionApp
   SimVM --&gt; SimAssets
   SimVM --&gt; SimWorld
   ObstacleVM -.-&gt; ObstacleManager
 
+  PlanApp --&gt; TopologyEdit
+  PlanApp --&gt; TopologyApp
+  PlanApp --&gt; TelemetryApp
+  PlanApp --&gt; RowPlanning
+  PlanApp --&gt; F2CPkg
   TopologyEdit --&gt; TopologyApp
   TopologyEdit --&gt; RowBuilder
   SimWorld --&gt; SimAssets
@@ -1058,12 +1142,12 @@
   classDef infra fill:#e5e7eb,stroke:#374151,color:#111827,stroke-width:1px
   classDef proc fill:#f3f4f6,stroke:#374151,color:#111827,stroke-width:1px
 
-  class Content,SimPage,SystemPage,RunCards,SimCards,SysCards,ObsCards view
-  class RunTab,PlanTab todo
+  class Content,PlanPage,SimPage,SystemPage,RunCards,PlanCards,SimCards,SysCards,ObsCards view
+  class RunTab todo
   class Medkit todo
   class ProcReg proc
-  class GlobalVM,RunVM,TopoVM,TelemetryVM,RobotBrainVM,MissionVM,ObstacleVM,SimVM vm
-  class DriveApp,NavApp,RowDiscApp,RobotBrainApp,TelemetryApp,TopologyApp,TopologyEdit,MissionApp,SimAssets,SimWorld app
+  class GlobalVM,RunVM,TopoVM,TelemetryVM,RobotBrainVM,PlanVM,MissionVM,ObstacleVM,SimVM vm
+  class DriveApp,NavApp,RowDiscApp,RobotBrainApp,TelemetryApp,TopologyApp,TopologyEdit,PlanApp,MissionApp,SimAssets,SimWorld app
   class DriveDom,NavDom,RowDiscDom,RobotBrainDom,TelemetryDom,TopologyDom,MissionDom dom
   class RowBuilder,RowPlanning,F2CPkg pure
   class TopoMapStore,MissionStore,ObstacleManager,RosGateway infra
@@ -1078,65 +1162,49 @@
   style INFRA fill:#f3f4f6,stroke:#374151,color:#111827
 </pre></div>
 </div>
-<p>The Run and Plan tabs are still methods on <code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code>, which is why they are drawn as red dashed boxes. The Sim and System tabs are page classes. Because the Plan tab lives on the node, it reaches <code class="docutils literal notranslate"><span class="pre">TopologyEditService</span></code>, <code class="docutils literal notranslate"><span class="pre">row_planning</span></code>, <code class="docutils literal notranslate"><span class="pre">devkit_f2c_planner</span></code> and <code class="docutils literal notranslate"><span class="pre">MissionDomainService</span></code> directly instead of going through a ViewModel.</p>
+<p>The Run tab is still a method on <code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code>, which is why it is drawn as a red dashed box.
+The Plan, Sim and System tabs are page classes.
+The Run tab reaches <code class="docutils literal notranslate"><span class="pre">TopologyEditService</span></code> through node wrappers instead of a ViewModel.
+The Plan page reaches only ViewModels; the node passes it three callbacks (run, cancel and delete row), so the mission executor is not drawn as a dependency of the page.</p>
 </section>
 <section id="decision-drop-facade-as-a-layer-name">
 <h1>Decision: drop “Facade” as a layer name<a class="headerlink" href="#decision-drop-facade-as-a-layer-name" title="Link to this heading"></a></h1>
-<p>Nothing built plays that role. Its real job, a UI-neutral boundary that REST, MQTT and LoRa adapters can share, belongs to the application services. The ViewModels can’t take it on, because they are NiceGUI-specific.</p>
+<p>Nothing built plays that role.
+Its real job, a UI-neutral boundary that REST, MQTT and LoRa adapters can share, belongs to the application services.
+The ViewModels can’t take it on, because they are NiceGUI-specific.</p>
 <section id="names">
 <h2>Names<a class="headerlink" href="#names" title="Link to this heading"></a></h2>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Layer</p></th>
-<th class="head"><p>Name</p></th>
-<th class="head"><p>Rule</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>UI</p></td>
-<td><p>Page</p></td>
-<td><p>Layout only. Imports ViewModels only (enforced by import-linter). Tool processes are the one exception: cards start them through <code class="docutils literal notranslate"><span class="pre">process_registry</span></code>, and Medkit still uses <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> in <code class="docutils literal notranslate"><span class="pre">tools_card</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>UI state</p></td>
-<td><p>ViewModel</p></td>
-<td><p>UI state and user intents. It is the NiceGUI adapter, and the only place presentation formatting happens</p></td>
-</tr>
-<tr class="row-even"><td><p>Boundary</p></td>
-<td><p>Application service</p></td>
-<td><p>The “Robot API”. Use cases, plain dataclasses in and out, no UI or rclpy types. Phase 2 adapters call this layer</p></td>
-</tr>
-<tr class="row-odd"><td><p>Live state</p></td>
-<td><p>Domain service</p></td>
-<td><p>Holds live state (TopoDoc, mission state). Talks to ROS only through RosGateway</p></td>
-</tr>
-<tr class="row-even"><td><p>Persistence</p></td>
-<td><p>Store</p></td>
-<td><p>TopoMapStore, MissionStore. Owned by application services. <code class="docutils literal notranslate"><span class="pre">TopoMapStore</span></code> sits in the <code class="docutils literal notranslate"><span class="pre">domain_services</span></code> package for now</p></td>
-</tr>
-<tr class="row-odd"><td><p>Algorithms</p></td>
-<td><p>Pure module</p></td>
-<td><p>row_planning, topo_row_builder, plan_import. No state, no ROS. F2C is the separate <code class="docutils literal notranslate"><span class="pre">devkit_f2c_planner</span></code> package</p></td>
-</tr>
-<tr class="row-even"><td><p>ROS</p></td>
-<td><p>RosGateway</p></td>
-<td><p>Creates publishers, subscriptions, clients and timers. Five modules still import <code class="docutils literal notranslate"><span class="pre">rclpy.qos</span></code> directly (see below)</p></td>
-</tr>
-<tr class="row-odd"><td><p>Processes</p></td>
-<td><p>process_registry</p></td>
-<td><p>Registry of long-running tool processes (RViz, Gazebo, explorer, grapher, neo), shared by every browser session. No NiceGUI or ROS imports</p></td>
-</tr>
-<tr class="row-even"><td><p>Phase 2 edge</p></td>
-<td><p>Adapter</p></td>
-<td><p>RestAdapter, MqttAdapter, ReticulumAdapter. Each is thin and calls application services. Not built</p></td>
-</tr>
-<tr class="row-odd"><td><p>Phase 2 central</p></td>
-<td><p>Fleet Gateway</p></td>
-<td><p>Renamed from “Central Gateway” so “gateway” means one thing only. Not built</p></td>
-</tr>
-</tbody>
+<table>
+<tr><th>Layer</th><th>Name</th><th>Rule</th></tr>
+<tr><td>UI</td><td>Page</td><td>Layout only.
+Imports ViewModels only (enforced by import-linter).
+Tool processes are the one exception: cards start them through <code>process_registry</code>, and Medkit still uses <code>subprocess</code> in <code>tools_card</code></td></tr>
+<tr><td>UI state</td><td>ViewModel</td><td>UI state and user intents.
+It is the NiceGUI adapter, and the only place presentation formatting happens</td></tr>
+<tr><td>Boundary</td><td>Application service</td><td>The "Robot API".
+Use cases, plain dataclasses in and out, no UI or rclpy types.
+Phase 2 adapters call this layer</td></tr>
+<tr><td>Live state</td><td>Domain service</td><td>Holds live state (TopoDoc, mission state).
+Talks to ROS only through RosGateway</td></tr>
+<tr><td>Persistence</td><td>Store</td><td>TopoMapStore, MissionStore.
+Owned by application services.
+<code>TopoMapStore</code> sits in the <code>domain_services</code> package for now</td></tr>
+<tr><td>Algorithms</td><td>Pure module</td><td>row_planning, topo_row_builder, plan_import.
+No state, no ROS.
+F2C is the separate <code>devkit_f2c_planner</code> package</td></tr>
+<tr><td>ROS</td><td>RosGateway</td><td>Creates publishers, subscriptions, clients and timers.
+Five modules still import <code>rclpy.qos</code> directly (see below)</td></tr>
+<tr><td>Processes</td><td>process_registry</td><td>Registry of long-running tool processes (RViz, Gazebo, explorer, grapher, neo), shared by every browser session.
+No NiceGUI or ROS imports</td></tr>
+<tr><td>Phase 2 edge</td><td>Adapter</td><td>RestAdapter, MqttAdapter, ReticulumAdapter.
+Each is thin and calls application services.
+Not built</td></tr>
+<tr><td>Phase 2 central</td><td>Fleet Gateway</td><td>Renamed from "Central Gateway" so "gateway" means one thing only.
+Not built</td></tr>
 </table>
-<p><strong>Dependency rule:</strong> Page → ViewModel → Application service → Domain service / Store / Pure module → RosGateway. Nothing points upward or skips a layer.</p>
-<p>import-linter enforces this in CI (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint-imports</span></code>, <code class="docutils literal notranslate"><span class="pre">.importlinter</span></code>) with six contracts:</p>
+<p><strong>Dependency rule:</strong> Page → ViewModel → Application service → Domain service / Store / Pure module → RosGateway.
+Nothing points upward or skips a layer.</p>
+<p>import-linter enforces this in CI (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint-imports</span></code>, <code class="docutils literal notranslate"><span class="pre">.importlinter</span></code>) with seven contracts:</p>
 <ol class="arabic simple">
 <li><p>Pages import only ViewModels.</p></li>
 <li><p>Pages do not spawn processes.</p></li>
@@ -1144,6 +1212,7 @@
 <li><p>Services are UI-neutral.</p></li>
 <li><p>Domain services do not import application services.</p></li>
 <li><p>Only RosGateway touches rclpy.</p></li>
+<li><p>Field planning and plan import go through the Plan service: <code class="docutils literal notranslate"><span class="pre">ui_node</span></code>, the pages and the view models do not import <code class="docutils literal notranslate"><span class="pre">devkit_f2c_planner</span></code>, <code class="docutils literal notranslate"><span class="pre">row_planning</span></code> or <code class="docutils literal notranslate"><span class="pre">plan_import</span></code>.</p></li>
 </ol>
 <p>Each exception is listed in <code class="docutils literal notranslate"><span class="pre">.importlinter</span></code> with a <code class="docutils literal notranslate"><span class="pre">TODO(#116)</span></code> and the check fails if one becomes stale.</p>
 </section>
@@ -1158,65 +1227,62 @@
 <section id="consequences">
 <h2>Consequences<a class="headerlink" href="#consequences" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>The persistence objection no longer applies.</strong> achurichi’s rule was “no state or persistence in the Facade”. That was about a layer that doesn’t exist now. Stores sit in the application layer, as the build already has them.</p></li>
-<li><p><strong>Application services must stay thin orchestration.</strong> Planning lives in pure modules and the executor in <code class="docutils literal notranslate"><span class="pre">MissionDomainService</span></code>. Otherwise the monolith concern comes straight back.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code> no longer bypasses the layers.</strong> In the 15 August diagram <code class="docutils literal notranslate"><span class="pre">MissionRunner</span></code> and <code class="docutils literal notranslate"><span class="pre">MissionStore</span></code> bypassed the Facade. <code class="docutils literal notranslate"><span class="pre">MissionViewModel</span></code> now goes through <code class="docutils literal notranslate"><span class="pre">MissionApplicationService</span></code>, which owns the store and the domain service.</p></li>
+<li><p><strong>The persistence objection no longer applies.</strong>
+achurichi’s rule was “no state or persistence in the Facade”.
+That was about a layer that doesn’t exist now.
+Stores sit in the application layer, as the build already has them.</p></li>
+<li><p><strong>Application services must stay thin orchestration.</strong>
+Planning lives in pure modules and the executor in <code class="docutils literal notranslate"><span class="pre">MissionDomainService</span></code>.
+Otherwise the monolith concern comes straight back.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code> no longer bypasses the layers.</strong>
+In the 15 August diagram <code class="docutils literal notranslate"><span class="pre">MissionRunner</span></code> and <code class="docutils literal notranslate"><span class="pre">MissionStore</span></code> bypassed the Facade.
+<code class="docutils literal notranslate"><span class="pre">MissionViewModel</span></code> now goes through <code class="docutils literal notranslate"><span class="pre">MissionApplicationService</span></code>, which owns the store and the domain service.</p></li>
 </ul>
 </section>
 </section>
 <section id="proposed-in-116-versus-built">
 <h1>Proposed in #116 versus built<a class="headerlink" href="#proposed-in-116-versus-built" title="Link to this heading"></a></h1>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Proposed</p></th>
-<th class="head"><p>Built</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Facade layer (comment of 15 and 20 August: <code class="docutils literal notranslate"><span class="pre">NavFacade</span></code>, <code class="docutils literal notranslate"><span class="pre">MissionFacade</span></code>, <code class="docutils literal notranslate"><span class="pre">TopologyFacade</span></code>, <code class="docutils literal notranslate"><span class="pre">SystemFacade</span></code>)</p></td>
-<td><p>Dropped. <code class="docutils literal notranslate"><span class="pre">ApplicationService</span></code> is the boundary (comment of 9 October)</p></td>
-</tr>
-<tr class="row-odd"><td><p>Three ViewModels: <code class="docutils literal notranslate"><span class="pre">NavViewModel</span></code>, <code class="docutils literal notranslate"><span class="pre">MissionViewModel</span></code>, <code class="docutils literal notranslate"><span class="pre">SystemViewModel</span></code>, plus <code class="docutils literal notranslate"><span class="pre">GlobalViewModel</span></code></p></td>
-<td><p>Eight: <code class="docutils literal notranslate"><span class="pre">Global</span></code>, <code class="docutils literal notranslate"><span class="pre">Run</span></code>, <code class="docutils literal notranslate"><span class="pre">Topology</span></code>, <code class="docutils literal notranslate"><span class="pre">Telemetry</span></code>, <code class="docutils literal notranslate"><span class="pre">RobotBrain</span></code>, <code class="docutils literal notranslate"><span class="pre">Mission</span></code>, <code class="docutils literal notranslate"><span class="pre">Obstacle</span></code>, <code class="docutils literal notranslate"><span class="pre">Sim</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Pages: Nav, Mission, System</p></td>
-<td><p>Four tabs: Run, Plan, Sim, System. Sim and System are page classes. Run and Plan are still node methods</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NavigationService</span></code>, <code class="docutils literal notranslate"><span class="pre">MissionService</span></code>, <code class="docutils literal notranslate"><span class="pre">TopologyService</span></code>, <code class="docutils literal notranslate"><span class="pre">SystemService</span></code></p></td>
-<td><p>Drive, Navigation, RowDiscovery, RobotBrain, Telemetry, Topology, TopologyEdit and Mission application services, each with a domain service, plus <code class="docutils literal notranslate"><span class="pre">SimAssetService</span></code> and <code class="docutils literal notranslate"><span class="pre">SimWorldService</span></code> (no ROS)</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PlanningService</span> <span class="pre">(F2C)</span></code> / <code class="docutils literal notranslate"><span class="pre">PlanningDomainService</span></code></p></td>
-<td><p>No such service. F2C is the <code class="docutils literal notranslate"><span class="pre">devkit_f2c_planner</span></code> package, called from the Plan tab. Row geometry, row building and plan import are pure modules. Edit rules are in <code class="docutils literal notranslate"><span class="pre">TopologyEditService</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TopoRepo</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">TopoMapStore</span></code>, owned by <code class="docutils literal notranslate"><span class="pre">TopologyApplicationService</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ROSGateway</span></code> as the ROS clients layer</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">RosGateway</span></code> wraps the rclpy node. All seven domain services, <code class="docutils literal notranslate"><span class="pre">MissionStore</span></code> and <code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code> use it</p></td>
-</tr>
-<tr class="row-odd"><td><p>“All UI contact points go through the Facade”</p></td>
-<td><p>True for drive, navigation, row discovery, robot brain, telemetry, topology and missions. Not true for obstacles, process control and the Plan tab (see below)</p></td>
-</tr>
-<tr class="row-even"><td><p>Enforce the dependency rule</p></td>
-<td><p>Done: import-linter in CI</p></td>
-</tr>
-<tr class="row-odd"><td><p>Phase 2: Edge API (REST, MQTT, VDA 5050), Fleet Gateway, standalone UI</p></td>
-<td><p>Not started. No adapters in the code</p></td>
-</tr>
-</tbody>
+<table>
+<tr><th>Proposed</th><th>Built</th></tr>
+<tr><td>Facade layer (comment of 15 and 20 August: <code>NavFacade</code>, <code>MissionFacade</code>, <code>TopologyFacade</code>, <code>SystemFacade</code>)</td><td>Dropped.
+<code>ApplicationService</code> is the boundary (comment of 9 October)</td></tr>
+<tr><td>Three ViewModels: <code>NavViewModel</code>, <code>MissionViewModel</code>, <code>SystemViewModel</code>, plus <code>GlobalViewModel</code></td><td>Nine: <code>Global</code>, <code>Run</code>, <code>Topology</code>, <code>Telemetry</code>, <code>RobotBrain</code>, <code>Plan</code>, <code>Mission</code>, <code>Obstacle</code>, <code>Sim</code></td></tr>
+<tr><td>Pages: Nav, Mission, System</td><td>Four tabs: Run, Plan, Sim, System.
+Plan, Sim and System are page classes.
+Run is still a node method</td></tr>
+<tr><td><code>NavigationService</code>, <code>MissionService</code>, <code>TopologyService</code>, <code>SystemService</code></td><td>Drive, Navigation, RowDiscovery, RobotBrain, Telemetry, Topology, TopologyEdit, Plan and Mission application services, each with a domain service, plus <code>SimAssetService</code> and <code>SimWorldService</code> (no ROS)</td></tr>
+<tr><td><code>PlanningService (F2C)</code> / <code>PlanningDomainService</code></td><td><code>PlanApplicationService</code>, with no domain service of its own.
+F2C is the <code>devkit_f2c_planner</code> package, called from <code>PlanApplicationService</code>.
+Row geometry, row building and plan import are pure modules.
+Edit rules are in <code>TopologyEditService</code></td></tr>
+<tr><td><code>TopoRepo</code></td><td><code>TopoMapStore</code>, owned by <code>TopologyApplicationService</code></td></tr>
+<tr><td><code>ROSGateway</code> as the ROS clients layer</td><td><code>RosGateway</code> wraps the rclpy node.
+All seven domain services, <code>MissionStore</code> and <code>ObstacleManager</code> use it</td></tr>
+<tr><td>"All UI contact points go through the Facade"</td><td>True for drive, navigation, row discovery, robot brain, telemetry, topology, planning and missions.
+Not true for obstacles and process control (see below)</td></tr>
+<tr><td>Enforce the dependency rule</td><td>Done: import-linter in CI</td></tr>
+<tr><td>Phase 2: Edge API (REST, MQTT, VDA 5050), Fleet Gateway, standalone UI</td><td>Not started.
+No adapters in the code</td></tr>
 </table>
 </section>
 <section id="still-open">
 <h1>Still open<a class="headerlink" href="#still-open" title="Link to this heading"></a></h1>
 <p>Tracked in #116 and <code class="docutils literal notranslate"><span class="pre">.importlinter</span></code>:</p>
 <ul class="simple">
-<li><p><strong>Run and Plan tabs</strong> are still methods on <code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code>. <code class="docutils literal notranslate"><span class="pre">_plan_content</span></code> is about 650 lines and holds the F2C call, plan import and mission queue UI.</p></li>
+<li><p><strong>Run tab</strong> is still a method on <code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code> (<code class="docutils literal notranslate"><span class="pre">_run_content</span></code>, about 110 lines) and reaches <code class="docutils literal notranslate"><span class="pre">TopologyEditService</span></code> through node wrappers.</p></li>
+<li><p><strong>Plan page state</strong> is per browser session (<code class="docutils literal notranslate"><span class="pre">PlanPageState</span></code>, <code class="docutils literal notranslate"><span class="pre">MissionQueue</span></code>), but <code class="docutils literal notranslate"><span class="pre">PlanViewModel.save_status</span></code> is shared by every session.
+<code class="docutils literal notranslate"><span class="pre">PlanPage</span></code> takes <code class="docutils literal notranslate"><span class="pre">_run_mission</span></code>, <code class="docutils literal notranslate"><span class="pre">cancel_mission</span></code> and <code class="docutils literal notranslate"><span class="pre">confirm_delete_row</span></code> as callbacks from the node.</p></li>
+<li><p><strong>Plan page threading</strong>: <code class="docutils literal notranslate"><span class="pre">PlanViewModel.plan</span></code> blocks, so the controls card calls it through <code class="docutils literal notranslate"><span class="pre">nicegui.run.io_bound</span></code>.
+Any other adapter has to run it on a worker thread too.</p></li>
 <li><p><strong>Mission start glue</strong>: <code class="docutils literal notranslate"><span class="pre">_run_mission</span></code> and <code class="docutils literal notranslate"><span class="pre">_send_goal_sync</span></code> are still on the node, around <code class="docutils literal notranslate"><span class="pre">MissionDomainService.start</span></code>.</p></li>
-<li><p><strong>Node leftovers</strong>: F2C session state (<code class="docutils literal notranslate"><span class="pre">_f2c_*</span></code>), the <code class="docutils literal notranslate"><span class="pre">_persist_and_reload</span></code> thread wrapper, and the <code class="docutils literal notranslate"><span class="pre">/current_node</span></code> subscription with its <code class="docutils literal notranslate"><span class="pre">rclpy.qos</span></code> import.</p></li>
-<li><p><strong>Obstacles</strong>: <code class="docutils literal notranslate"><span class="pre">ObstacleViewModel</span></code> calls <code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code> directly. An <code class="docutils literal notranslate"><span class="pre">ObstacleApplicationService</span></code> is needed.</p></li>
+<li><p><strong>Node leftovers</strong>: the <code class="docutils literal notranslate"><span class="pre">_persist_and_reload</span></code> thread wrapper, and the <code class="docutils literal notranslate"><span class="pre">/current_node</span></code> subscription with its <code class="docutils literal notranslate"><span class="pre">rclpy.qos</span></code> import.</p></li>
+<li><p><strong>Obstacles</strong>: <code class="docutils literal notranslate"><span class="pre">ObstacleViewModel</span></code> calls <code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code> directly.
+An <code class="docutils literal notranslate"><span class="pre">ObstacleApplicationService</span></code> is needed.</p></li>
 <li><p><strong>Medkit</strong>: still started with <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> in <code class="docutils literal notranslate"><span class="pre">pages/system/tools_card.py</span></code>.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">rclpy.qos</span></code> imports</strong>: <code class="docutils literal notranslate"><span class="pre">row_discovery_domain_service</span></code>, <code class="docutils literal notranslate"><span class="pre">telemetry_domain_service</span></code>, <code class="docutils literal notranslate"><span class="pre">topology_domain_service</span></code>, <code class="docutils literal notranslate"><span class="pre">obstacles</span></code> and <code class="docutils literal notranslate"><span class="pre">qos</span></code> still import <code class="docutils literal notranslate"><span class="pre">rclpy</span></code>. The QoS profiles should move into <code class="docutils literal notranslate"><span class="pre">RosGateway</span></code>.</p></li>
-<li><p><strong>Process control</strong>: the other tool cards (Gazebo, row follow, RViz, explorer, grapher) start processes through <code class="docutils literal notranslate"><span class="pre">process_registry</span></code> from the page. A ViewModel and application service would complete the rule.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">rclpy.qos</span></code> imports</strong>: <code class="docutils literal notranslate"><span class="pre">row_discovery_domain_service</span></code>, <code class="docutils literal notranslate"><span class="pre">telemetry_domain_service</span></code>, <code class="docutils literal notranslate"><span class="pre">topology_domain_service</span></code>, <code class="docutils literal notranslate"><span class="pre">obstacles</span></code> and <code class="docutils literal notranslate"><span class="pre">qos</span></code> still import <code class="docutils literal notranslate"><span class="pre">rclpy</span></code>.
+The QoS profiles should move into <code class="docutils literal notranslate"><span class="pre">RosGateway</span></code>.</p></li>
+<li><p><strong>Process control</strong>: the other tool cards (Gazebo, row follow, RViz, explorer, grapher) start processes through <code class="docutils literal notranslate"><span class="pre">process_registry</span></code> from the page.
+A ViewModel and application service would complete the rule.</p></li>
 </ul>
 </section>
 
