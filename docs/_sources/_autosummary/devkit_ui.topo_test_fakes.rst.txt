@@ -8,8 +8,10 @@ devkit\_ui.topo\_test\_fakes
 
    .. autosummary::
    
+      attach_authoring
       attach_topology
       patch_store_io
+      run_threads_inline
    
    .. rubric:: Classes
 

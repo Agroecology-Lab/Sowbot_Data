@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>devkit_ui.test_ui_node_ros_gateway &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+  <title>devkit_ui.test_track_mode &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_ui.time_utils" href="devkit_ui.time_utils.html" />
-    <link rel="prev" title="devkit_ui.test_ui_node_mission" href="devkit_ui.test_ui_node_mission.html" /> 
+    <link rel="next" title="devkit_ui.test_ui_node_mission" href="devkit_ui.test_ui_node_mission.html" />
+    <link rel="prev" title="devkit_ui.test_topology_view_model" href="devkit_ui.test_topology_view_model.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -331,6 +331,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.pages.html">devkit_ui.pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.delete_dialogs.html">devkit_ui.pages.delete_dialogs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.obstacle_cards.html">devkit_ui.pages.obstacle_cards</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.plan.html">devkit_ui.pages.plan</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.pages.run.html">devkit_ui.pages.run</a></li>
@@ -405,6 +406,11 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_actions.html#devkit_ui.test_actions.TestActionRosMsgs"><code class="docutils literal notranslate"><span class="pre">TestActionRosMsgs</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_delete_dialogs.html">devkit_ui.test_delete_dialogs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_delete_dialogs.html#devkit_ui.test_delete_dialogs.TestDeleteDialogs"><code class="docutils literal notranslate"><span class="pre">TestDeleteDialogs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_delete_dialogs.html#devkit_ui.test_delete_dialogs.labels"><code class="docutils literal notranslate"><span class="pre">labels()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_drive_services.html">devkit_ui.test_drive_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.FakeBool"><code class="docutils literal notranslate"><span class="pre">FakeBool</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.FakeTwist"><code class="docutils literal notranslate"><span class="pre">FakeTwist</span></code></a></li>
@@ -415,7 +421,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_drop_topo_node.html">devkit_ui.test_drop_topo_node</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drop_topo_node.html#devkit_ui.test_drop_topo_node.TestDropTopoNode"><code class="docutils literal notranslate"><span class="pre">TestDropTopoNode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_drop_topo_node.html#devkit_ui.test_drop_topo_node.load_drop_harness"><code class="docutils literal notranslate"><span class="pre">load_drop_harness()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_f2c_row_metadata.html">devkit_ui.test_f2c_row_metadata</a><ul>
@@ -448,6 +453,7 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_map_operations.html">devkit_ui.test_map_operations</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_map_operations.html#devkit_ui.test_map_operations.TestMapOperations"><code class="docutils literal notranslate"><span class="pre">TestMapOperations</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_map_operations.html#devkit_ui.test_map_operations.load_map_harness"><code class="docutils literal notranslate"><span class="pre">load_map_harness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_map_operations.html#devkit_ui.test_map_operations.persist_and_reload"><code class="docutils literal notranslate"><span class="pre">persist_and_reload()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_medkit_gateway.html">devkit_ui.test_medkit_gateway</a><ul>
@@ -483,6 +489,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_models.html#devkit_ui.test_models.test_set_row_action_only_touches_row_edges"><code class="docutils literal notranslate"><span class="pre">test_set_row_action_only_touches_row_edges()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_nav_page.html">devkit_ui.test_nav_page</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_nav_page.html#devkit_ui.test_nav_page.TestNavPage"><code class="docutils literal notranslate"><span class="pre">TestNavPage</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_navigation_goals.html">devkit_ui.test_navigation_goals</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.ActionClient"><code class="docutils literal notranslate"><span class="pre">ActionClient</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.Future"><code class="docutils literal notranslate"><span class="pre">Future</span></code></a></li>
@@ -495,7 +505,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html">devkit_ui.test_navigation_service_wiring</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.TestNavigationServiceWiring"><code class="docutils literal notranslate"><span class="pre">TestNavigationServiceWiring</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.TestUiTabs"><code class="docutils literal notranslate"><span class="pre">TestUiTabs</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.load_navigation_service_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_service_harness()</span></code></a></li>
 </ul>
@@ -778,14 +787,13 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_view_model.html#devkit_ui.test_topology_view_model.TestMapArchive"><code class="docutils literal notranslate"><span class="pre">TestMapArchive</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.test_track_mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_track_mode.TestTrackMode"><code class="docutils literal notranslate"><span class="pre">TestTrackMode</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html">devkit_ui.test_ui_node_mission</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html#devkit_ui.test_ui_node_mission.TestUiNodeMission"><code class="docutils literal notranslate"><span class="pre">TestUiNodeMission</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html#devkit_ui.test_ui_node_mission.load_mission_harness"><code class="docutils literal notranslate"><span class="pre">load_mission_harness()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.test_ui_node_ros_gateway</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway"><code class="docutils literal notranslate"><span class="pre">TestUiNodeRosGateway</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_ui_node_ros_gateway.load_gateway_harness"><code class="docutils literal notranslate"><span class="pre">load_gateway_harness()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
@@ -822,8 +830,10 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_test_fakes.html">devkit_ui.topo_test_fakes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.FakeTopologyDomain"><code class="docutils literal notranslate"><span class="pre">FakeTopologyDomain</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.attach_authoring"><code class="docutils literal notranslate"><span class="pre">attach_authoring()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.attach_topology"><code class="docutils literal notranslate"><span class="pre">attach_topology()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.patch_store_io"><code class="docutils literal notranslate"><span class="pre">patch_store_io()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.run_threads_inline"><code class="docutils literal notranslate"><span class="pre">run_threads_inline()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.utils.html">devkit_ui.utils</a><ul>
@@ -832,6 +842,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.map_authoring_view_model.html">devkit_ui.view_models.map_authoring_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.obstacle_view_model.html">devkit_ui.view_models.obstacle_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
@@ -941,9 +952,9 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../python_api.html">Python API Reference</a></li>
           <li class="breadcrumb-item"><a href="devkit_ui.html">devkit_ui</a></li>
-      <li class="breadcrumb-item active">devkit_ui.test_ui_node_ros_gateway</li>
+      <li class="breadcrumb-item active">devkit_ui.test_track_mode</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_autosummary/devkit_ui.test_ui_node_ros_gateway.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/devkit_ui.test_track_mode.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -951,71 +962,75 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-devkit_ui.test_ui_node_ros_gateway">
-<span id="devkit-ui-test-ui-node-ros-gateway"></span><h1>devkit_ui.test_ui_node_ros_gateway<a class="headerlink" href="#module-devkit_ui.test_ui_node_ros_gateway" title="Link to this heading"></a></h1>
-<p>Verify NiceGuiNode creates the track timer through RosGateway.</p>
-<p class="rubric">Functions</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_ui_node_ros_gateway.load_gateway_harness" title="devkit_ui.test_ui_node_ros_gateway.load_gateway_harness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_gateway_harness</span></code></a>()</p></td>
-<td><p>Load the real start_track method from ui_node.py.</p></td>
-</tr>
-</tbody>
-</table>
+  <section id="module-devkit_ui.test_track_mode">
+<span id="devkit-ui-test-track-mode"></span><h1>devkit_ui.test_track_mode<a class="headerlink" href="#module-devkit_ui.test_track_mode" title="Link to this heading"></a></h1>
+<p>Verify track mode records nodes on a gateway timer and marks the row exit when stopped.</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway" title="devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestUiNodeRosGateway</span></code></a>([methodName])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_track_mode.TestTrackMode" title="devkit_ui.test_track_mode.TestTrackMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestTrackMode</span></code></a>([methodName])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_ui_node_ros_gateway.</span></span><span class="sig-name descname"><span class="pre">TestUiNodeRosGateway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ui_node_ros_gateway.html#TestUiNodeRosGateway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_track_mode.</span></span><span class="sig-name descname"><span class="pre">TestTrackMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_ui_node_ros_gateway.html#TestUiNodeRosGateway.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.setUp" title="Link to this definition"></a></dt>
-<dd><p>Build a harness whose node-level create_* methods fail the test if they are used.</p>
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.setUp" title="Link to this definition"></a></dt>
+<dd><p>Build the authoring view model over a loaded map, with drops replaced by a mock.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.tearDown">
-<span class="sig-name descname"><span class="pre">tearDown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_ui_node_ros_gateway.html#TestUiNodeRosGateway.tearDown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.tearDown" title="Link to this definition"></a></dt>
-<dd><p>Check that nothing bypassed the gateway to reach the node directly.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.test_existing_timer_prevents_duplicate_gateway_timer_and_immediate_drop">
-<span class="sig-name descname"><span class="pre">test_existing_timer_prevents_duplicate_gateway_timer_and_immediate_drop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_ui_node_ros_gateway.html#TestUiNodeRosGateway.test_existing_timer_prevents_duplicate_gateway_timer_and_immediate_drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.test_existing_timer_prevents_duplicate_gateway_timer_and_immediate_drop" title="Link to this definition"></a></dt>
-<dd><p>Starting twice must keep the original timer and its recording callback.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.test_gateway_callback_preserves_row_id_and_advances_from_entry_to_middle">
-<span class="sig-name descname"><span class="pre">test_gateway_callback_preserves_row_id_and_advances_from_entry_to_middle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_ui_node_ros_gateway.html#TestUiNodeRosGateway.test_gateway_callback_preserves_row_id_and_advances_from_entry_to_middle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.test_gateway_callback_preserves_row_id_and_advances_from_entry_to_middle" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.test_callback_preserves_row_id_and_advances_from_entry_to_middle">
+<span class="sig-name descname"><span class="pre">test_callback_preserves_row_id_and_advances_from_entry_to_middle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.test_callback_preserves_row_id_and_advances_from_entry_to_middle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.test_callback_preserves_row_id_and_advances_from_entry_to_middle" title="Link to this definition"></a></dt>
 <dd><p>A timer callback must retain row zero and mark only the first node as entry.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.test_track_timer_not_created_when_prefix_missing">
-<span class="sig-name descname"><span class="pre">test_track_timer_not_created_when_prefix_missing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_ui_node_ros_gateway.html#TestUiNodeRosGateway.test_track_timer_not_created_when_prefix_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.test_track_timer_not_created_when_prefix_missing" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.test_existing_timer_prevents_duplicate_timer_and_immediate_drop">
+<span class="sig-name descname"><span class="pre">test_existing_timer_prevents_duplicate_timer_and_immediate_drop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.test_existing_timer_prevents_duplicate_timer_and_immediate_drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.test_existing_timer_prevents_duplicate_timer_and_immediate_drop" title="Link to this definition"></a></dt>
+<dd><p>Starting twice must keep the original timer and its recording callback.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.test_missing_map_reports_an_error_and_creates_no_timer">
+<span class="sig-name descname"><span class="pre">test_missing_map_reports_an_error_and_creates_no_timer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.test_missing_map_reports_an_error_and_creates_no_timer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.test_missing_map_reports_an_error_and_creates_no_timer" title="Link to this definition"></a></dt>
+<dd><p>Verify starting without a loaded map reports it instead of raising.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.test_numbering_continues_after_existing_nodes_with_the_prefix">
+<span class="sig-name descname"><span class="pre">test_numbering_continues_after_existing_nodes_with_the_prefix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.test_numbering_continues_after_existing_nodes_with_the_prefix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.test_numbering_continues_after_existing_nodes_with_the_prefix" title="Link to this definition"></a></dt>
+<dd><p>Verify new nodes continue the highest existing number for the prefix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.test_stop_marks_the_last_row_node_as_exit_and_resets_state">
+<span class="sig-name descname"><span class="pre">test_stop_marks_the_last_row_node_as_exit_and_resets_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.test_stop_marks_the_last_row_node_as_exit_and_resets_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.test_stop_marks_the_last_row_node_as_exit_and_resets_state" title="Link to this definition"></a></dt>
+<dd><p>Verify stopping a row track cancels the timer, patches the last node and resets.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.test_stop_without_a_row_only_reports_the_count">
+<span class="sig-name descname"><span class="pre">test_stop_without_a_row_only_reports_the_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.test_stop_without_a_row_only_reports_the_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.test_stop_without_a_row_only_reports_the_count" title="Link to this definition"></a></dt>
+<dd><p>Verify a standard track marks no exit node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.test_track_timer_not_created_when_prefix_missing">
+<span class="sig-name descname"><span class="pre">test_track_timer_not_created_when_prefix_missing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.test_track_timer_not_created_when_prefix_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.test_track_timer_not_created_when_prefix_missing" title="Link to this definition"></a></dt>
 <dd><p>Verify an empty prefix reports an error and creates no timer.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.test_track_timer_uses_gateway">
-<span class="sig-name descname"><span class="pre">test_track_timer_uses_gateway</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_ui_node_ros_gateway.html#TestUiNodeRosGateway.test_track_timer_uses_gateway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ui_node_ros_gateway.TestUiNodeRosGateway.test_track_timer_uses_gateway" title="Link to this definition"></a></dt>
-<dd><p>Verify start_track records one node at once, then creates the repeating timer on the gateway.</p>
+<dt class="sig sig-object py" id="devkit_ui.test_track_mode.TestTrackMode.test_track_timer_uses_the_injected_factory">
+<span class="sig-name descname"><span class="pre">test_track_timer_uses_the_injected_factory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_track_mode.html#TestTrackMode.test_track_timer_uses_the_injected_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_track_mode.TestTrackMode.test_track_timer_uses_the_injected_factory" title="Link to this definition"></a></dt>
+<dd><p>Verify start records one node at once, then creates the repeating timer.</p>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.test_ui_node_ros_gateway.load_gateway_harness">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.test_ui_node_ros_gateway.</span></span><span class="sig-name descname"><span class="pre">load_gateway_harness</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ui_node_ros_gateway.html#load_gateway_harness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ui_node_ros_gateway.load_gateway_harness" title="Link to this definition"></a></dt>
-<dd><p>Load the real start_track method from ui_node.py.</p>
 </dd></dl>
 
 </section>
@@ -1024,8 +1039,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_ui.test_ui_node_mission.html" class="btn btn-neutral float-left" title="devkit_ui.test_ui_node_mission" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_ui.time_utils.html" class="btn btn-neutral float-right" title="devkit_ui.time_utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_ui.test_topology_view_model.html" class="btn btn-neutral float-left" title="devkit_ui.test_topology_view_model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_ui.test_ui_node_mission.html" class="btn btn-neutral float-right" title="devkit_ui.test_ui_node_mission" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

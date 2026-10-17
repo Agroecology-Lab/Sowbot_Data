@@ -10,6 +10,7 @@ devkit\_ui.pages
    :toctree:
    :recursive:
 
+   delete_dialogs
    obstacle_cards
    plan
    run

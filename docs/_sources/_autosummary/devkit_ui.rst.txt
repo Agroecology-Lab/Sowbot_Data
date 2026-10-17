@@ -29,6 +29,7 @@
    row_planning
    terrain_mask
    test_actions
+   test_delete_dialogs
    test_drive_services
    test_drop_topo_node
    test_f2c_row_metadata
@@ -41,6 +42,7 @@
    test_mission_domain_service
    test_mission_view_model
    test_models
+   test_nav_page
    test_navigation_goals
    test_navigation_service_wiring
    test_obstacle_cards
@@ -87,8 +89,8 @@
    test_topology_persistence
    test_topology_services
    test_topology_view_model
+   test_track_mode
    test_ui_node_mission
-   test_ui_node_ros_gateway
    time_utils
    topo_defaults
    topo_results

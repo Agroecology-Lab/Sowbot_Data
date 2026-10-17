@@ -9,6 +9,7 @@ devkit\_ui.test\_map\_operations
    .. autosummary::
    
       load_map_harness
+      persist_and_reload
    
    .. rubric:: Classes
 

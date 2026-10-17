@@ -14,6 +14,5 @@ devkit\_ui.test\_navigation\_service\_wiring
 
    .. autosummary::
    
-      TestNavigationServiceWiring
       TestUiTabs
    

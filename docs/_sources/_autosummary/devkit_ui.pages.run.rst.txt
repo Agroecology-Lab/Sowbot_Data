@@ -12,6 +12,7 @@ devkit\_ui.pages.run
 
    drop_node_card
    joystick_control_card
+   nav_page
    navigation_sidebar
    node_map_card
    row_discovery_card

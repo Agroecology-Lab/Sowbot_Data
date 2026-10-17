@@ -11,6 +11,7 @@ devkit\_ui.view\_models
    :recursive:
 
    global_view_model
+   map_authoring_view_model
    mission_view_model
    obstacle_view_model
    plan_view_model

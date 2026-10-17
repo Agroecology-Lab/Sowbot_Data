@@ -1,0 +1,13 @@
+devkit\_ui.view\_models.map\_authoring\_view\_model
+===================================================
+
+.. automodule:: devkit_ui.view_models.map_authoring_view_model
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Cancellable
+      MapAuthoringViewModel
+   

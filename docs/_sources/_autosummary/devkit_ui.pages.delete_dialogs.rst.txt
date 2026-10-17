@@ -1,0 +1,13 @@
+devkit\_ui.pages.delete\_dialogs
+================================
+
+.. automodule:: devkit_ui.pages.delete_dialogs
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      confirm_delete_node
+      confirm_delete_row
+   

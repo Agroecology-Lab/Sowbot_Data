@@ -1,0 +1,12 @@
+devkit\_ui.pages.run.nav\_page
+==============================
+
+.. automodule:: devkit_ui.pages.run.nav_page
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      NavPage
+   
