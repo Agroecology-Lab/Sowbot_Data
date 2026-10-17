@@ -383,10 +383,14 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all"><code class="docutils literal notranslate"><span class="pre">stop_all()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.qos.html">devkit_ui.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.qos.html">devkit_ui.qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.qos.html#devkit_ui.qos.QosSpec"><code class="docutils literal notranslate"><span class="pre">QosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.ros_gateway.html">devkit_ui.ros_gateway</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.RosGateway"><code class="docutils literal notranslate"><span class="pre">RosGateway</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.TransformUnavailable"><code class="docutils literal notranslate"><span class="pre">TransformUnavailable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.to_qos_profile"><code class="docutils literal notranslate"><span class="pre">to_qos_profile()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.row_planning.html">devkit_ui.row_planning</a><ul>
@@ -598,6 +602,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html">devkit_ui.test_ros_gateway_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter"><code class="docutils literal notranslate"><span class="pre">TestBoolParameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped"><code class="docutils literal notranslate"><span class="pre">TestEveryDeclaredPolicyIsMapped</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation"><code class="docutils literal notranslate"><span class="pre">TestGatewayCreation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile"><code class="docutils literal notranslate"><span class="pre">TestToQosProfile</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
@@ -963,14 +974,12 @@
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
 
-<span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">QoSProfile</span><span class="p">,</span> <span class="n">ReliabilityPolicy</span>
 <span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
 <span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">Trigger</span>  <span class="c1"># pylint: disable=import-error</span>
 
+<span class="kn">from</span> <span class="nn">devkit_ui.qos</span> <span class="kn">import</span> <span class="n">SENSOR_QOS</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.ros_gateway</span> <span class="kn">import</span> <span class="n">RosGateway</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.topo_results</span> <span class="kn">import</span> <span class="n">DiscoveryResult</span>
-
-<span class="n">_STATUS_QOS</span> <span class="o">=</span> <span class="n">QoSProfile</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">reliability</span><span class="o">=</span><span class="n">ReliabilityPolicy</span><span class="o">.</span><span class="n">BEST_EFFORT</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="RowDiscoveryDomainService">
@@ -989,7 +998,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_start_cli</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="s1">&#39;/row_discovery_node/start_discovery&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_cli</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="s1">&#39;/row_discovery_node/stop_discovery&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="s1">&#39;/row_discovery/status&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_status</span><span class="p">,</span> <span class="n">_STATUS_QOS</span><span class="p">)</span></div>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="s1">&#39;/row_discovery/status&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_status</span><span class="p">,</span> <span class="n">SENSOR_QOS</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RowDiscoveryDomainService.set_status_callback">

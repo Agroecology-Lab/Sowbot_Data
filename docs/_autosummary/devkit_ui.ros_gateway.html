@@ -386,10 +386,14 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all"><code class="docutils literal notranslate"><span class="pre">stop_all()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="devkit_ui.qos.html">devkit_ui.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.qos.html">devkit_ui.qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.qos.html#devkit_ui.qos.QosSpec"><code class="docutils literal notranslate"><span class="pre">QosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.ros_gateway</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.ros_gateway.RosGateway"><code class="docutils literal notranslate"><span class="pre">RosGateway</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.ros_gateway.TransformUnavailable"><code class="docutils literal notranslate"><span class="pre">TransformUnavailable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.ros_gateway.to_qos_profile"><code class="docutils literal notranslate"><span class="pre">to_qos_profile()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.row_planning.html">devkit_ui.row_planning</a><ul>
@@ -601,6 +605,13 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html">devkit_ui.test_ros_gateway_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter"><code class="docutils literal notranslate"><span class="pre">TestBoolParameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped"><code class="docutils literal notranslate"><span class="pre">TestEveryDeclaredPolicyIsMapped</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation"><code class="docutils literal notranslate"><span class="pre">TestGatewayCreation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile"><code class="docutils literal notranslate"><span class="pre">TestToQosProfile</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
@@ -968,6 +979,14 @@
 to independent services.</p>
 <p>This class allows various services to consume core ROS functionalities without
 creating hard dependencies or tight coupling directly to the NiceGuiNode.</p>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.ros_gateway.to_qos_profile" title="devkit_ui.ros_gateway.to_qos_profile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_qos_profile</span></code></a>(qos)</p></td>
+<td><p>Return qos as something rclpy accepts: a QosSpec becomes a QoSProfile, anything else is returned unchanged.</p></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -1009,14 +1028,22 @@ creating hard dependencies or tight coupling directly to the NiceGuiNode.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.ros_gateway.RosGateway.create_publisher">
-<span class="sig-name descname"><span class="pre">create_publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">QoSProfile</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Publisher</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ros_gateway.html#RosGateway.create_publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ros_gateway.RosGateway.create_publisher" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="devkit_ui.qos.html#devkit_ui.qos.QosSpec" title="devkit_ui.qos.QosSpec"><span class="pre">QosSpec</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">QoSProfile</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Publisher</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ros_gateway.html#RosGateway.create_publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ros_gateway.RosGateway.create_publisher" title="Link to this definition"></a></dt>
 <dd><p>Create a publisher on the wrapped node with the supplied type, topic, and QoS.</p>
+<p>qos may be an integer queue depth, a QosSpec to convert, or an existing QoSProfile
+to pass through.
+Return the node’s publisher handle.
+QoS conversion and publisher creation errors propagate.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.ros_gateway.RosGateway.create_subscription">
-<span class="sig-name descname"><span class="pre">create_subscription</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">QoSProfile</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Subscription</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ros_gateway.html#RosGateway.create_subscription"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ros_gateway.RosGateway.create_subscription" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_subscription</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="devkit_ui.qos.html#devkit_ui.qos.QosSpec" title="devkit_ui.qos.QosSpec"><span class="pre">QosSpec</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">QoSProfile</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Subscription</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ros_gateway.html#RosGateway.create_subscription"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ros_gateway.RosGateway.create_subscription" title="Link to this definition"></a></dt>
 <dd><p>Create a subscription on the wrapped node with the supplied callback and QoS.</p>
+<p>qos may be an integer queue depth, a QosSpec to convert, or an existing QoSProfile
+to pass through.
+Return the node’s subscription handle.
+QoS conversion and subscription creation errors propagate.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1034,6 +1061,14 @@ creating hard dependencies or tight coupling directly to the NiceGuiNode.</p>
 normal logging propagation and remain subject to each child’s level and filters.
 Calling again replaces existing ROS forwarding handlers; other handlers and
 propagation settings are preserved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.ros_gateway.RosGateway.get_bool_parameter">
+<span class="sig-name descname"><span class="pre">get_bool_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ros_gateway.html#RosGateway.get_bool_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ros_gateway.RosGateway.get_bool_parameter" title="Link to this definition"></a></dt>
+<dd><p>Return the node parameter name as a bool, declaring it with default if it is not declared yet.</p>
+<p>Safe to call more than once for the same name: rclpy raises when a parameter is declared twice,
+so an existing declaration, for example from a launch override, is read and left unchanged.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1088,6 +1123,15 @@ Other errors propagate unchanged.</p>
 <span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.ros_gateway.</span></span><span class="sig-name descname"><span class="pre">TransformUnavailable</span></span><a class="reference internal" href="../_modules/devkit_ui/ros_gateway.html#TransformUnavailable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ros_gateway.TransformUnavailable" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>A TF lookup failed because the transform is missing, disconnected or out of range.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_ui.ros_gateway.to_qos_profile">
+<span class="sig-prename descclassname"><span class="pre">devkit_ui.ros_gateway.</span></span><span class="sig-name descname"><span class="pre">to_qos_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="devkit_ui.qos.html#devkit_ui.qos.QosSpec" title="devkit_ui.qos.QosSpec"><span class="pre">QosSpec</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">QoSProfile</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">QoSProfile</span></span></span><a class="reference internal" href="../_modules/devkit_ui/ros_gateway.html#to_qos_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.ros_gateway.to_qos_profile" title="Link to this definition"></a></dt>
+<dd><p>Return qos as something rclpy accepts: a QosSpec becomes a QoSProfile, anything else is returned unchanged.</p>
+<p>Optional spec fields set to None retain rclpy defaults; liveliness_lease_sec is in seconds.
+Unknown policy names raise KeyError.
+Errors importing rclpy or constructing durations and profiles propagate.</p>
 </dd></dl>
 
 </section>

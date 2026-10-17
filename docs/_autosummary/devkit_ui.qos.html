@@ -386,10 +386,14 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all"><code class="docutils literal notranslate"><span class="pre">stop_all()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.qos</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.qos.QosSpec"><code class="docutils literal notranslate"><span class="pre">QosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.ros_gateway.html">devkit_ui.ros_gateway</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.RosGateway"><code class="docutils literal notranslate"><span class="pre">RosGateway</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.TransformUnavailable"><code class="docutils literal notranslate"><span class="pre">TransformUnavailable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.to_qos_profile"><code class="docutils literal notranslate"><span class="pre">to_qos_profile()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.row_planning.html">devkit_ui.row_planning</a><ul>
@@ -601,6 +605,13 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html">devkit_ui.test_ros_gateway_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter"><code class="docutils literal notranslate"><span class="pre">TestBoolParameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped"><code class="docutils literal notranslate"><span class="pre">TestEveryDeclaredPolicyIsMapped</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation"><code class="docutils literal notranslate"><span class="pre">TestGatewayCreation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile"><code class="docutils literal notranslate"><span class="pre">TestToQosProfile</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
@@ -964,7 +975,53 @@
              
   <section id="module-devkit_ui.qos">
 <span id="devkit-ui-qos"></span><h1>devkit_ui.qos<a class="headerlink" href="#module-devkit_ui.qos" title="Link to this heading"></a></h1>
-<p>QoS profiles shared by the UI services.</p>
+<p>QoS profiles shared by the UI services, described without importing rclpy.</p>
+<p>RosGateway turns a QosSpec into an rclpy QoSProfile when it creates a publisher or subscription.</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.qos.QosSpec" title="devkit_ui.qos.QosSpec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QosSpec</span></code></a>(depth, reliability[, durability, ...])</p></td>
+<td><p>Transport settings for one topic.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="devkit_ui.qos.QosSpec">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.qos.</span></span><span class="sig-name descname"><span class="pre">QosSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reliability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'reliable'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'best_effort'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">durability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'volatile'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'transient_local'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'keep_last'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'keep_all'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">liveliness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'automatic'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'manual_by_topic'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">liveliness_lease_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/qos.html#QosSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.qos.QosSpec" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Transport settings for one topic. Field values are the lower-case rclpy policy names.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.qos.QosSpec.depth">
+<span class="sig-name descname"><span class="pre">depth</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#devkit_ui.qos.QosSpec.depth" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.qos.QosSpec.durability">
+<span class="sig-name descname"><span class="pre">durability</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'volatile'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'transient_local'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.qos.QosSpec.durability" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.qos.QosSpec.history">
+<span class="sig-name descname"><span class="pre">history</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'keep_last'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'keep_all'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.qos.QosSpec.history" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.qos.QosSpec.liveliness">
+<span class="sig-name descname"><span class="pre">liveliness</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'automatic'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'manual_by_topic'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.qos.QosSpec.liveliness" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.qos.QosSpec.liveliness_lease_sec">
+<span class="sig-name descname"><span class="pre">liveliness_lease_sec</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.qos.QosSpec.liveliness_lease_sec" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.qos.QosSpec.reliability">
+<span class="sig-name descname"><span class="pre">reliability</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'reliable'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'best_effort'</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_ui.qos.QosSpec.reliability" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 

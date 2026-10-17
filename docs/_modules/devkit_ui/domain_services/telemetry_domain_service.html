@@ -383,10 +383,14 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all"><code class="docutils literal notranslate"><span class="pre">stop_all()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.qos.html">devkit_ui.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.qos.html">devkit_ui.qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.qos.html#devkit_ui.qos.QosSpec"><code class="docutils literal notranslate"><span class="pre">QosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.ros_gateway.html">devkit_ui.ros_gateway</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.RosGateway"><code class="docutils literal notranslate"><span class="pre">RosGateway</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.TransformUnavailable"><code class="docutils literal notranslate"><span class="pre">TransformUnavailable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.to_qos_profile"><code class="docutils literal notranslate"><span class="pre">to_qos_profile()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.row_planning.html">devkit_ui.row_planning</a><ul>
@@ -598,6 +602,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html">devkit_ui.test_ros_gateway_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter"><code class="docutils literal notranslate"><span class="pre">TestBoolParameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped"><code class="docutils literal notranslate"><span class="pre">TestEveryDeclaredPolicyIsMapped</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation"><code class="docutils literal notranslate"><span class="pre">TestGatewayCreation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile"><code class="docutils literal notranslate"><span class="pre">TestToQosProfile</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
@@ -963,22 +974,11 @@
 <span class="kn">import</span> <span class="nn">math</span>
 
 <span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Odometry</span>
-<span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">QoSProfile</span><span class="p">,</span> <span class="n">ReliabilityPolicy</span>
 <span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">BatteryState</span><span class="p">,</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">NavSatStatus</span>
 <span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">Bool</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.qos</span> <span class="kn">import</span> <span class="n">SAFETY_QOS</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.qos</span> <span class="kn">import</span> <span class="n">ODOM_QOS</span><span class="p">,</span> <span class="n">SAFETY_QOS</span><span class="p">,</span> <span class="n">SENSOR_QOS</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.ros_gateway</span> <span class="kn">import</span> <span class="n">RosGateway</span><span class="p">,</span> <span class="n">TransformUnavailable</span>
-
-<span class="n">_SENSOR_QOS</span> <span class="o">=</span> <span class="n">QoSProfile</span><span class="p">(</span>
-    <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">reliability</span><span class="o">=</span><span class="n">ReliabilityPolicy</span><span class="o">.</span><span class="n">BEST_EFFORT</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">_ODOM_QOS</span> <span class="o">=</span> <span class="n">QoSProfile</span><span class="p">(</span>
-    <span class="n">depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">reliability</span><span class="o">=</span><span class="n">ReliabilityPolicy</span><span class="o">.</span><span class="n">RELIABLE</span><span class="p">,</span>
-<span class="p">)</span>
 
 <span class="c1"># s — map-&gt;base_link older than this: don&#39;t draw it</span>
 <span class="n">TF_STALENESS_LIMIT</span> <span class="o">=</span> <span class="mf">2.0</span>
@@ -1067,7 +1067,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_pose_fail_log_t</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fake_gps_pub</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">NavSatFix</span><span class="p">,</span> <span class="s1">&#39;/gnss/fix&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_gps</span><span class="p">,</span> <span class="n">_SENSOR_QOS</span><span class="p">)</span>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">NavSatFix</span><span class="p">,</span> <span class="s1">&#39;/gnss/fix&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_gps</span><span class="p">,</span> <span class="n">SENSOR_QOS</span><span class="p">)</span>
 
         <span class="c1"># Sim GPS shim: saving a topo map hard-requires a finite, non-zero fix to anchor nodes</span>
         <span class="c1"># to a datum, and at cold start nothing has published one yet. Gazebo&#39;s real navsat</span>
@@ -1084,9 +1084,9 @@
         <span class="c1"># shim regardless of timing.</span>
         <span class="k">if</span> <span class="n">is_sim</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_fake_gps_pub</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span>
-                <span class="n">NavSatFix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FAKE_GPS_TOPIC</span><span class="p">,</span> <span class="n">_SENSOR_QOS</span><span class="p">)</span>
+                <span class="n">NavSatFix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FAKE_GPS_TOPIC</span><span class="p">,</span> <span class="n">SENSOR_QOS</span><span class="p">)</span>
             <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
-                <span class="n">NavSatFix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FAKE_GPS_TOPIC</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_fake_gps</span><span class="p">,</span> <span class="n">_SENSOR_QOS</span><span class="p">)</span>
+                <span class="n">NavSatFix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">FAKE_GPS_TOPIC</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_fake_gps</span><span class="p">,</span> <span class="n">SENSOR_QOS</span><span class="p">)</span>
             <span class="c1"># Wall-clock timer: a sim-time timer never fires before Gazebo publishes /clock,</span>
             <span class="c1"># which would silently disable this shim for the entire cold-start window it</span>
             <span class="c1"># exists to cover.</span>
@@ -1105,12 +1105,12 @@
         <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Bool</span><span class="p">,</span> <span class="s1">&#39;estop/front&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_estop_front</span><span class="p">,</span> <span class="n">SAFETY_QOS</span><span class="p">)</span>
         <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Bool</span><span class="p">,</span> <span class="s1">&#39;estop/back&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_estop_back</span><span class="p">,</span> <span class="n">SAFETY_QOS</span><span class="p">)</span>
 
-        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Odometry</span><span class="p">,</span> <span class="s1">&#39;/fusion/odom&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_fusion_odom</span><span class="p">,</span> <span class="n">_ODOM_QOS</span><span class="p">)</span>
-        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Odometry</span><span class="p">,</span> <span class="s1">&#39;/odom&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_odom_fallback</span><span class="p">,</span> <span class="n">_ODOM_QOS</span><span class="p">)</span>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Odometry</span><span class="p">,</span> <span class="s1">&#39;/fusion/odom&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_fusion_odom</span><span class="p">,</span> <span class="n">ODOM_QOS</span><span class="p">)</span>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Odometry</span><span class="p">,</span> <span class="s1">&#39;/odom&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_odom_fallback</span><span class="p">,</span> <span class="n">ODOM_QOS</span><span class="p">)</span>
         <span class="c1"># /odometry/global is fed by a relay of /fusion/odom in sim (see sim_nav.launch.py) —</span>
         <span class="c1"># same trust gating applies via _on_odom_fallback&#39;s _fusion_odom_seen check, so it</span>
         <span class="c1"># won&#39;t overwrite a good pose with a stale/uninitialized one either.</span>
-        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Odometry</span><span class="p">,</span> <span class="s1">&#39;/odometry/global&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_odom_fallback</span><span class="p">,</span> <span class="n">_ODOM_QOS</span><span class="p">)</span>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Odometry</span><span class="p">,</span> <span class="s1">&#39;/odometry/global&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_odom_fallback</span><span class="p">,</span> <span class="n">ODOM_QOS</span><span class="p">)</span>
 
         <span class="c1"># TF: robot_pose() needs the actual map-&gt;base_link transform, not a raw odom-frame</span>
         <span class="c1"># pose. The odom frame origin is wherever the robot started dead-reckoning (spawn</span>

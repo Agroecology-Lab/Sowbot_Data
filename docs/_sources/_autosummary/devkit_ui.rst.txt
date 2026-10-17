@@ -60,6 +60,7 @@
    test_process_cleanup
    test_process_registry
    test_robot_brain_and_discovery_services
+   test_ros_gateway_qos
    test_ros_log_forwarding
    test_row_actions
    test_row_planning

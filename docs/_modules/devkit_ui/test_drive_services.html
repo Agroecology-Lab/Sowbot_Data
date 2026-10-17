@@ -383,10 +383,14 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all"><code class="docutils literal notranslate"><span class="pre">stop_all()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.qos.html">devkit_ui.qos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.qos.html">devkit_ui.qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.qos.html#devkit_ui.qos.QosSpec"><code class="docutils literal notranslate"><span class="pre">QosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.ros_gateway.html">devkit_ui.ros_gateway</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.RosGateway"><code class="docutils literal notranslate"><span class="pre">RosGateway</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.TransformUnavailable"><code class="docutils literal notranslate"><span class="pre">TransformUnavailable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.to_qos_profile"><code class="docutils literal notranslate"><span class="pre">to_qos_profile()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.row_planning.html">devkit_ui.row_planning</a><ul>
@@ -598,6 +602,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.ImmediateThread"><code class="docutils literal notranslate"><span class="pre">ImmediateThread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainServices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery"><code class="docutils literal notranslate"><span class="pre">TestRowDiscovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ros_gateway_qos.html">devkit_ui.test_ros_gateway_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter"><code class="docutils literal notranslate"><span class="pre">TestBoolParameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped"><code class="docutils literal notranslate"><span class="pre">TestEveryDeclaredPolicyIsMapped</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation"><code class="docutils literal notranslate"><span class="pre">TestGatewayCreation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile"><code class="docutils literal notranslate"><span class="pre">TestToQosProfile</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ros_log_forwarding.html">devkit_ui.test_ros_log_forwarding</a><ul>
@@ -1000,12 +1011,6 @@
 <span class="n">std_msgs</span><span class="o">.</span><span class="n">Bool</span> <span class="o">=</span> <span class="n">FakeBool</span>
 <span class="n">rclpy_node</span> <span class="o">=</span> <span class="n">ModuleType</span><span class="p">(</span><span class="s1">&#39;rclpy.node&#39;</span><span class="p">)</span>
 <span class="n">rclpy_node</span><span class="o">.</span><span class="n">Node</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;Node&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})</span>
-<span class="n">rclpy_qos</span> <span class="o">=</span> <span class="n">ModuleType</span><span class="p">(</span><span class="s1">&#39;rclpy.qos&#39;</span><span class="p">)</span>
-<span class="n">rclpy_qos</span><span class="o">.</span><span class="n">QoSProfile</span> <span class="o">=</span> <span class="n">SimpleNamespace</span>
-<span class="n">rclpy_qos</span><span class="o">.</span><span class="n">ReliabilityPolicy</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="n">RELIABLE</span><span class="o">=</span><span class="s1">&#39;reliable&#39;</span><span class="p">)</span>
-<span class="n">rclpy_qos</span><span class="o">.</span><span class="n">DurabilityPolicy</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="n">TRANSIENT_LOCAL</span><span class="o">=</span><span class="s1">&#39;transient_local&#39;</span><span class="p">)</span>
-<span class="n">rclpy_qos</span><span class="o">.</span><span class="n">LivelinessPolicy</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="n">AUTOMATIC</span><span class="o">=</span><span class="s1">&#39;automatic&#39;</span><span class="p">)</span>
-<span class="n">rclpy_qos</span><span class="o">.</span><span class="n">Duration</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">seconds</span><span class="p">:</span> <span class="n">seconds</span>
 
 <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;geometry_msgs&#39;</span><span class="p">:</span> <span class="n">ModuleType</span><span class="p">(</span><span class="s1">&#39;geometry_msgs&#39;</span><span class="p">),</span>
@@ -1014,7 +1019,6 @@
     <span class="s1">&#39;std_msgs.msg&#39;</span><span class="p">:</span> <span class="n">std_msgs</span><span class="p">,</span>
     <span class="s1">&#39;rclpy&#39;</span><span class="p">:</span> <span class="n">ModuleType</span><span class="p">(</span><span class="s1">&#39;rclpy&#39;</span><span class="p">),</span>
     <span class="s1">&#39;rclpy.node&#39;</span><span class="p">:</span> <span class="n">rclpy_node</span><span class="p">,</span>
-    <span class="s1">&#39;rclpy.qos&#39;</span><span class="p">:</span> <span class="n">rclpy_qos</span><span class="p">,</span>
 <span class="p">}):</span>
     <span class="kn">from</span> <span class="nn">devkit_ui</span> <span class="kn">import</span> <span class="n">qos</span>
     <span class="kn">from</span> <span class="nn">devkit_ui.domain_services.drive_domain_service</span> <span class="kn">import</span> <span class="n">DriveDomainService</span>
@@ -1055,7 +1059,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
             <span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">reliability</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">durability</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">liveliness</span><span class="p">),</span>
             <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;reliable&#39;</span><span class="p">,</span> <span class="s1">&#39;transient_local&#39;</span><span class="p">,</span> <span class="s1">&#39;automatic&#39;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">liveliness_lease_duration</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">liveliness_lease_sec</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ros</span><span class="o">.</span><span class="n">create_publisher</span><span class="o">.</span><span class="n">call_args_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">qos</span><span class="o">.</span><span class="n">SAFETY_QOS</span><span class="p">)</span></div>
 
 

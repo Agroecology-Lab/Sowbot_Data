@@ -4,6 +4,12 @@ devkit\_ui.ros\_gateway
 .. automodule:: devkit_ui.ros_gateway
 
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      to_qos_profile
+   
    .. rubric:: Classes
 
    .. autosummary::
