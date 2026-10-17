@@ -594,6 +594,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry"><code class="docutils literal notranslate"><span class="pre">TestProcessRegistry</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_qos.html">devkit_ui.test_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec"><code class="docutils literal notranslate"><span class="pre">TestQosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html">devkit_ui.test_robot_brain_and_discovery_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeEmpty"><code class="docutils literal notranslate"><span class="pre">FakeEmpty</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeString"><code class="docutils literal notranslate"><span class="pre">FakeString</span></code></a></li>
@@ -970,6 +974,7 @@
              
   <h1>Source code for devkit_ui.test_drive_services</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Drive commands and telemetry presentation without a running ROS graph.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">ModuleType</span><span class="p">,</span> <span class="n">SimpleNamespace</span>
@@ -1020,7 +1025,7 @@
     <span class="s1">&#39;rclpy&#39;</span><span class="p">:</span> <span class="n">ModuleType</span><span class="p">(</span><span class="s1">&#39;rclpy&#39;</span><span class="p">),</span>
     <span class="s1">&#39;rclpy.node&#39;</span><span class="p">:</span> <span class="n">rclpy_node</span><span class="p">,</span>
 <span class="p">}):</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui</span> <span class="kn">import</span> <span class="n">qos</span>
+    <span class="n">qos</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;devkit_ui.qos&#39;</span><span class="p">)</span>
     <span class="kn">from</span> <span class="nn">devkit_ui.domain_services.drive_domain_service</span> <span class="kn">import</span> <span class="n">DriveDomainService</span>
     <span class="kn">from</span> <span class="nn">devkit_ui.ros_gateway</span> <span class="kn">import</span> <span class="n">RosGateway</span>
 

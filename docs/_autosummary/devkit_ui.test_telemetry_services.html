@@ -597,6 +597,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry"><code class="docutils literal notranslate"><span class="pre">TestProcessRegistry</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_qos.html">devkit_ui.test_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec"><code class="docutils literal notranslate"><span class="pre">TestQosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html">devkit_ui.test_robot_brain_and_discovery_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeEmpty"><code class="docutils literal notranslate"><span class="pre">FakeEmpty</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeString"><code class="docutils literal notranslate"><span class="pre">FakeString</span></code></a></li>
@@ -1305,6 +1309,12 @@
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_telemetry_services.</span></span><span class="sig-name descname"><span class="pre">TestWiring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_telemetry_services.html#TestWiring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_telemetry_services.TestWiring" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_telemetry_services.TestWiring.test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs">
+<span class="sig-name descname"><span class="pre">test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_telemetry_services.html#TestWiring.test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_telemetry_services.TestWiring.test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs" title="Link to this definition"></a></dt>
+<dd><p>Keep sensor, safety and odometry QoS distinct on every telemetry input.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_telemetry_services.TestWiring.test_hardware_subscribes_without_sim_shim">
 <span class="sig-name descname"><span class="pre">test_hardware_subscribes_without_sim_shim</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_telemetry_services.html#TestWiring.test_hardware_subscribes_without_sim_shim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_telemetry_services.TestWiring.test_hardware_subscribes_without_sim_shim" title="Link to this definition"></a></dt>
 <dd><p>Verify hardware mode has no fake-GPS topic, publisher or timer.</p>
@@ -1320,6 +1330,12 @@
 <dt class="sig sig-object py" id="devkit_ui.test_telemetry_services.TestWiring.test_sim_adds_shim_on_its_own_topic_driven_by_the_wall_clock">
 <span class="sig-name descname"><span class="pre">test_sim_adds_shim_on_its_own_topic_driven_by_the_wall_clock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_telemetry_services.html#TestWiring.test_sim_adds_shim_on_its_own_topic_driven_by_the_wall_clock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_telemetry_services.TestWiring.test_sim_adds_shim_on_its_own_topic_driven_by_the_wall_clock" title="Link to this definition"></a></dt>
 <dd><p>Verify sim mode publishes on a dedicated topic from a timer on the system clock.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_telemetry_services.TestWiring.test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription">
+<span class="sig-name descname"><span class="pre">test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_telemetry_services.html#TestWiring.test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_telemetry_services.TestWiring.test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription" title="Link to this definition"></a></dt>
+<dd><p>Both ends of the fallback GPS topic must preserve best-effort delivery.</p>
 </dd></dl>
 
 </dd></dl>

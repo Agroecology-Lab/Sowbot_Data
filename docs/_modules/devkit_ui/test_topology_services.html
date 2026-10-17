@@ -594,6 +594,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry"><code class="docutils literal notranslate"><span class="pre">TestProcessRegistry</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_qos.html">devkit_ui.test_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec"><code class="docutils literal notranslate"><span class="pre">TestQosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html">devkit_ui.test_robot_brain_and_discovery_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeEmpty"><code class="docutils literal notranslate"><span class="pre">FakeEmpty</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeString"><code class="docutils literal notranslate"><span class="pre">FakeString</span></code></a></li>
@@ -1018,6 +1022,25 @@
 <div class="viewcode-block" id="TestTopologyStack">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack">[docs]</a>
 <span class="k">class</span> <span class="nc">TestTopologyStack</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="TestTopologyStack.test_map_publisher_and_subscription_share_the_latched_spec">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack.test_map_publisher_and_subscription_share_the_latched_spec">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_map_publisher_and_subscription_share_the_latched_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Late map subscribers must retain reliable, transient-local, depth-one delivery.&quot;&quot;&quot;</span>
+        <span class="n">ros</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_stack</span><span class="p">()</span>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_publisher</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+        <span class="n">msg_type</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">spec</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">create_publisher</span><span class="o">.</span><span class="n">call_args</span><span class="o">.</span><span class="n">args</span>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span>
+            <span class="n">msg_type</span><span class="p">,</span> <span class="s1">&#39;/topological_map_2&#39;</span><span class="p">,</span>
+            <span class="n">domain</span><span class="o">.</span><span class="n">_on_topo_map</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>  <span class="c1"># pylint: disable=protected-access</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="s1">&#39;/topological_map_2&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIs</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">TopologyDomainService</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span><span class="p">[</span><span class="s1">&#39;LATCHED_QOS&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIs</span><span class="p">(</span><span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="o">.</span><span class="n">call_args</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">spec</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">spec</span><span class="o">.</span><span class="n">reliability</span><span class="p">,</span> <span class="n">spec</span><span class="o">.</span><span class="n">durability</span><span class="p">,</span> <span class="n">spec</span><span class="o">.</span><span class="n">history</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;reliable&#39;</span><span class="p">,</span> <span class="s1">&#39;transient_local&#39;</span><span class="p">,</span> <span class="s1">&#39;keep_last&#39;</span><span class="p">))</span></div>
+
+
 <div class="viewcode-block" id="TestTopologyStack.test_default_doc_has_linear_chain">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack.test_default_doc_has_linear_chain">[docs]</a>
     <span class="k">def</span> <span class="nf">test_default_doc_has_linear_chain</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

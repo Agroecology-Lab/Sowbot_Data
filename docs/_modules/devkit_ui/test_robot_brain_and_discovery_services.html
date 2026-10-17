@@ -594,6 +594,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry"><code class="docutils literal notranslate"><span class="pre">TestProcessRegistry</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_qos.html">devkit_ui.test_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec"><code class="docutils literal notranslate"><span class="pre">TestQosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html">devkit_ui.test_robot_brain_and_discovery_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeEmpty"><code class="docutils literal notranslate"><span class="pre">FakeEmpty</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeString"><code class="docutils literal notranslate"><span class="pre">FakeString</span></code></a></li>
@@ -1187,6 +1191,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clients</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;start_discovery&#39;</span><span class="p">,</span> <span class="s1">&#39;stop_discovery&#39;</span><span class="p">})</span>
         <span class="n">topic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="o">.</span><span class="n">call_args</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="s1">&#39;/row_discovery/status&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestRowDiscovery.test_status_subscription_uses_the_shared_latest_sensor_spec">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery.test_status_subscription_uses_the_shared_latest_sensor_spec">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_status_subscription_uses_the_shared_latest_sensor_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Discovery status must use best-effort depth one through the gateway.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span>
+            <span class="n">discovery_module</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="s1">&#39;/row_discovery/status&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">_on_status</span><span class="p">,</span>  <span class="c1"># pylint: disable=protected-access</span>
+            <span class="n">discovery_module</span><span class="o">.</span><span class="n">SENSOR_QOS</span><span class="p">)</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="o">.</span><span class="n">call_args</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIs</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">discovery_module</span><span class="o">.</span><span class="n">SENSOR_QOS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">((</span><span class="n">spec</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">spec</span><span class="o">.</span><span class="n">reliability</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;best_effort&#39;</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="TestRowDiscovery.test_status_feed_updates_the_view_model">

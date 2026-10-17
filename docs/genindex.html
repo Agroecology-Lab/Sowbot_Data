@@ -594,6 +594,10 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry"><code class="docutils literal notranslate"><span class="pre">TestProcessRegistry</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_qos.html">devkit_ui.test_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec"><code class="docutils literal notranslate"><span class="pre">TestQosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html">devkit_ui.test_robot_brain_and_discovery_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeEmpty"><code class="docutils literal notranslate"><span class="pre">FakeEmpty</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeString"><code class="docutils literal notranslate"><span class="pre">FakeString</span></code></a></li>
@@ -2623,6 +2627,13 @@
 </li>
       </ul></li>
       <li>
+    devkit_ui.test_qos
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.test_qos.html#module-devkit_ui.test_qos">module</a>
+</li>
+      </ul></li>
+      <li>
     devkit_ui.test_robot_brain_and_discovery_services
 
       <ul>
@@ -3892,6 +3903,8 @@
         <li><a href="_autosummary/devkit_ui.test_process_cleanup.html#module-devkit_ui.test_process_cleanup">devkit_ui.test_process_cleanup</a>
 </li>
         <li><a href="_autosummary/devkit_ui.test_process_registry.html#module-devkit_ui.test_process_registry">devkit_ui.test_process_registry</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.test_qos.html#module-devkit_ui.test_qos">devkit_ui.test_qos</a>
 </li>
         <li><a href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#module-devkit_ui.test_robot_brain_and_discovery_services">devkit_ui.test_robot_brain_and_discovery_services</a>
 </li>
@@ -5520,6 +5533,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_topo_row_builder_regressions.html#devkit_ui.test_topo_row_builder_regressions.TestRowBatchRegressions.test_contour_zero_interval_propagates_resampling_error">test_contour_zero_interval_propagates_resampling_error() (devkit_ui.test_topo_row_builder_regressions.TestRowBatchRegressions method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_converted_profiles_do_not_share_mutable_state">test_converted_profiles_do_not_share_mutable_state() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestPlanControlsCard.test_corner_count_follows_the_boundary">test_corner_count_follows_the_boundary() (devkit_ui.test_plan_cards.TestPlanControlsCard method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.TestPlanRequestFromForm.test_corners_are_copied">test_corners_are_copied() (devkit_ui.test_plan_types.TestPlanRequestFromForm method)</a>
@@ -5535,6 +5550,8 @@
       <li><a href="_autosummary/devkit_ui.test_topology_edit_service.html#devkit_ui.test_topology_edit_service.TestDropStaging.test_current_node_wins_over_selected">test_current_node_wins_over_selected() (devkit_ui.test_topology_edit_service.TestDropStaging method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_curved_reference_gives_rows_at_constant_distance">test_curved_reference_gives_rows_at_constant_distance() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_custom_profile_combines_all_optional_policies">test_custom_profile_combines_all_optional_policies() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter.test_declares_with_default_and_returns_it_as_bool">test_declares_with_default_and_returns_it_as_bool() (devkit_ui.test_ros_gateway_qos.TestBoolParameter method)</a>
 </li>
@@ -5584,6 +5601,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_depth_and_existing_profiles_pass_through_unchanged">test_depth_and_existing_profiles_pass_through_unchanged() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_depths_and_existing_profiles_work_without_importing_rclpy_qos">test_depths_and_existing_profiles_work_without_importing_rclpy_qos() (devkit_ui.test_ros_gateway_qos.TestGatewayCreation method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.TestPersistAndReload.test_describe_texts">test_describe_texts() (devkit_ui.test_topology_persistence.TestPersistAndReload method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_sim_asset_crop_regressions.html#devkit_ui.test_sim_asset_crop_regressions.TestCropModelPersistence.test_directory_creation_failure_propagates_and_can_be_retried">test_directory_creation_failure_propagates_and_can_be_retried() (devkit_ui.test_sim_asset_crop_regressions.TestCropModelPersistence method)</a>
@@ -5615,6 +5634,8 @@
       <li><a href="_autosummary/devkit_ui.test_parse.html#devkit_ui.test_parse.TestParseTopo.test_dump_and_restore_yaml_round_trip">test_dump_and_restore_yaml_round_trip() (devkit_ui.test_parse.TestParseTopo method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.TestDropNode.test_duplicate_on_disk_is_skipped">test_duplicate_on_disk_is_skipped() (devkit_ui.test_topology_persistence.TestDropNode method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_duration_and_profile_constructor_errors_propagate_unchanged">test_duration_and_profile_constructor_errors_propagate_unchanged() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices.test_each_app_command_publishes_only_on_its_topic">test_each_app_command_publishes_only_on_its_topic() (devkit_ui.test_robot_brain_and_discovery_services.TestRobotBrainServices method)</a>
 </li>
@@ -5866,6 +5887,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestImportGPSBoundaries.test_hardware_accepts_fixes_with_one_zero_axis_and_above_tolerance">test_hardware_accepts_fixes_with_one_zero_axis_and_above_tolerance() (devkit_ui.test_plan_service_boundaries.TestImportGPSBoundaries method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestWiring.test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs">test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs() (devkit_ui.test_telemetry_services.TestWiring method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestImportPlan.test_hardware_needs_a_usable_fix">test_hardware_needs_a_usable_fix() (devkit_ui.test_plan_application_service.TestImportPlan method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestImportPlan.test_hardware_refuses_a_plan_far_from_the_robot">test_hardware_refuses_a_plan_far_from_the_robot() (devkit_ui.test_plan_application_service.TestImportPlan method)</a>
@@ -5970,6 +5993,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_boundaries.html#devkit_ui.test_telemetry_boundaries.TestTelemetryBoundaries.test_invalid_shim_is_cached_after_yield_window_without_authorizing_fusion">test_invalid_shim_is_cached_after_yield_window_without_authorizing_fusion() (devkit_ui.test_telemetry_boundaries.TestTelemetryBoundaries method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_invalid_specs_never_create_ros_resources">test_invalid_specs_never_create_ros_resources() (devkit_ui.test_ros_gateway_qos.TestGatewayCreation method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_sim_asset_soil_regressions.html#devkit_ui.test_sim_asset_soil_regressions.TestSoilImportRegressions.test_invalid_zip_retains_parse_error_as_cause">test_invalid_zip_retains_parse_error_as_cause() (devkit_ui.test_sim_asset_soil_regressions.TestSoilImportRegressions method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_joystick_preserves_linear_speed_and_reverses_turn_direction">test_joystick_preserves_linear_speed_and_reverses_turn_direction() (devkit_ui.test_drive_services.TestDriveServices method)</a>
@@ -5987,6 +6012,8 @@
       <li><a href="_autosummary/devkit_ui.test_sim_launch_cards.html#devkit_ui.test_sim_launch_cards.TestGazeboCard.test_launch_failure_leaves_handle_empty_and_reports_error">test_launch_failure_leaves_handle_empty_and_reports_error() (devkit_ui.test_sim_launch_cards.TestGazeboCard method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_sim_launch_cards.html#devkit_ui.test_sim_launch_cards.TestGazeboCard.test_launch_uses_selected_robot_full_stack_and_resource_search_order">test_launch_uses_selected_robot_full_stack_and_resource_search_order() (devkit_ui.test_sim_launch_cards.TestGazeboCard method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_lease_preserves_zero_and_fractional_seconds_without_requiring_liveliness">test_lease_preserves_zero_and_fractional_seconds_without_requiring_liveliness() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_sim_uploads.html#devkit_ui.test_sim_uploads.TestReadUpload.test_legacy_event_reads_bytes_and_preserves_name">test_legacy_event_reads_bytes_and_preserves_name() (devkit_ui.test_sim_uploads.TestReadUpload method)</a>
 </li>
@@ -6029,6 +6056,8 @@
       <li><a href="_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestBoundaryMapCard.test_map_fits_the_field_extent_without_a_fix">test_map_fits_the_field_extent_without_a_fix() (devkit_ui.test_plan_cards.TestBoundaryMapCard method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_topology_view_model.html#devkit_ui.test_topology_view_model.TestMapArchive.test_map_name_is_the_live_map_or_a_placeholder">test_map_name_is_the_live_map_or_a_placeholder() (devkit_ui.test_topology_view_model.TestMapArchive method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack.test_map_publisher_and_subscription_share_the_latched_spec">test_map_publisher_and_subscription_share_the_latched_spec() (devkit_ui.test_topology_services.TestTopologyStack method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_topo_row_builder.html#devkit_ui.test_topo_row_builder.TestRowRepair.test_map_without_rows_has_nothing_to_repair">test_map_without_rows_has_nothing_to_repair() (devkit_ui.test_topo_row_builder.TestRowRepair method)</a>
 </li>
@@ -6088,6 +6117,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_yaml.html#devkit_ui.missions.test_yaml.TestCoerceRecord.test_missing_or_non_string_id_is_skipped">test_missing_or_non_string_id_is_skipped() (devkit_ui.missions.test_yaml.TestCoerceRecord method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_missing_rclpy_qos_propagates_before_creating_ros_resources">test_missing_rclpy_qos_propagates_before_creating_ros_resources() (devkit_ui.test_ros_gateway_qos.TestGatewayCreation method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_row_planning.html#devkit_ui.test_row_planning.TestPlanContourRows.test_missing_recon_log_is_raised_not_treated_as_a_flat_field">test_missing_recon_log_is_raised_not_treated_as_a_flat_field() (devkit_ui.test_row_planning.TestPlanContourRows method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_mission_boundaries.html#devkit_ui.test_mission_boundaries.TestResolutionBoundaries.test_missing_rows_are_sorted_unique_and_include_both_missing_roles">test_missing_rows_are_sorted_unique_and_include_both_missing_roles() (devkit_ui.test_mission_boundaries.TestResolutionBoundaries method)</a>
@@ -6111,6 +6142,8 @@
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard.test_mode_toggle_without_callback_and_row_id_changes_use_current_mode">test_mode_toggle_without_callback_and_row_id_changes_use_current_mode() (devkit_ui.test_run_ui.TestDropNodeCard method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.TestPersistAndReload.test_modify_error_leaves_live_doc_and_file_untouched">test_modify_error_leaves_live_doc_and_file_untouched() (devkit_ui.test_topology_persistence.TestPersistAndReload method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec.test_module_imports_without_rclpy_or_rclpy_qos">test_module_imports_without_rclpy_or_rclpy_qos() (devkit_ui.test_qos.TestQosSpec method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionQueueCard.test_move_buttons_are_disabled_at_the_ends_and_reorder_the_queue">test_move_buttons_are_disabled_at_the_ends_and_reorder_the_queue() (devkit_ui.test_plan_queue_cards.TestMissionQueueCard method)</a>
 </li>
@@ -6184,6 +6217,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_presentation.html#devkit_ui.test_telemetry_presentation.TestTelemetryPresentation.test_node_compatibility_properties_are_live_and_read_only">test_node_compatibility_properties_are_live_and_read_only() (devkit_ui.test_telemetry_presentation.TestTelemetryPresentation method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_node_creation_errors_propagate_without_retrying">test_node_creation_errors_propagate_without_retrying() (devkit_ui.test_ros_gateway_qos.TestGatewayCreation method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_topo_row_builder.html#devkit_ui.test_topo_row_builder.TestApplyRowNodes.test_nodes_are_inserted_into_the_document">test_nodes_are_inserted_into_the_document() (devkit_ui.test_topo_row_builder.TestApplyRowNodes method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_yaml.html#devkit_ui.missions.test_yaml.TestCoerceRecord.test_non_dict_record_is_skipped">test_non_dict_record_is_skipped() (devkit_ui.missions.test_yaml.TestCoerceRecord method)</a>
@@ -6212,6 +6247,8 @@
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_obstacle_padding_widens_the_gap">test_obstacle_padding_widens_the_gap() (devkit_f2c_planner.test_run_f2c.RunF2CTest method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_obstacle_manager_gateway.html#devkit_ui.test_obstacle_manager_gateway.TestObstacleManagerGateway.test_obstacle_publisher_uses_the_shared_latched_spec">test_obstacle_publisher_uses_the_shared_latched_spec() (devkit_ui.test_obstacle_manager_gateway.TestObstacleManagerGateway method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_plan_types.html#devkit_ui.test_plan_types.TestPlanRequestFromForm.test_obstacle_rings_remain_the_supplied_collection">test_obstacle_rings_remain_the_supplied_collection() (devkit_ui.test_plan_types.TestPlanRequestFromForm method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_obstacle_splits_rows">test_obstacle_splits_rows() (devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest method)</a>
@@ -6229,6 +6266,10 @@
       <li><a href="_autosummary/devkit_ui.test_plan_service_boundaries.html#devkit_ui.test_plan_service_boundaries.TestImportGPSBoundaries.test_only_plan_errors_are_converted_to_failed_import_outcomes">test_only_plan_errors_are_converted_to_failed_import_outcomes() (devkit_ui.test_plan_service_boundaries.TestImportGPSBoundaries method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanViewModelPageHelpers.test_open_page_returns_fresh_state_each_time">test_open_page_returns_fresh_state_each_time() (devkit_ui.test_plan_page_state.TestPlanViewModelPageHelpers method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_optional_policies_can_be_set_independently">test_optional_policies_can_be_set_independently() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec.test_optional_settings_default_to_none">test_optional_settings_default_to_none() (devkit_ui.test_qos.TestQosSpec method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_import.html#devkit_ui.test_plan_import.ParsePlanTest.test_order_preserved_and_non_rows_ignored">test_order_preserved_and_non_rows_ignored() (devkit_ui.test_plan_import.ParsePlanTest method)</a>
 </li>
@@ -6308,6 +6349,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_topo_row_builder.html#devkit_ui.test_topo_row_builder.TestBuildRowNodes.test_positions_are_offset_by_the_anchor_pose">test_positions_are_offset_by_the_anchor_pose() (devkit_ui.test_topo_row_builder.TestBuildRowNodes method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.test_sim_world_service.html#devkit_ui.test_sim_world_service.TestSimWorldService.test_process_start_error_propagates_without_becoming_rebuild_error">test_process_start_error_propagates_without_becoming_rebuild_error() (devkit_ui.test_sim_world_service.TestSimWorldService method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_drop_topo_node.html#devkit_ui.test_drop_topo_node.TestDropTopoNode.test_pruning_saved_edges_does_not_mutate_initial_node">test_pruning_saved_edges_does_not_mutate_initial_node() (devkit_ui.test_drop_topo_node.TestDropTopoNode method)</a>
@@ -6316,8 +6359,6 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_mission_boundaries.html#devkit_ui.test_mission_boundaries.TestToolPublicationBoundaries.test_publish_failure_does_not_prevent_remaining_tool_messages">test_publish_failure_does_not_prevent_remaining_tool_messages() (devkit_ui.test_mission_boundaries.TestToolPublicationBoundaries method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.test_map_failures.html#devkit_ui.test_map_failures.TestMapFailures.test_publish_failure_does_not_undo_successful_clear">test_publish_failure_does_not_undo_successful_clear() (devkit_ui.test_map_failures.TestMapFailures method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_obstacle_manager_gateway.html#devkit_ui.test_obstacle_manager_gateway.TestObstacleManagerGateway.test_publish_failure_is_logged_through_gateway">test_publish_failure_is_logged_through_gateway() (devkit_ui.test_obstacle_manager_gateway.TestObstacleManagerGateway method)</a>
@@ -6654,6 +6695,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry.test_shared_handles_survive_second_session_and_keep_names_separate">test_shared_handles_survive_second_session_and_keep_names_separate() (devkit_ui.test_process_registry.TestProcessRegistry method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec.test_shared_specs_cannot_be_changed_by_a_consumer">test_shared_specs_cannot_be_changed_by_a_consumer() (devkit_ui.test_qos.TestQosSpec method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestFakeGps.test_shim_fix_is_used_when_no_real_fix_has_arrived">test_shim_fix_is_used_when_no_real_fix_has_arrived() (devkit_ui.test_telemetry_services.TestFakeGps method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestFakeGps.test_shim_fix_takes_over_once_the_real_fix_is_stale">test_shim_fix_takes_over_once_the_real_fix_is_stale() (devkit_ui.test_telemetry_services.TestFakeGps method)</a>
@@ -6685,6 +6728,8 @@
       <li><a href="_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_signal_failure_keeps_process_for_retry">test_signal_failure_keeps_process_for_retry() (devkit_ui.test_medkit_gateway.TestMedkitGateway method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestWiring.test_sim_adds_shim_on_its_own_topic_driven_by_the_wall_clock">test_sim_adds_shim_on_its_own_topic_driven_by_the_wall_clock() (devkit_ui.test_telemetry_services.TestWiring method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestWiring.test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription">test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription() (devkit_ui.test_telemetry_services.TestWiring method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_boundaries.html#devkit_ui.test_telemetry_boundaries.TestTelemetryBoundaries.test_sim_timer_uses_custom_datum_altitude_and_a_fresh_stamp_each_tick">test_sim_timer_uses_custom_datum_altitude_and_a_fresh_stamp_each_tick() (devkit_ui.test_telemetry_boundaries.TestTelemetryBoundaries method)</a>
 </li>
@@ -6787,6 +6832,8 @@
       <li><a href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery.test_status_feed_updates_the_view_model">test_status_feed_updates_the_view_model() (devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestWrites.test_status_shows_how_the_map_went_live">test_status_shows_how_the_map_went_live() (devkit_ui.test_plan_application_service.TestWrites method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery.test_status_subscription_uses_the_shared_latest_sensor_spec">test_status_subscription_uses_the_shared_latest_sensor_spec() (devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_obstacle_manager_gateway.html#devkit_ui.test_obstacle_manager_gateway.TestObstacleManagerGateway.test_status_updates_do_not_change_snapshot_version">test_status_updates_do_not_change_snapshot_version() (devkit_ui.test_obstacle_manager_gateway.TestObstacleManagerGateway method)</a>
 </li>
@@ -6981,6 +7028,8 @@
       <li><a href="_autosummary/devkit_ui.missions.test_store.html#devkit_ui.missions.test_store.TestMissionStoreEditing.test_unknown_mission_has_no_due_time">test_unknown_mission_has_no_due_time() (devkit_ui.missions.test_store.TestMissionStoreEditing method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped.test_unknown_policy_name_raises_key_error">test_unknown_policy_name_raises_key_error() (devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_unknown_policy_names_raise_before_constructing_a_profile">test_unknown_policy_names_raise_before_constructing_a_profile() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_sim_uploads.html#devkit_ui.test_sim_uploads.TestSoilUpload.test_unreadable_upload_never_starts_import">test_unreadable_upload_never_starts_import() (devkit_ui.test_sim_uploads.TestSoilUpload method)</a>
 </li>
@@ -7251,6 +7300,8 @@
       <li><a href="_autosummary/devkit_ui.test_process_cleanup.html#devkit_ui.test_process_cleanup.TestProcessCleanup">TestProcessCleanup (class in devkit_ui.test_process_cleanup)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry">TestProcessRegistry (class in devkit_ui.test_process_registry)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec">TestQosSpec (class in devkit_ui.test_qos)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_sim_uploads.html#devkit_ui.test_sim_uploads.TestReadUpload">TestReadUpload (class in devkit_ui.test_sim_uploads)</a>
 </li>

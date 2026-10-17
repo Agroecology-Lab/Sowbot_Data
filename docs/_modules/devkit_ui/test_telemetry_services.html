@@ -594,6 +594,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry"><code class="docutils literal notranslate"><span class="pre">TestProcessRegistry</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_qos.html">devkit_ui.test_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec"><code class="docutils literal notranslate"><span class="pre">TestQosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html">devkit_ui.test_robot_brain_and_discovery_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeEmpty"><code class="docutils literal notranslate"><span class="pre">FakeEmpty</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeString"><code class="docutils literal notranslate"><span class="pre">FakeString</span></code></a></li>
@@ -1183,6 +1187,49 @@
 <div class="viewcode-block" id="TestWiring">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestWiring">[docs]</a>
 <span class="k">class</span> <span class="nc">TestWiring</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="TestWiring.test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestWiring.test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_hardware_and_sim_subscriptions_receive_the_correct_shared_specs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Keep sensor, safety and odometry QoS distinct on every telemetry input.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">is_sim</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">is_sim</span><span class="o">=</span><span class="n">is_sim</span><span class="p">):</span>
+                <span class="n">ros</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+                <span class="n">TelemetryDomainService</span><span class="p">(</span><span class="n">ros</span><span class="p">,</span> <span class="n">is_sim</span><span class="o">=</span><span class="n">is_sim</span><span class="p">,</span> <span class="n">fake_gps_datum</span><span class="o">=</span><span class="n">DATUM</span><span class="p">)</span>
+                <span class="n">expected</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;/gnss/fix&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SENSOR_QOS</span><span class="p">,</span>
+                    <span class="s1">&#39;battery_state&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s1">&#39;bumper/front_top&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SAFETY_QOS</span><span class="p">,</span>
+                    <span class="s1">&#39;bumper/front_bottom&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SAFETY_QOS</span><span class="p">,</span>
+                    <span class="s1">&#39;bumper/back&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SAFETY_QOS</span><span class="p">,</span>
+                    <span class="s1">&#39;estop/front&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SAFETY_QOS</span><span class="p">,</span>
+                    <span class="s1">&#39;estop/back&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SAFETY_QOS</span><span class="p">,</span>
+                    <span class="s1">&#39;/fusion/odom&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">ODOM_QOS</span><span class="p">,</span>
+                    <span class="s1">&#39;/odom&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">ODOM_QOS</span><span class="p">,</span>
+                    <span class="s1">&#39;/odometry/global&#39;</span><span class="p">:</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">ODOM_QOS</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="n">is_sim</span><span class="p">:</span>
+                    <span class="n">expected</span><span class="p">[</span><span class="n">TelemetryDomainService</span><span class="o">.</span><span class="n">FAKE_GPS_TOPIC</span><span class="p">]</span> <span class="o">=</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SENSOR_QOS</span>
+                <span class="n">calls</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">create_subscription</span><span class="o">.</span><span class="n">call_args_list</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">calls</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">({</span><span class="n">entry</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">calls</span><span class="p">},</span> <span class="nb">set</span><span class="p">(</span><span class="n">expected</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">calls</span><span class="p">:</span>
+                    <span class="n">topic</span><span class="p">,</span> <span class="n">spec</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">entry</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">topic</span><span class="o">=</span><span class="n">topic</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">assertIs</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">expected</span><span class="p">[</span><span class="n">topic</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="TestWiring.test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestWiring.test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_sim_publisher_uses_the_same_sensor_spec_as_its_subscription</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Both ends of the fallback GPS topic must preserve best-effort delivery.&quot;&quot;&quot;</span>
+        <span class="n">ros</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+        <span class="n">TelemetryDomainService</span><span class="p">(</span><span class="n">ros</span><span class="p">,</span> <span class="n">is_sim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fake_gps_datum</span><span class="o">=</span><span class="n">DATUM</span><span class="p">)</span>
+        <span class="n">ros</span><span class="o">.</span><span class="n">create_publisher</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span>
+            <span class="n">telemetry_module</span><span class="o">.</span><span class="n">NavSatFix</span><span class="p">,</span> <span class="n">TelemetryDomainService</span><span class="o">.</span><span class="n">FAKE_GPS_TOPIC</span><span class="p">,</span>
+            <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SENSOR_QOS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIs</span><span class="p">(</span><span class="n">ros</span><span class="o">.</span><span class="n">create_publisher</span><span class="o">.</span><span class="n">call_args</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">telemetry_module</span><span class="o">.</span><span class="n">SENSOR_QOS</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="TestWiring.test_hardware_subscribes_without_sim_shim">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestWiring.test_hardware_subscribes_without_sim_shim">[docs]</a>
     <span class="k">def</span> <span class="nf">test_hardware_subscribes_without_sim_shim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

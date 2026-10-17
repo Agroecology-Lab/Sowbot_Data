@@ -597,6 +597,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_process_registry.html#devkit_ui.test_process_registry.TestProcessRegistry"><code class="docutils literal notranslate"><span class="pre">TestProcessRegistry</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_qos.html">devkit_ui.test_qos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec"><code class="docutils literal notranslate"><span class="pre">TestQosSpec</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html">devkit_ui.test_robot_brain_and_discovery_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeEmpty"><code class="docutils literal notranslate"><span class="pre">FakeEmpty</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.FakeString"><code class="docutils literal notranslate"><span class="pre">FakeString</span></code></a></li>
@@ -1064,9 +1068,33 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_depths_and_existing_profiles_work_without_importing_rclpy_qos">
+<span class="sig-name descname"><span class="pre">test_depths_and_existing_profiles_work_without_importing_rclpy_qos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestGatewayCreation.test_depths_and_existing_profiles_work_without_importing_rclpy_qos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_depths_and_existing_profiles_work_without_importing_rclpy_qos" title="Link to this definition"></a></dt>
+<dd><p>Both factories must pass legacy QoS inputs through even without rclpy.qos.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_integer_depth_reaches_node_unchanged">
 <span class="sig-name descname"><span class="pre">test_integer_depth_reaches_node_unchanged</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestGatewayCreation.test_integer_depth_reaches_node_unchanged"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_integer_depth_reaches_node_unchanged" title="Link to this definition"></a></dt>
 <dd><p>Verify an integer queue depth is not wrapped.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_invalid_specs_never_create_ros_resources">
+<span class="sig-name descname"><span class="pre">test_invalid_specs_never_create_ros_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestGatewayCreation.test_invalid_specs_never_create_ros_resources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_invalid_specs_never_create_ros_resources" title="Link to this definition"></a></dt>
+<dd><p>A conversion failure must reach the caller before either node factory runs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_missing_rclpy_qos_propagates_before_creating_ros_resources">
+<span class="sig-name descname"><span class="pre">test_missing_rclpy_qos_propagates_before_creating_ros_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestGatewayCreation.test_missing_rclpy_qos_propagates_before_creating_ros_resources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_missing_rclpy_qos_propagates_before_creating_ros_resources" title="Link to this definition"></a></dt>
+<dd><p>Lazy import failures for specs must not be mistaken for usable profiles.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_node_creation_errors_propagate_without_retrying">
+<span class="sig-name descname"><span class="pre">test_node_creation_errors_propagate_without_retrying</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestGatewayCreation.test_node_creation_errors_propagate_without_retrying"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.test_node_creation_errors_propagate_without_retrying" title="Link to this definition"></a></dt>
+<dd><p>Node failures preserve the original exception and never invoke the callback.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1094,9 +1122,27 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_converted_profiles_do_not_share_mutable_state">
+<span class="sig-name descname"><span class="pre">test_converted_profiles_do_not_share_mutable_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_converted_profiles_do_not_share_mutable_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_converted_profiles_do_not_share_mutable_state" title="Link to this definition"></a></dt>
+<dd><p>Changing one ROS profile must not alter another profile or the shared spec.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_custom_profile_combines_all_optional_policies">
+<span class="sig-name descname"><span class="pre">test_custom_profile_combines_all_optional_policies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_custom_profile_combines_all_optional_policies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_custom_profile_combines_all_optional_policies" title="Link to this definition"></a></dt>
+<dd><p>Keep a zero depth for KEEP_ALL and convert all explicitly supplied settings.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_depth_and_existing_profiles_pass_through_unchanged">
 <span class="sig-name descname"><span class="pre">test_depth_and_existing_profiles_pass_through_unchanged</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_depth_and_existing_profiles_pass_through_unchanged"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_depth_and_existing_profiles_pass_through_unchanged" title="Link to this definition"></a></dt>
 <dd><p>Verify an integer depth or an rclpy profile is handed to rclpy as given.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_duration_and_profile_constructor_errors_propagate_unchanged">
+<span class="sig-name descname"><span class="pre">test_duration_and_profile_constructor_errors_propagate_unchanged</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_duration_and_profile_constructor_errors_propagate_unchanged"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_duration_and_profile_constructor_errors_propagate_unchanged" title="Link to this definition"></a></dt>
+<dd><p>The adapter must preserve rclpy validation errors for its caller.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1106,9 +1152,21 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_lease_preserves_zero_and_fractional_seconds_without_requiring_liveliness">
+<span class="sig-name descname"><span class="pre">test_lease_preserves_zero_and_fractional_seconds_without_requiring_liveliness</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_lease_preserves_zero_and_fractional_seconds_without_requiring_liveliness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_lease_preserves_zero_and_fractional_seconds_without_requiring_liveliness" title="Link to this definition"></a></dt>
+<dd><p>Only None omits the duration; zero is an explicit lease, measured in seconds.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_odom_spec_is_reliable_with_depth_ten">
 <span class="sig-name descname"><span class="pre">test_odom_spec_is_reliable_with_depth_ten</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_odom_spec_is_reliable_with_depth_ten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_odom_spec_is_reliable_with_depth_ten" title="Link to this definition"></a></dt>
 <dd><p>Verify the odometry spec keeps depth 10 and reliable delivery.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_optional_policies_can_be_set_independently">
+<span class="sig-name descname"><span class="pre">test_optional_policies_can_be_set_independently</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_optional_policies_can_be_set_independently"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_optional_policies_can_be_set_independently" title="Link to this definition"></a></dt>
+<dd><p>Convert each alternate policy without overriding other rclpy defaults.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1121,6 +1179,12 @@
 <dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_sensor_spec_sets_only_depth_and_reliability">
 <span class="sig-name descname"><span class="pre">test_sensor_spec_sets_only_depth_and_reliability</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_sensor_spec_sets_only_depth_and_reliability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_sensor_spec_sets_only_depth_and_reliability" title="Link to this definition"></a></dt>
 <dd><p>Verify a spec with no optional fields leaves durability, history and liveliness at rclpy defaults.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_unknown_policy_names_raise_before_constructing_a_profile">
+<span class="sig-name descname"><span class="pre">test_unknown_policy_names_raise_before_constructing_a_profile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_ros_gateway_qos.html#TestToQosProfile.test_unknown_policy_names_raise_before_constructing_a_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_unknown_policy_names_raise_before_constructing_a_profile" title="Link to this definition"></a></dt>
+<dd><p>Invalid policy names must remain visible instead of silently selecting defaults.</p>
 </dd></dl>
 
 </dd></dl>
