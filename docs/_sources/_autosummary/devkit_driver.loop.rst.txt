@@ -1,0 +1,12 @@
+devkit\_driver.loop
+===================
+
+.. automodule:: devkit_driver.loop
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      run_on_rosys_loop
+   

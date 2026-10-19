@@ -1,0 +1,12 @@
+devkit\_ui.web\_auth
+====================
+
+.. automodule:: devkit_ui.web_auth
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BasicAuthMiddleware
+   

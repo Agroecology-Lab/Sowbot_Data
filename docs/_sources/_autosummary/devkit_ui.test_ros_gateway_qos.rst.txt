@@ -8,8 +8,6 @@ devkit\_ui.test\_ros\_gateway\_qos
 
    .. autosummary::
    
-      TestBoolParameter
-      TestEveryDeclaredPolicyIsMapped
       TestGatewayCreation
       TestToQosProfile
    

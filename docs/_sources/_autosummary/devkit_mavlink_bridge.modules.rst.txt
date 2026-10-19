@@ -11,4 +11,7 @@ devkit\_mavlink\_bridge.modules
    :recursive:
 
    gps_input_handler
+   link_monitor
    position_target_handler
+   velocity_limits
+   velocity_watchdog

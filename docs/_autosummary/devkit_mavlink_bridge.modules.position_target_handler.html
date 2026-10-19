@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_ui" href="devkit_ui.html" />
-    <link rel="prev" title="devkit_mavlink_bridge.modules.gps_input_handler" href="devkit_mavlink_bridge.modules.gps_input_handler.html" /> 
+    <link rel="next" title="devkit_mavlink_bridge.modules.velocity_limits" href="devkit_mavlink_bridge.modules.velocity_limits.html" />
+    <link rel="prev" title="devkit_mavlink_bridge.modules.link_monitor" href="devkit_mavlink_bridge.modules.link_monitor.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,15 +46,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Sowbot (ROS 2 stack)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../README.html#sowbot-roadmap">Sowbot Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#field-results">Field results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../README.html#collaboration">Collaboration</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#rewrite-from-scratch-cost-estimate">Rewrite-from-Scratch Cost Estimate</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#foundational-infra">Foundational infra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#packages-pulled-in-developed-in-house">Packages pulled in &amp; developed in house</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#total">Total</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html#critical-safety-warning">⚠️ CRITICAL SAFETY WARNING:</a><ul>
@@ -68,7 +63,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../README.html#clone-the-repository">1. Clone the Repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#build-launch">3. Build &amp; Launch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#build-launch">2. Build &amp; Launch</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../README.html#id1">Linux</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../README.html#gazebo">Gazebo</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../README.html#optical-flow-sensor-pmw3901-paa5100">Optical flow sensor (PMW3901 / PAA5100)</a></li>
@@ -90,13 +85,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../README.html#sketch-of-mvp-2026-architecture">Sketch of MVP 2026 architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#the-lizard-brain-rt-microcontroller">1. The Lizard Brain (RT Microcontroller)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#the-flight-controller-rt-microcontroller">1. The Flight Controller (RT Microcontroller)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../README.html#the-limbic-system-executive">2. The Limbic System (Executive)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../README.html#the-neo-perception">3. The Neo (Perception)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../README.html#sketch-of-possible-eventual-2027-architecture">Sketch of possible eventual ~2027 architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#the-lizard-brain-hardware-abstraction">1. The Lizard Brain (Hardware Abstraction)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#the-real-time-controller-hardware-abstraction">1. The Real-Time Controller (Hardware Abstraction)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../README.html#id2">2. The Limbic System (Executive)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../README.html#id3">3. The Neo (Perception)</a></li>
 </ul>
@@ -104,31 +99,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../README.html#licenses-papers">Licenses &amp; papers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#sowbot-feldfreund-devkit-ros-dependency-licence-audit">Sowbot / feldfreund_devkit_ros — Dependency Licence Audit</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#feldfreund-devkit-ros">Feldfreund DevKit ROS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#components">Components</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#devkit-driver">DevKit driver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#camera-system">Camera System</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#gnss-system">GNSS System</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#devkit-ui">DevKit UI</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#docker-setup">Docker Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#using-docker-compose">Using Docker Compose</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#connect-to-ui">Connect to UI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#launch-files">Launch Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#axis-camera-authentication">AXIS Camera Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#quickstart-guide">Quickstart guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#id4">1. Clone the Repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#validate-configuration">2. Validate Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#build-with-docker">3. Build with Docker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#send-lizard-configuration">4. Send Lizard Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../README.html#ready-to-go">5. Ready to Go</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../README.html#future-features">Future features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#sowbot-dependency-licence-audit">Sowbot — Dependency Licence Audit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../README.html#upstream-documentation">Upstream documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../lizard-firmware-setup.html">Local Lizard Firmware Setup</a><ul>
@@ -158,6 +130,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.logger.logger.html">devkit_driver.logger.logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.logger.ros_logger.html">devkit_driver.logger.ros_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.logger.stdout_logger.html">devkit_driver.logger.stdout_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_driver.loop.html">devkit_driver.loop</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_driver.loop.html#devkit_driver.loop.run_on_rosys_loop"><code class="docutils literal notranslate"><span class="pre">run_on_rosys_loop()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_driver.modules.html">devkit_driver.modules</a><ul>
@@ -250,7 +226,10 @@
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.link_monitor.html">devkit_mavlink_bridge.modules.link_monitor</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_mavlink_bridge.modules.position_target_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.velocity_limits.html">devkit_mavlink_bridge.modules.velocity_limits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.velocity_watchdog.html">devkit_mavlink_bridge.modules.velocity_watchdog</a></li>
 </ul>
 </li>
 </ul>
@@ -516,6 +495,7 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_obstacle_cards.html">devkit_ui.test_obstacle_cards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.MissionUi"><code class="docutils literal notranslate"><span class="pre">MissionUi</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.TestObstacleCards"><code class="docutils literal notranslate"><span class="pre">TestObstacleCards</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.TestRemoveLayer"><code class="docutils literal notranslate"><span class="pre">TestRemoveLayer</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_obstacle_manager_gateway.html">devkit_ui.test_obstacle_manager_gateway</a><ul>
@@ -612,8 +592,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html">devkit_ui.test_ros_gateway_qos</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter"><code class="docutils literal notranslate"><span class="pre">TestBoolParameter</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped"><code class="docutils literal notranslate"><span class="pre">TestEveryDeclaredPolicyIsMapped</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation"><code class="docutils literal notranslate"><span class="pre">TestGatewayCreation</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile"><code class="docutils literal notranslate"><span class="pre">TestToQosProfile</span></code></a></li>
 </ul>
@@ -868,6 +846,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.topology_view_model.html">devkit_ui.view_models.topology_view_model</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.web_auth.html">devkit_ui.web_auth</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.web_auth.html#devkit_ui.web_auth.BasicAuthMiddleware"><code class="docutils literal notranslate"><span class="pre">BasicAuthMiddleware</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1001,20 +983,22 @@ drive.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.position_target_handler.twist_to_position_target" title="devkit_mavlink_bridge.modules.position_target_handler.twist_to_position_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">twist_to_position_target</span></code></a>(linear_x, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.position_target_handler.twist_to_position_target" title="devkit_mavlink_bridge.modules.position_target_handler.twist_to_position_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">twist_to_position_target</span></code></a>(linear_x, ...[, ...])</p></td>
 <td><p>Map a Twist's linear.x / angular.z onto SET_POSITION_TARGET_LOCAL_NED fields, ready to hand to pymavlink's mav.set_position_target_local_ned_send(<a href="#id1"><span class="problematic" id="id2">**</span></a>twist_to_position_target(...)).</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
 <dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.position_target_handler.twist_to_position_target">
-<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.position_target_handler.</span></span><span class="sig-name descname"><span class="pre">twist_to_position_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_boot_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/position_target_handler.html#twist_to_position_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.position_target_handler.twist_to_position_target" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.position_target_handler.</span></span><span class="sig-name descname"><span class="pre">twist_to_position_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_boot_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/position_target_handler.html#twist_to_position_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.position_target_handler.twist_to_position_target" title="Link to this definition"></a></dt>
 <dd><p>Map a Twist’s linear.x / angular.z onto SET_POSITION_TARGET_LOCAL_NED
 fields, ready to hand to pymavlink’s
 mav.set_position_target_local_ned_send(<a href="#id3"><span class="problematic" id="id4">**</span></a>twist_to_position_target(…)).</p>
 <p>Positional/attitude fields not used by this type_mask (x, y, z, afx,
 afy, afz, yaw) are zeroed – they’re ignored by the flight controller
 per TYPE_MASK_VEL_YAW_RATE, but pymavlink’s encoder still expects them.</p>
+<p>target_system and target_component address the flight controller; 0 means broadcast.
+Pass the IDs learned from its HEARTBEAT once they are known.</p>
 </dd></dl>
 
 </section>
@@ -1023,8 +1007,8 @@ per TYPE_MASK_VEL_YAW_RATE, but pymavlink’s encoder still expects them.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_mavlink_bridge.modules.gps_input_handler.html" class="btn btn-neutral float-left" title="devkit_mavlink_bridge.modules.gps_input_handler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_ui.html" class="btn btn-neutral float-right" title="devkit_ui" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_mavlink_bridge.modules.link_monitor.html" class="btn btn-neutral float-left" title="devkit_mavlink_bridge.modules.link_monitor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_mavlink_bridge.modules.velocity_limits.html" class="btn btn-neutral float-right" title="devkit_mavlink_bridge.modules.velocity_limits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

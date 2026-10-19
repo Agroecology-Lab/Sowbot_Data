@@ -10,4 +10,5 @@ devkit\_ui.test\_obstacle\_cards
    
       MissionUi
       TestObstacleCards
+      TestRemoveLayer
    

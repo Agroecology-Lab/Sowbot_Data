@@ -13,6 +13,7 @@
    course_over_ground
    devkit_driver_node
    logger
+   loop
    modules
    qos
    relposned_heading_shim

@@ -43,15 +43,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Sowbot (ROS 2 stack)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="README.html#sowbot-roadmap">Sowbot Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#field-results">Field results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#collaboration">Collaboration</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="README.html#rewrite-from-scratch-cost-estimate">Rewrite-from-Scratch Cost Estimate</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="README.html#foundational-infra">Foundational infra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#packages-pulled-in-developed-in-house">Packages pulled in &amp; developed in house</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#total">Total</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="README.html#critical-safety-warning">⚠️ CRITICAL SAFETY WARNING:</a><ul>
@@ -65,7 +60,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#clone-the-repository">1. Clone the Repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="README.html#build-launch">3. Build &amp; Launch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#build-launch">2. Build &amp; Launch</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="README.html#id1">Linux</a></li>
 <li class="toctree-l4"><a class="reference internal" href="README.html#gazebo">Gazebo</a></li>
 <li class="toctree-l4"><a class="reference internal" href="README.html#optical-flow-sensor-pmw3901-paa5100">Optical flow sensor (PMW3901 / PAA5100)</a></li>
@@ -87,13 +82,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="README.html#sketch-of-mvp-2026-architecture">Sketch of MVP 2026 architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="README.html#the-lizard-brain-rt-microcontroller">1. The Lizard Brain (RT Microcontroller)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#the-flight-controller-rt-microcontroller">1. The Flight Controller (RT Microcontroller)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#the-limbic-system-executive">2. The Limbic System (Executive)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#the-neo-perception">3. The Neo (Perception)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="README.html#sketch-of-possible-eventual-2027-architecture">Sketch of possible eventual ~2027 architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="README.html#the-lizard-brain-hardware-abstraction">1. The Lizard Brain (Hardware Abstraction)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#the-real-time-controller-hardware-abstraction">1. The Real-Time Controller (Hardware Abstraction)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#id2">2. The Limbic System (Executive)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#id3">3. The Neo (Perception)</a></li>
 </ul>
@@ -101,31 +96,8 @@
 <li class="toctree-l2"><a class="reference internal" href="README.html#licenses-papers">Licenses &amp; papers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="README.html#sowbot-feldfreund-devkit-ros-dependency-licence-audit">Sowbot / feldfreund_devkit_ros — Dependency Licence Audit</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="README.html#feldfreund-devkit-ros">Feldfreund DevKit ROS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#components">Components</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="README.html#devkit-driver">DevKit driver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="README.html#camera-system">Camera System</a></li>
-<li class="toctree-l3"><a class="reference internal" href="README.html#gnss-system">GNSS System</a></li>
-<li class="toctree-l3"><a class="reference internal" href="README.html#devkit-ui">DevKit UI</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#docker-setup">Docker Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="README.html#using-docker-compose">Using Docker Compose</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#connect-to-ui">Connect to UI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#launch-files">Launch Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#axis-camera-authentication">AXIS Camera Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#quickstart-guide">Quickstart guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="README.html#id4">1. Clone the Repository</a></li>
-<li class="toctree-l3"><a class="reference internal" href="README.html#validate-configuration">2. Validate Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="README.html#build-with-docker">3. Build with Docker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="README.html#send-lizard-configuration">4. Send Lizard Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="README.html#ready-to-go">5. Ready to Go</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#future-features">Future features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#sowbot-dependency-licence-audit">Sowbot — Dependency Licence Audit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#upstream-documentation">Upstream documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="lizard-firmware-setup.html">Local Lizard Firmware Setup</a><ul>
@@ -155,6 +127,10 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.logger.html">devkit_driver.logger.logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.ros_logger.html">devkit_driver.logger.ros_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.logger.stdout_logger.html">devkit_driver.logger.stdout_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.loop.html">devkit_driver.loop</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_driver.loop.html#devkit_driver.loop.run_on_rosys_loop"><code class="docutils literal notranslate"><span class="pre">run_on_rosys_loop()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_driver.modules.html">devkit_driver.modules</a><ul>
@@ -247,7 +223,10 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html">devkit_mavlink_bridge.modules.link_monitor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.velocity_limits.html">devkit_mavlink_bridge.modules.velocity_limits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html">devkit_mavlink_bridge.modules.velocity_watchdog</a></li>
 </ul>
 </li>
 </ul>
@@ -513,6 +492,7 @@
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_obstacle_cards.html">devkit_ui.test_obstacle_cards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.MissionUi"><code class="docutils literal notranslate"><span class="pre">MissionUi</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.TestObstacleCards"><code class="docutils literal notranslate"><span class="pre">TestObstacleCards</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.TestRemoveLayer"><code class="docutils literal notranslate"><span class="pre">TestRemoveLayer</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_obstacle_manager_gateway.html">devkit_ui.test_obstacle_manager_gateway</a><ul>
@@ -609,8 +589,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.test_ros_gateway_qos.html">devkit_ui.test_ros_gateway_qos</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter"><code class="docutils literal notranslate"><span class="pre">TestBoolParameter</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped"><code class="docutils literal notranslate"><span class="pre">TestEveryDeclaredPolicyIsMapped</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation"><code class="docutils literal notranslate"><span class="pre">TestGatewayCreation</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile"><code class="docutils literal notranslate"><span class="pre">TestToQosProfile</span></code></a></li>
 </ul>
@@ -865,6 +843,10 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.topology_view_model.html">devkit_ui.view_models.topology_view_model</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.web_auth.html">devkit_ui.web_auth</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.web_auth.html#devkit_ui.web_auth.BasicAuthMiddleware"><code class="docutils literal notranslate"><span class="pre">BasicAuthMiddleware</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1007,18 +989,34 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver.__init__">__init__() (devkit_driver.devkit_driver_node.DevkitDriver method)</a>
+      <li><a href="_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.CourseOverGround.__init__">__init__() (devkit_driver.course_over_ground.CourseOverGround method)</a>
 
       <ul>
+        <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver.__init__">(devkit_driver.devkit_driver_node.DevkitDriver method)</a>
+</li>
         <li><a href="_autosummary/devkit_driver.logger.ros_logger.html#devkit_driver.logger.ros_logger.ROSLogger.__init__">(devkit_driver.logger.ros_logger.ROSLogger method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.estop_handler.html#devkit_driver.modules.estop_handler.EStopHandler.__init__">(devkit_driver.modules.estop_handler.EStopHandler method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.EStopHandler.__init__">(devkit_driver.modules.EStopHandler method)</a>
 </li>
         <li><a href="_autosummary/devkit_driver.modules.recon_dem_logger.html#devkit_driver.modules.recon_dem_logger.ReconDEMLogger.__init__">(devkit_driver.modules.recon_dem_logger.ReconDEMLogger method)</a>
 </li>
         <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger.__init__">(devkit_driver.modules.ReconDEMLogger method)</a>
 </li>
+        <li><a href="_autosummary/devkit_driver.modules.twist_handler.html#devkit_driver.modules.twist_handler.TwistHandler.__init__">(devkit_driver.modules.twist_handler.TwistHandler method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler.__init__">(devkit_driver.modules.TwistHandler method)</a>
+</li>
+        <li><a href="_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.RelPosnedHeadingShim.__init__">(devkit_driver.relposned_heading_shim.RelPosnedHeadingShim method)</a>
+</li>
         <li><a href="_autosummary/devkit_driver.rtk_navsatfix_shim.html#devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim.__init__">(devkit_driver.rtk_navsatfix_shim.RtkNavSatFixShim method)</a>
 </li>
         <li><a href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode.__init__">(devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode method)</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor.__init__">(devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor method)</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html#devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog.__init__">(devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.application_services.drive_application_service.html#devkit_ui.application_services.drive_application_service.DriveApplicationService.__init__">(devkit_ui.application_services.drive_application_service.DriveApplicationService method)</a>
 </li>
@@ -1180,6 +1178,8 @@
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.topology_view_model.html#devkit_ui.view_models.topology_view_model.TopologyViewModel.__init__">(devkit_ui.view_models.topology_view_model.TopologyViewModel method)</a>
 </li>
+        <li><a href="_autosummary/devkit_ui.web_auth.html#devkit_ui.web_auth.BasicAuthMiddleware.__init__">(devkit_ui.web_auth.BasicAuthMiddleware method)</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -1329,9 +1329,13 @@
       </ul></li>
       <li><a href="_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.StagedDrop.base">base (devkit_ui.topo_results.StagedDrop attribute)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.web_auth.html#devkit_ui.web_auth.BasicAuthMiddleware">BasicAuthMiddleware (class in devkit_ui.web_auth)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.view_models.telemetry_view_model.html#devkit_ui.view_models.telemetry_view_model.TelemetryViewModel.battery_text">battery_text (devkit_ui.view_models.telemetry_view_model.TelemetryViewModel property)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.pages.system.battery_card.html#devkit_ui.pages.system.battery_card.BatteryCard">BatteryCard (class in devkit_ui.pages.system.battery_card)</a>
+</li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor.beat">beat() (devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanPageState.begin_plan">begin_plan() (devkit_ui.view_models.plan_view_model.PlanPageState method)</a>
 </li>
@@ -1365,14 +1369,14 @@
         <li><a href="_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.RowBuildSettings.break_after">(devkit_ui.topo_row_builder.RowBuildSettings attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPage.build">build() (devkit_ui.test_plan_queue_cards.TestPlanPage method)</a>
 
       <ul>
         <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.build">(in module devkit_f2c_planner.test_obstacles)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.build_controls">build_controls() (in module devkit_ui.test_medkit_gateway)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.build_elevation_grid">build_elevation_grid() (in module devkit_ui.dem)</a>
@@ -1451,6 +1455,12 @@
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeF2C.Cells">Cells() (devkit_f2c_planner.f2c_test_helpers.FakeF2C method)</a>
 </li>
+      <li><a href="_autosummary/devkit_driver.modules.twist_handler.html#devkit_driver.modules.twist_handler.TwistHandler.check_stale">check_stale() (devkit_driver.modules.twist_handler.TwistHandler method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler.check_stale">(devkit_driver.modules.TwistHandler method)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.checkbox">checkbox() (devkit_ui.test_run_ui.FakeUi method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.circle_to_ring_ll">circle_to_ring_ll() (in module devkit_ui.obstacles)</a>
@@ -1497,6 +1507,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html#devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog">CmdVelWatchdog (class in devkit_mavlink_bridge.modules.velocity_watchdog)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.missions.test_yaml.html#devkit_ui.missions.test_yaml.coerce">coerce() (in module devkit_ui.missions.test_yaml)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_page_composition.html#devkit_ui.test_page_composition.PageUi.column">column (devkit_ui.test_page_composition.PageUi attribute)</a>
@@ -1573,6 +1585,8 @@
         <li><a href="_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.FakeRos.create_timer">(devkit_ui.test_telemetry_services.FakeRos method)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html#devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog.current">current() (devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.PlanHarness.current_node">current_node (devkit_ui.test_f2c_row_metadata.PlanHarness property)</a>
 </li>
   </ul></td>
@@ -1684,6 +1698,13 @@
 
       <ul>
         <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#module-devkit_driver.logger.stdout_logger">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_driver.loop
+
+      <ul>
+        <li><a href="_autosummary/devkit_driver.loop.html#module-devkit_driver.loop">module</a>
 </li>
       </ul></li>
       <li>
@@ -1855,10 +1876,31 @@
 </li>
       </ul></li>
       <li>
+    devkit_mavlink_bridge.modules.link_monitor
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#module-devkit_mavlink_bridge.modules.link_monitor">module</a>
+</li>
+      </ul></li>
+      <li>
     devkit_mavlink_bridge.modules.position_target_handler
 
       <ul>
         <li><a href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html#module-devkit_mavlink_bridge.modules.position_target_handler">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_mavlink_bridge.modules.velocity_limits
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_limits.html#module-devkit_mavlink_bridge.modules.velocity_limits">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_mavlink_bridge.modules.velocity_watchdog
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html#module-devkit_mavlink_bridge.modules.velocity_watchdog">module</a>
 </li>
       </ul></li>
       <li>
@@ -2295,6 +2337,8 @@
         <li><a href="_autosummary/devkit_ui.pages.system.battery_card.html#module-devkit_ui.pages.system.battery_card">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     devkit_ui.pages.system.esp_card
 
@@ -2302,8 +2346,6 @@
         <li><a href="_autosummary/devkit_ui.pages.system.esp_card.html#module-devkit_ui.pages.system.esp_card">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     devkit_ui.pages.system.gps_card
 
@@ -2990,6 +3032,13 @@
         <li><a href="_autosummary/devkit_ui.view_models.topology_view_model.html#module-devkit_ui.view_models.topology_view_model">module</a>
 </li>
       </ul></li>
+      <li>
+    devkit_ui.web_auth
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.web_auth.html#module-devkit_ui.web_auth">module</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver">DevkitDriver (class in devkit_driver.devkit_driver_node)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.dialog">dialog() (devkit_ui.test_run_ui.FakeUi method)</a>
@@ -3328,6 +3377,10 @@
 </li>
       <li><a href="_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.RepairPlan.headlands_skipped">headlands_skipped (devkit_ui.topo_row_builder.RepairPlan attribute)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.heartbeat_joystick">heartbeat_joystick() (devkit_ui.view_models.run_view_model.RunViewModel method)</a>
+</li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor">HeartbeatMonitor (class in devkit_mavlink_bridge.modules.link_monitor)</a>
+</li>
       <li><a href="_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeF2C.HG_Const_gen">HG_Const_gen() (devkit_f2c_planner.f2c_test_helpers.FakeF2C method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.qos.html#devkit_ui.qos.QosSpec.history">history (devkit_ui.qos.QosSpec attribute)</a>
@@ -3452,6 +3505,8 @@
       </ul></li>
       <li><a href="_autosummary/devkit_ui.test_page_composition.html#devkit_ui.test_page_composition.PageUi.leaflet">leaflet() (devkit_ui.test_page_composition.PageUi method)</a>
 </li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_limits.html#devkit_mavlink_bridge.modules.velocity_limits.limit_velocity">limit_velocity() (in module devkit_mavlink_bridge.modules.velocity_limits)</a>
+</li>
       <li><a href="_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeF2C.LinearRing">LinearRing (devkit_f2c_planner.f2c_test_helpers.FakeF2C attribute)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.pages.widgets.html#devkit_ui.pages.widgets.link_button">link_button() (in module devkit_ui.pages.widgets)</a>
@@ -3462,10 +3517,10 @@
         <li><a href="_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.list_crop_models">(devkit_ui.view_models.sim_view_model.SimViewModel method)</a>
 </li>
       </ul></li>
-      <li><a href="_autosummary/devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.live_doc">live_doc() (in module devkit_ui.test_topology_persistence)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.test_topology_persistence.html#devkit_ui.test_topology_persistence.live_doc">live_doc() (in module devkit_ui.test_topology_persistence)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.qos.html#devkit_ui.qos.QosSpec.liveliness">liveliness (devkit_ui.qos.QosSpec attribute)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.qos.html#devkit_ui.qos.QosSpec.liveliness_lease_sec">liveliness_lease_sec (devkit_ui.qos.QosSpec attribute)</a>
@@ -3636,6 +3691,8 @@
 </li>
         <li><a href="_autosummary/devkit_driver.logger.stdout_logger.html#module-devkit_driver.logger.stdout_logger">devkit_driver.logger.stdout_logger</a>
 </li>
+        <li><a href="_autosummary/devkit_driver.loop.html#module-devkit_driver.loop">devkit_driver.loop</a>
+</li>
         <li><a href="_autosummary/devkit_driver.modules.html#module-devkit_driver.modules">devkit_driver.modules</a>
 </li>
         <li><a href="_autosummary/devkit_driver.modules.bms_handler.html#module-devkit_driver.modules.bms_handler">devkit_driver.modules.bms_handler</a>
@@ -3684,7 +3741,13 @@
 </li>
         <li><a href="_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html#module-devkit_mavlink_bridge.modules.gps_input_handler">devkit_mavlink_bridge.modules.gps_input_handler</a>
 </li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#module-devkit_mavlink_bridge.modules.link_monitor">devkit_mavlink_bridge.modules.link_monitor</a>
+</li>
         <li><a href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html#module-devkit_mavlink_bridge.modules.position_target_handler">devkit_mavlink_bridge.modules.position_target_handler</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_limits.html#module-devkit_mavlink_bridge.modules.velocity_limits">devkit_mavlink_bridge.modules.velocity_limits</a>
+</li>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html#module-devkit_mavlink_bridge.modules.velocity_watchdog">devkit_mavlink_bridge.modules.velocity_watchdog</a>
 </li>
         <li><a href="_autosummary/devkit_ui.html#module-devkit_ui">devkit_ui</a>
 </li>
@@ -4007,6 +4070,8 @@
         <li><a href="_autosummary/devkit_ui.view_models.telemetry_view_model.html#module-devkit_ui.view_models.telemetry_view_model">devkit_ui.view_models.telemetry_view_model</a>
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.topology_view_model.html#module-devkit_ui.view_models.topology_view_model">devkit_ui.view_models.topology_view_model</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.web_auth.html#module-devkit_ui.web_auth">devkit_ui.web_auth</a>
 </li>
       </ul></li>
   </ul></td>
@@ -4423,6 +4488,12 @@
 </li>
       <li><a href="_autosummary/devkit_ui.view_models.topology_view_model.html#devkit_ui.view_models.topology_view_model.TopologyViewModel.register_map_archived_callback">register_map_archived_callback() (devkit_ui.view_models.topology_view_model.TopologyViewModel method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.application_services.drive_application_service.html#devkit_ui.application_services.drive_application_service.DriveApplicationService.register_soft_estop_state_callback">register_soft_estop_state_callback() (devkit_ui.application_services.drive_application_service.DriveApplicationService method)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.domain_services.drive_domain_service.html#devkit_ui.domain_services.drive_domain_service.DriveDomainService.register_soft_estop_state_callback">(devkit_ui.domain_services.drive_domain_service.DriveDomainService method)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/devkit_ui.application_services.row_discovery_application_service.html#devkit_ui.application_services.row_discovery_application_service.RowDiscoveryApplicationService.register_status_callback">register_status_callback() (devkit_ui.application_services.row_discovery_application_service.RowDiscoveryApplicationService method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.release_joystick">release_joystick() (devkit_ui.view_models.run_view_model.RunViewModel method)</a>
@@ -4473,6 +4544,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.RepairPlan">RepairPlan (class in devkit_ui.topo_row_builder)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.repeat_joystick">repeat_joystick() (devkit_ui.view_models.run_view_model.RunViewModel method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.pages.widgets.html#devkit_ui.pages.widgets.report_if_exited">report_if_exited() (in module devkit_ui.pages.widgets)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanRun.request">request (devkit_ui.view_models.plan_view_model.PlanRun attribute)</a>
@@ -4519,14 +4592,14 @@
         <li><a href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.Future.result">(devkit_ui.test_robot_brain_and_discovery_services.Future method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.rings_ll">rings_ll() (devkit_ui.obstacles.ObstacleManager method)</a>
 
       <ul>
         <li><a href="_autosummary/devkit_ui.view_models.obstacle_view_model.html#devkit_ui.view_models.obstacle_view_model.ObstacleViewModel.rings_ll">(devkit_ui.view_models.obstacle_view_model.ObstacleViewModel method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.NodeMap.robot_pose">robot_pose (devkit_ui.view_models.run_view_model.RunViewModel.NodeMap attribute)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.application_services.telemetry_application_service.html#devkit_ui.application_services.telemetry_application_service.TelemetryApplicationService.robot_pose">robot_pose() (devkit_ui.application_services.telemetry_application_service.TelemetryApplicationService method)</a>
@@ -4630,6 +4703,8 @@
       <li><a href="_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_contour_f2c">run_contour_f2c() (in module devkit_f2c_planner.f2c_planner)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_f2c">run_f2c() (in module devkit_f2c_planner.f2c_planner)</a>
+</li>
+      <li><a href="_autosummary/devkit_driver.loop.html#devkit_driver.loop.run_on_rosys_loop">run_on_rosys_loop() (in module devkit_driver.loop)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.run_planner">run_planner() (devkit_f2c_planner.test_run_f2c.RunF2CTest method)</a>
 </li>
@@ -4934,10 +5009,6 @@
 </li>
         <li><a href="_autosummary/devkit_ui.test_robot_brain_and_discovery_services.html#devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery.setUp">(devkit_ui.test_robot_brain_and_discovery_services.TestRowDiscovery method)</a>
 </li>
-        <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter.setUp">(devkit_ui.test_ros_gateway_qos.TestBoolParameter method)</a>
-</li>
-        <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped.setUp">(devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped method)</a>
-</li>
         <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestGatewayCreation.setUp">(devkit_ui.test_ros_gateway_qos.TestGatewayCreation method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.setUp">(devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
@@ -5095,6 +5166,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.start_vnc_stack">start_vnc_stack() (in module devkit_ui.process_registry)</a>
 </li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor.state">state() (devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.application_services.mission_application_service.html#devkit_ui.application_services.mission_application_service.MissionApplicationService.status">status (devkit_ui.application_services.mission_application_service.MissionApplicationService property)</a>
 
       <ul>
@@ -5224,6 +5297,8 @@
       <li><a href="_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestBoundaryMapCard.test_a_failed_plan_leaves_the_earlier_rows">test_a_failed_plan_leaves_the_earlier_rows() (devkit_ui.test_plan_cards.TestBoundaryMapCard method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanPageState.test_a_failed_run_keeps_the_earlier_draft">test_a_failed_run_keeps_the_earlier_draft() (devkit_ui.test_plan_page_state.TestPlanPageState method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.TestRemoveLayer.test_a_failing_remove_is_logged_not_raised">test_a_failing_remove_is_logged_not_raised() (devkit_ui.test_obstacle_cards.TestRemoveLayer method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_page_state.html#devkit_ui.test_plan_page_state.TestPlanPageState.test_a_good_import_becomes_the_draft">test_a_good_import_becomes_the_draft() (devkit_ui.test_plan_page_state.TestPlanPageState method)</a>
 </li>
@@ -5477,6 +5552,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_run_service_cards.html#devkit_ui.test_run_service_cards.TestNodeMapCard.test_clearing_document_displays_placeholder_and_clears_robot">test_clearing_document_displays_placeholder_and_clears_robot() (devkit_ui.test_run_service_cards.TestNodeMapCard method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_run_service_cards.html#devkit_ui.test_run_service_cards.TestJoystickControlCard.test_client_heartbeat_keeps_a_fixed_gesture_active_until_release">test_client_heartbeat_keeps_a_fixed_gesture_active_until_release() (devkit_ui.test_run_service_cards.TestJoystickControlCard method)</a>
+</li>
       <li><a href="_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_clipped_fragments_follow_the_snake_direction">test_clipped_fragments_follow_the_snake_direction() (devkit_f2c_planner.test_run_f2c.RunF2CTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_store.html#devkit_ui.missions.test_store.TestMissionStoreEditing.test_close_is_a_no_op_for_the_yaml_backend">test_close_is_a_no_op_for_the_yaml_backend() (devkit_ui.missions.test_store.TestMissionStoreEditing method)</a>
@@ -5553,8 +5630,6 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_custom_profile_combines_all_optional_policies">test_custom_profile_combines_all_optional_policies() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
 </li>
-      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter.test_declares_with_default_and_returns_it_as_bool">test_declares_with_default_and_returns_it_as_bool() (devkit_ui.test_ros_gateway_qos.TestBoolParameter method)</a>
-</li>
       <li><a href="_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestWrites.test_default_background_runs_the_write_on_another_thread">test_default_background_runs_the_write_on_another_thread() (devkit_ui.test_plan_application_service.TestWrites method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack.test_default_doc_contains_spaced_nodes_and_bidirectional_edges">test_default_doc_contains_spaced_nodes_and_bidirectional_edges() (devkit_ui.test_topology_services.TestTopologyStack method)</a>
@@ -5562,8 +5637,6 @@
       <li><a href="_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack.test_default_doc_has_linear_chain">test_default_doc_has_linear_chain() (devkit_ui.test_topology_services.TestTopologyStack method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack.test_default_initialization_syncs_vm_without_publishing_or_sharing_state">test_default_initialization_syncs_vm_without_publishing_or_sharing_state() (devkit_ui.test_topology_services.TestTopologyStack method)</a>
-</li>
-      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter.test_default_is_false">test_default_is_false() (devkit_ui.test_ros_gateway_qos.TestBoolParameter method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_sim_uploads.html#devkit_ui.test_sim_uploads.TestReadUpload.test_default_name_is_used_only_when_name_attribute_is_absent">test_default_name_is_used_only_when_name_attribute_is_absent() (devkit_ui.test_sim_uploads.TestReadUpload method)</a>
 </li>
@@ -5625,6 +5698,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_actions.html#devkit_ui.test_actions.TestActionRosMsgs.test_drive_has_no_tool_topic_so_yields_no_messages">test_drive_has_no_tool_topic_so_yields_no_messages() (devkit_ui.test_actions.TestActionRosMsgs method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_driver_acknowledgement_is_subscribed_with_the_latched_profile">test_driver_acknowledgement_is_subscribed_with_the_latched_profile() (devkit_ui.test_drive_services.TestDriveServices method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard.test_drop_uses_latest_bound_state">test_drop_uses_latest_bound_state() (devkit_ui.test_run_ui.TestDropNodeCard method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest.test_dropped_rows_create_breaks_only_between_surviving_rows">test_dropped_rows_create_breaks_only_between_surviving_rows() (devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest method)</a>
@@ -5644,8 +5719,6 @@
       <li><a href="_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestBoundaryMapCard.test_each_corner_gets_a_marker_and_two_corners_make_an_outline">test_each_corner_gets_a_marker_and_two_corners_make_an_outline() (devkit_ui.test_plan_cards.TestBoundaryMapCard method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_ros_log_forwarding.html#devkit_ui.test_ros_log_forwarding.TestRosLogForwarding.test_each_level_uses_matching_ros_severity">test_each_level_uses_matching_ros_severity() (devkit_ui.test_ros_log_forwarding.TestRosLogForwarding method)</a>
-</li>
-      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped.test_each_literal_value_converts_to_the_member_of_the_same_name">test_each_literal_value_converts_to_the_member_of_the_same_name() (devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionStoreCard.test_each_mission_shows_its_action_name_size_due_time_and_last_result">test_each_mission_shows_its_action_name_size_due_time_and_last_result() (devkit_ui.test_plan_queue_cards.TestMissionStoreCard method)</a>
 </li>
@@ -5703,11 +5776,11 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_mission_boundaries.html#devkit_ui.test_mission_boundaries.TestExecutionBoundaries.test_estop_after_transit_prevents_tool_activation">test_estop_after_transit_prevents_tool_activation() (devkit_ui.test_mission_boundaries.TestExecutionBoundaries method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_run_service_cards.html#devkit_ui.test_run_service_cards.TestJoystickControlCard.test_estop_button_follows_the_drivers_confirmation_not_the_click">test_estop_button_follows_the_drivers_confirmation_not_the_click() (devkit_ui.test_run_service_cards.TestJoystickControlCard method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_mission_domain_service.html#devkit_ui.test_mission_domain_service.TestMissionExecution.test_estop_cancels_before_first_goal">test_estop_cancels_before_first_goal() (devkit_ui.test_mission_domain_service.TestMissionExecution method)</a>
 </li>
-      <li><a href="_autosummary/devkit_ui.test_run_service_cards.html#devkit_ui.test_run_service_cards.TestJoystickControlCard.test_estop_click_updates_service_state_label_and_color">test_estop_click_updates_service_state_label_and_color() (devkit_ui.test_run_service_cards.TestJoystickControlCard method)</a>
-</li>
-      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_estop_toggles_both_directions_and_keeps_messages_independent">test_estop_toggles_both_directions_and_keeps_messages_independent() (devkit_ui.test_drive_services.TestDriveServices method)</a>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_estop_requests_alternate_and_state_follows_only_the_acknowledgement">test_estop_requests_alternate_and_state_follows_only_the_acknowledgement() (devkit_ui.test_drive_services.TestDriveServices method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_every_row_stays_inside_the_field">test_every_row_stays_inside_the_field() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
 </li>
@@ -5867,7 +5940,7 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack.test_get_missing_node_returns_none_as_documented">test_get_missing_node_returns_none_as_documented() (devkit_ui.test_topology_services.TestTopologyStack method)</a>
 </li>
-      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_global_view_model_uses_service_result">test_global_view_model_uses_service_result() (devkit_ui.test_drive_services.TestDriveServices method)</a>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_global_view_model_registers_for_confirmations">test_global_view_model_registers_for_confirmations() (devkit_ui.test_drive_services.TestDriveServices method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_nav_page.html#devkit_ui.test_nav_page.TestNavPage.test_go_passes_the_live_soft_estop_state">test_go_passes_the_live_soft_estop_state() (devkit_ui.test_nav_page.TestNavPage method)</a>
 </li>
@@ -5918,6 +5991,10 @@
       <li><a href="_autosummary/devkit_ui.test_topo_row_builder.html#devkit_ui.test_topo_row_builder.TestRowRepair.test_headlands_are_reported_skipped_with_fewer_than_two_row_ends">test_headlands_are_reported_skipped_with_fewer_than_two_row_ends() (devkit_ui.test_topo_row_builder.TestRowRepair method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_page_composition.html#devkit_ui.test_page_composition.TestSystemPage.test_health_cards_share_one_stretched_row">test_health_cards_share_one_stretched_row() (devkit_ui.test_page_composition.TestSystemPage method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_heartbeats_without_a_held_gesture_do_not_start_motion">test_heartbeats_without_a_held_gesture_do_not_start_motion() (devkit_ui.test_drive_services.TestDriveServices method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_held_position_stays_active_with_client_heartbeats_then_stops_when_they_cease">test_held_position_stays_active_with_client_heartbeats_then_stops_when_they_cease() (devkit_ui.test_drive_services.TestDriveServices method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestDropNodeCard.test_hint_current_node_and_status_bindings_cover_boundary_states">test_hint_current_node_and_status_bindings_cover_boundary_states() (devkit_ui.test_run_ui.TestDropNodeCard method)</a>
 </li>
@@ -6004,6 +6081,8 @@
       <li><a href="_autosummary/devkit_ui.test_topo_renderer.html#devkit_ui.test_topo_renderer.TestTopoRendererRowLabels.test_known_row_roles_use_distinct_glyphs">test_known_row_roles_use_distinct_glyphs() (devkit_ui.test_topo_renderer.TestTopoRendererRowLabels method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_latched_spec_is_reliable_transient_local_keep_last">test_latched_spec_is_reliable_transient_local_keep_last() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_late_heartbeat_cannot_renew_an_expired_lease">test_late_heartbeat_cannot_renew_an_expired_lease() (devkit_ui.test_drive_services.TestDriveServices method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_f2c_row_persistence_regressions.html#devkit_ui.test_f2c_row_persistence_regressions.TestSaveRegressions.test_later_swath_error_does_not_persist_partial_build_or_delete_old_rows">test_later_swath_error_does_not_persist_partial_build_or_delete_old_rows() (devkit_ui.test_f2c_row_persistence_regressions.TestSaveRegressions method)</a>
 </li>
@@ -6183,6 +6262,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_sim_asset_service.html#devkit_ui.test_sim_asset_service.TestSoilImport.test_new_import_replaces_previous_set">test_new_import_replaces_previous_set() (devkit_ui.test_sim_asset_service.TestSoilImport method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_new_input_renews_the_lease_and_recovers_after_expiry">test_new_input_renews_the_lease_and_recovers_after_expiry() (devkit_ui.test_drive_services.TestDriveServices method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_boundaries.html#devkit_ui.test_telemetry_boundaries.TestTelemetryBoundaries.test_new_valid_fix_restarts_both_freshness_windows">test_new_valid_fix_restarts_both_freshness_windows() (devkit_ui.test_telemetry_boundaries.TestTelemetryBoundaries method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.TestMissionViewModel.test_next_due_and_running_delegate">test_next_due_and_running_delegate() (devkit_ui.test_mission_view_model.TestMissionViewModel method)</a>
@@ -6347,10 +6428,10 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_boundaries.html#devkit_ui.test_telemetry_boundaries.TestTelemetryBoundaries.test_pose_uses_full_quaternion_and_does_not_require_odometry">test_pose_uses_full_quaternion_and_does_not_require_odometry() (devkit_ui.test_telemetry_boundaries.TestTelemetryBoundaries method)</a>
 </li>
-      <li><a href="_autosummary/devkit_ui.test_topo_row_builder.html#devkit_ui.test_topo_row_builder.TestBuildRowNodes.test_positions_are_offset_by_the_anchor_pose">test_positions_are_offset_by_the_anchor_pose() (devkit_ui.test_topo_row_builder.TestBuildRowNodes method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/devkit_ui.test_topo_row_builder.html#devkit_ui.test_topo_row_builder.TestBuildRowNodes.test_positions_are_offset_by_the_anchor_pose">test_positions_are_offset_by_the_anchor_pose() (devkit_ui.test_topo_row_builder.TestBuildRowNodes method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_sim_world_service.html#devkit_ui.test_sim_world_service.TestSimWorldService.test_process_start_error_propagates_without_becoming_rebuild_error">test_process_start_error_propagates_without_becoming_rebuild_error() (devkit_ui.test_sim_world_service.TestSimWorldService method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_drop_topo_node.html#devkit_ui.test_drop_topo_node.TestDropTopoNode.test_pruning_saved_edges_does_not_mutate_initial_node">test_pruning_saved_edges_does_not_mutate_initial_node() (devkit_ui.test_drop_topo_node.TestDropTopoNode method)</a>
@@ -6481,6 +6562,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack.test_remove_rejects_unloaded_or_missing_node_without_side_effects">test_remove_rejects_unloaded_or_missing_node_without_side_effects() (devkit_ui.test_topology_services.TestTopologyStack method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.TestRemoveLayer.test_removes_the_layer_through_leaflet">test_removes_the_layer_through_leaflet() (devkit_ui.test_obstacle_cards.TestRemoveLayer method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.test_renamed_copy_follows_new_name_and_leaves_original">test_renamed_copy_follows_new_name_and_leaves_original() (in module devkit_ui.test_models)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_models.html#devkit_ui.test_models.TestTopoDoc.test_renamed_copy_preserves_payload_and_isolates_nested_mutations">test_renamed_copy_preserves_payload_and_isolates_nested_mutations() (devkit_ui.test_models.TestTopoDoc method)</a>
@@ -6518,6 +6601,10 @@
       <li><a href="_autosummary/devkit_ui.test_f2c_row_persistence.html#devkit_ui.test_f2c_row_persistence.TestRepairPersistence.test_repair_updates_memory_and_replays_edges_on_separate_persisted_document">test_repair_updates_memory_and_replays_edges_on_separate_persisted_document() (devkit_ui.test_f2c_row_persistence.TestRepairPersistence method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_f2c_row_metadata.html#devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata.test_repair_uses_selected_mode_for_each_waypoint_and_navigation_for_headlands">test_repair_uses_selected_mode_for_each_waypoint_and_navigation_for_headlands() (devkit_ui.test_f2c_row_metadata.TestF2CRowMetadata method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_repeat_resends_a_fresh_joystick_command_until_it_is_released">test_repeat_resends_a_fresh_joystick_command_until_it_is_released() (devkit_ui.test_drive_services.TestDriveServices method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_repeat_stops_when_input_expires_without_a_release_event">test_repeat_stops_when_input_expires_without_a_release_event() (devkit_ui.test_drive_services.TestDriveServices method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_mission_boundaries.html#devkit_ui.test_mission_boundaries.TestResolutionBoundaries.test_repeated_rows_keep_queue_order_and_independent_parameters">test_repeated_rows_keep_queue_order_and_independent_parameters() (devkit_ui.test_mission_boundaries.TestResolutionBoundaries method)</a>
 </li>
@@ -6654,8 +6741,6 @@
       <li><a href="_autosummary/devkit_ui.test_plan_application_service.html#devkit_ui.test_plan_application_service.TestSaveWithoutRows.test_saving_before_planning_reports_and_writes_nothing">test_saving_before_planning_reports_and_writes_nothing() (devkit_ui.test_plan_application_service.TestSaveWithoutRows method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_topology_view_model.html#devkit_ui.test_topology_view_model.TestMapArchive.test_saving_copy_keeps_live_map_and_does_not_notify_archive_callbacks">test_saving_copy_keeps_live_map_and_does_not_notify_archive_callbacks() (devkit_ui.test_topology_view_model.TestMapArchive method)</a>
-</li>
-      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter.test_second_call_reads_the_declared_value_without_redeclaring">test_second_call_reads_the_declared_value_without_redeclaring() (devkit_ui.test_ros_gateway_qos.TestBoolParameter method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_navigation_goals.html#devkit_ui.test_navigation_goals.TestNavigationDomainService.test_second_goal_is_refused_while_one_is_running">test_second_goal_is_refused_while_one_is_running() (devkit_ui.test_navigation_goals.TestNavigationDomainService method)</a>
 </li>
@@ -6999,6 +7084,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_row_planning.html#devkit_ui.test_row_planning.TestHeadlandNeighbourPairs.test_two_rows_are_joined_at_each_end">test_two_rows_are_joined_at_each_end() (devkit_ui.test_row_planning.TestHeadlandNeighbourPairs method)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.test_drive_services.html#devkit_ui.test_drive_services.TestDriveServices.test_unacknowledged_request_never_shows_a_stop">test_unacknowledged_request_never_shows_a_stop() (devkit_ui.test_drive_services.TestDriveServices method)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.missions.test_store.html#devkit_ui.missions.test_store.TestValidateMission.test_uncleaned_name_is_rejected">test_uncleaned_name_is_rejected() (devkit_ui.missions.test_store.TestValidateMission method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.TestObstacleUndo.test_undo_prompt_times_out_once_but_ignores_deleted_dialog">test_undo_prompt_times_out_once_but_ignores_deleted_dialog() (devkit_ui.test_run_ui.TestObstacleUndo method)</a>
@@ -7026,8 +7113,6 @@
       <li><a href="_autosummary/devkit_ui.test_sim_world_service.html#devkit_ui.test_sim_world_service.TestSimWorldService.test_unknown_crop_model_is_rejected_before_worldgen_runs">test_unknown_crop_model_is_rejected_before_worldgen_runs() (devkit_ui.test_sim_world_service.TestSimWorldService method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.missions.test_store.html#devkit_ui.missions.test_store.TestMissionStoreEditing.test_unknown_mission_has_no_due_time">test_unknown_mission_has_no_due_time() (devkit_ui.missions.test_store.TestMissionStoreEditing method)</a>
-</li>
-      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped.test_unknown_policy_name_raises_key_error">test_unknown_policy_name_raises_key_error() (devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestToQosProfile.test_unknown_policy_names_raise_before_constructing_a_profile">test_unknown_policy_names_raise_before_constructing_a_profile() (devkit_ui.test_ros_gateway_qos.TestToQosProfile method)</a>
 </li>
@@ -7066,8 +7151,6 @@
       <li><a href="_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestGps.test_valid_real_fix_is_cached_and_timestamped">test_valid_real_fix_is_cached_and_timestamped() (devkit_ui.test_telemetry_services.TestGps method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.BuildObstaclePolysTest.test_valid_ring_becomes_polygon_with_matching_area">test_valid_ring_becomes_polygon_with_matching_area() (devkit_f2c_planner.test_obstacles.BuildObstaclePolysTest method)</a>
-</li>
-      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter.test_value_declared_elsewhere_is_kept">test_value_declared_elsewhere_is_kept() (devkit_ui.test_ros_gateway_qos.TestBoolParameter method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_telemetry_services.html#devkit_ui.test_telemetry_services.TestApplicationServiceAndViewModel.test_velocities_start_at_zero">test_velocities_start_at_zero() (devkit_ui.test_telemetry_services.TestApplicationServiceAndViewModel method)</a>
 </li>
@@ -7147,8 +7230,6 @@
 </li>
       <li><a href="_autosummary/devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestBatteryCard">TestBatteryCard (class in devkit_ui.test_system_page_cards)</a>
 </li>
-      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestBoolParameter">TestBoolParameter (class in devkit_ui.test_ros_gateway_qos)</a>
-</li>
       <li><a href="_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestBoundaryMapCard">TestBoundaryMapCard (class in devkit_ui.test_plan_cards)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_topo_row_builder_boundaries.html#devkit_ui.test_topo_row_builder_boundaries.TestBuildBoundaries">TestBuildBoundaries (class in devkit_ui.test_topo_row_builder_boundaries)</a>
@@ -7186,8 +7267,6 @@
       <li><a href="_autosummary/devkit_ui.test_drop_topo_node.html#devkit_ui.test_drop_topo_node.TestDropTopoNode">TestDropTopoNode (class in devkit_ui.test_drop_topo_node)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestEspCard">TestEspCard (class in devkit_ui.test_system_page_cards)</a>
-</li>
-      <li><a href="_autosummary/devkit_ui.test_ros_gateway_qos.html#devkit_ui.test_ros_gateway_qos.TestEveryDeclaredPolicyIsMapped">TestEveryDeclaredPolicyIsMapped (class in devkit_ui.test_ros_gateway_qos)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_mission_boundaries.html#devkit_ui.test_mission_boundaries.TestExecutionBoundaries">TestExecutionBoundaries (class in devkit_ui.test_mission_boundaries)</a>
 </li>
@@ -7304,6 +7383,8 @@
       <li><a href="_autosummary/devkit_ui.test_qos.html#devkit_ui.test_qos.TestQosSpec">TestQosSpec (class in devkit_ui.test_qos)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_sim_uploads.html#devkit_ui.test_sim_uploads.TestReadUpload">TestReadUpload (class in devkit_ui.test_sim_uploads)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.test_obstacle_cards.html#devkit_ui.test_obstacle_cards.TestRemoveLayer">TestRemoveLayer (class in devkit_ui.test_obstacle_cards)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.test_plan_cards.html#devkit_ui.test_plan_cards.TestRepair">TestRepair (class in devkit_ui.test_plan_cards)</a>
 </li>
@@ -7425,6 +7506,12 @@
 </li>
       <li><a href="_autosummary/devkit_ui.plan_fake_ui.html#devkit_ui.plan_fake_ui.texts">texts() (in module devkit_ui.plan_fake_ui)</a>
 </li>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor.timeout_s">timeout_s (devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor property)</a>
+
+      <ul>
+        <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html#devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog.timeout_s">(devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog property)</a>
+</li>
+      </ul></li>
       <li><a href="_autosummary/devkit_ui.test_run_ui.html#devkit_ui.test_run_ui.FakeUi.timer">timer() (devkit_ui.test_run_ui.FakeUi method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties.timestamp">timestamp (devkit_ui.models.TopoProperties attribute)</a>
@@ -7531,9 +7618,11 @@
 </li>
       <li><a href="_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanFailure.UNEXPECTED">UNEXPECTED (devkit_ui.plan_types.PlanFailure attribute)</a>
 </li>
-      <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.update">update() (devkit_ui.missions.MissionStore method)</a>
+      <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html#devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog.update">update() (devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog method)</a>
 
       <ul>
+        <li><a href="_autosummary/devkit_ui.missions.html#devkit_ui.missions.MissionStore.update">(devkit_ui.missions.MissionStore method)</a>
+</li>
         <li><a href="_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.update">(devkit_ui.missions.sqlite.MissionSqliteStore method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.store.MissionStore.update">(devkit_ui.missions.store.MissionStore method)</a>

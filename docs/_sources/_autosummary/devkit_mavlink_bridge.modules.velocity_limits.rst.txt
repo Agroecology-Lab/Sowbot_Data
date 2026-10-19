@@ -1,0 +1,12 @@
+devkit\_mavlink\_bridge.modules.velocity\_limits
+================================================
+
+.. automodule:: devkit_mavlink_bridge.modules.velocity_limits
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      limit_velocity
+   

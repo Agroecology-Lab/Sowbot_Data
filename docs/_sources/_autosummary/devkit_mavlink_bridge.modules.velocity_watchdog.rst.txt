@@ -1,0 +1,12 @@
+devkit\_mavlink\_bridge.modules.velocity\_watchdog
+==================================================
+
+.. automodule:: devkit_mavlink_bridge.modules.velocity_watchdog
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CmdVelWatchdog
+   

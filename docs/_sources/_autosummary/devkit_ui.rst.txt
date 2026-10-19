@@ -93,6 +93,7 @@
    test_topology_view_model
    test_track_mode
    test_ui_node_mission
+   test_web_auth
    time_utils
    topo_defaults
    topo_results
@@ -101,3 +102,4 @@
    ui_node
    utils
    view_models
+   web_auth
