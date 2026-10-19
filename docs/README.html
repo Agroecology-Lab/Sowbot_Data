@@ -79,7 +79,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#interactive-shell">Interactive Shell</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#diagnostics">Diagnostics</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#after-running-login-sh">After running ./login.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#after-running-tools-login-sh">After running ./tools/login.sh</a></li>
 </ul>
 </li>
 </ul>
@@ -1057,7 +1057,7 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 </tr>
 <tr class="row-even"><td><p>F2</p></td>
 <td><p>Stable device addressing</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">fixusb.py</span></code> with Jetson/generic architecture detection, kernel <code class="docutils literal notranslate"><span class="pre">low_latency</span></code> mode, and udev symlink generation. Writes <code class="docutils literal notranslate"><span class="pre">.env</span></code> consumed by all launch files. Note: <code class="docutils literal notranslate"><span class="pre">run_neo()</span></code> never calls <code class="docutils literal notranslate"><span class="pre">fixusb.py</span></code> so <code class="docutils literal notranslate"><span class="pre">.env</span></code> is not written for neo-only runs.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tools/fixusb.py</span></code> with Jetson/generic architecture detection, kernel <code class="docutils literal notranslate"><span class="pre">low_latency</span></code> mode, and udev symlink generation. Writes <code class="docutils literal notranslate"><span class="pre">.env</span></code> consumed by all launch files. Note: <code class="docutils literal notranslate"><span class="pre">run_neo()</span></code> never calls <code class="docutils literal notranslate"><span class="pre">tools/fixusb.py</span></code> so <code class="docutils literal notranslate"><span class="pre">.env</span></code> is not written for neo-only runs.</p></td>
 <td><p>Done</p></td>
 <td><p>6</p></td>
 <td><p>2025</p></td>
@@ -1071,14 +1071,14 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 </tr>
 <tr class="row-even"><td><p>F4</p></td>
 <td><p>ublox DGNSS driver</p></td>
-<td><p>Dual F9P moving-base configuration with dynamic port assignment via <code class="docutils literal notranslate"><span class="pre">fixusb.py</span></code>.</p></td>
+<td><p>Dual F9P moving-base configuration with dynamic port assignment via <code class="docutils literal notranslate"><span class="pre">tools/fixusb.py</span></code>.</p></td>
 <td><p>Done</p></td>
 <td><p>6</p></td>
 <td><p>2026</p></td>
 </tr>
 <tr class="row-odd"><td><p>F5</p></td>
 <td><p>Diagnostics TUI</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">agbot-diagnostic.py</span></code> terminal status view of all hardware topics. Run inside container via <code class="docutils literal notranslate"><span class="pre">login.sh</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tools/agbot-diagnostic.py</span></code> terminal status view of all hardware topics. Run inside container via <code class="docutils literal notranslate"><span class="pre">tools/login.sh</span></code>.</p></td>
 <td><p>Done</p></td>
 <td><p>6</p></td>
 <td><p>2025</p></td>
@@ -1532,21 +1532,21 @@ For mouse-wheel scrolling instead, add <code class="docutils literal notranslate
 <section id="interactive-shell">
 <h3>Interactive Shell<a class="headerlink" href="#interactive-shell" title="Link to this heading"></a></h3>
 <p>To enter the running container for debugging or manual ROS 2 commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./login.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./tools/login.sh
 </pre></div>
 </div>
 </section>
 <section id="diagnostics">
 <h3>Diagnostics<a class="headerlink" href="#diagnostics" title="Link to this heading"></a></h3>
 <p>If hardware is connected but topics are not flowing, run the diagnostic tool from inside the container:</p>
-<section id="after-running-login-sh">
-<h4>After running ./login.sh<a class="headerlink" href="#after-running-login-sh" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>agbot-diagnostic.py
+<section id="after-running-tools-login-sh">
+<h4>After running ./tools/login.sh<a class="headerlink" href="#after-running-tools-login-sh" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>tools/agbot-diagnostic.py
 </pre></div>
 </div>
 <p><img alt="TUI Status." src="https://raw.githubusercontent.com/Agroecology-Lab/Open_agbot_devkit_ros/refs/heads/main/assets/Screenshot%20From%202026-01-21%2018-07-45.png" /></p>
 <p>You can also make it verbose with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>agbot-diagnostic.py<span class="w"> </span>full
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>tools/agbot-diagnostic.py<span class="w"> </span>full
 </pre></div>
 </div>
 </section>
