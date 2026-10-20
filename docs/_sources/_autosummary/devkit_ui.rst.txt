@@ -20,7 +20,6 @@
    obstacles
    pages
    parse
-   plan_fake_ui
    plan_import
    plan_types
    process_registry
@@ -29,80 +28,10 @@
    row_planning
    sim_asset_store
    terrain_mask
-   test_actions
-   test_delete_dialogs
-   test_drive_services
-   test_drop_topo_node
-   test_f2c_row_metadata
-   test_f2c_row_persistence
-   test_f2c_row_persistence_regressions
-   test_map_failures
-   test_map_operations
-   test_mission_application_service
-   test_mission_boundaries
-   test_mission_domain_service
-   test_mission_view_model
-   test_models
-   test_nav_page
-   test_navigation_goals
-   test_navigation_service_wiring
-   test_obstacle_application_service
-   test_obstacle_cards
-   test_obstacle_manager_gateway
-   test_obstacle_view_model
-   test_page_composition
-   test_parse
-   test_plan_application_service
-   test_plan_cards
-   test_plan_import
-   test_plan_page_state
-   test_plan_queue_cards
-   test_plan_service_boundaries
-   test_plan_types
-   test_process_cleanup
-   test_process_registry
-   test_qos
-   test_robot_brain_and_discovery_services
-   test_ros_gateway_qos
-   test_ros_log_forwarding
-   test_row_actions
-   test_row_planning
-   test_row_planning_pipeline
-   test_run_service_cards
-   test_run_ui
-   test_sim_asset_crop_regressions
-   test_sim_asset_service
-   test_sim_asset_soil_regressions
-   test_sim_asset_store
-   test_sim_launch_cards
-   test_sim_uploads
-   test_sim_world_service
-   test_system_application_service
-   test_system_page_cards
-   test_system_view_model
-   test_system_widgets
-   test_telemetry_boundaries
-   test_telemetry_gateway
-   test_telemetry_presentation
-   test_telemetry_services
-   test_time_utils
-   test_tools_card
-   test_topo_defaults
-   test_topo_renderer
-   test_topo_row_builder
-   test_topo_row_builder_boundaries
-   test_topo_row_builder_regressions
-   test_topology_edit_service
-   test_topology_persistence
-   test_topology_services
-   test_topology_view_model
-   test_track_mode
-   test_web_auth
    time_utils
    topo_defaults
    topo_results
    topo_row_builder
-   topo_test_fakes
    ui_node
    utils
    view_models
