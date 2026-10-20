@@ -15,6 +15,7 @@
    constants
    dem
    domain_services
+   map_anchor
    missions
    models
    obstacles

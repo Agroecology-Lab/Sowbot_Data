@@ -18,8 +18,10 @@ devkit\_ui.application\_services
    robot_brain_application_service
    row_discovery_application_service
    sim_asset_service
+   sim_process_service
    sim_world_service
    system_application_service
    telemetry_application_service
+   tool_state
    topology_application_service
    topology_edit_service

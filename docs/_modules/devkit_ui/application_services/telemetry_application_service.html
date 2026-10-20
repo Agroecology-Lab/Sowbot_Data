@@ -246,9 +246,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html">devkit_ui.application_services.sim_process_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
 </ul>
@@ -272,6 +274,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.domain_services.telemetry_domain_service.html">devkit_ui.domain_services.telemetry_domain_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.domain_services.topo_map_store.html">devkit_ui.domain_services.topo_map_store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.map_anchor.html">devkit_ui.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor"><code class="docutils literal notranslate"><span class="pre">MapAnchor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
@@ -424,6 +430,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html">devkit_ui.view_models.sim_process_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
@@ -544,7 +551,12 @@
   <h1>Source code for devkit_ui.application_services.telemetry_application_service</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">NavSatStatus</span>
+
+<span class="kn">from</span> <span class="nn">devkit_ui.map_anchor</span> <span class="kn">import</span> <span class="n">MapAnchor</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Odometry</span>
@@ -620,6 +632,30 @@
         <span class="k">if</span> <span class="n">odom</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">odom</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">odom</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span></div>
+
+
+<div class="viewcode-block" id="TelemetryApplicationService.map_anchor">
+<a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.telemetry_application_service.html#devkit_ui.application_services.telemetry_application_service.TelemetryApplicationService.map_anchor">[docs]</a>
+    <span class="k">def</span> <span class="nf">map_anchor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MapAnchor</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the map position and GPS fix to project lat/lon through, or None if unusable.</span>
+
+<span class="sd">        Return None before odometry or a fix has arrived, for a status below STATUS_FIX,</span>
+<span class="sd">        for a nonfinite fix, and for coordinates both below 1e-9 degrees in magnitude.</span>
+<span class="sd">        Odometry coordinates are passed on as they are. Errors reading either message propagate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">odom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry</span><span class="o">.</span><span class="n">latest_odom</span>
+        <span class="n">gps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry</span><span class="o">.</span><span class="n">latest_gps</span>
+        <span class="k">if</span> <span class="n">odom</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">gps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">gps</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">status</span> <span class="o">&lt;</span> <span class="n">NavSatStatus</span><span class="o">.</span><span class="n">STATUS_FIX</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">gps</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">gps</span><span class="o">.</span><span class="n">longitude</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">lon</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">odom</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span>
+        <span class="k">return</span> <span class="n">MapAnchor</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TelemetryApplicationService.robot_pose">

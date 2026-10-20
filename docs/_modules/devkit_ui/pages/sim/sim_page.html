@@ -246,9 +246,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.sim_process_service.html">devkit_ui.application_services.sim_process_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
 </ul>
@@ -272,6 +274,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.domain_services.telemetry_domain_service.html">devkit_ui.domain_services.telemetry_domain_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.domain_services.topo_map_store.html">devkit_ui.domain_services.topo_map_store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/devkit_ui.map_anchor.html">devkit_ui.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor"><code class="docutils literal notranslate"><span class="pre">MapAnchor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
@@ -424,6 +430,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html">devkit_ui.view_models.sim_process_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
@@ -549,6 +556,7 @@
 <span class="kn">from</span> <span class="nn">devkit_ui.pages.sim.plant_placement_card</span> <span class="kn">import</span> <span class="n">PlantPlacementCard</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.pages.sim.row_follow_card</span> <span class="kn">import</span> <span class="n">RowFollowCard</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.pages.sim.soil_texture_card</span> <span class="kn">import</span> <span class="n">SoilTextureCard</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.view_models.sim_process_view_model</span> <span class="kn">import</span> <span class="n">SimProcessViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.sim_view_model</span> <span class="kn">import</span> <span class="n">SimViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.topology_view_model</span> <span class="kn">import</span> <span class="n">TopologyViewModel</span>
 
@@ -560,20 +568,23 @@
 
 <div class="viewcode-block" id="SimPage.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.sim.sim_page.html#devkit_ui.pages.sim.sim_page.SimPage.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim_vm</span><span class="p">:</span> <span class="n">SimViewModel</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim_vm</span><span class="p">:</span> <span class="n">SimViewModel</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">,</span>
+                 <span class="n">process_vm</span><span class="p">:</span> <span class="n">SimProcessViewModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compose the Sim page from its cards.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            sim_vm (SimViewModel): Access to the crop models and soil textures the world is built from.</span>
 <span class="sd">            topo_vm (TopologyViewModel): The live map the world is generated from; saves copies of</span>
 <span class="sd">                it and archives and clears it.</span>
+<span class="sd">            process_vm (SimProcessViewModel): Starts, stops and reports on the sim and row-follow</span>
+<span class="sd">                processes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full gap-3&#39;</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="p">:</span>
             <span class="n">plant_placement</span> <span class="o">=</span> <span class="n">PlantPlacementCard</span><span class="p">(</span><span class="n">sim_vm</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
-            <span class="n">GazeboCard</span><span class="p">(</span><span class="n">sim_vm</span><span class="p">,</span> <span class="n">plant_placement</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
-            <span class="n">RowFollowCard</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
+            <span class="n">GazeboCard</span><span class="p">(</span><span class="n">sim_vm</span><span class="p">,</span> <span class="n">process_vm</span><span class="p">,</span> <span class="n">plant_placement</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
+            <span class="n">RowFollowCard</span><span class="p">(</span><span class="n">process_vm</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
             <span class="n">SoilTextureCard</span><span class="p">(</span><span class="n">sim_vm</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
             <span class="n">MapArchiveCard</span><span class="p">(</span><span class="n">topo_vm</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span></div>
 </div>

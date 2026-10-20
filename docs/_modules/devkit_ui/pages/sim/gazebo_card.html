@@ -246,9 +246,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.sim_process_service.html">devkit_ui.application_services.sim_process_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
 </ul>
@@ -272,6 +274,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.domain_services.telemetry_domain_service.html">devkit_ui.domain_services.telemetry_domain_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.domain_services.topo_map_store.html">devkit_ui.domain_services.topo_map_store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/devkit_ui.map_anchor.html">devkit_ui.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor"><code class="docutils literal notranslate"><span class="pre">MapAnchor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
@@ -424,6 +430,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html">devkit_ui.view_models.sim_process_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
@@ -542,29 +549,24 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.pages.sim.gazebo_card</h1><div class="highlight"><pre>
-<span></span><span class="c1"># pylint: disable=consider-using-with</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">run</span> <span class="k">as</span> <span class="n">ng_run</span>
 <span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">SIM_MAP_FILE</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.pages.sim.plant_placement_card</span> <span class="kn">import</span> <span class="n">PlantSettings</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.widgets</span> <span class="kn">import</span> <span class="n">link_button</span><span class="p">,</span> <span class="n">request_host</span><span class="p">,</span> <span class="n">restore_label</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.process_registry</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">alive</span><span class="p">,</span>
-    <span class="n">kill_group</span><span class="p">,</span>
-    <span class="n">shared</span><span class="p">,</span>
-    <span class="n">spawn_logged</span><span class="p">,</span>
-    <span class="n">start_vnc_stack</span><span class="p">,</span>
-    <span class="n">stop_all</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.pages.widgets</span> <span class="kn">import</span> <span class="n">STATUS_COLOURS</span><span class="p">,</span> <span class="n">link_button</span><span class="p">,</span> <span class="n">request_host</span><span class="p">,</span> <span class="n">show_status</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.sim_view_model</span> <span class="kn">import</span> <span class="n">SimViewModel</span><span class="p">,</span> <span class="n">WorldRebuildError</span>
 
-<span class="n">_MUTED</span> <span class="o">=</span> <span class="s1">&#39;color:#57606a&#39;</span>
-<span class="n">_OK</span> <span class="o">=</span> <span class="s1">&#39;color:#1a7f37&#39;</span>
-<span class="n">_ERROR</span> <span class="o">=</span> <span class="s1">&#39;color:#cf222e&#39;</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">devkit_ui.view_models.sim_process_view_model</span> <span class="kn">import</span> <span class="n">GazeboMode</span><span class="p">,</span> <span class="n">SimProcessViewModel</span>
+
+<span class="n">_MUTED</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;color:</span><span class="si">{</span><span class="n">STATUS_COLOURS</span><span class="p">[</span><span class="s2">&quot;muted&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">_OK</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;color:</span><span class="si">{</span><span class="n">STATUS_COLOURS</span><span class="p">[</span><span class="s2">&quot;ok&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">_ERROR</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;color:</span><span class="si">{</span><span class="n">STATUS_COLOURS</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
 
 <span class="c1"># Robot model selector: controls which xacro is passed as the urdf arg to sowbot_sim.launch.py.</span>
 <span class="c1"># sowbot_01:     TrackedVehicle + TrackController (DART required)</span>
@@ -584,37 +586,24 @@
 
 <div class="viewcode-block" id="GazeboCard.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.sim.gazebo_card.html#devkit_ui.pages.sim.gazebo_card.GazeboCard.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim_vm</span><span class="p">:</span> <span class="n">SimViewModel</span><span class="p">,</span> <span class="n">plant_settings</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">PlantSettings</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim_vm</span><span class="p">:</span> <span class="n">SimViewModel</span><span class="p">,</span> <span class="n">process_vm</span><span class="p">:</span> <span class="n">SimProcessViewModel</span><span class="p">,</span>
+                 <span class="n">plant_settings</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">PlantSettings</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the robot model selector and the launch controls.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            sim_vm (SimViewModel): Rebuilds the world from the saved map and plant placement.</span>
+<span class="sd">            process_vm (SimProcessViewModel): Launches, stops and reports on the sim process.</span>
 <span class="sd">            plant_settings (Callable[[], PlantSettings]): Returns the plant placement to rebuild with.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sim_vm</span> <span class="o">=</span> <span class="n">sim_vm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vm</span> <span class="o">=</span> <span class="n">process_vm</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_plant_settings</span> <span class="o">=</span> <span class="n">plant_settings</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_xacro</span> <span class="o">=</span> <span class="s1">&#39;sowbot_01.xacro&#39;</span>
-        <span class="c1"># Handles are shared by every browser session, so a reload cannot orphan a running sim.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="s1">&#39;gazebo&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_spawn</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="s1">&#39;gazebo_spawn&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_daemons</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="s1">&#39;gazebo_daemons&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>  <span class="c1"># Xvfb, x11vnc, websockify</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_env</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="o">**</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span>
-            <span class="s1">&#39;TMAP2_FILE&#39;</span><span class="p">:</span> <span class="n">SIM_MAP_FILE</span><span class="p">,</span>
-            <span class="s1">&#39;GZ_SIM_RESOURCE_PATH&#39;</span><span class="p">:</span> <span class="p">(</span>
-                <span class="c1"># Forest3D-generated models (model://ground, model://crop/plant) live here; it must</span>
-                <span class="c1"># come first or gz sim aborts world load with &quot;Unable to find uri&quot;.</span>
-                <span class="s1">&#39;/workspace/models&#39;</span>
-                <span class="s1">&#39;:/workspace/install/virtual_maize_field/share/virtual_maize_field/models&#39;</span>
-                <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GZ_SIM_RESOURCE_PATH&#39;</span><span class="p">]</span>
-                   <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GZ_SIM_RESOURCE_PATH&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-            <span class="p">),</span>
-        <span class="p">}</span>
         <span class="k">with</span> <span class="bp">self</span><span class="p">:</span>
             <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;Gazebo Sim&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;font-semibold mb-2&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs font-mono&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="n">_MUTED</span><span class="p">)</span>
-            <span class="n">restore_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">show_status</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">,</span> <span class="n">process_vm</span><span class="o">.</span><span class="n">gazebo_status</span><span class="p">())</span>
             <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;items-center gap-3 mb-1&#39;</span><span class="p">):</span>
                 <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;&lt;span style=&quot;font-size:12px;color:#57606a;font-family:monospace&quot;&gt;Robot model&lt;/span&gt;&#39;</span><span class="p">)</span>
                 <span class="n">ui</span><span class="o">.</span><span class="n">toggle</span><span class="p">(</span>
@@ -622,13 +611,13 @@
                     <span class="n">on_change</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_select_model</span><span class="p">,</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;dense&#39;</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;items-center gap-2 flex-wrap&#39;</span><span class="p">):</span>
-                <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Launch Sim&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_launch</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Launch Sim&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_launch</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
                     <span class="s1">&#39;color=positive no-caps&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;px-4 font-bold&#39;</span><span class="p">)</span>
                 <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Rebuild World from Map&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_world</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
                     <span class="s1">&#39;outline no-caps&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;px-4&#39;</span><span class="p">)</span>
-                <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Launch Sim (headless)&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_launch</span><span class="p">(</span><span class="n">headless</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Launch Sim (headless)&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_launch</span><span class="p">(</span><span class="s1">&#39;headless&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
                     <span class="s1">&#39;outline no-caps&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;px-4&#39;</span><span class="p">)</span>
-                <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Launch Sim (browser)&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_launch_in_browser</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Launch Sim (browser)&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_launch</span><span class="p">(</span><span class="s1">&#39;browser&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
                     <span class="s1">&#39;outline no-caps&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;px-4&#39;</span><span class="p">)</span>
                 <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Stop Sim&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;outline no-caps&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;px-4&#39;</span><span class="p">)</span>
                 <span class="n">link_button</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;http://</span><span class="si">{</span><span class="n">request_host</span><span class="p">()</span><span class="si">}</span><span class="s1">:6080/vnc.html&#39;</span><span class="p">,</span> <span class="s1">&#39;↗ Gazebo (noVNC)&#39;</span><span class="p">)</span></div>
@@ -643,81 +632,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_sim_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headless</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the sowbot_sim launch command for the selected robot model.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;devkit_bringup&#39;</span><span class="p">,</span> <span class="s1">&#39;sowbot_sim.launch.py&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;world:=maize.world&#39;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s1">&#39;urdf:=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_xacro</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s1">&#39;headless:=</span><span class="si">{</span><span class="s2">&quot;true&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">headless</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="p">]</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_launch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">GazeboMode</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Launch the selected simulation and show the result.</span>
 
-    <span class="k">def</span> <span class="nf">_launch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headless</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Launch the selected simulation, optionally headless, and update its status.</span>
-
-<span class="sd">        Runs the same command as the CLI: `ros2 launch devkit_bringup sowbot_sim.launch.py</span>
-<span class="sd">        world:=maize.world urdf:=&lt;selected xacro&gt;`. This replaces the old Launch World / Spawn Robot</span>
-<span class="sd">        split, which ran sim.launch.py + nav2_only.launch.py instead. That path skipped</span>
-<span class="sd">        preflight_pkill, fusioncore and kill_bootstrap_tfs entirely (all of which only exist in</span>
-<span class="sd">        sowbot_sim.launch.py), causing stale wall-time bootstrap TFs to fight the real sim-time TF</span>
-<span class="sd">        forever and FusionCore to never run at all. Do not reintroduce that split.</span>
+<span class="sd">        The browser mode starts a virtual display first, so the launch runs off the UI loop.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">alive</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="s1">&#39;already running&#39;</span><span class="p">)</span>
-            <span class="k">return</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">spawn_logged</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_sim_cmd</span><span class="p">(</span><span class="n">headless</span><span class="p">),</span> <span class="s1">&#39;/tmp/gazebo_sim.log&#39;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sim launching</span><span class="si">{</span><span class="s2">&quot; (headless)&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">headless</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="si">}</span><span class="s1"> — &#39;</span>
-                       <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_xacro</span><span class="si">}</span><span class="s1"> — pid </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">_OK</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># pylint: disable=broad-exception-caught</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">_ERROR</span><span class="p">)</span>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_launch_in_browser</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Launch the sim on a virtual display that is viewable through noVNC.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">alive</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="s1">&#39;already running&#39;</span><span class="p">)</span>
-            <span class="k">return</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">await</span> <span class="n">ng_run</span><span class="o">.</span><span class="n">io_bound</span><span class="p">(</span><span class="n">start_vnc_stack</span><span class="p">,</span> <span class="s1">&#39;:99&#39;</span><span class="p">,</span> <span class="mi">5900</span><span class="p">,</span> <span class="mi">6080</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_daemons</span><span class="p">)</span>
-            <span class="c1"># Xvfb has no DRI/GLX driver, so it can&#39;t honour whatever hardware-render env manage.py set</span>
-            <span class="c1"># for the container. Force llvmpipe software GL for this process only (docs/research/Sim.md).</span>
-            <span class="c1">#</span>
-            <span class="c1"># Env vars alone are not enough for gz-sim: RViz&#39;s Ogre1/GLX renderer honours</span>
-            <span class="c1"># LIBGL_ALWAYS_SOFTWARE directly, but gz-sim&#39;s Ogre2 initialises via EGL_EXT_platform_device,</span>
-            <span class="c1"># which enumerates /dev/dri and selects a real GPU node. Mesa&#39;s software-force guard then</span>
-            <span class="c1"># refuses to override an explicitly-selected hardware device (the &quot;Not allowed to force</span>
-            <span class="c1"># software rendering...&quot; warning right before the segfault in gazebo_sim.log). This</span>
-            <span class="c1"># container&#39;s /dev:/dev + privileged mode means a real render node is always visible.</span>
-            <span class="c1">#</span>
-            <span class="c1"># Fix: hide /dev/dri from just this subprocess with a private mount namespace, the same</span>
-            <span class="c1"># trick gz-sim&#39;s own CI uses on GPU-less runners.</span>
-            <span class="n">env</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="p">,</span>
-                <span class="s1">&#39;DISPLAY&#39;</span><span class="p">:</span> <span class="s1">&#39;:99&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;LIBGL_ALWAYS_SOFTWARE&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;GALLIUM_DRIVER&#39;</span><span class="p">:</span> <span class="s1">&#39;llvmpipe&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;MESA_LOADER_DRIVER_OVERRIDE&#39;</span><span class="p">:</span> <span class="s1">&#39;llvmpipe&#39;</span><span class="p">,</span>
-            <span class="p">}</span>
-            <span class="n">quoted</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;</span><span class="se">\\</span><span class="s2">&#39;&#39;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sim_cmd</span><span class="p">())</span>
-            <span class="n">wrapped</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="s1">&#39;unshare&#39;</span><span class="p">,</span> <span class="s1">&#39;--mount&#39;</span><span class="p">,</span> <span class="s1">&#39;--propagation&#39;</span><span class="p">,</span> <span class="s1">&#39;private&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;-c&#39;</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s1">&#39;mount -t tmpfs tmpfs /dev/dri 2&gt;/dev/null; exec </span><span class="si">{</span><span class="n">quoted</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-            <span class="p">]</span>
-            <span class="c1"># Log to a file so a crashed launch is diagnosable: tail /tmp/gazebo_sim.log.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">spawn_logged</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="s1">&#39;/tmp/gazebo_sim.log&#39;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;browser mode — </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_xacro</span><span class="si">}</span><span class="s1"> — pid </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">_OK</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># pylint: disable=broad-exception-caught</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">_ERROR</span><span class="p">)</span>
+        <span class="n">show_status</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">,</span> <span class="k">await</span> <span class="n">ng_run</span><span class="o">.</span><span class="n">io_bound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vm</span><span class="o">.</span><span class="n">launch_gazebo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xacro</span><span class="p">,</span> <span class="n">mode</span><span class="p">))</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the sim and the display daemons.&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">handle</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_spawn</span><span class="p">):</span>
-            <span class="k">await</span> <span class="n">ng_run</span><span class="o">.</span><span class="n">io_bound</span><span class="p">(</span><span class="n">kill_group</span><span class="p">,</span> <span class="n">handle</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">handle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">await</span> <span class="n">ng_run</span><span class="o">.</span><span class="n">io_bound</span><span class="p">(</span><span class="n">stop_all</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_daemons</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">)</span>
+        <span class="n">show_status</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">,</span> <span class="k">await</span> <span class="n">ng_run</span><span class="o">.</span><span class="n">io_bound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vm</span><span class="o">.</span><span class="n">stop_gazebo</span><span class="p">))</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_rebuild_world</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rebuild maize.world from the saved topology map and the plant placement.</span>
@@ -726,7 +650,7 @@
 <span class="sd">        at launch, so a running sim must be stopped and relaunched to see a rebuild; this refuses</span>
 <span class="sd">        mid-run rather than silently doing nothing.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">alive</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_gazebo</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vm</span><span class="o">.</span><span class="n">gazebo_running</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="s1">&#39;stop the sim before rebuilding — Gazebo reads the world only at launch&#39;</span><span class="p">,</span> <span class="n">_ERROR</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="k">try</span><span class="p">:</span>

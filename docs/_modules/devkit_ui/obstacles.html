@@ -246,9 +246,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.sim_process_service.html">devkit_ui.application_services.sim_process_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
 </ul>
@@ -272,6 +274,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.telemetry_domain_service.html">devkit_ui.domain_services.telemetry_domain_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.topo_map_store.html">devkit_ui.domain_services.topo_map_store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.map_anchor.html">devkit_ui.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor"><code class="docutils literal notranslate"><span class="pre">MapAnchor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
@@ -424,6 +430,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.sim_process_view_model.html">devkit_ui.view_models.sim_process_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
@@ -596,7 +603,11 @@
 <span class="kn">import</span> <span class="nn">yaml</span>
 <span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Point32</span><span class="p">,</span> <span class="n">PolygonStamped</span>
 
+<span class="kn">from</span> <span class="nn">devkit_ui.map_anchor</span> <span class="kn">import</span> <span class="n">MapAnchor</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.qos</span> <span class="kn">import</span> <span class="n">LATCHED_QOS</span>
+
+<span class="c1"># Returns the current projection anchor, or None while it cannot be known.</span>
+<span class="n">AnchorSource</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">MapAnchor</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span>
 
 <span class="c1"># ── Constants ────────────────────────────────────────────────────────────────</span>
 
@@ -738,16 +749,15 @@
 
 <div class="viewcode-block" id="ObstacleManager.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">,</span> <span class="n">get_odom</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
-                 <span class="n">get_gps</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
-                 <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OBSTACLES_FILE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Store the RosGateway and the getters for the latest odometry and GPS fix.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">,</span> <span class="n">get_anchor</span><span class="p">:</span> <span class="n">AnchorSource</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OBSTACLES_FILE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Store the RosGateway and the source of the map-to-GPS projection anchor.</span>
 
-<span class="sd">        Nothing is loaded or published until start() is called.</span>
+<span class="sd">        get_anchor returns None until odometry and a usable GPS fix have both arrived. The manager</span>
+<span class="sd">        knows nothing about the messages the anchor is made from. Nothing is loaded or published</span>
+<span class="sd">        until start() is called.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ros</span>        <span class="o">=</span> <span class="n">ros</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_get_odom</span>   <span class="o">=</span> <span class="n">get_odom</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_get_gps</span>    <span class="o">=</span> <span class="n">get_gps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_get_anchor</span> <span class="o">=</span> <span class="n">get_anchor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_path</span>       <span class="o">=</span> <span class="n">path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span>       <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
@@ -975,25 +985,12 @@
 
     <span class="c1"># ── publishing ────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_current_anchor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return (map_x, map_y, lat, lon), in meters and degrees, for projection.</span>
+    <span class="k">def</span> <span class="nf">_current_anchor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MapAnchor</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the projection anchor, or None while it is not yet known.</span>
 
-<span class="sd">        Return None if either message is missing, GPS coordinates are nonfinite,</span>
-<span class="sd">        or both GPS coordinates have magnitude below 1e-9 degrees.</span>
-<span class="sd">        Odometry coordinates are returned without validation.</span>
-<span class="sd">        Getter errors and errors accessing or checking message fields propagate.</span>
+<span class="sd">        Errors from the anchor source propagate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">odom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_odom</span><span class="p">()</span>
-        <span class="n">gps</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_gps</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">odom</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">gps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">gps</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">gps</span><span class="o">.</span><span class="n">longitude</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">lon</span><span class="p">)):</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">odom</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">odom</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
-                <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_anchor</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish each obstacle as a PolygonStamped in the map frame.</span>

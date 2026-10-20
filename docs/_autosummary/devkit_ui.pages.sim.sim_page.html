@@ -249,9 +249,11 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_process_service.html">devkit_ui.application_services.sim_process_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
 </ul>
@@ -275,6 +277,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.telemetry_domain_service.html">devkit_ui.domain_services.telemetry_domain_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.topo_map_store.html">devkit_ui.domain_services.topo_map_store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.map_anchor.html">devkit_ui.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor"><code class="docutils literal notranslate"><span class="pre">MapAnchor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.missions.html">devkit_ui.missions</a><ul>
@@ -427,6 +433,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_process_view_model.html">devkit_ui.view_models.sim_process_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
@@ -565,7 +572,7 @@
 <p>Everything for running the Gazebo simulation: world assets, launch controls, row follow and map archive.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.pages.sim.sim_page.SimPage.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel" title="devkit_ui.view_models.sim_view_model.SimViewModel"><span class="pre">SimViewModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">topo_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.topology_view_model.html#devkit_ui.view_models.topology_view_model.TopologyViewModel" title="devkit_ui.view_models.topology_view_model.TopologyViewModel"><span class="pre">TopologyViewModel</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/pages/sim/sim_page.html#SimPage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.pages.sim.sim_page.SimPage.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel" title="devkit_ui.view_models.sim_view_model.SimViewModel"><span class="pre">SimViewModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">topo_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.topology_view_model.html#devkit_ui.view_models.topology_view_model.TopologyViewModel" title="devkit_ui.view_models.topology_view_model.TopologyViewModel"><span class="pre">TopologyViewModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel" title="devkit_ui.view_models.sim_process_view_model.SimProcessViewModel"><span class="pre">SimProcessViewModel</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/pages/sim/sim_page.html#SimPage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.pages.sim.sim_page.SimPage.__init__" title="Link to this definition"></a></dt>
 <dd><p>Compose the Sim page from its cards.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -573,6 +580,8 @@
 <li><p><strong>sim_vm</strong> (<a class="reference internal" href="devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel" title="devkit_ui.view_models.sim_view_model.SimViewModel"><em>SimViewModel</em></a>) – Access to the crop models and soil textures the world is built from.</p></li>
 <li><p><strong>topo_vm</strong> (<a class="reference internal" href="devkit_ui.view_models.topology_view_model.html#devkit_ui.view_models.topology_view_model.TopologyViewModel" title="devkit_ui.view_models.topology_view_model.TopologyViewModel"><em>TopologyViewModel</em></a>) – The live map the world is generated from; saves copies of
 it and archives and clears it.</p></li>
+<li><p><strong>process_vm</strong> (<a class="reference internal" href="devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel" title="devkit_ui.view_models.sim_process_view_model.SimProcessViewModel"><em>SimProcessViewModel</em></a>) – Starts, stops and reports on the sim and row-follow
+processes.</p></li>
 </ul>
 </dd>
 </dl>

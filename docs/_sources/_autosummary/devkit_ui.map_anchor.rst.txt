@@ -1,0 +1,12 @@
+devkit\_ui.map\_anchor
+======================
+
+.. automodule:: devkit_ui.map_anchor
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MapAnchor
+   

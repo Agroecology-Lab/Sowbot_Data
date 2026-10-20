@@ -10,7 +10,6 @@ devkit\_ui.pages.widgets
    
       doc_link
       link_button
-      report_if_exited
       request_host
-      restore_label
+      show_status
    

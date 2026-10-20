@@ -246,9 +246,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.sim_process_service.html">devkit_ui.application_services.sim_process_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
 </ul>
@@ -272,6 +274,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.telemetry_domain_service.html">devkit_ui.domain_services.telemetry_domain_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.topo_map_store.html">devkit_ui.domain_services.topo_map_store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.map_anchor.html">devkit_ui.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor"><code class="docutils literal notranslate"><span class="pre">MapAnchor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.missions.html">devkit_ui.missions</a><ul>
@@ -424,6 +430,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.sim_process_view_model.html">devkit_ui.view_models.sim_process_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
@@ -574,6 +581,7 @@
     <span class="n">RowDiscoveryApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_asset_service</span> <span class="kn">import</span> <span class="n">SimAssetService</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_process_service</span> <span class="kn">import</span> <span class="n">SimProcessApplicationService</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_world_service</span> <span class="kn">import</span> <span class="n">SimWorldService</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.application_services.system_application_service</span> <span class="kn">import</span> <span class="n">SystemApplicationService</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.application_services.telemetry_application_service</span> <span class="kn">import</span> <span class="p">(</span>
@@ -610,6 +618,7 @@
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.plan_view_model</span> <span class="kn">import</span> <span class="n">PlanViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.robot_brain_view_model</span> <span class="kn">import</span> <span class="n">RobotBrainViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.run_view_model</span> <span class="kn">import</span> <span class="n">RunViewModel</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.view_models.sim_process_view_model</span> <span class="kn">import</span> <span class="n">SimProcessViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.sim_view_model</span> <span class="kn">import</span> <span class="n">SimViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.system_view_model</span> <span class="kn">import</span> <span class="n">SystemViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.telemetry_view_model</span> <span class="kn">import</span> <span class="n">TelemetryViewModel</span>
@@ -700,15 +709,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_system_vm</span> <span class="o">=</span> <span class="n">SystemViewModel</span><span class="p">(</span><span class="n">SystemApplicationService</span><span class="p">())</span>
         <span class="n">sim_assets</span> <span class="o">=</span> <span class="n">SimAssetService</span><span class="p">(</span><span class="n">SimAssetStore</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sim_vm</span> <span class="o">=</span> <span class="n">SimViewModel</span><span class="p">(</span><span class="n">sim_assets</span><span class="p">,</span> <span class="n">SimWorldService</span><span class="p">(</span><span class="n">sim_assets</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sim_process_vm</span> <span class="o">=</span> <span class="n">SimProcessViewModel</span><span class="p">(</span><span class="n">SimProcessApplicationService</span><span class="p">())</span>
 
         <span class="c1"># Initialize with default demo document</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_topo_app_service</span><span class="o">.</span><span class="n">initialize_with_default</span><span class="p">()</span>
 
         <span class="c1"># OBSTACLE: manager owns obstacles.yaml + /obstacles publisher; the view model is what</span>
-        <span class="c1"># the cards bind to. Start after the telemetry service exists so the getters resolve.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_obstacle_mgr</span> <span class="o">=</span> <span class="n">ObstacleManager</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_ros</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_app_service</span><span class="o">.</span><span class="n">latest_odom</span><span class="p">,</span>
-            <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_app_service</span><span class="o">.</span><span class="n">latest_gps</span><span class="p">)</span>
+        <span class="c1"># the cards bind to. Start after the telemetry service exists, which supplies the anchor.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obstacle_mgr</span> <span class="o">=</span> <span class="n">ObstacleManager</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ros</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_app_service</span><span class="o">.</span><span class="n">map_anchor</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_obstacle_vm</span> <span class="o">=</span> <span class="n">ObstacleViewModel</span><span class="p">(</span>
             <span class="n">ObstacleApplicationService</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obstacle_mgr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_app_service</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_obstacle_mgr</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
@@ -758,7 +766,7 @@
             <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">tab_panel</span><span class="p">(</span><span class="n">tab_plan</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_plan_content</span><span class="p">()</span>
             <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">tab_panel</span><span class="p">(</span><span class="n">tab_sim</span><span class="p">):</span>
-                <span class="n">SimPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sim_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="p">)</span>
+                <span class="n">SimPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sim_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sim_process_vm</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">tab_panel</span><span class="p">(</span><span class="n">tab_system</span><span class="p">):</span>
                 <span class="n">SystemPage</span><span class="p">(</span>
                     <span class="n">telemetry_vm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_vm</span><span class="p">,</span>

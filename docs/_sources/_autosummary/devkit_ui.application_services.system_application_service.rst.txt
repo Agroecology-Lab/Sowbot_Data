@@ -9,5 +9,4 @@ devkit\_ui.application\_services.system\_application\_service
    .. autosummary::
    
       SystemApplicationService
-      ToolState
    

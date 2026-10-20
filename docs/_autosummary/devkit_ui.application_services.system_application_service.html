@@ -249,9 +249,11 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_process_service.html">devkit_ui.application_services.sim_process_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
 </ul>
@@ -275,6 +277,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.telemetry_domain_service.html">devkit_ui.domain_services.telemetry_domain_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.topo_map_store.html">devkit_ui.domain_services.topo_map_store</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.map_anchor.html">devkit_ui.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor"><code class="docutils literal notranslate"><span class="pre">MapAnchor</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.missions.html">devkit_ui.missions</a><ul>
@@ -427,6 +433,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_process_view_model.html">devkit_ui.view_models.sim_process_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
@@ -559,9 +566,6 @@ into a ‘busy’ result instead of a second process or a half-stopped one. No R
 <tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.application_services.system_application_service.SystemApplicationService" title="devkit_ui.application_services.system_application_service.SystemApplicationService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SystemApplicationService</span></code></a>()</p></td>
 <td><p>Start, stop and poll the System page tools; the tool keys are the TOOL_* constants.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.application_services.system_application_service.ToolState" title="devkit_ui.application_services.system_application_service.ToolState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolState</span></code></a>(kind[, pid, log, detail])</p></td>
-<td><p>What a tool call did or found.</p></td>
-</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -577,7 +581,7 @@ into a ‘busy’ result instead of a second process or a half-stopped one. No R
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.SystemApplicationService.exited">
-<span class="sig-name descname"><span class="pre">exited</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.application_services.system_application_service.ToolState" title="devkit_ui.application_services.system_application_service.ToolState"><span class="pre">ToolState</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#SystemApplicationService.exited"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.SystemApplicationService.exited" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">exited</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="devkit_ui.application_services.tool_state.html#devkit_ui.application_services.tool_state.ToolState" title="devkit_ui.application_services.tool_state.ToolState"><span class="pre">ToolState</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#SystemApplicationService.exited"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.SystemApplicationService.exited" title="Link to this definition"></a></dt>
 <dd><p>Return ‘exited’ with the return code if a started process has since died.</p>
 <p>Return ‘busy’ while a start or stop is in flight, ‘running’ for a live process and ‘idle’
 if nothing was started. The dead handle is kept, so the next start replaces it.</p>
@@ -585,7 +589,7 @@ if nothing was started. The dead handle is kept, so the next start replaces it.<
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.SystemApplicationService.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.application_services.system_application_service.ToolState" title="devkit_ui.application_services.system_application_service.ToolState"><span class="pre">ToolState</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#SystemApplicationService.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.SystemApplicationService.start" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="devkit_ui.application_services.tool_state.html#devkit_ui.application_services.tool_state.ToolState" title="devkit_ui.application_services.tool_state.ToolState"><span class="pre">ToolState</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#SystemApplicationService.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.SystemApplicationService.start" title="Link to this definition"></a></dt>
 <dd><p>Start tool unless it is running or another start or stop is in flight.</p>
 <p>Return ‘busy’ while the tool’s lock is held, ‘already_running’ for a live process, ‘error’
 with the exception text if launching fails, else ‘started’. A failed launch leaves the
@@ -594,13 +598,13 @@ handle as it was. Blocking for RViz, which starts the display stack: call off th
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.SystemApplicationService.status">
-<span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.application_services.system_application_service.ToolState" title="devkit_ui.application_services.system_application_service.ToolState"><span class="pre">ToolState</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#SystemApplicationService.status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.SystemApplicationService.status" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="devkit_ui.application_services.tool_state.html#devkit_ui.application_services.tool_state.ToolState" title="devkit_ui.application_services.tool_state.ToolState"><span class="pre">ToolState</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#SystemApplicationService.status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.SystemApplicationService.status" title="Link to this definition"></a></dt>
 <dd><p>Return ‘running’ for a live process and ‘idle’ otherwise; used when a page is built.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.SystemApplicationService.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.application_services.system_application_service.ToolState" title="devkit_ui.application_services.system_application_service.ToolState"><span class="pre">ToolState</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#SystemApplicationService.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.SystemApplicationService.stop" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="devkit_ui.application_services.tool_state.html#devkit_ui.application_services.tool_state.ToolState" title="devkit_ui.application_services.tool_state.ToolState"><span class="pre">ToolState</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#SystemApplicationService.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.SystemApplicationService.stop" title="Link to this definition"></a></dt>
 <dd><p>Stop tool and release its handle; also stop RViz’s display daemons.</p>
 <p>Medkit receives SIGINT at its launch leader, escalating to terminate and kill on
 timeouts. Other tools receive process-group termination via kill_group.</p>
@@ -609,37 +613,6 @@ nothing was running), or ‘error’ with the text of an OS error or timeout, in
 handle is kept so the stop can be retried. Blocking: call off the UI loop.</p>
 <p>Raises KeyError for an unknown tool key.</p>
 </dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.ToolState">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.application_services.system_application_service.</span></span><span class="sig-name descname"><span class="pre">ToolState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/application_services/system_application_service.html#ToolState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.system_application_service.ToolState" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>What a tool call did or found.</p>
-<p>kind is one of ‘started’, ‘already_running’, ‘running’, ‘stopped’, ‘exited’, ‘error’, ‘busy’
-and ‘idle’. pid is set for started, already_running, running and exited; log is the tool’s log
-path (’’ if it has none); detail is the exception text for ‘error’, the return code for ‘exited’
-and the RViz note for ‘started’.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.ToolState.detail">
-<span class="sig-name descname"><span class="pre">detail</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#devkit_ui.application_services.system_application_service.ToolState.detail" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.ToolState.kind">
-<span class="sig-name descname"><span class="pre">kind</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.application_services.system_application_service.ToolState.kind" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.ToolState.log">
-<span class="sig-name descname"><span class="pre">log</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#devkit_ui.application_services.system_application_service.ToolState.log" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="devkit_ui.application_services.system_application_service.ToolState.pid">
-<span class="sig-name descname"><span class="pre">pid</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.application_services.system_application_service.ToolState.pid" title="Link to this definition"></a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
