@@ -4,9 +4,16 @@ devkit\_ui.test\_tools\_card
 .. automodule:: devkit_ui.test_tools_card
 
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      run_inline
+   
    .. rubric:: Classes
 
    .. autosummary::
    
-      TestToolsCard
+      TestToolControls
+      TestToolsCardLinks
    

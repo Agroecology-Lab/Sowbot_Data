@@ -13,11 +13,13 @@ devkit\_ui.application\_services
    drive_application_service
    mission_application_service
    navigation_application_service
+   obstacle_application_service
    plan_application_service
    robot_brain_application_service
    row_discovery_application_service
    sim_asset_service
    sim_world_service
+   system_application_service
    telemetry_application_service
    topology_application_service
    topology_edit_service

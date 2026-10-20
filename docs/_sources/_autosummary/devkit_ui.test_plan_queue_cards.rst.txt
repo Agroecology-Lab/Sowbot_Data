@@ -11,4 +11,5 @@ devkit\_ui.test\_plan\_queue\_cards
       TestMissionQueueCard
       TestMissionStoreCard
       TestPlanPage
+      TestPlanPageDeleteRow
    

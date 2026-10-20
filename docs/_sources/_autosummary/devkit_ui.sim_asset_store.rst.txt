@@ -1,0 +1,12 @@
+devkit\_ui.sim\_asset\_store
+============================
+
+.. automodule:: devkit_ui.sim_asset_store
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SimAssetStore
+   

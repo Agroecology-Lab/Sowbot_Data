@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>devkit_ui.test_medkit_gateway &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+  <title>devkit_ui.view_models.system_view_model &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_ui.test_mission_boundaries" href="devkit_ui.test_mission_boundaries.html" />
-    <link rel="prev" title="devkit_ui.test_map_operations" href="devkit_ui.test_map_operations.html" /> 
+    <link rel="next" title="devkit_ui.view_models.telemetry_view_model" href="devkit_ui.view_models.telemetry_view_model.html" />
+    <link rel="prev" title="devkit_ui.view_models.sim_view_model" href="devkit_ui.view_models.sim_view_model.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -244,11 +244,13 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.drive_application_service.html">devkit_ui.application_services.drive_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.mission_application_service.html">devkit_ui.application_services.mission_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.navigation_application_service.html">devkit_ui.application_services.navigation_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.obstacle_application_service.html">devkit_ui.application_services.obstacle_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.plan_application_service.html">devkit_ui.application_services.plan_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
@@ -357,10 +359,12 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.process_registry.html">devkit_ui.process_registry</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.alive"><code class="docutils literal notranslate"><span class="pre">alive()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.ensure_xvfb"><code class="docutils literal notranslate"><span class="pre">ensure_xvfb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.interrupt_stop"><code class="docutils literal notranslate"><span class="pre">interrupt_stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.kill_group"><code class="docutils literal notranslate"><span class="pre">kill_group()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.shared"><code class="docutils literal notranslate"><span class="pre">shared()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.shutdown_tools"><code class="docutils literal notranslate"><span class="pre">shutdown_tools()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_logged"><code class="docutils literal notranslate"><span class="pre">spawn_logged()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_quiet"><code class="docutils literal notranslate"><span class="pre">spawn_quiet()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.start_vnc_stack"><code class="docutils literal notranslate"><span class="pre">start_vnc_stack()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all"><code class="docutils literal notranslate"><span class="pre">stop_all()</span></code></a></li>
 </ul>
@@ -379,6 +383,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.row_planning.html#devkit_ui.row_planning.headland_neighbour_pairs"><code class="docutils literal notranslate"><span class="pre">headland_neighbour_pairs()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.row_planning.html#devkit_ui.row_planning.plan_contour_rows"><code class="docutils literal notranslate"><span class="pre">plan_contour_rows()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.row_planning.html#devkit_ui.row_planning.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.sim_asset_store.html">devkit_ui.sim_asset_store</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.sim_asset_store.html#devkit_ui.sim_asset_store.SimAssetStore"><code class="docutils literal notranslate"><span class="pre">SimAssetStore</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
@@ -439,12 +447,9 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_map_operations.html#devkit_ui.test_map_operations.persist_and_reload"><code class="docutils literal notranslate"><span class="pre">persist_and_reload()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.test_medkit_gateway</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway"><code class="docutils literal notranslate"><span class="pre">TestMedkitGateway</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_medkit_gateway.build_controls"><code class="docutils literal notranslate"><span class="pre">build_controls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_medkit_gateway.load_controls_builder"><code class="docutils literal notranslate"><span class="pre">load_controls_builder()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_medkit_gateway.make_controls"><code class="docutils literal notranslate"><span class="pre">make_controls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.test_medkit_gateway.make_process"><code class="docutils literal notranslate"><span class="pre">make_process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_mission_application_service.html">devkit_ui.test_mission_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_application_service.html#devkit_ui.test_mission_application_service.TestMissionNavigation"><code class="docutils literal notranslate"><span class="pre">TestMissionNavigation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_application_service.html#devkit_ui.test_mission_application_service.TestMissionRun"><code class="docutils literal notranslate"><span class="pre">TestMissionRun</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_mission_boundaries.html">devkit_ui.test_mission_boundaries</a><ul>
@@ -463,6 +468,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_mission_view_model.html">devkit_ui.test_mission_view_model</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.TestMissionViewModel"><code class="docutils literal notranslate"><span class="pre">TestMissionViewModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.TestMissionViewModelRun"><code class="docutils literal notranslate"><span class="pre">TestMissionViewModelRun</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.row_node"><code class="docutils literal notranslate"><span class="pre">row_node()</span></code></a></li>
 </ul>
 </li>
@@ -490,6 +496,10 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html">devkit_ui.test_navigation_service_wiring</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.TestUiTabs"><code class="docutils literal notranslate"><span class="pre">TestUiTabs</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.load_navigation_service_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_service_harness()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_obstacle_application_service.html">devkit_ui.test_obstacle_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_obstacle_application_service.html#devkit_ui.test_obstacle_application_service.TestObstacleApplicationService"><code class="docutils literal notranslate"><span class="pre">TestObstacleApplicationService</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_obstacle_cards.html">devkit_ui.test_obstacle_cards</a><ul>
@@ -553,6 +563,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionQueueCard"><code class="docutils literal notranslate"><span class="pre">TestMissionQueueCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionStoreCard"><code class="docutils literal notranslate"><span class="pre">TestMissionStoreCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPage"><code class="docutils literal notranslate"><span class="pre">TestPlanPage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPageDeleteRow"><code class="docutils literal notranslate"><span class="pre">TestPlanPageDeleteRow</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html">devkit_ui.test_plan_service_boundaries</a><ul>
@@ -652,6 +663,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_asset_soil_regressions.html#devkit_ui.test_sim_asset_soil_regressions.TestSoilImportRegressions"><code class="docutils literal notranslate"><span class="pre">TestSoilImportRegressions</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_sim_asset_store.html">devkit_ui.test_sim_asset_store</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_asset_store.html#devkit_ui.test_sim_asset_store.TestSimAssetStore"><code class="docutils literal notranslate"><span class="pre">TestSimAssetStore</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_sim_launch_cards.html">devkit_ui.test_sim_launch_cards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_launch_cards.html#devkit_ui.test_sim_launch_cards.TestGazeboCard"><code class="docutils literal notranslate"><span class="pre">TestGazeboCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_launch_cards.html#devkit_ui.test_sim_launch_cards.TestRowFollowCard"><code class="docutils literal notranslate"><span class="pre">TestRowFollowCard</span></code></a></li>
@@ -667,6 +682,17 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_world_service.html#devkit_ui.test_sim_world_service.TestSimWorldService"><code class="docutils literal notranslate"><span class="pre">TestSimWorldService</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_system_application_service.html">devkit_ui.test_system_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.ServiceTestCase"><code class="docutils literal notranslate"><span class="pre">ServiceTestCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestMedkit"><code class="docutils literal notranslate"><span class="pre">TestMedkit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestOverlappingActions"><code class="docutils literal notranslate"><span class="pre">TestOverlappingActions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestPolling"><code class="docutils literal notranslate"><span class="pre">TestPolling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestStartTools"><code class="docutils literal notranslate"><span class="pre">TestStartTools</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestStopOtherTools"><code class="docutils literal notranslate"><span class="pre">TestStopOtherTools</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.handle"><code class="docutils literal notranslate"><span class="pre">handle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.make_process"><code class="docutils literal notranslate"><span class="pre">make_process()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_system_page_cards.html">devkit_ui.test_system_page_cards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestBatteryCard"><code class="docutils literal notranslate"><span class="pre">TestBatteryCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestEspCard"><code class="docutils literal notranslate"><span class="pre">TestEspCard</span></code></a></li>
@@ -675,6 +701,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestRobotBrainViewModel"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainViewModel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestSafetyCard"><code class="docutils literal notranslate"><span class="pre">TestSafetyCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestSimViewModel"><code class="docutils literal notranslate"><span class="pre">TestSimViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_system_view_model.html">devkit_ui.test_system_view_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel"><code class="docutils literal notranslate"><span class="pre">TestSystemViewModel</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_system_widgets.html">devkit_ui.test_system_widgets</a><ul>
@@ -694,7 +724,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_telemetry_presentation.html">devkit_ui.test_telemetry_presentation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_presentation.html#devkit_ui.test_telemetry_presentation.TestTelemetryPresentation"><code class="docutils literal notranslate"><span class="pre">TestTelemetryPresentation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_presentation.html#devkit_ui.test_telemetry_presentation.load_node_telemetry_bridge"><code class="docutils literal notranslate"><span class="pre">load_node_telemetry_bridge()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_telemetry_services.html">devkit_ui.test_telemetry_services</a><ul>
@@ -718,7 +747,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_tools_card.html">devkit_ui.test_tools_card</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolsCard"><code class="docutils literal notranslate"><span class="pre">TestToolsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolControls"><code class="docutils literal notranslate"><span class="pre">TestToolControls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolsCardLinks"><code class="docutils literal notranslate"><span class="pre">TestToolsCardLinks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.run_inline"><code class="docutils literal notranslate"><span class="pre">run_inline()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topo_defaults.html">devkit_ui.test_topo_defaults</a><ul>
@@ -774,6 +805,7 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topology_services.html">devkit_ui.test_topology_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack"><code class="docutils literal notranslate"><span class="pre">TestTopologyStack</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.make_stack"><code class="docutils literal notranslate"><span class="pre">make_stack()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.subscription"><code class="docutils literal notranslate"><span class="pre">subscription()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topology_view_model.html">devkit_ui.test_topology_view_model</a><ul>
@@ -782,11 +814,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_track_mode.html">devkit_ui.test_track_mode</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_track_mode.html#devkit_ui.test_track_mode.TestTrackMode"><code class="docutils literal notranslate"><span class="pre">TestTrackMode</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html">devkit_ui.test_ui_node_mission</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html#devkit_ui.test_ui_node_mission.TestUiNodeMission"><code class="docutils literal notranslate"><span class="pre">TestUiNodeMission</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html#devkit_ui.test_ui_node_mission.load_mission_harness"><code class="docutils literal notranslate"><span class="pre">load_mission_harness()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
@@ -829,11 +856,18 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.run_threads_inline"><code class="docutils literal notranslate"><span class="pre">run_threads_inline()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.ui_node.html">devkit_ui.ui_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode"><code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ui_node.html#devkit_ui.ui_node.load_css"><code class="docutils literal notranslate"><span class="pre">load_css()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ui_node.html#devkit_ui.ui_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.utils.html">devkit_ui.utils</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.utils.topo_renderer.html">devkit_ui.utils.topo_renderer</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
+<li class="toctree-l3 current"><a class="reference internal" href="devkit_ui.view_models.html">devkit_ui.view_models</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.map_authoring_view_model.html">devkit_ui.view_models.map_authoring_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
@@ -842,6 +876,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.topology_view_model.html">devkit_ui.view_models.topology_view_model</a></li>
 </ul>
@@ -949,9 +984,10 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../python_api.html">Python API Reference</a></li>
           <li class="breadcrumb-item"><a href="devkit_ui.html">devkit_ui</a></li>
-      <li class="breadcrumb-item active">devkit_ui.test_medkit_gateway</li>
+          <li class="breadcrumb-item"><a href="devkit_ui.view_models.html">devkit_ui.view_models</a></li>
+      <li class="breadcrumb-item active">devkit_ui.view_models.system_view_model</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_autosummary/devkit_ui.test_medkit_gateway.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/devkit_ui.view_models.system_view_model.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -959,160 +995,83 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-devkit_ui.test_medkit_gateway">
-<span id="devkit-ui-test-medkit-gateway"></span><h1>devkit_ui.test_medkit_gateway<a class="headerlink" href="#module-devkit_ui.test_medkit_gateway" title="Link to this heading"></a></h1>
-<p>Unit tests for the Medkit controls without ROS or web-server startup.</p>
-<p class="rubric">Functions</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_medkit_gateway.load_controls_builder" title="devkit_ui.test_medkit_gateway.load_controls_builder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_controls_builder</span></code></a>()</p></td>
-<td><p>Execute the real Medkit block in a function to preserve per-tab closures.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.test_medkit_gateway.make_controls" title="devkit_ui.test_medkit_gateway.make_controls"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_controls</span></code></a>(popen[, hostname])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_medkit_gateway.make_process" title="devkit_ui.test_medkit_gateway.make_process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_process</span></code></a>(pid)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
+  <section id="module-devkit_ui.view_models.system_view_model">
+<span id="devkit-ui-view-models-system-view-model"></span><h1>devkit_ui.view_models.system_view_model<a class="headerlink" href="#module-devkit_ui.view_models.system_view_model" title="Link to this heading"></a></h1>
+<p>Presentation of the System page tools: status wording and its severity.</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway" title="devkit_ui.test_medkit_gateway.TestMedkitGateway"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestMedkitGateway</span></code></a>([methodName])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.view_models.system_view_model.SystemViewModel" title="devkit_ui.view_models.system_view_model.SystemViewModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SystemViewModel</span></code></a>(service)</p></td>
+<td><p>UI-facing intents for the tools on the System page.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.view_models.system_view_model.ToolStatusView" title="devkit_ui.view_models.system_view_model.ToolStatusView"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToolStatusView</span></code></a>(text[, level])</p></td>
+<td><p>Text for a tool's status label and how to colour it; a level of None keeps the current colour.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.test_medkit_gateway.</span></span><span class="sig-name descname"><span class="pre">TestMedkitGateway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IsolatedAsyncioTestCase</span></code></p>
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.SystemViewModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.view_models.system_view_model.</span></span><span class="sig-name descname"><span class="pre">SystemViewModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService" title="devkit_ui.application_services.system_application_service.SystemApplicationService"><span class="pre">SystemApplicationService</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/view_models/system_view_model.html#SystemViewModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.system_view_model.SystemViewModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>UI-facing intents for the tools on the System page.</p>
+<p>start, stop, status and exited return None when the action was ignored or there is nothing
+to show, and the view then leaves its label alone.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.assert_status">
-<span class="sig-name descname"><span class="pre">assert_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.assert_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.assert_status" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.setUp" title="Link to this definition"></a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.SystemViewModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService" title="devkit_ui.application_services.system_application_service.SystemApplicationService"><span class="pre">SystemApplicationService</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/view_models/system_view_model.html#SystemViewModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.system_view_model.SystemViewModel.__init__" title="Link to this definition"></a></dt>
+<dd><p>Bind to the system service.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_each_tab_starts_and_stops_only_its_own_process">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_each_tab_starts_and_stops_only_its_own_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_each_tab_starts_and_stops_only_its_own_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_each_tab_starts_and_stops_only_its_own_process" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.SystemViewModel.exited">
+<span class="sig-name descname"><span class="pre">exited</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.view_models.system_view_model.ToolStatusView" title="devkit_ui.view_models.system_view_model.ToolStatusView"><span class="pre">ToolStatusView</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/view_models/system_view_model.html#SystemViewModel.exited"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.system_view_model.SystemViewModel.exited" title="Link to this definition"></a></dt>
+<dd><p>Return the status of a tool that has died since it started, else None.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_failed_restart_keeps_previous_process_tracked">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_failed_restart_keeps_previous_process_tracked</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_failed_restart_keeps_previous_process_tracked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_failed_restart_keeps_previous_process_tracked" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.SystemViewModel.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.view_models.system_view_model.ToolStatusView" title="devkit_ui.view_models.system_view_model.ToolStatusView"><span class="pre">ToolStatusView</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/view_models/system_view_model.html#SystemViewModel.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.system_view_model.SystemViewModel.start" title="Link to this definition"></a></dt>
+<dd><p>Start a tool; host is the browser’s hostname, used only in the wording of the status.</p>
+<p>Return None if a start or stop is already in flight. Blocking, so call off the UI loop.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_final_wait_failure_keeps_handle_for_retry">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_final_wait_failure_keeps_handle_for_retry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_final_wait_failure_keeps_handle_for_retry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_final_wait_failure_keeps_handle_for_retry" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.SystemViewModel.status">
+<span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.view_models.system_view_model.ToolStatusView" title="devkit_ui.view_models.system_view_model.ToolStatusView"><span class="pre">ToolStatusView</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/view_models/system_view_model.html#SystemViewModel.status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.system_view_model.SystemViewModel.status" title="Link to this definition"></a></dt>
+<dd><p>Return the status to show when a page is built, or None if the tool is not running.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_gateway_and_sovd_links_use_page_host">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_gateway_and_sovd_links_use_page_host</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_gateway_and_sovd_links_use_page_host"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_gateway_and_sovd_links_use_page_host" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.SystemViewModel.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.view_models.system_view_model.ToolStatusView" title="devkit_ui.view_models.system_view_model.ToolStatusView"><span class="pre">ToolStatusView</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/view_models/system_view_model.html#SystemViewModel.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.system_view_model.SystemViewModel.stop" title="Link to this definition"></a></dt>
+<dd><p>Stop a tool; return None if a start or stop is already in flight.</p>
+<p>Blocking, so call off the UI loop.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_host_is_escaped_in_html">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_host_is_escaped_in_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_host_is_escaped_in_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_host_is_escaped_in_html" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_launch_errors_are_displayed_and_allow_retry">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_launch_errors_are_displayed_and_allow_retry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_launch_errors_are_displayed_and_allow_retry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_launch_errors_are_displayed_and_allow_retry" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_render_registers_controls_without_starting_a_process">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_render_registers_controls_without_starting_a_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_render_registers_controls_without_starting_a_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_render_registers_controls_without_starting_a_process" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_shutdown_escalates_only_after_each_timeout">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_shutdown_escalates_only_after_each_timeout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_shutdown_escalates_only_after_each_timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_shutdown_escalates_only_after_each_timeout" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_shutdown_keeps_ui_responsive_and_prevents_overlapping_actions">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_shutdown_keeps_ui_responsive_and_prevents_overlapping_actions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_shutdown_keeps_ui_responsive_and_prevents_overlapping_actions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_shutdown_keeps_ui_responsive_and_prevents_overlapping_actions" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_signal_failure_keeps_process_for_retry">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_signal_failure_keeps_process_for_retry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_signal_failure_keeps_process_for_retry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_signal_failure_keeps_process_for_retry" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_after_completed_stop_launches_new_process">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_start_after_completed_stop_launches_new_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_start_after_completed_stop_launches_new_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_after_completed_stop_launches_new_process" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_launches_gateway_on_loopback_and_reports_pid">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_start_launches_gateway_on_loopback_and_reports_pid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_start_launches_gateway_on_loopback_and_reports_pid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_launches_gateway_on_loopback_and_reports_pid" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_replaces_exited_process_regardless_of_exit_status">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_start_replaces_exited_process_regardless_of_exit_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_start_replaces_exited_process_regardless_of_exit_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_replaces_exited_process_regardless_of_exit_status" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_while_running_does_not_launch_or_terminate_again">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_start_while_running_does_not_launch_or_terminate_again</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_start_while_running_does_not_launch_or_terminate_again"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_while_running_does_not_launch_or_terminate_again" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_after_launch_failure_resets_error_status">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_stop_after_launch_failure_resets_error_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_stop_after_launch_failure_resets_error_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_after_launch_failure_resets_error_status" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_reaps_already_exited_process">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_stop_reaps_already_exited_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_stop_reaps_already_exited_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_reaps_already_exited_process" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_sends_sigint_and_waits_before_clearing_handle">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_stop_sends_sigint_and_waits_before_clearing_handle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_stop_sends_sigint_and_waits_before_clearing_handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_sends_sigint_and_waits_before_clearing_handle" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_without_start_is_safe_and_repeatable">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test_stop_without_start_is_safe_and_repeatable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#TestMedkitGateway.test_stop_without_start_is_safe_and_repeatable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_without_start_is_safe_and_repeatable" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.SystemViewModel.stopping">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">stopping</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.view_models.system_view_model.ToolStatusView" title="devkit_ui.view_models.system_view_model.ToolStatusView"><span class="pre">ToolStatusView</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/view_models/system_view_model.html#SystemViewModel.stopping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.system_view_model.SystemViewModel.stopping" title="Link to this definition"></a></dt>
+<dd><p>Return the interim status to show while a stop is in progress.</p>
+</dd></dl>
 
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.build_controls">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.test_medkit_gateway.</span></span><span class="sig-name descname"><span class="pre">build_controls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subprocess</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#devkit_ui.test_medkit_gateway.build_controls" title="Link to this definition"></a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.ToolStatusView">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.view_models.system_view_model.</span></span><span class="sig-name descname"><span class="pre">ToolStatusView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ok'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'error'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'muted'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/view_models/system_view_model.html#ToolStatusView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.system_view_model.ToolStatusView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Text for a tool’s status label and how to colour it; a level of None keeps the current colour.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.ToolStatusView.level">
+<span class="sig-name descname"><span class="pre">level</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ok'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'error'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'muted'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.view_models.system_view_model.ToolStatusView.level" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.load_controls_builder">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.test_medkit_gateway.</span></span><span class="sig-name descname"><span class="pre">load_controls_builder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#load_controls_builder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.load_controls_builder" title="Link to this definition"></a></dt>
-<dd><p>Execute the real Medkit block in a function to preserve per-tab closures.</p>
-<p>Follow the AST harness used by test_navigation_goals, keeping the original
-status initialization and button registration as well as both callbacks.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.view_models.system_view_model.ToolStatusView.text">
+<span class="sig-name descname"><span class="pre">text</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.view_models.system_view_model.ToolStatusView.text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.make_controls">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.test_medkit_gateway.</span></span><span class="sig-name descname"><span class="pre">make_controls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">popen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hostname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'robot.local'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#make_controls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.make_controls" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.test_medkit_gateway.make_process">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.test_medkit_gateway.</span></span><span class="sig-name descname"><span class="pre">make_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/test_medkit_gateway.html#make_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.test_medkit_gateway.make_process" title="Link to this definition"></a></dt>
-<dd></dd></dl>
 
 </section>
 
@@ -1120,8 +1079,8 @@ status initialization and button registration as well as both callbacks.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_ui.test_map_operations.html" class="btn btn-neutral float-left" title="devkit_ui.test_map_operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_ui.test_mission_boundaries.html" class="btn btn-neutral float-right" title="devkit_ui.test_mission_boundaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_ui.view_models.sim_view_model.html" class="btn btn-neutral float-left" title="devkit_ui.view_models.sim_view_model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_ui.view_models.telemetry_view_model.html" class="btn btn-neutral float-right" title="devkit_ui.view_models.telemetry_view_model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

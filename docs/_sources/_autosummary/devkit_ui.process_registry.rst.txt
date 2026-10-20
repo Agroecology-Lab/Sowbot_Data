@@ -10,10 +10,12 @@ devkit\_ui.process\_registry
    
       alive
       ensure_xvfb
+      interrupt_stop
       kill_group
       shared
       shutdown_tools
       spawn_logged
+      spawn_quiet
       start_vnc_stack
       stop_all
    

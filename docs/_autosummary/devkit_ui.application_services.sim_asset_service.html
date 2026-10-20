@@ -244,11 +244,13 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.drive_application_service.html">devkit_ui.application_services.drive_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.mission_application_service.html">devkit_ui.application_services.mission_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.navigation_application_service.html">devkit_ui.application_services.navigation_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.obstacle_application_service.html">devkit_ui.application_services.obstacle_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.plan_application_service.html">devkit_ui.application_services.plan_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_ui.application_services.sim_asset_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
@@ -357,10 +359,12 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.process_registry.html">devkit_ui.process_registry</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.alive"><code class="docutils literal notranslate"><span class="pre">alive()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.ensure_xvfb"><code class="docutils literal notranslate"><span class="pre">ensure_xvfb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.interrupt_stop"><code class="docutils literal notranslate"><span class="pre">interrupt_stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.kill_group"><code class="docutils literal notranslate"><span class="pre">kill_group()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.shared"><code class="docutils literal notranslate"><span class="pre">shared()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.shutdown_tools"><code class="docutils literal notranslate"><span class="pre">shutdown_tools()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_logged"><code class="docutils literal notranslate"><span class="pre">spawn_logged()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_quiet"><code class="docutils literal notranslate"><span class="pre">spawn_quiet()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.start_vnc_stack"><code class="docutils literal notranslate"><span class="pre">start_vnc_stack()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all"><code class="docutils literal notranslate"><span class="pre">stop_all()</span></code></a></li>
 </ul>
@@ -379,6 +383,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.row_planning.html#devkit_ui.row_planning.headland_neighbour_pairs"><code class="docutils literal notranslate"><span class="pre">headland_neighbour_pairs()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.row_planning.html#devkit_ui.row_planning.plan_contour_rows"><code class="docutils literal notranslate"><span class="pre">plan_contour_rows()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.row_planning.html#devkit_ui.row_planning.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.sim_asset_store.html">devkit_ui.sim_asset_store</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.sim_asset_store.html#devkit_ui.sim_asset_store.SimAssetStore"><code class="docutils literal notranslate"><span class="pre">SimAssetStore</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
@@ -439,12 +447,9 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_map_operations.html#devkit_ui.test_map_operations.persist_and_reload"><code class="docutils literal notranslate"><span class="pre">persist_and_reload()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_medkit_gateway.html">devkit_ui.test_medkit_gateway</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway"><code class="docutils literal notranslate"><span class="pre">TestMedkitGateway</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.build_controls"><code class="docutils literal notranslate"><span class="pre">build_controls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.load_controls_builder"><code class="docutils literal notranslate"><span class="pre">load_controls_builder()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_controls"><code class="docutils literal notranslate"><span class="pre">make_controls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_process"><code class="docutils literal notranslate"><span class="pre">make_process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_mission_application_service.html">devkit_ui.test_mission_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_application_service.html#devkit_ui.test_mission_application_service.TestMissionNavigation"><code class="docutils literal notranslate"><span class="pre">TestMissionNavigation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_application_service.html#devkit_ui.test_mission_application_service.TestMissionRun"><code class="docutils literal notranslate"><span class="pre">TestMissionRun</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_mission_boundaries.html">devkit_ui.test_mission_boundaries</a><ul>
@@ -463,6 +468,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_mission_view_model.html">devkit_ui.test_mission_view_model</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.TestMissionViewModel"><code class="docutils literal notranslate"><span class="pre">TestMissionViewModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.TestMissionViewModelRun"><code class="docutils literal notranslate"><span class="pre">TestMissionViewModelRun</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.row_node"><code class="docutils literal notranslate"><span class="pre">row_node()</span></code></a></li>
 </ul>
 </li>
@@ -490,6 +496,10 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html">devkit_ui.test_navigation_service_wiring</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.TestUiTabs"><code class="docutils literal notranslate"><span class="pre">TestUiTabs</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.load_navigation_service_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_service_harness()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_obstacle_application_service.html">devkit_ui.test_obstacle_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_obstacle_application_service.html#devkit_ui.test_obstacle_application_service.TestObstacleApplicationService"><code class="docutils literal notranslate"><span class="pre">TestObstacleApplicationService</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_obstacle_cards.html">devkit_ui.test_obstacle_cards</a><ul>
@@ -553,6 +563,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionQueueCard"><code class="docutils literal notranslate"><span class="pre">TestMissionQueueCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionStoreCard"><code class="docutils literal notranslate"><span class="pre">TestMissionStoreCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPage"><code class="docutils literal notranslate"><span class="pre">TestPlanPage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPageDeleteRow"><code class="docutils literal notranslate"><span class="pre">TestPlanPageDeleteRow</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_plan_service_boundaries.html">devkit_ui.test_plan_service_boundaries</a><ul>
@@ -652,6 +663,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_asset_soil_regressions.html#devkit_ui.test_sim_asset_soil_regressions.TestSoilImportRegressions"><code class="docutils literal notranslate"><span class="pre">TestSoilImportRegressions</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_sim_asset_store.html">devkit_ui.test_sim_asset_store</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_asset_store.html#devkit_ui.test_sim_asset_store.TestSimAssetStore"><code class="docutils literal notranslate"><span class="pre">TestSimAssetStore</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_sim_launch_cards.html">devkit_ui.test_sim_launch_cards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_launch_cards.html#devkit_ui.test_sim_launch_cards.TestGazeboCard"><code class="docutils literal notranslate"><span class="pre">TestGazeboCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_launch_cards.html#devkit_ui.test_sim_launch_cards.TestRowFollowCard"><code class="docutils literal notranslate"><span class="pre">TestRowFollowCard</span></code></a></li>
@@ -667,6 +682,17 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_sim_world_service.html#devkit_ui.test_sim_world_service.TestSimWorldService"><code class="docutils literal notranslate"><span class="pre">TestSimWorldService</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_system_application_service.html">devkit_ui.test_system_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.ServiceTestCase"><code class="docutils literal notranslate"><span class="pre">ServiceTestCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestMedkit"><code class="docutils literal notranslate"><span class="pre">TestMedkit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestOverlappingActions"><code class="docutils literal notranslate"><span class="pre">TestOverlappingActions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestPolling"><code class="docutils literal notranslate"><span class="pre">TestPolling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestStartTools"><code class="docutils literal notranslate"><span class="pre">TestStartTools</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestStopOtherTools"><code class="docutils literal notranslate"><span class="pre">TestStopOtherTools</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.handle"><code class="docutils literal notranslate"><span class="pre">handle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.make_process"><code class="docutils literal notranslate"><span class="pre">make_process()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_system_page_cards.html">devkit_ui.test_system_page_cards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestBatteryCard"><code class="docutils literal notranslate"><span class="pre">TestBatteryCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestEspCard"><code class="docutils literal notranslate"><span class="pre">TestEspCard</span></code></a></li>
@@ -675,6 +701,10 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestRobotBrainViewModel"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainViewModel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestSafetyCard"><code class="docutils literal notranslate"><span class="pre">TestSafetyCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestSimViewModel"><code class="docutils literal notranslate"><span class="pre">TestSimViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_system_view_model.html">devkit_ui.test_system_view_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel"><code class="docutils literal notranslate"><span class="pre">TestSystemViewModel</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_system_widgets.html">devkit_ui.test_system_widgets</a><ul>
@@ -694,7 +724,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_telemetry_presentation.html">devkit_ui.test_telemetry_presentation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_presentation.html#devkit_ui.test_telemetry_presentation.TestTelemetryPresentation"><code class="docutils literal notranslate"><span class="pre">TestTelemetryPresentation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_telemetry_presentation.html#devkit_ui.test_telemetry_presentation.load_node_telemetry_bridge"><code class="docutils literal notranslate"><span class="pre">load_node_telemetry_bridge()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_telemetry_services.html">devkit_ui.test_telemetry_services</a><ul>
@@ -718,7 +747,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_tools_card.html">devkit_ui.test_tools_card</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolsCard"><code class="docutils literal notranslate"><span class="pre">TestToolsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolControls"><code class="docutils literal notranslate"><span class="pre">TestToolControls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolsCardLinks"><code class="docutils literal notranslate"><span class="pre">TestToolsCardLinks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.run_inline"><code class="docutils literal notranslate"><span class="pre">run_inline()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topo_defaults.html">devkit_ui.test_topo_defaults</a><ul>
@@ -774,6 +805,7 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topology_services.html">devkit_ui.test_topology_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack"><code class="docutils literal notranslate"><span class="pre">TestTopologyStack</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.make_stack"><code class="docutils literal notranslate"><span class="pre">make_stack()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.subscription"><code class="docutils literal notranslate"><span class="pre">subscription()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_topology_view_model.html">devkit_ui.test_topology_view_model</a><ul>
@@ -782,11 +814,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_track_mode.html">devkit_ui.test_track_mode</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_track_mode.html#devkit_ui.test_track_mode.TestTrackMode"><code class="docutils literal notranslate"><span class="pre">TestTrackMode</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html">devkit_ui.test_ui_node_mission</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html#devkit_ui.test_ui_node_mission.TestUiNodeMission"><code class="docutils literal notranslate"><span class="pre">TestUiNodeMission</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.test_ui_node_mission.html#devkit_ui.test_ui_node_mission.load_mission_harness"><code class="docutils literal notranslate"><span class="pre">load_mission_harness()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
@@ -829,6 +856,13 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.run_threads_inline"><code class="docutils literal notranslate"><span class="pre">run_threads_inline()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.ui_node.html">devkit_ui.ui_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode"><code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ui_node.html#devkit_ui.ui_node.load_css"><code class="docutils literal notranslate"><span class="pre">load_css()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ui_node.html#devkit_ui.ui_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.utils.html">devkit_ui.utils</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.utils.topo_renderer.html">devkit_ui.utils.topo_renderer</a></li>
 </ul>
@@ -842,6 +876,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.view_models.topology_view_model.html">devkit_ui.view_models.topology_view_model</a></li>
 </ul>
@@ -964,12 +999,12 @@
 <span id="devkit-ui-application-services-sim-asset-service"></span><h1>devkit_ui.application_services.sim_asset_service<a class="headerlink" href="#module-devkit_ui.application_services.sim_asset_service" title="Link to this heading"></a></h1>
 <p>Create and import the files the Gazebo world is built from (crop models, soil textures).</p>
 <p>This is the file-only half of the Sim page’s controls: it validates
-uploads and writes them under /workspace. Launching and stopping processes is separate.
+uploads and hands them to a SimAssetStore to write. Launching and stopping processes is separate.
 No ROS or NiceGUI imports.</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.application_services.sim_asset_service.SimAssetService" title="devkit_ui.application_services.sim_asset_service.SimAssetService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimAssetService</span></code></a>([crop_models_dir, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.application_services.sim_asset_service.SimAssetService" title="devkit_ui.application_services.sim_asset_service.SimAssetService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimAssetService</span></code></a>(store)</p></td>
 <td><p>Validates and writes crop models and soil textures for the simulated world.</p></td>
 </tr>
 </tbody>
@@ -991,13 +1026,13 @@ No ROS or NiceGUI imports.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="devkit_ui.application_services.sim_asset_service.SimAssetService">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.application_services.sim_asset_service.</span></span><span class="sig-name descname"><span class="pre">SimAssetService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crop_models_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/workspace/models/crop')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soil_textures_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/workspace/uploads/soil_custom/textures')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/application_services/sim_asset_service.html#SimAssetService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.sim_asset_service.SimAssetService" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.application_services.sim_asset_service.</span></span><span class="sig-name descname"><span class="pre">SimAssetService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">store</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.sim_asset_store.html#devkit_ui.sim_asset_store.SimAssetStore" title="devkit_ui.sim_asset_store.SimAssetStore"><span class="pre">SimAssetStore</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/application_services/sim_asset_service.html#SimAssetService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.sim_asset_service.SimAssetService" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Validates and writes crop models and soil textures for the simulated world.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.application_services.sim_asset_service.SimAssetService.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crop_models_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/workspace/models/crop')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soil_textures_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/workspace/uploads/soil_custom/textures')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/sim_asset_service.html#SimAssetService.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.sim_asset_service.SimAssetService.__init__" title="Link to this definition"></a></dt>
-<dd><p>Keep the directories crop models and soil textures are written to.</p>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">store</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.sim_asset_store.html#devkit_ui.sim_asset_store.SimAssetStore" title="devkit_ui.sim_asset_store.SimAssetStore"><span class="pre">SimAssetStore</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/sim_asset_service.html#SimAssetService.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.sim_asset_service.SimAssetService.__init__" title="Link to this definition"></a></dt>
+<dd><p>Keep the store crop models and soil textures are read from and written to.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1009,9 +1044,10 @@ No ROS or NiceGUI imports.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.application_services.sim_asset_service.SimAssetService.create_crop_model">
 <span class="sig-name descname"><span class="pre">create_crop_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/sim_asset_service.html#SimAssetService.create_crop_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.sim_asset_service.SimAssetService.create_crop_model" title="Link to this definition"></a></dt>
-<dd><p>Write a new crop model folder (meshes, model.config, model.sdf) and return its name.</p>
-<p>The collision mesh falls back to the visual one. A model that fails part way
-through is removed, so it does not block creating it again.</p>
+<dd><p>Write a new crop model folder (meshes, model.config, model.sdf) and return its stripped name.</p>
+<p>The collision mesh falls back to the visual one. Mesh contents are not validated
+here; call validate_mesh separately. On write failure, the store attempts to remove
+the model folder, then propagates the original exception.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#devkit_ui.application_services.sim_asset_service.SimAssetError" title="devkit_ui.application_services.sim_asset_service.SimAssetError"><strong>SimAssetError</strong></a> – The name is empty, not alphanumeric plus underscore, or already
@@ -1030,7 +1066,10 @@ through is removed, so it does not block creating it again.</p>
 <dt class="sig sig-object py" id="devkit_ui.application_services.sim_asset_service.SimAssetService.import_soil_zip">
 <span class="sig-name descname"><span class="pre">import_soil_zip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_ui/application_services/sim_asset_service.html#SimAssetService.import_soil_zip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.application_services.sim_asset_service.SimAssetService.import_soil_zip" title="Link to this definition"></a></dt>
 <dd><p>Replace the imported soil set with the image maps in a zip and return their names.</p>
-<p>Folder structure is flattened to base names. Blocking; call from a worker thread.</p>
+<p>Folder structure is flattened to base names; later entries overwrite earlier files
+with the same base name. Returned names follow archive order and may include duplicates.
+Extraction and filesystem errors propagate and may leave a partial replacement
+after the old textures have been removed. Blocking; call from a worker thread.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#devkit_ui.application_services.sim_asset_service.SimAssetError" title="devkit_ui.application_services.sim_asset_service.SimAssetError"><strong>SimAssetError</strong></a> – The data is not a zip or holds no .jpg/.jpeg/.png maps. The

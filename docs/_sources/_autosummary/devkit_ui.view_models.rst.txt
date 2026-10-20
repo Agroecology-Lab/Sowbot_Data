@@ -18,5 +18,6 @@ devkit\_ui.view\_models
    robot_brain_view_model
    run_view_model
    sim_view_model
+   system_view_model
    telemetry_view_model
    topology_view_model

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>devkit_ui.test_medkit_gateway &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+  <title>devkit_ui.test_system_view_model &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
@@ -241,11 +241,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.drive_application_service.html">devkit_ui.application_services.drive_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.mission_application_service.html">devkit_ui.application_services.mission_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.navigation_application_service.html">devkit_ui.application_services.navigation_application_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.obstacle_application_service.html">devkit_ui.application_services.obstacle_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.plan_application_service.html">devkit_ui.application_services.plan_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.robot_brain_application_service.html">devkit_ui.application_services.robot_brain_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.row_discovery_application_service.html">devkit_ui.application_services.row_discovery_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.sim_asset_service.html">devkit_ui.application_services.sim_asset_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.sim_world_service.html">devkit_ui.application_services.sim_world_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.system_application_service.html">devkit_ui.application_services.system_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.telemetry_application_service.html">devkit_ui.application_services.telemetry_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
@@ -354,10 +356,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html">devkit_ui.process_registry</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.alive"><code class="docutils literal notranslate"><span class="pre">alive()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.ensure_xvfb"><code class="docutils literal notranslate"><span class="pre">ensure_xvfb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.interrupt_stop"><code class="docutils literal notranslate"><span class="pre">interrupt_stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.kill_group"><code class="docutils literal notranslate"><span class="pre">kill_group()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.shared"><code class="docutils literal notranslate"><span class="pre">shared()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.shutdown_tools"><code class="docutils literal notranslate"><span class="pre">shutdown_tools()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_logged"><code class="docutils literal notranslate"><span class="pre">spawn_logged()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_quiet"><code class="docutils literal notranslate"><span class="pre">spawn_quiet()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.start_vnc_stack"><code class="docutils literal notranslate"><span class="pre">start_vnc_stack()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all"><code class="docutils literal notranslate"><span class="pre">stop_all()</span></code></a></li>
 </ul>
@@ -376,6 +380,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.row_planning.html#devkit_ui.row_planning.headland_neighbour_pairs"><code class="docutils literal notranslate"><span class="pre">headland_neighbour_pairs()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.row_planning.html#devkit_ui.row_planning.plan_contour_rows"><code class="docutils literal notranslate"><span class="pre">plan_contour_rows()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.row_planning.html#devkit_ui.row_planning.resample_row_xy"><code class="docutils literal notranslate"><span class="pre">resample_row_xy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.sim_asset_store.html">devkit_ui.sim_asset_store</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.sim_asset_store.html#devkit_ui.sim_asset_store.SimAssetStore"><code class="docutils literal notranslate"><span class="pre">SimAssetStore</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.terrain_mask.html">devkit_ui.terrain_mask</a><ul>
@@ -436,12 +444,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_map_operations.html#devkit_ui.test_map_operations.persist_and_reload"><code class="docutils literal notranslate"><span class="pre">persist_and_reload()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html">devkit_ui.test_medkit_gateway</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway"><code class="docutils literal notranslate"><span class="pre">TestMedkitGateway</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.build_controls"><code class="docutils literal notranslate"><span class="pre">build_controls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.load_controls_builder"><code class="docutils literal notranslate"><span class="pre">load_controls_builder()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_controls"><code class="docutils literal notranslate"><span class="pre">make_controls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_process"><code class="docutils literal notranslate"><span class="pre">make_process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_mission_application_service.html">devkit_ui.test_mission_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_mission_application_service.html#devkit_ui.test_mission_application_service.TestMissionNavigation"><code class="docutils literal notranslate"><span class="pre">TestMissionNavigation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_mission_application_service.html#devkit_ui.test_mission_application_service.TestMissionRun"><code class="docutils literal notranslate"><span class="pre">TestMissionRun</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_mission_boundaries.html">devkit_ui.test_mission_boundaries</a><ul>
@@ -460,6 +465,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_mission_view_model.html">devkit_ui.test_mission_view_model</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.TestMissionViewModel"><code class="docutils literal notranslate"><span class="pre">TestMissionViewModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.TestMissionViewModelRun"><code class="docutils literal notranslate"><span class="pre">TestMissionViewModelRun</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_mission_view_model.html#devkit_ui.test_mission_view_model.row_node"><code class="docutils literal notranslate"><span class="pre">row_node()</span></code></a></li>
 </ul>
 </li>
@@ -487,6 +493,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_service_wiring.html">devkit_ui.test_navigation_service_wiring</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.TestUiTabs"><code class="docutils literal notranslate"><span class="pre">TestUiTabs</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_navigation_service_wiring.html#devkit_ui.test_navigation_service_wiring.load_navigation_service_harness"><code class="docutils literal notranslate"><span class="pre">load_navigation_service_harness()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_obstacle_application_service.html">devkit_ui.test_obstacle_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_obstacle_application_service.html#devkit_ui.test_obstacle_application_service.TestObstacleApplicationService"><code class="docutils literal notranslate"><span class="pre">TestObstacleApplicationService</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_obstacle_cards.html">devkit_ui.test_obstacle_cards</a><ul>
@@ -550,6 +560,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionQueueCard"><code class="docutils literal notranslate"><span class="pre">TestMissionQueueCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestMissionStoreCard"><code class="docutils literal notranslate"><span class="pre">TestMissionStoreCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPage"><code class="docutils literal notranslate"><span class="pre">TestPlanPage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_plan_queue_cards.html#devkit_ui.test_plan_queue_cards.TestPlanPageDeleteRow"><code class="docutils literal notranslate"><span class="pre">TestPlanPageDeleteRow</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_plan_service_boundaries.html">devkit_ui.test_plan_service_boundaries</a><ul>
@@ -649,6 +660,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_sim_asset_soil_regressions.html#devkit_ui.test_sim_asset_soil_regressions.TestSoilImportRegressions"><code class="docutils literal notranslate"><span class="pre">TestSoilImportRegressions</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_sim_asset_store.html">devkit_ui.test_sim_asset_store</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_sim_asset_store.html#devkit_ui.test_sim_asset_store.TestSimAssetStore"><code class="docutils literal notranslate"><span class="pre">TestSimAssetStore</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_sim_launch_cards.html">devkit_ui.test_sim_launch_cards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_sim_launch_cards.html#devkit_ui.test_sim_launch_cards.TestGazeboCard"><code class="docutils literal notranslate"><span class="pre">TestGazeboCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_sim_launch_cards.html#devkit_ui.test_sim_launch_cards.TestRowFollowCard"><code class="docutils literal notranslate"><span class="pre">TestRowFollowCard</span></code></a></li>
@@ -664,6 +679,17 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_sim_world_service.html#devkit_ui.test_sim_world_service.TestSimWorldService"><code class="docutils literal notranslate"><span class="pre">TestSimWorldService</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html">devkit_ui.test_system_application_service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.ServiceTestCase"><code class="docutils literal notranslate"><span class="pre">ServiceTestCase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestMedkit"><code class="docutils literal notranslate"><span class="pre">TestMedkit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestOverlappingActions"><code class="docutils literal notranslate"><span class="pre">TestOverlappingActions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestPolling"><code class="docutils literal notranslate"><span class="pre">TestPolling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestStartTools"><code class="docutils literal notranslate"><span class="pre">TestStartTools</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.TestStopOtherTools"><code class="docutils literal notranslate"><span class="pre">TestStopOtherTools</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.handle"><code class="docutils literal notranslate"><span class="pre">handle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_application_service.html#devkit_ui.test_system_application_service.make_process"><code class="docutils literal notranslate"><span class="pre">make_process()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_page_cards.html">devkit_ui.test_system_page_cards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestBatteryCard"><code class="docutils literal notranslate"><span class="pre">TestBatteryCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestEspCard"><code class="docutils literal notranslate"><span class="pre">TestEspCard</span></code></a></li>
@@ -672,6 +698,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestRobotBrainViewModel"><code class="docutils literal notranslate"><span class="pre">TestRobotBrainViewModel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestSafetyCard"><code class="docutils literal notranslate"><span class="pre">TestSafetyCard</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_page_cards.html#devkit_ui.test_system_page_cards.TestSimViewModel"><code class="docutils literal notranslate"><span class="pre">TestSimViewModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_view_model.html">devkit_ui.test_system_view_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel"><code class="docutils literal notranslate"><span class="pre">TestSystemViewModel</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_system_widgets.html">devkit_ui.test_system_widgets</a><ul>
@@ -691,7 +721,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_telemetry_presentation.html">devkit_ui.test_telemetry_presentation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_telemetry_presentation.html#devkit_ui.test_telemetry_presentation.TestTelemetryPresentation"><code class="docutils literal notranslate"><span class="pre">TestTelemetryPresentation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_telemetry_presentation.html#devkit_ui.test_telemetry_presentation.load_node_telemetry_bridge"><code class="docutils literal notranslate"><span class="pre">load_node_telemetry_bridge()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_telemetry_services.html">devkit_ui.test_telemetry_services</a><ul>
@@ -715,7 +744,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_tools_card.html">devkit_ui.test_tools_card</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolsCard"><code class="docutils literal notranslate"><span class="pre">TestToolsCard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolControls"><code class="docutils literal notranslate"><span class="pre">TestToolControls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.TestToolsCardLinks"><code class="docutils literal notranslate"><span class="pre">TestToolsCardLinks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_tools_card.html#devkit_ui.test_tools_card.run_inline"><code class="docutils literal notranslate"><span class="pre">run_inline()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topo_defaults.html">devkit_ui.test_topo_defaults</a><ul>
@@ -771,6 +802,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topology_services.html">devkit_ui.test_topology_services</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.TestTopologyStack"><code class="docutils literal notranslate"><span class="pre">TestTopologyStack</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.make_stack"><code class="docutils literal notranslate"><span class="pre">make_stack()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topology_services.html#devkit_ui.test_topology_services.subscription"><code class="docutils literal notranslate"><span class="pre">subscription()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_topology_view_model.html">devkit_ui.test_topology_view_model</a><ul>
@@ -779,11 +811,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_track_mode.html">devkit_ui.test_track_mode</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_track_mode.html#devkit_ui.test_track_mode.TestTrackMode"><code class="docutils literal notranslate"><span class="pre">TestTrackMode</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ui_node_mission.html">devkit_ui.test_ui_node_mission</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ui_node_mission.html#devkit_ui.test_ui_node_mission.TestUiNodeMission"><code class="docutils literal notranslate"><span class="pre">TestUiNodeMission</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.test_ui_node_mission.html#devkit_ui.test_ui_node_mission.load_mission_harness"><code class="docutils literal notranslate"><span class="pre">load_mission_harness()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.time_utils.html">devkit_ui.time_utils</a><ul>
@@ -826,6 +853,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.topo_test_fakes.html#devkit_ui.topo_test_fakes.run_threads_inline"><code class="docutils literal notranslate"><span class="pre">run_threads_inline()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html">devkit_ui.ui_node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode"><code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.load_css"><code class="docutils literal notranslate"><span class="pre">load_css()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main"><code class="docutils literal notranslate"><span class="pre">ros_main()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.utils.html">devkit_ui.utils</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.utils.topo_renderer.html">devkit_ui.utils.topo_renderer</a></li>
 </ul>
@@ -839,6 +873,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.robot_brain_view_model.html">devkit_ui.view_models.robot_brain_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.run_view_model.html">devkit_ui.view_models.run_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.sim_view_model.html">devkit_ui.view_models.sim_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.system_view_model.html">devkit_ui.view_models.system_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.telemetry_view_model.html">devkit_ui.view_models.telemetry_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.topology_view_model.html">devkit_ui.view_models.topology_view_model</a></li>
 </ul>
@@ -945,7 +980,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">devkit_ui.test_medkit_gateway</li>
+      <li class="breadcrumb-item active">devkit_ui.test_system_view_model</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -954,418 +989,110 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for devkit_ui.test_medkit_gateway</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Unit tests for the Medkit controls without ROS or web-server startup.&quot;&quot;&quot;</span>
+  <h1>Source code for devkit_ui.test_system_view_model</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;System view model: status wording and levels for each service result.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">ast</span>
-<span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">signal</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">html</span> <span class="kn">import</span> <span class="n">escape</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">SimpleNamespace</span>
-<span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">Mock</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">ModuleType</span>
+<span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">patch</span>
+
+<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">TOOL_EXPLORER</span><span class="p">,</span> <span class="n">TOOL_GRAPHER</span><span class="p">,</span> <span class="n">TOOL_MEDKIT</span><span class="p">,</span> <span class="n">TOOL_RVIZ</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.view_models.system_view_model</span> <span class="kn">import</span> <span class="n">SystemViewModel</span><span class="p">,</span> <span class="n">ToolStatusView</span>
+
+<span class="n">packages</span> <span class="o">=</span> <span class="n">ModuleType</span><span class="p">(</span><span class="s1">&#39;ament_index_python.packages&#39;</span><span class="p">)</span>
+<span class="n">packages</span><span class="o">.</span><span class="n">PackageNotFoundError</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;PackageNotFoundError&#39;</span><span class="p">,</span> <span class="p">(</span><span class="ne">LookupError</span><span class="p">,),</span> <span class="p">{})</span>
+<span class="n">packages</span><span class="o">.</span><span class="n">get_package_share_directory</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;ament_index_python.packages&#39;</span><span class="p">:</span> <span class="n">packages</span><span class="p">}):</span>
+    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.system_application_service</span> <span class="kn">import</span> <span class="n">ToolState</span>
 
 
-<div class="viewcode-block" id="TestMedkitGateway">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway">[docs]</a>
-<span class="k">class</span> <span class="nc">TestMedkitGateway</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">IsolatedAsyncioTestCase</span><span class="p">):</span>
-<div class="viewcode-block" id="TestMedkitGateway.setUp">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.setUp">[docs]</a>
-    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span> <span class="o">=</span> <span class="n">make_process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">137</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span> <span class="o">=</span> <span class="n">make_controls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TestSystemViewModel">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel">[docs]</a>
+<span class="k">class</span> <span class="nc">TestSystemViewModel</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="TestSystemViewModel.setUp">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel.setUp">[docs]</a>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vm</span> <span class="o">=</span> <span class="n">SystemViewModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestMedkitGateway.test_render_registers_controls_without_starting_a_process">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_render_registers_controls_without_starting_a_process">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_render_registers_controls_without_starting_a_process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_start_launches_gateway_on_loopback_and_reports_pid">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_launches_gateway_on_loopback_and_reports_pid">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_start_launches_gateway_on_loopback_and_reports_pid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span>
-            <span class="p">[</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;ros2_medkit_gateway&#39;</span><span class="p">,</span> <span class="s1">&#39;bringup.launch.py&#39;</span><span class="p">,</span>
-             <span class="s1">&#39;server_host:=127.0.0.1&#39;</span><span class="p">],</span>
-            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span><span class="p">,</span>
+<div class="viewcode-block" id="TestSystemViewModel.test_started_wording_per_tool">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel.test_started_wording_per_tool">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_started_wording_per_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cases</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">TOOL_EXPLORER</span><span class="p">,</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;started&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;/tmp/ros2graph_explorer.log&#39;</span><span class="p">),</span>
+             <span class="s1">&#39;started (pid 7) - log: /tmp/ros2graph_explorer.log&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">TOOL_GRAPHER</span><span class="p">,</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;started&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;/tmp/ros2grapher.log&#39;</span><span class="p">),</span>
+             <span class="s1">&#39;started (pid 7) - open http://robot.local:8888 (scan takes a few seconds)&#39;</span>
+             <span class="s1">&#39; - log: /tmp/ros2grapher.log&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">TOOL_RVIZ</span><span class="p">,</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;started&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;/tmp/rviz.log&#39;</span><span class="p">),</span> <span class="s1">&#39;started (pid 7) - log: /tmp/rviz.log&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">TOOL_RVIZ</span><span class="p">,</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;started&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;/tmp/rviz.log&#39;</span><span class="p">,</span> <span class="s1">&#39;no topo config found&#39;</span><span class="p">),</span>
+             <span class="s1">&#39;started (pid 7) (no topo config found) - log: /tmp/rviz.log&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">TOOL_MEDKIT</span><span class="p">,</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;started&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s1">&#39;started (pid 7)&#39;</span><span class="p">),</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;started (pid 137)&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#1a7f37&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">communicate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span></div>
+        <span class="k">for</span> <span class="n">tool</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">tool</span><span class="o">=</span><span class="n">tool</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">detail</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">state</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="s1">&#39;robot.local&#39;</span><span class="p">),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">tool</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestMedkitGateway.test_start_while_running_does_not_launch_or_terminate_again">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_while_running_does_not_launch_or_terminate_again">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_start_while_running_does_not_launch_or_terminate_again</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;already running&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#1a7f37&#39;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_start_replaces_exited_process_regardless_of_exit_status">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_replaces_exited_process_regardless_of_exit_status">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_start_replaces_exited_process_regardless_of_exit_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">returncode</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">):</span>
-            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">returncode</span><span class="o">=</span><span class="n">returncode</span><span class="p">):</span>
-                <span class="n">old_process</span> <span class="o">=</span> <span class="n">make_process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-                <span class="n">replacement</span> <span class="o">=</span> <span class="n">make_process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-                <span class="n">popen</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">side_effect</span><span class="o">=</span><span class="p">[</span><span class="n">old_process</span><span class="p">,</span> <span class="n">replacement</span><span class="p">])</span>
-                <span class="n">controls</span> <span class="o">=</span> <span class="n">make_controls</span><span class="p">(</span><span class="n">popen</span><span class="p">)</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-                <span class="n">old_process</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">returncode</span>
-
-                <span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">popen</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;started (pid 200)&#39;</span><span class="p">)</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;color:#1a7f37&#39;</span><span class="p">)</span>
-                <span class="k">await</span> <span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="n">replacement</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span>
-                <span class="n">old_process</span><span class="o">.</span><span class="n">terminate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span></div>
+<div class="viewcode-block" id="TestSystemViewModel.test_other_results">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel.test_other_results">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_other_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cases</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;already_running&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;already running&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;running&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;running (pid 7)&#39;</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;muted&#39;</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;exited&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;/tmp/rviz.log&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">),</span>
+             <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;exited (1) - see /tmp/rviz.log&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;exited&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;-15&#39;</span><span class="p">),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;exited (-15)&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;no display&#39;</span><span class="p">),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;ERROR: no display&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;busy&#39;</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;idle&#39;</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">detail</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">state</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">TOOL_RVIZ</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">),</span> <span class="n">view</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestMedkitGateway.test_launch_errors_are_displayed_and_allow_retry">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_launch_errors_are_displayed_and_allow_retry">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_launch_errors_are_displayed_and_allow_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;ros2 missing&#39;</span><span class="p">),</span> <span class="ne">PermissionError</span><span class="p">(</span><span class="s1">&#39;access denied&#39;</span><span class="p">),</span>
-                      <span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;process limit reached&#39;</span><span class="p">)):</span>
-            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">):</span>
-                <span class="n">process</span> <span class="o">=</span> <span class="n">make_process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">201</span><span class="p">)</span>
-                <span class="n">popen</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">side_effect</span><span class="o">=</span><span class="p">[</span><span class="n">error</span><span class="p">,</span> <span class="n">process</span><span class="p">])</span>
-                <span class="n">controls</span> <span class="o">=</span> <span class="n">make_controls</span><span class="p">(</span><span class="n">popen</span><span class="p">)</span>
-
-                <span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-                <span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">popen</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;started (pid 201)&#39;</span><span class="p">)</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;color:#1a7f37&#39;</span><span class="p">)</span>
-                <span class="k">await</span> <span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TestSystemViewModel.test_stop_and_status_delegate_and_word_the_result">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel.test_stop_and_status_delegate_and_word_the_result">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_stop_and_status_delegate_and_word_the_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">stop</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;running&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="n">TOOL_MEDKIT</span><span class="p">),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;muted&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">stop</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">TOOL_MEDKIT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">status</span><span class="p">(</span><span class="n">TOOL_MEDKIT</span><span class="p">),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;running (pid 9)&#39;</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">))</span>
+        <span class="c1"># pylint: disable-next=no-member</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">TOOL_MEDKIT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">stop</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;busy&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;idle&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="n">TOOL_MEDKIT</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">status</span><span class="p">(</span><span class="n">TOOL_MEDKIT</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="TestMedkitGateway.test_failed_restart_keeps_previous_process_tracked">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_failed_restart_keeps_previous_process_tracked">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_failed_restart_keeps_previous_process_tracked</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;cannot launch&#39;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;ERROR: cannot launch&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TestSystemViewModel.test_exited_only_reports_a_process_that_has_died">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel.test_exited_only_reports_a_process_that_has_died">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_exited_only_reports_a_process_that_has_died</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">exited</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;exited&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;/tmp/rviz.log&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">exited</span><span class="p">(</span><span class="n">TOOL_RVIZ</span><span class="p">),</span>
+                         <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;exited (2) - see /tmp/rviz.log&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">exited</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">TOOL_RVIZ</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;running&#39;</span><span class="p">,</span> <span class="s1">&#39;idle&#39;</span><span class="p">,</span> <span class="s1">&#39;busy&#39;</span><span class="p">):</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">exited</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">ToolState</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">exited</span><span class="p">(</span><span class="n">TOOL_RVIZ</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="TestMedkitGateway.test_stop_without_start_is_safe_and_repeatable">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_without_start_is_safe_and_repeatable">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_stop_without_start_is_safe_and_repeatable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_stop_sends_sigint_and_waits_before_clearing_handle">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_sends_sigint_and_waits_before_clearing_handle">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_stop_sends_sigint_and_waits_before_clearing_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">communicate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">kill</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_start_after_completed_stop_launches_new_process">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_start_after_completed_stop_launches_new_process">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_start_after_completed_stop_launches_new_process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="n">replacement</span> <span class="o">=</span> <span class="n">make_process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">202</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">replacement</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;started (pid 202)&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#1a7f37&#39;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="n">replacement</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_stop_after_launch_failure_resets_error_status">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_after_launch_failure_resets_error_status">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_stop_after_launch_failure_resets_error_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">&#39;ros2 missing&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_stop_reaps_already_exited_process">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_stop_reaps_already_exited_process">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_stop_reaps_already_exited_process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_signal_failure_keeps_process_for_retry">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_signal_failure_keeps_process_for_retry">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_signal_failure_keeps_process_for_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="n">error</span> <span class="o">=</span> <span class="ne">PermissionError</span><span class="p">(</span><span class="s1">&#39;cannot signal&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">error</span>
-
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#cf222e&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_shutdown_escalates_only_after_each_timeout">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_shutdown_escalates_only_after_each_timeout">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_shutdown_escalates_only_after_each_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">timeout</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">TimeoutExpired</span><span class="p">(</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">waits</span><span class="p">,</span> <span class="n">expected</span> <span class="ow">in</span> <span class="p">(</span>
-            <span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">send_signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">),</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">)]),</span>
-            <span class="p">([</span><span class="n">timeout</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">send_signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">),</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">),</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">terminate</span><span class="p">(),</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)]),</span>
-            <span class="p">([</span><span class="n">timeout</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">send_signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">),</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">),</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">terminate</span><span class="p">(),</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
-                <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">kill</span><span class="p">(),</span> <span class="n">unittest</span><span class="o">.</span><span class="n">mock</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)]),</span>
-        <span class="p">):</span>
-            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">waits</span><span class="o">=</span><span class="n">waits</span><span class="p">):</span>
-                <span class="n">process</span> <span class="o">=</span> <span class="n">make_process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">204</span><span class="p">)</span>
-                <span class="n">controls</span> <span class="o">=</span> <span class="n">make_controls</span><span class="p">(</span><span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="n">process</span><span class="p">))</span>
-                <span class="n">process</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">waits</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-                <span class="k">await</span> <span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">mock_calls</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
-                <span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">)</span>
-                <span class="k">await</span> <span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">mock_calls</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_final_wait_failure_keeps_handle_for_retry">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_final_wait_failure_keeps_handle_for_retry">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_final_wait_failure_keeps_handle_for_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">TimeoutExpired</span><span class="p">(</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">call_args</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ERROR:&#39;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_shutdown_keeps_ui_responsive_and_prevents_overlapping_actions">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_shutdown_keeps_ui_responsive_and_prevents_overlapping_actions">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_shutdown_keeps_ui_responsive_and_prevents_overlapping_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">waiting</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
-        <span class="n">release</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
-
-        <span class="k">def</span> <span class="nf">wait_for_release</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
-            <span class="n">waiting</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">release</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">TimeoutExpired</span><span class="p">(</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">0</span>
-
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">interact_while_stopping</span><span class="p">():</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="n">waiting</span><span class="o">.</span><span class="n">wait</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;stopping&#39;</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span>
-            <span class="k">finally</span><span class="p">:</span>
-                <span class="n">release</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">wait</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">wait_for_release</span>
-        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">(),</span> <span class="n">interact_while_stopping</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;stopped&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#57606a&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_each_tab_starts_and_stops_only_its_own_process">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_each_tab_starts_and_stops_only_its_own_process">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_each_tab_starts_and_stops_only_its_own_process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">other_process</span> <span class="o">=</span> <span class="n">make_process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">203</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="p">,</span> <span class="n">other_process</span><span class="p">]</span>
-        <span class="n">other_controls</span> <span class="o">=</span> <span class="n">make_controls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-        <span class="k">await</span> <span class="n">other_controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">terminate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assert_status</span><span class="p">(</span><span class="s1">&#39;started (pid 137)&#39;</span><span class="p">,</span> <span class="s1">&#39;color:#1a7f37&#39;</span><span class="p">)</span>
-        <span class="n">other_controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">other_controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;started (pid 203)&#39;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span>
-        <span class="n">other_process</span><span class="o">.</span><span class="n">terminate</span><span class="o">.</span><span class="n">assert_not_called</span><span class="p">()</span>
-        <span class="n">other_controls</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">other_controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s1">&#39;already running&#39;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">other_controls</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="n">other_process</span><span class="o">.</span><span class="n">send_signal</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_gateway_and_sovd_links_use_page_host">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_gateway_and_sovd_links_use_page_host">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_gateway_and_sovd_links_use_page_host</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">authority</span> <span class="ow">in</span> <span class="p">(</span>
-            <span class="p">(</span><span class="s1">&#39;robot.local&#39;</span><span class="p">,</span> <span class="s1">&#39;robot.local&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;192.0.2.10&#39;</span><span class="p">,</span> <span class="s1">&#39;192.0.2.10&#39;</span><span class="p">),</span>
-            <span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2001:db8::1&#39;</span><span class="p">,</span> <span class="s1">&#39;[2001:db8::1]&#39;</span><span class="p">),</span>
-        <span class="p">):</span>
-            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="n">hostname</span><span class="p">):</span>
-                <span class="n">controls</span> <span class="o">=</span> <span class="n">make_controls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="n">hostname</span><span class="p">)</span>
-                <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">call</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">call</span> <span class="ow">in</span> <span class="n">controls</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">call_args_list</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;href=&quot;http://</span><span class="si">{</span><span class="n">authority</span><span class="si">}</span><span class="s1">:8080/&quot;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;href=&quot;http://</span><span class="si">{</span><span class="n">authority</span><span class="si">}</span><span class="s1">:3000/&quot;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;code&gt;http://</span><span class="si">{</span><span class="n">authority</span><span class="si">}</span><span class="s1">:8080&lt;/code&gt;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;docker run -p 3000:80 ghcr.io/selfpatch/sovd_web_ui:latest&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;authentication, TLS, and restricted network access&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.test_host_is_escaped_in_html">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.test_host_is_escaped_in_html">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_host_is_escaped_in_html</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">controls</span> <span class="o">=</span> <span class="n">make_controls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popen</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="s1">&#39;robot&quot;&gt;&lt;img src=x&gt;&#39;</span><span class="p">)</span>
-        <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">call</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">call</span> <span class="ow">in</span> <span class="n">controls</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">call_args_list</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s1">&#39;&lt;img&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;robot&amp;quot;&amp;gt;&amp;lt;img src=x&amp;gt;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="TestMedkitGateway.assert_status">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.TestMedkitGateway.assert_status">[docs]</a>
-    <span class="k">def</span> <span class="nf">assert_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_text</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">color</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TestSystemViewModel.test_stopping_leaves_the_colour_alone">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_system_view_model.html#devkit_ui.test_system_view_model.TestSystemViewModel.test_stopping_leaves_the_colour_alone">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_stopping_leaves_the_colour_alone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">stopping</span><span class="p">(),</span> <span class="n">ToolStatusView</span><span class="p">(</span><span class="s1">&#39;stopping&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span></div>
 </div>
 
-
-
-<div class="viewcode-block" id="make_process">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_process">[docs]</a>
-<span class="k">def</span> <span class="nf">make_process</span><span class="p">(</span><span class="n">pid</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="n">process</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span>
-        <span class="n">spec</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">,</span> <span class="s1">&#39;poll&#39;</span><span class="p">,</span> <span class="s1">&#39;terminate&#39;</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">,</span> <span class="s1">&#39;communicate&#39;</span><span class="p">,</span> <span class="s1">&#39;kill&#39;</span><span class="p">,</span> <span class="s1">&#39;send_signal&#39;</span><span class="p">],</span> <span class="n">pid</span><span class="o">=</span><span class="n">pid</span><span class="p">)</span>
-    <span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">return</span> <span class="n">process</span></div>
-
-
-
-<div class="viewcode-block" id="make_controls">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.make_controls">[docs]</a>
-<span class="k">def</span> <span class="nf">make_controls</span><span class="p">(</span><span class="n">popen</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="s1">&#39;robot.local&#39;</span><span class="p">):</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;classes&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="s1">&#39;set_text&#39;</span><span class="p">])</span>
-    <span class="n">label</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">label</span>
-    <span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">label</span>
-    <span class="n">ui</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;separator&#39;</span><span class="p">,</span> <span class="s1">&#39;context&#39;</span><span class="p">])</span>
-    <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">label</span>
-    <span class="n">ui</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
-    <span class="n">build_controls</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">SimpleNamespace</span><span class="p">(</span>
-        <span class="n">Popen</span><span class="o">=</span><span class="n">popen</span><span class="p">,</span> <span class="n">DEVNULL</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span><span class="p">,</span> <span class="n">TimeoutExpired</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">TimeoutExpired</span><span class="p">,</span>
-    <span class="p">))</span>
-    <span class="n">buttons</span> <span class="o">=</span> <span class="p">{</span><span class="n">call</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">call</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;on_click&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">call</span> <span class="ow">in</span> <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">call_args_list</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">SimpleNamespace</span><span class="p">(</span>
-        <span class="n">ui</span><span class="o">=</span><span class="n">ui</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
-        <span class="n">start</span><span class="o">=</span><span class="n">buttons</span><span class="p">[</span><span class="s1">&#39;Start Medkit Gateway&#39;</span><span class="p">],</span> <span class="n">stop</span><span class="o">=</span><span class="n">buttons</span><span class="p">[</span><span class="s1">&#39;Stop Medkit Gateway&#39;</span><span class="p">],</span>
-    <span class="p">)</span></div>
-
-
-
-<div class="viewcode-block" id="load_controls_builder">
-<a class="viewcode-back" href="../../_autosummary/devkit_ui.test_medkit_gateway.html#devkit_ui.test_medkit_gateway.load_controls_builder">[docs]</a>
-<span class="k">def</span> <span class="nf">load_controls_builder</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the real Medkit block in a function to preserve per-tab closures.</span>
-
-<span class="sd">    Follow the AST harness used by test_navigation_goals, keeping the original</span>
-<span class="sd">    status initialization and button registration as well as both callbacks.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">source_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="s1">&#39;pages&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;system&#39;</span> <span class="o">/</span> <span class="s1">&#39;tools_card.py&#39;</span>
-    <span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">source_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
-    <span class="n">function</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
-        <span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">body</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">FunctionDef</span><span class="p">)</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;_medkit_controls&#39;</span>
-    <span class="p">)</span>
-    <span class="n">factory</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;def build_controls(ui, subprocess): pass&#39;</span><span class="p">)</span>
-    <span class="c1"># Skip the docstring: only the checked-in Medkit block executes.</span>
-    <span class="n">factory</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="n">namespace</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;signal&#39;</span><span class="p">:</span> <span class="n">signal</span><span class="p">,</span> <span class="s1">&#39;escape&#39;</span><span class="p">:</span> <span class="n">escape</span><span class="p">,</span>
-                 <span class="s1">&#39;ng_run&#39;</span><span class="p">:</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="n">io_bound</span><span class="o">=</span><span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">)}</span>
-    <span class="c1"># NOTE: Only the checked-in Medkit block executes, with UI and subprocess doubles.</span>
-    <span class="n">exec</span><span class="p">(</span>  <span class="c1"># pylint: disable=exec-used</span>
-        <span class="nb">compile</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">fix_missing_locations</span><span class="p">(</span><span class="n">factory</span><span class="p">),</span> <span class="n">source_path</span><span class="p">,</span> <span class="s1">&#39;exec&#39;</span><span class="p">),</span> <span class="n">namespace</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">namespace</span><span class="p">[</span><span class="s1">&#39;build_controls&#39;</span><span class="p">]</span></div>
-
-
-
-<span class="n">build_controls</span> <span class="o">=</span> <span class="n">load_controls_builder</span><span class="p">()</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
