@@ -8,6 +8,5 @@ devkit\_ui.view\_models.map\_authoring\_view\_model
 
    .. autosummary::
    
-      Cancellable
       MapAuthoringViewModel
    

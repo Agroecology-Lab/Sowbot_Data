@@ -12,6 +12,7 @@ devkit\_ui.view\_models
 
    global_view_model
    map_authoring_view_model
+   map_context
    mission_view_model
    obstacle_view_model
    plan_view_model

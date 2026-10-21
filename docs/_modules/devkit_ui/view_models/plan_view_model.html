@@ -253,6 +253,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.application_services.track_application_service.html">devkit_ui.application_services.track_application_service</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.constants.html">devkit_ui.constants</a></li>
@@ -425,6 +426,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html">devkit_ui.view_models.map_authoring_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.map_context.html">devkit_ui.view_models.map_context</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.obstacle_view_model.html">devkit_ui.view_models.obstacle_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
@@ -560,8 +562,7 @@
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">devkit_ui.application_services.plan_application_service</span> <span class="kn">import</span> <span class="n">PlanApplicationService</span>
     <span class="kn">from</span> <span class="nn">devkit_ui.plan_types</span> <span class="kn">import</span> <span class="n">PlannedRows</span><span class="p">,</span> <span class="n">PlanOutcome</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.view_models.run_view_model</span> <span class="kn">import</span> <span class="n">RunViewModel</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.view_models.topology_view_model</span> <span class="kn">import</span> <span class="n">TopologyViewModel</span>
+    <span class="kn">from</span> <span class="nn">devkit_ui.view_models.map_context</span> <span class="kn">import</span> <span class="n">MapContext</span>
 
 
 <div class="viewcode-block" id="PlanView">
@@ -746,21 +747,16 @@
 
 <div class="viewcode-block" id="PlanViewModel.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanViewModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_service</span><span class="p">:</span> <span class="n">PlanApplicationService</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">,</span>
-                 <span class="n">run_vm</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind to the plan service and the view models that hold the map and row action.</span>
-
-<span class="sd">        The row action is the Run tab&#39;s drop_node.row_action; this view model only reads it.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_service</span><span class="p">:</span> <span class="n">PlanApplicationService</span><span class="p">,</span> <span class="n">map_context</span><span class="p">:</span> <span class="n">MapContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind to the plan service and the read-only view of the map and its row action.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span> <span class="o">=</span> <span class="n">app_service</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span> <span class="o">=</span> <span class="n">topo_vm</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span> <span class="o">=</span> <span class="n">run_vm</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map</span> <span class="o">=</span> <span class="n">map_context</span></div>
 
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_row_action</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the row action selected on the Run tab.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">drop_node</span><span class="o">.</span><span class="n">row_action</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">row_action</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">save_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -813,7 +809,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">save_rows</span><span class="p">(</span>
             <span class="n">planned</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">row_id_start</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="n">row_action</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_row_action</span><span class="p">,</span>
-            <span class="n">current_node</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">current_node</span><span class="p">,</span> <span class="n">selected_node</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">selected_node</span><span class="p">)</span></div>
+            <span class="n">current_node</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">current_node</span><span class="p">,</span> <span class="n">selected_node</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">selected_node</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PlanViewModel.repair_offer">
@@ -824,11 +820,11 @@
 <span class="sd">        The suggested base node is the robot&#39;s current node, else the selected one, as long</span>
 <span class="sd">        as it exists in the map; empty if neither does.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">topo_doc</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">topo_doc</span>
         <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">current_node</span>
-        <span class="n">selected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">selected_node</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">current_node</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">selected_node</span>
         <span class="n">default_base</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="k">if</span> <span class="n">current</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;—&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="n">doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
             <span class="n">default_base</span> <span class="o">=</span> <span class="n">current</span>
@@ -848,7 +844,7 @@
 <span class="sd">        None if no map is loaded. Equal snapshots mean available_rows would be equal too,</span>
 <span class="sd">        including after a node&#39;s row metadata is edited in place.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">topo_doc</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">topo_doc</span>
         <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="nb">frozenset</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_id&#39;</span><span class="p">),</span> <span class="n">node</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_role&#39;</span><span class="p">))</span>
@@ -859,7 +855,7 @@
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanViewModel.available_rows">[docs]</a>
     <span class="k">def</span> <span class="nf">available_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return row id -&gt; entry node name for every row in the loaded map; empty if none.&quot;&quot;&quot;</span>
-        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">topo_doc</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">topo_doc</span>
         <span class="n">rows</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">()):</span>
             <span class="n">row_id</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_id&#39;</span><span class="p">)</span>
@@ -879,7 +875,7 @@
 <span class="sd">        An unknown connect_to node is rejected in save_status and nothing is repaired.</span>
 <span class="sd">        See PlanApplicationService.repair_connectivity for the rest.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">topo_doc</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">topo_doc</span>
         <span class="k">if</span> <span class="n">connect_to</span> <span class="ow">and</span> <span class="n">doc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">connect_to</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: base node </span><span class="si">{</span><span class="n">connect_to</span><span class="si">!r}</span><span class="s1"> not in map&#39;</span><span class="p">)</span>
             <span class="k">return</span>

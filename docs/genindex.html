@@ -253,6 +253,7 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.application_services.track_application_service.html">devkit_ui.application_services.track_application_service</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.constants.html">devkit_ui.constants</a></li>
@@ -425,6 +426,7 @@
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.map_authoring_view_model.html">devkit_ui.view_models.map_authoring_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.map_context.html">devkit_ui.view_models.map_context</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.obstacle_view_model.html">devkit_ui.view_models.obstacle_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
@@ -640,6 +642,8 @@
 </li>
         <li><a href="_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.TopologyEditService.__init__">(devkit_ui.application_services.topology_edit_service.TopologyEditService method)</a>
 </li>
+        <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService.__init__">(devkit_ui.application_services.track_application_service.TrackApplicationService method)</a>
+</li>
         <li><a href="_autosummary/devkit_ui.domain_services.drive_domain_service.html#devkit_ui.domain_services.drive_domain_service.DriveDomainService.__init__">(devkit_ui.domain_services.drive_domain_service.DriveDomainService method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.__init__">(devkit_ui.domain_services.mission_domain_service.MissionDomainService method)</a>
@@ -729,6 +733,8 @@
         <li><a href="_autosummary/devkit_ui.view_models.global_view_model.html#devkit_ui.view_models.global_view_model.GlobalViewModel.__init__">(devkit_ui.view_models.global_view_model.GlobalViewModel method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.__init__">(devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.map_context.html#devkit_ui.view_models.map_context.MapContext.__init__">(devkit_ui.view_models.map_context.MapContext method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionQueue.__init__">(devkit_ui.view_models.mission_view_model.MissionQueue method)</a>
 </li>
@@ -960,9 +966,9 @@
       <ul>
         <li><a href="_autosummary/devkit_ui.application_services.navigation_application_service.html#devkit_ui.application_services.navigation_application_service.NavigationApplicationService.cancel">(devkit_ui.application_services.navigation_application_service.NavigationApplicationService method)</a>
 </li>
-        <li><a href="_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.cancel">(devkit_ui.domain_services.mission_domain_service.MissionDomainService method)</a>
+        <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.Cancellable.cancel">(devkit_ui.application_services.track_application_service.Cancellable method)</a>
 </li>
-        <li><a href="_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.Cancellable.cancel">(devkit_ui.view_models.map_authoring_view_model.Cancellable method)</a>
+        <li><a href="_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.cancel">(devkit_ui.domain_services.mission_domain_service.MissionDomainService method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.cancel">(devkit_ui.view_models.mission_view_model.MissionViewModel method)</a>
 </li>
@@ -973,7 +979,7 @@
 </li>
       <li><a href="_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.cancel_requested">cancel_requested (devkit_ui.domain_services.mission_domain_service.MissionDomainService property)</a>
 </li>
-      <li><a href="_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.Cancellable">Cancellable (class in devkit_ui.view_models.map_authoring_view_model)</a>
+      <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.Cancellable">Cancellable (class in devkit_ui.application_services.track_application_service)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.pages.sim.plant_placement_card.html#devkit_ui.pages.sim.plant_placement_card.PlantSettings.category">category (devkit_ui.pages.sim.plant_placement_card.PlantSettings attribute)</a>
 </li>
@@ -1055,6 +1061,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanRequest.corners_ll">corners_ll (devkit_ui.plan_types.PlanRequest attribute)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService.count">count (devkit_ui.application_services.track_application_service.TrackApplicationService property)</a>
+</li>
       <li><a href="_autosummary/devkit_driver.course_over_ground.html#devkit_driver.course_over_ground.CourseOverGround">CourseOverGround (class in devkit_driver.course_over_ground)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.ros_gateway.html#devkit_ui.ros_gateway.RosGateway.create_action_client">create_action_client() (devkit_ui.ros_gateway.RosGateway method)</a>
@@ -1078,6 +1086,8 @@
       <li><a href="_autosummary/devkit_ui.sim_asset_store.html#devkit_ui.sim_asset_store.SimAssetStore.crop_model_names">crop_model_names() (devkit_ui.sim_asset_store.SimAssetStore method)</a>
 </li>
       <li><a href="_autosummary/devkit_mavlink_bridge.modules.velocity_watchdog.html#devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog.current">current() (devkit_mavlink_bridge.modules.velocity_watchdog.CmdVelWatchdog method)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.map_context.html#devkit_ui.view_models.map_context.MapContext.current_node">current_node (devkit_ui.view_models.map_context.MapContext property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1519,6 +1529,13 @@
 
       <ul>
         <li><a href="_autosummary/devkit_ui.application_services.topology_edit_service.html#module-devkit_ui.application_services.topology_edit_service">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.application_services.track_application_service
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#module-devkit_ui.application_services.track_application_service">module</a>
 </li>
       </ul></li>
       <li>
@@ -2025,6 +2042,13 @@
 
       <ul>
         <li><a href="_autosummary/devkit_ui.view_models.map_authoring_view_model.html#module-devkit_ui.view_models.map_authoring_view_model">module</a>
+</li>
+      </ul></li>
+      <li>
+    devkit_ui.view_models.map_context
+
+      <ul>
+        <li><a href="_autosummary/devkit_ui.view_models.map_context.html#module-devkit_ui.view_models.map_context">module</a>
 </li>
       </ul></li>
       <li>
@@ -2570,6 +2594,8 @@
 </li>
       <li><a href="_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel">MapAuthoringViewModel (class in devkit_ui.view_models.map_authoring_view_model)</a>
 </li>
+      <li><a href="_autosummary/devkit_ui.view_models.map_context.html#devkit_ui.view_models.map_context.MapContext">MapContext (class in devkit_ui.view_models.map_context)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService.mark_here">mark_here() (devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService method)</a>
 
       <ul>
@@ -2742,6 +2768,8 @@
 </li>
         <li><a href="_autosummary/devkit_ui.application_services.topology_edit_service.html#module-devkit_ui.application_services.topology_edit_service">devkit_ui.application_services.topology_edit_service</a>
 </li>
+        <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#module-devkit_ui.application_services.track_application_service">devkit_ui.application_services.track_application_service</a>
+</li>
         <li><a href="_autosummary/devkit_ui.constants.html#module-devkit_ui.constants">devkit_ui.constants</a>
 </li>
         <li><a href="_autosummary/devkit_ui.dem.html#module-devkit_ui.dem">devkit_ui.dem</a>
@@ -2885,6 +2913,8 @@
         <li><a href="_autosummary/devkit_ui.view_models.global_view_model.html#module-devkit_ui.view_models.global_view_model">devkit_ui.view_models.global_view_model</a>
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.map_authoring_view_model.html#module-devkit_ui.view_models.map_authoring_view_model">devkit_ui.view_models.map_authoring_view_model</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.map_context.html#module-devkit_ui.view_models.map_context">devkit_ui.view_models.map_context</a>
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.mission_view_model.html#module-devkit_ui.view_models.mission_view_model">devkit_ui.view_models.mission_view_model</a>
 </li>
@@ -3341,10 +3371,10 @@
         <li><a href="_autosummary/devkit_ui.view_models.obstacle_view_model.html#devkit_ui.view_models.obstacle_view_model.ObstacleViewModel.rings_ll">(devkit_ui.view_models.obstacle_view_model.ObstacleViewModel method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.NodeMap.robot_pose">robot_pose (devkit_ui.view_models.run_view_model.RunViewModel.NodeMap attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.application_services.telemetry_application_service.html#devkit_ui.application_services.telemetry_application_service.TelemetryApplicationService.robot_pose">robot_pose() (devkit_ui.application_services.telemetry_application_service.TelemetryApplicationService method)</a>
 
       <ul>
@@ -3379,6 +3409,8 @@
 
       <ul>
         <li><a href="_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.row_action">(devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel property)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.view_models.map_context.html#devkit_ui.view_models.map_context.MapContext.row_action">(devkit_ui.view_models.map_context.MapContext property)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.DropNode.row_action">(devkit_ui.view_models.run_view_model.RunViewModel.DropNode attribute)</a>
 </li>
@@ -3452,6 +3484,8 @@
       <li><a href="_autosummary/devkit_ui.application_services.mission_application_service.html#devkit_ui.application_services.mission_application_service.MissionApplicationService.running">running (devkit_ui.application_services.mission_application_service.MissionApplicationService property)</a>
 
       <ul>
+        <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService.running">(devkit_ui.application_services.track_application_service.TrackApplicationService property)</a>
+</li>
         <li><a href="_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.running">(devkit_ui.domain_services.mission_domain_service.MissionDomainService property)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.running">(devkit_ui.view_models.mission_view_model.MissionViewModel property)</a>
@@ -3514,6 +3548,8 @@
       <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_latlon">select_reference_contour_latlon() (in module devkit_ui.dem)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.dem.html#devkit_ui.dem.select_reference_contour_xy">select_reference_contour_xy() (in module devkit_ui.dem)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.view_models.map_context.html#devkit_ui.view_models.map_context.MapContext.selected_node">selected_node (devkit_ui.view_models.map_context.MapContext property)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.domain_services.robot_brain_domain_service.html#devkit_ui.domain_services.robot_brain_domain_service.RobotBrainDomainService.send">send() (devkit_ui.domain_services.robot_brain_domain_service.RobotBrainDomainService method)</a>
 </li>
@@ -3635,10 +3671,10 @@
       </ul></li>
       <li><a href="_autosummary/devkit_ui.pages.sim.soil_texture_card.html#devkit_ui.pages.sim.soil_texture_card.SoilTextureCard">SoilTextureCard (class in devkit_ui.pages.sim.soil_texture_card)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.pages.sim.plant_placement_card.html#devkit_ui.pages.sim.plant_placement_card.PlantSettings.spacing_m">spacing_m (devkit_ui.pages.sim.plant_placement_card.PlantSettings attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_logged">spawn_logged() (in module devkit_ui.process_registry)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_quiet">spawn_quiet() (in module devkit_ui.process_registry)</a>
@@ -3665,6 +3701,8 @@
         <li><a href="_autosummary/devkit_ui.application_services.row_discovery_application_service.html#devkit_ui.application_services.row_discovery_application_service.RowDiscoveryApplicationService.start">(devkit_ui.application_services.row_discovery_application_service.RowDiscoveryApplicationService method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService.start">(devkit_ui.application_services.system_application_service.SystemApplicationService method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService.start">(devkit_ui.application_services.track_application_service.TrackApplicationService method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.start">(devkit_ui.domain_services.mission_domain_service.MissionDomainService method)</a>
 </li>
@@ -3731,6 +3769,8 @@
 
       <ul>
         <li><a href="_autosummary/devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService.stop">(devkit_ui.application_services.system_application_service.SystemApplicationService method)</a>
+</li>
+        <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService.stop">(devkit_ui.application_services.track_application_service.TrackApplicationService method)</a>
 </li>
         <li><a href="_autosummary/devkit_ui.domain_services.row_discovery_domain_service.html#devkit_ui.domain_services.row_discovery_domain_service.RowDiscoveryDomainService.stop">(devkit_ui.domain_services.row_discovery_domain_service.RowDiscoveryDomainService method)</a>
 </li>
@@ -3921,10 +3961,10 @@
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_row_that_reenters_the_field_keeps_all_its_pieces">test_row_that_reenters_the_field_keeps_all_its_pieces() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_f2c_planner.test_obstacles.html#devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest.test_row_through_the_obstacle_is_split_at_its_edges">test_row_through_the_obstacle_is_split_at_its_edges() (devkit_f2c_planner.test_obstacles.ClipLinesAgainstObstaclesTest method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_rows_are_spaced_by_the_tool_width_and_span_the_field">test_rows_are_spaced_by_the_tool_width_and_span_the_field() (devkit_f2c_planner.test_contour_rows.ContourRowsTest method)</a>
 </li>
       <li><a href="_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_rows_span_field">test_rows_span_field() (devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest method)</a>
@@ -4021,6 +4061,8 @@
         <li><a href="_autosummary/devkit_driver.modules.html#devkit_driver.modules.ImuHandler.TOPIC">(devkit_driver.modules.ImuHandler attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/devkit_ui.view_models.map_context.html#devkit_ui.view_models.map_context.MapContext.topo_doc">topo_doc (devkit_ui.view_models.map_context.MapContext property)</a>
+</li>
       <li><a href="_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanViewModel.topo_snapshot">topo_snapshot() (devkit_ui.view_models.plan_view_model.PlanViewModel method)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc">TopoDoc (class in devkit_ui.models)</a>
@@ -4044,6 +4086,8 @@
       <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose">TopoPose (class in devkit_ui.models)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties">TopoProperties (class in devkit_ui.models)</a>
+</li>
+      <li><a href="_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService">TrackApplicationService (class in devkit_ui.application_services.track_application_service)</a>
 </li>
       <li><a href="_autosummary/devkit_ui.pages.run.track_card.html#devkit_ui.pages.run.track_card.TrackCard">TrackCard (class in devkit_ui.pages.run.track_card)</a>
 </li>

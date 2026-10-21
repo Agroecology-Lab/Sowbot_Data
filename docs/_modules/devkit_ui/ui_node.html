@@ -253,6 +253,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.tool_state.html">devkit_ui.application_services.tool_state</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.topology_application_service.html">devkit_ui.application_services.topology_application_service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.topology_edit_service.html">devkit_ui.application_services.topology_edit_service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.application_services.track_application_service.html">devkit_ui.application_services.track_application_service</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.constants.html">devkit_ui.constants</a></li>
@@ -425,6 +426,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.html">devkit_ui.view_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.global_view_model.html">devkit_ui.view_models.global_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html">devkit_ui.view_models.map_authoring_view_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.map_context.html">devkit_ui.view_models.map_context</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.mission_view_model.html">devkit_ui.view_models.mission_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.obstacle_view_model.html">devkit_ui.view_models.obstacle_view_model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.view_models.plan_view_model.html">devkit_ui.view_models.plan_view_model</a></li>
@@ -591,6 +593,7 @@
     <span class="n">TopologyApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_edit_service</span> <span class="kn">import</span> <span class="n">TopologyEditService</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.application_services.track_application_service</span> <span class="kn">import</span> <span class="n">TrackApplicationService</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">FIELD27_CENTER</span><span class="p">,</span> <span class="n">NODE_NAME</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.domain_services.drive_domain_service</span> <span class="kn">import</span> <span class="n">DriveDomainService</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.domain_services.mission_domain_service</span> <span class="kn">import</span> <span class="n">MissionDomainService</span>
@@ -613,6 +616,7 @@
 <span class="kn">from</span> <span class="nn">devkit_ui.sim_asset_store</span> <span class="kn">import</span> <span class="n">SimAssetStore</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.global_view_model</span> <span class="kn">import</span> <span class="n">GlobalViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.map_authoring_view_model</span> <span class="kn">import</span> <span class="n">MapAuthoringViewModel</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.view_models.map_context</span> <span class="kn">import</span> <span class="n">MapContext</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.mission_view_model</span> <span class="kn">import</span> <span class="n">MissionViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.obstacle_view_model</span> <span class="kn">import</span> <span class="n">ObstacleViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.plan_view_model</span> <span class="kn">import</span> <span class="n">PlanViewModel</span>
@@ -700,10 +704,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span> <span class="o">=</span> <span class="n">RunViewModel</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_drive_app_service</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_row_discovery_app_service</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nav_app_service</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span> <span class="o">=</span> <span class="n">TopologyViewModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_topo_app_service</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_plan_vm</span> <span class="o">=</span> <span class="n">PlanViewModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plan_app_service</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plan_vm</span> <span class="o">=</span> <span class="n">PlanViewModel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_plan_app_service</span><span class="p">,</span> <span class="n">MapContext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_authoring_vm</span> <span class="o">=</span> <span class="n">MapAuthoringViewModel</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_app_service</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_edit_service</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_app_service</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ros</span><span class="o">.</span><span class="n">create_timer</span><span class="p">,</span> <span class="n">is_sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_is_sim</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_app_service</span><span class="p">,</span> <span class="n">TrackApplicationService</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ros</span><span class="o">.</span><span class="n">create_timer</span><span class="p">),</span>
+            <span class="n">is_sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_is_sim</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_vm</span> <span class="o">=</span> <span class="n">TelemetryViewModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_app_service</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_robot_brain_vm</span> <span class="o">=</span> <span class="n">RobotBrainViewModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_robot_brain_app_service</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_system_vm</span> <span class="o">=</span> <span class="n">SystemViewModel</span><span class="p">(</span><span class="n">SystemApplicationService</span><span class="p">())</span>
@@ -730,7 +736,7 @@
             <span class="n">MissionApplicationService</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_mission_store</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mission_service</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_app_service</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_nav_app_service</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_drive_app_service</span><span class="p">),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">on_nav_update</span><span class="p">)</span>
 
         <span class="nd">@ui</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">page</span><span class="p">():</span>

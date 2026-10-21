@@ -1,0 +1,13 @@
+devkit\_ui.application\_services.track\_application\_service
+============================================================
+
+.. automodule:: devkit_ui.application_services.track_application_service
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Cancellable
+      TrackApplicationService
+   
