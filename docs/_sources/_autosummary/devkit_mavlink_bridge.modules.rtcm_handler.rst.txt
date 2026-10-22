@@ -1,0 +1,12 @@
+devkit\_mavlink\_bridge.modules.rtcm\_handler
+=============================================
+
+.. automodule:: devkit_mavlink_bridge.modules.rtcm_handler
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      rtcm_to_gps_rtcm_data
+   

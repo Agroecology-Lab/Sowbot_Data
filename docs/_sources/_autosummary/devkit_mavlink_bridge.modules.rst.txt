@@ -15,5 +15,6 @@ devkit\_mavlink\_bridge.modules
    latest_messages
    link_monitor
    position_target_handler
+   rtcm_handler
    velocity_limits
    velocity_watchdog
