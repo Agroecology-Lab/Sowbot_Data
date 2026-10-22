@@ -1,5 +1,7 @@
 # Open-Source Farm Management Systems & API Capabilities
 
+Let's make middleare that connects [DFC](https://dfc-standard.org/) to the below API's along with https://openfoodnetwork.org/
+
 | Software | Best For | License | Key Features | API Information & Capabilities |
 | :--- | :--- | :--- | :--- | :--- |
 | **farmOS** | Modular tracking, sensor integration, and offline logging | GPL-2.0 | • Modular addon architecture<br>• Asset tracking (equipment, areas, groups)<br>• Native offline field apps | **JSON:API (Drupal Core):** Extremely robust, standardized REST API (`/api` root) using UUIDs. Fully exposes assets, logs, plans, and schemas. Offers native client libraries in Python (`farmOS.py`) and JavaScript (`farmOS.js`). |
