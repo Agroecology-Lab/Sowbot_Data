@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>devkit_mavlink_bridge.modules.gps_input_handler &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+  <title>devkit_mavlink_bridge.modules.gps_status_handler &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_mavlink_bridge.modules.link_monitor" href="devkit_mavlink_bridge.modules.link_monitor.html" />
-    <link rel="prev" title="devkit_mavlink_bridge.modules" href="devkit_mavlink_bridge.modules.html" /> 
+    <link rel="next" title="devkit_mavlink_bridge.modules.latest_messages" href="devkit_mavlink_bridge.modules.latest_messages.html" />
+    <link rel="prev" title="devkit_mavlink_bridge.modules.ekf_state_handler" href="devkit_mavlink_bridge.modules.ekf_state_handler.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -219,13 +219,10 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="devkit_mavlink_bridge.mavlink_bridge_node.html">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3 current"><a class="reference internal" href="devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.ekf_state_handler.html">devkit_mavlink_bridge.modules.ekf_state_handler</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_mavlink_bridge.modules.gps_status_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.latest_messages.html">devkit_mavlink_bridge.modules.latest_messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.link_monitor.html">devkit_mavlink_bridge.modules.link_monitor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.velocity_limits.html">devkit_mavlink_bridge.modules.velocity_limits</a></li>
@@ -546,9 +543,9 @@
           <li class="breadcrumb-item"><a href="../python_api.html">Python API Reference</a></li>
           <li class="breadcrumb-item"><a href="devkit_mavlink_bridge.html">devkit_mavlink_bridge</a></li>
           <li class="breadcrumb-item"><a href="devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a></li>
-      <li class="breadcrumb-item active">devkit_mavlink_bridge.modules.gps_input_handler</li>
+      <li class="breadcrumb-item active">devkit_mavlink_bridge.modules.gps_status_handler</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -556,53 +553,81 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-devkit_mavlink_bridge.modules.gps_input_handler">
-<span id="devkit-mavlink-bridge-modules-gps-input-handler"></span><h1>devkit_mavlink_bridge.modules.gps_input_handler<a class="headerlink" href="#module-devkit_mavlink_bridge.modules.gps_input_handler" title="Link to this heading"></a></h1>
-<p>Build GPS_INPUT (#232) messages from FusionCore’s fused pose.</p>
-<p>NOT WIRED UP YET – blocked on ardurover.md’s “What needs to happen”
-item 2: FusionCore’s actual output topic name, ROS message type, and
-publish rate aren’t confirmed. Check the FusionCore node itself before
-filling this in; don’t guess a topic/type/rate here.</p>
-<p>Once that’s known, this needs to publish GPS_INPUT well inside
-GUID_TIMEOUT (default 3.0s, see ardurover.md) and requires the flight
-controller’s GPS1_TYPE (or GPS2_TYPE) parameter set to 14 (GPS_TYPE_MAV) –
-see ardurover.md item 6, a one-time config change, not something this
-module can do.</p>
-<p>Requirements to build in from the start (safety_roadmap.md O39):</p>
-<blockquote>
-<div><p>FusionCore’s pose is already the output of a filter, and ArduPilot’s EKF3
-will filter it again. Feeding it a confident-looking fix hides a degraded
-estimate from EKF3 and defeats its variance failsafes. So:</p>
-<ul class="simple">
-<li><p>fix_type must follow what FusionCore actually knows, never be hard-coded
-to 3D or RTK. Derive it from the fused position covariance and the RTK
-status of the GNSS input; fall back to 0 (no fix) when either is stale.</p></li>
-<li><p>horiz_accuracy, vert_accuracy and speed_accuracy come from FusionCore’s
-covariance (square root of the relevant variance), not from constants.</p></li>
-<li><p>hdop/vdop must use receiver-provided DOP values, never FusionCore’s
-covariance. When unavailable, mark each field unknown (UINT16_MAX)
-and set its GPS_INPUT_IGNORE_FLAG_HDOP or GPS_INPUT_IGNORE_FLAG_VDOP.</p></li>
-<li><p>ignore_flags must mark fields FusionCore does not provide (for example
-vertical velocity on a force_2d filter) so EKF3 does not trust a zero.</p></li>
-<li><p>stop sending, or send fix_type 0, when FusionCore output is older than
-a fixed limit, so EKF3 and the GPS-glitch failsafes see the loss.</p></li>
-<li><p>test on the bench with the fused covariance inflated and the output
-paused, and confirm the EKF-variance and GPS-loss failsafes still fire
-and bring the rover to a stop.</p></li>
-</ul>
-</div></blockquote>
+  <section id="module-devkit_mavlink_bridge.modules.gps_status_handler">
+<span id="devkit-mavlink-bridge-modules-gps-status-handler"></span><h1>devkit_mavlink_bridge.modules.gps_status_handler<a class="headerlink" href="#module-devkit_mavlink_bridge.modules.gps_status_handler" title="Link to this heading"></a></h1>
+<p>Convert MAVLink GPS reports into ROS NavSatFix fields and diagnostics.</p>
+<p>Plain Python, no rclpy or pymavlink, so it can be unit tested without ROS.
+Nothing here invents an accuracy: an unknown accuracy gives an unknown covariance.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.gps_input_handler.fused_pose_to_gps_input" title="devkit_mavlink_bridge.modules.gps_input_handler.fused_pose_to_gps_input"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fused_pose_to_gps_input</span></code></a>(*_args, **_kwargs)</p></td>
-<td><p>Reject conversion until the FusionCore output interface is known.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.gps_status_handler.accuracy_m" title="devkit_mavlink_bridge.modules.gps_status_handler.accuracy_m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accuracy_m</span></code></a>(raw_mm)</p></td>
+<td><p>Convert a MAVLink accuracy in mm to metres; return None when it is zero or all-ones (unknown).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.gps_status_handler.dop" title="devkit_mavlink_bridge.modules.gps_status_handler.dop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dop</span></code></a>(raw_hundredths)</p></td>
+<td><p>Convert a MAVLink DOP (value x 100) to a unitless number; return None when unknown.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.gps_status_handler.fix_type_to_navsat_status" title="devkit_mavlink_bridge.modules.gps_status_handler.fix_type_to_navsat_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fix_type_to_navsat_status</span></code></a>(fix_type)</p></td>
+<td><p>Map GPS_FIX_TYPE to NavSatStatus.status.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.gps_status_handler.gps_diagnostic" title="devkit_mavlink_bridge.modules.gps_status_handler.gps_diagnostic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gps_diagnostic</span></code></a>(message)</p></td>
+<td><p>Return (level, summary, values) for a GPS_RAW_INT or GPS2_RAW message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.gps_status_handler.gps_raw_to_navsat" title="devkit_mavlink_bridge.modules.gps_status_handler.gps_raw_to_navsat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gps_raw_to_navsat</span></code></a>(fix_type, lat_e7, lon_e7, ...)</p></td>
+<td><p>Build NavSatFix fields from GPS_RAW_INT or GPS2_RAW.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.gps_status_handler.navsat_fields" title="devkit_mavlink_bridge.modules.gps_status_handler.navsat_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">navsat_fields</span></code></a>(status, lat_e7, lon_e7, altitude_m)</p></td>
+<td><p>Build NavSatFix fields from a NavSatStatus status and MAVLink coordinates.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
-<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.gps_input_handler.fused_pose_to_gps_input">
-<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.gps_input_handler.</span></span><span class="sig-name descname"><span class="pre">fused_pose_to_gps_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">_args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/gps_input_handler.html#fused_pose_to_gps_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.gps_input_handler.fused_pose_to_gps_input" title="Link to this definition"></a></dt>
-<dd><p>Reject conversion until the FusionCore output interface is known.</p>
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.gps_status_handler.accuracy_m">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.gps_status_handler.</span></span><span class="sig-name descname"><span class="pre">accuracy_m</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/gps_status_handler.html#accuracy_m"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.gps_status_handler.accuracy_m" title="Link to this definition"></a></dt>
+<dd><p>Convert a MAVLink accuracy in mm to metres; return None when it is zero or all-ones (unknown).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.gps_status_handler.dop">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.gps_status_handler.</span></span><span class="sig-name descname"><span class="pre">dop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_hundredths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/gps_status_handler.html#dop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.gps_status_handler.dop" title="Link to this definition"></a></dt>
+<dd><p>Convert a MAVLink DOP (value x 100) to a unitless number; return None when unknown.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.gps_status_handler.fix_type_to_navsat_status">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.gps_status_handler.</span></span><span class="sig-name descname"><span class="pre">fix_type_to_navsat_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fix_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/gps_status_handler.html#fix_type_to_navsat_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.gps_status_handler.fix_type_to_navsat_status" title="Link to this definition"></a></dt>
+<dd><p>Map GPS_FIX_TYPE to NavSatStatus.status.</p>
+<p>RTK float and DGPS map to SBAS_FIX, RTK fixed (and PPP) to GBAS_FIX, matching the
+carrier-solution convention in devkit_bringup/config/fusioncore.yaml.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.gps_status_handler.gps_diagnostic">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.gps_status_handler.</span></span><span class="sig-name descname"><span class="pre">gps_diagnostic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/gps_status_handler.html#gps_diagnostic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.gps_status_handler.gps_diagnostic" title="Link to this definition"></a></dt>
+<dd><p>Return (level, summary, values) for a GPS_RAW_INT or GPS2_RAW message.</p>
+<p>Pass None when no recent report exists: the level is then STALE and values is empty.
+For a report, fix types at or below NO_FIX give ERROR, 2D gives WARN, and all others give OK.
+Values contains strings for fix type, satellite count, DOP, accuracy in meters and yaw
+in degrees, with unavailable measurements represented as ‘unknown’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.gps_status_handler.gps_raw_to_navsat">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.gps_status_handler.</span></span><span class="sig-name descname"><span class="pre">gps_raw_to_navsat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fix_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_e7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon_e7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt_ellipsoid_mm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_acc_mm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_acc_mm</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/gps_status_handler.html#gps_raw_to_navsat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.gps_status_handler.gps_raw_to_navsat" title="Link to this definition"></a></dt>
+<dd><p>Build NavSatFix fields from GPS_RAW_INT or GPS2_RAW.</p>
+<p>NavSatFix altitude is height above the WGS84 ellipsoid, so the MSL <cite>alt</cite> field is not
+used. An alt_ellipsoid of exactly zero is treated as not reported and becomes NaN.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.gps_status_handler.navsat_fields">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.gps_status_handler.</span></span><span class="sig-name descname"><span class="pre">navsat_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_e7</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon_e7</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_acc_m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_acc_m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/gps_status_handler.html#navsat_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.gps_status_handler.navsat_fields" title="Link to this definition"></a></dt>
+<dd><p>Build NavSatFix fields from a NavSatStatus status and MAVLink coordinates.</p>
+<p>Latitude and longitude are degrees scaled by 1e7; altitude is meters above the
+WGS84 ellipsoid, and horizontal and vertical accuracies are in meters.
+With STATUS_NO_FIX the position is NaN.
+The covariance is diagonal with squared accuracies only when both are given,
+even with no fix; otherwise it is all zeros and marked unknown.</p>
 </dd></dl>
 
 </section>
@@ -611,8 +636,8 @@ and bring the rover to a stop.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_mavlink_bridge.modules.html" class="btn btn-neutral float-left" title="devkit_mavlink_bridge.modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_mavlink_bridge.modules.link_monitor.html" class="btn btn-neutral float-right" title="devkit_mavlink_bridge.modules.link_monitor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_mavlink_bridge.modules.ekf_state_handler.html" class="btn btn-neutral float-left" title="devkit_mavlink_bridge.modules.ekf_state_handler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_mavlink_bridge.modules.latest_messages.html" class="btn btn-neutral float-right" title="devkit_mavlink_bridge.modules.latest_messages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

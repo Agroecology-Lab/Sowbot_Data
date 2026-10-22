@@ -10,7 +10,9 @@ devkit\_mavlink\_bridge.modules
    :toctree:
    :recursive:
 
-   gps_input_handler
+   ekf_state_handler
+   gps_status_handler
+   latest_messages
    link_monitor
    position_target_handler
    velocity_limits

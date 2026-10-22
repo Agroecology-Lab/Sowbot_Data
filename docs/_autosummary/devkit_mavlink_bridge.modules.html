@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_mavlink_bridge.modules.gps_input_handler" href="devkit_mavlink_bridge.modules.gps_input_handler.html" />
-    <link rel="prev" title="devkit_mavlink_bridge.mavlink_bridge_node" href="devkit_mavlink_bridge.mavlink_bridge_node.html" /> 
+    <link rel="next" title="devkit_mavlink_bridge.modules.ekf_state_handler" href="devkit_mavlink_bridge.modules.ekf_state_handler.html" />
+    <link rel="prev" title="devkit_mavlink_bridge" href="devkit_mavlink_bridge.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -219,13 +219,10 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="devkit_mavlink_bridge.mavlink_bridge_node.html">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_mavlink_bridge.modules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.ekf_state_handler.html">devkit_mavlink_bridge.modules.ekf_state_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.gps_status_handler.html">devkit_mavlink_bridge.modules.gps_status_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.latest_messages.html">devkit_mavlink_bridge.modules.latest_messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.link_monitor.html">devkit_mavlink_bridge.modules.link_monitor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.velocity_limits.html">devkit_mavlink_bridge.modules.velocity_limits</a></li>
@@ -560,8 +557,14 @@
 <p class="rubric">Modules</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="devkit_mavlink_bridge.modules.gps_input_handler.html#module-devkit_mavlink_bridge.modules.gps_input_handler" title="devkit_mavlink_bridge.modules.gps_input_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gps_input_handler</span></code></a></p></td>
-<td><p>Build GPS_INPUT (#232) messages from FusionCore's fused pose.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="devkit_mavlink_bridge.modules.ekf_state_handler.html#module-devkit_mavlink_bridge.modules.ekf_state_handler" title="devkit_mavlink_bridge.modules.ekf_state_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ekf_state_handler</span></code></a></p></td>
+<td><p>Convert the flight controller's EKF3 state into ROS conventions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="devkit_mavlink_bridge.modules.gps_status_handler.html#module-devkit_mavlink_bridge.modules.gps_status_handler" title="devkit_mavlink_bridge.modules.gps_status_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gps_status_handler</span></code></a></p></td>
+<td><p>Convert MAVLink GPS reports into ROS NavSatFix fields and diagnostics.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="devkit_mavlink_bridge.modules.latest_messages.html#module-devkit_mavlink_bridge.modules.latest_messages" title="devkit_mavlink_bridge.modules.latest_messages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">latest_messages</span></code></a></p></td>
+<td><p>Latest-message store with ages, for combining MAVLink messages that arrive separately.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="devkit_mavlink_bridge.modules.link_monitor.html#module-devkit_mavlink_bridge.modules.link_monitor" title="devkit_mavlink_bridge.modules.link_monitor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">link_monitor</span></code></a></p></td>
 <td><p>Flight-controller heartbeat monitor.</p></td>
@@ -583,8 +586,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_mavlink_bridge.mavlink_bridge_node.html" class="btn btn-neutral float-left" title="devkit_mavlink_bridge.mavlink_bridge_node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_mavlink_bridge.modules.gps_input_handler.html" class="btn btn-neutral float-right" title="devkit_mavlink_bridge.modules.gps_input_handler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_mavlink_bridge.html" class="btn btn-neutral float-left" title="devkit_mavlink_bridge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_mavlink_bridge.modules.ekf_state_handler.html" class="btn btn-neutral float-right" title="devkit_mavlink_bridge.modules.ekf_state_handler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

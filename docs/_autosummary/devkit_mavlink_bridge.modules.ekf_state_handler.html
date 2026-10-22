@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>devkit_mavlink_bridge.mavlink_bridge_node &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+  <title>devkit_mavlink_bridge.modules.ekf_state_handler &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_mavlink_bridge.modules" href="devkit_mavlink_bridge.modules.html" />
-    <link rel="prev" title="devkit_mavlink_bridge" href="devkit_mavlink_bridge.html" /> 
+    <link rel="next" title="devkit_mavlink_bridge.modules.gps_status_handler" href="devkit_mavlink_bridge.modules.gps_status_handler.html" />
+    <link rel="prev" title="devkit_mavlink_bridge.modules" href="devkit_mavlink_bridge.modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -219,13 +219,10 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_mavlink_bridge.modules.ekf_state_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.gps_status_handler.html">devkit_mavlink_bridge.modules.gps_status_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.latest_messages.html">devkit_mavlink_bridge.modules.latest_messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.link_monitor.html">devkit_mavlink_bridge.modules.link_monitor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_mavlink_bridge.modules.velocity_limits.html">devkit_mavlink_bridge.modules.velocity_limits</a></li>
@@ -545,9 +542,10 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../python_api.html">Python API Reference</a></li>
           <li class="breadcrumb-item"><a href="devkit_mavlink_bridge.html">devkit_mavlink_bridge</a></li>
-      <li class="breadcrumb-item active">devkit_mavlink_bridge.mavlink_bridge_node</li>
+          <li class="breadcrumb-item"><a href="devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a></li>
+      <li class="breadcrumb-item active">devkit_mavlink_bridge.modules.ekf_state_handler</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/devkit_mavlink_bridge.modules.ekf_state_handler.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -555,73 +553,109 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-devkit_mavlink_bridge.mavlink_bridge_node">
-<span id="devkit-mavlink-bridge-mavlink-bridge-node"></span><h1>devkit_mavlink_bridge.mavlink_bridge_node<a class="headerlink" href="#module-devkit_mavlink_bridge.mavlink_bridge_node" title="Link to this heading"></a></h1>
-<p>devkit_mavlink_bridge – cmd_vel/localisation &lt;-&gt; ArduPilot Rover on LEVIA-H7.</p>
-<p>See research/ardurover.md in Sowbot_Data for the full design and the
-open items list. This node currently implements the outbound half
-(cmd_vel -&gt; SET_POSITION_TARGET_LOCAL_NED) only; the inbound half
-(FusionCore pose -&gt; GPS_INPUT, see modules/gps_input_handler.py) is
-blocked on confirming FusionCore’s output topic/type/rate first.</p>
-<p>TODO (tracked in ardurover.md, not duplicated here – update there,
-not just in this comment, when one of these lands):</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Which LEVIA-H7 UART carries MAVLink (safety_roadmap.md O31).</p></li>
-<li><p>FusionCore output topic/type/rate – needed for gps_input_handler.</p></li>
-<li><p>EKF-origin-on-first-boot behaviour when GPS_INPUT is the only GPS
-source – may need an initial GPS_INPUT burst before GUIDED will
-accept velocity commands at all.</p></li>
-</ol>
-<ol class="arabic simple" start="5">
-<li><p>Connection string / transport for pymavlink (serial device, baud)
-depends on item 1.</p></li>
-<li><p>Flight-controller GPS1_TYPE=14 parameter change – not this node’s job, but
-nothing here works until it’s set.</p></li>
-</ol>
-</div></blockquote>
+  <section id="module-devkit_mavlink_bridge.modules.ekf_state_handler">
+<span id="devkit-mavlink-bridge-modules-ekf-state-handler"></span><h1>devkit_mavlink_bridge.modules.ekf_state_handler<a class="headerlink" href="#module-devkit_mavlink_bridge.modules.ekf_state_handler" title="Link to this heading"></a></h1>
+<p>Convert the flight controller’s EKF3 state into ROS conventions.</p>
+<p>Plain Python, no rclpy or pymavlink, so it can be unit tested without ROS.</p>
+<p>ArduPilot reports in aviation frames: world NED, body FRD (x forward, y right,
+z down). ROS uses REP-103 frames: world ENU, body FLU (x forward, y left, z up).
+Every conversion lives here so the node never touches a sign by hand.</p>
+<p>MAVLink carries no EKF covariance. EKF_STATUS_REPORT variances are normalised
+innovation test ratios, not covariances, so they are never copied into a ROS
+covariance matrix. Odometry covariances are flagged unknown instead.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.mavlink_bridge_node.main" title="devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>([args])</p></td>
-<td><p>Run the MAVLink bridge node until ROS shuts down.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.ekf_state_handler.attitude_to_enu_flu" title="devkit_mavlink_bridge.modules.ekf_state_handler.attitude_to_enu_flu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attitude_to_enu_flu</span></code></a>(w, x, y, z)</p></td>
+<td><p>Convert an FRD-to-NED attitude quaternion to an (x, y, z, w) FLU-in-ENU quaternion.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.ekf_state_handler.build_odometry" title="devkit_mavlink_bridge.modules.ekf_state_handler.build_odometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_odometry</span></code></a>(north_m, east_m, down_m, ...)</p></td>
+<td><p>Combine LOCAL_POSITION_NED and ATTITUDE_QUATERNION fields into an EkfOdometry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.ekf_state_handler.ekf_absolute_position_valid" title="devkit_mavlink_bridge.modules.ekf_state_handler.ekf_absolute_position_valid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ekf_absolute_position_valid</span></code></a>(flags)</p></td>
+<td><p>Return True when ekf_pose_valid passes and the absolute horizontal position bit is set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.ekf_state_handler.ekf_flag_names" title="devkit_mavlink_bridge.modules.ekf_state_handler.ekf_flag_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ekf_flag_names</span></code></a>(flags)</p></td>
+<td><p>Return the names of the set EKF status flags, in bit order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.ekf_state_handler.ekf_pose_valid" title="devkit_mavlink_bridge.modules.ekf_state_handler.ekf_pose_valid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ekf_pose_valid</span></code></a>(flags)</p></td>
+<td><p>Return True when EKF3 reports attitude, horizontal velocity and a horizontal position.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode" title="devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Bridges cmd_vel to an ArduPilot Rover RTU over MAVLink (GUIDED mode).</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry" title="devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EkfOdometry</span></code></a>(position, orientation, ...)</p></td>
+<td><p>EKF3 pose and twist in ROS conventions.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.mavlink_bridge_node.</span></span><span class="sig-name descname"><span class="pre">MavlinkBridgeNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/mavlink_bridge_node.html#MavlinkBridgeNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
-<p>Bridges cmd_vel to an ArduPilot Rover RTU over MAVLink (GUIDED mode).</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/mavlink_bridge_node.html#MavlinkBridgeNode.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode.__init__" title="Link to this definition"></a></dt>
-<dd><p>Connect to MAVLink and register the ROS subscription and timer.</p>
-<p>ROS parameters (seconds unless noted, default in brackets): republish_period_s [0.1],
-cmd_vel_timeout_s [0.5], max_linear_x_mps [1.6], max_angular_z_radps [1.0],
-heartbeat_period_s [1.0], fc_heartbeat_timeout_s [3.0], require_fc_heartbeat [true].
-With require_fc_heartbeat the bridge forwards zero velocity unless the flight controller’s
-HEARTBEAT was seen within fc_heartbeat_timeout_s. MAVLINK_ENDPOINT selects the connection;
-MAVLINK_BAUD defaults to 115200. The bridge does not arm or change mode.
-Raise ValueError for a nonpositive period or limit, a nonpositive or nonfinite timeout,
-a missing or placeholder endpoint, or a baud value that cannot be parsed as an int.
-MAVLink connection errors propagate.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.ekf_state_handler.</span></span><span class="sig-name descname"><span class="pre">EkfOdometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/ekf_state_handler.html#EkfOdometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>EKF3 pose and twist in ROS conventions.</p>
+<p>Position is metres from the EKF origin in ENU. Orientation is the FLU body
+in ENU as an (x, y, z, w) quaternion. Linear velocity (m/s) and angular
+velocity (rad/s) are in the FLU body frame, as nav_msgs/Odometry expects.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry.angular_velocity">
+<span class="sig-name descname"><span class="pre">angular_velocity</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry.angular_velocity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry.linear_velocity">
+<span class="sig-name descname"><span class="pre">linear_velocity</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry.linear_velocity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry.orientation">
+<span class="sig-name descname"><span class="pre">orientation</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry.orientation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry.position">
+<span class="sig-name descname"><span class="pre">position</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.EkfOdometry.position" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="devkit_mavlink_bridge.mavlink_bridge_node.main">
-<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.mavlink_bridge_node.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/mavlink_bridge_node.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.mavlink_bridge_node.main" title="Link to this definition"></a></dt>
-<dd><p>Run the MAVLink bridge node until ROS shuts down.</p>
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.attitude_to_enu_flu">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.ekf_state_handler.</span></span><span class="sig-name descname"><span class="pre">attitude_to_enu_flu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/ekf_state_handler.html#attitude_to_enu_flu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.attitude_to_enu_flu" title="Link to this definition"></a></dt>
+<dd><p>Convert an FRD-to-NED attitude quaternion to an (x, y, z, w) FLU-in-ENU quaternion.</p>
+<p>Return None for nonfinite components or a norm outside the open interval (0.5, 1.5).
+Accepted inputs are normalized, and the result has a nonnegative w component.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.build_odometry">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.ekf_state_handler.</span></span><span class="sig-name descname"><span class="pre">build_odometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">north_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">east_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">down_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vn_mps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ve_mps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vd_mps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rollspeed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitchspeed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yawspeed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/ekf_state_handler.html#build_odometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.build_odometry" title="Link to this definition"></a></dt>
+<dd><p>Combine LOCAL_POSITION_NED and ATTITUDE_QUATERNION fields into an EkfOdometry.</p>
+<p>Positions are metres from the EKF origin. Velocities are NED earth-frame m/s. The
+quaternion is body FRD to NED. The three rates are body-frame FRD in rad/s.
+Return None if any input is nonfinite or the quaternion is unusable.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.ekf_absolute_position_valid">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.ekf_state_handler.</span></span><span class="sig-name descname"><span class="pre">ekf_absolute_position_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/ekf_state_handler.html#ekf_absolute_position_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.ekf_absolute_position_valid" title="Link to this definition"></a></dt>
+<dd><p>Return True when ekf_pose_valid passes and the absolute horizontal position bit is set.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.ekf_flag_names">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.ekf_state_handler.</span></span><span class="sig-name descname"><span class="pre">ekf_flag_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/ekf_state_handler.html#ekf_flag_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.ekf_flag_names" title="Link to this definition"></a></dt>
+<dd><p>Return the names of the set EKF status flags, in bit order.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_mavlink_bridge.modules.ekf_state_handler.ekf_pose_valid">
+<span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.modules.ekf_state_handler.</span></span><span class="sig-name descname"><span class="pre">ekf_pose_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/modules/ekf_state_handler.html#ekf_pose_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.modules.ekf_state_handler.ekf_pose_valid" title="Link to this definition"></a></dt>
+<dd><p>Return True when EKF3 reports attitude, horizontal velocity and a horizontal position.</p>
+<p>A set EKF_CONST_POS_MODE or EKF_UNINITIALIZED bit fails the check: the position then
+carries no information, and publishing it would hide that from consumers.</p>
 </dd></dl>
 
 </section>
@@ -630,8 +664,8 @@ MAVLink connection errors propagate.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_mavlink_bridge.html" class="btn btn-neutral float-left" title="devkit_mavlink_bridge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_mavlink_bridge.modules.html" class="btn btn-neutral float-right" title="devkit_mavlink_bridge.modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_mavlink_bridge.modules.html" class="btn btn-neutral float-left" title="devkit_mavlink_bridge.modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_mavlink_bridge.modules.gps_status_handler.html" class="btn btn-neutral float-right" title="devkit_mavlink_bridge.modules.gps_status_handler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

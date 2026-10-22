@@ -1,0 +1,12 @@
+devkit\_mavlink\_bridge.modules.latest\_messages
+================================================
+
+.. automodule:: devkit_mavlink_bridge.modules.latest_messages
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      LatestMessages
+   

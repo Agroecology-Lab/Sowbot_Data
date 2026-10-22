@@ -219,13 +219,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.ekf_state_handler.html">devkit_mavlink_bridge.modules.ekf_state_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.html">devkit_mavlink_bridge.modules.gps_status_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.latest_messages.html">devkit_mavlink_bridge.modules.latest_messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.link_monitor.html">devkit_mavlink_bridge.modules.link_monitor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/devkit_mavlink_bridge.modules.velocity_limits.html">devkit_mavlink_bridge.modules.velocity_limits</a></li>
@@ -587,8 +584,8 @@ This repository provides the drivers and orchestration for the Sowbot platform, 
 <span class="o">|</span>    <span class="n">LEVIA</span><span class="o">-</span><span class="n">H7</span> <span class="n">running</span> <span class="n">ArduRover</span><span class="p">,</span> <span class="n">GUIDED</span> <span class="n">mode</span> <span class="p">(</span><span class="n">bring</span><span class="o">-</span><span class="n">up</span><span class="p">)</span>   <span class="o">|</span>
 <span class="o">|</span>    <span class="n">SUPERVISORY</span><span class="p">:</span> <span class="ow">not</span> <span class="n">the</span> <span class="n">rated</span> <span class="n">stop</span> <span class="n">function</span>             <span class="o">|</span>
 <span class="o">|---------------------------------------------------------|</span>
-<span class="o">|</span> <span class="o">-</span> <span class="n">Motion</span> <span class="n">execution</span>       <span class="o">-</span> <span class="n">EKF3</span><span class="p">;</span> <span class="n">planned</span> <span class="n">GPS_INPUT</span>     <span class="o">|</span>
-<span class="o">|</span> <span class="o">-</span> <span class="n">Geofence</span> <span class="p">(</span><span class="n">GUIDED</span><span class="p">)</span>         <span class="kn">from</span> <span class="nn">FusionCore</span>             <span class="o">|</span>
+<span class="o">|</span> <span class="o">-</span> <span class="n">Motion</span> <span class="n">execution</span>       <span class="o">-</span> <span class="n">EKF3</span><span class="p">,</span> <span class="n">sole</span> <span class="n">estimator</span>        <span class="o">|</span>
+<span class="o">|</span> <span class="o">-</span> <span class="n">Geofence</span> <span class="p">(</span><span class="n">GUIDED</span><span class="p">)</span>         <span class="p">(</span><span class="n">FusionCore</span><span class="p">:</span> <span class="n">shadow</span><span class="p">)</span>       <span class="o">|</span>
 <span class="o">|</span> <span class="o">-</span> <span class="n">Failsafes</span><span class="p">:</span> <span class="n">GCS</span><span class="o">/</span><span class="n">GPS</span>     <span class="o">-</span> <span class="n">Arming</span> <span class="n">state</span> <span class="n">machine</span>         <span class="o">|</span>
 <span class="o">|</span>   <span class="n">loss</span><span class="p">,</span> <span class="n">EKF</span> <span class="n">variance</span>     <span class="o">-</span> <span class="n">Pre</span><span class="o">-</span><span class="n">arm</span> <span class="n">checks</span>               <span class="o">|</span>
 <span class="o">|</span> <span class="o">-</span> <span class="n">Dual</span> <span class="n">F9P</span> <span class="n">RTK</span> <span class="p">(</span><span class="n">UART</span><span class="p">)</span>                                   <span class="o">|</span>
@@ -751,96 +748,117 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 </tr>
 <tr class="row-even"><td><p>M9</p></td>
 <td><p>ArduPilot on LEVIA-H7 controller path</p></td>
-<td><p>Replaces ESP32/Lizard. <code class="docutils literal notranslate"><span class="pre">devkit_mavlink_bridge</span></code> outbound half works and commands zero when <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> is stale; inbound FusionCore to <code class="docutils literal notranslate"><span class="pre">GPS_INPUT</span></code> is not built. LEVIA-H7 is unvalidated and has no confirmed ArduPilot hwdef (safety_roadmap.md O31).</p></td>
+<td><p>Replaces ESP32/Lizard.</p></td>
 <td><p>WIP, bring-up</p></td>
 <td><p>2</p></td>
 <td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>PRODUCTION</strong></p></td>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">devkit_mavlink_bridge</span></code> commands zero when <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> is stale and publishes EKF3 state and GPS status (<code class="docutils literal notranslate"><span class="pre">fc/odom</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/ekf_fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps1/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps2/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/diagnostics</span></code>); unit-tested against doubles, not yet run against a flight controller.</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>EKF3 is the sole estimator and FusionCore is shadow only (<code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>).</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p>LEVIA-H7 is unvalidated and has no confirmed ArduPilot hwdef (safety_roadmap.md O31).</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>PRODUCTION</strong></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p><strong>~2027</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>P1</p></td>
+<tr class="row-odd"><td><p>P1</p></td>
 <td><p>Phase 1: dev platform (current)</p></td>
 <td><p>Controller: ArduPilot on LEVIA-H7 (M9); ESP32/Lizard is legacy. Supervised-only until the 24V stop loop, radar validation and beacon are done (safety_roadmap.md O7, O8, O14). Audience: university labs, ag-tech researchers, software startups. No compliance claimed, standards used as informal design reference only, user’s own risk per README. <a class="reference internal" href="#safety_roadmap.md#product-classification"><span class="xref myst">Product classification</span></a> depends on the shipped configuration and incorporation boundary (O16); complete machinery requires conformity assessment, documentation and applicable marking.</p></td>
 <td><p>In progress. Blocked: O7, O8, O14; shipment blocked on O16</p></td>
 <td><p>4</p></td>
 <td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p>P2</p></td>
+<tr class="row-even"><td><p>P2</p></td>
 <td><p>Phase 2: OEM modular subsystems</p></td>
 <td><p>Packages the Phase 1 stack (<a class="reference external" href="https://github.com/piecol/LEVIA-H7">Ardupilot on Levia STM32 H7</a>, M9) for integrators. Audience: startups integrating Sowbot’s core. No third-party certification needed yet, formal internal assessment only. Can offer <a class="reference external" href="https://github.com/Agroecology-Lab/Sowbot/blob/caatinga-dev/safety_roadmap.md">PLd hardware subsystem</a></p></td>
 <td><p>Research</p></td>
 <td><p>2</p></td>
 <td><p>2027</p></td>
 </tr>
-<tr class="row-even"><td><p>P3</p></td>
+<tr class="row-odd"><td><p>P3</p></td>
 <td><p>Phase 3: commercial sale to farmers <a class="reference external" href="https://github.com/Agroecology-Lab/Sowbot/blob/caatinga-dev/safety_roadmap.md">(Safety sub-systems hardened)</a></p></td>
 <td><p>Full ISO 18497 compliance, ISO 13849 PLc certification (or equivalent), third-party safety audit, field trial history, and an insurance/liability structure. All required before sale, none yet scoped.</p></td>
 <td><p>Planned</p></td>
 <td><p>1</p></td>
 <td><p>2027+</p></td>
 </tr>
-<tr class="row-odd"><td><p>P4</p></td>
+<tr class="row-even"><td><p>P4</p></td>
 <td><p>CANopen bus</p></td>
 <td><p>ISO 11898 FDCAN at 500 kbit/s / 2 Mbit/s. lely-core CANopen master on T527 native M_CAN. DSP402 drive profile.</p></td>
 <td><p>Research</p></td>
 <td><p>2</p></td>
 <td><p>2027</p></td>
 </tr>
-<tr class="row-even"><td><p>P5</p></td>
+<tr class="row-odd"><td><p>P5</p></td>
 <td><p>RT kernel + core isolation</p></td>
 <td><p>PREEMPT_RT on Limbic T527. <code class="docutils literal notranslate"><span class="pre">isolcpus=4-7</span></code>, RTK EKF on core 2 (SCHED_FIFO 60), AOC nav on cores 4-6, watchdog on core 5. GbE/CAN IRQ pinned to core 0.</p></td>
 <td><p>Planned</p></td>
 <td><p>2</p></td>
 <td><p>2027</p></td>
 </tr>
-<tr class="row-odd"><td><p>P6</p></td>
+<tr class="row-even"><td><p>P6</p></td>
 <td><p>ROFS image</p></td>
 <td><p>Read-only rootfs, Ubuntu Noble minimal or Yocto with RT kernel, pre-built LCAS topo nav, Nav2, <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code>. Immutable field deployment.</p></td>
 <td><p>Research</p></td>
 <td><p>1</p></td>
 <td><p>2027</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>END-EFFECTORS</strong></p></td>
+<tr class="row-odd"><td><p><strong>END-EFFECTORS</strong></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p><strong>TBD</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>E1</p></td>
+<tr class="row-even"><td><p>E1</p></td>
 <td><p>Delta weeding module</p></td>
 <td><p>Open-Weeding-Delta precision mechanical weeding. CANopen actuator node on delta controller.</p></td>
 <td><p>Research</p></td>
 <td><p>1</p></td>
 <td><p>TBD</p></td>
 </tr>
-<tr class="row-even"><td><p>E2</p></td>
+<tr class="row-odd"><td><p>E2</p></td>
 <td><p>LASER weeding module</p></td>
 <td><p>Laudando LASER integration. Requires E-Stop interlocking with CANopen safety chain.</p></td>
 <td><p>Research</p></td>
 <td><p>1</p></td>
 <td><p>TBD</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>DATASETS &amp; COLLABORATION</strong></p></td>
+<tr class="row-even"><td><p><strong>DATASETS &amp; COLLABORATION</strong></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p><strong>Ongoing</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>D1</p></td>
+<tr class="row-odd"><td><p>D1</p></td>
 <td><p>UK open-field dataset</p></td>
 <td><p>Field imagery and GNSS logs from UK agroecological farm conditions. CC licence.</p></td>
 <td><p>Planned</p></td>
 <td><p>2</p></td>
 <td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p>D2</p></td>
+<tr class="row-even"><td><p>D2</p></td>
 <td><p>Caatinga biome dataset</p></td>
 <td><p>Semi-arid row-crop imagery from caatingarobotics. Validated on T527 AIPU.</p></td>
 <td><p>Active</p></td>

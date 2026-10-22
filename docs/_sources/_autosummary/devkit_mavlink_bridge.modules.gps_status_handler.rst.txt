@@ -1,0 +1,17 @@
+devkit\_mavlink\_bridge.modules.gps\_status\_handler
+====================================================
+
+.. automodule:: devkit_mavlink_bridge.modules.gps_status_handler
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      accuracy_m
+      dop
+      fix_type_to_navsat_status
+      gps_diagnostic
+      gps_raw_to_navsat
+      navsat_fields
+   

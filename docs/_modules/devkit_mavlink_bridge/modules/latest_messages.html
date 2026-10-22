@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>devkit_mavlink_bridge.modules.gps_input_handler &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+  <title>devkit_mavlink_bridge.modules.latest_messages &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
@@ -216,13 +216,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.html">devkit_mavlink_bridge</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html">devkit_mavlink_bridge.mavlink_bridge_node</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode"><code class="docutils literal notranslate"><span class="pre">MavlinkBridgeNode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.modules.html">devkit_mavlink_bridge.modules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html">devkit_mavlink_bridge.modules.gps_input_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.modules.ekf_state_handler.html">devkit_mavlink_bridge.modules.ekf_state_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.html">devkit_mavlink_bridge.modules.gps_status_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html">devkit_mavlink_bridge.modules.latest_messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.modules.link_monitor.html">devkit_mavlink_bridge.modules.link_monitor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.modules.position_target_handler.html">devkit_mavlink_bridge.modules.position_target_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_mavlink_bridge.modules.velocity_limits.html">devkit_mavlink_bridge.modules.velocity_limits</a></li>
@@ -541,7 +538,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">devkit_mavlink_bridge.modules.gps_input_handler</li>
+      <li class="breadcrumb-item active">devkit_mavlink_bridge.modules.latest_messages</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -550,51 +547,61 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for devkit_mavlink_bridge.modules.gps_input_handler</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Build GPS_INPUT (#232) messages from FusionCore&#39;s fused pose.</span>
+  <h1>Source code for devkit_mavlink_bridge.modules.latest_messages</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Latest-message store with ages, for combining MAVLink messages that arrive separately.</span>
 
-<span class="sd">NOT WIRED UP YET -- blocked on ardurover.md&#39;s &quot;What needs to happen&quot;</span>
-<span class="sd">item 2: FusionCore&#39;s actual output topic name, ROS message type, and</span>
-<span class="sd">publish rate aren&#39;t confirmed. Check the FusionCore node itself before</span>
-<span class="sd">filling this in; don&#39;t guess a topic/type/rate here.</span>
-
-<span class="sd">Once that&#39;s known, this needs to publish GPS_INPUT well inside</span>
-<span class="sd">GUID_TIMEOUT (default 3.0s, see ardurover.md) and requires the flight</span>
-<span class="sd">controller&#39;s GPS1_TYPE (or GPS2_TYPE) parameter set to 14 (GPS_TYPE_MAV) --</span>
-<span class="sd">see ardurover.md item 6, a one-time config change, not something this</span>
-<span class="sd">module can do.</span>
-
-<span class="sd">Requirements to build in from the start (safety_roadmap.md O39):</span>
-
-<span class="sd">  FusionCore&#39;s pose is already the output of a filter, and ArduPilot&#39;s EKF3</span>
-<span class="sd">  will filter it again. Feeding it a confident-looking fix hides a degraded</span>
-<span class="sd">  estimate from EKF3 and defeats its variance failsafes. So:</span>
-
-<span class="sd">  * fix_type must follow what FusionCore actually knows, never be hard-coded</span>
-<span class="sd">    to 3D or RTK. Derive it from the fused position covariance and the RTK</span>
-<span class="sd">    status of the GNSS input; fall back to 0 (no fix) when either is stale.</span>
-<span class="sd">  * horiz_accuracy, vert_accuracy and speed_accuracy come from FusionCore&#39;s</span>
-<span class="sd">    covariance (square root of the relevant variance), not from constants.</span>
-<span class="sd">  * hdop/vdop must use receiver-provided DOP values, never FusionCore&#39;s</span>
-<span class="sd">    covariance. When unavailable, mark each field unknown (UINT16_MAX)</span>
-<span class="sd">    and set its GPS_INPUT_IGNORE_FLAG_HDOP or GPS_INPUT_IGNORE_FLAG_VDOP.</span>
-<span class="sd">  * ignore_flags must mark fields FusionCore does not provide (for example</span>
-<span class="sd">    vertical velocity on a force_2d filter) so EKF3 does not trust a zero.</span>
-<span class="sd">  * stop sending, or send fix_type 0, when FusionCore output is older than</span>
-<span class="sd">    a fixed limit, so EKF3 and the GPS-glitch failsafes see the loss.</span>
-<span class="sd">  * test on the bench with the fused covariance inflated and the output</span>
-<span class="sd">    paused, and confirm the EKF-variance and GPS-loss failsafes still fire</span>
-<span class="sd">    and bring the rover to a stop.</span>
+<span class="sd">Plain Python, no rclpy or pymavlink. Time comes from an injected monotonic clock, never</span>
+<span class="sd">from the sender&#39;s boot time or ROS time.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
 
-<div class="viewcode-block" id="fused_pose_to_gps_input">
-<a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_input_handler.html#devkit_mavlink_bridge.modules.gps_input_handler.fused_pose_to_gps_input">[docs]</a>
-<span class="k">def</span> <span class="nf">fused_pose_to_gps_input</span><span class="p">(</span><span class="o">*</span><span class="n">_args</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reject conversion until the FusionCore output interface is known.&quot;&quot;&quot;</span>
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-        <span class="s1">&#39;FusionCore output topic/type not yet confirmed -- see &#39;</span>
-        <span class="s1">&#39;ardurover.md item 2 in Sowbot_Data before implementing this.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LatestMessages">
+<a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages">[docs]</a>
+<span class="k">class</span> <span class="nc">LatestMessages</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Keep the most recent message of each kind and when it arrived.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LatestMessages.__init__">
+<a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clock</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start empty, reading arrival times from clock.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span> <span class="o">=</span> <span class="n">clock</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+<div class="viewcode-block" id="LatestMessages.put">
+<a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.put">[docs]</a>
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Store message as the latest of its kind, stamped now.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="n">kind</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="LatestMessages.age_s">
+<a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.age_s">[docs]</a>
+    <span class="k">def</span> <span class="nf">age_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return seconds since the last message of this kind, or None if none has arrived.&quot;&quot;&quot;</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="LatestMessages.fresh">
+<a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.fresh">[docs]</a>
+    <span class="k">def</span> <span class="nf">fresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_age_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the latest message of this kind if no older than max_age_s, else None.&quot;&quot;&quot;</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_age_s</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="LatestMessages.clear">
+<a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.clear">[docs]</a>
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Forget every message, so nothing from before a link loss can be reused.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+</div>
 
 </pre></div>
 
