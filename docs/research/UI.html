@@ -559,7 +559,8 @@ On <code class="docutils literal notranslate"><span class="pre">caatinga-dev</sp
 With the #168 and #169 change it is 354, and <code class="docutils literal notranslate"><span class="pre">NiceGuiNode</span></code> no longer subclasses <code class="docutils literal notranslate"><span class="pre">rclpy.node.Node</span></code>.
 With #170, #171 and #166 it is 376.
 With the mission start glue and the <code class="docutils literal notranslate"><span class="pre">/current_node</span></code> subscription moved out it is 260, and the node only builds and wires the layers.
-Wiring <code class="docutils literal notranslate"><span class="pre">SystemViewModel</span></code> adds four lines, so it is 264.</p>
+Wiring <code class="docutils literal notranslate"><span class="pre">SystemViewModel</span></code> adds four lines, so it is 264.
+Sim process control brings it to 267, the <code class="docutils literal notranslate"><span class="pre">MapAnchor</span></code> source for <code class="docutils literal notranslate"><span class="pre">ObstacleManager</span></code> to 265, and <code class="docutils literal notranslate"><span class="pre">MapContext</span></code> with <code class="docutils literal notranslate"><span class="pre">TrackApplicationService</span></code> to 269.</p>
 <table>
 <tr><th>PR</th><th>Change</th></tr>
 <tr><td>#152 Alan services</td><td>Drive, robot brain, row discovery and navigation as domain services, application services and view models</td></tr>
@@ -605,10 +606,21 @@ The node's <code>_topo_doc</code>, <code>latest_odom</code> and <code>latest_gps
 <code>ToolsCard</code> is one generic control builder per tool and no longer touches <code>subprocess</code> or <code>process_registry</code>.
 <code>process_registry</code> gains <code>spawn_quiet</code> and <code>interrupt_stop</code>.
 The import-linter ignore for <code>tools_card</code> importing <code>subprocess</code> is gone.
-Medkit's handle is now shared across browser sessions and stopped at app shutdown, every tool shows an interim <code>stopping</code> label, and a start or stop while another is in flight is ignored.
-The Sim cards still use <code>process_registry</code> directly</td></tr>
+Medkit's handle is now shared across browser sessions and stopped at app shutdown, every tool shows an interim <code>stopping</code> label, and a start or stop while another is in flight is ignored</td></tr>
 <tr><td>Remaining #116 items (PR number to add)</td><td>The soft e-stop state is held once, in <code>DriveApplicationService</code>.
 <code>GlobalViewModel.soft_estop_active</code> is a read-only property that reads it, and no longer registers a callback</td></tr>
+<tr><td>Sim process control (PR number to add)</td><td><code>SimProcessApplicationService</code> owns the Gazebo and row-follow launch commands, environment and handles.
+One lock per process is shared across browser sessions and service instances, and a start or stop while another is in flight returns <code>busy</code>.
+<code>SimProcessViewModel</code> words the result as a <code>ToolStatusView</code>, and the Gazebo and row-follow cards show what it returns.
+<code>ToolState</code> moves to <code>tool_state.py</code>, and <code>widgets.restore_label</code> is replaced by <code>show_status</code>, shared with the System tools card.
+<code>pages-no-process-control</code> and <code>view-models-no-backend</code> now forbid <code>process_registry</code></td></tr>
+<tr><td>Map anchor (PR number to add)</td><td><code>TelemetryApplicationService.map_anchor()</code> builds a <code>MapAnchor</code> (map x and y, lat, lon) from the latest odometry and GPS, and returns none without both or without a finite fix.
+<code>ObstacleManager</code> takes one callable returning <code>MapAnchor | None</code> and no longer reads ROS message fields</td></tr>
+<tr><td>Sibling view models (PR number to add)</td><td><code>MapContext</code> gives <code>PlanViewModel</code> read-only access to the loaded map, the current and selected node and the row action, so it no longer takes <code>RunViewModel</code> or <code>TopologyViewModel</code>.
+<code>MissionViewModel</code> takes an <code>on_nav_update</code> callable instead of <code>RunViewModel</code>.
+<code>ui_node.py</code> is the only place that joins them.
+<code>TrackApplicationService</code> owns the track-mode timer, node counter and entry/middle role sequence, and <code>MapAuthoringViewModel</code> keeps input validation and result mapping.
+An eighth import-linter contract keeps <code>plan_view_model</code> and <code>mission_view_model</code> off <code>run_view_model</code> and <code>topology_view_model</code></td></tr>
 </table>
 <p>#155 (optical flow in Docker) and #157 (vendored skills) are unrelated to the refactor.</p>
 <p>The three items listed as outstanding in the 9 October comment are done: the subscription, timer and tool publishers go through <code class="docutils literal notranslate"><span class="pre">RosGateway</span></code>, the mission executor is in <code class="docutils literal notranslate"><span class="pre">MissionDomainService</span></code>, and the F2C-to-topo glue is in <code class="docutils literal notranslate"><span class="pre">TopologyEditService.stage_f2c_save</span></code>.</p>
@@ -616,10 +628,10 @@ The Sim cards still use <code>process_registry</code> directly</td></tr>
 <section id="diagram-as-built">
 <h1>Diagram as built<a class="headerlink" href="#diagram-as-built" title="Link to this heading"></a></h1>
 <p>Solid arrows follow the dependency rule.
-Dashed arrows and red dashed boxes are known deviations, each listed under “Still open” below.
-The dotted arrows labelled “callback” are runtime callbacks.</p>
+Dashed arrows are reads between view models and callables passed in by <code class="docutils literal notranslate"><span class="pre">ui_node</span></code>, and runtime callbacks.
+Each is labelled.</p>
 <div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart TB
-  subgraph P1[&quot;Phase 1: same NiceGUI process and ROS node (NiceGuiNode, ui_node.py, 264 lines)&quot;]
+  subgraph P1[&quot;Phase 1: same NiceGUI process and ROS node (NiceGuiNode, ui_node.py, 269 lines)&quot;]
     subgraph UI[&quot;View (NiceGUI)&quot;]
       Content[&quot;content(): four tabs&quot;]
       NavPage[&quot;NavPage (class)&quot;]
@@ -631,6 +643,7 @@ The dotted arrows labelled “callback” are runtime callbacks.</p>
       SimCards[&quot;pages/sim cards&lt;br/&gt;(plant placement, Gazebo, row follow,&lt;br/&gt;soil texture, map archive)&quot;]
       SysCards[&quot;pages/system cards&lt;br/&gt;(odometry, battery, safety, ESP, GPS, tools)&quot;]
       ObsCards[&quot;pages/obstacle_cards&quot;]
+      DeleteDlg[&quot;pages/delete_dialogs&lt;br/&gt;(confirm node and row delete)&quot;]
     end
 
     subgraph PROC[&quot;Process helper (UI-neutral, no ROS)&quot;]
@@ -648,7 +661,9 @@ The dotted arrows labelled “callback” are runtime callbacks.</p>
       MissionVM[&quot;MissionViewModel&lt;br/&gt;(saved missions, run and cancel, MissionQueue per session)&quot;]
       ObstacleVM[&quot;ObstacleViewModel&quot;]
       SimVM[&quot;SimViewModel&quot;]
+      SimProcVM[&quot;SimProcessViewModel&lt;br/&gt;(Gazebo and row-follow status wording)&quot;]
       SystemVM[&quot;SystemViewModel&lt;br/&gt;(tool status wording and levels)&quot;]
+      MapCtx[&quot;MapContext&lt;br/&gt;(read-only map, node, selection, row action)&quot;]
     end
 
     subgraph APPSVC[&quot;ApplicationService (use-case logic)&quot;]
@@ -665,6 +680,8 @@ The dotted arrows labelled “callback” are runtime callbacks.</p>
       SimAssets[&quot;SimAssetService&lt;br/&gt;(crop models, soil textures; files only)&quot;]
       SimWorld[&quot;SimWorldService&lt;br/&gt;(rebuild Gazebo world via worldgen.sh)&quot;]
       SystemApp[&quot;SystemApplicationService&lt;br/&gt;(start, stop and poll the System page tools)&quot;]
+      SimProcApp[&quot;SimProcessApplicationService&lt;br/&gt;(start, stop and poll Gazebo and row follow)&quot;]
+      TrackApp[&quot;TrackApplicationService&lt;br/&gt;(track-mode timer, counter, entry and middle roles;&lt;br/&gt;timer factory passed in by ui_node)&quot;]
     end
 
     subgraph DOMSVC[&quot;DomainService (live state, ROS pub/sub)&quot;]
@@ -708,28 +725,34 @@ The dotted arrows labelled “callback” are runtime callbacks.</p>
   RunCards --&gt; TopoVM
   NavPage --&gt; TelemetryVM
   NavPage --&gt; AuthoringVM
+  NavPage --&gt; DeleteDlg
   PlanCards --&gt; PlanVM
   PlanCards --&gt; MissionVM
   PlanCards --&gt; TopoVM
   PlanCards --&gt; AuthoringVM
-  PlanCards --&gt; DeleteDlg
-  PlanVM -.-&gt;|&quot;reads map&quot;| TopoVM
-  PlanVM -.-&gt;|&quot;reads row action&quot;| RunVM
-  MissionVM -.-&gt;|&quot;navigation updates for the Run tab&quot;| RunVM
+  PlanPage --&gt; DeleteDlg
+  DeleteDlg --&gt; TopoVM
+  PlanVM --&gt; MapCtx
+  MapCtx -.-&gt;|&quot;reads map&quot;| TopoVM
+  MapCtx -.-&gt;|&quot;reads row action&quot;| RunVM
+  MissionVM -.-&gt;|&quot;on_nav_update callback, wired in ui_node&quot;| RunVM
   SimCards --&gt; SimVM
+  SimCards --&gt; SimProcVM
   SimCards --&gt; TopoVM
   SysCards --&gt; TelemetryVM
   SysCards --&gt; RobotBrainVM
   SysCards --&gt; SystemVM
   ObsCards --&gt; ObstacleVM
 
-  SimCards -.-&gt; ProcReg
+  SimProcVM --&gt; SimProcApp
+  SimProcApp --&gt; ProcReg
   SystemVM --&gt; SystemApp
   SystemApp --&gt; ProcReg
 
   AuthoringVM --&gt; TopologyEdit
   AuthoringVM --&gt; TopologyApp
   AuthoringVM --&gt; TelemetryApp
+  AuthoringVM --&gt; TrackApp
   AuthoringVM --&gt; TopoVM
   AuthoringVM --&gt; RunVM
 
@@ -784,9 +807,9 @@ The dotted arrows labelled “callback” are runtime callbacks.</p>
   MissionDom --&gt; RosGateway
   MissionStore --&gt; RosGateway
   ObstacleManager --&gt; RosGateway
+  ObstacleManager -.-&gt;|&quot;map_anchor callable, wired in ui_node&quot;| TelemetryApp
 
   classDef view fill:#dbeafe,stroke:#1e40af,color:#111827,stroke-width:1px
-  classDef todo fill:#ffffff,stroke:#b91c1c,color:#111827,stroke-width:1px,stroke-dasharray:4 3
   classDef vm fill:#dcfce7,stroke:#166534,color:#111827,stroke-width:1px
   classDef app fill:#fef9c3,stroke:#854d0e,color:#111827,stroke-width:1px
   classDef dom fill:#fae8ff,stroke:#86198f,color:#111827,stroke-width:1px
@@ -794,10 +817,10 @@ The dotted arrows labelled “callback” are runtime callbacks.</p>
   classDef infra fill:#e5e7eb,stroke:#374151,color:#111827,stroke-width:1px
   classDef proc fill:#f3f4f6,stroke:#374151,color:#111827,stroke-width:1px
 
-  class Content,NavPage,PlanPage,SimPage,SystemPage,RunCards,PlanCards,SimCards,SysCards,ObsCards view
+  class Content,NavPage,PlanPage,SimPage,SystemPage,RunCards,PlanCards,SimCards,SysCards,ObsCards,DeleteDlg view
   class ProcReg proc
-  class GlobalVM,RunVM,AuthoringVM,TopoVM,TelemetryVM,RobotBrainVM,PlanVM,MissionVM,ObstacleVM,SimVM,SystemVM vm
-  class DriveApp,NavApp,RowDiscApp,RobotBrainApp,TelemetryApp,TopologyApp,TopologyEdit,PlanApp,MissionApp,ObstacleApp,SimAssets,SimWorld,SystemApp app
+  class GlobalVM,RunVM,AuthoringVM,TopoVM,TelemetryVM,RobotBrainVM,PlanVM,MissionVM,ObstacleVM,SimVM,SimProcVM,SystemVM,MapCtx vm
+  class DriveApp,NavApp,RowDiscApp,RobotBrainApp,TelemetryApp,TopologyApp,TopologyEdit,PlanApp,MissionApp,ObstacleApp,SimAssets,SimWorld,SystemApp,SimProcApp,TrackApp app
   class DriveDom,NavDom,RowDiscDom,RobotBrainDom,TelemetryDom,TopologyDom,MissionDom dom
   class RowBuilder,RowPlanning,F2CPkg pure
   class TopoMapStore,MissionStore,SimAssetStore,ObstacleManager,RosGateway infra
@@ -814,7 +837,8 @@ The dotted arrows labelled “callback” are runtime callbacks.</p>
 </div>
 <p>The Run, Plan, Sim and System tabs are page classes.
 <code class="docutils literal notranslate"><span class="pre">NavPage</span></code> reaches <code class="docutils literal notranslate"><span class="pre">TopologyEditService</span></code> through <code class="docutils literal notranslate"><span class="pre">MapAuthoringViewModel</span></code>.
-The Plan page reaches only ViewModels; the node passes it three callbacks (run, cancel and delete row), so the mission executor is not drawn as a dependency of the page.</p>
+The Plan page reaches only ViewModels.
+<code class="docutils literal notranslate"><span class="pre">PlanViewModel</span></code> reads the map and row action through <code class="docutils literal notranslate"><span class="pre">MapContext</span></code>, and <code class="docutils literal notranslate"><span class="pre">MissionViewModel</span></code> passes navigation updates to <code class="docutils literal notranslate"><span class="pre">RunViewModel</span></code> through a callback; <code class="docutils literal notranslate"><span class="pre">ui_node</span></code> wires both.</p>
 </section>
 <section id="decision-drop-facade-as-a-layer-name">
 <h1>Decision: drop “Facade” as a layer name<a class="headerlink" href="#decision-drop-facade-as-a-layer-name" title="Link to this heading"></a></h1>
@@ -827,7 +851,7 @@ The ViewModels can’t take it on, because they are NiceGUI-specific.</p>
 <tr><th>Layer</th><th>Name</th><th>Rule</th></tr>
 <tr><td>UI</td><td>Page</td><td>Layout only.
 Imports ViewModels only (enforced by import-linter).
-The Sim cards are the one exception: they start Gazebo and row follow through <code>process_registry</code> from the page</td></tr>
+Pages do not spawn or track processes</td></tr>
 <tr><td>UI state</td><td>ViewModel</td><td>UI state and user intents.
 It is the NiceGUI adapter, and the only place presentation formatting happens</td></tr>
 <tr><td>Boundary</td><td>Application service</td><td>The "Robot API".
@@ -854,15 +878,16 @@ Not built</td></tr>
 </table>
 <p><strong>Dependency rule:</strong> Page → ViewModel → Application service → Domain service / Store / Pure module → RosGateway.
 Nothing points upward or skips a layer.</p>
-<p>import-linter enforces this in CI (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint-imports</span></code>, <code class="docutils literal notranslate"><span class="pre">.importlinter</span></code>) with seven contracts:</p>
+<p>import-linter enforces this in CI (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint-imports</span></code>, <code class="docutils literal notranslate"><span class="pre">.importlinter</span></code>) with eight contracts:</p>
 <ol class="arabic simple">
 <li><p>Pages import only ViewModels.</p></li>
-<li><p>Pages do not spawn processes.</p></li>
-<li><p>ViewModels do not reach domain services, stores or ROS.</p></li>
+<li><p>Pages do not import <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> or <code class="docutils literal notranslate"><span class="pre">process_registry</span></code>.</p></li>
+<li><p>ViewModels do not reach domain services, stores, <code class="docutils literal notranslate"><span class="pre">process_registry</span></code> or ROS.</p></li>
 <li><p>Services are UI-neutral.</p></li>
 <li><p>Domain services do not import application services.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">rclpy-via-gateway</span></code> contract forbids direct <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> imports in pages, view models, application and domain services, <code class="docutils literal notranslate"><span class="pre">missions</span></code>, <code class="docutils literal notranslate"><span class="pre">obstacles</span></code> and <code class="docutils literal notranslate"><span class="pre">qos</span></code>; <code class="docutils literal notranslate"><span class="pre">RosGateway</span></code> provides ROS access for UI services, while <code class="docutils literal notranslate"><span class="pre">ui_node.py</span></code> retains ROS startup imports and creates and spins the <code class="docutils literal notranslate"><span class="pre">Node</span></code> in <code class="docutils literal notranslate"><span class="pre">ros_main</span></code>.</p></li>
 <li><p>Field planning and plan import go through the Plan service: <code class="docutils literal notranslate"><span class="pre">ui_node</span></code>, the pages and the view models do not import <code class="docutils literal notranslate"><span class="pre">devkit_f2c_planner</span></code>, <code class="docutils literal notranslate"><span class="pre">row_planning</span></code> or <code class="docutils literal notranslate"><span class="pre">plan_import</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plan_view_model</span></code> and <code class="docutils literal notranslate"><span class="pre">mission_view_model</span></code> do not import <code class="docutils literal notranslate"><span class="pre">run_view_model</span></code> or <code class="docutils literal notranslate"><span class="pre">topology_view_model</span></code>.</p></li>
 </ol>
 <p><code class="docutils literal notranslate"><span class="pre">.importlinter</span></code> lists no exceptions now.
 Any exception added there carries a <code class="docutils literal notranslate"><span class="pre">TODO(#116)</span></code>, and the <code class="docutils literal notranslate"><span class="pre">pages-no-process-control</span></code> contract fails if one becomes stale.</p>
@@ -897,10 +922,10 @@ In the 15 August diagram <code class="docutils literal notranslate"><span class=
 <tr><th>Proposed</th><th>Built</th></tr>
 <tr><td>Facade layer (comment of 15 and 20 August: <code>NavFacade</code>, <code>MissionFacade</code>, <code>TopologyFacade</code>, <code>SystemFacade</code>)</td><td>Dropped.
 <code>ApplicationService</code> is the boundary (comment of 9 October)</td></tr>
-<tr><td>Three ViewModels: <code>NavViewModel</code>, <code>MissionViewModel</code>, <code>SystemViewModel</code>, plus <code>GlobalViewModel</code></td><td>Ten: <code>Global</code>, <code>Run</code>, <code>MapAuthoring</code>, <code>Topology</code>, <code>Telemetry</code>, <code>RobotBrain</code>, <code>Plan</code>, <code>Mission</code>, <code>Obstacle</code>, <code>Sim</code></td></tr>
+<tr><td>Three ViewModels: <code>NavViewModel</code>, <code>MissionViewModel</code>, <code>SystemViewModel</code>, plus <code>GlobalViewModel</code></td><td>Twelve: <code>Global</code>, <code>Run</code>, <code>MapAuthoring</code>, <code>Topology</code>, <code>Telemetry</code>, <code>RobotBrain</code>, <code>Plan</code>, <code>Mission</code>, <code>Obstacle</code>, <code>Sim</code>, <code>SimProcess</code>, <code>System</code>, plus <code>MapContext</code> (read-only, used by <code>Plan</code>)</td></tr>
 <tr><td>Pages: Nav, Mission, System</td><td>Four tabs: Run, Plan, Sim, System.
 All four are page classes: <code>NavPage</code>, <code>PlanPage</code>, <code>SimPage</code>, <code>SystemPage</code></td></tr>
-<tr><td><code>NavigationService</code>, <code>MissionService</code>, <code>TopologyService</code>, <code>SystemService</code></td><td>Drive, Navigation, RowDiscovery, RobotBrain, Telemetry, Topology, TopologyEdit, Plan and Mission application services, each with a domain service, plus <code>SimAssetService</code> and <code>SimWorldService</code> (no ROS), and <code>ObstacleApplicationService</code> over <code>ObstacleManager</code></td></tr>
+<tr><td><code>NavigationService</code>, <code>MissionService</code>, <code>TopologyService</code>, <code>SystemService</code></td><td>Drive, Navigation, RowDiscovery, RobotBrain, Telemetry, Topology, TopologyEdit, Plan and Mission application services, each with a domain service where it talks to ROS, plus <code>SimAssetService</code>, <code>SimWorldService</code>, <code>SimProcessApplicationService</code>, <code>SystemApplicationService</code> and <code>TrackApplicationService</code> (no ROS), and <code>ObstacleApplicationService</code> over <code>ObstacleManager</code></td></tr>
 <tr><td><code>PlanningService (F2C)</code> / <code>PlanningDomainService</code></td><td><code>PlanApplicationService</code>, with no domain service of its own.
 F2C is the <code>devkit_f2c_planner</code> package, called from <code>PlanApplicationService</code>.
 Row geometry, row building and plan import are pure modules.
@@ -908,8 +933,7 @@ Edit rules are in <code>TopologyEditService</code></td></tr>
 <tr><td><code>TopoRepo</code></td><td><code>TopoMapStore</code>, owned by <code>TopologyApplicationService</code></td></tr>
 <tr><td><code>ROSGateway</code> as the ROS clients layer</td><td><code>RosGateway</code> wraps the rclpy node.
 All seven domain services, <code>MissionStore</code> and <code>ObstacleManager</code> use it</td></tr>
-<tr><td>"All UI contact points go through the Facade"</td><td>True for drive, navigation, row discovery, robot brain, telemetry, topology, planning, missions and obstacles.
-Not true for process control (see below)</td></tr>
+<tr><td>"All UI contact points go through the Facade"</td><td>True for drive, navigation, row discovery, robot brain, telemetry, topology, planning, missions, obstacles, System tools and Sim processes</td></tr>
 <tr><td>Enforce the dependency rule</td><td>Done: import-linter in CI</td></tr>
 <tr><td>Phase 2: Edge API (REST, MQTT, VDA 5050), Fleet Gateway, standalone UI</td><td>Not started.
 No adapters in the code</td></tr>
@@ -922,8 +946,8 @@ No adapters in the code</td></tr>
 <li><p><strong>Plan page state</strong> is per browser session (<code class="docutils literal notranslate"><span class="pre">PlanPageState</span></code>, <code class="docutils literal notranslate"><span class="pre">MissionQueue</span></code>), but <code class="docutils literal notranslate"><span class="pre">PlanViewModel.save_status</span></code> is shared by every session.</p></li>
 <li><p><strong>Plan page threading</strong>: <code class="docutils literal notranslate"><span class="pre">PlanViewModel.plan</span></code> blocks, so the controls card calls it through <code class="docutils literal notranslate"><span class="pre">nicegui.run.io_bound</span></code>.
 Any other adapter has to run it on a worker thread too.</p></li>
-<li><p><strong>Process control</strong>: the Sim cards (Gazebo, row follow) start processes through <code class="docutils literal notranslate"><span class="pre">process_registry</span></code> from the page.
-A ViewModel and application service, as the System tools have, would complete the rule.</p></li>
+<li><p><strong>Phase 2</strong>: not started.
+Edge adapters, Fleet Gateway and a standalone UI are absent from the code.</p></li>
 </ul>
 </section>
 
