@@ -1,6 +1,6 @@
 # Open-Source Farm Management Systems & API Capabilities
 
-Let's make middleare that connects [DFC](https://dfc-standard.org/) to the below API's along with https://openfoodnetwork.org/
+Let's make middleare that connects [DFC](https://dfc-standard.org/) to the below API's along with [https://openfoodnetwork.org/](https://openfoodnetwork.org/)
 
 | Software | Best For | License | Key Features | API Information & Capabilities |
 | :--- | :--- | :--- | :--- | :--- |
@@ -9,3 +9,7 @@ Let's make middleare that connects [DFC](https://dfc-standard.org/) to the below
 | **Tania** | Indoor farming, vertical farms, and hydroponics | Apache-2.0 | • Nutrient, water reservoir, & pH tracking<br>• Multi-room visual layouts<br>• Seed-to-harvest task checklists | **REST API (Go backend):** A highly responsive, lightweight, resource-oriented JSON API (`tania-core`). It is specifically optimized by developers for wiring up automated greenhouse sensors and IoT relays. |
 | **LiteFarm** | Sustainable, community, and organic growers | GPL-3.0 | • Map-centric crop rotation layouts<br>• Biodiversity & sustainability indexes<br>• Organic certification document exports | **Node.js Express API:** Features a structural backend REST API package used primarily for its internal web/mobile sync. It integrates external services like the OpenWeather API, and has community extensions like Model Context Protocol (MCP) servers for AI assistants. |
 | **HortusFox** | Nurseries, greenhouses, and collaborative gardening | MIT | • Collaborative task managers & boards<br>• Individual plant location tagging<br>• Pest documentation & treatment logs | **Internal REST API (PHP):** Provides basic endpoints to programmatically manage individual plant logs, inventory, and system users, primarily targeting custom local dashboard extensions. |
+
+Farmers can plan their holdings on [https://projectcanopi.com/](https://projectcanopi.com/)
+
+Let's then map everything on [Agroecology Map](https://agroecologymap.org/map)
