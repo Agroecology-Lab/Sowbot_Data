@@ -551,6 +551,7 @@
   <h1>Source code for devkit_ui.view_models.plan_view_model</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
@@ -613,9 +614,13 @@
 <span class="k">class</span> <span class="nc">PlanPageState</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;State of one browser session&#39;s Plan tab: boundary, rows to save and the status line.</span>
 
-<span class="sd">    Each page opens its own, so two browsers never share a boundary or a draft. Cards read</span>
-<span class="sd">    the attributes and call subscribe to be told when any of them changed. Nothing here</span>
-<span class="sd">    imports the UI.</span>
+<span class="sd">    Each page opens its own, so two browsers never share a boundary, a draft or a status.</span>
+<span class="sd">    Cards read the attributes and call subscribe to be told when any of them changed. Nothing</span>
+<span class="sd">    here imports the UI.</span>
+
+<span class="sd">    save_status is the last save or repair status of this page. set_save_status may be called</span>
+<span class="sd">    from the thread that writes the map and does not notify, so a card reads save_status on a</span>
+<span class="sd">    timer.</span>
 
 <span class="sd">    A planning run is stamped with a generation when it starts. Clearing or successfully</span>
 <span class="sd">    importing a plan starts a new one, so a run that finishes later is discarded.</span>
@@ -631,6 +636,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">status_kind</span> <span class="o">=</span> <span class="n">STATUS_INFO</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">can_plan</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">can_save</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_status</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generation</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_listeners</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span></div>
 
@@ -645,6 +651,13 @@
     <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listener</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call listener, with no arguments, after every change.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_listeners</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PlanPageState.set_save_status">
+<a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanPageState.set_save_status">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_save_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Replace the save or repair status; safe to call from a worker thread.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_status</span> <span class="o">=</span> <span class="n">text</span></div>
 
 
     <span class="k">def</span> <span class="nf">_notify</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -756,11 +769,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the row action selected on the Run tab.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">row_action</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">save_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the last save or repair status, including validation and write results.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">save_status</span>
-
 <div class="viewcode-block" id="PlanViewModel.open_page">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanViewModel.open_page">[docs]</a>
     <span class="k">def</span> <span class="nf">open_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PlanPageState</span><span class="p">:</span>
@@ -770,14 +778,15 @@
 
 <div class="viewcode-block" id="PlanViewModel.plan">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanViewModel.plan">[docs]</a>
-    <span class="k">def</span> <span class="nf">plan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">PlanRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PlanView</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">plan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">PlanRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PlanView</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plan rows for the boundary and describe the result.</span>
 
-<span class="sd">        Blocks on terrain and planner work: call it from a worker thread. The page keeps</span>
-<span class="sd">        the returned rows and passes them to save_rows. See PlanApplicationService.plan for</span>
-<span class="sd">        the fallback and failure behavior.</span>
+<span class="sd">        The terrain and planner work runs on a worker thread, so awaiting this does not block</span>
+<span class="sd">        the event loop and callers need no thread of their own. The page keeps the returned</span>
+<span class="sd">        rows and passes them to save_rows. See PlanApplicationService.plan for the fallback</span>
+<span class="sd">        and failure behavior.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">outcome</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">plan</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">outcome</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">plan</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">PlanView</span><span class="p">(</span><span class="n">outcome</span><span class="o">.</span><span class="n">ok</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_describe_plan</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">outcome</span><span class="p">),</span> <span class="n">outcome</span><span class="o">.</span><span class="n">planned</span><span class="p">)</span></div>
 
 
@@ -799,15 +808,16 @@
 <div class="viewcode-block" id="PlanViewModel.save_rows">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanViewModel.save_rows">[docs]</a>
     <span class="k">def</span> <span class="nf">save_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">planned</span><span class="p">:</span> <span class="n">PlannedRows</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">row_id_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                  <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                  <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">on_status</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the given planned rows into the loaded map, joined to the current or selected node.</span>
 
-<span class="sd">        Progress and errors appear in save_status.</span>
+<span class="sd">        Progress and errors go to on_status, which may be called from the writing thread.</span>
 <span class="sd">        See PlanApplicationService.save_rows for validation and background-write behavior.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">save_rows</span><span class="p">(</span>
             <span class="n">planned</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">row_id_start</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="n">row_action</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_row_action</span><span class="p">,</span>
-            <span class="n">current_node</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">current_node</span><span class="p">,</span> <span class="n">selected_node</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">selected_node</span><span class="p">)</span></div>
+            <span class="n">current_node</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">current_node</span><span class="p">,</span> <span class="n">selected_node</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">selected_node</span><span class="p">,</span>
+            <span class="n">on_status</span><span class="o">=</span><span class="n">on_status</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PlanViewModel.repair_offer">
@@ -867,17 +877,18 @@
 
 <div class="viewcode-block" id="PlanViewModel.repair">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.plan_view_model.html#devkit_ui.view_models.plan_view_model.PlanViewModel.repair">[docs]</a>
-    <span class="k">def</span> <span class="nf">repair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connect_to</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">repair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connect_to</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">on_status</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rebuild missing row edges, optionally naming the node the chain is meant to join.</span>
 
-<span class="sd">        An unknown connect_to node is rejected in save_status and nothing is repaired.</span>
-<span class="sd">        See PlanApplicationService.repair_connectivity for the rest.</span>
+<span class="sd">        Progress and errors go to on_status, as for save_rows. An unknown connect_to node is</span>
+<span class="sd">        rejected there and nothing is repaired. See PlanApplicationService.repair_connectivity</span>
+<span class="sd">        for the rest.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">topo_doc</span>
         <span class="k">if</span> <span class="n">connect_to</span> <span class="ow">and</span> <span class="n">doc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">connect_to</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: base node </span><span class="si">{</span><span class="n">connect_to</span><span class="si">!r}</span><span class="s1"> not in map&#39;</span><span class="p">)</span>
+            <span class="n">on_status</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: base node </span><span class="si">{</span><span class="n">connect_to</span><span class="si">!r}</span><span class="s1"> not in map&#39;</span><span class="p">)</span>
             <span class="k">return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">repair_connectivity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_row_action</span><span class="p">,</span> <span class="n">connect_to</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">repair_connectivity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_row_action</span><span class="p">,</span> <span class="n">connect_to</span><span class="p">,</span> <span class="n">on_status</span><span class="o">=</span><span class="n">on_status</span><span class="p">)</span></div>
 
 
     <span class="nd">@staticmethod</span>
