@@ -582,7 +582,19 @@
 <span class="n">_EXPLORER_CMD</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="s1">&#39;run&#39;</span><span class="p">,</span> <span class="s1">&#39;ros2graph_explorer&#39;</span><span class="p">,</span> <span class="s1">&#39;ros2graph_explorer&#39;</span><span class="p">]</span>
 <span class="n">_GRAPHER_DIR</span> <span class="o">=</span> <span class="s1">&#39;/tmp/ros2grapher&#39;</span>
 <span class="n">_GRAPHER_CMD</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ros2grapher&#39;</span><span class="p">,</span> <span class="s1">&#39;/workspace&#39;</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">_GRAPHER_DIR</span><span class="si">}</span><span class="s1">/index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;--port&#39;</span><span class="p">,</span> <span class="s1">&#39;8888&#39;</span><span class="p">]</span>
-<span class="n">_MEDKIT_CMD</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;ros2_medkit_gateway&#39;</span><span class="p">,</span> <span class="s1">&#39;bringup.launch.py&#39;</span><span class="p">,</span> <span class="s1">&#39;server_host:=127.0.0.1&#39;</span><span class="p">]</span>
+<span class="c1"># Loopback unless MEDKIT_SERVER_HOST says otherwise. manage.py sets it to 0.0.0.0 for its bridge-network</span>
+<span class="c1"># container: Docker forwards a published port to the container&#39;s own address, never to its loopback, so a</span>
+<span class="c1"># gateway bound to 127.0.0.1 is unreachable from the host. The host side of that mapping stays loopback</span>
+<span class="c1"># (see TOOLS_BIND), so this does not widen exposure. Do not default to 0.0.0.0: the compose `devkit`</span>
+<span class="c1"># service uses host networking, where it would expose the unauthenticated gateway to the LAN.</span>
+
+
+<span class="k">def</span> <span class="nf">_medkit_cmd</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the gateway launch command, binding to MEDKIT_SERVER_HOST (default 127.0.0.1).&quot;&quot;&quot;</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MEDKIT_SERVER_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="s1">&#39;127.0.0.1&#39;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;ros2_medkit_gateway&#39;</span><span class="p">,</span> <span class="s1">&#39;bringup.launch.py&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;server_host:=</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+
+
 <span class="c1"># Seconds to wait after SIGINT, after terminate and after kill; ROS launch needs time to stop its children.</span>
 <span class="n">_MEDKIT_WAITS</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">_RVIZ_DISPLAY</span> <span class="o">=</span> <span class="s1">&#39;:98&#39;</span>
@@ -762,12 +774,12 @@
             <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">_launch_medkit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the Medkit gateway on loopback and return its process with no note.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the Medkit gateway and return its process with no note.</span>
 
 <span class="sd">        It gets its own session: it is registered for shutdown_tools, which signals the whole</span>
 <span class="sd">        group, and a child in the UI&#39;s own group would make that signal the UI itself.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">spawn_quiet</span><span class="p">(</span><span class="n">_MEDKIT_CMD</span><span class="p">),</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">spawn_quiet</span><span class="p">(</span><span class="n">_medkit_cmd</span><span class="p">()),</span> <span class="s1">&#39;&#39;</span>
 
     <span class="c1"># ── stopping ──────────────────────────────────────────────────────────────</span>
 
