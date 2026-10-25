@@ -551,8 +551,17 @@
   <h1>Source code for devkit_ui.pages.run.joystick_control_card</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
 
+<span class="kn">from</span> <span class="nn">devkit_ui.pages.widgets</span> <span class="kn">import</span> <span class="n">request_host</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.global_view_model</span> <span class="kn">import</span> <span class="n">GlobalViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.run_view_model</span> <span class="kn">import</span> <span class="n">RunViewModel</span>
+
+<span class="c1"># web_video_server port (neo.launch.py: web_video_port, default 8081) and the row-navigation debug image.</span>
+<span class="n">WEB_VIDEO_PORT</span> <span class="o">=</span> <span class="mi">8081</span>
+<span class="n">ROW_DEBUG_TOPIC</span> <span class="o">=</span> <span class="s1">&#39;/caatinga_vision/row_nav/debug_image&#39;</span>
+<span class="c1"># Size requested from web_video_server; the stream is embedded directly as an &lt;img&gt;, because the</span>
+<span class="c1"># stream_viewer page adds a topic heading and body margin that push the image out of a fixed frame.</span>
+<span class="n">ROW_DEBUG_WIDTH</span> <span class="o">=</span> <span class="mi">260</span>
+<span class="n">ROW_DEBUG_HEIGHT</span> <span class="o">=</span> <span class="mi">195</span>
 
 
 <div class="viewcode-block" id="JoystickControlCard">
@@ -618,7 +627,17 @@
                     <span class="c1"># Pose label</span>
                     <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">()</span><span class="o">.</span><span class="n">bind_text_from</span><span class="p">(</span><span class="n">run_vm</span><span class="o">.</span><span class="n">joystick</span><span class="p">,</span> <span class="s1">&#39;pose_lbl&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span>
                         <span class="s1">&#39;text-xs font-mono text-[#57606a] text-center max-w-[130px] whitespace-pre-line&#39;</span>
-                    <span class="p">)</span></div>
+                    <span class="p">)</span>
+
+            <span class="c1"># Resolved from the browser&#39;s own request host, so it also works from another machine.</span>
+            <span class="n">ui</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;src=&quot;http://</span><span class="si">{</span><span class="n">request_host</span><span class="p">()</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">WEB_VIDEO_PORT</span><span class="si">}</span><span class="s1">/stream?topic=</span><span class="si">{</span><span class="n">ROW_DEBUG_TOPIC</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;&amp;width=</span><span class="si">{</span><span class="n">ROW_DEBUG_WIDTH</span><span class="si">}</span><span class="s1">&amp;height=</span><span class="si">{</span><span class="n">ROW_DEBUG_HEIGHT</span><span class="si">}</span><span class="s1">&amp;type=mjpeg&quot; &#39;</span>
+                <span class="s1">&#39;alt=&quot;Row navigation debug image&quot;&#39;</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;width:</span><span class="si">{</span><span class="n">ROW_DEBUG_WIDTH</span><span class="si">}</span><span class="s1">px;max-width:100%;aspect-ratio:4/3;object-fit:contain;&#39;</span>
+                <span class="s1">&#39;border-radius:4px;background:#000&#39;</span>
+            <span class="p">)</span></div>
 </div>
 
 </pre></div>
