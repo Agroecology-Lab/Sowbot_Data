@@ -1,0 +1,31 @@
+devkit\_ui.row\_plan\_format
+============================
+
+.. automodule:: devkit_ui.row_plan_format
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build_geojson
+      canonical_rows_text
+      check_rows
+      distance_m
+      format_coordinate
+      map_hash
+      row_length_m
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PlanProperties
+      PlanRow
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      RowPlanError
+   

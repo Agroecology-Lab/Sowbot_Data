@@ -15,6 +15,7 @@
    constants
    dem
    domain_services
+   litefarm_client
    map_anchor
    missions
    models
@@ -26,6 +27,9 @@
    process_registry
    qos
    ros_gateway
+   row_plan_cli
+   row_plan_export
+   row_plan_format
    row_planning
    sim_asset_store
    terrain_mask

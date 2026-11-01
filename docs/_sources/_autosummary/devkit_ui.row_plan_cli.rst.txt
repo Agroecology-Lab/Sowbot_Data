@@ -1,0 +1,12 @@
+devkit\_ui.row\_plan\_cli
+=========================
+
+.. automodule:: devkit_ui.row_plan_cli
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      main
+   

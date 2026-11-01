@@ -1,0 +1,25 @@
+devkit\_ui.litefarm\_client
+===========================
+
+.. automodule:: devkit_ui.litefarm_client
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      import_row_plan
+      login
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ImportResult
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      LiteFarmError
+   

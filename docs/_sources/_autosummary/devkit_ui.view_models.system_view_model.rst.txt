@@ -8,6 +8,7 @@ devkit\_ui.view\_models.system\_view\_model
 
    .. autosummary::
    
+      RowPlanDownload
       SystemViewModel
       ToolStatusView
    
