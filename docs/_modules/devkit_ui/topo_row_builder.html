@@ -713,8 +713,8 @@
 <span class="k">def</span> <span class="nf">build_row_nodes</span><span class="p">(</span><span class="n">swaths</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">anchor</span><span class="p">:</span> <span class="n">RowAnchor</span><span class="p">,</span> <span class="n">settings</span><span class="p">:</span> <span class="n">RowBuildSettings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RowBuild</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Turn planned swaths into entry, waypoint and exit nodes with their edges.</span>
 
-<span class="sd">    Each usable swath becomes an IN and an OUT node joined by directed edges using</span>
-<span class="sd">    ``settings.row_action``. With contour mode and more than two points, rows may</span>
+<span class="sd">    Each usable swath becomes an IN and an OUT node joined by edges in both directions</span>
+<span class="sd">    using ``settings.row_action``. With contour mode and more than two points, rows may</span>
 <span class="sd">    also get intermediate waypoints; otherwise they keep a single entry-to-exit edge.</span>
 
 <span class="sd">    Consecutive built rows are joined OUT to the next row&#39;s IN in both directions. The</span>
@@ -793,6 +793,7 @@
 
         <span class="k">for</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">b_name</span> <span class="ow">in</span> <span class="n">pairwise</span><span class="p">([</span><span class="n">in_name</span><span class="p">,</span> <span class="o">*</span><span class="n">waypoint_names</span><span class="p">,</span> <span class="n">out_name</span><span class="p">]):</span>
             <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">a_name</span><span class="p">]</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">b_name</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">row_action</span><span class="p">)</span>
+            <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">b_name</span><span class="p">]</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">a_name</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">row_action</span><span class="p">)</span>
 
         <span class="n">build</span><span class="o">.</span><span class="n">added</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rid</span><span class="p">)</span>
         <span class="n">build</span><span class="o">.</span><span class="n">row_names</span><span class="p">[</span><span class="n">rid</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">in_name</span><span class="p">,</span> <span class="n">out_name</span><span class="p">)</span>
@@ -857,8 +858,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Work out which in-row and headland edges the rows in ``doc`` should have.</span>
 
 <span class="sd">    Rows are found from the ``row_id`` and ``row_role`` metadata. In-row edges chain</span>
-<span class="sd">    entry, waypoints (in ``_W&lt;n&gt;`` order) and exit, so a repair restores the curve</span>
-<span class="sd">    instead of collapsing it to one hop. Headland edges join same-end neighbours,</span>
+<span class="sd">    entry, waypoints (in ``_W&lt;n&gt;`` order) and exit in both directions, so a repair</span>
+<span class="sd">    restores the curve instead of collapsing it to one hop. Headland edges join same-end neighbours,</span>
 <span class="sd">    classified by geometry rather than the IN/OUT label, because snake ordering</span>
 <span class="sd">    flips the label against the physical end. Waypoints are left out of that</span>
 <span class="sd">    classification, since they are not row ends.</span>
@@ -907,7 +908,9 @@
         <span class="n">entry</span><span class="p">,</span> <span class="n">exit_</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="n">rid</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entry&#39;</span><span class="p">),</span> <span class="n">rows</span><span class="p">[</span><span class="n">rid</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">entry</span> <span class="ow">and</span> <span class="n">exit_</span> <span class="ow">and</span> <span class="n">entry</span> <span class="o">!=</span> <span class="n">exit_</span><span class="p">:</span>
             <span class="n">waypoints</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="n">rid</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;waypoints&#39;</span><span class="p">,</span> <span class="p">[]),</span> <span class="n">key</span><span class="o">=</span><span class="n">waypoint_order</span><span class="p">)</span>
-            <span class="n">edges</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">row_action</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">pairwise</span><span class="p">([</span><span class="n">entry</span><span class="p">,</span> <span class="o">*</span><span class="n">waypoints</span><span class="p">,</span> <span class="n">exit_</span><span class="p">]))</span>
+            <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">pairwise</span><span class="p">([</span><span class="n">entry</span><span class="p">,</span> <span class="o">*</span><span class="n">waypoints</span><span class="p">,</span> <span class="n">exit_</span><span class="p">]):</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">row_action</span><span class="p">))</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">row_action</span><span class="p">))</span>
 
     <span class="n">headlands_skipped</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">headlands_skipped</span><span class="p">:</span>
