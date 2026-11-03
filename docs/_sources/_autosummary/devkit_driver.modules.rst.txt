@@ -14,6 +14,7 @@ devkit\_driver.modules
    bumper_handler
    estop_handler
    imu_handler
+   map_anchor_handler
    odom_handler
    recon_dem_logger
    robot_brain_handler

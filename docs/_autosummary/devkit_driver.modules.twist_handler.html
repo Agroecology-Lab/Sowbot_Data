@@ -136,6 +136,17 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.loop.html#devkit_driver.loop.run_on_rosys_loop"><code class="docutils literal notranslate"><span class="pre">run_on_rosys_loop()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_driver.map_anchor.html">devkit_driver.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_driver.map_anchor.html#devkit_driver.map_anchor.AnchorEstimator"><code class="docutils literal notranslate"><span class="pre">AnchorEstimator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_driver.map_anchor.html#devkit_driver.map_anchor.geodetic_offset_en"><code class="docutils literal notranslate"><span class="pre">geodetic_offset_en()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_driver.map_anchor.html#devkit_driver.map_anchor.map_odom_transform"><code class="docutils literal notranslate"><span class="pre">map_odom_transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_driver.map_odom_anchor.html">devkit_driver.map_odom_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_driver.map_odom_anchor.html#devkit_driver.map_odom_anchor.MapOdomAnchor"><code class="docutils literal notranslate"><span class="pre">MapOdomAnchor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_driver.map_odom_anchor.html#devkit_driver.map_odom_anchor.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3 current"><a class="reference internal" href="devkit_driver.modules.html">devkit_driver.modules</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.html#devkit_driver.modules.BMSHandler"><code class="docutils literal notranslate"><span class="pre">BMSHandler</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.html#devkit_driver.modules.BumperHandler"><code class="docutils literal notranslate"><span class="pre">BumperHandler</span></code></a></li>
@@ -145,10 +156,12 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger"><code class="docutils literal notranslate"><span class="pre">ReconDEMLogger</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.html#devkit_driver.modules.RobotBrainHandler"><code class="docutils literal notranslate"><span class="pre">RobotBrainHandler</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.html#devkit_driver.modules.TwistHandler"><code class="docutils literal notranslate"><span class="pre">TwistHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.html#devkit_driver.modules.create_twist_handler"><code class="docutils literal notranslate"><span class="pre">create_twist_handler()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.bms_handler.html">devkit_driver.modules.bms_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.bumper_handler.html">devkit_driver.modules.bumper_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.estop_handler.html">devkit_driver.modules.estop_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.imu_handler.html">devkit_driver.modules.imu_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.map_anchor_handler.html">devkit_driver.modules.map_anchor_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.odom_handler.html">devkit_driver.modules.odom_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.recon_dem_logger.html">devkit_driver.modules.recon_dem_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_driver.modules.robot_brain_handler.html">devkit_driver.modules.robot_brain_handler</a></li>
@@ -585,6 +598,14 @@
              
   <section id="module-devkit_driver.modules.twist_handler">
 <span id="devkit-driver-modules-twist-handler"></span><h1>devkit_driver.modules.twist_handler<a class="headerlink" href="#module-devkit_driver.modules.twist_handler" title="Link to this heading"></a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_driver.modules.twist_handler.create_twist_handler" title="devkit_driver.modules.twist_handler.create_twist_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_twist_handler</span></code></a>(node, wheels)</p></td>
+<td><p>Return a TwistHandler, or None when the handle_cmd_vel parameter (default true) is false.</p></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -619,6 +640,13 @@ the wheels are stopped. Time comes from a monotonic clock, never ROS time.</p>
 <dd><p>Implement callback for cmd_vel message; ignore nonfinite components.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_driver.modules.twist_handler.create_twist_handler">
+<span class="sig-prename descclassname"><span class="pre">devkit_driver.modules.twist_handler.</span></span><span class="sig-name descname"><span class="pre">create_twist_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">rclpy.node.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wheels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">rosys.hardware.Wheels</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_driver.modules.twist_handler.TwistHandler" title="devkit_driver.modules.twist_handler.TwistHandler"><span class="pre">TwistHandler</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_driver/modules/twist_handler.html#create_twist_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_driver.modules.twist_handler.create_twist_handler" title="Link to this definition"></a></dt>
+<dd><p>Return a TwistHandler, or None when the handle_cmd_vel parameter (default true) is false.</p>
+<p>The MAVLink bridge also subscribes to cmd_vel; the launch file turns this off when it runs.</p>
 </dd></dl>
 
 </section>

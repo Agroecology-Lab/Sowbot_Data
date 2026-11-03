@@ -4,6 +4,12 @@ devkit\_driver.modules.twist\_handler
 .. automodule:: devkit_driver.modules.twist_handler
 
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      create_twist_handler
+   
    .. rubric:: Classes
 
    .. autosummary::

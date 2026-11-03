@@ -14,6 +14,8 @@
    devkit_driver_node
    logger
    loop
+   map_anchor
+   map_odom_anchor
    modules
    qos
    relposned_heading_shim

@@ -1,0 +1,12 @@
+devkit\_driver.modules.map\_anchor\_handler
+===========================================
+
+.. automodule:: devkit_driver.modules.map_anchor_handler
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MapAnchorHandler
+   

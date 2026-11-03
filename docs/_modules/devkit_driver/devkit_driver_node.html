@@ -133,6 +133,17 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.loop.html#devkit_driver.loop.run_on_rosys_loop"><code class="docutils literal notranslate"><span class="pre">run_on_rosys_loop()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.map_anchor.html">devkit_driver.map_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.map_anchor.html#devkit_driver.map_anchor.AnchorEstimator"><code class="docutils literal notranslate"><span class="pre">AnchorEstimator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.map_anchor.html#devkit_driver.map_anchor.geodetic_offset_en"><code class="docutils literal notranslate"><span class="pre">geodetic_offset_en()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.map_anchor.html#devkit_driver.map_anchor.map_odom_transform"><code class="docutils literal notranslate"><span class="pre">map_odom_transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.map_odom_anchor.html">devkit_driver.map_odom_anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.map_odom_anchor.html#devkit_driver.map_odom_anchor.MapOdomAnchor"><code class="docutils literal notranslate"><span class="pre">MapOdomAnchor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.map_odom_anchor.html#devkit_driver.map_odom_anchor.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html">devkit_driver.modules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.BMSHandler"><code class="docutils literal notranslate"><span class="pre">BMSHandler</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.BumperHandler"><code class="docutils literal notranslate"><span class="pre">BumperHandler</span></code></a></li>
@@ -142,10 +153,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.ReconDEMLogger"><code class="docutils literal notranslate"><span class="pre">ReconDEMLogger</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.RobotBrainHandler"><code class="docutils literal notranslate"><span class="pre">RobotBrainHandler</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.TwistHandler"><code class="docutils literal notranslate"><span class="pre">TwistHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.html#devkit_driver.modules.create_twist_handler"><code class="docutils literal notranslate"><span class="pre">create_twist_handler()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.bms_handler.html">devkit_driver.modules.bms_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.bumper_handler.html">devkit_driver.modules.bumper_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.estop_handler.html">devkit_driver.modules.estop_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.imu_handler.html">devkit_driver.modules.imu_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.map_anchor_handler.html">devkit_driver.modules.map_anchor_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.odom_handler.html">devkit_driver.modules.odom_handler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.recon_dem_logger.html">devkit_driver.modules.recon_dem_logger</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_driver.modules.robot_brain_handler.html">devkit_driver.modules.robot_brain_handler</a></li>
@@ -604,7 +617,7 @@
     <span class="n">OdomHandler</span><span class="p">,</span>
     <span class="n">ReconDEMLogger</span><span class="p">,</span>
     <span class="n">RobotBrainHandler</span><span class="p">,</span>
-    <span class="n">TwistHandler</span><span class="p">,</span>
+    <span class="n">create_twist_handler</span><span class="p">,</span>
 <span class="p">)</span>
 
 
@@ -615,7 +628,11 @@
 <div class="viewcode-block" id="DevkitDriver.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_driver.devkit_driver_node.html#devkit_driver.devkit_driver_node.DevkitDriver.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">:</span> <span class="n">System</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wire up hardware/simulation handlers, skipping any attribute the system lacks.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wire up hardware or simulation handlers for the system.</span>
+
+<span class="sd">        The handle_cmd_vel parameter defaults to true; when false, the wheel</span>
+<span class="sd">        command handler is not created. Raise TypeError for an unknown feldfreund type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;devkit_driver_node&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="n">system</span>
 
@@ -645,7 +662,7 @@
         <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">feldfreund</span><span class="p">,</span> <span class="s1">&#39;bumper&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_bumper_handler</span> <span class="o">=</span> <span class="n">BumperHandler</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">feldfreund</span><span class="o">.</span><span class="n">bumper</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">feldfreund</span><span class="o">.</span><span class="n">estop</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_twist_handler</span> <span class="o">=</span> <span class="n">TwistHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">feldfreund</span><span class="o">.</span><span class="n">wheels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_twist_handler</span> <span class="o">=</span> <span class="n">create_twist_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">feldfreund</span><span class="o">.</span><span class="n">wheels</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_estop_handler</span> <span class="o">=</span> <span class="n">EStopHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">feldfreund</span><span class="o">.</span><span class="n">estop</span><span class="p">)</span>
 
         <span class="c1"># BNO085 IMU — publishes sensor_msgs/Imu on /imu/data when present.</span>
