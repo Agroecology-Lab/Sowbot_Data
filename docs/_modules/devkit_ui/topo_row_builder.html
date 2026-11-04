@@ -727,8 +727,10 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Turn planned swaths into entry, waypoint and exit nodes with their edges.</span>
 
 <span class="sd">    Each usable swath becomes an IN and an OUT node joined by edges in both directions</span>
-<span class="sd">    using ``settings.row_action``. With contour mode and more than two points, rows may</span>
-<span class="sd">    also get intermediate waypoints; otherwise they keep a single entry-to-exit edge.</span>
+<span class="sd">    using ``settings.row_action``. With contour mode, rows also get intermediate</span>
+<span class="sd">    waypoints every ``settings.waypoint_interval_m`` meters of arc length, including</span>
+<span class="sd">    two-point swaths; rows shorter than one interval, and all rows without contour</span>
+<span class="sd">    mode, keep a single entry-to-exit edge.</span>
 
 <span class="sd">    Consecutive built rows are joined OUT to the next row&#39;s IN in both directions. The</span>
 <span class="sd">    swaths arrive in snake order, so that pairing is known by construction and no</span>
@@ -749,7 +751,7 @@
 <span class="sd">        anchor: Projection origin in degrees and its map position in meters.</span>
 <span class="sd">            Generated map coordinates are rounded to three decimal places.</span>
 <span class="sd">        settings: Naming, metadata and edge options. Row IDs are ``row_id_start``</span>
-<span class="sd">            plus the swath index; ``prefix`` is used verbatim. Contour waypoint</span>
+<span class="sd">            plus the swath index; ``prefix`` is used verbatim. Waypoint</span>
 <span class="sd">            spacing is ``waypoint_interval_m`` meters along the swath.</span>
 
 <span class="sd">    Returns:</span>
@@ -761,7 +763,7 @@
 <span class="sd">        TypeError: A consumed coordinate is nonnumeric or a point is not iterable.</span>
 <span class="sd">        ValueError: A consumed point does not unpack into two coordinates, or</span>
 <span class="sd">            projection or resampling encounters invalid numeric input.</span>
-<span class="sd">        ZeroDivisionError: Contour resampling uses a zero waypoint interval.</span>
+<span class="sd">        ZeroDivisionError: Row resampling uses a zero waypoint interval.</span>
 <span class="sd">        OverflowError: A resampling count cannot be converted to an integer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">build</span> <span class="o">=</span> <span class="n">RowBuild</span><span class="p">()</span>
@@ -786,7 +788,7 @@
             <span class="k">continue</span>
 
         <span class="n">waypoint_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">NodeID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">contour_used</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">swath</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">contour_used</span><span class="p">:</span>
             <span class="n">waypoints</span> <span class="o">=</span> <span class="n">resample_row_xy</span><span class="p">(</span>
                 <span class="n">swath</span><span class="p">,</span> <span class="n">anchor</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">anchor</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">waypoint_interval_m</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">wx</span><span class="p">,</span> <span class="n">wy</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">waypoints</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
