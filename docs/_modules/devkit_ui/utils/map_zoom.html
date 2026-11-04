@@ -602,12 +602,8 @@
 <span class="k">def</span> <span class="nf">enable_zoom</span><span class="p">(</span><span class="n">viewport_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">content_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Make an element pannable and zoomable by wheel, drag and pinch.</span>
 
-<span class="sd">    The transform goes on the content element, which is never re-rendered, so the</span>
-<span class="sd">    map and robot layers inside it can be redrawn freely and stay aligned.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        viewport_id: Id of the clipping element that receives pointer events.</span>
-<span class="sd">        content_id: Id of the child element that is scaled and translated.</span>
+<span class="sd">    The transform sits on the content element so map and robot layers can be</span>
+<span class="sd">    redrawn without losing alignment.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">script</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        (() =&gt; {{</span>

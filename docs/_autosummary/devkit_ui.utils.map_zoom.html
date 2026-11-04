@@ -611,16 +611,8 @@
 <dt class="sig sig-object py" id="devkit_ui.utils.map_zoom.enable_zoom">
 <span class="sig-prename descclassname"><span class="pre">devkit_ui.utils.map_zoom.</span></span><span class="sig-name descname"><span class="pre">enable_zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">viewport_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/utils/map_zoom.html#enable_zoom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.utils.map_zoom.enable_zoom" title="Link to this definition"></a></dt>
 <dd><p>Make an element pannable and zoomable by wheel, drag and pinch.</p>
-<p>The transform goes on the content element, which is never re-rendered, so the
-map and robot layers inside it can be redrawn freely and stay aligned.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>viewport_id</strong> – Id of the clipping element that receives pointer events.</p></li>
-<li><p><strong>content_id</strong> – Id of the child element that is scaled and translated.</p></li>
-</ul>
-</dd>
-</dl>
+<p>The transform sits on the content element so map and robot layers can be
+redrawn without losing alignment.</p>
 </dd></dl>
 
 </section>
