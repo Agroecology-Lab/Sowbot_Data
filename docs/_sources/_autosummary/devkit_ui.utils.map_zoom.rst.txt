@@ -1,0 +1,12 @@
+devkit\_ui.utils.map\_zoom
+==========================
+
+.. automodule:: devkit_ui.utils.map_zoom
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      enable_zoom
+   

@@ -10,4 +10,5 @@ devkit\_ui.utils
    :toctree:
    :recursive:
 
+   map_zoom
    topo_renderer
