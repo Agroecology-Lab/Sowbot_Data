@@ -288,6 +288,16 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.ImportResult"><code class="docutils literal notranslate"><span class="pre">ImportResult</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.LiteFarmError"><code class="docutils literal notranslate"><span class="pre">LiteFarmError</span></code></a></li>
@@ -592,7 +602,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.utils.map_zoom</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
 
 <span class="n">_MAX_ZOOM</span> <span class="o">=</span> <span class="mi">20</span>
 
@@ -604,92 +616,104 @@
 
 <span class="sd">    The transform sits on the content element so map and robot layers can be</span>
 <span class="sd">    redrawn without losing alignment.</span>
+<span class="sd">    ``viewport_id`` and ``content_id`` identify the DOM elements receiving input</span>
+<span class="sd">    and the transform, respectively. Zoom is limited to 1–20 times; double-click</span>
+<span class="sd">    resets zoom and pan. If either element is missing or zoom is already enabled</span>
+<span class="sd">    on the viewport, the script does nothing.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">script</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        (() =&gt; {{</span>
-<span class="s2">            const view = document.getElementById(&#39;</span><span class="si">{viewport_id}</span><span class="s2">&#39;);</span>
-<span class="s2">            const content = document.getElementById(&#39;</span><span class="si">{content_id}</span><span class="s2">&#39;);</span>
+<span class="s2">        ((viewportId, contentId, maxZoom) =&gt; {</span>
+<span class="s2">            const view = document.getElementById(viewportId);</span>
+<span class="s2">            const content = document.getElementById(contentId);</span>
 <span class="s2">            if (!view || !content || view.__zoomEnabled) return;</span>
 <span class="s2">            view.__zoomEnabled = true;</span>
 <span class="s2">            view.style.touchAction = &#39;none&#39;;</span>
 <span class="s2">            content.style.transformOrigin = &#39;0 0&#39;;</span>
 <span class="s2">            let k = 1, x = 0, y = 0;</span>
 <span class="s2">            const pointers = new Map();</span>
-<span class="s2">            let pinch = 0;</span>
+<span class="s2">            let pinch = 0, dragging = false;</span>
 
-<span class="s2">            const apply = () =&gt; {{</span>
-<span class="s2">                const {{width, height}} = view.getBoundingClientRect();</span>
-<span class="s2">                k = Math.min(Math.max(k, 1), </span><span class="si">{max_zoom}</span><span class="s2">);</span>
+<span class="s2">            const apply = () =&gt; {</span>
+<span class="s2">                const {width, height} = view.getBoundingClientRect();</span>
+<span class="s2">                k = Math.min(Math.max(k, 1), maxZoom);</span>
 <span class="s2">                x = Math.min(Math.max(x, width * (1 - k)), 0);</span>
 <span class="s2">                y = Math.min(Math.max(y, height * (1 - k)), 0);</span>
-<span class="s2">                content.style.transform = `translate(${{x}}px, ${{y}}px) scale(${{k}})`;</span>
-<span class="s2">            }};</span>
+<span class="s2">                content.style.transform = `translate($</span><span class="si">{x}</span><span class="s2">px, $</span><span class="si">{y}</span><span class="s2">px) scale($</span><span class="si">{k}</span><span class="s2">)`;</span>
+<span class="s2">            };</span>
 
-<span class="s2">            const zoomAt = (px, py, factor) =&gt; {{</span>
-<span class="s2">                const next = Math.min(Math.max(k * factor, 1), </span><span class="si">{max_zoom}</span><span class="s2">);</span>
+<span class="s2">            const zoomAt = (px, py, factor) =&gt; {</span>
+<span class="s2">                const next = Math.min(Math.max(k * factor, 1), maxZoom);</span>
 <span class="s2">                x = px - (px - x) * next / k;</span>
 <span class="s2">                y = py - (py - y) * next / k;</span>
 <span class="s2">                k = next;</span>
 <span class="s2">                apply();</span>
-<span class="s2">            }};</span>
+<span class="s2">            };</span>
 
-<span class="s2">            const local = (e) =&gt; {{</span>
+<span class="s2">            const local = (e) =&gt; {</span>
 <span class="s2">                const r = view.getBoundingClientRect();</span>
 <span class="s2">                return [e.clientX - r.left, e.clientY - r.top];</span>
-<span class="s2">            }};</span>
+<span class="s2">            };</span>
 
-<span class="s2">            view.addEventListener(&#39;wheel&#39;, (e) =&gt; {{</span>
+<span class="s2">            view.addEventListener(&#39;wheel&#39;, (e) =&gt; {</span>
 <span class="s2">                e.preventDefault();</span>
 <span class="s2">                zoomAt(...local(e), Math.exp(-e.deltaY * 0.0015));</span>
-<span class="s2">            }}, {{passive: false}});</span>
+<span class="s2">            }, {passive: false});</span>
 
-<span class="s2">            view.addEventListener(&#39;dblclick&#39;, () =&gt; {{</span>
+<span class="s2">            view.addEventListener(&#39;dblclick&#39;, () =&gt; {</span>
 <span class="s2">                k = 1; x = 0; y = 0; apply();</span>
-<span class="s2">            }});</span>
+<span class="s2">            });</span>
 
-<span class="s2">            view.addEventListener(&#39;pointerdown&#39;, (e) =&gt; {{</span>
-<span class="s2">                view.setPointerCapture(e.pointerId);</span>
-<span class="s2">                pointers.set(e.pointerId, [e.clientX, e.clientY]);</span>
+<span class="s2">            view.addEventListener(&#39;pointerdown&#39;, (e) =&gt; {</span>
+<span class="s2">                if (!pointers.size) {</span>
+<span class="s2">                    document.addEventListener(&#39;pointerup&#39;, release);</span>
+<span class="s2">                    document.addEventListener(&#39;pointercancel&#39;, release);</span>
+<span class="s2">                }</span>
+<span class="s2">                pointers.set(e.pointerId, [e.clientX, e.clientY, e.clientX, e.clientY]);</span>
 <span class="s2">                pinch = 0;</span>
-<span class="s2">            }});</span>
+<span class="s2">            });</span>
 
-<span class="s2">            const release = (e) =&gt; {{</span>
+<span class="s2">            const release = (e) =&gt; {</span>
 <span class="s2">                pointers.delete(e.pointerId);</span>
 <span class="s2">                pinch = 0;</span>
-<span class="s2">            }};</span>
-<span class="s2">            view.addEventListener(&#39;pointerup&#39;, release);</span>
-<span class="s2">            view.addEventListener(&#39;pointercancel&#39;, release);</span>
+<span class="s2">                if (!pointers.size) {</span>
+<span class="s2">                    dragging = false;</span>
+<span class="s2">                    document.removeEventListener(&#39;pointerup&#39;, release);</span>
+<span class="s2">                    document.removeEventListener(&#39;pointercancel&#39;, release);</span>
+<span class="s2">                }</span>
+<span class="s2">            };</span>
 
-<span class="s2">            view.addEventListener(&#39;pointermove&#39;, (e) =&gt; {{</span>
+<span class="s2">            view.addEventListener(&#39;pointermove&#39;, (e) =&gt; {</span>
 <span class="s2">                const prev = pointers.get(e.pointerId);</span>
 <span class="s2">                if (!prev) return;</span>
-<span class="s2">                if (pointers.size === 1) {{</span>
+<span class="s2">                if (!dragging) {</span>
+<span class="s2">                    if (Math.hypot(e.clientX - prev[2], e.clientY - prev[3]) &lt; 4) return;</span>
+<span class="s2">                    dragging = true;</span>
+<span class="s2">                }</span>
+<span class="s2">                if (!view.hasPointerCapture(e.pointerId)) view.setPointerCapture(e.pointerId);</span>
+<span class="s2">                if (pointers.size === 1) {</span>
 <span class="s2">                    x += e.clientX - prev[0];</span>
 <span class="s2">                    y += e.clientY - prev[1];</span>
 <span class="s2">                    apply();</span>
-<span class="s2">                }}</span>
-<span class="s2">                pointers.set(e.pointerId, [e.clientX, e.clientY]);</span>
-<span class="s2">                if (pointers.size === 2) {{</span>
+<span class="s2">                }</span>
+<span class="s2">                pointers.set(e.pointerId, [e.clientX, e.clientY, prev[2], prev[3]]);</span>
+<span class="s2">                if (pointers.size === 2) {</span>
 <span class="s2">                    const [a, b] = [...pointers.values()];</span>
 <span class="s2">                    const dist = Math.hypot(a[0] - b[0], a[1] - b[1]);</span>
 <span class="s2">                    const r = view.getBoundingClientRect();</span>
-<span class="s2">                    if (pinch) {{</span>
+<span class="s2">                    if (pinch) {</span>
 <span class="s2">                        zoomAt(</span>
 <span class="s2">                            (a[0] + b[0]) / 2 - r.left,</span>
 <span class="s2">                            (a[1] + b[1]) / 2 - r.top,</span>
 <span class="s2">                            dist / pinch,</span>
 <span class="s2">                        );</span>
-<span class="s2">                    }}</span>
+<span class="s2">                    }</span>
 <span class="s2">                    pinch = dist;</span>
-<span class="s2">                }}</span>
-<span class="s2">            }});</span>
-<span class="s2">        }})();</span>
-<span class="s2">    &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-        <span class="n">viewport_id</span><span class="o">=</span><span class="n">viewport_id</span><span class="p">,</span>
-        <span class="n">content_id</span><span class="o">=</span><span class="n">content_id</span><span class="p">,</span>
-        <span class="n">max_zoom</span><span class="o">=</span><span class="n">_MAX_ZOOM</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">ui</span><span class="o">.</span><span class="n">run_javascript</span><span class="p">(</span><span class="n">script</span><span class="p">)</span></div>
+<span class="s2">                }</span>
+<span class="s2">            });</span>
+<span class="s2">        })</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="c1"># NOTE: the script is full of literal braces, so pass the values as JSON arguments instead of str.format.</span>
+    <span class="n">ui</span><span class="o">.</span><span class="n">run_javascript</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">script</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">viewport_id</span><span class="p">)</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">content_id</span><span class="p">)</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">_MAX_ZOOM</span><span class="si">}</span><span class="s1">);&#39;</span><span class="p">)</span></div>
 
 </pre></div>
 

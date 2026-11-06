@@ -288,6 +288,16 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_autosummary/devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.ImportResult"><code class="docutils literal notranslate"><span class="pre">ImportResult</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.LiteFarmError"><code class="docutils literal notranslate"><span class="pre">LiteFarmError</span></code></a></li>
@@ -594,6 +604,8 @@
   <h1>Source code for devkit_ui.pages.run.node_map_card</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
 
+<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">FULLSCREEN_MAP_PATH</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.utils.map_zoom</span> <span class="kn">import</span> <span class="n">enable_zoom</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.utils.topo_renderer</span> <span class="kn">import</span> <span class="n">build_robot_svg</span><span class="p">,</span> <span class="n">build_svg</span><span class="p">,</span> <span class="n">inject_click_js</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.run_view_model</span> <span class="kn">import</span> <span class="n">RunViewModel</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.view_models.topology_view_model</span> <span class="kn">import</span> <span class="n">TopologyViewModel</span>
@@ -605,7 +617,8 @@
 <div class="viewcode-block" id="NodeMapCard.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.run.node_map_card.html#devkit_ui.pages.run.node_map_card.NodeMapCard.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">,</span>
-                 <span class="n">pose_state</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="o">.</span><span class="n">NodeMap</span><span class="p">):</span>
+                 <span class="n">pose_state</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="o">.</span><span class="n">NodeMap</span><span class="p">,</span>
+                 <span class="n">fullscreen</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a card displaying the node map and robot marker overlay.</span>
 
@@ -614,6 +627,8 @@
 <span class="sd">                selected node, and current node.</span>
 <span class="sd">            pose_state (RunViewModel.NodeMap): State providing the latest</span>
 <span class="sd">                robot pose in map frame.</span>
+<span class="sd">            fullscreen (bool): Fill the browser window and omit the button</span>
+<span class="sd">                that opens this view, for the dedicated full-screen page.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
@@ -624,24 +639,56 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_prev_map_key</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_prev_robot_key</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;flex-1&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span> <span class="k">if</span> <span class="n">fullscreen</span> <span class="k">else</span> <span class="s1">&#39;flex-1&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fullscreen</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;height:100vh&#39;</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;Node Map&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;sec-label&#39;</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full items-center justify-between no-wrap&#39;</span><span class="p">):</span>
+                <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;Node Map&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;sec-label&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">fullscreen</span><span class="p">:</span>
+                    <span class="c1"># NOTE: a real link target keeps the click a user gesture, so popup blockers allow the new tab.</span>
+                    <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">icon</span><span class="o">=</span><span class="s1">&#39;open_in_full&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s1">&#39;flat dense round href=</span><span class="si">{</span><span class="n">FULLSCREEN_MAP_PATH</span><span class="si">}</span><span class="s1"> target=_blank &#39;</span>
+                        <span class="s1">&#39;title=&quot;Open full screen in a new tab&quot;&#39;</span><span class="p">)</span>
 
             <span class="c1"># Node map + robot marker overlay (same viewBox, so they</span>
             <span class="c1"># align). Overlay is pointer-events:none so clicks reach</span>
             <span class="c1"># the nodes; it updates on movement without rebuilding</span>
             <span class="c1"># the clickable node DOM.</span>
-            <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;relative w-full&#39;</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_map_html</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_robot_html</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span>
-                    <span class="s1">&#39;absolute top-0 left-0 w-full&#39;</span>
-                <span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;pointer-events:none&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fullscreen</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_build_zoomable_map</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;relative w-full&#39;</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_map_html</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_robot_html</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span>
+                        <span class="s1">&#39;absolute top-0 left-0 w-full&#39;</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;pointer-events:none&#39;</span><span class="p">)</span>
 
         <span class="n">inject_click_js</span><span class="p">()</span>
+        <span class="n">ui</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;topo_node_clicked&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_node_clicked</span><span class="p">)</span>
         <span class="n">ui</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_refresh</span><span class="p">)</span></div>
 
+
+    <span class="k">def</span> <span class="nf">_on_node_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Select the clicked topology node when it exists in the current map.&quot;&quot;&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">)</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">topo_doc</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">and</span> <span class="n">doc</span> <span class="ow">and</span> <span class="n">doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">set_selected_node</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_build_zoomable_map</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build both layers inside a clipped, pannable and zoomable box.</span>
+
+<span class="sd">        Both layers fill the same box, so the SVGs letterbox identically and stay aligned.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="s1">&#39;absolute inset-0 w-full h-full [&amp;_svg]:w-full [&amp;_svg]:h-full&#39;</span>
+        <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;relative w-full flex-1 overflow-hidden&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">viewport</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;absolute inset-0&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">content</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_map_html</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_robot_html</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;pointer-events:none&#39;</span><span class="p">)</span>
+        <span class="c1"># NOTE: NiceGUI renders each element with the DOM id c&lt;element id&gt;.</span>
+        <span class="n">enable_zoom</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">viewport</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">content</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rebuild and display the map and robot SVG overlays.&quot;&quot;&quot;</span>

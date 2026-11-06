@@ -288,6 +288,16 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.ImportResult"><code class="docutils literal notranslate"><span class="pre">ImportResult</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.LiteFarmError"><code class="docutils literal notranslate"><span class="pre">LiteFarmError</span></code></a></li>
@@ -605,6 +615,13 @@
 <span class="sd">  features:   properties.role == &#39;row&#39;, LineString, properties.row (int),</span>
 <span class="sd">              properties.frag (int). Feature order is mission order.</span>
 <span class="sd">              &#39;field&#39; / &#39;obstacle&#39; features are informational and ignored.</span>
+
+<span class="sd">Multi-field files (properties.multi_field true, exported by LiteFarm&#39;s &quot;All fields&quot;</span>
+<span class="sd">download) hold the rows of several fields. properties.fields lists them, each with its</span>
+<span class="sd">own origin and settings; the first one supplies origin and params. Every row feature</span>
+<span class="sd">carries properties.field. Rows are merged in file order with unique row numbers (each</span>
+<span class="sd">field&#39;s numbers are offset past the previous field&#39;s), and no headland edge joins the</span>
+<span class="sd">last swath of one field to the first of the next.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -657,10 +674,45 @@
     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
 
 
+<span class="k">def</span> <span class="nf">_merge_fields</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">field_of</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Offset row numbers between fields and find the swaths that end a field.</span>
+
+<span class="sd">    ``rows`` and ``field_of`` contain corresponding entries in mission order.</span>
+<span class="sd">    Equal row numbers within a field remain equal; later fields are offset past the</span>
+<span class="sd">    largest number used so far. Return the adjusted rows and the zero-based indices</span>
+<span class="sd">    immediately before field transitions.</span>
+
+<span class="sd">    Raise PlanError if a field reappears after another field, or ValueError if the</span>
+<span class="sd">    two inputs have different lengths.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">merged</span><span class="p">,</span> <span class="n">breaks</span><span class="p">,</span> <span class="n">seen</span> <span class="o">=</span> <span class="p">[],</span> <span class="nb">set</span><span class="p">(),</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">field_of</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">and</span> <span class="n">field</span> <span class="o">!=</span> <span class="n">field_of</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;rows of field </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s1"> are not together&#39;</span><span class="p">)</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="n">top</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">breaks</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="n">merged</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">offset</span> <span class="o">+</span> <span class="n">row</span><span class="p">)</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">row</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">merged</span><span class="p">,</span> <span class="n">breaks</span>
+
+
 <div class="viewcode-block" id="parse_plan">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_import.html#devkit_ui.plan_import.parse_plan">[docs]</a>
 <span class="k">def</span> <span class="nf">parse_plan</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">robot_ll</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_distance_m</span><span class="o">=</span><span class="n">DEFAULT_MAX_DISTANCE_M</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse and validate plan text. Raises PlanError with a user-readable reason.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse a version-1 GeoJSON plan into swaths, origin, breaks and parameters.</span>
+
+<span class="sd">    Multi-field plans use the first field&#39;s origin and parameters, preserve row</span>
+<span class="sd">    order, and mark breaks between fields as well as consecutive row fragments.</span>
+<span class="sd">    If ``robot_ll`` is given as (latitude, longitude) in degrees, reject a plan</span>
+<span class="sd">    whose row-endpoint center is more than ``max_distance_m`` meters away.</span>
+
+<span class="sd">    Raise PlanError with a user-readable reason for validation failures. Malformed</span>
+<span class="sd">    feature or coordinate structures can also propagate AttributeError, TypeError,</span>
+<span class="sd">    IndexError or KeyError.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_BYTES</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="s1">&#39;file too large&#39;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
@@ -674,12 +726,19 @@
         <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="s1">&#39;missing top-level properties&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">SCHEMA_VERSION</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unsupported plan version </span><span class="si">{</span><span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">)</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">origin</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">)</span>
+    <span class="n">multi</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;multi_field&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">props</span>
+    <span class="k">if</span> <span class="n">multi</span><span class="p">:</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fields&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fields</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">dict</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="s1">&#39;multi-field plan lists no fields&#39;</span><span class="p">)</span>
+        <span class="n">meta</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">origin</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="s1">&#39;origin must be [lat, lon]&#39;</span><span class="p">)</span>
     <span class="n">origin_ll</span> <span class="o">=</span> <span class="n">_latlon</span><span class="p">(</span><span class="n">origin</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">origin</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;origin&#39;</span><span class="p">)</span>
 
-    <span class="n">swaths</span><span class="p">,</span> <span class="n">rows</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">swaths</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">field_of</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;features&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]):</span>
         <span class="n">fp</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;row&#39;</span><span class="p">:</span>
@@ -694,16 +753,24 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;feature </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: row must be a non-negative integer&#39;</span><span class="p">)</span>
         <span class="c1"># GeoJSON is [lon, lat]; the planner and topo code use (lat, lon).</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">multi</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">field</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;feature </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: field must be a positive integer&#39;</span><span class="p">)</span>
         <span class="n">swaths</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">_latlon</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;feature </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">])</span>
         <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">field_of</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span> <span class="k">if</span> <span class="n">multi</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">swaths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_ROWS</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;more than </span><span class="si">{</span><span class="n">MAX_ROWS</span><span class="si">}</span><span class="s1"> rows&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">swaths</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="s1">&#39;no rows in plan&#39;</span><span class="p">)</span>
 
+    <span class="n">field_breaks</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">multi</span><span class="p">:</span>
+        <span class="n">rows</span><span class="p">,</span> <span class="n">field_breaks</span> <span class="o">=</span> <span class="n">_merge_fields</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">field_of</span><span class="p">)</span>
+
     <span class="c1"># Fragments of one row (split by an obstacle) must not be joined by a</span>
     <span class="c1"># headland edge: that edge would cross the obstacle.</span>
-    <span class="n">break_after</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]}</span>
+    <span class="n">break_after</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]}</span> <span class="o">|</span> <span class="n">field_breaks</span>
 
     <span class="k">if</span> <span class="n">robot_ll</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">pts</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">swaths</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span>
@@ -713,10 +780,10 @@
             <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;plan is </span><span class="si">{</span><span class="n">d</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> km from the robot &#39;</span>
                             <span class="sa">f</span><span class="s1">&#39;(limit </span><span class="si">{</span><span class="n">max_distance_m</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> km); refusing to import&#39;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="s1">&#39;contour&#39;</span> <span class="ow">in</span> <span class="n">props</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">props</span><span class="p">[</span><span class="s1">&#39;contour&#39;</span><span class="p">],</span> <span class="nb">bool</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;contour&#39;</span> <span class="ow">in</span> <span class="n">meta</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;contour&#39;</span><span class="p">],</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="s1">&#39;contour must be a boolean&#39;</span><span class="p">)</span>
     <span class="n">keys</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;tool_width&#39;</span><span class="p">,</span> <span class="s1">&#39;angle&#39;</span><span class="p">,</span> <span class="s1">&#39;headland&#39;</span><span class="p">,</span> <span class="s1">&#39;snake&#39;</span><span class="p">,</span> <span class="s1">&#39;contour&#39;</span><span class="p">,</span> <span class="s1">&#39;generator&#39;</span><span class="p">)</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">Plan</span><span class="p">(</span><span class="n">swaths</span><span class="p">,</span> <span class="n">origin_ll</span><span class="p">,</span> <span class="n">break_after</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span></div>
 
 </pre></div>

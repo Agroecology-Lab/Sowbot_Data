@@ -1,0 +1,28 @@
+devkit\_ui.farm\_map\_import
+============================
+
+.. automodule:: devkit_ui.farm_map_import
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      farm_map_hash
+      looks_like_farm_map
+      parse_farm_map
+      robot_row_id
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      FarmMap
+      FieldRows
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      FarmMapError
+   

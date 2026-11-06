@@ -15,6 +15,7 @@
    constants
    dem
    domain_services
+   farm_map_import
    litefarm_client
    map_anchor
    missions

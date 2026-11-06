@@ -291,6 +291,16 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.ImportResult"><code class="docutils literal notranslate"><span class="pre">ImportResult</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.LiteFarmError"><code class="docutils literal notranslate"><span class="pre">LiteFarmError</span></code></a></li>
@@ -613,11 +623,17 @@ robot’s live GPS/odometry anchor and the loaded topo map.</p>
 </dl>
 </dd>
 </dl>
+<p>Multi-field files (properties.multi_field true, exported by LiteFarm’s “All fields”
+download) hold the rows of several fields. properties.fields lists them, each with its
+own origin and settings; the first one supplies origin and params. Every row feature
+carries properties.field. Rows are merged in file order with unique row numbers (each
+field’s numbers are offset past the previous field’s), and no headland edge joins the
+last swath of one field to the first of the next.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.plan_import.parse_plan" title="devkit_ui.plan_import.parse_plan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_plan</span></code></a>(text[, robot_ll, max_distance_m])</p></td>
-<td><p>Parse and validate plan text.</p></td>
+<td><p>Parse a version-1 GeoJSON plan into swaths, origin, breaks and parameters.</p></td>
 </tr>
 </tbody>
 </table>
@@ -677,7 +693,14 @@ robot’s live GPS/odometry anchor and the loaded topo map.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="devkit_ui.plan_import.parse_plan">
 <span class="sig-prename descclassname"><span class="pre">devkit_ui.plan_import.</span></span><span class="sig-name descname"><span class="pre">parse_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_ll</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_distance_m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.plan_import.Plan" title="devkit_ui.plan_import.Plan"><span class="pre">Plan</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/plan_import.html#parse_plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.plan_import.parse_plan" title="Link to this definition"></a></dt>
-<dd><p>Parse and validate plan text. Raises PlanError with a user-readable reason.</p>
+<dd><p>Parse a version-1 GeoJSON plan into swaths, origin, breaks and parameters.</p>
+<p>Multi-field plans use the first field’s origin and parameters, preserve row
+order, and mark breaks between fields as well as consecutive row fragments.
+If <code class="docutils literal notranslate"><span class="pre">robot_ll</span></code> is given as (latitude, longitude) in degrees, reject a plan
+whose row-endpoint center is more than <code class="docutils literal notranslate"><span class="pre">max_distance_m</span></code> meters away.</p>
+<p>Raise PlanError with a user-readable reason for validation failures. Malformed
+feature or coordinate structures can also propagate AttributeError, TypeError,
+IndexError or KeyError.</p>
 </dd></dl>
 
 </section>

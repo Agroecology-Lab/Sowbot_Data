@@ -288,6 +288,16 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.ImportResult"><code class="docutils literal notranslate"><span class="pre">ImportResult</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.LiteFarmError"><code class="docutils literal notranslate"><span class="pre">LiteFarmError</span></code></a></li>
@@ -635,7 +645,7 @@
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_edit_service</span> <span class="kn">import</span> <span class="n">TopologyEditService</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.application_services.track_application_service</span> <span class="kn">import</span> <span class="n">TrackApplicationService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">FIELD27_CENTER</span><span class="p">,</span> <span class="n">NODE_NAME</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">FIELD27_CENTER</span><span class="p">,</span> <span class="n">FULLSCREEN_MAP_PATH</span><span class="p">,</span> <span class="n">NODE_NAME</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.domain_services.drive_domain_service</span> <span class="kn">import</span> <span class="n">DriveDomainService</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.domain_services.mission_domain_service</span> <span class="kn">import</span> <span class="n">MissionDomainService</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.domain_services.navigation_domain_service</span> <span class="kn">import</span> <span class="n">NavigationDomainService</span>
@@ -650,6 +660,7 @@
 <span class="kn">from</span> <span class="nn">devkit_ui.obstacles</span> <span class="kn">import</span> <span class="n">ObstacleManager</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.pages.plan.plan_page</span> <span class="kn">import</span> <span class="n">PlanPage</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.pages.run.nav_page</span> <span class="kn">import</span> <span class="n">NavPage</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.node_map_card</span> <span class="kn">import</span> <span class="n">NodeMapCard</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.pages.sim.sim_page</span> <span class="kn">import</span> <span class="n">SimPage</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.pages.system.system_page</span> <span class="kn">import</span> <span class="n">SystemPage</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.process_registry</span> <span class="kn">import</span> <span class="n">shutdown_tools</span>
@@ -784,7 +795,14 @@
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Builds the NiceGUI application content.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">()</span>
+
+        <span class="nd">@ui</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">FULLSCREEN_MAP_PATH</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">fullscreen_map_page</span><span class="p">():</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Builds the node map alone, filling the window, for the Run tab&#39;s open-in-new-tab button.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fullscreen_map</span><span class="p">()</span></div>
 
 
     <span class="c1"># ── UI shell ──────────────────────────────────────────────────────────────</span>
@@ -793,8 +811,7 @@
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.content">[docs]</a>
     <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the Run, Plan, Sim, and System tabs, initially selecting Run.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">_APP_CSS</span><span class="p">:</span>
-            <span class="n">ui</span><span class="o">.</span><span class="n">add_head_html</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;style&gt;</span><span class="si">{</span><span class="n">_APP_CSS</span><span class="si">}</span><span class="s1">&lt;/style&gt;&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_app_css</span><span class="p">()</span>
         <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">tabs</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tabs</span><span class="p">:</span>
             <span class="n">tab_run</span>     <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s1">&#39;Run&#39;</span><span class="p">,</span>     <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;route&#39;</span><span class="p">)</span>
             <span class="n">tab_plan</span>    <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s1">&#39;Plan&#39;</span><span class="p">,</span>    <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;checklist&#39;</span><span class="p">)</span>
@@ -821,6 +838,21 @@
                     <span class="n">system_vm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_system_vm</span><span class="p">,</span>
                 <span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="NiceGuiNode.fullscreen_map">
+<a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.fullscreen_map">[docs]</a>
+    <span class="k">def</span> <span class="nf">fullscreen_map</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a page holding only the live node map, with no page padding.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_app_css</span><span class="p">()</span>
+        <span class="n">ui</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;.nicegui-content&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;p-0&#39;</span><span class="p">)</span>
+        <span class="n">NodeMapCard</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">node_map</span><span class="p">,</span> <span class="n">fullscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_add_app_css</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply the shared dashboard stylesheet to the current page.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_APP_CSS</span><span class="p">:</span>
+            <span class="n">ui</span><span class="o">.</span><span class="n">add_head_html</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;style&gt;</span><span class="si">{</span><span class="n">_APP_CSS</span><span class="si">}</span><span class="s1">&lt;/style&gt;&#39;</span><span class="p">)</span>
 
     <span class="c1"># ── Plan tab ──────────────────────────────────────────────────────────────</span>
 

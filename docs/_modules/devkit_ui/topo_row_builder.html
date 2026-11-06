@@ -288,6 +288,16 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.domain_services.topology_domain_service.html">devkit_ui.domain_services.topology_domain_service</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.ImportResult"><code class="docutils literal notranslate"><span class="pre">ImportResult</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.LiteFarmError"><code class="docutils literal notranslate"><span class="pre">LiteFarmError</span></code></a></li>
@@ -700,8 +710,8 @@
         <span class="p">),</span>
         <span class="n">verts</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">_NODE_VERTS</span><span class="p">),</span>
         <span class="c1"># row_id and row_role must also live in .meta: topo_renderer.build_svg()</span>
-        <span class="c1"># reads nd.meta.get(&#39;row_role&#39;) for the in-circle label, and without it</span>
-        <span class="c1"># every row node is drawn as &#39;?&#39;.</span>
+        <span class="c1"># reads them to style row nodes and to place one label per row at its</span>
+        <span class="c1"># entry node.</span>
         <span class="n">meta</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;map&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">map_name</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;row_id&#39;</span><span class="p">:</span> <span class="n">row_id</span><span class="p">,</span> <span class="s1">&#39;row_role&#39;</span><span class="p">:</span> <span class="n">role</span><span class="p">},</span>
     <span class="p">)</span>
     <span class="n">node</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="n">dropped_by</span><span class="o">=</span><span class="s1">&#39;webui_f2c&#39;</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
