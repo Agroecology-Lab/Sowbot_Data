@@ -711,7 +711,7 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 </tr>
 <tr class="row-odd"><td><p>F3</p></td>
 <td><p>Teleop dashboard</p></td>
-<td><p>NiceGUI web cockpit on <code class="docutils literal notranslate"><span class="pre">:80</span></code>. Three-tab interface: <strong>Nav</strong> (joystick, e-stop, topo map, node-drop, track mode), <strong>Mission</strong> (fields2cover corner entry, F2C row plan generator, reorderable mission queue), <strong>System</strong> (telemetry, safety indicators, GPS leaflet map).</p></td>
+<td><p>NiceGUI web cockpit on <code class="docutils literal notranslate"><span class="pre">:80</span></code>. Four tabs: <strong>Run</strong>, <strong>Plan</strong>, <strong>Sim</strong>, <strong>System</strong>. Joystick, e-stop, topo map, node-drop, track mode, fields2cover corner entry, F2C row plan generator, reorderable mission queue, telemetry, safety indicators, GPS leaflet map. LiteFarm GeoJSON export on System, Tools card (M11).</p></td>
 <td><p>Done</p></td>
 <td><p>6</p></td>
 <td><p>2025</p></td>
@@ -746,28 +746,28 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 </tr>
 <tr class="row-even"><td><p>M2</p></td>
 <td><p>Topological navigation + Nav2</p></td>
-<td><p>LCAS <code class="docutils literal notranslate"><span class="pre">topological_navigation</span></code> (<code class="docutils literal notranslate"><span class="pre">aoc_refactor</span></code> branch) building in Dockerfile. RViz visualisation confirmed working. Self-contained <code class="docutils literal notranslate"><span class="pre">navigation2.py</span></code> with A* route planning, explicit state machine, and <code class="docutils literal notranslate"><span class="pre">row_traversal</span></code> / <code class="docutils literal notranslate"><span class="pre">NavigateToPose</span></code> / <code class="docutils literal notranslate"><span class="pre">goal_align</span></code> edge actions. <code class="docutils literal notranslate"><span class="pre">fake_nav2_server</span></code> with <code class="docutils literal notranslate"><span class="pre">/limbic_row_follow</span></code> stub enables full pipeline testing in sim. <code class="docutils literal notranslate"><span class="pre">sim_nav.launch.py</span></code> now routes through real Nav2. <strong>Multi-row mission following (entry/exit node pairs across boustrophedon rows) validated end-to-end in Gazebo.</strong> Pending: Jazzy field validation on hardware.</p></td>
+<td><p>LCAS <code class="docutils literal notranslate"><span class="pre">topological_navigation</span></code> at a commit pinned in the Dockerfile, building in Docker. RViz visualisation confirmed working. Self-contained <code class="docutils literal notranslate"><span class="pre">navigation2.py</span></code> with A* route planning, explicit state machine, and <code class="docutils literal notranslate"><span class="pre">row_traversal</span></code> / <code class="docutils literal notranslate"><span class="pre">NavigateToPose</span></code> / <code class="docutils literal notranslate"><span class="pre">goal_align</span></code> edge actions. <code class="docutils literal notranslate"><span class="pre">fake_nav2_server</span></code> with <code class="docutils literal notranslate"><span class="pre">/limbic_row_follow</span></code> stub enables full pipeline testing in sim. <code class="docutils literal notranslate"><span class="pre">sim_nav.launch.py</span></code> now routes through real Nav2. <strong>Multi-row mission following (entry/exit node pairs across boustrophedon rows) validated end-to-end in Gazebo.</strong> Pending: Jazzy field validation on hardware.</p></td>
 <td><p>Sim only. Blocked: hardware field validation</p></td>
 <td><p>4</p></td>
 <td><p>2026</p></td>
 </tr>
 <tr class="row-odd"><td><p>M2a</p></td>
 <td><p>fusioncore Nav2 bridge</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">fusioncore_node</span></code> launched via <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code>. Nav2 topic remapping shim wired. Pending: end-to-end test on live hardware.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fusioncore_node</span></code> launched via <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code> when the MAVLink bridge is not running; with the bridge, EKF3 is the estimator and FusionCore is shadow only (M9). Nav2 topic remapping shim wired. Pending: end-to-end test on live hardware.</p></td>
 <td><p>Blocked: live hardware test</p></td>
 <td><p>4</p></td>
 <td><p>2026</p></td>
 </tr>
 <tr class="row-even"><td><p>M3</p></td>
 <td><p>Open-field row-crop scenario</p></td>
-<td><p>Live node-drop in UI. F2C row plan generator implemented in <code class="docutils literal notranslate"><span class="pre">PlanApplicationService</span></code> (corners → swaths → topo rows via <code class="docutils literal notranslate"><span class="pre">run_f2c()</span></code>). YAML written to <code class="docutils literal notranslate"><span class="pre">/workspace/maps/</span></code>, <code class="docutils literal notranslate"><span class="pre">switch_topological_map</span></code> with fallback. Topo map auto-generated at container start. Multi-row traversal across generated swaths confirmed in sim. <a class="reference external" href="https://agroecology-lab.github.io/feldfreund_devkit_ros/">Web version of planner available</a> Pending: tmap2 authoring from real field survey; F2C obstacle costmap integration.</p></td>
-<td><p>Sim only. Blocked: real-field tmap2 survey, F2C obstacle costmap</p></td>
+<td><p>Live node-drop in UI. F2C row plan generator implemented in <code class="docutils literal notranslate"><span class="pre">PlanApplicationService</span></code> (corners → swaths → topo rows via <code class="docutils literal notranslate"><span class="pre">run_f2c()</span></code>). F2C planner clips swaths against the obstacle list. YAML written to <code class="docutils literal notranslate"><span class="pre">/workspace/maps/</span></code>, <code class="docutils literal notranslate"><span class="pre">switch_topological_map</span></code> with fallback. Topo map auto-generated at container start. Multi-row traversal across generated swaths confirmed in sim. <a class="reference external" href="https://agroecology-lab.github.io/feldfreund_devkit_ros/">Web version of planner available</a> Pending: tmap2 authoring from real field survey; obstacle costmap layer (obstacles are published on <code class="docutils literal notranslate"><span class="pre">/obstacles</span></code> but no costmap consumes them).</p></td>
+<td><p>Sim only. Blocked: real-field tmap2 survey, obstacle costmap layer</p></td>
 <td><p>4</p></td>
 <td><p>2026</p></td>
 </tr>
 <tr class="row-odd"><td><p>M4</p></td>
 <td><p>RTK-GNSS localisation</p></td>
-<td><p>Full pipeline implemented: dual F9P, shims, UKF fusion, NTRIP. Lever-arm offsets in <code class="docutils literal notranslate"><span class="pre">fusioncore.yaml</span></code> are zeroed placeholders (commented <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">measured</span></code> TODOs). Pending: antenna lever-arm measurement, live hardware test. Do not quote accuracy before the lever arms are measured.</p></td>
+<td><p>Full pipeline implemented: dual F9P, shims, UKF fusion, NTRIP. Lever-arm offsets in <code class="docutils literal notranslate"><span class="pre">fusioncore.yaml</span></code> are zeroed placeholders (commented <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">measured</span></code> TODOs); <code class="docutils literal notranslate"><span class="pre">manage.py</span></code> exits 1 at startup unless <code class="docutils literal notranslate"><span class="pre">ALLOW_UNMEASURED_LEVER_ARM=1</span></code>. Pending: antenna lever-arm measurement, live hardware test. Do not quote accuracy before the lever arms are measured.</p></td>
 <td><p>Blocked: lever-arm measurement, live hardware test</p></td>
 <td><p>3</p></td>
 <td><p>2026</p></td>
@@ -802,31 +802,31 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 </tr>
 <tr class="row-even"><td><p>M9</p></td>
 <td><p>ArduPilot on LEVIA-H7 controller path</p></td>
-<td><p>Replaces ESP32/Lizard.</p></td>
+<td><p>Replaces ESP32/Lizard. <code class="docutils literal notranslate"><span class="pre">devkit_mavlink_bridge</span></code> commands zero when <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> is stale and publishes EKF3 state and GPS status (<code class="docutils literal notranslate"><span class="pre">fc/odom</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/ekf_fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps1/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps2/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/diagnostics</span></code>); unit-tested against doubles, not yet run against a flight controller. EKF3 is the sole estimator and FusionCore is shadow only (<code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>). LEVIA-H7 is unvalidated and has no confirmed ArduPilot hwdef (safety_roadmap.md O31).</p></td>
 <td><p>WIP, bring-up</p></td>
 <td><p>2</p></td>
 <td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">devkit_mavlink_bridge</span></code> commands zero when <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> is stale and publishes EKF3 state and GPS status (<code class="docutils literal notranslate"><span class="pre">fc/odom</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/ekf_fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps1/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps2/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/diagnostics</span></code>); unit-tested against doubles, not yet run against a flight controller.</p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p>M10</p></td>
+<td><p>MeshCore robot-to-robot avoidance</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">src/devkit-meshcore-avoid</span></code> (<code class="docutils literal notranslate"><span class="pre">sowbot_avoid</span></code>). Simulation only; never run on hardware. Not a safety function. Not referenced by the Docker build, <code class="docutils literal notranslate"><span class="pre">manage.py</span></code> or the launch files.</p></td>
+<td><p>Sim only. Blocked: hardware test, integration</p></td>
+<td><p>2</p></td>
+<td><p>2026</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p>EKF3 is the sole estimator and FusionCore is shadow only (<code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>).</p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p>M11</p></td>
+<td><p>LiteFarm interface (optional)</p></td>
+<td><p>Imports a LiteFarm farm map (rows, docks, routes; <code class="docutils literal notranslate"><span class="pre">content_hash</span></code> checked, <code class="docutils literal notranslate"><span class="pre">hash8</span></code> stamped into the topo map). Exports row plans as GeoJSON (System tab, Tools card; <code class="docutils literal notranslate"><span class="pre">row_plan_cli</span></code>). <code class="docutils literal notranslate"><span class="pre">row_plan_cli</span> <span class="pre">--import-to</span></code> POSTs to <code class="docutils literal notranslate"><span class="pre">/row_plan/import</span></code>; no UI button for the POST. Format: <code class="docutils literal notranslate"><span class="pre">docs/row-plan-geojson.md</span></code>.</p></td>
+<td><p>Implemented, optional. Unit-tested without hardware</p></td>
+<td><p>3</p></td>
+<td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p>LEVIA-H7 is unvalidated and has no confirmed ArduPilot hwdef (safety_roadmap.md O31).</p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p>M12</p></td>
+<td><p>Remote missions</p></td>
+<td><p>Mission store and spec (<code class="docutils literal notranslate"><span class="pre">missions.md</span></code>). No intake, radio link or base station; <code class="docutils literal notranslate"><span class="pre">add_remote</span></code> has no callers.</p></td>
+<td><p>Partial, spec only</p></td>
+<td><p>2</p></td>
+<td><p>2026</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>PRODUCTION</strong></p></td>
 <td><p></p></td>
@@ -872,7 +872,7 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 </tr>
 <tr class="row-even"><td><p>P6</p></td>
 <td><p>ROFS image</p></td>
-<td><p>Read-only rootfs, Ubuntu Noble minimal or Yocto with RT kernel, pre-built LCAS topo nav, Nav2, <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code>. Immutable field deployment.</p></td>
+<td><p>Read-only rootfs, Ubuntu Noble minimal or Yocto with RT kernel, pre-built LCAS topo nav, Nav2, <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code> (the current stack uses <code class="docutils literal notranslate"><span class="pre">rmw_cyclonedds_cpp</span></code>, M5). Immutable field deployment.</p></td>
 <td><p>Research</p></td>
 <td><p>1</p></td>
 <td><p>2027</p></td>
