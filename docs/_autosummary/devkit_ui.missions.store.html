@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_ui.missions.yaml" href="devkit_ui.missions.yaml.html" />
+    <link rel="next" title="devkit_ui.models" href="devkit_ui.models.html" />
     <link rel="prev" title="devkit_ui.missions.sqlite" href="devkit_ui.missions.sqlite.html" /> 
 </head>
 
@@ -292,13 +292,15 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmDock"><code class="docutils literal notranslate"><span class="pre">FarmDock</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmRoute"><code class="docutils literal notranslate"><span class="pre">FarmRoute</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.canonical_features_text"><code class="docutils literal notranslate"><span class="pre">canonical_features_text()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
@@ -315,9 +317,9 @@
 <li class="toctree-l3 current"><a class="reference internal" href="devkit_ui.missions.html">devkit_ui.missions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.html#devkit_ui.missions.MissionStore"><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.html#devkit_ui.missions.validate_mission"><code class="docutils literal notranslate"><span class="pre">validate_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.lf_rows.html">devkit_ui.missions.lf_rows</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_ui.missions.store</a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.models.html">devkit_ui.models</a><ul>
@@ -442,6 +444,13 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_defaults.html">devkit_ui.topo_defaults</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_actions"><code class="docutils literal notranslate"><span class="pre">default_actions()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_definitions"><code class="docutils literal notranslate"><span class="pre">default_definitions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_dock_builder.html">devkit_ui.topo_dock_builder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.DockBuild"><code class="docutils literal notranslate"><span class="pre">DockBuild</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.DockBuildSettings"><code class="docutils literal notranslate"><span class="pre">DockBuildSettings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.apply_dock_nodes"><code class="docutils literal notranslate"><span class="pre">apply_dock_nodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.build_dock_nodes"><code class="docutils literal notranslate"><span class="pre">build_dock_nodes()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_results.html">devkit_ui.topo_results</a><ul>
@@ -610,25 +619,14 @@
   <section id="module-devkit_ui.missions.store">
 <span id="devkit-ui-missions-store"></span><h1>devkit_ui.missions.store<a class="headerlink" href="#module-devkit_ui.missions.store" title="Link to this heading"></a></h1>
 <p>Mission storage and scheduling for the Sowbot webui.</p>
-<p>Owns the mission list, its YAML persistence, and the ACTIONS registry.
+<p>Owns the mission list, its SQLite persistence, and the ACTIONS registry.
 Exposes a read-only snapshot, a version counter and a last-action status that
 a ViewModel polls to decide when to rebuild. It holds no UI or node state and
 does not inherit from rclpy.node.Node; attach() takes only a logger source.</p>
 <p>Unlike obstacles, missions are not broadcast on a ROS topic — they exist
 to drive the executor in ui_node.py, which dispatches <cite>sowbot_row_follow</cite>
 goals and toggles tool topics. The store knows nothing about ROS itself.</p>
-<section id="threading-model">
-<h2>Threading model<a class="headerlink" href="#threading-model" title="Link to this heading"></a></h2>
-<p>self._missions is an immutable tuple. All writes replace it wholesale
-under self._lock, and bump self._version in the same critical section.
-Readers grab the tuple reference lock-free (CPython attribute reads are
-atomic) and walk a consistent snapshot. Same pattern as obstacles.py.</p>
-<p>Persistence is serialised through a single background writer thread
-(self._write_q). Callers snapshot the current tuple inside the lock and
-enqueue (snapshot, status_msg). The writer drains the queue, keeping
-only the most-recent snapshot per wakeup, so rapid back-to-back writes
-do not pile up threads and the status message is never stale.</p>
-</section>
+<p>Persistence is MissionSqliteStore, which serialises every call under one lock.</p>
 <section id="scheduling">
 <h2>Scheduling<a class="headerlink" href="#scheduling" title="Link to this heading"></a></h2>
 <p>Each mission carries one optional integer field, repeat_every_hours:</p>
@@ -687,7 +685,7 @@ None               inactive, completed one-shot, or unknown id</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.missions.store.MissionStore" title="devkit_ui.missions.store.MissionStore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MissionStore</span></code></a>([path])</p></td>
-<td><p>Owns the mission list and its YAML persistence.</p></td>
+<td><p>Owns the mission list and its SQLite persistence.</p></td>
 </tr>
 </tbody>
 </table>
@@ -696,7 +694,7 @@ None               inactive, completed one-shot, or unknown id</p>
 <dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.missions.store.</span></span><span class="sig-name descname"><span class="pre">MissionStore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/workspace/maps/missions.db'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Owns the mission list and its YAML persistence.</p>
+<p>Owns the mission list and its SQLite persistence.</p>
 <p>Readers poll these properties:</p>
 <blockquote>
 <div><p>missions : tuple[dict, …]   read-only snapshot
@@ -715,13 +713,19 @@ active:              bool
 created_at:          str           (ISO 8601 UTC)
 last_run_at:         str  | None
 last_run_success:    bool | None</p>
+<p>source:              str           (‘local’ | ‘remote’)
+external_id:         str | None    (station’s mission id; remote only, unique)
+map_hash:            str | None
+groups:              list | None   (LiteFarm row per entry; remote only)
+state:               str           (‘idle’ | ‘running’ | ‘ended’)
+steps_done, stage, reason, started_at, ended_at, result_sent: last run result</p>
 </div></blockquote>
+<p>See missions.md for the meaning of the remote fields.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/workspace/maps/missions.db'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.__init__" title="Link to this definition"></a></dt>
-<dd><p>Select YAML storage for .yaml or open SQLite storage for .sqlite and .db.</p>
-<p>YAML records are loaded by attach(); SQLite opens and creates its schema here.
-Raises ValueError for other suffixes; SQLite initialization errors propagate.</p>
+<dd><p>Open the SQLite database at path, creating or upgrading its schema.</p>
+<p>SQLite initialization errors propagate.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -732,33 +736,42 @@ Raises ValueError for other suffixes; SQLite initialization errors propagate.</p
 Clean name to uppercase letters, digits, and underscores, using the ID if empty.
 repeat_every_hours is a positive interval after a successful run, or None for
 a one-shot mission; active controls inclusion in scheduling.
-Validation errors are reported in status.
-YAML writes are queued and report failures in status; SQLite database and JSON
-serialization errors propagate to the caller.</p>
+Validation errors are reported in status. SQLite and JSON serialization errors
+propagate to the caller.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore.add_remote">
+<span class="sig-name descname"><span class="pre">add_remote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">external_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.add_remote"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.add_remote" title="Link to this definition"></a></dt>
+<dd><p>Store a station mission, idle and active, and return its ID.</p>
+<p>external_id is the id the station chose; the robot never interprets it. rows holds
+entry-node names, one per fragment, and groups the LiteFarm row of each.
+Return None and set status for an empty external_id or map_hash, rows and groups of
+different lengths, a validation error, or an external_id already stored; look it up
+with find_by_external_id first to answer a repeat.
+SQLite and JSON serialization errors propagate.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore.attach">
 <span class="sig-name descname"><span class="pre">attach</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.attach"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.attach" title="Link to this definition"></a></dt>
-<dd><p>Load YAML missions synchronously and increment the version for either backend.</p>
-<p>ros supplies get_logger() for YAML load and write results.
-Missing YAML files leave the snapshot unchanged; YAML load errors are caught.
-SQLite needs no additional loading here.</p>
+<dd><p>End any mission left running by a restart, and increment the version.</p>
+<p>Call once, from the only process that owns the database.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.close" title="Link to this definition"></a></dt>
-<dd><p>Release backend resources (the SQLite connection). A no-op for the YAML backend.</p>
+<dd><p>Release the SQLite connection.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore.delete">
 <span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.delete" title="Link to this definition"></a></dt>
 <dd><p>Delete a saved mission and increment the version.</p>
-<p>Return False and set status for an unknown ID; otherwise return the backend result.
-YAML persistence is asynchronous; SQLite lookup and write errors propagate,
-including ValueError for an ID that cannot be converted to a database integer.</p>
+<p>Return False and set status for an unknown ID or a running mission, whose result
+still has to be written. SQLite lookup and write errors propagate, including
+ValueError for an ID that cannot be converted to a database integer.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -766,6 +779,12 @@ including ValueError for an ID that cannot be converted to a database integer.</
 <span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.find" title="Link to this definition"></a></dt>
 <dd><p>Lock-free single-mission lookup by id. Returns the dict from
 the current snapshot — treat as read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore.find_by_external_id">
+<span class="sig-name descname"><span class="pre">find_by_external_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">external_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.find_by_external_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.find_by_external_id" title="Link to this definition"></a></dt>
+<dd><p>Look up a remote mission by the station’s id.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -801,6 +820,16 @@ elif h == DUE_FAILED:  label = ‘retry’
 elif h == DUE_NOW:     label = ‘due now’
 else:                  label = f’in {h:.1f}h’</p>
 </div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore.record_result">
+<span class="sig-name descname"><span class="pre">record_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.record_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.record_result" title="Link to this definition"></a></dt>
+<dd><p>Persist the result of the current or last run: state, steps_done, stage, reason,
+started_at, ended_at and result_sent.</p>
+<p>Return False and set status for an unsupported field or an unknown ID, and increment
+the version on success. SQLite lookup and write errors propagate, including ValueError
+for an unknown state.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -851,9 +880,10 @@ Returns False for an unknown ID; otherwise returns whether the backend accepted 
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.missions.store.MissionStore.today_queue">
 <span class="sig-name descname"><span class="pre">today_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/store.html#MissionStore.today_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.store.MissionStore.today_queue" title="Link to this definition"></a></dt>
-<dd><p>Active+due missions expanded into (mission_id, row_id, action,
-action_params) tuples in declaration order. Lock-free; the executor
-walks this list and dispatches each tuple in sequence.</p>
+<dd><p>Expand active, due local missions into (mission_id, row_id, action,
+action_params) tuples in declaration order. Remote missions and missions
+with unknown actions are excluded. Lock-free; the executor walks this list
+and dispatches each tuple in sequence.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -864,8 +894,8 @@ walks this list and dispatches each tuple in sequence.</p>
 Clean names as in add(), falling back to mid when the cleaned name is empty.
 Return False and set status for unsupported fields, an unknown ID, or invalid
 mission values; otherwise return the backend result.
-YAML persistence is asynchronous; SQLite lookup, write, and JSON serialization
-errors propagate, including ValueError for malformed database IDs.</p>
+SQLite lookup, write, and JSON serialization errors propagate, including ValueError
+for malformed database IDs.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -892,7 +922,7 @@ callers should do the same or pass name=’’ to use the id default.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="devkit_ui.missions.sqlite.html" class="btn btn-neutral float-left" title="devkit_ui.missions.sqlite" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_ui.missions.yaml.html" class="btn btn-neutral float-right" title="devkit_ui.missions.yaml" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_ui.models.html" class="btn btn-neutral float-right" title="devkit_ui.models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

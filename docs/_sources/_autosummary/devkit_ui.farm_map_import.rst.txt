@@ -8,16 +8,18 @@ devkit\_ui.farm\_map\_import
 
    .. autosummary::
    
+      canonical_features_text
       farm_map_hash
       looks_like_farm_map
       parse_farm_map
-      robot_row_id
    
    .. rubric:: Classes
 
    .. autosummary::
    
+      FarmDock
       FarmMap
+      FarmRoute
       FieldRows
    
    .. rubric:: Exceptions

@@ -10,6 +10,6 @@ devkit\_ui.missions
    :toctree:
    :recursive:
 
+   lf_rows
    sqlite
    store
-   yaml

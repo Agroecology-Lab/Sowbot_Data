@@ -36,6 +36,7 @@
    terrain_mask
    time_utils
    topo_defaults
+   topo_dock_builder
    topo_results
    topo_row_builder
    ui_node

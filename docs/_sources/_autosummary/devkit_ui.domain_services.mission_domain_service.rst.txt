@@ -15,6 +15,7 @@ devkit\_ui.domain\_services.mission\_domain\_service
    .. autosummary::
    
       MissionDomainService
+      MissionResult
    
    .. rubric:: Exceptions
 

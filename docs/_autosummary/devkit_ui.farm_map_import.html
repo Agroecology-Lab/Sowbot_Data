@@ -292,13 +292,15 @@
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.FarmDock"><code class="docutils literal notranslate"><span class="pre">FarmDock</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.FarmRoute"><code class="docutils literal notranslate"><span class="pre">FarmRoute</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.canonical_features_text"><code class="docutils literal notranslate"><span class="pre">canonical_features_text()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
@@ -315,9 +317,9 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.missions.html">devkit_ui.missions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.html#devkit_ui.missions.MissionStore"><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.html#devkit_ui.missions.validate_mission"><code class="docutils literal notranslate"><span class="pre">validate_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.lf_rows.html">devkit_ui.missions.lf_rows</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.models.html">devkit_ui.models</a><ul>
@@ -442,6 +444,13 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_defaults.html">devkit_ui.topo_defaults</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_actions"><code class="docutils literal notranslate"><span class="pre">default_actions()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_definitions"><code class="docutils literal notranslate"><span class="pre">default_definitions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_dock_builder.html">devkit_ui.topo_dock_builder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.DockBuild"><code class="docutils literal notranslate"><span class="pre">DockBuild</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.DockBuildSettings"><code class="docutils literal notranslate"><span class="pre">DockBuildSettings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.apply_dock_nodes"><code class="docutils literal notranslate"><span class="pre">apply_dock_nodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.build_dock_nodes"><code class="docutils literal notranslate"><span class="pre">build_dock_nodes()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_results.html">devkit_ui.topo_results</a><ul>
@@ -623,29 +632,40 @@ docs/row-plan-geojson.md with properties that name the map:</p>
 the canonical rows are those of row_plan_format (<code class="docutils literal notranslate"><span class="pre">[[row,frag,[[lon,lat],...]],...]</span></code>, 7 decimals,
 mission order). It covers geometry, order and field numbers, not names. A robot that holds a map keeps
 this hash; a mission is only valid for the map whose hash it names.</p>
+<blockquote>
+<div><p>docks:      role ‘dock’ (Point), name, heading_deg (number or null)
+routes:     role ‘route’ (LineString), name, from_node (a dock), to_node (F&lt;field&gt;R&lt;row&gt;N&lt;n&gt;)</p>
+</div></blockquote>
+<p>Docks and routes are part of the hash, after the rows (see farm_map_hash). They are also checked for form.</p>
 <p>This module only validates and describes. It does not touch the topological map.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.farm_map_hash" title="devkit_ui.farm_map_import.farm_map_hash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">farm_map_hash</span></code></a>(fields)</p></td>
-<td><p>Return the farm map hash LiteFarm computes: SHA-256 of <code class="docutils literal notranslate"><span class="pre">[[field,&lt;rows&gt;],...]</span></code> by field number.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.canonical_features_text" title="devkit_ui.farm_map_import.canonical_features_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">canonical_features_text</span></code></a>(docks, routes)</p></td>
+<td><p>Return the canonical text of docks and routes, as LiteFarm's canonicalFeaturesText writes it.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.looks_like_farm_map" title="devkit_ui.farm_map_import.looks_like_farm_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">looks_like_farm_map</span></code></a>(text_or_doc)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.farm_map_hash" title="devkit_ui.farm_map_import.farm_map_hash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">farm_map_hash</span></code></a>(fields[, docks, routes])</p></td>
+<td><p>Return the farm map hash LiteFarm computes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.looks_like_farm_map" title="devkit_ui.farm_map_import.looks_like_farm_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">looks_like_farm_map</span></code></a>(text_or_doc)</p></td>
 <td><p>Return whether a file is a farm map export (it names a <code class="docutils literal notranslate"><span class="pre">farm_map_id</span></code>), without validating it.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.parse_farm_map" title="devkit_ui.farm_map_import.parse_farm_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_farm_map</span></code></a>(text, *[, accept_retired])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.parse_farm_map" title="devkit_ui.farm_map_import.parse_farm_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_farm_map</span></code></a>(text, *[, accept_retired])</p></td>
 <td><p>Parse a LiteFarm farm map export and verify its content hash.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.robot_row_id" title="devkit_ui.farm_map_import.robot_row_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">robot_row_id</span></code></a>(field_number, row_number)</p></td>
-<td><p>Return the id a robot gives a LiteFarm row: <code class="docutils literal notranslate"><span class="pre">field</span> <span class="pre">*</span> <span class="pre">10000</span> <span class="pre">+</span> <span class="pre">row</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.FarmMap" title="devkit_ui.farm_map_import.FarmMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FarmMap</span></code></a>(farm_map_id, version, content_hash, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.FarmDock" title="devkit_ui.farm_map_import.FarmDock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FarmDock</span></code></a>(name, lat, lon[, heading_deg])</p></td>
+<td><p>A dock point.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.FarmMap" title="devkit_ui.farm_map_import.FarmMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FarmMap</span></code></a>(farm_map_id, version, content_hash, ...)</p></td>
 <td><p>A verified farm map.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.FarmRoute" title="devkit_ui.farm_map_import.FarmRoute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FarmRoute</span></code></a>(name, from_node, to_node, points)</p></td>
+<td><p>A route from a dock to a row end, as (lat, lon) points.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.farm_map_import.FieldRows" title="devkit_ui.farm_map_import.FieldRows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FieldRows</span></code></a>(field_number, rows[, location_id, ...])</p></td>
 <td><p>The rows of one field, in mission order.</p></td>
@@ -661,8 +681,35 @@ this hash; a mission is only valid for the map whose hash it names.</p>
 </tbody>
 </table>
 <dl class="py class">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmDock">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">FarmDock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heading_deg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#FarmDock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.FarmDock" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A dock point. <code class="docutils literal notranslate"><span class="pre">heading_deg</span></code> is None when the map gives no heading.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmDock.heading_deg">
+<span class="sig-name descname"><span class="pre">heading_deg</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmDock.heading_deg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmDock.lat">
+<span class="sig-name descname"><span class="pre">lat</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmDock.lat" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmDock.lon">
+<span class="sig-name descname"><span class="pre">lon</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmDock.lon" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmDock.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmDock.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmMap">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">FarmMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">farm_map_id:</span> <span class="pre">str,</span> <span class="pre">version:</span> <span class="pre">int,</span> <span class="pre">content_hash:</span> <span class="pre">str,</span> <span class="pre">status:</span> <span class="pre">str,</span> <span class="pre">fields:</span> <span class="pre">list[~devkit_ui.farm_map_import.FieldRows],</span> <span class="pre">name:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">season:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">previous_farm_map_id:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">warnings:</span> <span class="pre">list[str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#FarmMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMap" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">FarmMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">farm_map_id:</span> <span class="pre">str,</span> <span class="pre">version:</span> <span class="pre">int,</span> <span class="pre">content_hash:</span> <span class="pre">str,</span> <span class="pre">status:</span> <span class="pre">str,</span> <span class="pre">fields:</span> <span class="pre">list[~devkit_ui.farm_map_import.FieldRows],</span> <span class="pre">name:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">season:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">previous_farm_map_id:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">warnings:</span> <span class="pre">list[str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;,</span> <span class="pre">docks:</span> <span class="pre">list[~devkit_ui.farm_map_import.FarmDock]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;,</span> <span class="pre">routes:</span> <span class="pre">list[~devkit_ui.farm_map_import.FarmRoute]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#FarmMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMap" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A verified farm map.</p>
 <dl class="py method">
@@ -682,6 +729,11 @@ this hash; a mission is only valid for the map whose hash it names.</p>
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">contour</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMap.contour" title="Link to this definition"></a></dt>
 <dd><p>Return whether any field was planned along contours, so rows get waypoints.</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmMap.docks">
+<span class="sig-name descname"><span class="pre">docks</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#devkit_ui.farm_map_import.FarmDock" title="devkit_ui.farm_map_import.FarmDock"><span class="pre">FarmDock</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMap.docks" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmMap.farm_map_id">
@@ -715,16 +767,15 @@ this hash; a mission is only valid for the map whose hash it names.</p>
 <span class="sig-name descname"><span class="pre">previous_farm_map_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMap.previous_farm_map_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmMap.routes">
+<span class="sig-name descname"><span class="pre">routes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#devkit_ui.farm_map_import.FarmRoute" title="devkit_ui.farm_map_import.FarmRoute"><span class="pre">FarmRoute</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMap.routes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmMap.row_count">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">row_count</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMap.row_count" title="Link to this definition"></a></dt>
 <dd><p>Return how many row fragments the map holds.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmMap.row_ids">
-<span class="sig-name descname"><span class="pre">row_ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#FarmMap.row_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMap.row_ids" title="Link to this definition"></a></dt>
-<dd><p>Return the robot row id of each swath, in the order of <code class="docutils literal notranslate"><span class="pre">swaths()</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -760,6 +811,41 @@ this hash; a mission is only valid for the map whose hash it names.</p>
 <span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">FarmMapError</span></span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#FarmMapError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.FarmMapError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
 <p>The farm map file is malformed, fails its hash, or is not one a robot should run.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmRoute">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">FarmRoute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#FarmRoute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.FarmRoute" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A route from a dock to a row end, as (lat, lon) points.</p>
+<p><code class="docutils literal notranslate"><span class="pre">from_node</span></code> names a dock and <code class="docutils literal notranslate"><span class="pre">to_node</span></code> a row node (<code class="docutils literal notranslate"><span class="pre">F&lt;field&gt;R&lt;row&gt;N&lt;n&gt;</span></code>). The first point is the
+dock and the last is the row end, so the points between them are the route’s own waypoints.
+target is the exported endpoint’s (field, row, fragment, role), resolved by the reader.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmRoute.from_node">
+<span class="sig-name descname"><span class="pre">from_node</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmRoute.from_node" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmRoute.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmRoute.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmRoute.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmRoute.points" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmRoute.target">
+<span class="sig-name descname"><span class="pre">target</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmRoute.target" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.FarmRoute.to_node">
+<span class="sig-name descname"><span class="pre">to_node</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.farm_map_import.FarmRoute.to_node" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -800,9 +886,20 @@ this hash; a mission is only valid for the map whose hash it names.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="devkit_ui.farm_map_import.canonical_features_text">
+<span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">canonical_features_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#devkit_ui.farm_map_import.FarmDock" title="devkit_ui.farm_map_import.FarmDock"><span class="pre">FarmDock</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">routes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#devkit_ui.farm_map_import.FarmRoute" title="devkit_ui.farm_map_import.FarmRoute"><span class="pre">FarmRoute</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#canonical_features_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.canonical_features_text" title="Link to this definition"></a></dt>
+<dd><p>Return the canonical text of docks and routes, as LiteFarm’s canonicalFeaturesText writes it.</p>
+<p><code class="docutils literal notranslate"><span class="pre">[[&quot;dock&quot;,name,heading,from,to,[[lon,lat],...]],...]</span></code>: docks first, then routes, each by name. A heading
+is written as a JavaScript number would be (<code class="docutils literal notranslate"><span class="pre">1</span></code>, not <code class="docutils literal notranslate"><span class="pre">1.0</span></code>) or <code class="docutils literal notranslate"><span class="pre">null</span></code>, a name as <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="devkit_ui.farm_map_import.farm_map_hash">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">farm_map_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#devkit_ui.farm_map_import.FieldRows" title="devkit_ui.farm_map_import.FieldRows"><span class="pre">FieldRows</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#farm_map_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.farm_map_hash" title="Link to this definition"></a></dt>
-<dd><p>Return the farm map hash LiteFarm computes: SHA-256 of <code class="docutils literal notranslate"><span class="pre">[[field,&lt;rows&gt;],...]</span></code> by field number.</p>
+<span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">farm_map_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#devkit_ui.farm_map_import.FieldRows" title="devkit_ui.farm_map_import.FieldRows"><span class="pre">FieldRows</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#devkit_ui.farm_map_import.FarmDock" title="devkit_ui.farm_map_import.FarmDock"><span class="pre">FarmDock</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">routes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#devkit_ui.farm_map_import.FarmRoute" title="devkit_ui.farm_map_import.FarmRoute"><span class="pre">FarmRoute</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#farm_map_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.farm_map_hash" title="Link to this definition"></a></dt>
+<dd><p>Return the farm map hash LiteFarm computes.</p>
+<p>It is the SHA-256 of <code class="docutils literal notranslate"><span class="pre">[[field,&lt;rows&gt;],...]</span></code> by field number. A map with docks or routes continues with
+<code class="docutils literal notranslate"><span class="pre">;</span></code> and their canonical text, see <code class="docutils literal notranslate"><span class="pre">canonical_features_text</span></code>. A map with neither hashes as it did before
+docks existed.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -818,16 +915,12 @@ this hash; a mission is only valid for the map whose hash it names.</p>
 <p>Checks: version 1; <code class="docutils literal notranslate"><span class="pre">multi_field</span></code>; a <code class="docutils literal notranslate"><span class="pre">farm_map_id</span></code> and <code class="docutils literal notranslate"><span class="pre">content_hash</span></code> in the allowed format; status
 <code class="docutils literal notranslate"><span class="pre">published</span></code> (<code class="docutils literal notranslate"><span class="pre">retired</span></code> only with <code class="docutils literal notranslate"><span class="pre">accept_retired</span></code>, because a retired map has been replaced); every row has
 a field and row number, belongs to this map and is named <code class="docutils literal notranslate"><span class="pre">F&lt;field&gt;R&lt;row&gt;</span></code>; fields are listed in
-<code class="docutils literal notranslate"><span class="pre">field_numbers</span></code>; each field’s rows are together; and the hash recomputed from the rows equals <code class="docutils literal notranslate"><span class="pre">content_hash</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">field_numbers</span></code>; each field’s rows are together; and the hash recomputed from the rows, docks
+and routes equals <code class="docutils literal notranslate"><span class="pre">content_hash</span></code>. Dock and route names must be unique within their respective
+kinds, and each route must start at a dock in the map. A route’s target is resolved when it
+names an exported row endpoint.</p>
 <p>Raise FarmMapError with a reason a person can read. The hash is checked last, so a bad file says what is
 wrong with it before saying only that the hash differs.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="devkit_ui.farm_map_import.robot_row_id">
-<span class="sig-prename descclassname"><span class="pre">devkit_ui.farm_map_import.</span></span><span class="sig-name descname"><span class="pre">robot_row_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/devkit_ui/farm_map_import.html#robot_row_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.farm_map_import.robot_row_id" title="Link to this definition"></a></dt>
-<dd><p>Return the id a robot gives a LiteFarm row: <code class="docutils literal notranslate"><span class="pre">field</span> <span class="pre">*</span> <span class="pre">10000</span> <span class="pre">+</span> <span class="pre">row</span></code>.</p>
-<p>Raise FarmMapError when the row number does not fit under the stride.</p>
 </dd></dl>
 
 </section>

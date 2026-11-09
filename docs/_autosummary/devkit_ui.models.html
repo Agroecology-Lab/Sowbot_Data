@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="devkit_ui.obstacles" href="devkit_ui.obstacles.html" />
-    <link rel="prev" title="devkit_ui.missions.yaml" href="devkit_ui.missions.yaml.html" /> 
+    <link rel="prev" title="devkit_ui.missions.store" href="devkit_ui.missions.store.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -292,13 +292,15 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmDock"><code class="docutils literal notranslate"><span class="pre">FarmDock</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmRoute"><code class="docutils literal notranslate"><span class="pre">FarmRoute</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.canonical_features_text"><code class="docutils literal notranslate"><span class="pre">canonical_features_text()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
@@ -315,9 +317,9 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.missions.html">devkit_ui.missions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.html#devkit_ui.missions.MissionStore"><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.html#devkit_ui.missions.validate_mission"><code class="docutils literal notranslate"><span class="pre">validate_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.lf_rows.html">devkit_ui.missions.lf_rows</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.yaml.html">devkit_ui.missions.yaml</a></li>
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">devkit_ui.models</a><ul>
@@ -442,6 +444,13 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_defaults.html">devkit_ui.topo_defaults</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_actions"><code class="docutils literal notranslate"><span class="pre">default_actions()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_definitions"><code class="docutils literal notranslate"><span class="pre">default_definitions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_dock_builder.html">devkit_ui.topo_dock_builder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.DockBuild"><code class="docutils literal notranslate"><span class="pre">DockBuild</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.DockBuildSettings"><code class="docutils literal notranslate"><span class="pre">DockBuildSettings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.apply_dock_nodes"><code class="docutils literal notranslate"><span class="pre">apply_dock_nodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.build_dock_nodes"><code class="docutils literal notranslate"><span class="pre">build_dock_nodes()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_results.html">devkit_ui.topo_results</a><ul>
@@ -662,7 +671,8 @@
 <dt class="sig sig-object py" id="devkit_ui.models.TopoDoc.clone_empty">
 <span class="sig-name descname"><span class="pre">clone_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.models.TopoDoc" title="devkit_ui.models.TopoDoc"><span class="pre">TopoDoc</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/models.html#TopoDoc.clone_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.models.TopoDoc.clone_empty" title="Link to this definition"></a></dt>
 <dd><p>Clones the document and returns a new document with no nodes.
-Retains metadata, actions, definitions, and transformation.</p>
+Retains metadata, actions, definitions, and transformation. If a farm map hash
+is present, the clone is marked as edited.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -698,6 +708,25 @@ that’s wanted) before the call — e.g. a batch of new nodes that
 reference each other. add_node() would KeyError on a sibling not
 yet inserted, and would silently add reverse edges the caller
 didn’t ask for onto pre-existing nodes.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.models.TopoDoc.map_hash8">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">map_hash8</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.models.TopoDoc.map_hash8" title="Link to this definition"></a></dt>
+<dd><p>Return the first 8 hex characters of the farm map this map was built from.</p>
+<p>Return MAP_EDITED (“-”) when the map was edited since, or never came from a farm map.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.models.TopoDoc.mark_map_edited">
+<span class="sig-name descname"><span class="pre">mark_map_edited</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/models.html#TopoDoc.mark_map_edited"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.models.TopoDoc.mark_map_edited" title="Link to this definition"></a></dt>
+<dd><p>Record that the map no longer matches its farm map. A map with no farm map stays as it is.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="devkit_ui.models.TopoDoc.meta">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">meta</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></span><a class="headerlink" href="#devkit_ui.models.TopoDoc.meta" title="Link to this definition"></a></dt>
+<dd><p>Return the document’s mutable metadata.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -750,6 +779,12 @@ instead of silently running with none.</p>
 <span class="sig-name descname"><span class="pre">set_row_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/devkit_ui/models.html#TopoDoc.set_row_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.models.TopoDoc.set_row_action" title="Link to this definition"></a></dt>
 <dd><p>Set edges whose action is in <cite>row_actions</cite> to <cite>new</cite> across all nodes.</p>
 <p>Return the number changed, excluding edges already using <cite>new</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="devkit_ui.models.TopoDoc.stamp_map_hash8">
+<span class="sig-name descname"><span class="pre">stamp_map_hash8</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hash8</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/models.html#TopoDoc.stamp_map_hash8"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.models.TopoDoc.stamp_map_hash8" title="Link to this definition"></a></dt>
+<dd><p>Record that this map was built from the farm map with this hash, and not edited since.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -842,7 +877,8 @@ the two nodes are that are being connected.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_ui.models.TopoNode.patch_role">
 <span class="sig-name descname"><span class="pre">patch_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/models.html#TopoNode.patch_role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.models.TopoNode.patch_role" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Set the row role in both the node’s properties and metadata.</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.models.TopoNode.properties">
@@ -1060,7 +1096,7 @@ the two nodes are that are being connected.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_ui.missions.yaml.html" class="btn btn-neutral float-left" title="devkit_ui.missions.yaml" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_ui.missions.store.html" class="btn btn-neutral float-left" title="devkit_ui.missions.store" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="devkit_ui.obstacles.html" class="btn btn-neutral float-right" title="devkit_ui.obstacles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

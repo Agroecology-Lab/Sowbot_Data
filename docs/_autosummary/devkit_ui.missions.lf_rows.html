@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>devkit_ui.missions.yaml &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
+  <title>devkit_ui.missions.lf_rows &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="devkit_ui.models" href="devkit_ui.models.html" />
-    <link rel="prev" title="devkit_ui.missions.store" href="devkit_ui.missions.store.html" /> 
+    <link rel="next" title="devkit_ui.missions.sqlite" href="devkit_ui.missions.sqlite.html" />
+    <link rel="prev" title="devkit_ui.missions" href="devkit_ui.missions.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -292,13 +292,15 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.farm_map_import.html">devkit_ui.farm_map_import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmDock"><code class="docutils literal notranslate"><span class="pre">FarmDock</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap"><code class="docutils literal notranslate"><span class="pre">FarmMap</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError"><code class="docutils literal notranslate"><span class="pre">FarmMapError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmRoute"><code class="docutils literal notranslate"><span class="pre">FarmRoute</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows"><code class="docutils literal notranslate"><span class="pre">FieldRows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.canonical_features_text"><code class="docutils literal notranslate"><span class="pre">canonical_features_text()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash"><code class="docutils literal notranslate"><span class="pre">farm_map_hash()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map"><code class="docutils literal notranslate"><span class="pre">looks_like_farm_map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map"><code class="docutils literal notranslate"><span class="pre">parse_farm_map()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.robot_row_id"><code class="docutils literal notranslate"><span class="pre">robot_row_id()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.litefarm_client.html">devkit_ui.litefarm_client</a><ul>
@@ -315,9 +317,9 @@
 <li class="toctree-l3 current"><a class="reference internal" href="devkit_ui.missions.html">devkit_ui.missions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.html#devkit_ui.missions.MissionStore"><code class="docutils literal notranslate"><span class="pre">MissionStore</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.html#devkit_ui.missions.validate_mission"><code class="docutils literal notranslate"><span class="pre">validate_mission()</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_ui.missions.lf_rows</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.sqlite.html">devkit_ui.missions.sqlite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.missions.store.html">devkit_ui.missions.store</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">devkit_ui.missions.yaml</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.models.html">devkit_ui.models</a><ul>
@@ -442,6 +444,13 @@
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_defaults.html">devkit_ui.topo_defaults</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_actions"><code class="docutils literal notranslate"><span class="pre">default_actions()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_defaults.html#devkit_ui.topo_defaults.default_definitions"><code class="docutils literal notranslate"><span class="pre">default_definitions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_dock_builder.html">devkit_ui.topo_dock_builder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.DockBuild"><code class="docutils literal notranslate"><span class="pre">DockBuild</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.DockBuildSettings"><code class="docutils literal notranslate"><span class="pre">DockBuildSettings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.apply_dock_nodes"><code class="docutils literal notranslate"><span class="pre">apply_dock_nodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.topo_dock_builder.html#devkit_ui.topo_dock_builder.build_dock_nodes"><code class="docutils literal notranslate"><span class="pre">build_dock_nodes()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.topo_results.html">devkit_ui.topo_results</a><ul>
@@ -597,9 +606,9 @@
           <li class="breadcrumb-item"><a href="../python_api.html">Python API Reference</a></li>
           <li class="breadcrumb-item"><a href="devkit_ui.html">devkit_ui</a></li>
           <li class="breadcrumb-item"><a href="devkit_ui.missions.html">devkit_ui.missions</a></li>
-      <li class="breadcrumb-item active">devkit_ui.missions.yaml</li>
+      <li class="breadcrumb-item active">devkit_ui.missions.lf_rows</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_autosummary/devkit_ui.missions.yaml.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/devkit_ui.missions.lf_rows.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -607,81 +616,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-devkit_ui.missions.yaml">
-<span id="devkit-ui-missions-yaml"></span><h1>devkit_ui.missions.yaml<a class="headerlink" href="#module-devkit_ui.missions.yaml" title="Link to this heading"></a></h1>
-<p class="rubric">Classes</p>
+  <section id="module-devkit_ui.missions.lf_rows">
+<span id="devkit-ui-missions-lf-rows"></span><h1>devkit_ui.missions.lf_rows<a class="headerlink" href="#module-devkit_ui.missions.lf_rows" title="Link to this heading"></a></h1>
+<p>Find the entry nodes of a LiteFarm (field, row) in the topological map. No ROS imports.</p>
+<p>A farm map import writes <code class="docutils literal notranslate"><span class="pre">lf_field</span></code>, <code class="docutils literal notranslate"><span class="pre">lf_row</span></code> and <code class="docutils literal notranslate"><span class="pre">lf_frag</span></code> to the metadata of every node of
+a swath, and <code class="docutils literal notranslate"><span class="pre">row_id</span></code> per swath. A LiteFarm row split by an obstacle is several swaths (fragments)
+with the same field and row. The map is searched, so no row id is ever derived from a field and row.</p>
+<p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.missions.yaml.MissionYamlStore" title="devkit_ui.missions.yaml.MissionYamlStore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MissionYamlStore</span></code></a>(path, on_write_done)</p></td>
-<td><p>Owns the mission list and its YAML persistence.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.missions.lf_rows.lf_row_entries" title="devkit_ui.missions.lf_rows.lf_row_entries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lf_row_entries</span></code></a>(doc)</p></td>
+<td><p>Return <code class="docutils literal notranslate"><span class="pre">{(field,</span> <span class="pre">row):</span> <span class="pre">[(row_id,</span> <span class="pre">frag,</span> <span class="pre">entry</span> <span class="pre">node</span> <span class="pre">name),</span> <span class="pre">...]}</span></code> for every LiteFarm row in doc.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.missions.lf_rows.resolve_lf_row" title="devkit_ui.missions.lf_rows.resolve_lf_row"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_lf_row</span></code></a>(doc, field, row)</p></td>
+<td><p>Return the entry node names of a LiteFarm row, one per fragment, in row id order.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py class">
-<dt class="sig sig-object py" id="devkit_ui.missions.yaml.MissionYamlStore">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.missions.yaml.</span></span><span class="sig-name descname"><span class="pre">MissionYamlStore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_write_done</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/missions/yaml.html#MissionYamlStore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.yaml.MissionYamlStore" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Owns the mission list and its YAML persistence.</p>
-<p>Holds the mission snapshot; MissionStore adds the version and status counters.</p>
-<p>Mission record schema:</p>
-<blockquote>
-<div><p>id:                  ‘MISSION_1’   (allocated, immutable)
-name:                str           (operator label; defaults to id)
-rows:                list[str]     (topo entry-node names)
-action:              str           (key in ACTIONS)
-action_params:       dict          (per-action parameter overrides)
-repeat_every_hours:  int | None    (None == one-shot)
-active:              bool
-created_at:          str           (ISO 8601 UTC)
-last_run_at:         str  | None
-last_run_success:    bool | None</p>
-</div></blockquote>
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.missions.yaml.MissionYamlStore.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeat_every_hours</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/yaml.html#MissionYamlStore.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.yaml.MissionYamlStore.add" title="Link to this definition"></a></dt>
-<dd><p>Add a mission. Returns its allocated id, or None on failure.
-Status carries the reason either way.</p>
+<p class="rubric">Exceptions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.missions.lf_rows.LfRowError" title="devkit_ui.missions.lf_rows.LfRowError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LfRowError</span></code></a></p></td>
+<td><p>A (field, row) is not in the map, or the map names it ambiguously.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py exception">
+<dt class="sig sig-object py" id="devkit_ui.missions.lf_rows.LfRowError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.missions.lf_rows.</span></span><span class="sig-name descname"><span class="pre">LfRowError</span></span><a class="reference internal" href="../_modules/devkit_ui/missions/lf_rows.html#LfRowError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.lf_rows.LfRowError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+<p>A (field, row) is not in the map, or the map names it ambiguously.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.missions.yaml.MissionYamlStore.attach">
-<span class="sig-name descname"><span class="pre">attach</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/yaml.html#MissionYamlStore.attach"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.yaml.MissionYamlStore.attach" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.missions.yaml.MissionYamlStore.delete">
-<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/yaml.html#MissionYamlStore.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.yaml.MissionYamlStore.delete" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.missions.yaml.MissionYamlStore.find">
-<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/yaml.html#MissionYamlStore.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.yaml.MissionYamlStore.find" title="Link to this definition"></a></dt>
-<dd><p>Lock-free single-mission lookup by id. Returns the dict from
-the current snapshot — treat as read-only.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_ui.missions.lf_rows.lf_row_entries">
+<span class="sig-prename descclassname"><span class="pre">devkit_ui.missions.lf_rows.</span></span><span class="sig-name descname"><span class="pre">lf_row_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.TopoDoc" title="devkit_ui.models.TopoDoc"><span class="pre">TopoDoc</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/lf_rows.html#lf_row_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.lf_rows.lf_row_entries" title="Link to this definition"></a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">{(field,</span> <span class="pre">row):</span> <span class="pre">[(row_id,</span> <span class="pre">frag,</span> <span class="pre">entry</span> <span class="pre">node</span> <span class="pre">name),</span> <span class="pre">...]}</span></code> for every LiteFarm row in doc.</p>
+<p>Only entry nodes count. Fragments are in row id order. A node with no integer lf_field, lf_row and
+row_id is ignored. A missing lf_frag is 0.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.missions.yaml.MissionYamlStore.find_by_name">
-<span class="sig-name descname"><span class="pre">find_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/yaml.html#MissionYamlStore.find_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.yaml.MissionYamlStore.find_by_name" title="Link to this definition"></a></dt>
-<dd><p>Lock-free lookup by operator name. Returns the first match.
-Useful for collision checks before add() (e.g. the UI_RUN record
-the executor creates to anchor repeat intervals).</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="devkit_ui.missions.yaml.MissionYamlStore.missions">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">missions</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_ui.missions.yaml.MissionYamlStore.missions" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="devkit_ui.missions.yaml.MissionYamlStore.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/yaml.html#MissionYamlStore.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.yaml.MissionYamlStore.update" title="Link to this definition"></a></dt>
-<dd><p>Replace mutable fields on a mission. Allowed fields:
-name, rows, action, repeat_every_hours, active.
-Immutable metadata (id, created_at, last_run_*) is rejected
-— record_run owns the last_run_* fields.</p>
-</dd></dl>
-
+<dl class="py function">
+<dt class="sig sig-object py" id="devkit_ui.missions.lf_rows.resolve_lf_row">
+<span class="sig-prename descclassname"><span class="pre">devkit_ui.missions.lf_rows.</span></span><span class="sig-name descname"><span class="pre">resolve_lf_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.TopoDoc" title="devkit_ui.models.TopoDoc"><span class="pre">TopoDoc</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/devkit_ui/missions/lf_rows.html#resolve_lf_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.missions.lf_rows.resolve_lf_row" title="Link to this definition"></a></dt>
+<dd><p>Return the entry node names of a LiteFarm row, one per fragment, in row id order.</p>
+<p>Raise LfRowError when the map has no such row, two swaths claim the same fragment, or the
+fragment numbers do not rise with the row ids.</p>
 </dd></dl>
 
 </section>
@@ -690,8 +670,8 @@ Immutable metadata (id, created_at, last_run_*) is rejected
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="devkit_ui.missions.store.html" class="btn btn-neutral float-left" title="devkit_ui.missions.store" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="devkit_ui.models.html" class="btn btn-neutral float-right" title="devkit_ui.models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devkit_ui.missions.html" class="btn btn-neutral float-left" title="devkit_ui.missions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devkit_ui.missions.sqlite.html" class="btn btn-neutral float-right" title="devkit_ui.missions.sqlite" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
