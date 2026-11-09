@@ -328,6 +328,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/devkit_ui.models.html#devkit_ui.models.yaw_to_orientation"><code class="docutils literal notranslate"><span class="pre">yaw_to_orientation()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
@@ -621,6 +622,7 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
@@ -628,7 +630,7 @@
 <span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_application_service</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">TopologyApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">NAV_ACTION</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">NAV_ACTION</span><span class="p">,</span> <span class="n">YAW_GOAL_TOLERANCE</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoEdge</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoProperties</span><span class="p">,</span> <span class="n">Vector2</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.topo_dock_builder</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DOCK_PREFIX_KEY</span><span class="p">,</span>
@@ -658,6 +660,22 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return raw stripped, uppercased, with spaces as underscores and other junk removed.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^A-Z0-9_]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">raw</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">))</span></div>
 
+
+
+<span class="k">def</span> <span class="nf">_map_yaw_deg</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return MAP_YAW_DEG, the direction of the map x axis in degrees counter-clockwise from east (default 0).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: The variable is set to something that is not a finite number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MAP_YAW_DEG&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">raw</span> <span class="ow">or</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MAP_YAW_DEG must be a number, got </span><span class="si">{</span><span class="n">raw</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
 
 
 <span class="k">def</span> <span class="nf">_timestamp</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -712,9 +730,9 @@
         <span class="n">connect_to</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_target</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">current_node</span><span class="p">,</span> <span class="n">selected_node</span><span class="p">)</span>
         <span class="n">is_row</span> <span class="o">=</span> <span class="n">row_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">is_row</span><span class="p">:</span>
-            <span class="n">edge_action</span><span class="p">,</span> <span class="n">xy_tol</span><span class="p">,</span> <span class="n">yaw_tol</span><span class="p">,</span> <span class="n">vert_r</span> <span class="o">=</span> <span class="n">row_action</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.5</span>
+            <span class="n">edge_action</span><span class="p">,</span> <span class="n">xy_tol</span><span class="p">,</span> <span class="n">yaw_tol</span><span class="p">,</span> <span class="n">vert_r</span> <span class="o">=</span> <span class="n">row_action</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">YAW_GOAL_TOLERANCE</span><span class="p">,</span> <span class="mf">0.5</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">edge_action</span><span class="p">,</span> <span class="n">xy_tol</span><span class="p">,</span> <span class="n">yaw_tol</span><span class="p">,</span> <span class="n">vert_r</span> <span class="o">=</span> <span class="n">NAV_ACTION</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span>
+            <span class="n">edge_action</span><span class="p">,</span> <span class="n">xy_tol</span><span class="p">,</span> <span class="n">yaw_tol</span><span class="p">,</span> <span class="n">vert_r</span> <span class="o">=</span> <span class="n">NAV_ACTION</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">YAW_GOAL_TOLERANCE</span><span class="p">,</span> <span class="mf">1.0</span>
 
         <span class="n">gps_meta</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">gps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">gps</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">status</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -1007,7 +1025,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">dock_build</span> <span class="o">=</span> <span class="n">build_dock_nodes</span><span class="p">(</span><span class="n">docks</span><span class="p">,</span> <span class="n">routes</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">DockBuildSettings</span><span class="p">(</span>
                 <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span> <span class="n">nav_frame</span><span class="o">=</span><span class="n">nav_frame</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="n">doc</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s1">&#39;mixed_test_map&#39;</span><span class="p">,</span>
-                <span class="n">timestamp</span><span class="o">=</span><span class="n">_timestamp</span><span class="p">(),</span> <span class="n">fix_type</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">status</span><span class="p">)),</span> <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+                <span class="n">timestamp</span><span class="o">=</span><span class="n">_timestamp</span><span class="p">(),</span> <span class="n">fix_type</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">status</span><span class="p">),</span> <span class="n">map_yaw_deg</span><span class="o">=</span><span class="n">_map_yaw_deg</span><span class="p">()),</span> <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">TopologyEditError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">warnings</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">exc</span>
         <span class="k">if</span> <span class="n">dock_build</span><span class="o">.</span><span class="n">skipped</span><span class="p">:</span>

@@ -331,6 +331,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.yaw_to_orientation"><code class="docutils literal notranslate"><span class="pre">yaw_to_orientation()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
@@ -640,7 +641,7 @@ navigation edges in both directions.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#devkit_ui.topo_dock_builder.DockBuild" title="devkit_ui.topo_dock_builder.DockBuild"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockBuild</span></code></a>(nodes, ...)</p></td>
 <td><p>The nodes generated for the docks and routes of a farm map.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.topo_dock_builder.DockBuildSettings" title="devkit_ui.topo_dock_builder.DockBuildSettings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockBuildSettings</span></code></a>(prefix, nav_frame, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#devkit_ui.topo_dock_builder.DockBuildSettings" title="devkit_ui.topo_dock_builder.DockBuildSettings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DockBuildSettings</span></code></a>(prefix, nav_frame, ...[, ...])</p></td>
 <td><p>Naming and metadata for one batch of dock nodes.</p></td>
 </tr>
 </tbody>
@@ -672,7 +673,7 @@ among the built rows; their dock is still built.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="devkit_ui.topo_dock_builder.DockBuildSettings">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.topo_dock_builder.</span></span><span class="sig-name descname"><span class="pre">DockBuildSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nav_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/topo_dock_builder.html#DockBuildSettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.topo_dock_builder.DockBuildSettings" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.topo_dock_builder.</span></span><span class="sig-name descname"><span class="pre">DockBuildSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nav_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_yaw_deg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/topo_dock_builder.html#DockBuildSettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.topo_dock_builder.DockBuildSettings" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Naming and metadata for one batch of dock nodes.</p>
 <dl class="py attribute">
@@ -683,6 +684,11 @@ among the built rows; their dock is still built.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="devkit_ui.topo_dock_builder.DockBuildSettings.map_name">
 <span class="sig-name descname"><span class="pre">map_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.topo_dock_builder.DockBuildSettings.map_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="devkit_ui.topo_dock_builder.DockBuildSettings.map_yaw_deg">
+<span class="sig-name descname"><span class="pre">map_yaw_deg</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#devkit_ui.topo_dock_builder.DockBuildSettings.map_yaw_deg" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -723,6 +729,10 @@ resolved by the farm map reader. The first and last points of a route are the do
 the points between them become nodes. Routes without a matching row end or dock are listed as
 skipped. Matched row nodes receive the exported endpoint name in their <code class="docutils literal notranslate"><span class="pre">lf_node</span></code> metadata;
 nothing is persisted.</p>
+<p>A dock with a <code class="docutils literal notranslate"><span class="pre">heading_deg</span></code> faces it, read as a compass bearing: degrees clockwise from north. With
+<code class="docutils literal notranslate"><span class="pre">settings.map_yaw_deg</span></code> 0, 90 faces east, map +x; the goal is turned by that yaw so the dock faces the
+same compass bearing in a rotated map. A dock without one, and every route point, accepts any final yaw, so the
+goal checker does not ask for a turn the map never specified.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ValueError</strong> – Generated names collide, a target is not an exported row endpoint, or route

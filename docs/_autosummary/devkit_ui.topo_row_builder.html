@@ -331,6 +331,7 @@
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.yaw_to_orientation"><code class="docutils literal notranslate"><span class="pre">yaw_to_orientation()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
@@ -831,10 +832,12 @@ are shared with <code class="docutils literal notranslate"><span class="pre">bui
 <span class="sig-prename descclassname"><span class="pre">devkit_ui.topo_row_builder.</span></span><span class="sig-name descname"><span class="pre">build_row_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">swaths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#devkit_ui.topo_row_builder.RowAnchor" title="devkit_ui.topo_row_builder.RowAnchor"><span class="pre">RowAnchor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#devkit_ui.topo_row_builder.RowBuildSettings" title="devkit_ui.topo_row_builder.RowBuildSettings"><span class="pre">RowBuildSettings</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#devkit_ui.topo_row_builder.RowBuild" title="devkit_ui.topo_row_builder.RowBuild"><span class="pre">RowBuild</span></a></span></span><a class="reference internal" href="../_modules/devkit_ui/topo_row_builder.html#build_row_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.topo_row_builder.build_row_nodes" title="Link to this definition"></a></dt>
 <dd><p>Turn planned swaths into entry, waypoint and exit nodes with their edges.</p>
 <p>Each usable swath becomes an IN and an OUT node joined by edges in both directions
-using <code class="docutils literal notranslate"><span class="pre">settings.row_action</span></code>. With contour mode, rows also get intermediate
-waypoints every <code class="docutils literal notranslate"><span class="pre">settings.waypoint_interval_m</span></code> meters of arc length, including
-two-point swaths; rows shorter than one interval, and all rows without contour
-mode, keep a single entry-to-exit edge.</p>
+using <code class="docutils literal notranslate"><span class="pre">settings.row_action</span></code>. The pose of each node faces along the row, from IN towards OUT
+(the bearing to the next node, and for OUT that of the last segment). IN and OUT only name the ends:
+a row is travelled either way, so every node accepts any final yaw and no goal asks for a turn.
+With contour mode, rows also get intermediate waypoints every <code class="docutils literal notranslate"><span class="pre">settings.waypoint_interval_m</span></code>
+meters of arc length, including two-point swaths; rows shorter than one interval, and all rows
+without contour mode, keep a single entry-to-exit edge.</p>
 <p>Consecutive built rows are joined OUT to the next row’s IN in both directions. The
 swaths arrive in snake order, so that pairing is known by construction and no
 coordinate guessing is needed. Guessing from coordinates alone

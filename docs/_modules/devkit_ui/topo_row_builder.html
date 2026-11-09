@@ -328,6 +328,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.yaw_to_orientation"><code class="docutils literal notranslate"><span class="pre">yaw_to_orientation()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
@@ -619,12 +620,13 @@
 <span class="sd">rules testable on their own and out of the UI node.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">pairwise</span>
 
 <span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_planner</span> <span class="kn">import</span> <span class="n">f2c_latlon_to_xy</span><span class="p">,</span> <span class="n">f2c_xy_to_latlon</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">NAV_ACTION</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">ANY_YAW_TOLERANCE</span><span class="p">,</span> <span class="n">NAV_ACTION</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">NodeID</span><span class="p">,</span>
     <span class="n">TopoDoc</span><span class="p">,</span>
@@ -633,6 +635,7 @@
     <span class="n">TopoPose</span><span class="p">,</span>
     <span class="n">TopoProperties</span><span class="p">,</span>
     <span class="n">Vector2</span><span class="p">,</span>
+    <span class="n">yaw_to_orientation</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">devkit_ui.row_planning</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CONTOUR_WAYPOINT_INTERVAL_M</span><span class="p">,</span>
@@ -700,20 +703,21 @@
 
 <span class="k">def</span> <span class="nf">_make_node</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">settings</span><span class="p">:</span> <span class="n">RowBuildSettings</span><span class="p">,</span>
-               <span class="n">lf</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoNode</span><span class="p">:</span>
+               <span class="n">lf</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">yaw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoNode</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create one row node carrying its row identity in both properties and metadata.</span>
 
 <span class="sd">    lf is the LiteFarm (field, row, frag) of the swath, written to the metadata as lf_field,</span>
-<span class="sd">    lf_row and lf_frag.</span>
+<span class="sd">    lf_row and lf_frag. yaw is the pose heading in radians from map +x, counter-clockwise. The node accepts</span>
+<span class="sd">    any final yaw, since a row is travelled in either direction.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">node</span> <span class="o">=</span> <span class="n">TopoNode</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
         <span class="n">nav_frame</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">nav_frame</span><span class="p">,</span>
         <span class="n">edges</span><span class="o">=</span><span class="p">[],</span>
-        <span class="n">pose</span><span class="o">=</span><span class="n">TopoPose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">),</span>
+        <span class="n">pose</span><span class="o">=</span><span class="n">TopoPose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="n">yaw_to_orientation</span><span class="p">(</span><span class="n">yaw</span><span class="p">)),</span>
         <span class="n">properties</span><span class="o">=</span><span class="n">TopoProperties</span><span class="p">(</span>
-            <span class="n">xy_goal_tolerance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-            <span class="n">yaw_goal_tolerance</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+            <span class="n">xy_goal_tolerance</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="n">yaw_goal_tolerance</span><span class="o">=</span><span class="n">ANY_YAW_TOLERANCE</span><span class="p">,</span>
             <span class="n">dropped_by</span><span class="o">=</span><span class="s1">&#39;webui_f2c&#39;</span><span class="p">,</span>
             <span class="n">timestamp</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
             <span class="n">gps_lat</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>
@@ -754,10 +758,12 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Turn planned swaths into entry, waypoint and exit nodes with their edges.</span>
 
 <span class="sd">    Each usable swath becomes an IN and an OUT node joined by edges in both directions</span>
-<span class="sd">    using ``settings.row_action``. With contour mode, rows also get intermediate</span>
-<span class="sd">    waypoints every ``settings.waypoint_interval_m`` meters of arc length, including</span>
-<span class="sd">    two-point swaths; rows shorter than one interval, and all rows without contour</span>
-<span class="sd">    mode, keep a single entry-to-exit edge.</span>
+<span class="sd">    using ``settings.row_action``. The pose of each node faces along the row, from IN towards OUT</span>
+<span class="sd">    (the bearing to the next node, and for OUT that of the last segment). IN and OUT only name the ends:</span>
+<span class="sd">    a row is travelled either way, so every node accepts any final yaw and no goal asks for a turn.</span>
+<span class="sd">    With contour mode, rows also get intermediate waypoints every ``settings.waypoint_interval_m``</span>
+<span class="sd">    meters of arc length, including two-point swaths; rows shorter than one interval, and all rows</span>
+<span class="sd">    without contour mode, keep a single entry-to-exit edge.</span>
 
 <span class="sd">    Consecutive built rows are joined OUT to the next row&#39;s IN in both directions. The</span>
 <span class="sd">    swaths arrive in snake order, so that pairing is known by construction and no</span>
@@ -820,24 +826,29 @@
             <span class="n">build</span><span class="o">.</span><span class="n">skipped</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rid</span><span class="p">)</span>
             <span class="k">continue</span>
 
-        <span class="n">waypoint_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">NodeID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">waypoints</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">NodeID</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">contour_used</span><span class="p">:</span>
-            <span class="n">waypoints</span> <span class="o">=</span> <span class="n">resample_row_xy</span><span class="p">(</span>
-                <span class="n">swath</span><span class="p">,</span> <span class="n">anchor</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">anchor</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">waypoint_interval_m</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">wx</span><span class="p">,</span> <span class="n">wy</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">waypoints</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">wx</span><span class="p">,</span> <span class="n">wy</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">resample_row_xy</span><span class="p">(</span>
+                    <span class="n">swath</span><span class="p">,</span> <span class="n">anchor</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">anchor</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">waypoint_interval_m</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
                 <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">_R</span><span class="si">{</span><span class="n">rid</span><span class="si">}</span><span class="s1">_W</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">settings</span><span class="o">.</span><span class="n">overwrite</span> <span class="ow">and</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
                     <span class="k">continue</span>
                 <span class="n">wlat</span><span class="p">,</span> <span class="n">wlon</span> <span class="o">=</span> <span class="n">f2c_xy_to_latlon</span><span class="p">(</span><span class="n">wx</span><span class="p">,</span> <span class="n">wy</span><span class="p">,</span> <span class="n">anchor</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">anchor</span><span class="o">.</span><span class="n">lon</span><span class="p">)</span>
-                <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">_make_node</span><span class="p">(</span>
-                    <span class="n">name</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">anchor</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">wx</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">anchor</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">wy</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-                    <span class="s1">&#39;waypoint&#39;</span><span class="p">,</span> <span class="n">wlat</span><span class="p">,</span> <span class="n">wlon</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">lf</span><span class="p">)</span>
-                <span class="n">waypoint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">waypoints</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">anchor</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">wx</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">anchor</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">wy</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">wlat</span><span class="p">,</span> <span class="n">wlon</span><span class="p">))</span>
+
+        <span class="c1"># Every node faces along the row from IN towards OUT. The goal checker accepts any yaw,</span>
+        <span class="c1"># because the robot may arrive travelling either way.</span>
+        <span class="n">yaws</span> <span class="o">=</span> <span class="n">_bearings</span><span class="p">([(</span><span class="n">in_x</span><span class="p">,</span> <span class="n">in_y</span><span class="p">),</span> <span class="o">*</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">waypoints</span><span class="p">),</span> <span class="p">(</span><span class="n">out_x</span><span class="p">,</span> <span class="n">out_y</span><span class="p">)])</span>
+        <span class="n">waypoint_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">NodeID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wlat</span><span class="p">,</span> <span class="n">wlon</span><span class="p">),</span> <span class="n">yaw</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">waypoints</span><span class="p">,</span> <span class="n">yaws</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">_make_node</span><span class="p">(</span>
+                <span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;waypoint&#39;</span><span class="p">,</span> <span class="n">wlat</span><span class="p">,</span> <span class="n">wlon</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">lf</span><span class="p">,</span> <span class="n">yaw</span><span class="p">)</span>
+            <span class="n">waypoint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
         <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">in_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">_make_node</span><span class="p">(</span>
-            <span class="n">in_name</span><span class="p">,</span> <span class="n">in_x</span><span class="p">,</span> <span class="n">in_y</span><span class="p">,</span> <span class="s1">&#39;entry&#39;</span><span class="p">,</span> <span class="n">in_lat</span><span class="p">,</span> <span class="n">in_lon</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">lf</span><span class="p">)</span>
+            <span class="n">in_name</span><span class="p">,</span> <span class="n">in_x</span><span class="p">,</span> <span class="n">in_y</span><span class="p">,</span> <span class="s1">&#39;entry&#39;</span><span class="p">,</span> <span class="n">in_lat</span><span class="p">,</span> <span class="n">in_lon</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">lf</span><span class="p">,</span> <span class="n">yaws</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">out_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">_make_node</span><span class="p">(</span>
-            <span class="n">out_name</span><span class="p">,</span> <span class="n">out_x</span><span class="p">,</span> <span class="n">out_y</span><span class="p">,</span> <span class="s1">&#39;exit&#39;</span><span class="p">,</span> <span class="n">out_lat</span><span class="p">,</span> <span class="n">out_lon</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">lf</span><span class="p">)</span>
+            <span class="n">out_name</span><span class="p">,</span> <span class="n">out_x</span><span class="p">,</span> <span class="n">out_y</span><span class="p">,</span> <span class="s1">&#39;exit&#39;</span><span class="p">,</span> <span class="n">out_lat</span><span class="p">,</span> <span class="n">out_lon</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">lf</span><span class="p">,</span> <span class="n">yaws</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">b_name</span> <span class="ow">in</span> <span class="n">pairwise</span><span class="p">([</span><span class="n">in_name</span><span class="p">,</span> <span class="o">*</span><span class="n">waypoint_names</span><span class="p">,</span> <span class="n">out_name</span><span class="p">]):</span>
             <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">a_name</span><span class="p">]</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">b_name</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">row_action</span><span class="p">)</span>
@@ -860,6 +871,29 @@
             <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">connect_to</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">NAV_ACTION</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">build</span></div>
 
+
+
+<span class="k">def</span> <span class="nf">_bearings</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the yaw in radians of each point on a path of two or more points.</span>
+
+<span class="sd">    A point faces the next one; the last point keeps the heading of the final segment. A segment</span>
+<span class="sd">    between coincident points has no heading of its own and takes that of the next nonzero segment,</span>
+<span class="sd">    or of the previous one when none follows. A path of coincident points gives yaw 0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">raw</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="k">else</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                               <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">pairwise</span><span class="p">(</span><span class="n">points</span><span class="p">)]</span>
+    <span class="n">following</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">))):</span>
+        <span class="k">if</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">raw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">following</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">following</span> <span class="o">=</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">segments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">previous</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">raw</span><span class="p">:</span>
+        <span class="n">previous</span> <span class="o">=</span> <span class="n">previous</span> <span class="k">if</span> <span class="n">heading</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">heading</span>
+        <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">previous</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="o">*</span><span class="n">segments</span><span class="p">,</span> <span class="n">segments</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
 
 
 <div class="viewcode-block" id="apply_row_nodes">

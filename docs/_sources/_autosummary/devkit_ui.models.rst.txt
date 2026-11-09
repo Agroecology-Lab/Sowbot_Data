@@ -4,6 +4,12 @@ devkit\_ui.models
 .. automodule:: devkit_ui.models
 
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      yaw_to_orientation
+   
    .. rubric:: Classes
 
    .. autosummary::

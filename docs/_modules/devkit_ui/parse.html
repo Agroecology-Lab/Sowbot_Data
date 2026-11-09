@@ -328,6 +328,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4"><code class="docutils literal notranslate"><span class="pre">Vector4</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.yaw_to_orientation"><code class="docutils literal notranslate"><span class="pre">yaw_to_orientation()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/devkit_ui.obstacles.html">devkit_ui.obstacles</a><ul>
@@ -612,11 +613,12 @@
              
   <h1>Source code for devkit_ui.parse</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
 
 <span class="kn">import</span> <span class="nn">yaml</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoEdge</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoProperties</span>
+<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoEdge</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoPose</span><span class="p">,</span> <span class="n">TopoProperties</span><span class="p">,</span> <span class="n">Vector4</span>
 
 
 <span class="k">def</span> <span class="nf">_topo_from_dict</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
@@ -649,8 +651,11 @@
                 <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TopoNode</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">x</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]),</span>
-            <span class="n">y</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span>
+            <span class="n">pose</span><span class="o">=</span><span class="n">TopoPose</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]),</span>
+                <span class="n">y</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span>
+                <span class="n">orientation</span><span class="o">=</span><span class="n">_orientation</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="s1">&#39;pose&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;orientation&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{},</span> <span class="n">name</span><span class="p">),</span>
+            <span class="p">),</span>
             <span class="n">edges</span><span class="o">=</span><span class="n">edges</span><span class="p">,</span>
             <span class="n">meta</span><span class="o">=</span><span class="n">meta</span><span class="p">,</span>
             <span class="n">properties</span><span class="o">=</span><span class="n">TopoProperties</span><span class="p">(</span><span class="o">**</span><span class="n">n</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">,</span> <span class="p">{})),</span>
@@ -667,6 +672,23 @@
         <span class="n">definitions</span><span class="o">=</span><span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;definitions&#39;</span><span class="p">,</span> <span class="p">{}),</span>
         <span class="n">transformation</span><span class="o">=</span><span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;transformation&#39;</span><span class="p">,</span> <span class="p">{}),</span>
     <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_orientation</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector4</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the quaternion of a pose mapping, with missing components as the identity rotation.</span>
+
+<span class="sd">    An absent orientation is the identity. A given one must be finite and not the zero quaternion,</span>
+<span class="sd">    which a partial mapping such as ``{w: 0}`` produces.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: A component is not a number, or the quaternion is not finite and nonzero.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">quaternion</span> <span class="o">=</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)),</span> <span class="n">y</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)),</span>
+                         <span class="n">z</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)),</span> <span class="n">w</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">raw</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">,</span> <span class="n">quaternion</span><span class="p">))</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="o">*</span><span class="n">quaternion</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;node </span><span class="si">{</span><span class="n">node_name</span><span class="si">}</span><span class="s1">: orientation </span><span class="si">{</span><span class="nb">dict</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="si">}</span><span class="s1"> is not a valid quaternion&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">quaternion</span>
+
 
 <div class="viewcode-block" id="parse_topo_yaml">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml">[docs]</a>
