@@ -615,15 +615,15 @@
            <div itemprop="articleBody">
              
   <section id="vision-system-roadmap-sowbot-avaota-a1">
-<h1>Vision System Roadmap — Sowbot / Avaota A1<a class="headerlink" href="#vision-system-roadmap-sowbot-avaota-a1" title="Link to this heading"></a></h1>
+<span id="vision-system-roadmap--sowbot--avaota-a1"></span><h1>Vision System Roadmap — Sowbot / Avaota A1<a class="headerlink" href="#vision-system-roadmap-sowbot-avaota-a1" title="Link to this heading"></a></h1>
 <section id="crop-row-node-yolox-nano-weed-detection-ros-2">
-<h2><code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> · YOLOX-Nano Weed Detection · ROS 2<a class="headerlink" href="#crop-row-node-yolox-nano-weed-detection-ros-2" title="Link to this heading"></a></h2>
+<span id="crop_row_node--yolox-nano-weed-detection--ros-2"></span><h2><code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> · YOLOX-Nano Weed Detection · ROS 2<a class="headerlink" href="#crop-row-node-yolox-nano-weed-detection-ros-2" title="Link to this heading"></a></h2>
 <p><strong>Deployment targets:</strong> UK outdoor lettuce · India young crop weeding
 <strong>Platform:</strong> Allwinner T527 (8× A55, Zhouyi Z2 NPU &#64; 2 TOPS)</p>
 </section>
 <hr class="docutils" />
 <section id="current-state-assessment">
-<h2>1. Current State Assessment<a class="headerlink" href="#current-state-assessment" title="Link to this heading"></a></h2>
+<span id="1-current-state-assessment"></span><h2>1. Current State Assessment<a class="headerlink" href="#current-state-assessment" title="Link to this heading"></a></h2>
 <section id="what-works-and-must-be-preserved">
 <h3>What works and must be preserved<a class="headerlink" href="#what-works-and-must-be-preserved" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> architecture is sound and should not be restructured.
@@ -771,13 +771,13 @@ benchmarked against this baseline.</p>
 </section>
 <hr class="docutils" />
 <section id="immediate-harden-what-exists">
-<h2>2. Immediate — Harden What Exists<a class="headerlink" href="#immediate-harden-what-exists" title="Link to this heading"></a></h2>
+<span id="2-immediate--harden-what-exists"></span><h2>2. Immediate — Harden What Exists<a class="headerlink" href="#immediate-harden-what-exists" title="Link to this heading"></a></h2>
 <section id="no-model-training-no-npu-sdk-no-architectural-changes">
 <h3>(No model training. No NPU SDK. No architectural changes.)<a class="headerlink" href="#no-model-training-no-npu-sdk-no-architectural-changes" title="Link to this heading"></a></h3>
 </section>
 <hr class="docutils" />
 <section id="m0-profile-on-device-week-1">
-<h3>M0 · Profile on-device (Week 1)<a class="headerlink" href="#m0-profile-on-device-week-1" title="Link to this heading"></a></h3>
+<span id="m0--profile-on-device-week-1"></span><h3>M0 · Profile on-device (Week 1)<a class="headerlink" href="#m0-profile-on-device-week-1" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Measure header-stamp → publish latency on the debug image</span>
 ros2<span class="w"> </span>topic<span class="w"> </span>delay<span class="w"> </span>/caatinga_vision/row_nav/debug_image
 
@@ -791,7 +791,7 @@ performance is valid without it.</p>
 </section>
 <hr class="docutils" />
 <section id="m1-normalised-exg-week-12">
-<h3>M1 · Normalised ExG (Week 1–2)<a class="headerlink" href="#m1-normalised-exg-week-12" title="Link to this heading"></a></h3>
+<span id="m1--normalised-exg-week-12"></span><h3>M1 · Normalised ExG (Week 1–2)<a class="headerlink" href="#m1-normalised-exg-week-12" title="Link to this heading"></a></h3>
 <p>The current ExG is unnormalised. Replace the calculation in
 <code class="docutils literal notranslate"><span class="pre">compute_exg_mask</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEFORE — unnormalised, saturates in bright sun</span>
@@ -819,7 +819,7 @@ collapses to zero contrast.</p>
 </section>
 <hr class="docutils" />
 <section id="m2-weed-exclusion-mask-week-23">
-<h3>M2 · Weed exclusion mask (Week 2–3)<a class="headerlink" href="#m2-weed-exclusion-mask-week-23" title="Link to this heading"></a></h3>
+<span id="m2--weed-exclusion-mask-week-23"></span><h3>M2 · Weed exclusion mask (Week 2–3)<a class="headerlink" href="#m2-weed-exclusion-mask-week-23" title="Link to this heading"></a></h3>
 <p>Before ExG processing, zero out image regions that YOLOX-Nano has already
 confirmed as weeds. This resolves the architectural conflict described in
 section 1 at zero additional inference cost.</p>
@@ -856,7 +856,7 @@ M3 (YOLOX validation) must precede relying on these boxes in production.</p>
 </section>
 <hr class="docutils" />
 <section id="m2-1-parameterise-the-dilation-kernel-week-23">
-<h3>M2.1 · Parameterise the dilation kernel (Week 2–3)<a class="headerlink" href="#m2-1-parameterise-the-dilation-kernel-week-23" title="Link to this heading"></a></h3>
+<span id="m21--parameterise-the-dilation-kernel-week-23"></span><h3>M2.1 · Parameterise the dilation kernel (Week 2–3)<a class="headerlink" href="#m2-1-parameterise-the-dilation-kernel-week-23" title="Link to this heading"></a></h3>
 <p>The 10×10 dilation kernel is hard-coded for a specific crop density.
 Lettuce at emergence has different spacing than lettuce at canopy closure,
 and Indian crop rows may have different plant separation entirely.</p>
@@ -877,13 +877,13 @@ system tuneable across crop stages without code changes.</p>
 </section>
 <hr class="docutils" />
 <section id="short-term-npu-weed-detection-deployment">
-<h2>3. Short-Term — NPU Weed Detection Deployment<a class="headerlink" href="#short-term-npu-weed-detection-deployment" title="Link to this heading"></a></h2>
+<span id="3-short-term--npu-weed-detection-deployment"></span><h2>3. Short-Term — NPU Weed Detection Deployment<a class="headerlink" href="#short-term-npu-weed-detection-deployment" title="Link to this heading"></a></h2>
 <section id="weeks-38">
 <h3>(Weeks 3–8)<a class="headerlink" href="#weeks-38" title="Link to this heading"></a></h3>
 </section>
 <hr class="docutils" />
 <section id="m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35">
-<h3>M3 · Validate YOLOX-Nano on UK lettuce weeds (Week 3–5)<a class="headerlink" href="#m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35" title="Link to this heading"></a></h3>
+<span id="m3--validate-yolox-nano-on-uk-lettuce-weeds-week-35"></span><h3>M3 · Validate YOLOX-Nano on UK lettuce weeds (Week 3–5)<a class="headerlink" href="#m3-validate-yolox-nano-on-uk-lettuce-weeds-week-35" title="Link to this heading"></a></h3>
 <p>Before any NPU bounding boxes are trusted as exclusion masks (M2), verify
 the model’s performance on the actual target weed species. Common weeds in
 UK outdoor lettuce:</p>
@@ -907,7 +907,7 @@ differ substantially from UK species.</p>
 </section>
 <hr class="docutils" />
 <section id="m4-npu-inference-latency-benchmark-week-46">
-<h3>M4 · NPU inference latency benchmark (Week 4–6)<a class="headerlink" href="#m4-npu-inference-latency-benchmark-week-46" title="Link to this heading"></a></h3>
+<span id="m4--npu-inference-latency-benchmark-week-46"></span><h3>M4 · NPU inference latency benchmark (Week 4–6)<a class="headerlink" href="#m4-npu-inference-latency-benchmark-week-46" title="Link to this heading"></a></h3>
 <p>After completing the Zhouyi SDK setup (see companion deployment guide),
 establish actual on-device timing before committing to any inference
 frequency targets:</p>
@@ -947,7 +947,7 @@ introduce a frame-skip strategy: NPU inference runs every N-th frame,
 </section>
 <hr class="docutils" />
 <section id="m5-composable-node-container-integration-week-56">
-<h3>M5 · Composable node container integration (Week 5–6)<a class="headerlink" href="#m5-composable-node-container-integration-week-56" title="Link to this heading"></a></h3>
+<span id="m5--composable-node-container-integration-week-56"></span><h3>M5 · Composable node container integration (Week 5–6)<a class="headerlink" href="#m5-composable-node-container-integration-week-56" title="Link to this heading"></a></h3>
 <p>Formalise the shared-topic, intra-process architecture from section 1 into
 the production launch file. Verify with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>component<span class="w"> </span>list
@@ -964,7 +964,7 @@ composable node.</p>
 </section>
 <hr class="docutils" />
 <section id="medium-term-replace-exg-with-npu-segmentation">
-<h2>4. Medium-Term — Replace ExG with NPU Segmentation<a class="headerlink" href="#medium-term-replace-exg-with-npu-segmentation" title="Link to this heading"></a></h2>
+<span id="4-medium-term--replace-exg-with-npu-segmentation"></span><h2>4. Medium-Term — Replace ExG with NPU Segmentation<a class="headerlink" href="#medium-term-replace-exg-with-npu-segmentation" title="Link to this heading"></a></h2>
 <section id="months-24">
 <h3>(Months 2–4)<a class="headerlink" href="#months-24" title="Link to this heading"></a></h3>
 <p>This is the highest-impact change and the most work. ExG with weed masking
@@ -973,7 +973,7 @@ begins.</p>
 </section>
 <hr class="docutils" />
 <section id="m6-training-data-collection-months-13-parallel-workstream">
-<h3>M6 · Training data collection (Months 1–3, parallel workstream)<a class="headerlink" href="#m6-training-data-collection-months-13-parallel-workstream" title="Link to this heading"></a></h3>
+<span id="m6--training-data-collection-months-13-parallel-workstream"></span><h3>M6 · Training data collection (Months 1–3, parallel workstream)<a class="headerlink" href="#m6-training-data-collection-months-13-parallel-workstream" title="Link to this heading"></a></h3>
 <p>This is the long-lead item that gates everything in section 4.
 Begin immediately in parallel with M0–M5.</p>
 <p><strong>Target: 1,200 pixel-wise labelled images, three classes:</strong>
@@ -1031,7 +1031,7 @@ this step.</p>
 </section>
 <hr class="docutils" />
 <section id="m7-segmentation-model-selection-and-training-month-24">
-<h3>M7 · Segmentation model selection and training (Month 2–4)<a class="headerlink" href="#m7-segmentation-model-selection-and-training-month-24" title="Link to this heading"></a></h3>
+<span id="m7--segmentation-model-selection-and-training-month-24"></span><h3>M7 · Segmentation model selection and training (Month 2–4)<a class="headerlink" href="#m7-segmentation-model-selection-and-training-month-24" title="Link to this heading"></a></h3>
 <p><strong>Target architecture: MobileNetV2 + LR-ASPP at 320×240 input.</strong></p>
 <table class="docutils align-default">
 <thead>
@@ -1083,7 +1083,7 @@ float model mIoU before deployment</p></li>
 </section>
 <hr class="docutils" />
 <section id="m8-integration-into-crop-row-node-month-34">
-<h3>M8 · Integration into <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> (Month 3–4)<a class="headerlink" href="#m8-integration-into-crop-row-node-month-34" title="Link to this heading"></a></h3>
+<span id="m8--integration-into-crop_row_node-month-34"></span><h3>M8 · Integration into <code class="docutils literal notranslate"><span class="pre">crop_row_node</span></code> (Month 3–4)<a class="headerlink" href="#m8-integration-into-crop-row-node-month-34" title="Link to this heading"></a></h3>
 <p>The segmentation output replaces exactly two function calls. Everything
 downstream is unchanged:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># BEFORE</span>
@@ -1113,13 +1113,13 @@ weeder position), not for navigation</p></li>
 </section>
 <hr class="docutils" />
 <section id="long-term-semantic-field-navigation">
-<h2>5. Long-Term — Semantic Field Navigation<a class="headerlink" href="#long-term-semantic-field-navigation" title="Link to this heading"></a></h2>
+<span id="5-long-term--semantic-field-navigation"></span><h2>5. Long-Term — Semantic Field Navigation<a class="headerlink" href="#long-term-semantic-field-navigation" title="Link to this heading"></a></h2>
 <section id="months-612">
 <h3>(Months 6–12)<a class="headerlink" href="#months-612" title="Link to this heading"></a></h3>
 </section>
 <hr class="docutils" />
 <section id="m9-row-end-and-headland-detection-month-6">
-<h3>M9 · Row-end and headland detection (Month 6)<a class="headerlink" href="#m9-row-end-and-headland-detection-month-6" title="Link to this heading"></a></h3>
+<span id="m9--row-end-and-headland-detection-month-6"></span><h3>M9 · Row-end and headland detection (Month 6)<a class="headerlink" href="#m9-row-end-and-headland-detection-month-6" title="Link to this heading"></a></h3>
 <p>The current node has no concept of reaching the end of a row. Add a
 <code class="docutils literal notranslate"><span class="pre">headland</span></code> class to the segmentation model trained in M7. Publish:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">aoc</span><span class="o">/</span><span class="n">conditions</span><span class="o">/</span><span class="n">row_end</span>   <span class="p">(</span><span class="n">std_msgs</span><span class="o">/</span><span class="n">Bool</span><span class="p">)</span>
@@ -1130,7 +1130,7 @@ the need for a separate sensor or waypoint-based row-end detection.</p>
 </section>
 <hr class="docutils" />
 <section id="m10-row-identity-and-cross-row-localisation-month-78">
-<h3>M10 · Row identity and cross-row localisation (Month 7–8)<a class="headerlink" href="#m10-row-identity-and-cross-row-localisation-month-78" title="Link to this heading"></a></h3>
+<span id="m10--row-identity-and-cross-row-localisation-month-78"></span><h3>M10 · Row identity and cross-row localisation (Month 7–8)<a class="headerlink" href="#m10-row-identity-and-cross-row-localisation-month-78" title="Link to this heading"></a></h3>
 <p>The polyfit gives row-relative position but no global field map. After
 segmentation is stable, add a row-counter derived from frame-to-frame
 tracking of the lateral phase of detected row positions. This allows the
@@ -1145,7 +1145,7 @@ segmentation output.</p>
 </section>
 <hr class="docutils" />
 <section id="m11-weed-pressure-maps-month-89">
-<h3>M11 · Weed pressure maps (Month 8–9)<a class="headerlink" href="#m11-weed-pressure-maps-month-89" title="Link to this heading"></a></h3>
+<span id="m11--weed-pressure-maps-month-89"></span><h3>M11 · Weed pressure maps (Month 8–9)<a class="headerlink" href="#m11-weed-pressure-maps-month-89" title="Link to this heading"></a></h3>
 <p>Accumulate weed detections across the field geo-referenced by wheel
 odometry or RTK-GPS. Publish as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">aoc</span><span class="o">/</span><span class="n">maps</span><span class="o">/</span><span class="n">weed_pressure</span>   <span class="p">(</span><span class="n">nav_msgs</span><span class="o">/</span><span class="n">OccupancyGrid</span><span class="p">)</span>
@@ -1158,7 +1158,7 @@ Marque standards, even for mechanical weeding operations.</p>
 </section>
 <hr class="docutils" />
 <section id="m12-multi-task-unified-network-month-912">
-<h3>M12 · Multi-task unified network (Month 9–12)<a class="headerlink" href="#m12-multi-task-unified-network-month-912" title="Link to this heading"></a></h3>
+<span id="m12--multi-task-unified-network-month-912"></span><h3>M12 · Multi-task unified network (Month 9–12)<a class="headerlink" href="#m12-multi-task-unified-network-month-912" title="Link to this heading"></a></h3>
 <p>Replace the two-model time-sharing arrangement with a single network:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Shared MobileNetV2 encoder
   │

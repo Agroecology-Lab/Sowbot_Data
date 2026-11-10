@@ -661,7 +661,7 @@ Numbers marked <em>proposed</em> are starting points to argue about, not require
 <section id="steps">
 <h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
 <section id="bench-wheels-off-the-ground">
-<h3>1. Bench (wheels off the ground)<a class="headerlink" href="#bench-wheels-off-the-ground" title="Link to this heading"></a></h3>
+<span id="1-bench-wheels-off-the-ground"></span><h3>1. Bench (wheels off the ground)<a class="headerlink" href="#bench-wheels-off-the-ground" title="Link to this heading"></a></h3>
 <p>Purpose: confirm the control chain without the vehicle moving.</p>
 <ul class="simple">
 <li><p>Stop sources checked: physical E-stop, bumpers, radar trip, soft E-stop, <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> loss, bridge loss, dashboard disconnect.</p></li>
@@ -671,7 +671,7 @@ Numbers marked <em>proposed</em> are starting points to argue about, not require
 <p>Exit criteria (proposed): every stop source stops the drive on the bench, ten times in a row; command-loss latency measured and below the value the stopping-distance budget needs.</p>
 </section>
 <section id="hard-standing-vehicle-on-the-ground-no-crop">
-<h3>2. Hard standing (vehicle on the ground, no crop)<a class="headerlink" href="#hard-standing-vehicle-on-the-ground-no-crop" title="Link to this heading"></a></h3>
+<span id="2-hard-standing-vehicle-on-the-ground-no-crop"></span><h3>2. Hard standing (vehicle on the ground, no crop)<a class="headerlink" href="#hard-standing-vehicle-on-the-ground-no-crop" title="Link to this heading"></a></h3>
 <p>Purpose: measure stopping distance and basic tracking on a surface where slip is small.</p>
 <ul class="simple">
 <li><p>Stopping distance for every stop source at 0.5 and 1.6 m/s (O33, O20).</p></li>
@@ -681,7 +681,7 @@ Numbers marked <em>proposed</em> are starting points to argue about, not require
 <p>Exit criteria (proposed): stopping distances written down for every source and inside the detection and boundary margins used in O20 and O29; the degraded-GNSS response is defined and observed.</p>
 </section>
 <section id="empty-field">
-<h3>3. Empty field<a class="headerlink" href="#empty-field" title="Link to this heading"></a></h3>
+<span id="3-empty-field"></span><h3>3. Empty field<a class="headerlink" href="#empty-field" title="Link to this heading"></a></h3>
 <p>Purpose: real ground, slip and GNSS conditions, with no crop to damage.</p>
 <ul class="simple">
 <li><p>Cross-track error over several row passes at working speed.</p></li>
@@ -692,7 +692,7 @@ Operate inside a physical boundary or under direct supervision, the geofence is 
 <p>Exit criteria (proposed): metrics recorded for at least several hours of running; no unexplained intervention; the fence breach action confirmed to be a stop or hold (O22 a).</p>
 </section>
 <section id="supervised-crop-rows">
-<h3>4. Supervised crop rows<a class="headerlink" href="#supervised-crop-rows" title="Link to this heading"></a></h3>
+<span id="4-supervised-crop-rows"></span><h3>4. Supervised crop rows<a class="headerlink" href="#supervised-crop-rows" title="Link to this heading"></a></h3>
 <p>Purpose: working conditions with crop present.</p>
 <ul class="simple">
 <li><p>Cross-track error and interventions per hour in the crop, with <code class="docutils literal notranslate"><span class="pre">sowbot_row_follow</span></code> row-loss handling exercised.</p></li>

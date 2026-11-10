@@ -618,7 +618,7 @@
 <p><strong>Proposed Title:</strong> Terramechanics-Informed State Estimation for Tracked Autonomous Rovers: Integrating Direct Visual-Inertial Odometry and 23-State Adaptive Fusion in Gazebo
 <strong>Target Venue:</strong> <em>Journal of Field Robotics (JFR)</em> or <em>IEEE Robotics and Automation Letters (RA-L)</em></p>
 <section id="authors-affiliations">
-<h2>Authors &amp; Affiliations<a class="headerlink" href="#authors-affiliations" title="Link to this heading"></a></h2>
+<span id="authors--affiliations"></span><h2>Authors &amp; Affiliations<a class="headerlink" href="#authors-affiliations" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Khalid Bourr (Corresponding Author):</strong> Mechatronics &amp; Robotics Lab, University of Trieste, Italy (<em>unitsSpaceLab</em>).</p></li>
 <li><p><strong>Manan Kharwar:</strong> Independent Researcher, Hamilton, ON, Canada.</p></li>
@@ -632,13 +632,13 @@
 </section>
 <hr class="docutils" />
 <section id="introduction-and-motivation">
-<h2>1. Introduction and Motivation<a class="headerlink" href="#introduction-and-motivation" title="Link to this heading"></a></h2>
+<span id="1-introduction-and-motivation"></span><h2>1. Introduction and Motivation<a class="headerlink" href="#introduction-and-motivation" title="Link to this heading"></a></h2>
 <p>Tracked vehicles in agriculture require centimeter-level precision for tasks like automated seeding, yet rely on tracks that inherently slip and shear against the topsoil to steer. Traditional navigation stacks treat the ground as a rigid 2D plane. When the Sowbot traverses wet clay, track encoders report forward motion while the vehicle is actually digging into the soil.</p>
 <p>This paper solves this reality gap through a three-pillar architecture: a high-fidelity terramechanics simulation engine for validation, a local visual-inertial tracking engine, and a 23-state adaptive filter that cross-references physical slip against optical flow.</p>
 </section>
 <hr class="docutils" />
 <section id="system-architecture">
-<h2>2. System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading"></a></h2>
+<span id="2-system-architecture"></span><h2>2. System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading"></a></h2>
 <p>The proposed stack bridges high-rate VIO with adaptive state estimation, validated through procedural physics simulations.</p>
 <table class="docutils align-default">
 <thead>
@@ -665,7 +665,7 @@
 </section>
 <hr class="docutils" />
 <section id="experimental-validation-in-gazebo">
-<h2>3. Experimental Validation in Gazebo<a class="headerlink" href="#experimental-validation-in-gazebo" title="Link to this heading"></a></h2>
+<span id="3-experimental-validation-in-gazebo"></span><h2>3. Experimental Validation in Gazebo<a class="headerlink" href="#experimental-validation-in-gazebo" title="Link to this heading"></a></h2>
 <p>To prove the framework without risking physical hardware, the system is rigorously tested in a simulated high-slip environment:</p>
 <ol class="arabic simple">
 <li><p><strong>Environment Generation:</strong> High-resolution digital elevation models (DEM) of agricultural fields are processed using <code class="docutils literal notranslate"><span class="pre">Forest3D</span></code>. The resulting Gazebo world is populated with procedural vegetation to create realistic visual occlusions.</p></li>
@@ -675,7 +675,7 @@
 </section>
 <hr class="docutils" />
 <section id="bibliography-and-prior-work">
-<h2>4. Bibliography and Prior Work<a class="headerlink" href="#bibliography-and-prior-work" title="Link to this heading"></a></h2>
+<span id="4-bibliography-and-prior-work"></span><h2>4. Bibliography and Prior Work<a class="headerlink" href="#bibliography-and-prior-work" title="Link to this heading"></a></h2>
 <p>The foundational frameworks enabling this research are rooted in the authors’ prior active developments in state estimation and simulation:</p>
 <p><strong>FusionCore &amp; State Estimation (Manan Kharwar)</strong></p>
 <ul class="simple">

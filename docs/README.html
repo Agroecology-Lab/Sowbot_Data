@@ -949,7 +949,7 @@ The progression from bench to supervised rows, with exit criteria for each step,
 </section>
 </section>
 <section id="critical-safety-warning">
-<h1>⚠️ CRITICAL SAFETY WARNING:<a class="headerlink" href="#critical-safety-warning" title="Link to this heading"></a></h1>
+<span id="-critical-safety-warning"></span><h1>⚠️ CRITICAL SAFETY WARNING:<a class="headerlink" href="#critical-safety-warning" title="Link to this heading"></a></h1>
 <p>This software is under active development and may be broken at any given moment.
 For a stable reference implementation see the upstream Zauberzeug project.</p>
 <p><strong>THIS SOFTWARE COULD CONTROL PHYSICAL HARDWARE CAPABLE OF PRODUCING SIGNIFICANT KINETIC FORCE.</strong></p>
@@ -989,7 +989,7 @@ If you are allergic to slop, please help us refactor.</p>
 </ul>
 </section>
 <section id="install-dependencies">
-<h3>0. Install dependencies<a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h3>
+<span id="0-install-dependencies"></span><h3>0. Install dependencies<a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h3>
 <section id="linux">
 <h4>Linux<a class="headerlink" href="#linux" title="Link to this heading"></a></h4>
 <ul class="simple">
@@ -1018,7 +1018,7 @@ If you are allergic to slop, please help us refactor.</p>
 </section>
 </section>
 <section id="clone-the-repository">
-<h3>1. Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading"></a></h3>
+<span id="1-clone-the-repository"></span><h3>1. Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading"></a></h3>
 <p>Open a terminal on your host machine and download the workspace:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>caatinga-dev<span class="w"> </span>https://github.com/Agroecology-Lab/Sowbot.git
 <span class="nb">cd</span><span class="w"> </span>Sowbot
@@ -1026,7 +1026,7 @@ If you are allergic to slop, please help us refactor.</p>
 </div>
 </section>
 <section id="build-launch">
-<h3>2. Build &amp; Launch<a class="headerlink" href="#build-launch" title="Link to this heading"></a></h3>
+<span id="2-build--launch"></span><h3>2. Build &amp; Launch<a class="headerlink" href="#build-launch" title="Link to this heading"></a></h3>
 <p>Use the management script to build the ROS 2 workspace and launch the robot stack.
 This script automatically handles hardware discovery and port permissions:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./manage.py<span class="w"> </span>full-build
@@ -1090,9 +1090,9 @@ A stationary sensor therefore publishes slower than 100 Hz, and the linear veloc
 </section>
 </section>
 <section id="management-tools">
-<h2>Management &amp; Tools<a class="headerlink" href="#management-tools" title="Link to this heading"></a></h2>
+<span id="management--tools"></span><h2>Management &amp; Tools<a class="headerlink" href="#management-tools" title="Link to this heading"></a></h2>
 <section id="manage-py">
-<h3>manage.py<a class="headerlink" href="#manage-py" title="Link to this heading"></a></h3>
+<span id="managepy"></span><h3>manage.py<a class="headerlink" href="#manage-py" title="Link to this heading"></a></h3>
 <p>The primary entry point for the system.
 While it runs the full stack by default, it supports several optional arguments for development:</p>
 <table class="docutils align-default">
@@ -1233,7 +1233,7 @@ For mouse-wheel scrolling instead, add <code class="docutils literal notranslate
 <section id="sketch-of-mvp-2026-architecture">
 <h2>Sketch of MVP 2026 architecture<a class="headerlink" href="#sketch-of-mvp-2026-architecture" title="Link to this heading"></a></h2>
 <section id="the-flight-controller-rt-microcontroller">
-<h3>1. The Flight Controller (RT Microcontroller)<a class="headerlink" href="#the-flight-controller-rt-microcontroller" title="Link to this heading"></a></h3>
+<span id="1-the-flight-controller-rt-microcontroller"></span><h3>1. The Flight Controller (RT Microcontroller)<a class="headerlink" href="#the-flight-controller-rt-microcontroller" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Hardware:</strong> <a class="reference external" href="https://github.com/piecol/LEVIA-H7">LEVIA-H7</a> (STM32H743).
 Unvalidated, in bring-up.</p></li>
@@ -1247,7 +1247,7 @@ Kept for existing hardware, no new features.</p></li>
 </ul>
 </section>
 <section id="the-limbic-system-executive">
-<h3>2. The Limbic System (Executive)<a class="headerlink" href="#the-limbic-system-executive" title="Link to this heading"></a></h3>
+<span id="2-the-limbic-system-executive"></span><h3>2. The Limbic System (Executive)<a class="headerlink" href="#the-limbic-system-executive" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Hardware:</strong> Avaota A1 #1 (Allwinner T527).</p></li>
 <li><p><strong>Software:</strong> ROS 2 Jazzy + <code class="docutils literal notranslate"><span class="pre">topological_navigation</span></code> (<code class="docutils literal notranslate"><span class="pre">main</span></code>).</p></li>
@@ -1260,7 +1260,7 @@ Translates graph goals into velocity commands for the flight controller.</p></li
 <p><strong>&lt;1GbE interconnect between 2&amp;3&gt;</strong></p>
 </section>
 <section id="the-neo-perception">
-<h3>3. The Neo (Perception)<a class="headerlink" href="#the-neo-perception" title="Link to this heading"></a></h3>
+<span id="3-the-neo-perception"></span><h3>3. The Neo (Perception)<a class="headerlink" href="#the-neo-perception" title="Link to this heading"></a></h3>
 <ul>
 <li><p><strong>Hardware:</strong> Avaota A1 #2 (Allwinner T527 + NPU).</p></li>
 <li><p><strong>Software:</strong> Dockerised ROS 2 Jazzy.</p></li>
@@ -1280,7 +1280,7 @@ Publishes environment states and “Conditions” to the Zenoh network.</p>
 <p>Research only (TRL 1 to 2 in the roadmap above), not a commitment.
 It would replace ArduPilot on the controller, which is the current path.</p>
 <section id="the-real-time-controller-hardware-abstraction">
-<h3>1. The Real-Time Controller (Hardware Abstraction)<a class="headerlink" href="#the-real-time-controller-hardware-abstraction" title="Link to this heading"></a></h3>
+<span id="1-the-real-time-controller-hardware-abstraction"></span><h3>1. The Real-Time Controller (Hardware Abstraction)<a class="headerlink" href="#the-real-time-controller-hardware-abstraction" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Hardware:</strong> <a class="reference external" href="https://oshwhub.com/6676a/stm32h745zit6_core">STM32 H7 MCU</a>.</p></li>
 <li><p><strong>Software:</strong> copper-rs.</p></li>
@@ -1290,7 +1290,7 @@ It would replace ArduPilot on the controller, which is the current path.</p>
 </ul>
 </section>
 <section id="id2">
-<h3>2. The Limbic System (Executive)<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<span id="2-the-limbic-system-executive-1"></span><h3>2. The Limbic System (Executive)<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Hardware:</strong> Avaota A1 #1 (Allwinner T527).</p></li>
 <li><p><strong>Software:</strong> RT kernel, Buildroot <code class="docutils literal notranslate"><span class="pre">copper-rs</span></code></p></li>
@@ -1327,7 +1327,7 @@ It would replace ArduPilot on the controller, which is the current path.</p>
 <p><strong>&lt;1GbE interconnect between 2&amp;3&gt;</strong></p>
 </section>
 <section id="id3">
-<h3>3. The Neo (Perception)<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<span id="3-the-neo-perception-1"></span><h3>3. The Neo (Perception)<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Hardware:</strong> Avaota A1 #2 (Allwinner T527 + NPU).</p></li>
 <li><p><strong>Software:</strong> Dockerised ROS 2 Jazzy &amp; Dockerised CV packages</p></li>
@@ -1339,11 +1339,11 @@ Publishes environment states and “Conditions” to the Zenoh network.</p></li>
 </section>
 </section>
 <section id="licenses-papers">
-<h2>Licenses &amp; papers<a class="headerlink" href="#licenses-papers" title="Link to this heading"></a></h2>
+<span id="licenses--papers"></span><h2>Licenses &amp; papers<a class="headerlink" href="#licenses-papers" title="Link to this heading"></a></h2>
 </section>
 </section>
 <section id="sowbot-dependency-licence-audit">
-<h1>Sowbot — Dependency Licence Audit<a class="headerlink" href="#sowbot-dependency-licence-audit" title="Link to this heading"></a></h1>
+<span id="sowbot--dependency-licence-audit"></span><h1>Sowbot — Dependency Licence Audit<a class="headerlink" href="#sowbot-dependency-licence-audit" title="Link to this heading"></a></h1>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Component</p></th>
