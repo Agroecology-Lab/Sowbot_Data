@@ -1,0 +1,18 @@
+sowbot\_avoid.graph
+===================
+
+.. automodule:: sowbot_avoid.graph
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      seg_dist
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Graph
+   

@@ -1,0 +1,12 @@
+sowbot\_avoid.agent
+===================
+
+.. automodule:: sowbot_avoid.agent
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Agent
+   

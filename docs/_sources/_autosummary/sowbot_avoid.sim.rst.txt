@@ -1,0 +1,20 @@
+sowbot\_avoid.sim
+=================
+
+.. automodule:: sowbot_avoid.sim
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      grid
+      simulate
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SimDriver
+      World
+   

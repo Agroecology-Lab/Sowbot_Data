@@ -1,0 +1,18 @@
+devkit\_mavlink\_bridge.mavlink\_bridge\_node
+=============================================
+
+.. automodule:: devkit_mavlink_bridge.mavlink_bridge_node
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      main
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MavlinkBridgeNode
+   

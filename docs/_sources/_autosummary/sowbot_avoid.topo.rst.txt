@@ -1,0 +1,27 @@
+sowbot\_avoid.topo
+==================
+
+.. automodule:: sowbot_avoid.topo
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      digest_of
+      is_dock
+      load_topo
+      to_fixture
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TopoMap
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      TopoError
+   

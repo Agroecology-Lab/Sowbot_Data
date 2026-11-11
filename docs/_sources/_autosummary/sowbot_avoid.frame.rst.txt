@@ -1,0 +1,12 @@
+sowbot\_avoid.frame
+===================
+
+.. automodule:: sowbot_avoid.frame
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Frame
+   
