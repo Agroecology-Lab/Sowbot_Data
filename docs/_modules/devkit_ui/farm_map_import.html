@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.farm_map_import &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -765,15 +765,15 @@
 
 <span class="sd">This module only validates and describes. It does not touch the topological map.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Sequence</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">replace</span>
-<span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">replace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.row_plan_format</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.row_plan_format</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">MAX_BYTES</span><span class="p">,</span>
     <span class="n">MAX_POINTS_PER_ROW</span><span class="p">,</span>
     <span class="n">MAX_ROWS</span><span class="p">,</span>
@@ -791,7 +791,7 @@
 
 <div class="viewcode-block" id="FarmMapError">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMapError">[docs]</a>
-<span class="k">class</span> <span class="nc">FarmMapError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FarmMapError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The farm map file is malformed, fails its hash, or is not one a robot should run.&quot;&quot;&quot;</span></div>
 
 
@@ -799,7 +799,7 @@
 <div class="viewcode-block" id="FieldRows">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FieldRows">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">FieldRows</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FieldRows</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The rows of one field, in mission order. ``rows`` are PlanRow with the LiteFarm row number.&quot;&quot;&quot;</span>
 
     <span class="n">field_number</span><span class="p">:</span> <span class="nb">int</span>
@@ -814,7 +814,7 @@
 <div class="viewcode-block" id="FarmDock">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmDock">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">FarmDock</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FarmDock</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A dock point. ``heading_deg`` is None when the map gives no heading.&quot;&quot;&quot;</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
@@ -827,7 +827,7 @@
 <div class="viewcode-block" id="FarmRoute">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmRoute">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">FarmRoute</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FarmRoute</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A route from a dock to a row end, as (lat, lon) points.</span>
 
 <span class="sd">    ``from_node`` names a dock and ``to_node`` a row node (``F&lt;field&gt;R&lt;row&gt;N&lt;n&gt;``). The first point is the</span>
@@ -846,7 +846,7 @@
 <div class="viewcode-block" id="FarmMap">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">FarmMap</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FarmMap</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A verified farm map.&quot;&quot;&quot;</span>
 
     <span class="n">farm_map_id</span><span class="p">:</span> <span class="nb">str</span>
@@ -862,36 +862,36 @@
     <span class="n">routes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">FarmRoute</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">origin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">origin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the (lat, lon) the first field was planned from, or the start of its first row.&quot;&quot;&quot;</span>
         <span class="n">first</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">first</span><span class="o">.</span><span class="n">origin</span> <span class="ow">or</span> <span class="n">first</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">contour</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contour</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether any field was planned along contours, so rows get waypoints.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">contour</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">hash8</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hash8</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the first 8 hex characters of the hash, as carried in station missions.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_hash</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">row_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">row_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return how many row fragments the map holds.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FarmMap.swaths">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap.swaths">[docs]</a>
-    <span class="k">def</span> <span class="nf">swaths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">swaths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return every row as (lat, lon) points, fields in number order, rows in mission order.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">points</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">rows</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="FarmMap.break_after">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.FarmMap.break_after">[docs]</a>
-    <span class="k">def</span> <span class="nf">break_after</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">break_after</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return swath indices that must not get a headland edge to the next swath.</span>
 
 <span class="sd">        That is the last swath of each field, and any swath followed by another fragment of the same row.</span>
@@ -911,7 +911,7 @@
 
 <div class="viewcode-block" id="farm_map_hash">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.farm_map_hash">[docs]</a>
-<span class="k">def</span> <span class="nf">farm_map_hash</span><span class="p">(</span><span class="n">fields</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">FieldRows</span><span class="p">],</span> <span class="n">docks</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FarmDock</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">routes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FarmRoute</span><span class="p">]</span> <span class="o">=</span> <span class="p">())</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">farm_map_hash</span><span class="p">(</span><span class="n">fields</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">FieldRows</span><span class="p">],</span> <span class="n">docks</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FarmDock</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">routes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FarmRoute</span><span class="p">]</span> <span class="o">=</span> <span class="p">())</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the farm map hash LiteFarm computes.</span>
 
 <span class="sd">    It is the SHA-256 of ``[[field,&lt;rows&gt;],...]`` by field number. A map with docks or routes continues with</span>
@@ -929,16 +929,16 @@
 
 <div class="viewcode-block" id="canonical_features_text">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.canonical_features_text">[docs]</a>
-<span class="k">def</span> <span class="nf">canonical_features_text</span><span class="p">(</span><span class="n">docks</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FarmDock</span><span class="p">],</span> <span class="n">routes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FarmRoute</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">canonical_features_text</span><span class="p">(</span><span class="n">docks</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FarmDock</span><span class="p">],</span> <span class="n">routes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FarmRoute</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the canonical text of docks and routes, as LiteFarm&#39;s canonicalFeaturesText writes it.</span>
 
 <span class="sd">    ``[[&quot;dock&quot;,name,heading,from,to,[[lon,lat],...]],...]``: docks first, then routes, each by name. A heading</span>
 <span class="sd">    is written as a JavaScript number would be (``1``, not ``1.0``) or ``null``, a name as ``&quot;name&quot;`` or ``null``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">&#39;null&#39;</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
 
-    <span class="k">def</span> <span class="nf">heading</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">heading</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="s1">&#39;null&#39;</span>
         <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -949,7 +949,7 @@
         <span class="n">mantissa</span><span class="p">,</span> <span class="n">exponent</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mantissa</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">e</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">exponent</span><span class="p">)</span><span class="si">:</span><span class="s1">+d</span><span class="si">}</span><span class="s1">&#39;</span>
 
-    <span class="k">def</span> <span class="nf">points</span><span class="p">(</span><span class="n">pts</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="n">pts</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">&#39;[&#39;</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">format_coordinate</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">format_coordinate</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span><span class="si">}</span><span class="s1">]&#39;</span> <span class="k">for</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span>
 
     <span class="n">entries</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;[&quot;dock&quot;,&quot;</span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;,</span><span class="si">{</span><span class="n">heading</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">heading_deg</span><span class="p">)</span><span class="si">}</span><span class="s1">,null,null,</span><span class="si">{</span><span class="n">points</span><span class="p">([(</span><span class="n">d</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="o">.</span><span class="n">lon</span><span class="p">)])</span><span class="si">}</span><span class="s1">]&#39;</span>
@@ -962,7 +962,7 @@
 
 <div class="viewcode-block" id="looks_like_farm_map">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.looks_like_farm_map">[docs]</a>
-<span class="k">def</span> <span class="nf">looks_like_farm_map</span><span class="p">(</span><span class="n">text_or_doc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">looks_like_farm_map</span><span class="p">(</span><span class="n">text_or_doc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether a file is a farm map export (it names a ``farm_map_id``), without validating it.&quot;&quot;&quot;</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">text_or_doc</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -975,14 +975,14 @@
 
 
 
-<span class="k">def</span> <span class="nf">_int</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">minimum</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_int</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">minimum</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return value as an int of at least ``minimum``, or raise FarmMapError labelled with what.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">minimum</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">FarmMapError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">what</span><span class="si">}</span><span class="s1">: must be an integer of at least </span><span class="si">{</span><span class="n">minimum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">value</span>
 
 
-<span class="k">def</span> <span class="nf">_points</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_points</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return GeoJSON [lon, lat] positions as (lat, lon) tuples, or raise FarmMapError.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">MAX_POINTS_PER_ROW</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">FarmMapError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">what</span><span class="si">}</span><span class="s1">: needs 2 to </span><span class="si">{</span><span class="n">MAX_POINTS_PER_ROW</span><span class="si">}</span><span class="s1"> points&#39;</span><span class="p">)</span>
@@ -998,7 +998,7 @@
     <span class="k">return</span> <span class="n">points</span>
 
 
-<span class="k">def</span> <span class="nf">_name</span><span class="p">(</span><span class="n">fp</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_name</span><span class="p">(</span><span class="n">fp</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the feature&#39;s name, or raise FarmMapError.&quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">ID_PATTERN</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
@@ -1006,7 +1006,7 @@
     <span class="k">return</span> <span class="n">name</span>
 
 
-<span class="k">def</span> <span class="nf">_dock</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fp</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FarmDock</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_dock</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fp</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FarmDock</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the dock a ``dock`` feature describes, or raise FarmMapError.&quot;&quot;&quot;</span>
     <span class="n">geometry</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="n">geometry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;Point&#39;</span><span class="p">:</span>
@@ -1019,7 +1019,7 @@
     <span class="k">return</span> <span class="n">FarmDock</span><span class="p">(</span><span class="n">_name</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">what</span><span class="p">),</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">heading</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">heading</span><span class="p">))</span>
 
 
-<span class="k">def</span> <span class="nf">_route</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fp</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FarmRoute</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_route</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fp</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FarmRoute</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the route a ``route`` feature describes, or raise FarmMapError.&quot;&quot;&quot;</span>
     <span class="n">geometry</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="n">geometry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;LineString&#39;</span><span class="p">:</span>
@@ -1032,7 +1032,7 @@
 
 <div class="viewcode-block" id="parse_farm_map">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.farm_map_import.html#devkit_ui.farm_map_import.parse_farm_map">[docs]</a>
-<span class="k">def</span> <span class="nf">parse_farm_map</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">accept_retired</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FarmMap</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_farm_map</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">accept_retired</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FarmMap</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse a LiteFarm farm map export and verify its content hash.</span>
 
 <span class="sd">    Checks: version 1; ``multi_field``; a ``farm_map_id`` and ``content_hash`` in the allowed format; status</span>
@@ -1051,7 +1051,7 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">FarmMapError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;not valid JSON: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
+        <span class="k">raise</span> <span class="n">FarmMapError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;not valid JSON: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">error</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;FeatureCollection&#39;</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">FarmMapError</span><span class="p">(</span><span class="s1">&#39;not a GeoJSON FeatureCollection&#39;</span><span class="p">)</span>
     <span class="n">props</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">)</span>
@@ -1155,7 +1155,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">check_rows</span><span class="p">(</span><span class="n">rows_by_field</span><span class="p">[</span><span class="n">number</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">FarmMapError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;field </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
+            <span class="k">raise</span> <span class="n">FarmMapError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;field </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">error</span>
         <span class="n">meta</span> <span class="o">=</span> <span class="n">field_meta</span><span class="p">[</span><span class="n">number</span><span class="p">]</span>
         <span class="n">origin</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">origin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

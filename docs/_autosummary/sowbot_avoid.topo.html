@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sowbot_avoid.topo &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -794,63 +794,63 @@ node has no docks and nothing in the package assumes one.</p>
 </table>
 <dl class="py exception">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoError">
-<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.topo.</span></span><span class="sig-name descname"><span class="pre">TopoError</span></span><a class="reference internal" href="../_modules/sowbot_avoid/topo.html#TopoError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.topo.TopoError" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.topo.</span></span><span class="sig-name descname"><span class="pre">TopoError</span></span><a class="reference internal" href="../_modules/sowbot_avoid/topo.html#TopoError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.topo.TopoError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
 <p>The map cannot be turned into a graph with stable ids.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.topo.</span></span><span class="sig-name descname"><span class="pre">TopoMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="sowbot_avoid.graph.html#sowbot_avoid.graph.Graph" title="sowbot_avoid.graph.Graph"><span class="pre">sowbot_avoid.graph.Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_directed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_two_way</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids_stored</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/topo.html#TopoMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.topo.TopoMap" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.topo.</span></span><span class="sig-name descname"><span class="pre">TopoMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph:</span> <span class="pre">sowbot_avoid.graph.Graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids:</span> <span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names:</span> <span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role:</span> <span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row:</span> <span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_directed:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_two_way:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_length:</span> <span class="pre">list</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docks:</span> <span class="pre">list</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids_stored:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digest:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/topo.html#TopoMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.topo.TopoMap" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.digest">
-<span class="sig-name descname"><span class="pre">digest</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.digest" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">digest</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.digest" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.docks">
-<span class="sig-name descname"><span class="pre">docks</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.docks" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">docks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.docks" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.graph">
-<span class="sig-name descname"><span class="pre">graph</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="sowbot_avoid.graph.html#sowbot_avoid.graph.Graph" title="sowbot_avoid.graph.Graph"><span class="pre">Graph</span></a></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.graph" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">graph</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="sowbot_avoid.graph.html#sowbot_avoid.graph.Graph" title="sowbot_avoid.graph.Graph"><span class="pre">Graph</span></a></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.graph" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.ids">
-<span class="sig-name descname"><span class="pre">ids</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.ids" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.ids" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.ids_stored">
-<span class="sig-name descname"><span class="pre">ids_stored</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.ids_stored" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ids_stored</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.ids_stored" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.n_directed">
-<span class="sig-name descname"><span class="pre">n_directed</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.n_directed" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">n_directed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.n_directed" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.n_two_way">
-<span class="sig-name descname"><span class="pre">n_two_way</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.n_two_way" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">n_two_way</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.n_two_way" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.names">
-<span class="sig-name descname"><span class="pre">names</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.names" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.names" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.role">
-<span class="sig-name descname"><span class="pre">role</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.role" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.role" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.row">
-<span class="sig-name descname"><span class="pre">row</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.row" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">row</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.row" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -861,12 +861,12 @@ node has no docks and nothing in the package assumes one.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.rows">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">rows</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.rows" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rows</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.rows" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.TopoMap.zero_length">
-<span class="sig-name descname"><span class="pre">zero_length</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></span><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.zero_length" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">zero_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#sowbot_avoid.topo.TopoMap.zero_length" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

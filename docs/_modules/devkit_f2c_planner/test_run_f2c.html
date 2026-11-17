@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_f2c_planner.test_run_f2c &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -751,11 +751,11 @@
 <span class="sd">fields2cover&#39;s own swath generation.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="c1"># pylint: disable=protected-access</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">mock</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest</span><span class="w"> </span><span class="kn">import</span> <span class="n">mock</span>
 
-<span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_test_helpers</span> <span class="kn">import</span> <span class="n">LAT0</span><span class="p">,</span> <span class="n">LON0</span><span class="p">,</span> <span class="n">FakeF2C</span><span class="p">,</span> <span class="n">planner</span><span class="p">,</span> <span class="n">silence_planner_log</span><span class="p">,</span> <span class="n">to_ll</span><span class="p">,</span> <span class="n">to_xy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_f2c_planner.f2c_test_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">LAT0</span><span class="p">,</span> <span class="n">LON0</span><span class="p">,</span> <span class="n">FakeF2C</span><span class="p">,</span> <span class="n">planner</span><span class="p">,</span> <span class="n">silence_planner_log</span><span class="p">,</span> <span class="n">to_ll</span><span class="p">,</span> <span class="n">to_xy</span>
 
 <span class="n">FIELD_XY</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)]</span>
 <span class="n">TOOL_WIDTH</span> <span class="o">=</span> <span class="mf">2.0</span>
@@ -765,17 +765,17 @@
 
 <div class="viewcode-block" id="RunF2CTest">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest">[docs]</a>
-<span class="k">class</span> <span class="nc">RunF2CTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RunF2CTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="RunF2CTest.setUp">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.setUp">[docs]</a>
-    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">silence_planner_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RunF2CTest.run_planner">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.run_planner">[docs]</a>
-    <span class="k">def</span> <span class="nf">run_planner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fake</span><span class="p">:</span> <span class="n">FakeF2C</span><span class="p">,</span> <span class="n">obstacles_xy</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_planner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fake</span><span class="p">:</span> <span class="n">FakeF2C</span><span class="p">,</span> <span class="n">obstacles_xy</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run run_f2c() against the fake; returns rows in local xy metres.&quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">planner</span><span class="p">,</span> <span class="s1">&#39;f2c&#39;</span><span class="p">,</span> <span class="n">fake</span><span class="p">):</span>
             <span class="n">rows_ll</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">run_f2c</span><span class="p">(</span>
@@ -785,7 +785,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.assert_rows_almost_equal">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.assert_rows_almost_equal">[docs]</a>
-    <span class="k">def</span> <span class="nf">assert_rows_almost_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">expected</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assert_rows_almost_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">expected</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">actual_row</span><span class="p">,</span> <span class="n">expected_row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">actual_row</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected_row</span><span class="p">))</span>
@@ -798,7 +798,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_boundary_is_projected_with_the_first_corner_as_origin">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_boundary_is_projected_with_the_first_corner_as_origin">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_boundary_is_projected_with_the_first_corner_as_origin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_boundary_is_projected_with_the_first_corner_as_origin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">fake</span><span class="p">)</span>
         <span class="n">outer_ring</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">swath_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">rings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -807,7 +807,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_result_is_projected_back_to_latlon_at_the_first_corner">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_result_is_projected_back_to_latlon_at_the_first_corner">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_result_is_projected_back_to_latlon_at_the_first_corner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_result_is_projected_back_to_latlon_at_the_first_corner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">([[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]])</span>
         <span class="k">with</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">planner</span><span class="p">,</span> <span class="s1">&#39;f2c&#39;</span><span class="p">,</span> <span class="n">fake</span><span class="p">):</span>
             <span class="p">(</span><span class="n">row</span><span class="p">,)</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">run_f2c</span><span class="p">(</span><span class="n">to_ll</span><span class="p">(</span><span class="n">FIELD_XY</span><span class="p">),</span> <span class="p">[],</span> <span class="n">TOOL_WIDTH</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
@@ -819,7 +819,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_tool_width_is_passed_to_swath_generation">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_tool_width_is_passed_to_swath_generation">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_tool_width_is_passed_to_swath_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_tool_width_is_passed_to_swath_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">fake</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">swath_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">TOOL_WIDTH</span><span class="p">)</span></div>
@@ -829,7 +829,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_angle_is_wrapped_to_a_half_turn_and_passed_in_radians">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_angle_is_wrapped_to_a_half_turn_and_passed_in_radians">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_angle_is_wrapped_to_a_half_turn_and_passed_in_radians</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_angle_is_wrapped_to_a_half_turn_and_passed_in_radians</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">angle_deg</span><span class="p">,</span> <span class="n">expected_deg</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">190</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">170</span><span class="p">),</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">370</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">angle_deg</span><span class="o">=</span><span class="n">angle_deg</span><span class="p">):</span>
                 <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">)</span>
@@ -841,7 +841,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_snake_order_reverses_every_second_swath">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_snake_order_reverses_every_second_swath">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_snake_order_reverses_every_second_swath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_snake_order_reverses_every_second_swath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">),</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_rows_almost_equal</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="p">[</span>
             <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)],</span>
@@ -853,14 +853,14 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_without_snake_order_swaths_keep_the_direction_f2c_gave_them">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_without_snake_order_swaths_keep_the_direction_f2c_gave_them">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_without_snake_order_swaths_keep_the_direction_f2c_gave_them</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_without_snake_order_swaths_keep_the_direction_f2c_gave_them</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">),</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_rows_almost_equal</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">ROWS_XY</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RunF2CTest.test_swaths_with_fewer_than_two_points_are_ignored_and_do_not_shift_the_snake_order">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_swaths_with_fewer_than_two_points_are_ignored_and_do_not_shift_the_snake_order">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_swaths_with_fewer_than_two_points_are_ignored_and_do_not_shift_the_snake_order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_swaths_with_fewer_than_two_points_are_ignored_and_do_not_shift_the_snake_order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">FakeF2C</span><span class="p">([[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="o">*</span><span class="n">ROWS_XY</span><span class="p">[:</span><span class="mi">2</span><span class="p">]]),</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_rows_almost_equal</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="p">[[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)],</span> <span class="p">[(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">)]])</span></div>
 
@@ -869,7 +869,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_obstacle_clips_swaths_even_though_f2c_ignored_it">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_obstacle_clips_swaths_even_though_f2c_ignored_it">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_obstacle_clips_swaths_even_though_f2c_ignored_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_obstacle_clips_swaths_even_though_f2c_ignored_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">obstacle</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]</span>  <span class="c1"># crosses the y = 25 swath only</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">),</span> <span class="p">[</span><span class="n">obstacle</span><span class="p">],</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_rows_almost_equal</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="p">[</span>
@@ -879,7 +879,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_clipped_fragments_follow_the_snake_direction">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_clipped_fragments_follow_the_snake_direction">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_clipped_fragments_follow_the_snake_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_clipped_fragments_follow_the_snake_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">obstacle</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]</span>  <span class="c1"># crosses the reversed y = 15 swath</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">[:</span><span class="mi">2</span><span class="p">]),</span> <span class="p">[</span><span class="n">obstacle</span><span class="p">],</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_rows_almost_equal</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="p">[</span>
@@ -889,7 +889,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_obstacle_padding_widens_the_gap">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_obstacle_padding_widens_the_gap">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_obstacle_padding_widens_the_gap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_obstacle_padding_widens_the_gap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">obstacle</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]),</span> <span class="p">[</span><span class="n">obstacle</span><span class="p">],</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">obstacle_pad_m</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_rows_almost_equal</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="p">[[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">35.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">)],</span> <span class="p">[(</span><span class="mf">65.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">)]])</span></div>
@@ -897,7 +897,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_fragments_shorter_than_half_the_tool_width_are_dropped">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_fragments_shorter_than_half_the_tool_width_are_dropped">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_fragments_shorter_than_half_the_tool_width_are_dropped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_fragments_shorter_than_half_the_tool_width_are_dropped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">obstacle</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]</span>  <span class="c1"># leaves a 0.4 m stub, below TOOL_WIDTH / 2</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]),</span> <span class="p">[</span><span class="n">obstacle</span><span class="p">],</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_rows_almost_equal</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="p">[[(</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">)]])</span></div>
@@ -905,7 +905,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_fragments_longer_than_half_the_tool_width_are_kept">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_fragments_longer_than_half_the_tool_width_are_kept">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_fragments_longer_than_half_the_tool_width_are_kept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_fragments_longer_than_half_the_tool_width_are_kept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">obstacle</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]</span>  <span class="c1"># leaves a 1.5 m stub, above TOOL_WIDTH / 2</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]),</span> <span class="p">[</span><span class="n">obstacle</span><span class="p">],</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert_rows_almost_equal</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="p">[[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">)],</span> <span class="p">[(</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">)]])</span></div>
@@ -913,7 +913,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_obstacles_are_also_given_to_f2c_as_hole_rings">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_obstacles_are_also_given_to_f2c_as_hole_rings">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_obstacles_are_also_given_to_f2c_as_hole_rings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_obstacles_are_also_given_to_f2c_as_hole_rings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="p">[[(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">)],</span> <span class="p">[(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">swath_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">rings</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># boundary + two obstacles</span></div>
@@ -921,7 +921,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_invalid_obstacle_is_not_given_to_f2c">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_invalid_obstacle_is_not_given_to_f2c">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_invalid_obstacle_is_not_given_to_f2c</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_invalid_obstacle_is_not_given_to_f2c</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="p">[[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">swath_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">rings</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span></div>
@@ -931,7 +931,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_no_headland_uses_the_full_boundary_without_calling_the_generator">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_no_headland_uses_the_full_boundary_without_calling_the_generator">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_no_headland_uses_the_full_boundary_without_calling_the_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_no_headland_uses_the_full_boundary_without_calling_the_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">headland_width_m</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">headland_widths</span><span class="p">,</span> <span class="p">[])</span>
@@ -940,7 +940,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_headland_swaths_are_generated_on_the_inset_cell">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_headland_swaths_are_generated_on_the_inset_cell">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_headland_swaths_are_generated_on_the_inset_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_headland_swaths_are_generated_on_the_inset_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">headland_width_m</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">headland_widths</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">])</span>
@@ -949,7 +949,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_headland_that_leaves_no_cells_falls_back_to_the_full_boundary">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_headland_that_leaves_no_cells_falls_back_to_the_full_boundary">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_headland_that_leaves_no_cells_falls_back_to_the_full_boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_headland_that_leaves_no_cells_falls_back_to_the_full_boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">,</span> <span class="n">headland_cells</span><span class="o">=</span><span class="p">[])</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">headland_width_m</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">headland_widths</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">])</span>
@@ -959,7 +959,7 @@
 
 <div class="viewcode-block" id="RunF2CTest.test_headland_generator_failure_falls_back_to_the_full_boundary">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_run_f2c.html#devkit_f2c_planner.test_run_f2c.RunF2CTest.test_headland_generator_failure_falls_back_to_the_full_boundary">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_headland_generator_failure_falls_back_to_the_full_boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_headland_generator_failure_falls_back_to_the_full_boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeF2C</span><span class="p">(</span><span class="n">ROWS_XY</span><span class="p">,</span> <span class="n">headland_error</span><span class="o">=</span><span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;degenerate field&#39;</span><span class="p">))</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">headland_width_m</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">swath_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">rings</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>

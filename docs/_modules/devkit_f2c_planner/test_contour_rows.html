@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_f2c_planner.test_contour_rows &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -745,11 +745,11 @@
   <h1>Source code for devkit_f2c_planner.test_contour_rows</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Unit tests for run_contour_f2c() (shapely offset rows; no fields2cover involved).&quot;&quot;&quot;</span>
 <span class="c1"># pylint: disable=protected-access</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
 
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
 
-<span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_test_helpers</span> <span class="kn">import</span> <span class="n">planner</span><span class="p">,</span> <span class="n">silence_planner_log</span><span class="p">,</span> <span class="n">to_ll</span><span class="p">,</span> <span class="n">to_xy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_f2c_planner.f2c_test_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">planner</span><span class="p">,</span> <span class="n">silence_planner_log</span><span class="p">,</span> <span class="n">to_ll</span><span class="p">,</span> <span class="n">to_xy</span>
 
 <span class="n">FIELD_XY</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)]</span>
 <span class="n">REFERENCE_XY</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">)]</span>
@@ -759,7 +759,7 @@
 
 <div class="viewcode-block" id="contour_rows">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.contour_rows">[docs]</a>
-<span class="k">def</span> <span class="nf">contour_rows</span><span class="p">(</span><span class="n">reference_xy</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">obstacles_xy</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">contour_rows</span><span class="p">(</span><span class="n">reference_xy</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">obstacles_xy</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run run_contour_f2c() on the fixture field; returns rows in local xy metres.&quot;&quot;&quot;</span>
     <span class="n">rows_ll</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">run_contour_f2c</span><span class="p">(</span>
         <span class="n">to_ll</span><span class="p">(</span><span class="n">FIELD_XY</span><span class="p">),</span> <span class="p">[</span><span class="n">to_ll</span><span class="p">(</span><span class="n">ring</span><span class="p">)</span> <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="n">obstacles_xy</span> <span class="ow">or</span> <span class="p">[]],</span>
@@ -770,24 +770,24 @@
 
 <div class="viewcode-block" id="row_y">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.row_y">[docs]</a>
-<span class="k">def</span> <span class="nf">row_y</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">row_y</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">row</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="ContourRowsTest">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest">[docs]</a>
-<span class="k">class</span> <span class="nc">ContourRowsTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ContourRowsTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="ContourRowsTest.setUp">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.setUp">[docs]</a>
-    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">silence_planner_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ContourRowsTest.test_rows_are_spaced_by_the_tool_width_and_span_the_field">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_rows_are_spaced_by_the_tool_width_and_span_the_field">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_rows_are_spaced_by_the_tool_width_and_span_the_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rows_are_spaced_by_the_tool_width_and_span_the_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">contour_rows</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">row_y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="mi">13</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
@@ -799,7 +799,7 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_every_row_stays_inside_the_field">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_every_row_stays_inside_the_field">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_every_row_stays_inside_the_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_every_row_stays_inside_the_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">field</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">FIELD_XY</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">TOLERANCE_M</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">contour_rows</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LineString</span><span class="p">(</span><span class="n">row</span><span class="p">)))</span></div>
@@ -807,7 +807,7 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_snake_order_alternates_row_direction">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_snake_order_alternates_row_direction">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_snake_order_alternates_row_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_snake_order_alternates_row_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">contour_rows</span><span class="p">(</span><span class="n">snake_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">index</span><span class="p">):</span>
@@ -817,14 +817,14 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_without_snake_every_row_keeps_the_reference_direction">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_without_snake_every_row_keeps_the_reference_direction">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_without_snake_every_row_keeps_the_reference_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_without_snake_every_row_keeps_the_reference_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">contour_rows</span><span class="p">(</span><span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertGreater</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="ContourRowsTest.test_headland_insets_the_rows_from_the_boundary">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_headland_insets_the_rows_from_the_boundary">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_headland_insets_the_rows_from_the_boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_headland_insets_the_rows_from_the_boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">contour_rows</span><span class="p">(</span><span class="n">headland_width_m</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="mi">11</span><span class="p">)</span>  <span class="c1"># y = 1 and y = 49 fall inside the 2 m headland</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
@@ -836,13 +836,13 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_headland_wider_than_the_field_falls_back_to_the_full_boundary">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_headland_wider_than_the_field_falls_back_to_the_full_boundary">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_headland_wider_than_the_field_falls_back_to_the_full_boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_headland_wider_than_the_field_falls_back_to_the_full_boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">contour_rows</span><span class="p">(</span><span class="n">headland_width_m</span><span class="o">=</span><span class="mf">30.0</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">contour_rows</span><span class="p">()))</span></div>
 
 
 <div class="viewcode-block" id="ContourRowsTest.test_obstacle_splits_rows_and_no_fragment_enters_it">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_obstacle_splits_rows_and_no_fragment_enters_it">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_obstacle_splits_rows_and_no_fragment_enters_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_obstacle_splits_rows_and_no_fragment_enters_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">obstacle_xy</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]</span>  <span class="c1"># rows at y = 21, 25, 29 cross it</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">contour_rows</span><span class="p">(</span><span class="n">obstacles_xy</span><span class="o">=</span><span class="p">[</span><span class="n">obstacle_xy</span><span class="p">],</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="mi">13</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span>
@@ -853,26 +853,26 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_max_rows_each_side_limits_the_row_count">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_max_rows_each_side_limits_the_row_count">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_max_rows_each_side_limits_the_row_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_max_rows_each_side_limits_the_row_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">contour_rows</span><span class="p">(</span><span class="n">max_rows_each_side</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">row_y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">row_y</span><span class="p">(</span><span class="n">row</span><span class="p">))</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">],</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">33</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="ContourRowsTest.test_reference_line_with_one_point_returns_no_rows">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_reference_line_with_one_point_returns_no_rows">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_reference_line_with_one_point_returns_no_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reference_line_with_one_point_returns_no_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">contour_rows</span><span class="p">(</span><span class="n">reference_xy</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">)]),</span> <span class="p">[])</span></div>
 
 
 <div class="viewcode-block" id="ContourRowsTest.test_reference_line_outside_the_field_returns_no_rows">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_reference_line_outside_the_field_returns_no_rows">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_reference_line_outside_the_field_returns_no_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_reference_line_outside_the_field_returns_no_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">contour_rows</span><span class="p">(</span><span class="n">reference_xy</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">)]),</span> <span class="p">[])</span></div>
 
 
 <div class="viewcode-block" id="ContourRowsTest.test_curved_reference_gives_rows_at_constant_distance">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_curved_reference_gives_rows_at_constant_distance">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_curved_reference_gives_rows_at_constant_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_curved_reference_gives_rows_at_constant_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rows follow the reference: every point of a row is a whole number of tool widths away from it.&quot;&quot;&quot;</span>
         <span class="n">reference_xy</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="mf">22.5</span> <span class="o">+</span> <span class="mf">0.002</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
         <span class="n">reference</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">(</span><span class="n">reference_xy</span><span class="p">)</span>
@@ -888,7 +888,7 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_short_reference_is_extended_so_rows_span_the_field">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_short_reference_is_extended_so_rows_span_the_field">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_short_reference_is_extended_so_rows_span_the_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_short_reference_is_extended_so_rows_span_the_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;A survey only covers part of the field; rows must still reach both field edges.&quot;&quot;&quot;</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">contour_rows</span><span class="p">(</span><span class="n">reference_xy</span><span class="o">=</span><span class="p">[(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">25</span><span class="p">)],</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">row_y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="mi">13</span><span class="p">)</span>
@@ -900,7 +900,7 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_short_reference_without_extension_keeps_rows_short">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_short_reference_without_extension_keeps_rows_short">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_short_reference_without_extension_keeps_rows_short</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_short_reference_without_extension_keeps_rows_short</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">contour_rows</span><span class="p">(</span><span class="n">reference_xy</span><span class="o">=</span><span class="p">[(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">25</span><span class="p">)],</span> <span class="n">extend_reference</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertLess</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">row</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">row</span><span class="p">),</span> <span class="mf">20.0</span> <span class="o">+</span> <span class="n">TOLERANCE_M</span><span class="p">)</span></div>
@@ -908,7 +908,7 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_self_crossing_extension_keeps_original_reference">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_self_crossing_extension_keeps_original_reference">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_self_crossing_extension_keeps_original_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_self_crossing_extension_keeps_original_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">reference</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">40</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">LineString</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span><span class="o">.</span><span class="n">is_simple</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">planner</span><span class="o">.</span><span class="n">_extend_line</span><span class="p">(</span><span class="n">LineString</span><span class="p">(</span><span class="n">reference</span><span class="p">),</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">is_simple</span><span class="p">)</span>
@@ -919,7 +919,7 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_fragment_breaks_survive_snaking_and_obstacle_clipping">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_fragment_breaks_survive_snaking_and_obstacle_clipping">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_fragment_breaks_survive_snaking_and_obstacle_clipping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_fragment_breaks_survive_snaking_and_obstacle_clipping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">field</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
                  <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)]</span>
         <span class="n">obstacle</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">45</span><span class="p">)]</span>
@@ -939,7 +939,7 @@
 
 <div class="viewcode-block" id="ContourRowsTest.test_row_that_reenters_the_field_keeps_all_its_pieces">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_contour_rows.html#devkit_f2c_planner.test_contour_rows.ContourRowsTest.test_row_that_reenters_the_field_keeps_all_its_pieces">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_row_that_reenters_the_field_keeps_all_its_pieces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_row_that_reenters_the_field_keeps_all_its_pieces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;A concave field splits a row in two; the old code dropped it and stopped planning.&quot;&quot;&quot;</span>
         <span class="n">field_xy</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)]</span>
         <span class="n">rows_ll</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">run_contour_f2c</span><span class="p">(</span>

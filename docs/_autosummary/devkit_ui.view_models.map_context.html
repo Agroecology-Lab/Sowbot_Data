@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.view_models.map_context &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -761,7 +761,7 @@
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="devkit_ui.view_models.map_context.MapContext">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.view_models.map_context.</span></span><span class="sig-name descname"><span class="pre">MapContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topo_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.topology_view_model.html#devkit_ui.view_models.topology_view_model.TopologyViewModel" title="devkit_ui.view_models.topology_view_model.TopologyViewModel"><span class="pre">TopologyViewModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel" title="devkit_ui.view_models.run_view_model.RunViewModel"><span class="pre">RunViewModel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/view_models/map_context.html#MapContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">devkit_ui.view_models.map_context.</span></span><span class="sig-name descname"><span class="pre">MapContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topo_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.topology_view_model.html#devkit_ui.view_models.topology_view_model.TopologyViewModel" title="devkit_ui.view_models.topology_view_model.TopologyViewModel"><span class="pre">TopologyViewModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_vm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel" title="devkit_ui.view_models.run_view_model.RunViewModel"><span class="pre">RunViewModel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/view_models/map_context.html#MapContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Read-only view of the loaded map, the robot’s node, the selection and the row action.</p>
 <p>The Plan view model takes this instead of the Run and Topology view models, so it knows
@@ -775,25 +775,25 @@ Every property reads live state; nothing is cached.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.view_models.map_context.MapContext.current_node">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">current_node</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext.current_node" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext.current_node" title="Link to this definition"></a></dt>
 <dd><p>Return the node the robot is localised on; ‘—’ or ‘none’ when it is on no node.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.view_models.map_context.MapContext.row_action">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">row_action</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext.row_action" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">row_action</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext.row_action" title="Link to this definition"></a></dt>
 <dd><p>Return the action new row edges use, as chosen on the Run tab.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.view_models.map_context.MapContext.selected_node">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">selected_node</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext.selected_node" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">selected_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext.selected_node" title="Link to this definition"></a></dt>
 <dd><p>Return the node picked in the map view, or None.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.view_models.map_context.MapContext.topo_doc">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">topo_doc</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.TopoDoc" title="devkit_ui.models.TopoDoc"><span class="pre">TopoDoc</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext.topo_doc" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">topo_doc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="devkit_ui.models.html#devkit_ui.models.TopoDoc" title="devkit_ui.models.TopoDoc"><span class="pre">TopoDoc</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#devkit_ui.view_models.map_context.MapContext.topo_doc" title="Link to this definition"></a></dt>
 <dd><p>Return the loaded map, or None if there is none.</p>
 </dd></dl>
 

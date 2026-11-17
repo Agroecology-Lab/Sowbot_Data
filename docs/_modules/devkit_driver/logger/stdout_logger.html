@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_driver.logger.stdout_logger &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -746,51 +746,51 @@
 <span></span><span class="sd">&quot;&quot;&quot; Copyright (c) 2024 Leibniz-Institut für Agrartechnik und Bioökonomie e.V. (ATB)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">.logger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span>
 
 
 <div class="viewcode-block" id="StdOutLogger">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger">[docs]</a>
-<span class="k">class</span> <span class="nc">StdOutLogger</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StdOutLogger</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements a logger that outputs to stdout.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 
 <div class="viewcode-block" id="StdOutLogger.set_level">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.set_level">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logging_level</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logging_level</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set logging level.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging_level</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="StdOutLogger.debug">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.debug">[docs]</a>
-    <span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Print debug message.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="StdOutLogger.info">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.info">[docs]</a>
-    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Print info message.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="StdOutLogger.warn">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.warn">[docs]</a>
-    <span class="k">def</span> <span class="nf">warn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">warn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Print warn message.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="StdOutLogger.error">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.logger.stdout_logger.html#devkit_driver.logger.stdout_logger.StdOutLogger.error">[docs]</a>
-    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Print error message.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
 </div>

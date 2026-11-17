@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.pages.widgets &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -744,22 +744,22 @@
              
   <h1>Source code for devkit_ui.pages.widgets</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Small NiceGUI helpers shared by the System and Sim pages: status labels, request host and links.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">html</span> <span class="kn">import</span> <span class="n">escape</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">html</span><span class="w"> </span><span class="kn">import</span> <span class="n">escape</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
-<span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">ui</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.view_models.system_view_model</span> <span class="kn">import</span> <span class="n">ToolStatusView</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.system_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolStatusView</span>
 
 <span class="n">STATUS_COLOURS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ok&#39;</span><span class="p">:</span> <span class="s1">&#39;#1a7f37&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;#cf222e&#39;</span><span class="p">,</span> <span class="s1">&#39;muted&#39;</span><span class="p">:</span> <span class="s1">&#39;#57606a&#39;</span><span class="p">}</span>
 
 
 <div class="viewcode-block" id="show_status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.widgets.html#devkit_ui.pages.widgets.show_status">[docs]</a>
-<span class="k">def</span> <span class="nf">show_status</span><span class="p">(</span><span class="n">lbl</span><span class="p">,</span> <span class="n">view</span><span class="p">:</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">show_status</span><span class="p">(</span><span class="n">lbl</span><span class="p">,</span> <span class="n">view</span><span class="p">:</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply a status to lbl; do nothing for None, and keep the colour if the level is None.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">view</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span>
@@ -771,7 +771,7 @@
 
 <div class="viewcode-block" id="request_host">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.widgets.html#devkit_ui.pages.widgets.request_host">[docs]</a>
-<span class="k">def</span> <span class="nf">request_host</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">request_host</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the browser&#39;s request hostname, bracketed for IPv6 and HTML-escaped for links.&quot;&quot;&quot;</span>
     <span class="n">host</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">hostname</span> <span class="ow">or</span> <span class="s1">&#39;localhost&#39;</span>
     <span class="k">if</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="n">host</span><span class="p">:</span>
@@ -782,7 +782,7 @@
 
 <div class="viewcode-block" id="link_button">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.widgets.html#devkit_ui.pages.widgets.link_button">[docs]</a>
-<span class="k">def</span> <span class="nf">link_button</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">link_button</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Render an outlined external link styled like the tool buttons.</span>
 
 <span class="sd">    url and label are inserted as HTML; callers must escape any untrusted values.</span>
@@ -798,7 +798,7 @@
 
 <div class="viewcode-block" id="doc_link">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.widgets.html#devkit_ui.pages.widgets.doc_link">[docs]</a>
-<span class="k">def</span> <span class="nf">doc_link</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;📄 Documentation&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">doc_link</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;📄 Documentation&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Render a small muted documentation link.</span>
 
 <span class="sd">    url and label are inserted as HTML; callers must escape any untrusted values.</span>

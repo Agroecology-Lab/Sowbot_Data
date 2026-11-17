@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.missions.sqlite &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,13 +743,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.missions.sqlite</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">functools</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">sqlite3</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.time_utils</span> <span class="kn">import</span> <span class="n">now_utc_str</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.time_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">now_utc_str</span>
 
 <span class="n">_MUTABLE_COLUMNS</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">[</span><span class="nb">str</span><span class="p">]((</span>
     <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">,</span> <span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="s1">&#39;action_params&#39;</span><span class="p">,</span> <span class="s1">&#39;repeat_every_hours&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">,</span>
@@ -779,10 +779,10 @@
 <span class="n">STATES</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">({</span><span class="s1">&#39;idle&#39;</span><span class="p">,</span> <span class="s1">&#39;running&#39;</span><span class="p">,</span> <span class="s1">&#39;ended&#39;</span><span class="p">})</span>
 
 
-<span class="k">def</span> <span class="nf">_locked</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_locked</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a store method holding the connection lock, so threads never share the cursor state.&quot;&quot;&quot;</span>
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>  <span class="c1"># pylint: disable=protected-access</span>
             <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">wrapper</span>
@@ -790,12 +790,12 @@
 
 <div class="viewcode-block" id="MissionSqliteStore">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionSqliteStore</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionSqliteStore</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Owns the mission list and its SQLite persistence.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MissionSqliteStore.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">on_write_done</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">on_write_done</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Open the database at path and create or upgrade its mission schema.</span>
 
 <span class="sd">        on_write_done receives a status message after an add, update or delete is committed.</span>
@@ -814,7 +814,7 @@
 
     <span class="nd">@property</span>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">missions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">missions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetches the list of missions.&quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM missions ORDER BY id&quot;</span><span class="p">)</span>
@@ -826,7 +826,7 @@
 <div class="viewcode-block" id="MissionSqliteStore.attach">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.attach">[docs]</a>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Attaches the store to a node and ends every mission left running.</span>
 
 <span class="sd">        A restart does not resume a run, so a mission still stored as running is ended with the</span>
@@ -849,7 +849,7 @@
 <div class="viewcode-block" id="MissionSqliteStore.close">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.close">[docs]</a>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Closes the store.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
@@ -859,7 +859,7 @@
 <div class="viewcode-block" id="MissionSqliteStore.add">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.add">[docs]</a>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
             <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">action_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -938,7 +938,7 @@
 <div class="viewcode-block" id="MissionSqliteStore.delete">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.delete">[docs]</a>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Deletes a mission. Returns False, deleting nothing, if it is running or unknown:</span>
 <span class="sd">        a running mission&#39;s result still has to be written to it.&quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
@@ -954,7 +954,7 @@
 <div class="viewcode-block" id="MissionSqliteStore.update">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.update">[docs]</a>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates mutable fields on a mission.</span>
 
 <span class="sd">        Allowed fields: name, rows, action, action_params, repeat_every_hours, active,</span>
@@ -995,7 +995,7 @@
 <div class="viewcode-block" id="MissionSqliteStore.find">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.find">[docs]</a>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Finds a mission by id.&quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM missions WHERE id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_db_id</span><span class="p">(</span><span class="n">mid</span><span class="p">),))</span>
@@ -1008,7 +1008,7 @@
 <div class="viewcode-block" id="MissionSqliteStore.find_by_name">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.find_by_name">[docs]</a>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">find_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Finds a mission by name.&quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM missions WHERE name = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,))</span>
@@ -1018,7 +1018,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deserialize_row</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_ensure_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create the tables and bring an older database up to date.</span>
 
 <span class="sd">        Adds each column of _ADDED_COLUMNS the missions table lacks, so a database written</span>
@@ -1052,7 +1052,7 @@
 <div class="viewcode-block" id="MissionSqliteStore.find_by_external_id">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.sqlite.html#devkit_ui.missions.sqlite.MissionSqliteStore.find_by_external_id">[docs]</a>
     <span class="nd">@_locked</span>
-    <span class="k">def</span> <span class="nf">find_by_external_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_by_external_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Finds a remote mission by the id the station gave it.&quot;&quot;&quot;</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM missions WHERE external_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">external_id</span><span class="p">,))</span>
@@ -1060,7 +1060,7 @@
         <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deserialize_row</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_serialize_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_serialize_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Serialize a mission row to something that can be stored in the database.</span>
 
@@ -1084,13 +1084,13 @@
             <span class="n">serialized</span><span class="p">[</span><span class="s1">&#39;result_sent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">serialized</span><span class="p">[</span><span class="s1">&#39;result_sent&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="n">serialized</span>
 
-    <span class="k">def</span> <span class="nf">_db_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_db_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Converts a mission ID to a database ID.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mission_id</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">mission_id</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">mission_id</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;MISSION_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_deserialize_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_row</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Row</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_deserialize_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_row</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Row</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a mission dict with its ID, JSON fields, and boolean fields decoded.&quot;&quot;&quot;</span>
         <span class="n">row</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">db_row</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span>

@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sowbot_avoid.radio &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -769,7 +769,7 @@
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.LoopBus">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.radio.</span></span><span class="sig-name descname"><span class="pre">LoopBus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#LoopBus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.LoopBus" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.radio.</span></span><span class="sig-name descname"><span class="pre">LoopBus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#LoopBus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.LoopBus" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Simulated shared channel: one collision domain, overlapping frames lost, random loss, rx delay.</p>
 <dl class="py method">
@@ -797,11 +797,11 @@ Scale multiplies airtime and delivery delay.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.LoopRadio">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.radio.</span></span><span class="sig-name descname"><span class="pre">LoopRadio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bus</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#LoopRadio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.LoopRadio" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.radio.</span></span><span class="sig-name descname"><span class="pre">LoopRadio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bus</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#LoopRadio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.LoopRadio" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sowbot_avoid.radio.Radio" title="sowbot_avoid.radio.Radio"><code class="xref py py-class docutils literal notranslate"><span class="pre">Radio</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.LoopRadio.send">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#LoopRadio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.LoopRadio.send" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#LoopRadio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.LoopRadio.send" title="Link to this definition"></a></dt>
 <dd><p>Schedule a transmission on the simulated bus.</p>
 </dd></dl>
 
@@ -809,7 +809,7 @@ Scale multiplies airtime and delivery delay.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.MeshRadio">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.radio.</span></span><span class="sig-name descname"><span class="pre">MeshRadio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sowbot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_hop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baud</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">115200</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.MeshRadio" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.radio.</span></span><span class="sig-name descname"><span class="pre">MeshRadio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sowbot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_hop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baud</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">115200</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.MeshRadio" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sowbot_avoid.radio.Radio" title="sowbot_avoid.radio.Radio"><code class="xref py py-class docutils literal notranslate"><span class="pre">Radio</span></code></a></p>
 <p>One MeshCore companion radio through meshcore_py.</p>
 <dl class="py method">
@@ -822,7 +822,7 @@ Zero hop sends directly, while false permits flooding through repeaters.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.MeshRadio.send">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.MeshRadio.send" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.MeshRadio.send" title="Link to this definition"></a></dt>
 <dd><p>Send channel data.</p>
 <p>An error response from the radio raises RuntimeError, so the caller sees that
 the frame was not sent. Exceptions from the radio command propagate as well.</p>
@@ -830,7 +830,7 @@ the frame was not sent. Exceptions from the radio command propagate as well.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.MeshRadio.start">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.MeshRadio.start" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.MeshRadio.start" title="Link to this definition"></a></dt>
 <dd><p>Connect, optionally configure the channel, and begin fetching messages.</p>
 <p>Import, connection, and invalid hex secret errors propagate. RuntimeError is
 raised if the radio rejects the channel setup or has no channel at the
@@ -840,7 +840,7 @@ The port is disconnected again if anything after the connection fails.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.MeshRadio.stop">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.MeshRadio.stop" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.MeshRadio.stop" title="Link to this definition"></a></dt>
 <dd><p>Disconnect the companion radio; disconnect errors propagate.</p>
 </dd></dl>
 
@@ -848,21 +848,21 @@ The port is disconnected again if anything after the connection fails.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.Radio">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.radio.</span></span><span class="sig-name descname"><span class="pre">Radio</span></span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.Radio" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.radio.</span></span><span class="sig-name descname"><span class="pre">Radio</span></span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.Radio" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.Radio.cb">
-<span class="sig-name descname"><span class="pre">cb</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#sowbot_avoid.radio.Radio.cb" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cb</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sowbot_avoid.radio.Radio.cb" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.Radio.last_rx">
-<span class="sig-name descname"><span class="pre">last_rx</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#sowbot_avoid.radio.Radio.last_rx" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">last_rx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#sowbot_avoid.radio.Radio.last_rx" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.Radio.send">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.Radio.send" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.Radio.send" title="Link to this definition"></a></dt>
 <dd><p>Send a payload; subclasses must implement this operation.</p>
 </dd></dl>
 
@@ -874,13 +874,13 @@ The port is disconnected again if anything after the connection fails.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.Radio.start">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.Radio.start" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.Radio.start" title="Link to this definition"></a></dt>
 <dd><p>Start the radio; the base implementation does nothing.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.radio.Radio.stop">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.Radio.stop" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.radio.Radio.stop" title="Link to this definition"></a></dt>
 <dd><p>Stop the radio; the base implementation does nothing.</p>
 </dd></dl>
 

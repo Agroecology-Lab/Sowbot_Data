@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.view_models.mission_view_model &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,22 +743,22 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.view_models.mission_view_model</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.mission_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.mission_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">MissionApplicationService</span><span class="p">,</span>
         <span class="n">StatusCallback</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.topo_results</span> <span class="kn">import</span> <span class="n">NavUpdate</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_results</span><span class="w"> </span><span class="kn">import</span> <span class="n">NavUpdate</span>
 
 
 <div class="viewcode-block" id="MissionQueue">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionQueue">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionQueue</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionQueue</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;One browser session&#39;s queue of (row_id, action_key, action_params) steps to run or save.</span>
 
 <span class="sd">    items is the list MissionViewModel.save_queue and the mission runner take. Subscribers</span>
@@ -767,7 +767,7 @@
 
 <div class="viewcode-block" id="MissionQueue.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionQueue.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start empty.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_listeners</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span></div>
@@ -775,19 +775,19 @@
 
 <div class="viewcode-block" id="MissionQueue.subscribe">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionQueue.subscribe">[docs]</a>
-    <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listener</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listener</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call listener, with no arguments, after every change.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_listeners</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_notify</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_notify</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Tell every subscriber that the queue changed.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_listeners</span><span class="p">):</span>
             <span class="n">listener</span><span class="p">()</span>
 
 <div class="viewcode-block" id="MissionQueue.add">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionQueue.add">[docs]</a>
-    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">action_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">action_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Append a step. Duplicates are allowed: the same row may run twice with different implements.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">row_id</span><span class="p">,</span> <span class="n">action_key</span><span class="p">,</span> <span class="n">params</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_notify</span><span class="p">()</span></div>
@@ -795,7 +795,7 @@
 
 <div class="viewcode-block" id="MissionQueue.move">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionQueue.move">[docs]</a>
-    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Swap a step with its neighbour; do nothing if either position is outside the queue.&quot;&quot;&quot;</span>
         <span class="n">target</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">delta</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">):</span>
@@ -805,7 +805,7 @@
 
 <div class="viewcode-block" id="MissionQueue.remove">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionQueue.remove">[docs]</a>
-    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop a step; do nothing if the position is outside the queue.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">):</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
@@ -816,12 +816,12 @@
 
 <div class="viewcode-block" id="MissionViewModel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionViewModel</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionViewModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;UI-facing state and user intents for saved missions and for running a queue.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MissionViewModel.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_service</span><span class="p">:</span> <span class="n">MissionApplicationService</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_service</span><span class="p">:</span> <span class="n">MissionApplicationService</span><span class="p">,</span>
                  <span class="n">on_nav_update</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">NavUpdate</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind to the mission application service.</span>
 
@@ -837,34 +837,34 @@
 <div class="viewcode-block" id="MissionViewModel.new_queue">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.new_queue">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">new_queue</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">MissionQueue</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">new_queue</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">MissionQueue</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return an empty queue for one browser session&#39;s Plan tab.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">MissionQueue</span><span class="p">()</span></div>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">missions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">missions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the saved missions to display.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">missions</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a counter the view compares against to know when to rebuild the list.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">version</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the last action&#39;s status text; an error starts with &#39;ERROR&#39;.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">status</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether a mission is executing, which disables starting another.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">running</span>
 
 <div class="viewcode-block" id="MissionViewModel.next_due_in_hours">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.next_due_in_hours">[docs]</a>
-    <span class="k">def</span> <span class="nf">next_due_in_hours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_due_in_hours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return hours until due, 0.0 if due now, or -1.0 after a failed run.</span>
 
 <span class="sd">        Return None for inactive missions, completed one-shots, or unknown IDs.</span>
@@ -875,21 +875,21 @@
 
 <div class="viewcode-block" id="MissionViewModel.set_active">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.set_active">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">active</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">active</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Include or exclude a mission from scheduling.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="n">mission_id</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MissionViewModel.delete">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.delete">[docs]</a>
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a saved mission.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">mission_id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MissionViewModel.save_queue">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.save_queue">[docs]</a>
-    <span class="k">def</span> <span class="nf">save_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">repeat_every_hours</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">repeat_every_hours</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save (row_id, action_key, action_params) tuples; return the ID or None if rejected.</span>
 
 <span class="sd">        All steps must have the same action and parameters to be saved.</span>
@@ -902,7 +902,7 @@
 
 <div class="viewcode-block" id="MissionViewModel.run">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.run">[docs]</a>
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">on_status</span><span class="p">:</span> <span class="n">StatusCallback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">on_status</span><span class="p">:</span> <span class="n">StatusCallback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run (row_id, action_key, action_params) steps; progress arrives as (level, text).</span>
 
 <span class="sd">        See MissionApplicationService.start for the error and threading behaviour.</span>
@@ -912,7 +912,7 @@
 
 <div class="viewcode-block" id="MissionViewModel.run_saved">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.run_saved">[docs]</a>
-    <span class="k">def</span> <span class="nf">run_saved</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">on_status</span><span class="p">:</span> <span class="n">StatusCallback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_saved</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">on_status</span><span class="p">:</span> <span class="n">StatusCallback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run a saved mission; progress arrives as (level, text).</span>
 
 <span class="sd">        See MissionApplicationService.run_saved for the error behaviour.</span>
@@ -922,7 +922,7 @@
 
 <div class="viewcode-block" id="MissionViewModel.cancel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.mission_view_model.html#devkit_ui.view_models.mission_view_model.MissionViewModel.cancel">[docs]</a>
-    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancel the running mission and its active navigation goal.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span></div>
 </div>

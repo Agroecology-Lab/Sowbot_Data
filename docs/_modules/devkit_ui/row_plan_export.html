@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.row_plan_export &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -749,15 +749,15 @@
 <span class="sd">swaths, this one reads them back. The row number in LiteFarm is the ``row_id`` of the nodes, so a result</span>
 <span class="sd">reported for LiteFarm row 12 is the robot&#39;s row 12. The format is described in docs/row-plan-geojson.md.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">pairwise</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">NAV_ACTION</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">NodeID</span><span class="p">,</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoNode</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.row_plan_format</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">NAV_ACTION</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">NodeID</span><span class="p">,</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.row_plan_format</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">MAX_BYTES</span><span class="p">,</span>
     <span class="n">PlanProperties</span><span class="p">,</span>
     <span class="n">PlanRow</span><span class="p">,</span>
@@ -778,7 +778,7 @@
 <div class="viewcode-block" id="RowPlanExport">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_export.html#devkit_ui.row_plan_export.RowPlanExport">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">RowPlanExport</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RowPlanExport</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A row plan as GeoJSON, with the facts a caller will want to report.&quot;&quot;&quot;</span>
 
     <span class="n">geojson</span><span class="p">:</span> <span class="nb">dict</span>
@@ -787,18 +787,18 @@
     <span class="n">warnings</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">map_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">map_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the plan&#39;s map ID.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geojson</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;map_id&#39;</span><span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">map_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">map_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the plan&#39;s row hash.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geojson</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;map_hash&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RowPlanExport.json_text">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_export.html#devkit_ui.row_plan_export.RowPlanExport.json_text">[docs]</a>
-    <span class="k">def</span> <span class="nf">json_text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">json_text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the plan as compact JSON. Raise RowPlanError if LiteFarm would refuse its size.&quot;&quot;&quot;</span>
         <span class="n">text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geojson</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">))</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">MAX_BYTES</span><span class="p">:</span>
@@ -810,7 +810,7 @@
 
 <div class="viewcode-block" id="export_row_plan">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_export.html#devkit_ui.row_plan_export.export_row_plan">[docs]</a>
-<span class="k">def</span> <span class="nf">export_row_plan</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">map_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">supersedes</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">export_row_plan</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">map_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">supersedes</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                     <span class="n">field_location_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RowPlanExport</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the row plan in ``doc``, in mission order (ascending ``row_id``).</span>
 
@@ -839,7 +839,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_group_row_nodes</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_group_row_nodes</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]],</span> <span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the row nodes by row id, and how many nodes are not part of a row.&quot;&quot;&quot;</span>
     <span class="n">groups</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">ignored</span> <span class="o">=</span> <span class="mi">0</span>
@@ -853,7 +853,7 @@
     <span class="k">return</span> <span class="n">groups</span><span class="p">,</span> <span class="n">ignored</span>
 
 
-<span class="k">def</span> <span class="nf">_row_id</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_row_id</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a row id as a non-negative int, or None if the node has none.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -864,7 +864,7 @@
     <span class="k">return</span> <span class="n">row_id</span> <span class="k">if</span> <span class="n">row_id</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
 
 
-<span class="k">def</span> <span class="nf">_ordered_row</span><span class="p">(</span><span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_ordered_row</span><span class="p">(</span><span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a row&#39;s nodes in driving order, from entry to exit.</span>
 
 <span class="sd">    Raise RowPlanError unless there is one entry and exit, every node has GPS, and at least two positions differ.</span>
@@ -883,12 +883,12 @@
     <span class="k">return</span> <span class="n">ordered</span>
 
 
-<span class="k">def</span> <span class="nf">_has_position</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_has_position</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether the node has a GPS position. 0, 0 is what an unset position looks like.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">gps_lat</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">gps_lon</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_driving_order</span><span class="p">(</span><span class="n">entry</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">exit_node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">waypoints</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_driving_order</span><span class="p">(</span><span class="n">entry</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">exit_node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">waypoints</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return entry, waypoints and exit in the order the robot drives them.</span>
 
 <span class="sd">    The order comes from the row edges (the ones that are not headland navigation edges). If the edges do</span>
@@ -909,18 +909,18 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">entry</span><span class="p">,</span> <span class="o">*</span><span class="n">chain</span><span class="p">,</span> <span class="n">exit_node</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">_waypoint_number</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_waypoint_number</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the trailing waypoint number, or zero when the name has no ``_W&lt;number&gt;`` suffix.&quot;&quot;&quot;</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;_W(\d+)$&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="mi">0</span>
 
 
-<span class="k">def</span> <span class="nf">_safe_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_safe_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace disallowed map ID characters with underscores, truncate to 80 characters, or return &#39;map&#39;.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^A-Za-z0-9._:-]&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)[:</span><span class="mi">80</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;map&#39;</span>
 
 
-<span class="k">def</span> <span class="nf">_inputs_hash</span><span class="p">(</span><span class="n">groups</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_inputs_hash</span><span class="p">(</span><span class="n">groups</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Hash what the plan was made from: each row node&#39;s name, row, role, map position and GPS position.&quot;&quot;&quot;</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">row_id</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">row_role</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">n</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">gps_lat</span><span class="p">,</span>
@@ -931,7 +931,7 @@
     <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">_length_warnings</span><span class="p">(</span><span class="n">ordered</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]],</span> <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_length_warnings</span><span class="p">(</span><span class="n">ordered</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]],</span> <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return warnings when lengths differ by more than both 0.5 m and 5% of the map length.&quot;&quot;&quot;</span>
     <span class="n">warnings</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">plan_row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>

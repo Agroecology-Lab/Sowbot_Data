@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.ui_node &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -748,85 +748,85 @@
 <span class="sd">ui_node.py — Sowbot web cockpit on :80</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">resources</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">resources</span>
 
 <span class="c1"># The following imports get generated in the Dockerfile, they aren&#39;t available to pylint</span>
 <span class="c1"># pylint: disable=import-error</span>
-<span class="kn">import</span> <span class="nn">rclpy</span>
-<span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">ui</span><span class="p">,</span> <span class="n">ui_run</span>
-<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
-<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">ui</span><span class="p">,</span> <span class="n">ui_run</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.executors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExternalShutdownException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
 
 <span class="c1"># MISSION: store owns missions.db, scheduling, and run recording.</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.drive_application_service</span> <span class="kn">import</span> <span class="n">DriveApplicationService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.mission_application_service</span> <span class="kn">import</span> <span class="n">MissionApplicationService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.navigation_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.drive_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">DriveApplicationService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.mission_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionApplicationService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.navigation_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">NavigationApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.obstacle_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.obstacle_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ObstacleApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.plan_application_service</span> <span class="kn">import</span> <span class="n">PlanApplicationService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.robot_brain_application_service</span> <span class="kn">import</span> <span class="n">RobotBrainApplicationService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.row_discovery_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.plan_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlanApplicationService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.robot_brain_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">RobotBrainApplicationService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.row_discovery_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">RowDiscoveryApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_asset_service</span> <span class="kn">import</span> <span class="n">SimAssetService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_process_service</span> <span class="kn">import</span> <span class="n">SimProcessApplicationService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_world_service</span> <span class="kn">import</span> <span class="n">SimWorldService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.system_application_service</span> <span class="kn">import</span> <span class="n">SystemApplicationService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.telemetry_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_asset_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimAssetService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_process_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimProcessApplicationService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_world_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimWorldService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.system_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemApplicationService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.telemetry_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">TelemetryApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.topology_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">TopologyApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_edit_service</span> <span class="kn">import</span> <span class="n">TopologyEditService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.track_application_service</span> <span class="kn">import</span> <span class="n">TrackApplicationService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">FIELD27_CENTER</span><span class="p">,</span> <span class="n">FULLSCREEN_MAP_PATH</span><span class="p">,</span> <span class="n">NODE_NAME</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.domain_services.drive_domain_service</span> <span class="kn">import</span> <span class="n">DriveDomainService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.domain_services.mission_domain_service</span> <span class="kn">import</span> <span class="n">MissionDomainService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.domain_services.navigation_domain_service</span> <span class="kn">import</span> <span class="n">NavigationDomainService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.domain_services.robot_brain_domain_service</span> <span class="kn">import</span> <span class="n">RobotBrainDomainService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.domain_services.row_discovery_domain_service</span> <span class="kn">import</span> <span class="n">RowDiscoveryDomainService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.domain_services.telemetry_domain_service</span> <span class="kn">import</span> <span class="n">TelemetryDomainService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.domain_services.topology_domain_service</span> <span class="kn">import</span> <span class="n">TopologyDomainService</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.missions</span> <span class="kn">import</span> <span class="n">MissionStore</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.topology_edit_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyEditService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.track_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrackApplicationService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">FIELD27_CENTER</span><span class="p">,</span> <span class="n">FULLSCREEN_MAP_PATH</span><span class="p">,</span> <span class="n">NODE_NAME</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.drive_domain_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">DriveDomainService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.mission_domain_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionDomainService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.navigation_domain_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">NavigationDomainService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.robot_brain_domain_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">RobotBrainDomainService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.row_discovery_domain_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">RowDiscoveryDomainService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.telemetry_domain_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">TelemetryDomainService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.topology_domain_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyDomainService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.missions</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionStore</span>
 
 <span class="c1"># pylint: enable=import-error</span>
 <span class="c1"># OBSTACLE: obstacle manager, view model and card helpers</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.obstacles</span> <span class="kn">import</span> <span class="n">ObstacleManager</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.plan.plan_page</span> <span class="kn">import</span> <span class="n">PlanPage</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.nav_page</span> <span class="kn">import</span> <span class="n">NavPage</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.node_map_card</span> <span class="kn">import</span> <span class="n">NodeMapCard</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.sim.sim_page</span> <span class="kn">import</span> <span class="n">SimPage</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.system.system_page</span> <span class="kn">import</span> <span class="n">SystemPage</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.process_registry</span> <span class="kn">import</span> <span class="n">shutdown_tools</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.ros_gateway</span> <span class="kn">import</span> <span class="n">RosGateway</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.sim_asset_store</span> <span class="kn">import</span> <span class="n">SimAssetStore</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.global_view_model</span> <span class="kn">import</span> <span class="n">GlobalViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.map_authoring_view_model</span> <span class="kn">import</span> <span class="n">MapAuthoringViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.map_context</span> <span class="kn">import</span> <span class="n">MapContext</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.mission_view_model</span> <span class="kn">import</span> <span class="n">MissionViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.obstacle_view_model</span> <span class="kn">import</span> <span class="n">ObstacleViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.plan_view_model</span> <span class="kn">import</span> <span class="n">PlanViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.robot_brain_view_model</span> <span class="kn">import</span> <span class="n">RobotBrainViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.run_view_model</span> <span class="kn">import</span> <span class="n">RunViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.sim_process_view_model</span> <span class="kn">import</span> <span class="n">SimProcessViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.sim_view_model</span> <span class="kn">import</span> <span class="n">SimViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.system_view_model</span> <span class="kn">import</span> <span class="n">SystemViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.telemetry_view_model</span> <span class="kn">import</span> <span class="n">TelemetryViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.topology_view_model</span> <span class="kn">import</span> <span class="n">TopologyViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.web_auth</span> <span class="kn">import</span> <span class="n">UI_PASSWORD_ENV</span><span class="p">,</span> <span class="n">BasicAuthMiddleware</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.obstacles</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObstacleManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.plan.plan_page</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlanPage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.run.nav_page</span><span class="w"> </span><span class="kn">import</span> <span class="n">NavPage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.run.node_map_card</span><span class="w"> </span><span class="kn">import</span> <span class="n">NodeMapCard</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.sim.sim_page</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimPage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.system.system_page</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemPage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.process_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">shutdown_tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.ros_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosGateway</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.sim_asset_store</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimAssetStore</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.global_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">GlobalViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.map_authoring_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">MapAuthoringViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.map_context</span><span class="w"> </span><span class="kn">import</span> <span class="n">MapContext</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.mission_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.obstacle_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObstacleViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.plan_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlanViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.robot_brain_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">RobotBrainViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.run_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.sim_process_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimProcessViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.sim_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.system_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.telemetry_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">TelemetryViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.topology_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.web_auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">UI_PASSWORD_ENV</span><span class="p">,</span> <span class="n">BasicAuthMiddleware</span>
 
 <span class="c1"># ── Import CSS ────────────────────────────────────────────────────────────────</span>
 
 <div class="viewcode-block" id="load_css">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.load_css">[docs]</a>
-<span class="k">def</span> <span class="nf">load_css</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_css</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the bundled app stylesheet from the package resources.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s1">&#39;devkit_ui&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;css/app.css&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
@@ -843,12 +843,12 @@
 
 <div class="viewcode-block" id="NiceGuiNode">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode">[docs]</a>
-<span class="k">class</span> <span class="nc">NiceGuiNode</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NiceGuiNode</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The NiceGUI application. It reaches ROS only through the RosGateway it is given.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="NiceGuiNode.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the GUI view models, navigation interfaces, sensor state, and</span>
 <span class="sd">        mission-planning components.</span>
@@ -932,14 +932,14 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">on_nav_update</span><span class="p">)</span>
 
         <span class="nd">@ui</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">page</span><span class="p">():</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">page</span><span class="p">():</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Builds the NiceGUI application content.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">()</span>
 
         <span class="nd">@ui</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">FULLSCREEN_MAP_PATH</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">fullscreen_map_page</span><span class="p">():</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">fullscreen_map_page</span><span class="p">():</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Builds the node map alone, filling the window, for the Run tab&#39;s open-in-new-tab button.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -950,7 +950,7 @@
 
 <div class="viewcode-block" id="NiceGuiNode.content">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.content">[docs]</a>
-    <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the Run, Plan, Sim, and System tabs, initially selecting Run.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_app_css</span><span class="p">()</span>
         <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">tabs</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tabs</span><span class="p">:</span>
@@ -982,7 +982,7 @@
 
 <div class="viewcode-block" id="NiceGuiNode.fullscreen_map">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.NiceGuiNode.fullscreen_map">[docs]</a>
-    <span class="k">def</span> <span class="nf">fullscreen_map</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fullscreen_map</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a page holding only the live node map, with no page padding.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_app_css</span><span class="p">()</span>
         <span class="n">ui</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;.nicegui-content&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;p-0&#39;</span><span class="p">)</span>
@@ -990,14 +990,14 @@
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_add_app_css</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_app_css</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply the shared dashboard stylesheet to the current page.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">_APP_CSS</span><span class="p">:</span>
             <span class="n">ui</span><span class="o">.</span><span class="n">add_head_html</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;style&gt;</span><span class="si">{</span><span class="n">_APP_CSS</span><span class="si">}</span><span class="s1">&lt;/style&gt;&#39;</span><span class="p">)</span>
 
     <span class="c1"># ── Plan tab ──────────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_plan_content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_plan_content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the Plan tab: field boundary, row planner, mission queue, saved missions and obstacles.&quot;&quot;&quot;</span>
         <span class="n">fix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_app_service</span><span class="o">.</span><span class="n">latest_gps</span>
         <span class="n">PlanPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plan_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mission_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obstacle_vm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="p">,</span>
@@ -1009,14 +1009,14 @@
 
 <div class="viewcode-block" id="main">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.main">[docs]</a>
-<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">pass</span></div>
 
 
 
 <div class="viewcode-block" id="ros_main">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.ui_node.html#devkit_ui.ui_node.ros_main">[docs]</a>
-<span class="k">def</span> <span class="nf">ros_main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ros_main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
     <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">NODE_NAME</span><span class="p">)</span>
     <span class="n">NiceGuiNode</span><span class="p">(</span><span class="n">RosGateway</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>  <span class="c1"># its callbacks and the registered page keep it alive</span>
@@ -1027,7 +1027,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_protect_dashboard</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_protect_dashboard</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Install HTTP and WebSocket Basic authentication when SOWBOT_UI_PASSWORD is nonempty.</span>
 
 <span class="sd">    An unset or empty value leaves the dashboard open to any network client.</span>

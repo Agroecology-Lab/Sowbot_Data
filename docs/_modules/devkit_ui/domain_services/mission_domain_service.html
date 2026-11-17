@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.domain_services.mission_domain_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -748,20 +748,20 @@
 <span class="sd">Owns the executor thread, the cancel flag and the tool-topic publishers. Carries no UI</span>
 <span class="sd">types: progress goes out through a callback as (level, text).</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">AbstractContextManager</span><span class="p">,</span> <span class="n">nullcontext</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractContextManager</span><span class="p">,</span> <span class="n">nullcontext</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
-<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Float64</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Float64</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.actions</span> <span class="kn">import</span> <span class="n">ACTIONS</span><span class="p">,</span> <span class="n">action_ros_msgs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ACTIONS</span><span class="p">,</span> <span class="n">action_ros_msgs</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.ros_gateway</span> <span class="kn">import</span> <span class="n">RosGateway</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.ros_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosGateway</span>
 
 <span class="n">INFO</span> <span class="o">=</span> <span class="s1">&#39;info&#39;</span>
 <span class="n">PROGRESS</span> <span class="o">=</span> <span class="s1">&#39;progress&#39;</span>
@@ -781,7 +781,7 @@
 <div class="viewcode-block" id="MissionResult">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionResult">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">MissionResult</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;How a mission ended.</span>
 
 <span class="sd">    steps_done counts whole steps (one entry-to-exit traverse each) that finished. stage is</span>
@@ -796,7 +796,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_failure_reason</span><span class="p">(</span><span class="n">outcome</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_failure_reason</span><span class="p">(</span><span class="n">outcome</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return None for an arrival, otherwise why navigation did not arrive.</span>
 
 <span class="sd">    A navigate callable returns True or ARRIVED on arrival, False for a plain failure (&#39;nav&#39;),</span>
@@ -811,14 +811,14 @@
 
 <div class="viewcode-block" id="MissionError">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionError">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A mission could not be started.&quot;&quot;&quot;</span></div>
 
 
 
 <div class="viewcode-block" id="resolve_steps">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.resolve_steps">[docs]</a>
-<span class="k">def</span> <span class="nf">resolve_steps</span><span class="p">(</span><span class="n">topo_doc</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">MissionStep</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">resolve_steps</span><span class="p">(</span><span class="n">topo_doc</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">MissionStep</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resolve queued (row, action, params) tuples to entry and exit nodes.</span>
 
 <span class="sd">    row is an integer row id, an entry node name, or a saved ROW_&lt;id&gt;_IN fallback.</span>
@@ -867,12 +867,12 @@
 
 <div class="viewcode-block" id="MissionDomainService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionDomainService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionDomainService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute a mission on a worker thread, one at a time.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MissionDomainService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Store the gateway and initialise executor state and the publisher cache.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ros</span> <span class="o">=</span> <span class="n">ros</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tool_publishers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -882,18 +882,18 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether a mission is executing.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">cancel_requested</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cancel_requested</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether cancel() was called since the last mission start or worker cleanup.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cancel</span>
 
 <div class="viewcode-block" id="MissionDomainService.cancel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.cancel">[docs]</a>
-    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask a running mission to stop before its next goal; return False if none is running.</span>
 
 <span class="sd">        Cancelling the active goal is the caller&#39;s job, and only when this returns True.</span>
@@ -907,7 +907,7 @@
 
 <div class="viewcode-block" id="MissionDomainService.start">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.start">[docs]</a>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">MissionStep</span><span class="p">],</span> <span class="n">navigate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">MissionStep</span><span class="p">],</span> <span class="n">navigate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
               <span class="n">on_status</span><span class="p">:</span> <span class="n">StatusCallback</span><span class="p">,</span> <span class="n">estop_active</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">],</span>
               <span class="n">on_result</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">MissionResult</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
               <span class="n">on_step_done</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -949,7 +949,7 @@
             <span class="k">raise</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_stop_reason</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estop_active</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_stop_reason</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estop_active</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return &#39;cancel&#39; or &#39;estop&#39; if the mission must stop before its next leg, else None.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cancel</span><span class="p">:</span>
             <span class="k">return</span> <span class="s1">&#39;cancel&#39;</span>
@@ -957,7 +957,7 @@
             <span class="k">return</span> <span class="s1">&#39;estop&#39;</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">_notify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_notify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call an optional callback, logging instead of raising so a store error cannot kill a run.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
@@ -966,7 +966,7 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># pylint: disable=broad-except</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_ros</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mission callback failed: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">navigate</span><span class="p">,</span> <span class="n">on_status</span><span class="p">,</span> <span class="n">estop_active</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">navigate</span><span class="p">,</span> <span class="n">on_status</span><span class="p">,</span> <span class="n">estop_active</span><span class="p">,</span>
                  <span class="n">on_result</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">on_step_done</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Navigate to each entry, then request tool activation for the exit traversal.</span>
 
@@ -1030,7 +1030,7 @@
 
 <div class="viewcode-block" id="MissionDomainService.get_tool_publisher">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.get_tool_publisher">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_tool_publisher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_float</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tool_publisher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_float</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a cached tool publisher: Float64 if is_float, else Bool.</span>
 
 <span class="sd">        Cache separately by topic and message type, creating publishers with depth 1.</span>
@@ -1045,7 +1045,7 @@
 
 <div class="viewcode-block" id="MissionDomainService.publish_tool_msgs">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.mission_domain_service.html#devkit_ui.domain_services.mission_domain_service.MissionDomainService.publish_tool_msgs">[docs]</a>
-    <span class="k">def</span> <span class="nf">publish_tool_msgs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">action_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">enable</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">publish_tool_msgs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">action_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">enable</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish the action&#39;s tool commands to enable or disable its implement.</span>
 
 <span class="sd">        Boolean values use Bool; numeric values and numeric strings use Float64.</span>

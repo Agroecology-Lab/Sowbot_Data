@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.obstacles &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -784,6 +784,7 @@ They are projected to the local map frame at publish time using the
 Without an anchor we cannot project, so we don’t publish —
 a costmap subscriber would otherwise treat raw lat/lon as metric and
 place obstacles thousands of kilometres from the origin.</p>
+</section>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -815,10 +816,9 @@ place obstacles thousands of kilometres from the origin.</p>
 </tr>
 </tbody>
 </table>
-</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="devkit_ui.obstacles.ObstacleManager">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_ui.obstacles.</span></span><span class="sig-name descname"><span class="pre">ObstacleManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_anchor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor" title="devkit_ui.map_anchor.MapAnchor"><span class="pre">MapAnchor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/workspace/maps/obstacles.yaml'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/obstacles.html#ObstacleManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.obstacles.ObstacleManager" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">devkit_ui.obstacles.</span></span><span class="sig-name descname"><span class="pre">ObstacleManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_anchor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="devkit_ui.map_anchor.html#devkit_ui.map_anchor.MapAnchor" title="devkit_ui.map_anchor.MapAnchor"><span class="pre">MapAnchor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/workspace/maps/obstacles.yaml'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_ui/obstacles.html#ObstacleManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_ui.obstacles.ObstacleManager" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Owns the obstacle list, persistence, and the ROS publisher.</p>
 <p>Readers poll these properties:</p>
@@ -864,7 +864,7 @@ Thread startup errors propagate after the in-memory removal.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.obstacles.ObstacleManager.obstacles">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">obstacles</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#devkit_ui.obstacles.ObstacleManager.obstacles" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obstacles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#devkit_ui.obstacles.ObstacleManager.obstacles" title="Link to this definition"></a></dt>
 <dd><p>Return the current obstacle snapshot.</p>
 </dd></dl>
 
@@ -891,13 +891,13 @@ background load errors are caught by _load().</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.obstacles.ObstacleManager.status">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">status</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#devkit_ui.obstacles.ObstacleManager.status" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#devkit_ui.obstacles.ObstacleManager.status" title="Link to this definition"></a></dt>
 <dd><p>Return the last action’s status text; an error starts with ‘ERROR’.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="devkit_ui.obstacles.ObstacleManager.version">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">version</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#devkit_ui.obstacles.ObstacleManager.version" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#devkit_ui.obstacles.ObstacleManager.version" title="Link to this definition"></a></dt>
 <dd><p>Return a counter that increases on every change to the obstacles.</p>
 </dd></dl>
 

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.application_services.topology_application_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,23 +743,23 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.application_services.topology_application_service</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.domain_services.topo_map_store</span> <span class="kn">import</span> <span class="n">TopoMapStore</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoPose</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.topo_defaults</span> <span class="kn">import</span> <span class="n">default_actions</span><span class="p">,</span> <span class="n">default_definitions</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.topo_results</span> <span class="kn">import</span> <span class="n">PersistResult</span><span class="p">,</span> <span class="n">StagedDrop</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.topo_map_store</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopoMapStore</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoPose</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_defaults</span><span class="w"> </span><span class="kn">import</span> <span class="n">default_actions</span><span class="p">,</span> <span class="n">default_definitions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_results</span><span class="w"> </span><span class="kn">import</span> <span class="n">PersistResult</span><span class="p">,</span> <span class="n">StagedDrop</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.domain_services.topology_domain_service</span> <span class="kn">import</span> <span class="n">TopologyDomainService</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.domain_services.topology_domain_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyDomainService</span>
 
 
 <span class="n">_LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -769,7 +769,7 @@
 
 <div class="viewcode-block" id="create_default_doc">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.create_default_doc">[docs]</a>
-<span class="k">def</span> <span class="nf">create_default_doc</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_default_doc</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the demo map shown before any real map arrives (pure data, no ROS).&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">TopoDoc</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mixed_test_map&#39;</span><span class="p">,</span>
@@ -787,7 +787,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService">[docs]</a>
-<span class="k">class</span> <span class="nc">TopologyApplicationService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopologyApplicationService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Orchestrates topology domain operations.</span>
 
 <span class="sd">    Responsibilities:</span>
@@ -798,7 +798,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain_service</span><span class="p">:</span> <span class="n">TopologyDomainService</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain_service</span><span class="p">:</span> <span class="n">TopologyDomainService</span><span class="p">,</span>
                  <span class="n">store</span><span class="p">:</span> <span class="n">TopoMapStore</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the topology application service.</span>
 
@@ -813,7 +813,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.register_doc_changed_callback">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.register_doc_changed_callback">[docs]</a>
-    <span class="k">def</span> <span class="nf">register_doc_changed_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_doc_changed_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a callback with the domain service for doc changes.</span>
 
 <span class="sd">        Parameters:</span>
@@ -824,7 +824,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.register_current_node_callback">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.register_current_node_callback">[docs]</a>
-    <span class="k">def</span> <span class="nf">register_current_node_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_current_node_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a callback with the domain service for localisation updates.</span>
 
 <span class="sd">        Parameters:</span>
@@ -835,7 +835,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.initialize_with_default">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.initialize_with_default">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize_with_default</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize_with_default</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the topology with a default demo document.</span>
 
 <span class="sd">        Useful for first-run UI state when no map file is available.</span>
@@ -846,21 +846,21 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.set_doc">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.set_doc">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Replace the live document (e.g. after a persist) without publishing.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_domain</span><span class="o">.</span><span class="n">set_doc</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TopologyApplicationService.publish">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.publish">[docs]</a>
-    <span class="k">def</span> <span class="nf">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish the live document so the topo nav stack picks it up.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_domain</span><span class="o">.</span><span class="n">publish</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="TopologyApplicationService.get_doc">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.get_doc">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current topology document from the domain.</span>
 
 <span class="sd">        Returns:</span>
@@ -871,7 +871,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.has_node">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.has_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">has_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if a node exists in the current topology.</span>
 
 <span class="sd">        Parameters:</span>
@@ -885,7 +885,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.get_node">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.get_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoNode</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoNode</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a node by name from the current topology.</span>
 
 <span class="sd">        Parameters:</span>
@@ -899,7 +899,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.add_node">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.add_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a node to the topology and publish it.</span>
 
 <span class="sd">        Reverse edges are added to the referenced nodes before publishing. Mutations</span>
@@ -917,7 +917,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.remove_node">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.remove_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">remove_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a node from the topology and publish the change.</span>
 
 <span class="sd">        Parameters:</span>
@@ -934,7 +934,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.persist_and_reload">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.persist_and_reload">[docs]</a>
-    <span class="k">def</span> <span class="nf">persist_and_reload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modify</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">TopoDoc</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persist_and_reload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modify</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">TopoDoc</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span>
                            <span class="n">map_hash8</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">TopoDoc</span><span class="p">],</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PersistResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply modify to the saved map, save it, and make it live.</span>
 
@@ -980,7 +980,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.drop_node">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.drop_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">drop_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drop_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">,</span>
                   <span class="n">on_saved</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PersistResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save a newly dropped node into the map file and make it live.</span>
 
@@ -1018,7 +1018,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.patch_node_role">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.patch_node_role">[docs]</a>
-    <span class="k">def</span> <span class="nf">patch_node_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">patch_node_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set a node&#39;s role in the saved map without updating or publishing the live map.</span>
 
 <span class="sd">        Do nothing if no map is loaded or no file exists. A missing node leaves the</span>
@@ -1043,7 +1043,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.persist_and_reload_async">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.persist_and_reload_async">[docs]</a>
-    <span class="k">def</span> <span class="nf">persist_and_reload_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modify</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">TopoDoc</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="n">success_msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persist_and_reload_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modify</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">TopoDoc</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="n">success_msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                                  <span class="n">report</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span>
                                  <span class="n">map_hash8</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run persist_and_reload in the background and report success_msg or the error.</span>
@@ -1051,7 +1051,7 @@
 <span class="sd">        Requires a loaded map; without one the worker reports &#39;ERROR: map not loaded&#39;.</span>
 <span class="sd">        Returning does not mean the map has been saved or made live.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">def</span> <span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">report</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">persist_and_reload</span><span class="p">(</span><span class="n">modify</span><span class="p">,</span> <span class="n">map_hash8</span><span class="o">=</span><span class="n">map_hash8</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">success_msg</span><span class="p">))</span>
                 <span class="n">_LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;persist_and_reload: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">success_msg</span><span class="p">)</span>
@@ -1065,13 +1065,13 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.drop_node_async">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.drop_node_async">[docs]</a>
-    <span class="k">def</span> <span class="nf">drop_node_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drop</span><span class="p">:</span> <span class="n">StagedDrop</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drop_node_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drop</span><span class="p">:</span> <span class="n">StagedDrop</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run drop_node for a staged drop in the background and report its progress.</span>
 
 <span class="sd">        The node is already in the live map, so a failed save is reported but does not</span>
 <span class="sd">        remove it. A node that is already on disk is skipped without a status update.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">def</span> <span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_node</span><span class="p">(</span>
                     <span class="n">drop</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">on_saved</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">report</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">drop</span><span class="o">.</span><span class="n">base</span><span class="si">}</span><span class="s1"> — reloading…&#39;</span><span class="p">))</span>
@@ -1093,9 +1093,9 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.patch_node_role_async">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.patch_node_role_async">[docs]</a>
-    <span class="k">def</span> <span class="nf">patch_node_role_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">patch_node_role_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run patch_node_role in the background, logging any failure.&quot;&quot;&quot;</span>
-        <span class="k">def</span> <span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">patch_node_role</span><span class="p">(</span><span class="n">node_name</span><span class="p">,</span> <span class="n">role</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># pylint: disable=broad-except</span>
@@ -1105,13 +1105,13 @@
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_spawn</span><span class="p">(</span><span class="n">work</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_spawn</span><span class="p">(</span><span class="n">work</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run work on a daemon thread.&quot;&quot;&quot;</span>
         <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">work</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
 <div class="viewcode-block" id="TopologyApplicationService.save_map_as">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.save_map_as">[docs]</a>
-    <span class="k">def</span> <span class="nf">save_map_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_map_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save a named copy of the map without touching the live one.</span>
 
 <span class="sd">        Prefers the saved file over memory, refuses to overwrite, and returns</span>
@@ -1142,7 +1142,7 @@
 
 <div class="viewcode-block" id="TopologyApplicationService.archive_and_clear">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_application_service.html#devkit_ui.application_services.topology_application_service.TopologyApplicationService.archive_and_clear">[docs]</a>
-    <span class="k">def</span> <span class="nf">archive_and_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">archive_and_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Archive the saved map as &lt;name&gt;_&lt;N&gt;, then replace it with an empty default map.</span>
 
 <span class="sd">        Returns the archive name. Raises on read or write errors; writes already made are</span>
@@ -1174,14 +1174,14 @@
         <span class="k">return</span> <span class="n">archive</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_require_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_require_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the live document or raise ValueError when no map is loaded.&quot;&quot;&quot;</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_domain</span><span class="o">.</span><span class="n">get_doc</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;map not loaded&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">doc</span>
 
-    <span class="k">def</span> <span class="nf">_go_live</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_go_live</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span>
                  <span class="n">on_saved</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PersistResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Replace the live document, call on_saved, then request a map switch.</span>
 

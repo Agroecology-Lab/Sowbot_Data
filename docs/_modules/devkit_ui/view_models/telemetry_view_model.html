@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.view_models.telemetry_view_model &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,27 +743,27 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.view_models.telemetry_view_model</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Odometry</span>
-    <span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">NavSatFix</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">nav_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Odometry</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sensor_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">NavSatFix</span>
 
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.telemetry_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.telemetry_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">TelemetryApplicationService</span><span class="p">,</span>
     <span class="p">)</span>
 
 
 <div class="viewcode-block" id="TelemetryViewModel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.telemetry_view_model.html#devkit_ui.view_models.telemetry_view_model.TelemetryViewModel">[docs]</a>
-<span class="k">class</span> <span class="nc">TelemetryViewModel</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TelemetryViewModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;UI-facing sensor state for the Run and System screens.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TelemetryViewModel.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.telemetry_view_model.html#devkit_ui.view_models.telemetry_view_model.TelemetryViewModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_service</span><span class="p">:</span> <span class="n">TelemetryApplicationService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_service</span><span class="p">:</span> <span class="n">TelemetryApplicationService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize measured velocities at zero and bind to the telemetry service.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span> <span class="o">=</span> <span class="n">app_service</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linear_velocity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -772,7 +772,7 @@
 
 <div class="viewcode-block" id="TelemetryViewModel.refresh">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.telemetry_view_model.html#devkit_ui.view_models.telemetry_view_model.TelemetryViewModel.refresh">[docs]</a>
-    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the displayed velocities from the latest odometry.</span>
 
 <span class="sd">        The last values are kept while no odometry is available.</span>
@@ -783,12 +783,12 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">odom</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Odometry</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">odom</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Odometry</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the latest odometry, or None before any has arrived.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">latest_odom</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">gps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NavSatFix</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NavSatFix</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the cached GNSS message, or None before any has been cached.</span>
 
 <span class="sd">        May contain an invalid real fix or the simulation fallback; freshness is not checked.</span>
@@ -796,7 +796,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">latest_gps</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">battery_text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">battery_text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the battery level and voltage for display, or a dash without data.&quot;&quot;&quot;</span>
         <span class="n">battery</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">latest_battery</span>
         <span class="k">if</span> <span class="n">battery</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -804,33 +804,33 @@
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">battery</span><span class="o">.</span><span class="n">percentage</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%  </span><span class="si">{</span><span class="n">battery</span><span class="o">.</span><span class="n">voltage</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> V&#39;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">bumper_front_top_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bumper_front_top_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the front-top bumper is pressed.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">bumper_front_top_active</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">bumper_front_bottom_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bumper_front_bottom_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the front-bottom bumper is pressed.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">bumper_front_bottom_active</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">bumper_back_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bumper_back_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the rear bumper is pressed.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">bumper_back_active</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">estop_front_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estop_front_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the front hardware e-stop is active.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">estop_front_active</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">estop_back_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estop_back_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the rear hardware e-stop is active.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_service</span><span class="o">.</span><span class="n">estop_back_active</span>
 
 <div class="viewcode-block" id="TelemetryViewModel.robot_pose">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.telemetry_view_model.html#devkit_ui.view_models.telemetry_view_model.TelemetryViewModel.robot_pose">[docs]</a>
-    <span class="k">def</span> <span class="nf">robot_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">robot_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return (x, y, yaw) in the map frame, in meters, meters, and radians.</span>
 
 <span class="sd">        Return None for an unavailable TF lookup or a transform over two node-clock seconds old.</span>

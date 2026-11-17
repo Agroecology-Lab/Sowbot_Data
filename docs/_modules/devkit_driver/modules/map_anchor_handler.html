@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_driver.modules.map_anchor_handler &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,24 +743,24 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_driver.modules.map_anchor_handler</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
-<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">TransformStamped</span>
-<span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Odometry</span>
-<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
-<span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">QoSProfile</span><span class="p">,</span> <span class="n">ReliabilityPolicy</span>
-<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">NavSatStatus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometry_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransformStamped</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nav_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Odometry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.qos</span><span class="w"> </span><span class="kn">import</span> <span class="n">QoSProfile</span><span class="p">,</span> <span class="n">ReliabilityPolicy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sensor_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">NavSatStatus</span>
 
-<span class="kn">from</span> <span class="nn">..map_anchor</span> <span class="kn">import</span> <span class="n">AnchorEstimator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..map_anchor</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnchorEstimator</span>
 
 <span class="n">_WAIT_WARNING_PERIOD_S</span> <span class="o">=</span> <span class="mf">10.0</span>
 
 
 <div class="viewcode-block" id="MapAnchorHandler">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.modules.map_anchor_handler.html#devkit_driver.modules.map_anchor_handler.MapAnchorHandler">[docs]</a>
-<span class="k">class</span> <span class="nc">MapAnchorHandler</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MapAnchorHandler</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Publish a static map -&gt; odom transform anchored to a surveyed geodetic origin.</span>
 
 <span class="sd">    Waits for fixes on fix_topic and odom positions on odom_topic, then broadcasts map -&gt; odom</span>
@@ -774,7 +774,7 @@
 
 <div class="viewcode-block" id="MapAnchorHandler.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.modules.map_anchor_handler.html#devkit_driver.modules.map_anchor_handler.MapAnchorHandler.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">broadcaster</span><span class="p">,</span> <span class="n">clock</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">broadcaster</span><span class="p">,</span> <span class="n">clock</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read parameters and subscribe; raise ValueError if the origin is not set.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="o">=</span> <span class="n">node</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_broadcaster</span> <span class="o">=</span> <span class="n">broadcaster</span>
@@ -785,7 +785,7 @@
                               <span class="p">(</span><span class="s1">&#39;map_frame&#39;</span><span class="p">,</span> <span class="s1">&#39;map&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;odom_frame&#39;</span><span class="p">,</span> <span class="s1">&#39;odom&#39;</span><span class="p">)):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">parameter</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">parameter</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 
         <span class="n">origin_lat</span><span class="p">,</span> <span class="n">origin_lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">parameter</span><span class="p">(</span><span class="s1">&#39;origin_lat&#39;</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">parameter</span><span class="p">(</span><span class="s1">&#39;origin_lon&#39;</span><span class="p">))</span>
@@ -810,7 +810,7 @@
 
 <div class="viewcode-block" id="MapAnchorHandler.handle_fix">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.modules.map_anchor_handler.html#devkit_driver.modules.map_anchor_handler.MapAnchorHandler.handle_fix">[docs]</a>
-    <span class="k">def</span> <span class="nf">handle_fix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_fix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Feed a valid fix to the estimator; ignore no-fix status and nonfinite positions.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchored</span> <span class="ow">or</span> <span class="n">msg</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">status</span> <span class="o">&lt;</span> <span class="n">NavSatStatus</span><span class="o">.</span><span class="n">STATUS_FIX</span><span class="p">:</span>
             <span class="k">return</span>
@@ -821,7 +821,7 @@
 
 <div class="viewcode-block" id="MapAnchorHandler.handle_odom">
 <a class="viewcode-back" href="../../../_autosummary/devkit_driver.modules.map_anchor_handler.html#devkit_driver.modules.map_anchor_handler.MapAnchorHandler.handle_odom">[docs]</a>
-    <span class="k">def</span> <span class="nf">handle_odom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Odometry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_odom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Odometry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Feed an odom position to the estimator; ignore nonfinite positions.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchored</span><span class="p">:</span>
             <span class="k">return</span>
@@ -831,7 +831,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_estimator</span><span class="o">.</span><span class="n">add_odom</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_clock</span><span class="p">(),</span> <span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_warn_if_waiting</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_warn_if_waiting</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Name the missing input every period while no fix or no odom position has arrived.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchored</span><span class="p">:</span>
             <span class="k">return</span>
@@ -841,7 +841,7 @@
         <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;map -&gt; odom is waiting for </span><span class="si">{</span><span class="s2">&quot; and &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s1">: nothing has arrived&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Broadcast map -&gt; odom once, or warn if the window is full but disagrees.&quot;&quot;&quot;</span>
         <span class="n">log</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

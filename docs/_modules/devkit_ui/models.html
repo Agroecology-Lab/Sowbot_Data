@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.models &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -743,11 +743,11 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.models</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterator</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">NamedTuple</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTuple</span>
 
 <span class="c1"># TODO(robbrit): These position types are probably defined somewhere else and we can use those.</span>
 
@@ -756,7 +756,7 @@
 
 <div class="viewcode-block" id="Vector4">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector4">[docs]</a>
-<span class="k">class</span> <span class="nc">Vector4</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Vector4</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a 4D vector.&quot;&quot;&quot;</span>
     <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
@@ -766,7 +766,7 @@
 
 <div class="viewcode-block" id="Vector3">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector3">[docs]</a>
-<span class="k">class</span> <span class="nc">Vector3</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Vector3</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a 3D vector.&quot;&quot;&quot;</span>
     <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
@@ -775,7 +775,7 @@
 
 <div class="viewcode-block" id="Vector2">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.Vector2">[docs]</a>
-<span class="k">class</span> <span class="nc">Vector2</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Vector2</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a 2D vector.&quot;&quot;&quot;</span>
     <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">y</span><span class="p">:</span> <span class="nb">float</span></div>
@@ -783,7 +783,7 @@
 
 <div class="viewcode-block" id="yaw_to_orientation">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.yaw_to_orientation">[docs]</a>
-<span class="k">def</span> <span class="nf">yaw_to_orientation</span><span class="p">(</span><span class="n">yaw</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector4</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">yaw_to_orientation</span><span class="p">(</span><span class="n">yaw</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector4</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the quaternion for a rotation of ``yaw`` radians about the z axis.</span>
 
 <span class="sd">    Components are rounded to six places so saved maps stay readable. Yaw is measured from map +x,</span>
@@ -795,9 +795,9 @@
 
 <div class="viewcode-block" id="TopoPose">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose">[docs]</a>
-<span class="k">class</span> <span class="nc">TopoPose</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopoPose</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a point&#39;s pose in 3D space.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="s1">&#39;orientation&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;orientation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
         <span class="k">if</span> <span class="s1">&#39;position&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
@@ -808,7 +808,7 @@
 
 <div class="viewcode-block" id="TopoPose.to_dict">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoPose.to_dict">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span><span class="o">.</span><span class="n">_asdict</span><span class="p">(),</span>
             <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position</span><span class="o">.</span><span class="n">_asdict</span><span class="p">(),</span>
@@ -816,17 +816,17 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector4</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector4</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position</span></div>
 
 
 <div class="viewcode-block" id="TopoProperties">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoProperties">[docs]</a>
-<span class="k">class</span> <span class="nc">TopoProperties</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopoProperties</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Contains a set of properties for a topo node.&quot;&quot;&quot;</span>
     <span class="n">xy_goal_tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">yaw_goal_tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -842,7 +842,7 @@
 
 <div class="viewcode-block" id="TopoEdge">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoEdge">[docs]</a>
-<span class="k">class</span> <span class="nc">TopoEdge</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopoEdge</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents an edge between two topo nodes.</span>
 
 <span class="sd">    Note that these are not standalone, they are always part of a TopoNode in order to know what</span>
@@ -855,12 +855,12 @@
 
 <div class="viewcode-block" id="TopoNode">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode">[docs]</a>
-<span class="k">class</span> <span class="nc">TopoNode</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopoNode</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a topo node.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TopoNode.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">,</span>
         <span class="n">pointset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -902,33 +902,33 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NodeID</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NodeID</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">edges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TopoEdge</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">edges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TopoEdge</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">meta</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">meta</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoProperties</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoProperties</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the node&#39;s topology properties, including row and GPS data.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span>
 
 <div class="viewcode-block" id="TopoNode.ensure_meta">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.ensure_meta">[docs]</a>
-    <span class="k">def</span> <span class="nf">ensure_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ensure_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensures that the metadata on the node is valid.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="n">map_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
@@ -937,7 +937,7 @@
 
 <div class="viewcode-block" id="TopoNode.rename_map">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.rename_map">[docs]</a>
-    <span class="k">def</span> <span class="nf">rename_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rename_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Points the node&#39;s pointset and map metadata at ``map_name``.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pointset</span> <span class="o">=</span> <span class="n">map_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="p">[</span><span class="s1">&#39;map&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">map_name</span>
@@ -946,13 +946,13 @@
 
 <div class="viewcode-block" id="TopoNode.add_metadata">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.add_metadata">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TopoNode.add_edge">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.add_edge">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">TopoEdge</span> <span class="o">|</span> <span class="n">NodeID</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">TopoEdge</span> <span class="o">|</span> <span class="n">NodeID</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">NodeID</span><span class="p">):</span>
             <span class="n">edge</span> <span class="o">=</span> <span class="n">TopoEdge</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">edge_id</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">edge</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="n">edge</span><span class="p">)</span>
 
@@ -964,7 +964,7 @@
 
 <div class="viewcode-block" id="TopoNode.set_edge_actions">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.set_edge_actions">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_edge_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">new</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_edge_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">new</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the action of every edge whose action is in `old`. Returns the count.</span>
 
 <span class="sd">        Edges already using `new` are excluded from the count.</span>
@@ -979,19 +979,19 @@
 
 <div class="viewcode-block" id="TopoNode.remove_edge">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.remove_edge">[docs]</a>
-    <span class="k">def</span> <span class="nf">remove_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_edges</span><span class="p">({</span><span class="n">node_id</span><span class="p">})</span></div>
 
 
 <div class="viewcode-block" id="TopoNode.is_connected_to">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.is_connected_to">[docs]</a>
-    <span class="k">def</span> <span class="nf">is_connected_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_connected_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span></div>
 
 
 <div class="viewcode-block" id="TopoNode.remove_edges">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.remove_edges">[docs]</a>
-    <span class="k">def</span> <span class="nf">remove_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">NodeID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">NodeID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="n">node_ids</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">node_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edges</span><span class="p">:</span>
                 <span class="k">continue</span>
@@ -1000,7 +1000,7 @@
 
 <div class="viewcode-block" id="TopoNode.to_dict">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.to_dict">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;node&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span>
@@ -1017,7 +1017,7 @@
 
 <div class="viewcode-block" id="TopoNode.patch_role">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoNode.patch_role">[docs]</a>
-    <span class="k">def</span> <span class="nf">patch_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">patch_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the row role in both the node&#39;s properties and metadata.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">row_role</span><span class="o">=</span><span class="n">role</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="p">[</span><span class="s1">&#39;row_role&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">role</span></div>
@@ -1032,12 +1032,12 @@
 
 <div class="viewcode-block" id="TopoDoc">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc">[docs]</a>
-<span class="k">class</span> <span class="nc">TopoDoc</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopoDoc</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a topo document.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TopoDoc.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">nodes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1079,7 +1079,7 @@
 
 <div class="viewcode-block" id="TopoDoc.ensure_meta">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.ensure_meta">[docs]</a>
-    <span class="k">def</span> <span class="nf">ensure_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ensure_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensures that the metadata on the document is valid.&quot;&quot;&quot;</span>
         <span class="n">map_name</span> <span class="o">=</span> <span class="n">map_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
@@ -1089,35 +1089,35 @@
 
 <div class="viewcode-block" id="TopoDoc.has_node">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.has_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">has_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span></div>
 
 
 <div class="viewcode-block" id="TopoDoc.get_node">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.get_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoNode</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">definitions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">definitions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_definitions</span>
 
 <div class="viewcode-block" id="TopoDoc.seed_actions">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.seed_actions">[docs]</a>
-    <span class="k">def</span> <span class="nf">seed_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">definitions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">seed_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">definitions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Backfill actions/definitions from a template doc (e.g. the</span>
 <span class="sd">        installed mixed_actions_map.yaml) when this doc has none of its</span>
 <span class="sd">        own. Used when clearing/re-seeding a map that was itself loaded</span>
@@ -1129,16 +1129,16 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">transformation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transformation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformation</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">meta</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">meta</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the document&#39;s mutable metadata.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">map_hash8</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">map_hash8</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the first 8 hex characters of the farm map this map was built from.</span>
 
 <span class="sd">        Return MAP_EDITED (&quot;-&quot;) when the map was edited since, or never came from a farm map.</span>
@@ -1148,14 +1148,14 @@
 
 <div class="viewcode-block" id="TopoDoc.stamp_map_hash8">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.stamp_map_hash8">[docs]</a>
-    <span class="k">def</span> <span class="nf">stamp_map_hash8</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hash8</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stamp_map_hash8</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hash8</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record that this map was built from the farm map with this hash, and not edited since.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="p">[</span><span class="n">MAP_HASH_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">hash8</span></div>
 
 
 <div class="viewcode-block" id="TopoDoc.mark_map_edited">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.mark_map_edited">[docs]</a>
-    <span class="k">def</span> <span class="nf">mark_map_edited</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mark_map_edited</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record that the map no longer matches its farm map. A map with no farm map stays as it is.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">MAP_HASH_KEY</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="p">[</span><span class="n">MAP_HASH_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAP_EDITED</span></div>
@@ -1163,7 +1163,7 @@
 
 <div class="viewcode-block" id="TopoDoc.add_node">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.add_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
 
         <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
@@ -1178,7 +1178,7 @@
 
 <div class="viewcode-block" id="TopoDoc.set_row_action">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.set_row_action">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_row_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_actions</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">new</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_row_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_actions</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">new</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set edges whose action is in `row_actions` to `new` across all nodes.</span>
 
 <span class="sd">        Return the number changed, excluding edges already using `new`.</span>
@@ -1188,7 +1188,7 @@
 
 <div class="viewcode-block" id="TopoDoc.insert_node">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.insert_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">insert_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">insert_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a node exactly as given, with no reverse-edge backfill.</span>
 
 <span class="sd">        Unlike add_node(), which assumes it&#39;s dropping a single node onto</span>
@@ -1205,13 +1205,13 @@
 
 <div class="viewcode-block" id="TopoDoc.remove_node">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.remove_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">remove_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_nodes</span><span class="p">({</span><span class="n">name</span><span class="p">})</span></div>
 
 
 <div class="viewcode-block" id="TopoDoc.remove_nodes">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.remove_nodes">[docs]</a>
-    <span class="k">def</span> <span class="nf">remove_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">NodeID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">NodeID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
@@ -1221,7 +1221,7 @@
 
 <div class="viewcode-block" id="TopoDoc.to_dict">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.to_dict">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span>
             <span class="s1">&#39;nodes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
@@ -1236,7 +1236,7 @@
 
 <div class="viewcode-block" id="TopoDoc.renamed">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.renamed">[docs]</a>
-    <span class="k">def</span> <span class="nf">renamed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;TopoDoc&#39;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">renamed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;TopoDoc&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Deep copy of this document under a new map name.</span>
 
 <span class="sd">        The topo name and pointset, and each node&#39;s pointset and map metadata,</span>
@@ -1248,7 +1248,7 @@
 
 <div class="viewcode-block" id="TopoDoc.rename">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.rename">[docs]</a>
-    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Renames this document in place; see ``renamed`` for what follows.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">new_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pointset</span> <span class="o">=</span> <span class="n">new_name</span>
@@ -1258,7 +1258,7 @@
 
 <div class="viewcode-block" id="TopoDoc.clone_empty">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.models.html#devkit_ui.models.TopoDoc.clone_empty">[docs]</a>
-    <span class="k">def</span> <span class="nf">clone_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;TopoDoc&#39;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clone_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;TopoDoc&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Clones the document and returns a new document with no nodes.</span>
 <span class="sd">        Retains metadata, actions, definitions, and transformation. If a farm map hash</span>
 <span class="sd">        is present, the clone is marked as edited.&quot;&quot;&quot;</span>

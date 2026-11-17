@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.view_models.sim_process_view_model &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -744,24 +744,24 @@
              
   <h1>Source code for devkit_ui.view_models.sim_process_view_model</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Presentation of the Sim page processes: status wording and its severity.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="c1"># Re-exported so pages can name the launch modes without importing the application service layer.</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_process_service</span> <span class="kn">import</span> <span class="n">GazeboMode</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.system_view_model</span> <span class="kn">import</span> <span class="n">ToolStatusView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_process_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">GazeboMode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.system_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolStatusView</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_process_service</span> <span class="kn">import</span> <span class="n">SimProcessApplicationService</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.tool_state</span> <span class="kn">import</span> <span class="n">ToolState</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_process_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimProcessApplicationService</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.tool_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolState</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GazeboMode&#39;</span><span class="p">,</span> <span class="s1">&#39;SimProcessViewModel&#39;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="SimProcessViewModel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel">[docs]</a>
-<span class="k">class</span> <span class="nc">SimProcessViewModel</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimProcessViewModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;UI-facing intents for the Gazebo and row-follow cards.</span>
 
 <span class="sd">    Every call returns the status to show. Starts and stops block, so call them off the UI loop.</span>
@@ -769,21 +769,21 @@
 
 <div class="viewcode-block" id="SimProcessViewModel.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">:</span> <span class="n">SimProcessApplicationService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">:</span> <span class="n">SimProcessApplicationService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind to the sim process service.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_service</span> <span class="o">=</span> <span class="n">service</span></div>
 
 
 <div class="viewcode-block" id="SimProcessViewModel.row_follow_status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel.row_follow_status">[docs]</a>
-    <span class="k">def</span> <span class="nf">row_follow_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">row_follow_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the status to show when a page is built, or None if it is not running.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">row_follow_status</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="SimProcessViewModel.start_row_follow">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel.start_row_follow">[docs]</a>
-    <span class="k">def</span> <span class="nf">start_row_follow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_row_follow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the row-follow stack in simulation.&quot;&quot;&quot;</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">start_row_follow</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;started&#39;</span><span class="p">:</span>
@@ -793,28 +793,28 @@
 
 <div class="viewcode-block" id="SimProcessViewModel.stop_row_follow">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel.stop_row_follow">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop_row_follow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_row_follow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the row-follow stack.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">stop_row_follow</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="SimProcessViewModel.gazebo_running">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel.gazebo_running">[docs]</a>
-    <span class="k">def</span> <span class="nf">gazebo_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gazebo_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether a simulation launch is still alive.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">gazebo_running</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="SimProcessViewModel.gazebo_status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel.gazebo_status">[docs]</a>
-    <span class="k">def</span> <span class="nf">gazebo_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gazebo_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the status to show when a page is built, or None if the sim is not running.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">gazebo_status</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="SimProcessViewModel.launch_gazebo">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel.launch_gazebo">[docs]</a>
-    <span class="k">def</span> <span class="nf">launch_gazebo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xacro</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">GazeboMode</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">launch_gazebo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xacro</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">GazeboMode</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Launch the sim for the robot model xacro; browser mode also starts the display.&quot;&quot;&quot;</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">launch_gazebo</span><span class="p">(</span><span class="n">xacro</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">kind</span> <span class="o">!=</span> <span class="s1">&#39;started&#39;</span><span class="p">:</span>
@@ -826,18 +826,18 @@
 
 <div class="viewcode-block" id="SimProcessViewModel.stop_gazebo">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_process_view_model.html#devkit_ui.view_models.sim_process_view_model.SimProcessViewModel.stop_gazebo">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop_gazebo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_gazebo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the sim and its display daemons.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">stop_gazebo</span><span class="p">())</span></div>
 
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_running</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">ToolState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_running</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">ToolState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Word a status poll; only a live process has anything to show.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_view</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;running&#39;</span> <span class="k">else</span> <span class="kc">None</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_view</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ToolState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_view</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ToolState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolStatusView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Word a service result; None when there is nothing to show.&quot;&quot;&quot;</span>
         <span class="n">kind</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">kind</span>
         <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;busy&#39;</span><span class="p">:</span>

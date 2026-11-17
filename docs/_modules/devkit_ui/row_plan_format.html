@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.row_plan_format &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -749,11 +749,11 @@
 <span class="sd">limits and recomputes the same hash (packages/api/src/util/rowPlan.js), so both sides must agree to the</span>
 <span class="sd">last digit. tests/row_plan_vectors.json holds vectors that both repositories test against.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">ROUND_HALF_UP</span><span class="p">,</span> <span class="n">Decimal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">ROUND_HALF_UP</span><span class="p">,</span> <span class="n">Decimal</span>
 
 <span class="n">SCHEMA_VERSION</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">MAX_ROWS</span> <span class="o">=</span> <span class="mi">2000</span>
@@ -767,7 +767,7 @@
 
 <div class="viewcode-block" id="RowPlanError">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.RowPlanError">[docs]</a>
-<span class="k">class</span> <span class="nc">RowPlanError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RowPlanError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The rows cannot be written as a plan that LiteFarm will accept.&quot;&quot;&quot;</span></div>
 
 
@@ -775,7 +775,7 @@
 <div class="viewcode-block" id="PlanRow">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.PlanRow">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">PlanRow</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanRow</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;One row in driving order. ``points`` are (latitude, longitude) in degrees.&quot;&quot;&quot;</span>
 
     <span class="n">row</span><span class="p">:</span> <span class="nb">int</span>
@@ -787,7 +787,7 @@
 <div class="viewcode-block" id="PlanProperties">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.PlanProperties">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">PlanProperties</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanProperties</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Top-level properties of a robot plan. ``map_id`` and ``map_hash`` are set by the caller.&quot;&quot;&quot;</span>
 
     <span class="n">map_id</span><span class="p">:</span> <span class="nb">str</span>
@@ -801,7 +801,7 @@
 
 <div class="viewcode-block" id="format_coordinate">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.format_coordinate">[docs]</a>
-<span class="k">def</span> <span class="nf">format_coordinate</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_coordinate</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return ``value`` as text with exactly 7 decimals, rounding the exact binary value half away from zero.</span>
 
 <span class="sd">    LiteFarm does the same with JavaScript&#39;s toFixed(7). Rounded negative zero is written as positive zero.</span>
@@ -813,7 +813,7 @@
 
 <div class="viewcode-block" id="canonical_rows_text">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.canonical_rows_text">[docs]</a>
-<span class="k">def</span> <span class="nf">canonical_rows_text</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">canonical_rows_text</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return ``[[row,frag,[[lon,lat],...]],...]`` in the given order, with no whitespace.&quot;&quot;&quot;</span>
     <span class="n">parts</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">plan_row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
@@ -825,7 +825,7 @@
 
 <div class="viewcode-block" id="map_hash">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.map_hash">[docs]</a>
-<span class="k">def</span> <span class="nf">map_hash</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">map_hash</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the SHA-256 of the canonical text of ``rows`` as lower-case hex.</span>
 
 <span class="sd">    The hash covers row and fragment IDs, coordinates, and their order. The rows must already be in mission order.</span>
@@ -836,7 +836,7 @@
 
 <div class="viewcode-block" id="distance_m">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.distance_m">[docs]</a>
-<span class="k">def</span> <span class="nf">distance_m</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">b</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">distance_m</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">b</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return LiteFarm&#39;s great-circle distance in meters between (latitude, longitude) points in degrees.&quot;&quot;&quot;</span>
     <span class="n">lat_a</span><span class="p">,</span> <span class="n">lat_b</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">half_dlat</span><span class="p">,</span> <span class="n">half_dlon</span> <span class="o">=</span> <span class="p">(</span><span class="n">lat_b</span> <span class="o">-</span> <span class="n">lat_a</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
@@ -847,7 +847,7 @@
 
 <div class="viewcode-block" id="row_length_m">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.row_length_m">[docs]</a>
-<span class="k">def</span> <span class="nf">row_length_m</span><span class="p">(</span><span class="n">plan_row</span><span class="p">:</span> <span class="n">PlanRow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">row_length_m</span><span class="p">(</span><span class="n">plan_row</span><span class="p">:</span> <span class="n">PlanRow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the length of a row in metres.&quot;&quot;&quot;</span>
     <span class="n">pts</span> <span class="o">=</span> <span class="n">plan_row</span><span class="o">.</span><span class="n">points</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">distance_m</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pts</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span></div>
@@ -856,7 +856,7 @@
 
 <div class="viewcode-block" id="check_rows">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.check_rows">[docs]</a>
-<span class="k">def</span> <span class="nf">check_rows</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_rows</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate row counts, IDs and coordinates, raising RowPlanError for invalid values.</span>
 
 <span class="sd">    Accept 1 to 2000 rows with unique, non-negative (row, fragment) IDs and 2 to 5000 points each.</span>
@@ -883,7 +883,7 @@
 
 <div class="viewcode-block" id="build_geojson">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_plan_format.html#devkit_ui.row_plan_format.build_geojson">[docs]</a>
-<span class="k">def</span> <span class="nf">build_geojson</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">],</span> <span class="n">props</span><span class="p">:</span> <span class="n">PlanProperties</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_geojson</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PlanRow</span><span class="p">],</span> <span class="n">props</span><span class="p">:</span> <span class="n">PlanProperties</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the plan as a GeoJSON FeatureCollection with the hash of ``rows`` filled in.</span>
 
 <span class="sd">    Coordinates are rounded to 7 decimals (about 1 cm), so the file holds exactly what the hash covers.</span>

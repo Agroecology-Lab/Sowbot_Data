@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.missions.store &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -807,15 +807,15 @@
 <span class="sd">    None               inactive, completed one-shot, or unknown id</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.actions</span> <span class="kn">import</span> <span class="n">ACTIONS</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.missions.sqlite</span> <span class="kn">import</span> <span class="n">MissionSqliteStore</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.time_utils</span> <span class="kn">import</span> <span class="n">now_utc</span><span class="p">,</span> <span class="n">now_utc_str</span><span class="p">,</span> <span class="n">parse_ts</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ACTIONS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.missions.sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionSqliteStore</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.time_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">now_utc</span><span class="p">,</span> <span class="n">now_utc_str</span><span class="p">,</span> <span class="n">parse_ts</span>
 
 <span class="n">MISSIONS_FILE</span> <span class="o">=</span> <span class="s1">&#39;/workspace/maps/missions.db&#39;</span>
 
@@ -837,7 +837,7 @@
 
 <div class="viewcode-block" id="validate_mission">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.validate_mission">[docs]</a>
-<span class="k">def</span> <span class="nf">validate_mission</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_mission</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                      <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
                      <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                      <span class="n">repeat_every_hours</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -867,7 +867,7 @@
 
 <div class="viewcode-block" id="MissionStore">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionStore</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionStore</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Owns the mission list and its SQLite persistence.</span>
 
 <span class="sd">    Readers poll these properties:</span>
@@ -904,7 +904,7 @@
 
 <div class="viewcode-block" id="MissionStore.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">MISSIONS_FILE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">MISSIONS_FILE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Open the SQLite database at path, creating or upgrading its schema.</span>
 
 <span class="sd">        SQLite initialization errors propagate.</span>
@@ -919,14 +919,14 @@
 
 <div class="viewcode-block" id="MissionStore.close">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.close">[docs]</a>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Release the SQLite connection.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="MissionStore.attach">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.attach">[docs]</a>
-    <span class="k">def</span> <span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;End any mission left running by a restart, and increment the version.</span>
 
 <span class="sd">        Call once, from the only process that owns the database.</span>
@@ -937,17 +937,17 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">missions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">missions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the current mission snapshot.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="o">.</span><span class="n">missions</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a counter that increases on every change to the missions.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the last action&#39;s status text; an error starts with &#39;ERROR&#39;.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span>
 
@@ -955,7 +955,7 @@
 
 <div class="viewcode-block" id="MissionStore.add">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.add">[docs]</a>
-    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
             <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
             <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">action_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -990,7 +990,7 @@
 
 <div class="viewcode-block" id="MissionStore.add_remote">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.add_remote">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
                    <span class="n">external_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                    <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
                    <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1026,14 +1026,14 @@
 
 <div class="viewcode-block" id="MissionStore.find_by_external_id">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.find_by_external_id">[docs]</a>
-    <span class="k">def</span> <span class="nf">find_by_external_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_by_external_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Look up a remote mission by the station&#39;s id.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="o">.</span><span class="n">find_by_external_id</span><span class="p">(</span><span class="n">external_id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MissionStore.delete">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.delete">[docs]</a>
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a saved mission and increment the version.</span>
 
 <span class="sd">        Return False and set status for an unknown ID or a running mission, whose result</span>
@@ -1057,7 +1057,7 @@
 
 <div class="viewcode-block" id="MissionStore.update">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.update">[docs]</a>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate and persist edits to a saved mission, incrementing the version.</span>
 
 <span class="sd">        Accept name, rows, action, action_params, repeat_every_hours, and active.</span>
@@ -1110,14 +1110,14 @@
 
 <div class="viewcode-block" id="MissionStore.set_active">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.set_active">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">active</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">active</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convenience wrapper around update(). The common toggle.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">active</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="MissionStore.reset">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.reset">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Re-arm a mission: clear run history and re-activate.</span>
 
 <span class="sd">        The canonical path for:</span>
@@ -1138,7 +1138,7 @@
 
 <div class="viewcode-block" id="MissionStore.record_result">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.record_result">[docs]</a>
-    <span class="k">def</span> <span class="nf">record_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">record_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Persist the result of the current or last run: state, steps_done, stage, reason,</span>
 <span class="sd">        started_at, ended_at and result_sent.</span>
 
@@ -1159,7 +1159,7 @@
 
 <div class="viewcode-block" id="MissionStore.record_run">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.record_run">[docs]</a>
-    <span class="k">def</span> <span class="nf">record_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">success</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">record_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">success</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record a run outcome. Called by the executor (and any &#39;Run now&#39;</span>
 <span class="sd">        path) so the repeat interval re-arms from actual robot activity</span>
 <span class="sd">        regardless of who triggered the run.</span>
@@ -1191,7 +1191,7 @@
 
 <div class="viewcode-block" id="MissionStore.today_queue">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.today_queue">[docs]</a>
-    <span class="k">def</span> <span class="nf">today_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">today_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Expand active, due local missions into (mission_id, row_id, action,</span>
 <span class="sd">        action_params) tuples in declaration order. Remote missions and missions</span>
 <span class="sd">        with unknown actions are excluded. Lock-free; the executor walks this list</span>
@@ -1216,7 +1216,7 @@
 
 <div class="viewcode-block" id="MissionStore.next_due_in_hours">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.next_due_in_hours">[docs]</a>
-    <span class="k">def</span> <span class="nf">next_due_in_hours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_due_in_hours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;For the UI chip. Returns one of:</span>
 
 <span class="sd">            DUE_NOW    (0.0)   active, never run yet</span>
@@ -1254,7 +1254,7 @@
 
 <div class="viewcode-block" id="MissionStore.find">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.find">[docs]</a>
-    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Lock-free single-mission lookup by id. Returns the dict from</span>
 <span class="sd">        the current snapshot — treat as read-only.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_store</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span></div>
@@ -1262,7 +1262,7 @@
 
 <div class="viewcode-block" id="MissionStore.find_by_name">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.find_by_name">[docs]</a>
-    <span class="k">def</span> <span class="nf">find_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Lock-free lookup by operator name. Returns the first match.</span>
 <span class="sd">        Useful for collision checks before add() (e.g. the UI_RUN record</span>
 <span class="sd">        the executor creates to anchor repeat intervals).&quot;&quot;&quot;</span>
@@ -1271,7 +1271,7 @@
 
     <span class="c1"># ── internals ────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_write_run_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_write_run_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Persist run state, increment the version, and return the backend update result.</span>
 
 <span class="sd">        The caller must hold self._lock.</span>
@@ -1282,12 +1282,12 @@
 
 <div class="viewcode-block" id="MissionStore.set_status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.store.html#devkit_ui.missions.MissionStore.set_status">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the status text. Last writer wins; the race is accepted (see module docs).&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="n">s</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_is_due</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">now</span><span class="p">:</span> <span class="n">datetime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_due</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">now</span><span class="p">:</span> <span class="n">datetime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the mission belongs in today_queue at `now`.</span>
 
 <span class="sd">        Due if any of:</span>

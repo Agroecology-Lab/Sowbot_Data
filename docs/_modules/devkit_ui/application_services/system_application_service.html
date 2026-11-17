@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.application_services.system_application_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -749,20 +749,20 @@
 <span class="sd">every browser session sees the same process. A per-tool lock turns an overlapping start or stop</span>
 <span class="sd">into a &#39;busy&#39; result instead of a second process or a half-stopped one. No ROS or NiceGUI imports.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="c1"># pylint: disable-next=import-error</span>
-<span class="kn">from</span> <span class="nn">ament_index_python.packages</span> <span class="kn">import</span> <span class="n">PackageNotFoundError</span><span class="p">,</span> <span class="n">get_package_share_directory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ament_index_python.packages</span><span class="w"> </span><span class="kn">import</span> <span class="n">PackageNotFoundError</span><span class="p">,</span> <span class="n">get_package_share_directory</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.tool_state</span> <span class="kn">import</span> <span class="n">ToolState</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">TOOL_EXPLORER</span><span class="p">,</span> <span class="n">TOOL_GRAPHER</span><span class="p">,</span> <span class="n">TOOL_MEDKIT</span><span class="p">,</span> <span class="n">TOOL_RVIZ</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.process_registry</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.tool_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">TOOL_EXPLORER</span><span class="p">,</span> <span class="n">TOOL_GRAPHER</span><span class="p">,</span> <span class="n">TOOL_MEDKIT</span><span class="p">,</span> <span class="n">TOOL_RVIZ</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.process_registry</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">alive</span><span class="p">,</span>
     <span class="n">interrupt_stop</span><span class="p">,</span>
     <span class="n">kill_group</span><span class="p">,</span>
@@ -783,7 +783,7 @@
 <span class="c1"># service uses host networking, where it would expose the unauthenticated gateway to the LAN.</span>
 
 
-<span class="k">def</span> <span class="nf">_medkit_cmd</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_medkit_cmd</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the gateway launch command, binding to MEDKIT_SERVER_HOST (default 127.0.0.1).&quot;&quot;&quot;</span>
     <span class="n">host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MEDKIT_SERVER_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="s1">&#39;127.0.0.1&#39;</span>
     <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;ros2_medkit_gateway&#39;</span><span class="p">,</span> <span class="s1">&#39;bringup.launch.py&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;server_host:=</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
@@ -803,12 +803,12 @@
 
 <div class="viewcode-block" id="SystemApplicationService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService">[docs]</a>
-<span class="k">class</span> <span class="nc">SystemApplicationService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SystemApplicationService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Start, stop and poll the System page tools; the tool keys are the TOOL_* constants.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SystemApplicationService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Use one shared lock per tool across service instances.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_locks</span> <span class="o">=</span> <span class="p">{</span><span class="n">tool</span><span class="p">:</span> <span class="n">shared</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">tool</span><span class="si">}</span><span class="s1">_lock&#39;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">)</span> <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">_LOGS</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_launchers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{</span>
@@ -821,7 +821,7 @@
 
 <div class="viewcode-block" id="SystemApplicationService.start">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService.start">[docs]</a>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start tool unless it is running or another start or stop is in flight.</span>
 
 <span class="sd">        Return &#39;busy&#39; while the tool&#39;s lock is held, &#39;already_running&#39; for a live process, &#39;error&#39;</span>
@@ -847,7 +847,7 @@
 
 <div class="viewcode-block" id="SystemApplicationService.stop">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService.stop">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop tool and release its handle; also stop RViz&#39;s display daemons.</span>
 
 <span class="sd">        Medkit receives SIGINT at its launch leader, escalating to terminate and kill on</span>
@@ -876,7 +876,7 @@
 
 <div class="viewcode-block" id="SystemApplicationService.status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService.status">[docs]</a>
-    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return &#39;running&#39; for a live process and &#39;idle&#39; otherwise; used when a page is built.&quot;&quot;&quot;</span>
         <span class="n">proc</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">alive</span><span class="p">(</span><span class="n">proc</span><span class="p">):</span>
@@ -886,7 +886,7 @@
 
 <div class="viewcode-block" id="SystemApplicationService.exited">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.system_application_service.html#devkit_ui.application_services.system_application_service.SystemApplicationService.exited">[docs]</a>
-    <span class="k">def</span> <span class="nf">exited</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">exited</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return &#39;exited&#39; with the return code if a started process has since died.</span>
 
 <span class="sd">        Return &#39;busy&#39; while a start or stop is in flight, &#39;running&#39; for a live process and &#39;idle&#39;</span>
@@ -909,11 +909,11 @@
 
     <span class="c1"># ── launching ─────────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_launch_explorer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_launch_explorer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start Graph Explorer and return its process with no note.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">spawn_logged</span><span class="p">(</span><span class="n">_EXPLORER_CMD</span><span class="p">,</span> <span class="n">_LOGS</span><span class="p">[</span><span class="n">TOOL_EXPLORER</span><span class="p">]),</span> <span class="s1">&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="nf">_launch_grapher</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_launch_grapher</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start ros2grapher and return its process with no note.</span>
 
 <span class="sd">        ros2grapher serves its output directory over plain HTTP on all interfaces. Give it a</span>
@@ -923,7 +923,7 @@
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">_GRAPHER_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">spawn_logged</span><span class="p">(</span><span class="n">_GRAPHER_CMD</span><span class="p">,</span> <span class="n">_LOGS</span><span class="p">[</span><span class="n">TOOL_GRAPHER</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="n">_GRAPHER_DIR</span><span class="p">),</span> <span class="s1">&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="nf">_launch_rviz</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_launch_rviz</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the display stack, then RViz on it; return the process and a note if no config.</span>
 
 <span class="sd">        Use the topology RViz configuration when its ROS package is available, which has</span>
@@ -945,7 +945,7 @@
         <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_reap_rviz_display</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">proc</span><span class="p">,),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">proc</span><span class="p">,</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="n">_NO_TOPO_CONFIG</span>
 
-    <span class="k">def</span> <span class="nf">_reap_rviz_display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reap_rviz_display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop RViz&#39;s display daemons when proc exits on its own. Blocks until proc exits.</span>
 
 <span class="sd">        Do nothing if proc is no longer the registered RViz handle, because a stop or a restart</span>
@@ -967,7 +967,7 @@
         <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
             <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">_launch_medkit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_launch_medkit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the Medkit gateway and return its process with no note.</span>
 
 <span class="sd">        It gets its own session: it is registered for shutdown_tools, which signals the whole</span>
@@ -977,7 +977,7 @@
 
     <span class="c1"># ── stopping ──────────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop proc the way tool needs; a missing handle is a no-op, other than RViz&#39;s display.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">tool</span> <span class="o">==</span> <span class="n">TOOL_MEDKIT</span><span class="p">:</span>
             <span class="c1"># SIGINT to the launch leader lets it shut down its children; SIGTERM would not.</span>

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_mavlink_bridge.modules.link_monitor &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -749,9 +749,9 @@
 <span class="sd">Time comes from an injected monotonic clock, never from ROS time.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
 <span class="n">NEVER</span> <span class="o">=</span> <span class="s1">&#39;never&#39;</span>
 <span class="n">OK</span> <span class="o">=</span> <span class="s1">&#39;ok&#39;</span>
@@ -760,12 +760,12 @@
 
 <div class="viewcode-block" id="HeartbeatMonitor">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor">[docs]</a>
-<span class="k">class</span> <span class="nc">HeartbeatMonitor</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HeartbeatMonitor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Track when the flight controller last sent a HEARTBEAT.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="HeartbeatMonitor.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">clock</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">clock</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Treat the link as lost when no heartbeat arrived for more than timeout_s seconds.</span>
 
 <span class="sd">        Raise ValueError if timeout_s is nonpositive or nonfinite.</span>
@@ -778,20 +778,20 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">timeout_s</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">timeout_s</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Maximum heartbeat age, in seconds, before the link counts as lost.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_s</span>
 
 <div class="viewcode-block" id="HeartbeatMonitor.beat">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor.beat">[docs]</a>
-    <span class="k">def</span> <span class="nf">beat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">beat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record a heartbeat received now.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="HeartbeatMonitor.state">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.link_monitor.html#devkit_mavlink_bridge.modules.link_monitor.HeartbeatMonitor.state">[docs]</a>
-    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return NEVER before the first heartbeat, then OK, or LOST once one is overdue.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stamp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">NEVER</span>

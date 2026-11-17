@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_f2c_planner.f2c_planner &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -763,19 +763,19 @@
 <span class="sd">same-package import.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="c1"># fields2cover is optional: it is built from source in docker/Dockerfile and is</span>
 <span class="c1"># unavailable in the browser (Pyodide). Without it, run_f2c() falls back to a</span>
 <span class="c1"># pure-shapely swath generator (backend=&#39;shapely&#39;).</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="c1"># pylint: disable=import-error</span>
-    <span class="kn">import</span> <span class="nn">fields2cover</span> <span class="k">as</span> <span class="nn">f2c</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">fields2cover</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">f2c</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
     <span class="n">f2c</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">MultiLineString</span><span class="p">,</span> <span class="n">Polygon</span>
-<span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">unary_union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">MultiLineString</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.ops</span><span class="w"> </span><span class="kn">import</span> <span class="n">unary_union</span>
 
 <span class="c1"># offset_curve() (shapely &gt;= 2.0) is used by run_contour_f2c() below. The</span>
 <span class="c1"># repo doesn&#39;t pin a shapely version — it&#39;s installed generically in the</span>
@@ -786,7 +786,7 @@
 
 <div class="viewcode-block" id="f2c_latlon_to_xy">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.f2c_latlon_to_xy">[docs]</a>
-<span class="k">def</span> <span class="nf">f2c_latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f2c_latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Project latitude/longitude degrees to (east, north) meters about (lat0, lon0).</span>
 
@@ -801,7 +801,7 @@
 
 <div class="viewcode-block" id="f2c_xy_to_latlon">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.f2c_xy_to_latlon">[docs]</a>
-<span class="k">def</span> <span class="nf">f2c_xy_to_latlon</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f2c_xy_to_latlon</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return (latitude, longitude) degrees from local (east, north) meters.</span>
 
@@ -816,7 +816,7 @@
 
 <div class="viewcode-block" id="field_centroid_xy">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.field_centroid_xy">[docs]</a>
-<span class="k">def</span> <span class="nf">field_centroid_xy</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">field_centroid_xy</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Field boundary&#39;s spatial centroid, in the same local-xy frame</span>
 <span class="sd">    run_f2c()/run_contour_f2c() use (anchored at corners_ll[0]).</span>
 
@@ -862,7 +862,7 @@
 <span class="c1"># splits a swath into pieces.</span>
 <div class="viewcode-block" id="run_f2c">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_f2c">[docs]</a>
-<span class="k">def</span> <span class="nf">run_f2c</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_f2c</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
             <span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
             <span class="n">tool_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
             <span class="n">angle_deg</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -898,7 +898,7 @@
     <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;f2c&#39;</span> <span class="ow">and</span> <span class="n">f2c</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s1">&#39;backend=&quot;f2c&quot; requested but fields2cover is not installed&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write a prefixed diagnostic line to stderr.&quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[F2C] </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -993,7 +993,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_swaths_shapely</span><span class="p">(</span><span class="n">poly</span><span class="p">:</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle_rad</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_swaths_shapely</span><span class="p">(</span><span class="n">poly</span><span class="p">:</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle_rad</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parallel swaths at angle_rad (from +x) spaced tool_width apart.</span>
 
 <span class="sd">    Mirrors SG_BruteForce for a fixed angle: rotate so swaths run along x,</span>
@@ -1003,11 +1003,11 @@
     <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="o">-</span><span class="n">angle_rad</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="n">angle_rad</span><span class="p">)</span>
     <span class="n">cb</span><span class="p">,</span> <span class="n">sb</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rotate local coordinates into the frame where swaths run along the x axis.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">c</span> <span class="o">-</span> <span class="n">y</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">c</span>
 
-    <span class="k">def</span> <span class="nf">unrot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unrot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rotate swath coordinates back into the original local frame.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">cb</span> <span class="o">-</span> <span class="n">y</span> <span class="o">*</span> <span class="n">sb</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">sb</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">cb</span>
 
@@ -1028,7 +1028,7 @@
     <span class="k">return</span> <span class="n">out</span>
 
 
-<span class="k">def</span> <span class="nf">_run_shapely</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">,</span> <span class="n">obstacle_rings</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_run_shapely</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">,</span> <span class="n">obstacle_rings</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">,</span>
                  <span class="n">obstacle_pad_m</span><span class="p">,</span> <span class="n">headland_width_m</span><span class="p">,</span> <span class="n">snake_order</span><span class="p">,</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">,</span> <span class="n">_log</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pure-shapely twin of the F2C branch in run_f2c().&quot;&quot;&quot;</span>
     <span class="n">field</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([</span><span class="n">f2c_latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">)</span> <span class="k">for</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="ow">in</span> <span class="n">corners_ll</span><span class="p">])</span>
@@ -1058,7 +1058,7 @@
 
 <div class="viewcode-block" id="tag_rows">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.tag_rows">[docs]</a>
-<span class="k">def</span> <span class="nf">tag_rows</span><span class="p">(</span><span class="n">rows_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tag_rows</span><span class="p">(</span><span class="n">rows_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return (row, frag) for each swath returned by run_f2c().</span>
 
 <span class="sd">    Obstacle clipping splits one row into consecutive swaths. Those share a</span>
@@ -1079,7 +1079,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_build_obstacle_polys</span><span class="p">(</span><span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_obstacle_polys</span><span class="p">(</span><span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                            <span class="n">obstacle_pad_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_log</span><span class="p">,</span> <span class="n">f2c_cell</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Project obstacle_rings (lat/lon) to shapely polygons in local xy,</span>
 <span class="sd">    repairing invalid geometry and applying padding. Shared by run_f2c()</span>
@@ -1135,7 +1135,7 @@
     <span class="k">return</span> <span class="n">obstacle_polys_xy</span>
 
 
-<span class="k">def</span> <span class="nf">_clip_lines_against_obstacles</span><span class="p">(</span><span class="n">raw_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">obstacle_polys_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_clip_lines_against_obstacles</span><span class="p">(</span><span class="n">raw_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">obstacle_polys_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
                                    <span class="n">min_fragment_len_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_log</span><span class="p">,</span>
                                    <span class="n">break_after</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;line.difference(obstacle_union) for every row, dropping fragments</span>
@@ -1221,7 +1221,7 @@
 <span class="c1"># than emitted looped/garbled — flagged as follow-up work once there&#39;s</span>
 <span class="c1"># real field DEM data to know how often this actually bites, rather than</span>
 <span class="c1"># guessed at now.</span>
-<span class="k">def</span> <span class="nf">_extend_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">probe_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LineString</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_extend_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">probe_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LineString</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extend both ends of line along their end tangents by dist metres.</span>
 
 <span class="sd">    The reference contour only exists where the DEM does, so it is usually</span>
@@ -1234,7 +1234,7 @@
     <span class="n">probe</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">probe_m</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">pts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_tip</span><span class="p">(</span><span class="n">end_pt</span><span class="p">,</span> <span class="n">inner_pt</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_tip</span><span class="p">(</span><span class="n">end_pt</span><span class="p">,</span> <span class="n">inner_pt</span><span class="p">):</span>
         <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">end_pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inner_pt</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">end_pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">inner_pt</span><span class="o">.</span><span class="n">y</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">pts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">(</span><span class="n">end_pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">/</span> <span class="n">n</span> <span class="o">*</span> <span class="n">dist</span><span class="p">,</span> <span class="n">end_pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">/</span> <span class="n">n</span> <span class="o">*</span> <span class="n">dist</span><span class="p">)</span>
@@ -1246,7 +1246,7 @@
 
 <div class="viewcode-block" id="run_contour_f2c">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_planner.html#devkit_f2c_planner.f2c_planner.run_contour_f2c">[docs]</a>
-<span class="k">def</span> <span class="nf">run_contour_f2c</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_contour_f2c</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
                       <span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
                       <span class="n">reference_line_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
                       <span class="n">tool_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -1285,7 +1285,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">break_after</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write a prefixed diagnostic line to stderr.&quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[F2C-contour] </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -1327,7 +1327,7 @@
             <span class="n">ref_line</span> <span class="o">=</span> <span class="n">extended</span>
 
     <span class="c1"># ── Offset outward from the reference line until we run off the field ──</span>
-    <span class="k">def</span> <span class="nf">_row_at</span><span class="p">(</span><span class="n">offset_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_row_at</span><span class="p">(</span><span class="n">offset_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build one row offset from the reference line, or None if it can&#39;t be produced.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">offset_m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">ref_line</span>

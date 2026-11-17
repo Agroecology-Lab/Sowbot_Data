@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.application_services.topology_edit_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -750,28 +750,28 @@
 <span class="sd">edit means for the loaded map and returns plain results; the caller shows statuses, logs</span>
 <span class="sd">lines and starts the background write. No ROS or NiceGUI imports.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.topology_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">TopologyApplicationService</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">NAV_ACTION</span><span class="p">,</span> <span class="n">YAW_GOAL_TOLERANCE</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoEdge</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoProperties</span><span class="p">,</span> <span class="n">Vector2</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.topo_dock_builder</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">NAV_ACTION</span><span class="p">,</span> <span class="n">YAW_GOAL_TOLERANCE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoEdge</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoProperties</span><span class="p">,</span> <span class="n">Vector2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_dock_builder</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DOCK_PREFIX_KEY</span><span class="p">,</span>
     <span class="n">DockBuild</span><span class="p">,</span>
     <span class="n">DockBuildSettings</span><span class="p">,</span>
     <span class="n">apply_dock_nodes</span><span class="p">,</span>
     <span class="n">build_dock_nodes</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.topo_results</span> <span class="kn">import</span> <span class="n">StagedDrop</span><span class="p">,</span> <span class="n">StagedEdit</span><span class="p">,</span> <span class="n">TopologyEditError</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.topo_row_builder</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_results</span><span class="w"> </span><span class="kn">import</span> <span class="n">StagedDrop</span><span class="p">,</span> <span class="n">StagedEdit</span><span class="p">,</span> <span class="n">TopologyEditError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_row_builder</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">RowAnchor</span><span class="p">,</span>
     <span class="n">RowBuild</span><span class="p">,</span>
     <span class="n">RowBuildSettings</span><span class="p">,</span>
@@ -787,13 +787,13 @@
 
 <div class="viewcode-block" id="clean_name">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.clean_name">[docs]</a>
-<span class="k">def</span> <span class="nf">clean_name</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">clean_name</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return raw stripped, uppercased, with spaces as underscores and other junk removed.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^A-Z0-9_]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">raw</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">))</span></div>
 
 
 
-<span class="k">def</span> <span class="nf">_map_yaw_deg</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_map_yaw_deg</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return MAP_YAW_DEG, the direction of the map x axis in degrees counter-clockwise from east (default 0).</span>
 
 <span class="sd">    Raises:</span>
@@ -809,26 +809,26 @@
     <span class="k">return</span> <span class="n">value</span>
 
 
-<span class="k">def</span> <span class="nf">_timestamp</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_timestamp</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the current UTC time in the format used by node metadata.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">UTC</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y_%H-%M-%S&#39;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="TopologyEditService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.TopologyEditService">[docs]</a>
-<span class="k">class</span> <span class="nc">TopologyEditService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopologyEditService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stages edits to the loaded topology map for the application service to persist.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TopologyEditService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.TopologyEditService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology</span><span class="p">:</span> <span class="n">TopologyApplicationService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology</span><span class="p">:</span> <span class="n">TopologyApplicationService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Keep the application service whose live document edits are checked against.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_topology</span> <span class="o">=</span> <span class="n">topology</span></div>
 
 
 <div class="viewcode-block" id="TopologyEditService.stage_drop">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.TopologyEditService.stage_drop">[docs]</a>
-    <span class="k">def</span> <span class="nf">stage_drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">row_role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stage_drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">row_role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
                    <span class="n">pose</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">is_sim</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">gps</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
                    <span class="n">row_action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">current_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
                    <span class="n">selected_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StagedDrop</span><span class="p">:</span>
@@ -918,7 +918,7 @@
 
 <div class="viewcode-block" id="TopologyEditService.stage_f2c_save">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.TopologyEditService.stage_f2c_save">[docs]</a>
-    <span class="k">def</span> <span class="nf">stage_f2c_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">row_id_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stage_f2c_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">row_id_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
                        <span class="n">swaths</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">origin_ll</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
                        <span class="n">contour_used</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">break_after</span><span class="p">:</span> <span class="nb">set</span> <span class="o">|</span> <span class="nb">frozenset</span><span class="p">,</span>
                        <span class="n">lf_rows</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">map_hash8</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1028,12 +1028,12 @@
                 <span class="n">stamp</span> <span class="o">=</span> <span class="n">map_hash8</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">differs</span> <span class="o">=</span> <span class="s1">&#39; · map is not the farm map, remote missions are refused&#39;</span>
-        <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">file_doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">modify</span><span class="p">(</span><span class="n">file_doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">apply_row_nodes</span><span class="p">(</span><span class="n">file_doc</span><span class="p">,</span> <span class="n">build</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">dock_build</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">overwrite</span><span class="p">:</span>
                 <span class="n">apply_dock_nodes</span><span class="p">(</span><span class="n">file_doc</span><span class="p">,</span> <span class="n">dock_build</span> <span class="ow">or</span> <span class="n">DockBuild</span><span class="p">(),</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">verified_stamp</span><span class="p">(</span><span class="n">file_doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">verified_stamp</span><span class="p">(</span><span class="n">file_doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">live</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topology</span><span class="o">.</span><span class="n">get_doc</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">live</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">None</span>
@@ -1057,7 +1057,7 @@
 
 <div class="viewcode-block" id="TopologyEditService.stage_repair">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.TopologyEditService.stage_repair">[docs]</a>
-    <span class="k">def</span> <span class="nf">stage_repair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connect_to</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StagedEdit</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stage_repair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connect_to</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StagedEdit</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the missing in-row and headland edges to the live map and describe the save.</span>
 
 <span class="sd">        New in-row edges use row_action and existing edge actions are kept. connect_to</span>
@@ -1101,7 +1101,7 @@
 
 <div class="viewcode-block" id="TopologyEditService.stage_delete_node">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.TopologyEditService.stage_delete_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">stage_delete_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StagedEdit</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stage_delete_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StagedEdit</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Describe deleting one node from the saved map.</span>
 
 <span class="sd">        Raises:</span>
@@ -1120,7 +1120,7 @@
 
 <div class="viewcode-block" id="TopologyEditService.stage_delete_row">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.topology_edit_service.html#devkit_ui.application_services.topology_edit_service.TopologyEditService.stage_delete_row">[docs]</a>
-    <span class="k">def</span> <span class="nf">stage_delete_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StagedEdit</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stage_delete_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StagedEdit</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Describe deleting every node of a row from the saved map.</span>
 
 <span class="sd">        Raises:</span>
@@ -1141,7 +1141,7 @@
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_build_docks</span><span class="p">(</span><span class="n">docks</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">routes</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">anchor</span><span class="p">:</span> <span class="n">RowAnchor</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">build</span><span class="p">:</span> <span class="n">RowBuild</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_docks</span><span class="p">(</span><span class="n">docks</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">routes</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">anchor</span><span class="p">:</span> <span class="n">RowAnchor</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">build</span><span class="p">:</span> <span class="n">RowBuild</span><span class="p">,</span>
                      <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">nav_frame</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">warnings</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">DockBuild</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the dock nodes for a save, or None when there are no docks.</span>
 
@@ -1158,13 +1158,13 @@
                 <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span> <span class="n">nav_frame</span><span class="o">=</span><span class="n">nav_frame</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="n">doc</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s1">&#39;mixed_test_map&#39;</span><span class="p">,</span>
                 <span class="n">timestamp</span><span class="o">=</span><span class="n">_timestamp</span><span class="p">(),</span> <span class="n">fix_type</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">status</span><span class="p">),</span> <span class="n">map_yaw_deg</span><span class="o">=</span><span class="n">_map_yaw_deg</span><span class="p">()),</span> <span class="n">build</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">TopologyEditError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">warnings</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">exc</span>
+            <span class="k">raise</span> <span class="n">TopologyEditError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ERROR: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">warnings</span><span class="p">))</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
         <span class="k">if</span> <span class="n">dock_build</span><span class="o">.</span><span class="n">skipped</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;docks: no row end in the map for routes </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dock_build</span><span class="o">.</span><span class="n">skipped</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">dock_build</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_holds_only_these_rows</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">build</span><span class="p">:</span> <span class="n">RowBuild</span><span class="p">,</span> <span class="n">swath_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_holds_only_these_rows</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">build</span><span class="p">:</span> <span class="n">RowBuild</span><span class="p">,</span> <span class="n">swath_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                                <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether saving build leaves the map&#39;s row nodes exactly the built ones.</span>
 
@@ -1179,7 +1179,7 @@
         <span class="k">return</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_id&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">kept</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_holds_only_these_docks</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">dock_build</span><span class="p">:</span> <span class="n">DockBuild</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_holds_only_these_docks</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">dock_build</span><span class="p">:</span> <span class="n">DockBuild</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                                 <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether saving dock_build leaves the map&#39;s dock and route nodes exactly the built ones.</span>
 
@@ -1193,7 +1193,7 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;dock&#39;</span><span class="p">,</span> <span class="s1">&#39;route&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">kept</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_require_loaded</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_require_loaded</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the live map, or raise TopologyEditError if none is loaded.&quot;&quot;&quot;</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topology</span><span class="o">.</span><span class="n">get_doc</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">doc</span><span class="p">:</span>
@@ -1201,7 +1201,7 @@
         <span class="k">return</span> <span class="n">doc</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_connect_target</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">current_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_connect_target</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">current_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
                         <span class="n">selected_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the existing node a new edge should point at, or None.</span>
 

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.parse &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -743,16 +743,16 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.parse</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
 
-<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoEdge</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoPose</span><span class="p">,</span> <span class="n">TopoProperties</span><span class="p">,</span> <span class="n">Vector4</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoEdge</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">,</span> <span class="n">TopoPose</span><span class="p">,</span> <span class="n">TopoProperties</span><span class="p">,</span> <span class="n">Vector4</span>
 
 
-<span class="k">def</span> <span class="nf">_topo_from_dict</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_topo_from_dict</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a topology document from a decoded YAML or JSON mapping.&quot;&quot;&quot;</span>
     <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nodes&#39;</span><span class="p">,</span> <span class="p">[]):</span>
@@ -805,7 +805,7 @@
     <span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_orientation</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector4</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_orientation</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector4</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the quaternion of a pose mapping, with missing components as the identity rotation.</span>
 
 <span class="sd">    An absent orientation is the identity. A given one must be finite and not the zero quaternion,</span>
@@ -823,20 +823,20 @@
 
 <div class="viewcode-block" id="parse_topo_yaml">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_yaml">[docs]</a>
-<span class="k">def</span> <span class="nf">parse_topo_yaml</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_topo_yaml</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_topo_from_dict</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="parse_topo_json">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.parse_topo_json">[docs]</a>
-<span class="k">def</span> <span class="nf">parse_topo_json</span><span class="p">(</span><span class="n">json_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_topo_json</span><span class="p">(</span><span class="n">json_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoDoc</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">_topo_from_dict</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="dump_topo_yaml">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.parse.html#devkit_ui.parse.dump_topo_yaml">[docs]</a>
-<span class="k">def</span> <span class="nf">dump_topo_yaml</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dump_topo_yaml</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">][</span><span class="s1">&#39;last_updated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">UTC</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%m-%Y_%H-%M-%S&#39;</span><span class="p">)</span>

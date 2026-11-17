@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.utils.topo_renderer &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,20 +743,20 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.utils.topo_renderer</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">html</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterator</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">html</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
 
-<span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">ui</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoNode</span>
 
 <span class="n">_SVG_W</span><span class="p">,</span> <span class="n">_SVG_H</span> <span class="o">=</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">480</span>
 <span class="n">_MARGIN</span><span class="p">,</span> <span class="n">_NODE_R</span> <span class="o">=</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">5</span>
 <span class="n">_ROW_LABEL_GAP</span> <span class="o">=</span> <span class="mi">14</span>
 
 
-<span class="k">def</span> <span class="nf">_node_transform</span><span class="p">(</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_node_transform</span><span class="p">(</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;World-&gt;screen transform (tx, ty) + extents (dx, dy) for the node bbox.</span>
 
 <span class="sd">    Shared by build_svg and build_robot_svg so both layers map coordinates</span>
@@ -770,16 +770,16 @@
     <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ys</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">ys</span><span class="p">))</span> <span class="ow">or</span> <span class="mf">1.0</span>
     <span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">ys</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tx</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tx</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_MARGIN</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span> <span class="o">*</span> <span class="p">(</span><span class="n">_SVG_W</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">_MARGIN</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">ty</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ty</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_SVG_H</span> <span class="o">-</span> <span class="n">_MARGIN</span> <span class="o">-</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">dy</span> <span class="o">*</span> <span class="p">(</span><span class="n">_SVG_H</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">_MARGIN</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span>
 
 
 <div class="viewcode-block" id="build_robot_svg">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.utils.topo_renderer.html#devkit_ui.utils.topo_renderer.build_robot_svg">[docs]</a>
-<span class="k">def</span> <span class="nf">build_robot_svg</span><span class="p">(</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">],</span> <span class="n">robot</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_robot_svg</span><span class="p">(</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TopoNode</span><span class="p">],</span> <span class="n">robot</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Transparent overlay SVG with only the live robot marker (map frame).</span>
 
 <span class="sd">    Kept separate from build_svg so robot movement updates this layer alone,</span>
@@ -804,7 +804,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_row_labels</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_row_labels</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;One &#39;Row &lt;id&gt;&#39; label per row, placed just beyond its entry node.</span>
 
 <span class="sd">    The label sits on the line from the row&#39;s centroid through the entry node, so it</span>
@@ -835,7 +835,7 @@
     <span class="k">return</span> <span class="n">labels</span>
 
 
-<span class="k">def</span> <span class="nf">_dock_labels</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">selected</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_dock_labels</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">selected</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;One label above each dock node, showing the dock&#39;s name in the farm map.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span>
         <span class="sa">f</span><span class="s1">&#39;&lt;text class=&quot;topo-dock-label&quot; x=&quot;</span><span class="si">{</span><span class="n">tx</span><span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&quot; &#39;</span>
@@ -846,14 +846,14 @@
         <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="n">nd</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;dock&#39;</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">_is_dock_edge</span><span class="p">(</span><span class="o">*</span><span class="n">nodes</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_dock_edge</span><span class="p">(</span><span class="o">*</span><span class="n">nodes</span><span class="p">:</span> <span class="n">TopoNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether any of the nodes is a dock or a route point.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;dock&#39;</span><span class="p">,</span> <span class="s1">&#39;route&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="build_svg">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.utils.topo_renderer.html#devkit_ui.utils.topo_renderer.build_svg">[docs]</a>
-<span class="k">def</span> <span class="nf">build_svg</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">selected</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">current</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_svg</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">selected</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">current</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Render the topology with selected/current highlights, or an empty-map placeholder.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">doc</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;svg width=&quot;100%&quot; viewBox=&quot;0 0 </span><span class="si">{</span><span class="n">_SVG_W</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">_SVG_H</span><span class="si">}</span><span class="s1">&quot; &#39;</span>
@@ -954,7 +954,7 @@
 
 <div class="viewcode-block" id="inject_click_js">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.utils.topo_renderer.html#devkit_ui.utils.topo_renderer.inject_click_js">[docs]</a>
-<span class="k">def</span> <span class="nf">inject_click_js</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inject_click_js</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="c1"># Event delegation: a single document-level listener (attached once,</span>
     <span class="c1"># guarded) that resolves clicks to the nearest .topo-node. Survives</span>
     <span class="c1"># map redraws — unlike per-element onclick, which gets wiped every</span>

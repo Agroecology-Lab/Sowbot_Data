@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.row_planning &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -750,17 +750,17 @@
 <span class="sd">``ui_node`` lets them be imported and tested directly.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">pairwise</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_planner</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_f2c_planner.f2c_planner</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">f2c_latlon_to_xy</span><span class="p">,</span>
     <span class="n">field_centroid_xy</span><span class="p">,</span>
     <span class="n">run_contour_f2c</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.dem</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.dem</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">build_elevation_grid</span><span class="p">,</span>
     <span class="n">load_recon_points</span><span class="p">,</span>
     <span class="n">select_reference_contour_latlon</span><span class="p">,</span>
@@ -784,7 +784,7 @@
 
 <div class="viewcode-block" id="resample_row_xy">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_planning.html#devkit_ui.row_planning.resample_row_xy">[docs]</a>
-<span class="k">def</span> <span class="nf">resample_row_xy</span><span class="p">(</span><span class="n">points_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">anchor_lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">anchor_lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">resample_row_xy</span><span class="p">(</span><span class="n">points_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">anchor_lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">anchor_lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                     <span class="n">interval_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return evenly spaced waypoints along a row, in local xy.</span>
 
@@ -834,7 +834,7 @@
 
 <div class="viewcode-block" id="headland_neighbour_pairs">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_planning.html#devkit_ui.row_planning.headland_neighbour_pairs">[docs]</a>
-<span class="k">def</span> <span class="nf">headland_neighbour_pairs</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">headland_neighbour_pairs</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the node-name pairs to join with headland (nav_to_pose) edges.</span>
 
 <span class="sd">    ``coords`` maps each row-end node name to its local (x, y).</span>
@@ -876,7 +876,7 @@
 
 <div class="viewcode-block" id="plan_contour_rows">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.row_planning.html#devkit_ui.row_planning.plan_contour_rows">[docs]</a>
-<span class="k">def</span> <span class="nf">plan_contour_rows</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plan_contour_rows</span><span class="p">(</span><span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">pad_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">headland_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">snake</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
                       <span class="n">recon_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dem_resolution_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="o">*</span><span class="p">,</span> <span class="n">break_after</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>

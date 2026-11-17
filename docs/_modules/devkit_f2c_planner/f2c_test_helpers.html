@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_f2c_planner.f2c_test_helpers &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -757,18 +757,18 @@
 <span class="sd">  logic (ordering, clipping, projection), not fields2cover.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="c1"># pylint: disable=invalid-name,protected-access</span>
-<span class="kn">import</span> <span class="nn">importlib</span>
-<span class="kn">import</span> <span class="nn">importlib.util</span>
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">types</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">mock</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib.util</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">types</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest</span><span class="w"> </span><span class="kn">import</span> <span class="n">mock</span>
 
 <span class="n">LAT0</span><span class="p">,</span> <span class="n">LON0</span> <span class="o">=</span> <span class="mf">55.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span>
 
 
-<span class="k">def</span> <span class="nf">_import_planner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_import_planner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">:</span>
     <span class="k">if</span> <span class="s1">&#39;fields2cover&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span> <span class="ow">or</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s1">&#39;fields2cover&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;devkit_f2c_planner.f2c_planner&#39;</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s1">&#39;fields2cover&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">(</span><span class="s1">&#39;fields2cover&#39;</span><span class="p">)</span>
@@ -783,7 +783,7 @@
 
 <div class="viewcode-block" id="to_ll">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.to_ll">[docs]</a>
-<span class="k">def</span> <span class="nf">to_ll</span><span class="p">(</span><span class="n">points_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">LAT0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">LON0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_ll</span><span class="p">(</span><span class="n">points_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">LAT0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">LON0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Local xy metres -&gt; lat/lon, anchored at (lat0, lon0) == xy (0, 0).&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">planner</span><span class="o">.</span><span class="n">f2c_xy_to_latlon</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">points_xy</span><span class="p">]</span></div>
 
@@ -791,7 +791,7 @@
 
 <div class="viewcode-block" id="to_xy">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.to_xy">[docs]</a>
-<span class="k">def</span> <span class="nf">to_xy</span><span class="p">(</span><span class="n">points_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">LAT0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">LON0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_xy</span><span class="p">(</span><span class="n">points_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">LAT0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">LON0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;lat/lon -&gt; local xy metres, anchored at (lat0, lon0).&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">planner</span><span class="o">.</span><span class="n">f2c_latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">)</span> <span class="k">for</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="ow">in</span> <span class="n">points_ll</span><span class="p">]</span></div>
 
@@ -799,7 +799,7 @@
 
 <div class="viewcode-block" id="silence_planner_log">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.silence_planner_log">[docs]</a>
-<span class="k">def</span> <span class="nf">silence_planner_log</span><span class="p">(</span><span class="n">test</span><span class="p">:</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">silence_planner_log</span><span class="p">(</span><span class="n">test</span><span class="p">:</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The planner logs to stderr with print(); keep test output clean.&quot;&quot;&quot;</span>
     <span class="n">patcher</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;sys.stderr&#39;</span><span class="p">,</span> <span class="n">new_callable</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">)</span>
     <span class="n">patcher</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
@@ -807,79 +807,79 @@
 
 
 
-<span class="k">class</span> <span class="nc">_FakePoint</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_FakePoint</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
-    <span class="k">def</span> <span class="nf">getX</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getX</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
 
-    <span class="k">def</span> <span class="nf">getY</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getY</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
 
 
-<span class="k">class</span> <span class="nc">_FakeRing</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_FakeRing</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span> <span class="nf">addPoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">_FakePoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">_FakePoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">point</span><span class="o">.</span><span class="n">getX</span><span class="p">(),</span> <span class="n">point</span><span class="o">.</span><span class="n">getY</span><span class="p">()))</span>
 
-    <span class="k">def</span> <span class="nf">closeRing</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">closeRing</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">pass</span>
 
 
 <div class="viewcode-block" id="FakeCell">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeCell">[docs]</a>
-<span class="k">class</span> <span class="nc">FakeCell</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FakeCell</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;f2c.Cell stand-in. ``rings[0]`` is the outer boundary, the rest are hole hints.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rings</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="FakeCell.addRing">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeCell.addRing">[docs]</a>
-    <span class="k">def</span> <span class="nf">addRing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ring</span><span class="p">:</span> <span class="n">_FakeRing</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">addRing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ring</span><span class="p">:</span> <span class="n">_FakeRing</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ring</span><span class="o">.</span><span class="n">points</span><span class="p">)</span></div>
 </div>
 
 
 
-<span class="k">class</span> <span class="nc">_FakeSequence</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_FakeSequence</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Shared size()/getGeometry() shape of F2C&#39;s path and cell collections.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_items</span> <span class="o">=</span> <span class="n">items</span>
 
-    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">getGeometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getGeometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
 
 
-<span class="k">class</span> <span class="nc">_FakeSwath</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_FakeSwath</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_path</span> <span class="o">=</span> <span class="n">_FakeSequence</span><span class="p">([</span><span class="n">_FakePoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">points_xy</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">getPath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FakeSequence</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getPath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FakeSequence</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span>
 
 
-<span class="k">class</span> <span class="nc">_FakeSwaths</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swaths_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_FakeSwaths</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swaths_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_swaths</span> <span class="o">=</span> <span class="p">[</span><span class="n">_FakeSwath</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span> <span class="k">for</span> <span class="n">pts</span> <span class="ow">in</span> <span class="n">swaths_xy</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_swaths</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FakeSwath</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FakeSwath</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_swaths</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="FakeF2C">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeF2C">[docs]</a>
-<span class="k">class</span> <span class="nc">FakeF2C</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FakeF2C</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Canned stand-in for the ``fields2cover`` module, as used by ``run_f2c()``.</span>
 
 <span class="sd">    swaths_xy       swaths (lists of local-xy points) returned by SG_BruteForce</span>
@@ -891,7 +891,7 @@
     <span class="n">LinearRing</span> <span class="o">=</span> <span class="n">_FakeRing</span>
     <span class="n">Cell</span> <span class="o">=</span> <span class="n">FakeCell</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swaths_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">headland_cells</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swaths_xy</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">headland_cells</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">headland_error</span><span class="p">:</span> <span class="ne">Exception</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">swaths_xy</span> <span class="o">=</span> <span class="n">swaths_xy</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inset_cell</span> <span class="o">=</span> <span class="n">FakeCell</span><span class="p">()</span>
@@ -902,40 +902,40 @@
 
 <div class="viewcode-block" id="FakeF2C.Cells">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeF2C.Cells">[docs]</a>
-    <span class="k">def</span> <span class="nf">Cells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">:</span> <span class="n">FakeCell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FakeCell</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Cells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">:</span> <span class="n">FakeCell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FakeCell</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">cell</span></div>
 
 
 <div class="viewcode-block" id="FakeF2C.HG_Const_gen">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeF2C.HG_Const_gen">[docs]</a>
-    <span class="k">def</span> <span class="nf">HG_Const_gen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;_FakeHeadlandGenerator&#39;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">HG_Const_gen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;_FakeHeadlandGenerator&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_FakeHeadlandGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FakeF2C.SG_BruteForce">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.f2c_test_helpers.html#devkit_f2c_planner.f2c_test_helpers.FakeF2C.SG_BruteForce">[docs]</a>
-    <span class="k">def</span> <span class="nf">SG_BruteForce</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;_FakeSwathGenerator&#39;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">SG_BruteForce</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;_FakeSwathGenerator&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_FakeSwathGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 </div>
 
 
 
-<span class="k">class</span> <span class="nc">_FakeHeadlandGenerator</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fake</span><span class="p">:</span> <span class="n">FakeF2C</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_FakeHeadlandGenerator</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fake</span><span class="p">:</span> <span class="n">FakeF2C</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fake</span> <span class="o">=</span> <span class="n">fake</span>
 
-    <span class="k">def</span> <span class="nf">generateHeadlands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_cells</span><span class="p">:</span> <span class="n">FakeCell</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FakeSequence</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generateHeadlands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_cells</span><span class="p">:</span> <span class="n">FakeCell</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FakeSequence</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fake</span><span class="o">.</span><span class="n">headland_widths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">width</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fake</span><span class="o">.</span><span class="n">headland_error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fake</span><span class="o">.</span><span class="n">headland_error</span>
         <span class="k">return</span> <span class="n">_FakeSequence</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fake</span><span class="o">.</span><span class="n">headland_cells</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_FakeSwathGenerator</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fake</span><span class="p">:</span> <span class="n">FakeF2C</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_FakeSwathGenerator</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fake</span><span class="p">:</span> <span class="n">FakeF2C</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fake</span> <span class="o">=</span> <span class="n">fake</span>
 
-    <span class="k">def</span> <span class="nf">generateSwaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle_rad</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">cell</span><span class="p">:</span> <span class="n">FakeCell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FakeSwaths</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generateSwaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle_rad</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">cell</span><span class="p">:</span> <span class="n">FakeCell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FakeSwaths</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fake</span><span class="o">.</span><span class="n">swath_calls</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">angle_rad</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">,</span> <span class="n">cell</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">_FakeSwaths</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fake</span><span class="o">.</span><span class="n">swaths_xy</span><span class="p">)</span>
 </pre></div>

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.litefarm_client &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -748,22 +748,22 @@
 <span class="sd">The robot station uses this to import a plan: log in as a LiteFarm user, then POST the plan to</span>
 <span class="sd">/row_plan/import. The user needs the edit:row_plan permission (owner, manager or extension officer).</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">urllib.error</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib.error</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib.request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 
 <span class="n">DEFAULT_TIMEOUT_S</span> <span class="o">=</span> <span class="mi">30</span>
 
 
 <div class="viewcode-block" id="LiteFarmError">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.LiteFarmError">[docs]</a>
-<span class="k">class</span> <span class="nc">LiteFarmError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LiteFarmError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;LiteFarm refused a request, or could not be reached. The message is safe to show to a person.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="LiteFarmError.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.LiteFarmError.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Store the error message and HTTP status, if a response was received.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span></div>
@@ -774,7 +774,7 @@
 <div class="viewcode-block" id="ImportResult">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.ImportResult">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ImportResult</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ImportResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;What LiteFarm answered to an import.&quot;&quot;&quot;</span>
 
     <span class="n">created</span><span class="p">:</span> <span class="nb">bool</span>
@@ -786,7 +786,7 @@
 
 <div class="viewcode-block" id="login">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.login">[docs]</a>
-<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_TIMEOUT_S</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span><span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_TIMEOUT_S</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Log in with an email and password and return (token, user_id).</span>
 
 <span class="sd">    The token expires, so log in again later. ``timeout`` is in seconds. Raise LiteFarmError if</span>
@@ -802,7 +802,7 @@
 
 <div class="viewcode-block" id="import_row_plan">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.litefarm_client.html#devkit_ui.litefarm_client.import_row_plan">[docs]</a>
-<span class="k">def</span> <span class="nf">import_row_plan</span><span class="p">(</span><span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">farm_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">geojson</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">import_row_plan</span><span class="p">(</span><span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">farm_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">geojson</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
                     <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_TIMEOUT_S</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImportResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a plan for a field. Importing the same plan again is not an error: ``created`` is False.</span>
 
@@ -824,7 +824,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_post</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_post</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;POST JSON and return (status, decoded JSON body).</span>
 
 <span class="sd">    ``timeout`` is in seconds. HTTP error statuses are returned; connection failures raise LiteFarmError.</span>
@@ -839,10 +839,10 @@
     <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">error</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">_decode</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
     <span class="k">except</span> <span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">LiteFarmError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot reach </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
+        <span class="k">raise</span> <span class="n">LiteFarmError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot reach </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">error</span>
 
 
-<span class="k">def</span> <span class="nf">_decode</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_decode</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decode a JSON object, returning an empty dict for invalid or non-object JSON.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
@@ -851,7 +851,7 @@
     <span class="k">return</span> <span class="n">data</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
 
 
-<span class="k">def</span> <span class="nf">_explain</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fallback</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_explain</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">fallback</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the response error or message, or the fallback, with the HTTP status.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">fallback</span><span class="si">}</span><span class="s1"> (HTTP </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s1">)&#39;</span>
 </pre></div>

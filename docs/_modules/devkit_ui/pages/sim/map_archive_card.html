@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.pages.sim.map_archive_card &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -743,14 +743,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.pages.sim.map_archive_card</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">ui</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.topology_view_model</span> <span class="kn">import</span> <span class="n">TopologyViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.topology_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyViewModel</span>
 
 
 <div class="viewcode-block" id="MapArchiveCard">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.sim.map_archive_card.html#devkit_ui.pages.sim.map_archive_card.MapArchiveCard">[docs]</a>
-<span class="k">class</span> <span class="nc">MapArchiveCard</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MapArchiveCard</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Save a named copy of the topology map, or archive it and clear the live map.</span>
 
 <span class="sd">    Archive &amp; Clear acts on the live map file, the one worldgen.sh builds the simulated world</span>
@@ -760,7 +760,7 @@
 
 <div class="viewcode-block" id="MapArchiveCard.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.sim.map_archive_card.html#devkit_ui.pages.sim.map_archive_card.MapArchiveCard.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the save and archive controls.</span>
 
 <span class="sd">        Parameters:</span>
@@ -781,19 +781,19 @@
                 <span class="s1">&#39;color=negative outline no-caps&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;px-4&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show a status message, red when it reports an error.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;color:#cf222e&#39;</span> <span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;color:#1a7f37&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_save</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save a named map copy, show its status, and clear the name on success.&quot;&quot;&quot;</span>
         <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">save_map_as</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_save_name</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_show</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">status</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ERROR&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_save_name</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_archive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_archive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Confirm, then archive the live map and clear it.&quot;&quot;&quot;</span>
         <span class="n">map_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">map_name</span>
         <span class="k">with</span> <span class="n">ui</span><span class="o">.</span><span class="n">dialog</span><span class="p">()</span> <span class="k">as</span> <span class="n">dlg</span><span class="p">,</span> <span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">():</span>

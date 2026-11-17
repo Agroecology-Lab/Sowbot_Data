@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sowbot (ROS 2 stack) &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=9d891252"></script>
-      <script src="_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -780,7 +780,7 @@ This repository provides the drivers and orchestration for the Sowbot platform, 
 <span class="o">|</span>    <span class="n">SUPERVISORY</span><span class="p">:</span> <span class="ow">not</span> <span class="n">the</span> <span class="n">rated</span> <span class="n">stop</span> <span class="n">function</span>             <span class="o">|</span>
 <span class="o">|---------------------------------------------------------|</span>
 <span class="o">|</span> <span class="o">-</span> <span class="n">Motion</span> <span class="n">execution</span>       <span class="o">-</span> <span class="n">EKF3</span><span class="p">,</span> <span class="n">sole</span> <span class="n">estimator</span>        <span class="o">|</span>
-<span class="o">|</span> <span class="o">-</span> <span class="n">Geofence</span> <span class="p">(</span><span class="n">GUIDED</span><span class="p">)</span>         <span class="p">(</span><span class="n">FusionCore</span><span class="p">:</span> <span class="n">shadow</span><span class="p">)</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="o">-</span> <span class="n">Geofence</span> <span class="p">(</span><span class="n">GUIDED</span><span class="p">)</span>         <span class="p">(</span><span class="n">FusionCore</span><span class="p">:</span> <span class="ow">not</span> <span class="n">run</span><span class="p">)</span>      <span class="o">|</span>
 <span class="o">|</span> <span class="o">-</span> <span class="n">Failsafes</span><span class="p">:</span> <span class="n">GCS</span><span class="o">/</span><span class="n">GPS</span>     <span class="o">-</span> <span class="n">Arming</span> <span class="n">state</span> <span class="n">machine</span>         <span class="o">|</span>
 <span class="o">|</span>   <span class="n">loss</span><span class="p">,</span> <span class="n">EKF</span> <span class="n">variance</span>     <span class="o">-</span> <span class="n">Pre</span><span class="o">-</span><span class="n">arm</span> <span class="n">checks</span>               <span class="o">|</span>
 <span class="o">|</span> <span class="o">-</span> <span class="n">Dual</span> <span class="n">F9P</span> <span class="n">RTK</span> <span class="p">(</span><span class="n">UART</span><span class="p">)</span>                                   <span class="o">|</span>
@@ -943,7 +943,7 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 </tr>
 <tr class="row-even"><td><p>M9</p></td>
 <td><p>ArduPilot on LEVIA-H7 controller path</p></td>
-<td><p>Replaces ESP32/Lizard. <code class="docutils literal notranslate"><span class="pre">devkit_mavlink_bridge</span></code> commands zero when <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> is stale and publishes EKF3 state and GPS status (<code class="docutils literal notranslate"><span class="pre">fc/odom</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/ekf_fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps1/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps2/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/diagnostics</span></code>); unit-tested against doubles, not yet run against a flight controller. EKF3 is the sole estimator and FusionCore is shadow only (<code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>). LEVIA-H7 is unvalidated and has no confirmed ArduPilot hwdef (safety_roadmap.md O31).</p></td>
+<td><p>Replaces ESP32/Lizard. <code class="docutils literal notranslate"><span class="pre">devkit_mavlink_bridge</span></code> commands zero when <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> is stale and publishes EKF3 state and GPS status (<code class="docutils literal notranslate"><span class="pre">fc/odom</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/ekf_fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps1/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps2/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/diagnostics</span></code>); unit-tested against doubles, not yet run against a flight controller. EKF3 is the sole estimator and FusionCore is not launched with the bridge (<code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>). LEVIA-H7 is unvalidated and has no confirmed ArduPilot hwdef (safety_roadmap.md O31).</p></td>
 <td><p>WIP, bring-up</p></td>
 <td><p>2</p></td>
 <td><p>2026</p></td>
@@ -1166,6 +1166,7 @@ xhost<span class="w"> </span>+local:docker
 </pre></div>
 </div>
 <p>Access http://localhost to access the WebUI</p>
+<p>On a real robot with the LEVIA-H7 flight controller, create <code class="docutils literal notranslate"><span class="pre">.env</span></code> from <code class="docutils literal notranslate"><span class="pre">.env.example</span></code> first. See “Real robot bring-up” in <code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>.</p>
 <p><strong>The dashboard has a joystick and a soft e-stop and listens on port 80 of the robot.</strong>
 Set <code class="docutils literal notranslate"><span class="pre">SOWBOT_UI_PASSWORD</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code> to require a password (HTTP Basic, user name ignored).
 Without it, anyone on the robot’s network can drive it.
@@ -1174,7 +1175,7 @@ The container runs privileged on the host network.</p>
 <section id="id1">
 <h4>Linux<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 <p>If you’re getting this error:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="p">:</span> <span class="n">Error</span> <span class="n">response</span> <span class="kn">from</span> <span class="nn">daemon</span><span class="p">:</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">select</span> <span class="n">device</span> <span class="n">driver</span> <span class="s2">&quot;&quot;</span> <span class="k">with</span> <span class="n">capabilities</span><span class="p">:</span> <span class="p">[[</span><span class="n">gpu</span><span class="p">]]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="p">:</span> <span class="n">Error</span> <span class="n">response</span> <span class="kn">from</span><span class="w"> </span><span class="nn">daemon</span><span class="p">:</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">select</span> <span class="n">device</span> <span class="n">driver</span> <span class="s2">&quot;&quot;</span> <span class="k">with</span> <span class="n">capabilities</span><span class="p">:</span> <span class="p">[[</span><span class="n">gpu</span><span class="p">]]</span>
 </pre></div>
 </div>
 <p>You’ll need to install the <a class="reference external" href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">Nvidia Container runtime</a>.</p>

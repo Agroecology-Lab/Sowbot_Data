@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.topo_row_builder &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -751,14 +751,14 @@
 <span class="sd">rules testable on their own and out of the UI node.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">pairwise</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise</span>
 
-<span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_planner</span> <span class="kn">import</span> <span class="n">f2c_latlon_to_xy</span><span class="p">,</span> <span class="n">f2c_xy_to_latlon</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">ANY_YAW_TOLERANCE</span><span class="p">,</span> <span class="n">NAV_ACTION</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_f2c_planner.f2c_planner</span><span class="w"> </span><span class="kn">import</span> <span class="n">f2c_latlon_to_xy</span><span class="p">,</span> <span class="n">f2c_xy_to_latlon</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">ANY_YAW_TOLERANCE</span><span class="p">,</span> <span class="n">NAV_ACTION</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.models</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">NodeID</span><span class="p">,</span>
     <span class="n">TopoDoc</span><span class="p">,</span>
     <span class="n">TopoEdge</span><span class="p">,</span>
@@ -768,7 +768,7 @@
     <span class="n">Vector2</span><span class="p">,</span>
     <span class="n">yaw_to_orientation</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.row_planning</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.row_planning</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">CONTOUR_WAYPOINT_INTERVAL_M</span><span class="p">,</span>
     <span class="n">headland_neighbour_pairs</span><span class="p">,</span>
     <span class="n">resample_row_xy</span><span class="p">,</span>
@@ -783,7 +783,7 @@
 <div class="viewcode-block" id="RowAnchor">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.RowAnchor">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">RowAnchor</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RowAnchor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Where the planned rows sit in the topological map.</span>
 
 <span class="sd">    ``lat``/``lon`` are the origin of the lat/lon to local-xy projection. ``x``/``y``</span>
@@ -800,7 +800,7 @@
 <div class="viewcode-block" id="RowBuildSettings">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.RowBuildSettings">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">RowBuildSettings</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RowBuildSettings</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Naming, metadata and edge settings for one batch of generated rows.&quot;&quot;&quot;</span>
 
     <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span>
@@ -822,7 +822,7 @@
 <div class="viewcode-block" id="RowBuild">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.RowBuild">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">RowBuild</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RowBuild</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The nodes generated for a batch of rows, and which rows were used or skipped.&quot;&quot;&quot;</span>
 
     <span class="n">nodes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">NodeID</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
@@ -832,7 +832,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_make_node</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_make_node</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">settings</span><span class="p">:</span> <span class="n">RowBuildSettings</span><span class="p">,</span>
                <span class="n">lf</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">yaw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TopoNode</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create one row node carrying its row identity in both properties and metadata.</span>
@@ -870,7 +870,7 @@
     <span class="k">return</span> <span class="n">node</span>
 
 
-<span class="k">def</span> <span class="nf">_add_headland_edge</span><span class="p">(</span><span class="n">nodes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">NodeID</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">],</span> <span class="n">p</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_add_headland_edge</span><span class="p">(</span><span class="n">nodes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">NodeID</span><span class="p">,</span> <span class="n">TopoNode</span><span class="p">],</span> <span class="n">p</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">NodeID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Link p and q with a bidirectional nav_to_pose edge.</span>
 
 <span class="sd">    Replace any existing edges between them. Raise KeyError if either name is</span>
@@ -885,7 +885,7 @@
 
 <div class="viewcode-block" id="build_row_nodes">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.build_row_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">build_row_nodes</span><span class="p">(</span><span class="n">swaths</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">anchor</span><span class="p">:</span> <span class="n">RowAnchor</span><span class="p">,</span> <span class="n">settings</span><span class="p">:</span> <span class="n">RowBuildSettings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RowBuild</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_row_nodes</span><span class="p">(</span><span class="n">swaths</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">anchor</span><span class="p">:</span> <span class="n">RowAnchor</span><span class="p">,</span> <span class="n">settings</span><span class="p">:</span> <span class="n">RowBuildSettings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RowBuild</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Turn planned swaths into entry, waypoint and exit nodes with their edges.</span>
 
 <span class="sd">    Each usable swath becomes an IN and an OUT node joined by edges in both directions</span>
@@ -1004,7 +1004,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_bearings</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_bearings</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the yaw in radians of each point on a path of two or more points.</span>
 
 <span class="sd">    A point faces the next one; the last point keeps the heading of the final segment. A segment</span>
@@ -1029,7 +1029,7 @@
 
 <div class="viewcode-block" id="apply_row_nodes">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.apply_row_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">apply_row_nodes</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">build</span><span class="p">:</span> <span class="n">RowBuild</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_row_nodes</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">build</span><span class="p">:</span> <span class="n">RowBuild</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Insert the generated nodes into ``doc`` in place, without persisting it.</span>
 
 <span class="sd">    With ``overwrite``, existing ``&lt;prefix&gt;_R*`` nodes are removed first, together</span>
@@ -1056,7 +1056,7 @@
 <div class="viewcode-block" id="RepairPlan">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.RepairPlan">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">RepairPlan</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RepairPlan</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The edges that should exist for the rows already in a map.&quot;&quot;&quot;</span>
 
     <span class="n">row_count</span><span class="p">:</span> <span class="nb">int</span>
@@ -1067,7 +1067,7 @@
 
 <div class="viewcode-block" id="plan_row_repair">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.plan_row_repair">[docs]</a>
-<span class="k">def</span> <span class="nf">plan_row_repair</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">row_action</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RepairPlan</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plan_row_repair</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">row_action</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RepairPlan</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Work out which in-row and headland edges the rows in ``doc`` should have.</span>
 
 <span class="sd">    Rows are found from the ``row_id`` and ``row_role`` metadata. In-row edges chain</span>
@@ -1111,7 +1111,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">waypoint_order</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">waypoint_order</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the numeric ``_W&lt;n&gt;`` suffix, or zero when the suffix is absent.&quot;&quot;&quot;</span>
         <span class="n">match</span> <span class="o">=</span> <span class="n">_WAYPOINT_SUFFIX</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="mi">0</span>
@@ -1136,7 +1136,7 @@
 
 <div class="viewcode-block" id="add_missing_edges">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_row_builder.html#devkit_ui.topo_row_builder.add_missing_edges">[docs]</a>
-<span class="k">def</span> <span class="nf">add_missing_edges</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">NodeID</span><span class="p">,</span> <span class="n">NodeID</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_missing_edges</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">NodeID</span><span class="p">,</span> <span class="n">NodeID</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add each wanted edge that ``doc`` lacks, and return how many were added.</span>
 
 <span class="sd">    Each edge is a (source, destination, action) tuple. Mutate ``doc`` in place</span>

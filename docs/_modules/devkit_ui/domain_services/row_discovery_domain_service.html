@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.domain_services.row_discovery_domain_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,22 +743,22 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.domain_services.row_discovery_domain_service</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
-<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
-<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">Trigger</span>  <span class="c1"># pylint: disable=import-error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">String</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_srvs.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trigger</span>  <span class="c1"># pylint: disable=import-error</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.qos</span> <span class="kn">import</span> <span class="n">SENSOR_QOS</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.ros_gateway</span> <span class="kn">import</span> <span class="n">RosGateway</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.topo_results</span> <span class="kn">import</span> <span class="n">DiscoveryResult</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.qos</span><span class="w"> </span><span class="kn">import</span> <span class="n">SENSOR_QOS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.ros_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosGateway</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_results</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiscoveryResult</span>
 
 
 <div class="viewcode-block" id="RowDiscoveryDomainService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.row_discovery_domain_service.html#devkit_ui.domain_services.row_discovery_domain_service.RowDiscoveryDomainService">[docs]</a>
-<span class="k">class</span> <span class="nc">RowDiscoveryDomainService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RowDiscoveryDomainService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Start and stop row_discovery_node and relay its live status feed.</span>
 
 <span class="sd">    The node may not be running (the launch file may predate it), so a missing</span>
@@ -767,7 +767,7 @@
 
 <div class="viewcode-block" id="RowDiscoveryDomainService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.row_discovery_domain_service.html#devkit_ui.domain_services.row_discovery_domain_service.RowDiscoveryDomainService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create discovery service clients and subscribe to discovery status.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_start_cli</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="s1">&#39;/row_discovery_node/start_discovery&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_cli</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="s1">&#39;/row_discovery_node/stop_discovery&#39;</span><span class="p">)</span>
@@ -777,27 +777,27 @@
 
 <div class="viewcode-block" id="RowDiscoveryDomainService.set_status_callback">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.row_discovery_domain_service.html#devkit_ui.domain_services.row_discovery_domain_service.RowDiscoveryDomainService.set_status_callback">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_status_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_status_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a callback for each status string the discovery node publishes.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status_callback</span> <span class="o">=</span> <span class="n">callback</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_on_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Forward the received status string to the registered callback, if any.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status_callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_status_callback</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RowDiscoveryDomainService.start">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.row_discovery_domain_service.html#devkit_ui.domain_services.row_discovery_domain_service.RowDiscoveryDomainService.start">[docs]</a>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_done</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">DiscoveryResult</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_done</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">DiscoveryResult</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the node to start discovering rows; report the outcome through on_done.&quot;&quot;&quot;</span>
-        <span class="k">def</span> <span class="nf">_work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Wait for the start service and submit a request, or report unavailability.&quot;&quot;&quot;</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_cli</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
                 <span class="n">on_done</span><span class="p">(</span><span class="n">DiscoveryResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;ERROR: row_discovery_node not running&#39;</span><span class="p">))</span>
                 <span class="k">return</span>
 
-            <span class="k">def</span> <span class="nf">_cb</span><span class="p">(</span><span class="n">future</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">_cb</span><span class="p">(</span><span class="n">future</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">                </span><span class="sd">&quot;&quot;&quot;Report the start response or mark discovery inactive on a request error.&quot;&quot;&quot;</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">res</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
@@ -813,15 +813,15 @@
 
 <div class="viewcode-block" id="RowDiscoveryDomainService.stop">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.row_discovery_domain_service.html#devkit_ui.domain_services.row_discovery_domain_service.RowDiscoveryDomainService.stop">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_done</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">DiscoveryResult</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on_done</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">DiscoveryResult</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the node to stop discovering rows; report the outcome through on_done.&quot;&quot;&quot;</span>
-        <span class="k">def</span> <span class="nf">_work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_work</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Wait for the stop service and submit a request, or report unknown state.&quot;&quot;&quot;</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_cli</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
                 <span class="n">on_done</span><span class="p">(</span><span class="n">DiscoveryResult</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;ERROR: row_discovery_node not running&#39;</span><span class="p">))</span>
                 <span class="k">return</span>
 
-            <span class="k">def</span> <span class="nf">_cb</span><span class="p">(</span><span class="n">future</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">_cb</span><span class="p">(</span><span class="n">future</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">                </span><span class="sd">&quot;&quot;&quot;Report a successful stop or preserve unknown state on failure.&quot;&quot;&quot;</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">res</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>

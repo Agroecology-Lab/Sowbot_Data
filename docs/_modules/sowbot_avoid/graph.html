@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sowbot_avoid.graph &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -744,24 +744,24 @@
              
   <h1>Source code for sowbot_avoid.graph</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Map, conflict test and path search.&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
 
-<span class="k">def</span> <span class="nf">_pt_seg</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_pt_seg</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">l2</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">dy</span>
     <span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="n">l2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">+</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">dy</span><span class="p">)</span> <span class="o">/</span> <span class="n">l2</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span> <span class="o">*</span> <span class="n">dx</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span> <span class="o">*</span> <span class="n">dy</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_cross</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_cross</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">o</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">o</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 
 <div class="viewcode-block" id="seg_dist">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.graph.html#sowbot_avoid.seg_dist">[docs]</a>
-<span class="k">def</span> <span class="nf">seg_dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">seg_dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the minimum distance between 2D segments a-b and c-d, including points.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">d</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">_cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">_cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">_cross</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">_cross</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -772,10 +772,10 @@
 
 <div class="viewcode-block" id="Graph">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.graph.html#sowbot_avoid.Graph">[docs]</a>
-<span class="k">class</span> <span class="nc">Graph</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Graph</span><span class="p">:</span>
 <div class="viewcode-block" id="Graph.__init__">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.graph.html#sowbot_avoid.Graph.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clearance</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">park</span><span class="o">=</span><span class="p">(),</span> <span class="n">rows</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">row_of</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clearance</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">park</span><span class="o">=</span><span class="p">(),</span> <span class="n">rows</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">row_of</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build an undirected graph with optional node coordinates and parking nodes.</span>
 
 <span class="sd">        Clearance uses the same units as xy and is the exclusive conflict</span>
@@ -798,7 +798,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the stopping-node candidates used by the agent.</span>
 
 <span class="sd">        Explicit rows are returned as the stored mutable set; the default is a</span>
@@ -808,7 +808,7 @@
 
 <div class="viewcode-block" id="Graph.row_key">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.graph.html#sowbot_avoid.Graph.row_key">[docs]</a>
-    <span class="k">def</span> <span class="nf">row_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">row_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Key that is equal for nodes of the same row, and unique to the node when it has no row.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;row&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_of</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_of</span> <span class="k">else</span> <span class="p">(</span><span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span></div>
 
@@ -816,7 +816,7 @@
 <div class="viewcode-block" id="Graph.load">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.graph.html#sowbot_avoid.Graph.load">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">clearance</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">clearance</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load a graph from JSON with edges and optional nodes and park fields.</span>
 
 <span class="sd">        File and JSON errors propagate, as does KeyError if edges is absent.</span>
@@ -828,7 +828,7 @@
 
 <div class="viewcode-block" id="Graph.conflict">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.graph.html#sowbot_avoid.Graph.conflict">[docs]</a>
-    <span class="k">def</span> <span class="nf">conflict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">conflict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether two node pairs conflict.</span>
 
 <span class="sd">        With coordinates, distance strictly below clearance conflicts and a</span>
@@ -845,7 +845,7 @@
 
 <div class="viewcode-block" id="Graph.path">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.graph.html#sowbot_avoid.Graph.path">[docs]</a>
-    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">edge_ok</span><span class="o">=</span><span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">edge_ok</span><span class="o">=</span><span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Shortest hop path a to b over edges allowed by edge_ok, or None.&quot;&quot;&quot;</span>
         <span class="n">prev</span><span class="p">,</span> <span class="n">queue</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">queue</span><span class="p">:</span>

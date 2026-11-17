@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_f2c_planner.test_shapely_backend &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -745,15 +745,15 @@
   <h1>Source code for devkit_f2c_planner.test_shapely_backend</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Tests for the pure-shapely backend, plus an F2C parity check (skipped without fields2cover).&quot;&quot;&quot;</span>
 <span class="c1"># pylint: disable=invalid-name,protected-access</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">pairwise</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise</span>
 
-<span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_test_helpers</span> <span class="kn">import</span> <span class="n">planner</span><span class="p">,</span> <span class="n">silence_planner_log</span><span class="p">,</span> <span class="n">to_ll</span><span class="p">,</span> <span class="n">to_xy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_f2c_planner.f2c_test_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">planner</span><span class="p">,</span> <span class="n">silence_planner_log</span><span class="p">,</span> <span class="n">to_ll</span><span class="p">,</span> <span class="n">to_xy</span>
 
 <span class="n">RECT</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">)]</span>
 
 
-<span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Plan rows for the default rectangle with the chosen backend and option overrides.&quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;corners_ll&#39;</span><span class="p">:</span> <span class="n">to_ll</span><span class="p">(</span><span class="n">RECT</span><span class="p">),</span> <span class="s1">&#39;obstacle_rings&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;tool_width&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">&#39;angle_deg&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
             <span class="s1">&#39;backend&#39;</span><span class="p">:</span> <span class="n">backend</span><span class="p">}</span>
@@ -763,17 +763,17 @@
 
 <div class="viewcode-block" id="ShapelyBackendTest">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest">[docs]</a>
-<span class="k">class</span> <span class="nc">ShapelyBackendTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ShapelyBackendTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 <div class="viewcode-block" id="ShapelyBackendTest.setUp">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.setUp">[docs]</a>
-    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Silence planner diagnostics for each test and restore logging afterward.&quot;&quot;&quot;</span>
         <span class="n">silence_planner_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ShapelyBackendTest.test_row_count_and_spacing">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_row_count_and_spacing">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_row_count_and_spacing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_row_count_and_spacing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify row count, half-width boundary offset, and tool-width spacing.&quot;&quot;&quot;</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">_run</span><span class="p">(</span><span class="s1">&#39;shapely&#39;</span><span class="p">,</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="mi">12</span><span class="p">)</span>
@@ -785,7 +785,7 @@
 
 <div class="viewcode-block" id="ShapelyBackendTest.test_rows_span_field">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_rows_span_field">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_rows_span_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rows_span_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify horizontal swaths span the full rectangular field width.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">_run</span><span class="p">(</span><span class="s1">&#39;shapely&#39;</span><span class="p">):</span>
             <span class="n">xy</span> <span class="o">=</span> <span class="n">to_xy</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
@@ -794,7 +794,7 @@
 
 <div class="viewcode-block" id="ShapelyBackendTest.test_snake_alternates_direction">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_snake_alternates_direction">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_snake_alternates_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_snake_alternates_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify snake ordering reverses the travel direction on every other row.&quot;&quot;&quot;</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">_run</span><span class="p">(</span><span class="s1">&#39;shapely&#39;</span><span class="p">)</span>
         <span class="n">dirs</span> <span class="o">=</span> <span class="p">[</span><span class="n">to_xy</span><span class="p">(</span><span class="n">r</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">to_xy</span><span class="p">(</span><span class="n">r</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
@@ -803,7 +803,7 @@
 
 <div class="viewcode-block" id="ShapelyBackendTest.test_rotated_angle">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_rotated_angle">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_rotated_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rotated_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify a 90-degree swath angle produces vertical rows with the expected count.&quot;&quot;&quot;</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">_run</span><span class="p">(</span><span class="s1">&#39;shapely&#39;</span><span class="p">,</span> <span class="n">angle_deg</span><span class="o">=</span><span class="mf">90.0</span><span class="p">,</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="mi">20</span><span class="p">)</span>
@@ -813,7 +813,7 @@
 
 <div class="viewcode-block" id="ShapelyBackendTest.test_headland_shrinks_rows">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_headland_shrinks_rows">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_headland_shrinks_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_headland_shrinks_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify a headland inset shortens rows at both ends.&quot;&quot;&quot;</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">_run</span><span class="p">(</span><span class="s1">&#39;shapely&#39;</span><span class="p">,</span> <span class="n">headland_width_m</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">to_xy</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">to_xy</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="mf">80.0</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
@@ -821,7 +821,7 @@
 
 <div class="viewcode-block" id="ShapelyBackendTest.test_obstacle_splits_rows">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_obstacle_splits_rows">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_obstacle_splits_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_obstacle_splits_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify an interior obstacle splits intersecting rows into extra swaths.&quot;&quot;&quot;</span>
         <span class="n">obs</span> <span class="o">=</span> <span class="n">to_ll</span><span class="p">([(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)])</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">_run</span><span class="p">(</span><span class="s1">&#39;shapely&#39;</span><span class="p">,</span> <span class="n">obstacle_rings</span><span class="o">=</span><span class="p">[</span><span class="n">obs</span><span class="p">],</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -830,7 +830,7 @@
 
 <div class="viewcode-block" id="ShapelyBackendTest.test_concave_field_gives_fragments">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_concave_field_gives_fragments">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_concave_field_gives_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_concave_field_gives_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify a concave field produces multiple fragments for some rows.&quot;&quot;&quot;</span>
         <span class="n">u</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">)]</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">run_f2c</span><span class="p">(</span><span class="n">to_ll</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="p">[],</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;shapely&#39;</span><span class="p">)</span>
@@ -839,7 +839,7 @@
 
 <div class="viewcode-block" id="ShapelyBackendTest.test_unknown_backend">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ShapelyBackendTest.test_unknown_backend">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_unknown_backend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_unknown_backend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify an unsupported backend name raises ValueError.&quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
             <span class="n">_run</span><span class="p">(</span><span class="s1">&#39;nope&#39;</span><span class="p">)</span></div>
@@ -850,17 +850,17 @@
 <div class="viewcode-block" id="ParityTest">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ParityTest">[docs]</a>
 <span class="nd">@unittest</span><span class="o">.</span><span class="n">skipUnless</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">planner</span><span class="o">.</span><span class="n">f2c</span><span class="p">,</span> <span class="s1">&#39;SG_BruteForce&#39;</span><span class="p">),</span> <span class="s1">&#39;real fields2cover not installed&#39;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ParityTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParityTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run inside the Docker image. Compares swath geometry, ignoring row order/direction.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ParityTest.setUp">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ParityTest.setUp">[docs]</a>
-    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Silence planner diagnostics for each test and restore logging afterward.&quot;&quot;&quot;</span>
         <span class="n">silence_planner_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return sorted endpoint tuples rounded to decimetres, ignoring row direction.&quot;&quot;&quot;</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
@@ -871,7 +871,7 @@
 
 <div class="viewcode-block" id="ParityTest.test_parity">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.ParityTest.test_parity">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_parity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_parity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compare backend swath endpoints across field shapes, angles, and headland widths.&quot;&quot;&quot;</span>
         <span class="n">shapes</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;rect&#39;</span><span class="p">:</span> <span class="n">RECT</span><span class="p">,</span>
@@ -896,17 +896,17 @@
 
 <div class="viewcode-block" id="TagRowsTest">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.TagRowsTest">[docs]</a>
-<span class="k">class</span> <span class="nc">TagRowsTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TagRowsTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 <div class="viewcode-block" id="TagRowsTest.setUp">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.TagRowsTest.setUp">[docs]</a>
-    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Silence planner diagnostics for each test and restore logging afterward.&quot;&quot;&quot;</span>
         <span class="n">silence_planner_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TagRowsTest.test_obstacle_fragments_share_row">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.TagRowsTest.test_obstacle_fragments_share_row">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_obstacle_fragments_share_row</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_obstacle_fragments_share_row</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify obstacle fragments share row IDs and remain in row order.&quot;&quot;&quot;</span>
         <span class="n">obs</span> <span class="o">=</span> <span class="n">to_ll</span><span class="p">([(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)])</span>
         <span class="n">corners</span> <span class="o">=</span> <span class="n">to_ll</span><span class="p">(</span><span class="n">RECT</span><span class="p">)</span>
@@ -920,7 +920,7 @@
 
 <div class="viewcode-block" id="TagRowsTest.test_rotated_rows_tagged">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_shapely_backend.html#devkit_f2c_planner.test_shapely_backend.TagRowsTest.test_rotated_rows_tagged">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_rotated_rows_tagged</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rotated_rows_tagged</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify rotated snake rows receive consecutive, distinct row IDs.&quot;&quot;&quot;</span>
         <span class="n">corners</span> <span class="o">=</span> <span class="n">to_ll</span><span class="p">(</span><span class="n">RECT</span><span class="p">)</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">run_f2c</span><span class="p">(</span><span class="n">corners</span><span class="p">,</span> <span class="p">[],</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="n">snake_order</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;shapely&#39;</span><span class="p">)</span>

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.view_models.run_view_model &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,27 +743,27 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.view_models.run_view_model</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">ROW_ACTION</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">ROW_ACTION</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.drive_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.drive_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">DriveApplicationService</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.navigation_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.navigation_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">NavigationApplicationService</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.row_discovery_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.row_discovery_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">RowDiscoveryApplicationService</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.topo_results</span> <span class="kn">import</span> <span class="n">DiscoveryResult</span><span class="p">,</span> <span class="n">NavUpdate</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_results</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiscoveryResult</span><span class="p">,</span> <span class="n">NavUpdate</span>
 
 <span class="n">_LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">JOYSTICK_INPUT_LEASE_S</span> <span class="o">=</span> <span class="mf">0.5</span>
@@ -771,25 +771,25 @@
 
 <div class="viewcode-block" id="RunViewModel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel">[docs]</a>
-<span class="k">class</span> <span class="nc">RunViewModel</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RunViewModel</span><span class="p">:</span>
 <div class="viewcode-block" id="RunViewModel.Joystick">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Joystick">[docs]</a>
     <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">Joystick</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Joystick</span><span class="p">:</span>
         <span class="n">pose_lbl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;no odom&#39;</span></div>
 
 
 <div class="viewcode-block" id="RunViewModel.NodeMap">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.NodeMap">[docs]</a>
     <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">NodeMap</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">NodeMap</span><span class="p">:</span>
         <span class="n">robot_pose</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="RunViewModel.Track">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Track">[docs]</a>
     <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">Track</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Track</span><span class="p">:</span>
         <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span>
         <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -801,7 +801,7 @@
 <div class="viewcode-block" id="RunViewModel.DropNode">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.DropNode">[docs]</a>
     <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">DropNode</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">DropNode</span><span class="p">:</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">row_role</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;entry&#39;</span>
@@ -813,7 +813,7 @@
 <div class="viewcode-block" id="RunViewModel.Topo">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Topo">[docs]</a>
     <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">Topo</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Topo</span><span class="p">:</span>
         <span class="n">navigating</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">nav_status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;idle&#39;</span>
         <span class="n">delete_status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></div>
@@ -822,14 +822,14 @@
 <div class="viewcode-block" id="RunViewModel.Discovery">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.Discovery">[docs]</a>
     <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">Discovery</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Discovery</span><span class="p">:</span>
         <span class="n">active</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;idle&#39;</span></div>
 
 
 <div class="viewcode-block" id="RunViewModel.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drive_app_service</span><span class="p">:</span> <span class="n">DriveApplicationService</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drive_app_service</span><span class="p">:</span> <span class="n">DriveApplicationService</span><span class="p">,</span>
                  <span class="n">discovery_app_service</span><span class="p">:</span> <span class="n">RowDiscoveryApplicationService</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">navigation_app_service</span><span class="p">:</span> <span class="n">NavigationApplicationService</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the run screen state with default values for each view-model component.&quot;&quot;&quot;</span>
@@ -853,7 +853,7 @@
 
 <div class="viewcode-block" id="RunViewModel.move_joystick">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.move_joystick">[docs]</a>
-    <span class="k">def</span> <span class="nf">move_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish forward speed x (m/s) and negated turn y (rad/s).</span>
 
 <span class="sd">        Cache the command as held and renew its 0.5-second input lease before publishing.</span>
@@ -867,7 +867,7 @@
 
 <div class="viewcode-block" id="RunViewModel.heartbeat_joystick">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.heartbeat_joystick">[docs]</a>
-    <span class="k">def</span> <span class="nf">heartbeat_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">heartbeat_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Renew a held gesture&#39;s lease from the client without reviving expired input.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_joystick_held</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_joystick_input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
@@ -877,7 +877,7 @@
 
 <div class="viewcode-block" id="RunViewModel.repeat_joystick">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.repeat_joystick">[docs]</a>
-    <span class="k">def</span> <span class="nf">repeat_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">repeat_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Re-send the held joystick command, called from a fast page timer.</span>
 
 <span class="sd">        The MAVLink bridge treats any cmd_vel older than about half a second as stale and commands zero.</span>
@@ -897,7 +897,7 @@
 
 <div class="viewcode-block" id="RunViewModel.stop_joystick">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.stop_joystick">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Request zero linear and angular speed through the drive service.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">move_joystick</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_joystick_held</span> <span class="o">=</span> <span class="kc">False</span></div>
@@ -905,7 +905,7 @@
 
 <div class="viewcode-block" id="RunViewModel.release_joystick">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.release_joystick">[docs]</a>
-    <span class="k">def</span> <span class="nf">release_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">release_joystick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop only if the joystick still holds a command, e.g. the browser dropped before on_end fired.</span>
 
 <span class="sd">        Publishing zero unconditionally would override autonomous navigation on cmd_vel whenever any</span>
@@ -917,7 +917,7 @@
 
 <div class="viewcode-block" id="RunViewModel.update_pose_label">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.update_pose_label">[docs]</a>
-    <span class="k">def</span> <span class="nf">update_pose_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">odom</span><span class="p">,</span> <span class="n">gps</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_pose_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">odom</span><span class="p">,</span> <span class="n">gps</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Refresh the joystick pose label from latest odometry/GPS.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">odom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">px</span> <span class="o">=</span> <span class="n">odom</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span>
@@ -934,7 +934,7 @@
 
 <div class="viewcode-block" id="RunViewModel.start_discovery">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.start_discovery">[docs]</a>
-    <span class="k">def</span> <span class="nf">start_discovery</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_discovery</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the row discovery node to start; the outcome lands in self.discovery.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovery_app_service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;ERROR: discovery service unavailable&#39;</span>
@@ -945,17 +945,17 @@
 
 <div class="viewcode-block" id="RunViewModel.stop_discovery">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.stop_discovery">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop_discovery</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_discovery</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the row discovery node to stop; the outcome lands in self.discovery.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovery_app_service</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_discovery_app_service</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_discovery_result</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_on_discovery_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_discovery_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Replace the displayed discovery status with the latest message.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
 
-    <span class="k">def</span> <span class="nf">_on_discovery_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">DiscoveryResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_discovery_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">DiscoveryResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply discovery status, preserving the active flag when state is unknown.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">active</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">active</span>
@@ -965,7 +965,7 @@
 
 <div class="viewcode-block" id="RunViewModel.navigate_to">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.navigate_to">[docs]</a>
-    <span class="k">def</span> <span class="nf">navigate_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">navigate_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start navigating to a topology node. Ignored while a goal is already running.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">navigating</span><span class="p">:</span>
             <span class="k">return</span>
@@ -979,7 +979,7 @@
 
 <div class="viewcode-block" id="RunViewModel.go_to">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.go_to">[docs]</a>
-    <span class="k">def</span> <span class="nf">go_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">soft_estop_active</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">go_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">soft_estop_active</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start navigating to a node unless a goal is running or the soft e-stop is active.</span>
 
 <span class="sd">        A rejected request is logged and leaves the displayed navigation status unchanged.</span>
@@ -992,7 +992,7 @@
 
 <div class="viewcode-block" id="RunViewModel.cancel_navigation">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.cancel_navigation">[docs]</a>
-    <span class="k">def</span> <span class="nf">cancel_navigation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cancel_navigation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancel the running navigation goal, if any.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_navigation_app_service</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_navigation_app_service</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span></div>
@@ -1000,7 +1000,7 @@
 
 <div class="viewcode-block" id="RunViewModel.navigate_and_wait">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.navigate_and_wait">[docs]</a>
-    <span class="k">def</span> <span class="nf">navigate_and_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">navigate_and_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                           <span class="n">should_abort</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Navigate to a topology node and block until it ends. Use from a worker thread.</span>
 
@@ -1015,13 +1015,13 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">navigation_available</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">navigation_available</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the navigation action interface is available.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_navigation_app_service</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_navigation_app_service</span><span class="o">.</span><span class="n">available</span>
 
 <div class="viewcode-block" id="RunViewModel.on_nav_update">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.run_view_model.html#devkit_ui.view_models.run_view_model.RunViewModel.on_nav_update">[docs]</a>
-    <span class="k">def</span> <span class="nf">on_nav_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">NavUpdate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_nav_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">NavUpdate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply navigation progress to the displayed status and running flag.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">nav_status</span> <span class="o">=</span> <span class="n">update</span><span class="o">.</span><span class="n">status</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">navigating</span> <span class="o">=</span> <span class="n">update</span><span class="o">.</span><span class="n">navigating</span></div>

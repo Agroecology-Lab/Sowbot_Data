@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.application_services.sim_process_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -749,15 +749,15 @@
 <span class="sd">reload cannot orphan a running sim or start a second one. This owns the launch commands and</span>
 <span class="sd">environment; pages only ask for a start, a stop or a status. No ROS or NiceGUI imports.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.tool_state</span> <span class="kn">import</span> <span class="n">ToolState</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">SIM_MAP_FILE</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.process_registry</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.tool_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">SIM_MAP_FILE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.process_registry</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">alive</span><span class="p">,</span>
     <span class="n">kill_group</span><span class="p">,</span>
     <span class="n">shared</span><span class="p">,</span>
@@ -783,12 +783,12 @@
 
 <div class="viewcode-block" id="SimProcessApplicationService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService">[docs]</a>
-<span class="k">class</span> <span class="nc">SimProcessApplicationService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimProcessApplicationService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Start, stop and poll the Gazebo simulation and the row-follow stack.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SimProcessApplicationService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Share one lock per process across browser sessions and service instances.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gazebo_lock</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="s1">&#39;gazebo_lock&#39;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_row_follow_lock</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="s1">&#39;neo_lock&#39;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">)</span></div>
@@ -798,14 +798,14 @@
 
 <div class="viewcode-block" id="SimProcessApplicationService.row_follow_status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService.row_follow_status">[docs]</a>
-    <span class="k">def</span> <span class="nf">row_follow_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">row_follow_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return &#39;running&#39; for a live row-follow process and &#39;idle&#39; otherwise.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">(</span><span class="s1">&#39;neo&#39;</span><span class="p">,</span> <span class="n">ROW_FOLLOW_LOG</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SimProcessApplicationService.start_row_follow">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService.start_row_follow">[docs]</a>
-    <span class="k">def</span> <span class="nf">start_row_follow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_row_follow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Launch neo.launch.py with the Gazebo-bridged camera unless it is already running.</span>
 
 <span class="sd">        It uses /camera/image_raw instead of a V4L2 device, runs the TSM detector and publishes</span>
@@ -830,7 +830,7 @@
 
 <div class="viewcode-block" id="SimProcessApplicationService.stop_row_follow">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService.stop_row_follow">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop_row_follow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_row_follow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the row-follow process group; &#39;idle&#39; if nothing was started.</span>
 
 <span class="sd">        Return &#39;busy&#39; if another start or stop is in flight. Blocking: call off the UI loop.</span>
@@ -852,21 +852,21 @@
 
 <div class="viewcode-block" id="SimProcessApplicationService.gazebo_running">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService.gazebo_running">[docs]</a>
-    <span class="k">def</span> <span class="nf">gazebo_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gazebo_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether a simulation launch is still alive.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">alive</span><span class="p">(</span><span class="n">shared</span><span class="p">(</span><span class="s1">&#39;gazebo&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="SimProcessApplicationService.gazebo_status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService.gazebo_status">[docs]</a>
-    <span class="k">def</span> <span class="nf">gazebo_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gazebo_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return &#39;running&#39; for a live simulation and &#39;idle&#39; otherwise.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span><span class="p">(</span><span class="s1">&#39;gazebo&#39;</span><span class="p">,</span> <span class="n">GAZEBO_LOG</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SimProcessApplicationService.launch_gazebo">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService.launch_gazebo">[docs]</a>
-    <span class="k">def</span> <span class="nf">launch_gazebo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xacro</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">GazeboMode</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">launch_gazebo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xacro</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">GazeboMode</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Launch sowbot_sim.launch.py for the robot model xacro unless a sim is running.</span>
 
 <span class="sd">        This is the whole stack: sowbot_sim.launch.py runs preflight_pkill, fusioncore and</span>
@@ -903,7 +903,7 @@
 
 <div class="viewcode-block" id="SimProcessApplicationService.stop_gazebo">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.sim_process_service.html#devkit_ui.application_services.sim_process_service.SimProcessApplicationService.stop_gazebo">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop_gazebo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_gazebo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the sim, the robot spawn and the display daemons, and release their handles.</span>
 
 <span class="sd">        Return &#39;busy&#39; if another start or stop is in flight. Blocking: call off the UI loop.</span>
@@ -924,7 +924,7 @@
     <span class="c1"># ── commands ──────────────────────────────────────────────────────────────</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_status</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_status</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolState</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return &#39;running&#39; with the pid for a live process and &#39;idle&#39; otherwise.&quot;&quot;&quot;</span>
         <span class="n">proc</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">alive</span><span class="p">(</span><span class="n">proc</span><span class="p">):</span>
@@ -932,20 +932,20 @@
         <span class="k">return</span> <span class="n">ToolState</span><span class="p">(</span><span class="s1">&#39;idle&#39;</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_sim_cmd</span><span class="p">(</span><span class="n">xacro</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">headless</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sim_cmd</span><span class="p">(</span><span class="n">xacro</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">headless</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the sowbot_sim launch command for the robot model xacro.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;ros2&#39;</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;devkit_bringup&#39;</span><span class="p">,</span> <span class="s1">&#39;sowbot_sim.launch.py&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;world:=maize.world&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;urdf:=</span><span class="si">{</span><span class="n">xacro</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                 <span class="sa">f</span><span class="s1">&#39;headless:=</span><span class="si">{</span><span class="s2">&quot;true&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">headless</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the environment for the sim: the map file and the model search path.&quot;&quot;&quot;</span>
         <span class="n">extra</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GZ_SIM_RESOURCE_PATH&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span> <span class="s1">&#39;TMAP2_FILE&#39;</span><span class="p">:</span> <span class="n">SIM_MAP_FILE</span><span class="p">,</span>
                 <span class="s1">&#39;GZ_SIM_RESOURCE_PATH&#39;</span><span class="p">:</span> <span class="n">_GZ_RESOURCES</span> <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;:</span><span class="si">{</span><span class="n">extra</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">extra</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)}</span>
 
-    <span class="k">def</span> <span class="nf">_browser_env</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_browser_env</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the sim environment for the virtual display, with software GL forced.</span>
 
 <span class="sd">        Xvfb has no DRI/GLX driver, so it cannot honour the hardware-render settings the container</span>
@@ -954,7 +954,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="p">(),</span> <span class="s1">&#39;DISPLAY&#39;</span><span class="p">:</span> <span class="n">_VNC_DISPLAY</span><span class="p">,</span> <span class="s1">&#39;LIBGL_ALWAYS_SOFTWARE&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;GALLIUM_DRIVER&#39;</span><span class="p">:</span> <span class="s1">&#39;llvmpipe&#39;</span><span class="p">,</span> <span class="s1">&#39;MESA_LOADER_DRIVER_OVERRIDE&#39;</span><span class="p">:</span> <span class="s1">&#39;llvmpipe&#39;</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">_browser_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xacro</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_browser_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xacro</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrap the sim command so it cannot see /dev/dri.</span>
 
 <span class="sd">        Environment variables alone are not enough for gz-sim: its Ogre2 renderer initialises via</span>

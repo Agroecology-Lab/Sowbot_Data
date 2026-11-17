@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sowbot_avoid.frame &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -744,7 +744,7 @@
              
   <h1>Source code for sowbot_avoid.frame</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Frame codec. See docs/packet-format.md. No dependencies.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 
 <span class="n">DATA_TYPE</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
 <span class="n">MAX_NODES</span> <span class="o">=</span> <span class="mi">3</span>       <span class="c1"># the node we stand on, then two intended nodes</span>
@@ -753,7 +753,7 @@
 <div class="viewcode-block" id="Frame">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.frame.html#sowbot_avoid.Frame">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Frame</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Frame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;One announcement: the sender stands on nodes[0] and intends to drive through nodes[1:].&quot;&quot;&quot;</span>
     <span class="n">rid</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">seq</span><span class="p">:</span> <span class="nb">int</span>
@@ -761,7 +761,7 @@
 
 <div class="viewcode-block" id="Frame.encode">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.frame.html#sowbot_avoid.Frame.encode">[docs]</a>
-    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Encode as robot id, sequence, then little-endian 16-bit nodes.</span>
 
 <span class="sd">        The sequence is reduced modulo 256. A robot ID outside the byte range raises</span>
@@ -773,7 +773,7 @@
 <div class="viewcode-block" id="Frame.decode">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.frame.html#sowbot_avoid.Frame.decode">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Decode a frame, returning None for robot ID zero or a length that is not 1 to 3 nodes.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">MAX_NODES</span> <span class="ow">or</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -783,14 +783,14 @@
 
 <div class="viewcode-block" id="Frame.hold">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.frame.html#sowbot_avoid.Frame.hold">[docs]</a>
-    <span class="k">def</span> <span class="nf">hold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The node the sender stands on, as an (n, n) pair.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="Frame.claims">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.frame.html#sowbot_avoid.Frame.claims">[docs]</a>
-    <span class="k">def</span> <span class="nf">claims</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">claims</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The sender&#39;s next edges, chained after the node it stands on.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span></div>
 </div>

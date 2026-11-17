@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_driver.relposned_heading_shim &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -761,13 +761,13 @@
 <span class="sd">NAV-RELPOSNED heading is True North referenced, degrees × 1e-5.</span>
 <span class="sd">ROS convention: ENU yaw.  NED → ENU: yaw_ENU = π/2 - heading_NED_rad</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
-<span class="kn">import</span> <span class="nn">rclpy</span>
-<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
-<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Imu</span>
-<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">Bool</span>
-<span class="kn">from</span> <span class="nn">ublox_ubx_msgs.msg</span> <span class="kn">import</span> <span class="n">UBXNavRelPosNED</span>  <span class="c1"># pylint: disable=import-error</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sensor_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Imu</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ublox_ubx_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">UBXNavRelPosNED</span>  <span class="c1"># pylint: disable=import-error</span>
 
 <span class="c1"># Minimum antenna separation in metres — below this the heading geometry is unreliable</span>
 <span class="n">_MIN_BASELINE_M</span> <span class="o">=</span> <span class="mf">0.3</span>
@@ -775,10 +775,10 @@
 
 <div class="viewcode-block" id="RelPosnedHeadingShim">
 <a class="viewcode-back" href="../../_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.RelPosnedHeadingShim">[docs]</a>
-<span class="k">class</span> <span class="nc">RelPosnedHeadingShim</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RelPosnedHeadingShim</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
 <div class="viewcode-block" id="RelPosnedHeadingShim.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.RelPosnedHeadingShim.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect dual-antenna GNSS input to heading and validity publishers.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;relposned_heading_shim&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">Imu</span><span class="p">,</span> <span class="s1">&#39;/gnss/heading&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -792,7 +792,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;relposned_heading_shim ready&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">UBXNavRelPosNED</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">UBXNavRelPosNED</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish ENU heading and validity after checking receiver flags and antenna separation.&quot;&quot;&quot;</span>
         <span class="c1"># Both validity flags must be set before trusting the heading</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">msg</span><span class="o">.</span><span class="n">rel_pos_valid</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">msg</span><span class="o">.</span><span class="n">rel_pos_heading_valid</span><span class="p">:</span>
@@ -851,7 +851,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">Bool</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pub_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="k">def</span> <span class="nf">_log_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="sa">f</span><span class="s1">&#39;heading shim: published=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_pub_count</span><span class="si">}</span><span class="s1">  &#39;</span>
             <span class="sa">f</span><span class="s1">&#39;rejected=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_reject_count</span><span class="si">}</span><span class="s1"> (invalid flags or short baseline)&#39;</span><span class="p">)</span>
@@ -862,7 +862,7 @@
 
 <div class="viewcode-block" id="main">
 <a class="viewcode-back" href="../../_autosummary/devkit_driver.relposned_heading_shim.html#devkit_driver.relposned_heading_shim.main">[docs]</a>
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
     <span class="n">node</span> <span class="o">=</span> <span class="n">RelPosnedHeadingShim</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>

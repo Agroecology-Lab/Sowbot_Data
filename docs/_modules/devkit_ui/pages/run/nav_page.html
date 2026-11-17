@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.pages.run.nav_page &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -743,32 +743,32 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.pages.run.nav_page</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">ui</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.delete_dialogs</span> <span class="kn">import</span> <span class="n">confirm_delete_node</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.obstacle_cards</span> <span class="kn">import</span> <span class="n">attach_nav_card</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.drop_node_card</span> <span class="kn">import</span> <span class="n">DropNodeCard</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.joystick_control_card</span> <span class="kn">import</span> <span class="n">JoystickControlCard</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.navigation_sidebar</span> <span class="kn">import</span> <span class="n">NavigationSidebar</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.node_map_card</span> <span class="kn">import</span> <span class="n">NodeMapCard</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.row_discovery_card</span> <span class="kn">import</span> <span class="n">RowDiscoveryCard</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.run.track_card</span> <span class="kn">import</span> <span class="n">TrackCard</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.global_view_model</span> <span class="kn">import</span> <span class="n">GlobalViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.map_authoring_view_model</span> <span class="kn">import</span> <span class="n">MapAuthoringViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.obstacle_view_model</span> <span class="kn">import</span> <span class="n">ObstacleViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.run_view_model</span> <span class="kn">import</span> <span class="n">RunViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.telemetry_view_model</span> <span class="kn">import</span> <span class="n">TelemetryViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.topology_view_model</span> <span class="kn">import</span> <span class="n">TopologyViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.delete_dialogs</span><span class="w"> </span><span class="kn">import</span> <span class="n">confirm_delete_node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.obstacle_cards</span><span class="w"> </span><span class="kn">import</span> <span class="n">attach_nav_card</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.run.drop_node_card</span><span class="w"> </span><span class="kn">import</span> <span class="n">DropNodeCard</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.run.joystick_control_card</span><span class="w"> </span><span class="kn">import</span> <span class="n">JoystickControlCard</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.run.navigation_sidebar</span><span class="w"> </span><span class="kn">import</span> <span class="n">NavigationSidebar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.run.node_map_card</span><span class="w"> </span><span class="kn">import</span> <span class="n">NodeMapCard</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.run.row_discovery_card</span><span class="w"> </span><span class="kn">import</span> <span class="n">RowDiscoveryCard</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.run.track_card</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrackCard</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.global_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">GlobalViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.map_authoring_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">MapAuthoringViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.obstacle_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObstacleViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.run_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.telemetry_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">TelemetryViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.topology_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyViewModel</span>
 
 
 <div class="viewcode-block" id="NavPage">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.run.nav_page.html#devkit_ui.pages.run.nav_page.NavPage">[docs]</a>
-<span class="k">class</span> <span class="nc">NavPage</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">column</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NavPage</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">column</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The Run tab: drive, map, record nodes, discover rows, mark obstacles and navigate.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="NavPage.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.run.nav_page.html#devkit_ui.pages.run.nav_page.NavPage.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">global_vm</span><span class="p">:</span> <span class="n">GlobalViewModel</span><span class="p">,</span> <span class="n">run_vm</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">global_vm</span><span class="p">:</span> <span class="n">GlobalViewModel</span><span class="p">,</span> <span class="n">run_vm</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="p">,</span>
                  <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">,</span> <span class="n">telemetry_vm</span><span class="p">:</span> <span class="n">TelemetryViewModel</span><span class="p">,</span>
                  <span class="n">obstacle_vm</span><span class="p">:</span> <span class="n">ObstacleViewModel</span><span class="p">,</span> <span class="n">authoring</span><span class="p">:</span> <span class="n">MapAuthoringViewModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compose the Run page and keep its displayed state in step with the robot.</span>
@@ -827,13 +827,13 @@
             <span class="n">ui</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_refresh</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_go</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_go</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Navigate to the selected node, if there is one.&quot;&quot;&quot;</span>
         <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">selected_node</span>
         <span class="k">if</span> <span class="n">target</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">go_to</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global_vm</span><span class="o">.</span><span class="n">soft_estop_active</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Refresh the pose label, robot overlay and node list from the latest state.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_vm</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">update_pose_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_vm</span><span class="o">.</span><span class="n">odom</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry_vm</span><span class="o">.</span><span class="n">gps</span><span class="p">)</span>

@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_driver.modules.map_anchor_handler &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -760,7 +760,7 @@
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="devkit_driver.modules.map_anchor_handler.MapAnchorHandler">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_driver.modules.map_anchor_handler.</span></span><span class="sig-name descname"><span class="pre">MapAnchorHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">rclpy.node.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable[[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">monotonic&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_driver/modules/map_anchor_handler.html#MapAnchorHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_driver.modules.map_anchor_handler.MapAnchorHandler" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">devkit_driver.modules.map_anchor_handler.</span></span><span class="sig-name descname"><span class="pre">MapAnchorHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node:</span> <span class="pre">rclpy.node.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clock:</span> <span class="pre">~collections.abc.Callable[[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">monotonic&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_driver/modules/map_anchor_handler.html#MapAnchorHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_driver.modules.map_anchor_handler.MapAnchorHandler" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Publish a static map -&gt; odom transform anchored to a surveyed geodetic origin.</p>
 <p>Waits for fixes on fix_topic and odom positions on odom_topic, then broadcasts map -&gt; odom
@@ -771,7 +771,7 @@ counter-clockwise from east), fix_topic (default fc/ekf_fix), odom_topic (defaul
 samples, max_skew_s, max_spread_m, map_frame, odom_frame.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="devkit_driver.modules.map_anchor_handler.MapAnchorHandler.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">rclpy.node.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable[[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">monotonic&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_driver/modules/map_anchor_handler.html#MapAnchorHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_driver.modules.map_anchor_handler.MapAnchorHandler.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node:</span> <span class="pre">rclpy.node.Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clock:</span> <span class="pre">~collections.abc.Callable[[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">monotonic&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_driver/modules/map_anchor_handler.html#MapAnchorHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_driver.modules.map_anchor_handler.MapAnchorHandler.__init__" title="Link to this definition"></a></dt>
 <dd><p>Read parameters and subscribe; raise ValueError if the origin is not set.</p>
 </dd></dl>
 

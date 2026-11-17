@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.view_models.map_authoring_view_model &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -744,34 +744,34 @@
              
   <h1>Source code for devkit_ui.view_models.map_authoring_view_model</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Run-tab map authoring: drop and track nodes, choose the row action, delete nodes and rows.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_edit_service</span> <span class="kn">import</span> <span class="n">clean_name</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">ROW_ACTION</span><span class="p">,</span> <span class="n">VISION_ROW_ACTION</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.topo_results</span> <span class="kn">import</span> <span class="n">StagedEdit</span><span class="p">,</span> <span class="n">TopologyEditError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.topology_edit_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">clean_name</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">ROW_ACTION</span><span class="p">,</span> <span class="n">VISION_ROW_ACTION</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.topo_results</span><span class="w"> </span><span class="kn">import</span> <span class="n">StagedEdit</span><span class="p">,</span> <span class="n">TopologyEditError</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.telemetry_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.telemetry_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">TelemetryApplicationService</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.topology_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">TopologyApplicationService</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.topology_edit_service</span> <span class="kn">import</span> <span class="n">TopologyEditService</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.track_application_service</span> <span class="kn">import</span> <span class="n">TrackApplicationService</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.view_models.run_view_model</span> <span class="kn">import</span> <span class="n">RunViewModel</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.view_models.topology_view_model</span> <span class="kn">import</span> <span class="n">TopologyViewModel</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.topology_edit_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyEditService</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.track_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrackApplicationService</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.run_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunViewModel</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.topology_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyViewModel</span>
 
 <span class="n">_LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="MapAuthoringViewModel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel">[docs]</a>
-<span class="k">class</span> <span class="nc">MapAuthoringViewModel</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MapAuthoringViewModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Edits the live map from the Run tab and reports progress in RunViewModel&#39;s state.</span>
 
 <span class="sd">    The row action is RunViewModel.drop_node.row_action, so the Plan tab reads the same</span>
@@ -781,7 +781,7 @@
 
 <div class="viewcode-block" id="MapAuthoringViewModel.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_vm</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_vm</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">,</span>
                  <span class="n">topo_app_service</span><span class="p">:</span> <span class="n">TopologyApplicationService</span><span class="p">,</span>
                  <span class="n">edit_service</span><span class="p">:</span> <span class="n">TopologyEditService</span><span class="p">,</span>
                  <span class="n">telemetry_app_service</span><span class="p">:</span> <span class="n">TelemetryApplicationService</span><span class="p">,</span>
@@ -800,13 +800,13 @@
     <span class="c1"># ── row action ────────────────────────────────────────────────────────────</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">row_action</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">row_action</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The action new row edges use, and the one the loaded map&#39;s row edges are set to.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">drop_node</span><span class="o">.</span><span class="n">row_action</span>
 
 <div class="viewcode-block" id="MapAuthoringViewModel.set_row_action">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.set_row_action">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_row_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_row_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Switch row driving between geometry-only and vision following.</span>
 
 <span class="sd">        Applies to rows added from now on and rewrites the row edges already in the map, so</span>
@@ -834,7 +834,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_set_drop_status</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_on_map_archived</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_map_archived</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return row driving to geometry mode after the map was archived and cleared.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">drop_node</span><span class="o">.</span><span class="n">row_action</span> <span class="o">=</span> <span class="n">ROW_ACTION</span>
 
@@ -842,7 +842,7 @@
 
 <div class="viewcode-block" id="MapAuthoringViewModel.drop_node">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.drop_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">drop_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">row_role</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;entry&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drop_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">row_role</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;entry&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a topology node at the current robot position and persist it to the active map.</span>
 
 <span class="sd">        Add the node in memory immediately, then save and reload in the background. Use</span>
@@ -876,7 +876,7 @@
 
 <div class="viewcode-block" id="MapAuthoringViewModel.start_track">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.start_track">[docs]</a>
-    <span class="k">def</span> <span class="nf">start_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                     <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">row_role</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record a topology node immediately, then periodically on the timer.</span>
 
@@ -915,7 +915,7 @@
         <span class="n">track</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">track</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
-        <span class="k">def</span> <span class="nf">recorded</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">recorded</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Show the node that was just recorded.&quot;&quot;&quot;</span>
             <span class="n">track</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;recording  </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">  (#</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1">)&#39;</span>
 
@@ -925,7 +925,7 @@
 
 <div class="viewcode-block" id="MapAuthoringViewModel.stop_track">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.stop_track">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop_track</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_track</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop tracking and schedule marking the last attempted row node as the exit.</span>
 
 <span class="sd">        Only schedule the edit when a row_id is set and the last node number is positive.</span>
@@ -951,19 +951,19 @@
 
 <div class="viewcode-block" id="MapAuthoringViewModel.delete_node">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.delete_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">delete_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a topology node and persist the updated map.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_persist_deletion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edits</span><span class="o">.</span><span class="n">stage_delete_node</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MapAuthoringViewModel.delete_row">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.map_authoring_view_model.html#devkit_ui.view_models.map_authoring_view_model.MapAuthoringViewModel.delete_row">[docs]</a>
-    <span class="k">def</span> <span class="nf">delete_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete every topology node of a row and persist the updated map.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_persist_deletion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edits</span><span class="o">.</span><span class="n">stage_delete_row</span><span class="p">,</span> <span class="n">row_id</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_persist_deletion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">StagedEdit</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_persist_deletion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">StagedEdit</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stage a deletion, clear a selection it removes, and persist it in the background.&quot;&quot;&quot;</span>
         <span class="n">topo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span>
         <span class="k">try</span><span class="p">:</span>
@@ -978,11 +978,11 @@
 
     <span class="c1"># ── status ────────────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_set_drop_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_drop_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show status on the Drop Node card.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">drop_node</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
 
-    <span class="k">def</span> <span class="nf">_set_delete_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_delete_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show status beside the node list.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_vm</span><span class="o">.</span><span class="n">topo</span><span class="o">.</span><span class="n">delete_status</span> <span class="o">=</span> <span class="n">status</span></div>
 

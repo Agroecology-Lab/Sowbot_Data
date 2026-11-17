@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Field validation progression &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=9d891252"></script>
-      <script src="_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -797,7 +797,7 @@ Numbers marked <em>proposed</em> are starting points to argue about, not require
 <ul class="simple">
 <li><p>Stop sources checked: physical E-stop, bumpers, radar trip, soft E-stop, <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> loss, bridge loss, dashboard disconnect.</p></li>
 <li><p>Confirm the SW180 contacts open and the motor controllers behave on each stop, including battery disconnect (O36).</p></li>
-<li><p>Confirm ArduPilot GUIDED responds, <code class="docutils literal notranslate"><span class="pre">GPS1_TYPE=14</span></code> is set and the EKF origin behaves on boot (O22 d).</p></li>
+<li><p>Confirm ArduPilot GUIDED responds, <code class="docutils literal notranslate"><span class="pre">GPS_TYPE=17</span></code> and <code class="docutils literal notranslate"><span class="pre">GPS_TYPE2=18</span></code> are set (see <code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>) and the EKF origin behaves on boot (O22 d).</p></li>
 </ul>
 <p>Exit criteria (proposed): every stop source stops the drive on the bench, ten times in a row; command-loss latency measured and below the value the stopping-distance budget needs.</p>
 </section>

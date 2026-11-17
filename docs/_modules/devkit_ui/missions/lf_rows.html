@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.missions.lf_rows &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -749,24 +749,24 @@
 <span class="sd">a swath, and ``row_id`` per swath. A LiteFarm row split by an obstacle is several swaths (fragments)</span>
 <span class="sd">with the same field and row. The map is searched, so no row id is ever derived from a field and row.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopoDoc</span>
 
 
 <div class="viewcode-block" id="LfRowError">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.lf_rows.html#devkit_ui.missions.lf_rows.LfRowError">[docs]</a>
-<span class="k">class</span> <span class="nc">LfRowError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LfRowError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A (field, row) is not in the map, or the map names it ambiguously.&quot;&quot;&quot;</span></div>
 
 
 
-<span class="k">def</span> <span class="nf">_int</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_int</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return value if it is a real int (not a bool), else None.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">value</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
 
 
 <div class="viewcode-block" id="lf_row_entries">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.lf_rows.html#devkit_ui.missions.lf_rows.lf_row_entries">[docs]</a>
-<span class="k">def</span> <span class="nf">lf_row_entries</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">lf_row_entries</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return ``{(field, row): [(row_id, frag, entry node name), ...]}`` for every LiteFarm row in doc.</span>
 
 <span class="sd">    Only entry nodes count. Fragments are in row id order. A node with no integer lf_field, lf_row and</span>
@@ -788,7 +788,7 @@
 
 <div class="viewcode-block" id="resolve_lf_row">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.missions.lf_rows.html#devkit_ui.missions.lf_rows.resolve_lf_row">[docs]</a>
-<span class="k">def</span> <span class="nf">resolve_lf_row</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">field</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">resolve_lf_row</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">field</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the entry node names of a LiteFarm row, one per fragment, in row id order.</span>
 
 <span class="sd">    Raise LfRowError when the map has no such row, two swaths claim the same fragment, or the</span>

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.process_registry &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -749,18 +749,18 @@
 <span class="sd">reloading or opening a second browser tab cannot orphan a running tool or spawn a duplicate.</span>
 <span class="sd">UI-neutral: no NiceGUI and no ROS imports.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">signal</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">signal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
 <span class="n">_TOOLS</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
 
 
 <div class="viewcode-block" id="shared">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.shared">[docs]</a>
-<span class="k">def</span> <span class="nf">shared</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">shared</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the shared tool entry, storing the factory result if absent.</span>
 
 <span class="sd">    The factory is called on every lookup, even when an entry already exists.</span>
@@ -771,7 +771,7 @@
 
 <div class="viewcode-block" id="alive">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.alive">[docs]</a>
-<span class="k">def</span> <span class="nf">alive</span><span class="p">(</span><span class="n">proc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">alive</span><span class="p">(</span><span class="n">proc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether a process handle exists and is still running.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">proc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span></div>
 
@@ -779,7 +779,7 @@
 
 <div class="viewcode-block" id="spawn_logged">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_logged">[docs]</a>
-<span class="k">def</span> <span class="nf">spawn_logged</span><span class="p">(</span><span class="n">cmd</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spawn_logged</span><span class="p">(</span><span class="n">cmd</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Start cmd in its own session and return its process handle.</span>
 
 <span class="sd">    Truncate log and redirect both output streams there.</span>
@@ -793,7 +793,7 @@
 
 <div class="viewcode-block" id="spawn_quiet">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.spawn_quiet">[docs]</a>
-<span class="k">def</span> <span class="nf">spawn_quiet</span><span class="p">(</span><span class="n">cmd</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spawn_quiet</span><span class="p">(</span><span class="n">cmd</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Start cmd in its own session with both output streams discarded.</span>
 
 <span class="sd">    Forward kwargs to Popen; process-creation errors propagate.</span>
@@ -806,7 +806,7 @@
 
 <div class="viewcode-block" id="kill_group">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.kill_group">[docs]</a>
-<span class="k">def</span> <span class="nf">kill_group</span><span class="p">(</span><span class="n">proc</span><span class="p">,</span> <span class="n">grace</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">kill_group</span><span class="p">(</span><span class="n">proc</span><span class="p">,</span> <span class="n">grace</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Request process-group termination, escalating if the leader outlives grace seconds.</span>
 
 <span class="sd">    Do nothing for a missing or already-exited process handle.</span>
@@ -836,7 +836,7 @@
 
 <div class="viewcode-block" id="interrupt_stop">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.interrupt_stop">[docs]</a>
-<span class="k">def</span> <span class="nf">interrupt_stop</span><span class="p">(</span><span class="n">proc</span><span class="p">,</span> <span class="n">interrupt_wait</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">terminate_wait</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">kill_wait</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">interrupt_stop</span><span class="p">(</span><span class="n">proc</span><span class="p">,</span> <span class="n">interrupt_wait</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">terminate_wait</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">kill_wait</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stop a launch leader gently, escalating only after each wait times out.</span>
 
 <span class="sd">    Send SIGINT to the leader only, so ROS launch can stop its children, and wait interrupt_wait</span>
@@ -858,7 +858,7 @@
 
 <div class="viewcode-block" id="stop_all">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.stop_all">[docs]</a>
-<span class="k">def</span> <span class="nf">stop_all</span><span class="p">(</span><span class="n">procs</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">stop_all</span><span class="p">(</span><span class="n">procs</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stop the listed process groups and clear the list; blocks while waiting.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">proc</span> <span class="ow">in</span> <span class="n">procs</span><span class="p">:</span>
         <span class="n">kill_group</span><span class="p">(</span><span class="n">proc</span><span class="p">,</span> <span class="n">grace</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
@@ -868,7 +868,7 @@
 
 <div class="viewcode-block" id="ensure_xvfb">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.ensure_xvfb">[docs]</a>
-<span class="k">def</span> <span class="nf">ensure_xvfb</span><span class="p">(</span><span class="n">display</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">daemons</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ensure_xvfb</span><span class="p">(</span><span class="n">display</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">daemons</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Start Xvfb unless a live one owns the display; clear stale locks.&quot;&quot;&quot;</span>
     <span class="n">num</span> <span class="o">=</span> <span class="n">display</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
     <span class="n">lock</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;/tmp/.X</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s1">-lock&#39;</span>
@@ -890,7 +890,7 @@
 
 <div class="viewcode-block" id="start_vnc_stack">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.start_vnc_stack">[docs]</a>
-<span class="k">def</span> <span class="nf">start_vnc_stack</span><span class="p">(</span><span class="n">display</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vnc_port</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">web_port</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">daemons</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">start_vnc_stack</span><span class="p">(</span><span class="n">display</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vnc_port</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">web_port</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">daemons</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Xvfb + x11vnc (loopback only) + noVNC websockify. Blocking.&quot;&quot;&quot;</span>
     <span class="n">stop_all</span><span class="p">(</span><span class="n">daemons</span><span class="p">)</span>
     <span class="n">ensure_xvfb</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">daemons</span><span class="p">)</span>
@@ -906,7 +906,7 @@
 
 <div class="viewcode-block" id="shutdown_tools">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.process_registry.html#devkit_ui.process_registry.shutdown_tools">[docs]</a>
-<span class="k">def</span> <span class="nf">shutdown_tools</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">shutdown_tools</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stop registered tool process groups during application shutdown.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">_TOOLS</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">proc</span> <span class="ow">in</span> <span class="p">(</span><span class="n">entry</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">entry</span><span class="p">]):</span>

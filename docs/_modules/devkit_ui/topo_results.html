@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.topo_results &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -744,16 +744,16 @@
              
   <h1>Source code for devkit_ui.topo_results</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Plain result types shared by the topology services (no ROS imports).&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.models</span> <span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopoDoc</span><span class="p">,</span> <span class="n">TopoNode</span>
 
 
 <div class="viewcode-block" id="SwitchResult">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.SwitchResult">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">SwitchResult</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SwitchResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Outcome of asking the topological map manager to switch to a saved map.&quot;&quot;&quot;</span>
     <span class="n">available</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">success</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -764,7 +764,7 @@
 <div class="viewcode-block" id="PersistResult">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.PersistResult">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">PersistResult</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PersistResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;How a persisted map change ended up.</span>
 
 <span class="sd">    kind is one of:</span>
@@ -778,7 +778,7 @@
 
 <div class="viewcode-block" id="PersistResult.describe">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.PersistResult.describe">[docs]</a>
-    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success_msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success_msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the status text for a change reported as success_msg.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;live&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">success_msg</span><span class="si">}</span><span class="s1"> — live&#39;</span>
@@ -794,7 +794,7 @@
 <div class="viewcode-block" id="DiscoveryResult">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.DiscoveryResult">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">DiscoveryResult</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DiscoveryResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Outcome of a row discovery start or stop request.</span>
 
 <span class="sd">    active is None when the request did not change whether discovery is running.</span>
@@ -807,7 +807,7 @@
 <div class="viewcode-block" id="NavUpdate">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.NavUpdate">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">NavUpdate</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NavUpdate</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Progress of a navigation goal, as reported by the navigation domain service.</span>
 
 <span class="sd">    outcome is None while the goal is still in progress, otherwise one of</span>
@@ -821,7 +821,7 @@
 
 <div class="viewcode-block" id="TopologyEditError">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.TopologyEditError">[docs]</a>
-<span class="k">class</span> <span class="nc">TopologyEditError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopologyEditError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A topology edit was rejected or had nothing to do.</span>
 
 <span class="sd">    str(error) is the status text to show. warnings are log lines produced before the</span>
@@ -830,7 +830,7 @@
 
 <div class="viewcode-block" id="TopologyEditError.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.TopologyEditError.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">warnings</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">())</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">warnings</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">())</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Store the status text and any warnings to log.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">warnings</span> <span class="o">=</span> <span class="n">warnings</span></div>
@@ -841,7 +841,7 @@
 <div class="viewcode-block" id="StagedEdit">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.StagedEdit">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">StagedEdit</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StagedEdit</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A map edit already checked and ready to be persisted in the background.</span>
 
 <span class="sd">    pending is the status to show while writing and success the status once saved.</span>
@@ -866,7 +866,7 @@
 <div class="viewcode-block" id="StagedDrop">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.topo_results.html#devkit_ui.topo_results.StagedDrop">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">StagedDrop</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StagedDrop</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A node already added to the live map, ready to be saved.</span>
 
 <span class="sd">    pending is the status to show while writing. base prefixes the later statuses,</span>

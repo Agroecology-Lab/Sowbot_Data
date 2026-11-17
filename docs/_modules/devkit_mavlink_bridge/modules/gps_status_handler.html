@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_mavlink_bridge.modules.gps_status_handler &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -749,7 +749,7 @@
 <span class="sd">Nothing here invents an accuracy: an unknown accuracy gives an unknown covariance.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
 <span class="c1"># GPS_FIX_TYPE (MAVLink common.xml).</span>
 <span class="n">FIX_NO_GPS</span> <span class="o">=</span> <span class="mi">0</span>
@@ -787,7 +787,7 @@
 
 <div class="viewcode-block" id="fix_type_to_navsat_status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.html#devkit_mavlink_bridge.modules.gps_status_handler.fix_type_to_navsat_status">[docs]</a>
-<span class="k">def</span> <span class="nf">fix_type_to_navsat_status</span><span class="p">(</span><span class="n">fix_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fix_type_to_navsat_status</span><span class="p">(</span><span class="n">fix_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Map GPS_FIX_TYPE to NavSatStatus.status.</span>
 
 <span class="sd">    RTK float and DGPS map to SBAS_FIX, RTK fixed (and PPP) to GBAS_FIX, matching the</span>
@@ -807,7 +807,7 @@
 
 <div class="viewcode-block" id="accuracy_m">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.html#devkit_mavlink_bridge.modules.gps_status_handler.accuracy_m">[docs]</a>
-<span class="k">def</span> <span class="nf">accuracy_m</span><span class="p">(</span><span class="n">raw_mm</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">accuracy_m</span><span class="p">(</span><span class="n">raw_mm</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a MAVLink accuracy in mm to metres; return None when it is zero or all-ones (unknown).&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">raw_mm</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_UINT32_UNKNOWN</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -817,7 +817,7 @@
 
 <div class="viewcode-block" id="dop">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.html#devkit_mavlink_bridge.modules.gps_status_handler.dop">[docs]</a>
-<span class="k">def</span> <span class="nf">dop</span><span class="p">(</span><span class="n">raw_hundredths</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dop</span><span class="p">(</span><span class="n">raw_hundredths</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a MAVLink DOP (value x 100) to a unitless number; return None when unknown.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">raw_hundredths</span> <span class="o">==</span> <span class="n">_UINT16_UNKNOWN</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -827,7 +827,7 @@
 
 <div class="viewcode-block" id="navsat_fields">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.html#devkit_mavlink_bridge.modules.gps_status_handler.navsat_fields">[docs]</a>
-<span class="k">def</span> <span class="nf">navsat_fields</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">lat_e7</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">lon_e7</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">altitude_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">navsat_fields</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">lat_e7</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">lon_e7</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">altitude_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                   <span class="n">h_acc_m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">v_acc_m</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Build NavSatFix fields from a NavSatStatus status and MAVLink coordinates.</span>
 
@@ -857,7 +857,7 @@
 
 <div class="viewcode-block" id="gps_raw_to_navsat">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.html#devkit_mavlink_bridge.modules.gps_status_handler.gps_raw_to_navsat">[docs]</a>
-<span class="k">def</span> <span class="nf">gps_raw_to_navsat</span><span class="p">(</span><span class="n">fix_type</span><span class="p">,</span> <span class="n">lat_e7</span><span class="p">,</span> <span class="n">lon_e7</span><span class="p">,</span> <span class="n">alt_ellipsoid_mm</span><span class="p">,</span> <span class="n">h_acc_mm</span><span class="p">,</span> <span class="n">v_acc_mm</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gps_raw_to_navsat</span><span class="p">(</span><span class="n">fix_type</span><span class="p">,</span> <span class="n">lat_e7</span><span class="p">,</span> <span class="n">lon_e7</span><span class="p">,</span> <span class="n">alt_ellipsoid_mm</span><span class="p">,</span> <span class="n">h_acc_mm</span><span class="p">,</span> <span class="n">v_acc_mm</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Build NavSatFix fields from GPS_RAW_INT or GPS2_RAW.</span>
 
 <span class="sd">    NavSatFix altitude is height above the WGS84 ellipsoid, so the MSL `alt` field is not</span>
@@ -871,7 +871,7 @@
 
 <div class="viewcode-block" id="gps_diagnostic">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.gps_status_handler.html#devkit_mavlink_bridge.modules.gps_status_handler.gps_diagnostic">[docs]</a>
-<span class="k">def</span> <span class="nf">gps_diagnostic</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gps_diagnostic</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return (level, summary, values) for a GPS_RAW_INT or GPS2_RAW message.</span>
 
 <span class="sd">    Pass None when no recent report exists: the level is then STALE and values is empty.</span>
@@ -903,7 +903,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Format an optional number for a diagnostic key-value pair.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">)):</span>
         <span class="k">return</span> <span class="s1">&#39;unknown&#39;</span>

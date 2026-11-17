@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.pages.run.node_map_card &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -743,21 +743,21 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.pages.run.node_map_card</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">ui</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.constants</span> <span class="kn">import</span> <span class="n">FULLSCREEN_MAP_PATH</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.utils.map_zoom</span> <span class="kn">import</span> <span class="n">enable_zoom</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.utils.topo_renderer</span> <span class="kn">import</span> <span class="n">build_robot_svg</span><span class="p">,</span> <span class="n">build_svg</span><span class="p">,</span> <span class="n">inject_click_js</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.run_view_model</span> <span class="kn">import</span> <span class="n">RunViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.topology_view_model</span> <span class="kn">import</span> <span class="n">TopologyViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">FULLSCREEN_MAP_PATH</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.utils.map_zoom</span><span class="w"> </span><span class="kn">import</span> <span class="n">enable_zoom</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.utils.topo_renderer</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_robot_svg</span><span class="p">,</span> <span class="n">build_svg</span><span class="p">,</span> <span class="n">inject_click_js</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.run_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.topology_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologyViewModel</span>
 
 
 <div class="viewcode-block" id="NodeMapCard">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.run.node_map_card.html#devkit_ui.pages.run.node_map_card.NodeMapCard">[docs]</a>
-<span class="k">class</span> <span class="nc">NodeMapCard</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NodeMapCard</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">):</span>
 <div class="viewcode-block" id="NodeMapCard.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.run.node_map_card.html#devkit_ui.pages.run.node_map_card.NodeMapCard.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topo_vm</span><span class="p">:</span> <span class="n">TopologyViewModel</span><span class="p">,</span>
                  <span class="n">pose_state</span><span class="p">:</span> <span class="n">RunViewModel</span><span class="o">.</span><span class="n">NodeMap</span><span class="p">,</span>
                  <span class="n">fullscreen</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -811,14 +811,14 @@
         <span class="n">ui</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_refresh</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_on_node_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_node_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Select the clicked topology node when it exists in the current map.&quot;&quot;&quot;</span>
         <span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">)</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">topo_doc</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">and</span> <span class="n">doc</span> <span class="ow">and</span> <span class="n">doc</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">set_selected_node</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_build_zoomable_map</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_zoomable_map</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build both layers inside a clipped, pannable and zoomable box.</span>
 
 <span class="sd">        Both layers fill the same box, so the SVGs letterbox identically and stay aligned.</span>
@@ -831,7 +831,7 @@
         <span class="c1"># NOTE: NiceGUI renders each element with the DOM id c&lt;element id&gt;.</span>
         <span class="n">enable_zoom</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">viewport</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">content</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rebuild and display the map and robot SVG overlays.&quot;&quot;&quot;</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_topo_vm</span><span class="o">.</span><span class="n">topo_doc</span>
         <span class="n">nodes</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="n">doc</span> <span class="k">else</span> <span class="p">[]</span>

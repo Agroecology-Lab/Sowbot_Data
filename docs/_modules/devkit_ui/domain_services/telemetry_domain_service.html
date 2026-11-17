@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.domain_services.telemetry_domain_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,16 +743,16 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.domain_services.telemetry_domain_service</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
-<span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Odometry</span>
-<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">BatteryState</span><span class="p">,</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">NavSatStatus</span>
-<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">Bool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nav_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Odometry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sensor_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatteryState</span><span class="p">,</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">NavSatStatus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bool</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.qos</span> <span class="kn">import</span> <span class="n">ODOM_QOS</span><span class="p">,</span> <span class="n">SAFETY_QOS</span><span class="p">,</span> <span class="n">SENSOR_QOS</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.ros_gateway</span> <span class="kn">import</span> <span class="n">RosGateway</span><span class="p">,</span> <span class="n">TransformUnavailable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.qos</span><span class="w"> </span><span class="kn">import</span> <span class="n">ODOM_QOS</span><span class="p">,</span> <span class="n">SAFETY_QOS</span><span class="p">,</span> <span class="n">SENSOR_QOS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.ros_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosGateway</span><span class="p">,</span> <span class="n">TransformUnavailable</span>
 
 <span class="c1"># s — map-&gt;base_link older than this: don&#39;t draw it</span>
 <span class="n">TF_STALENESS_LIMIT</span> <span class="o">=</span> <span class="mf">2.0</span>
@@ -788,7 +788,7 @@
 
 <div class="viewcode-block" id="TelemetryDomainService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.telemetry_domain_service.html#devkit_ui.domain_services.telemetry_domain_service.TelemetryDomainService">[docs]</a>
-<span class="k">class</span> <span class="nc">TelemetryDomainService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TelemetryDomainService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Own the robot&#39;s sensor subscriptions and the trust rules for the values derived from them.</span>
 
 <span class="sd">    Responsibilities:</span>
@@ -810,7 +810,7 @@
 
 <div class="viewcode-block" id="TelemetryDomainService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.telemetry_domain_service.html#devkit_ui.domain_services.telemetry_domain_service.TelemetryDomainService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">,</span> <span class="n">is_sim</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">,</span> <span class="n">is_sim</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
                  <span class="n">fake_gps_datum</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">fake_gps_alt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">40.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribe to telemetry, start TF buffering and, in simulation, start the GPS shim.</span>
 
@@ -898,7 +898,7 @@
 
     <span class="c1"># ── GNSS ──────────────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_on_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cache every GNSS message; refresh freshness only for a usable real fix.</span>
 
 <span class="sd">        The timestamp advances only for STATUS_FIX or better with finite latitude and</span>
@@ -915,7 +915,7 @@
                 <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">latitude</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="n">msg</span><span class="o">.</span><span class="n">longitude</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_last_real_gps_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ros</span><span class="o">.</span><span class="n">wall_time_sec</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_on_fake_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_fake_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cache the sim fallback unless a valid real fix arrived less than 20 seconds ago.</span>
 
 <span class="sd">        This topic is never seen by fusioncore, so it is purely for the UI&#39;s own use</span>
@@ -926,7 +926,7 @@
             <span class="k">return</span>  <span class="c1"># a real fix was seen recently; don&#39;t override it</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latest_gps</span> <span class="o">=</span> <span class="n">msg</span>
 
-    <span class="k">def</span> <span class="nf">_publish_fake_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_publish_fake_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish a fix at the field datum (sim only — the timer isn&#39;t created on hardware).&quot;&quot;&quot;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">NavSatFix</span><span class="p">()</span>
         <span class="c1"># Wall clock: the node clock is frozen at 0 before Gazebo publishes /clock, which</span>
@@ -942,7 +942,7 @@
 
     <span class="c1"># ── Odometry ──────────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_on_fusion_odom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Odometry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_fusion_odom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Odometry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Accept fusion odometry after checking covariance and real-fix freshness.</span>
 
 <span class="sd">        Reject x-position covariance at or below zero or above 1 m², and a real-fix</span>
@@ -959,7 +959,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_fusion_odom_seen</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latest_odom</span> <span class="o">=</span> <span class="n">msg</span>
 
-    <span class="k">def</span> <span class="nf">_on_odom_fallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Odometry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_odom_fallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Odometry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cache /odom or /odometry/global until fusion odometry has been accepted.</span>
 
 <span class="sd">        The original guard (only when nothing had arrived yet) froze the value after the first</span>
@@ -971,27 +971,27 @@
 
     <span class="c1"># ── Battery and safety inputs ─────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_on_battery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">BatteryState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_battery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">BatteryState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cache the latest battery state.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latest_battery</span> <span class="o">=</span> <span class="n">msg</span>
 
-    <span class="k">def</span> <span class="nf">_on_bumper_front_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_bumper_front_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record whether the front-top bumper is pressed.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bumper_front_top_active</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
 
-    <span class="k">def</span> <span class="nf">_on_bumper_front_bottom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_bumper_front_bottom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record whether the front-bottom bumper is pressed.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bumper_front_bottom_active</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
 
-    <span class="k">def</span> <span class="nf">_on_bumper_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_bumper_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record whether the rear bumper is pressed.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bumper_back_active</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
 
-    <span class="k">def</span> <span class="nf">_on_estop_front</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_estop_front</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record whether the front hardware e-stop is active.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">estop_front_active</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
 
-    <span class="k">def</span> <span class="nf">_on_estop_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_estop_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record whether the rear hardware e-stop is active.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">estop_back_active</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
 
@@ -999,7 +999,7 @@
 
 <div class="viewcode-block" id="TelemetryDomainService.robot_pose">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.telemetry_domain_service.html#devkit_ui.domain_services.telemetry_domain_service.TelemetryDomainService.robot_pose">[docs]</a>
-    <span class="k">def</span> <span class="nf">robot_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">robot_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return (x, y, yaw) of the robot in the map frame, or None if unavailable.</span>
 
 <span class="sd">        Positions are in meters and yaw is in radians. Return None for TransformUnavailable</span>

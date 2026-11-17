@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.plan_types &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -744,10 +744,10 @@
              
   <h1>Source code for devkit_ui.plan_types</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Plain types shared by the Plan tab, its view model and its application service (no ROS imports).&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">StrEnum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrEnum</span>
 
 <span class="n">MIN_CORNERS</span> <span class="o">=</span> <span class="mi">3</span>
 
@@ -755,7 +755,7 @@
 <div class="viewcode-block" id="PlanRequest">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanRequest">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">PlanRequest</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanRequest</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;What the user asked the field planner for.</span>
 
 <span class="sd">    corners_ll are the field boundary corners as (lat, lon). obstacle_rings are lat/lon rings</span>
@@ -777,7 +777,7 @@
 <div class="viewcode-block" id="PlanRequest.from_form">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanRequest.from_form">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_form</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_form</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">corners_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">obstacle_rings</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tool_width</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">,</span>
                   <span class="n">headland_m</span><span class="p">,</span> <span class="n">snake</span><span class="p">,</span> <span class="n">obstacle_pad_m</span><span class="p">,</span> <span class="n">contour</span><span class="p">,</span> <span class="n">recon_path</span><span class="p">,</span> <span class="n">dem_res</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PlanRequest</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a request from the raw Plan form values.</span>
 
@@ -805,7 +805,7 @@
 
 <div class="viewcode-block" id="PlanMode">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanMode">[docs]</a>
-<span class="k">class</span> <span class="nc">PlanMode</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanMode</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;How a successful run produced its rows.&quot;&quot;&quot;</span>
     <span class="n">STRAIGHT</span> <span class="o">=</span> <span class="s1">&#39;straight&#39;</span>
     <span class="n">CONTOUR</span> <span class="o">=</span> <span class="s1">&#39;contour&#39;</span>
@@ -815,7 +815,7 @@
 
 <div class="viewcode-block" id="PlanFailure">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanFailure">[docs]</a>
-<span class="k">class</span> <span class="nc">PlanFailure</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanFailure</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Why a run produced no rows.&quot;&quot;&quot;</span>
     <span class="n">TOO_FEW_CORNERS</span> <span class="o">=</span> <span class="s1">&#39;too_few_corners&#39;</span>
     <span class="n">PLANNING</span> <span class="o">=</span> <span class="s1">&#39;planning&#39;</span>      <span class="c1"># an expected error: bad field, missing elevation log</span>
@@ -826,7 +826,7 @@
 <div class="viewcode-block" id="PlanOutcome">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlanOutcome">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">PlanOutcome</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanOutcome</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Result of a planning run, as plain data with no display text.</span>
 
 <span class="sd">    A successful run has planned rows and a mode. A failed one has a failure kind and the</span>
@@ -839,7 +839,7 @@
     <span class="n">detail</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True when the run produced rows.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">failure</span> <span class="ow">is</span> <span class="kc">None</span></div>
 
@@ -848,13 +848,13 @@
 <div class="viewcode-block" id="ImportOutcome">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.ImportOutcome">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ImportOutcome</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ImportOutcome</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Result of importing a web-planner plan: planned rows, or the reason there are none.&quot;&quot;&quot;</span>
     <span class="n">planned</span><span class="p">:</span> <span class="n">PlannedRows</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">error</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True when the plan was imported.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span></div>
 
@@ -863,7 +863,7 @@
 <div class="viewcode-block" id="PlannedRows">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_types.html#devkit_ui.plan_types.PlannedRows">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">PlannedRows</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlannedRows</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Swaths waiting to be saved as topology rows, with what saving needs to know about them.</span>
 
 <span class="sd">    origin_ll is the (lat, lon) the swaths were projected from. break_after lists the swath</span>

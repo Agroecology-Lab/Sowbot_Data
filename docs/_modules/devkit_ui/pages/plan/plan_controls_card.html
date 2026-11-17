@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.pages.plan.plan_controls_card &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -743,13 +743,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.pages.plan.plan_controls_card</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">ui</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.obstacle_cards</span> <span class="kn">import</span> <span class="n">attach_mission_sidebar_controls</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.pages.plan.repair_dialog</span> <span class="kn">import</span> <span class="n">ask_repair_base</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.plan_types</span> <span class="kn">import</span> <span class="n">MIN_CORNERS</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.obstacle_view_model</span> <span class="kn">import</span> <span class="n">ObstacleViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.plan_view_model</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.obstacle_cards</span><span class="w"> </span><span class="kn">import</span> <span class="n">attach_mission_sidebar_controls</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.pages.plan.repair_dialog</span><span class="w"> </span><span class="kn">import</span> <span class="n">ask_repair_base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.plan_types</span><span class="w"> </span><span class="kn">import</span> <span class="n">MIN_CORNERS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.obstacle_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObstacleViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.plan_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">STATUS_ERROR</span><span class="p">,</span>
     <span class="n">STATUS_OK</span><span class="p">,</span>
     <span class="n">PlanPageState</span><span class="p">,</span>
@@ -764,12 +764,12 @@
 
 <div class="viewcode-block" id="PlanControlsCard">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.plan.plan_controls_card.html#devkit_ui.pages.plan.plan_controls_card.PlanControlsCard">[docs]</a>
-<span class="k">class</span> <span class="nc">PlanControlsCard</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanControlsCard</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Planner settings, obstacle draw controls and the Plan, Save, Import, Clear and Repair actions.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="PlanControlsCard.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.plan.plan_controls_card.html#devkit_ui.pages.plan.plan_controls_card.PlanControlsCard.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">PlanPageState</span><span class="p">,</span> <span class="n">plan_vm</span><span class="p">:</span> <span class="n">PlanViewModel</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">PlanPageState</span><span class="p">,</span> <span class="n">plan_vm</span><span class="p">:</span> <span class="n">PlanViewModel</span><span class="p">,</span>
                  <span class="n">obstacle_vm</span><span class="p">:</span> <span class="n">ObstacleViewModel</span><span class="p">,</span> <span class="n">mission_map</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the controls and keep their labels and buttons in step with the page state.</span>
 
@@ -803,7 +803,7 @@
         <span class="n">ui</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_save_status</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_build_planner_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_planner_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the tool width, row angle, contour, headland, snake and row naming inputs.&quot;&quot;&quot;</span>
         <span class="n">ui</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;sec-label&quot;&gt;Tool width&lt;/div&gt;&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">number</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -852,7 +852,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;F2C&#39;</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;F2C&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-full&#39;</span><span class="p">)</span>
         <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;→ </span><span class="si">{prefix}</span><span class="s1">_R</span><span class="si">{n}</span><span class="s1">_IN / _OUT&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs font-mono&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="n">MUTED</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_build_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the corner count, the action buttons and the two status lines.&quot;&quot;&quot;</span>
         <span class="n">ui</span><span class="o">.</span><span class="n">separator</span><span class="p">()</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;my-3&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_corners_lbl</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs font-mono&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="n">INFO_COLOUR</span><span class="p">)</span>
@@ -876,7 +876,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_save_lbl</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs font-mono mt-1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">INFO_COLOUR</span><span class="si">}</span><span class="s1">;word-break:break-word&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_contour_toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_contour_toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show the contour-only inputs and disable the row angle when contour mode is on.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_angle</span><span class="o">.</span><span class="n">set_enabled</span><span class="p">(</span><span class="ow">not</span> <span class="n">on</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contour_only</span><span class="p">:</span>
@@ -884,7 +884,7 @@
 
 <div class="viewcode-block" id="PlanControlsCard.refresh">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.plan.plan_controls_card.html#devkit_ui.pages.plan.plan_controls_card.PlanControlsCard.refresh">[docs]</a>
-    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show the page state: corner count, status line and which buttons are enabled.&quot;&quot;&quot;</span>
         <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">corners</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_corners_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span>
@@ -896,7 +896,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_save_btn</span><span class="o">.</span><span class="n">set_enabled</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">can_save</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_refresh_save_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh_save_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show this page&#39;s save or repair status when it changes.&quot;&quot;&quot;</span>
         <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">save_status</span>
         <span class="k">if</span> <span class="n">current</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_status_seen</span><span class="p">:</span>
@@ -907,7 +907,7 @@
             <span class="n">STATUS_COLOURS</span><span class="p">[</span><span class="n">STATUS_ERROR</span><span class="p">]</span> <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span> <span class="k">else</span>
             <span class="n">STATUS_COLOURS</span><span class="p">[</span><span class="n">STATUS_OK</span><span class="p">]</span> <span class="k">if</span> <span class="n">current</span> <span class="k">else</span> <span class="n">INFO_COLOUR</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_form</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_form</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the raw planner settings as PlanRequest.from_form takes them.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;tool_width&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;angle_deg&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_angle</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
@@ -916,7 +916,7 @@
             <span class="s1">&#39;recon_path&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recon_path</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;dem_res&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dem_res</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
         <span class="p">}</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plan rows for the drawn boundary without blocking; the state discards stale results.&quot;&quot;&quot;</span>
         <span class="n">run</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">begin_plan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obstacle_vm</span><span class="o">.</span><span class="n">rings_ll</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_form</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">run</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -924,12 +924,12 @@
         <span class="n">view</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plan_vm</span><span class="o">.</span><span class="n">plan</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">request</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">finish_plan</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="n">view</span><span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_import</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_import</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read an uploaded web-planner plan and take it as the draft.&quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="k">await</span> <span class="n">e</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">e</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">apply_import</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plan_vm</span><span class="o">.</span><span class="n">import_plan</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="nf">_save</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the draft using the current prefix, first row ID and overwrite option.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_plan_vm</span><span class="o">.</span><span class="n">save_rows</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">draft</span><span class="p">,</span>
@@ -939,14 +939,14 @@
             <span class="n">on_status</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">set_save_status</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drop the boundary, the draft and any obstacle polygon being drawn.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="c1"># OBSTACLE: also tear down any in-progress obstacle polygon.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">draw_handle</span><span class="o">.</span><span class="n">clear_in_progress</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">set_center</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_repair</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_repair</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask for confirmation, then repair missing row edges in the loaded map.</span>
 
 <span class="sd">        The optional base node is validated and named in the status; repair does not add</span>

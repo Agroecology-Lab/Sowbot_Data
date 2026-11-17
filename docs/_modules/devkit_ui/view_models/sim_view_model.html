@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.view_models.sim_view_model &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,29 +743,29 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.view_models.sim_view_model</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="c1"># Re-exported so pages can catch these without importing the application service layer.</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_asset_service</span> <span class="kn">import</span> <span class="n">SimAssetError</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_world_service</span> <span class="kn">import</span> <span class="n">WorldRebuildError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_asset_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimAssetError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_world_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">WorldRebuildError</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_asset_service</span> <span class="kn">import</span> <span class="n">SimAssetService</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.sim_world_service</span> <span class="kn">import</span> <span class="n">SimWorldService</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_asset_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimAssetService</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.sim_world_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimWorldService</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimAssetError&#39;</span><span class="p">,</span> <span class="s1">&#39;SimViewModel&#39;</span><span class="p">,</span> <span class="s1">&#39;WorldRebuildError&#39;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="SimViewModel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel">[docs]</a>
-<span class="k">class</span> <span class="nc">SimViewModel</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimViewModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;UI-facing access to the crop models and soil textures the simulated world is built from.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SimViewModel.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assets</span><span class="p">:</span> <span class="n">SimAssetService</span><span class="p">,</span> <span class="n">world</span><span class="p">:</span> <span class="n">SimWorldService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assets</span><span class="p">:</span> <span class="n">SimAssetService</span><span class="p">,</span> <span class="n">world</span><span class="p">:</span> <span class="n">SimWorldService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind to the services that store the sim assets and rebuild the world from them.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_assets</span> <span class="o">=</span> <span class="n">assets</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_world</span> <span class="o">=</span> <span class="n">world</span></div>
@@ -773,21 +773,21 @@
 
 <div class="viewcode-block" id="SimViewModel.list_crop_models">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.list_crop_models">[docs]</a>
-    <span class="k">def</span> <span class="nf">list_crop_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_crop_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return sorted folders containing model.sdf, or [&#39;plant&#39;] when none qualify.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assets</span><span class="o">.</span><span class="n">list_crop_models</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="SimViewModel.has_crop_model">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.has_crop_model">[docs]</a>
-    <span class="k">def</span> <span class="nf">has_crop_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_crop_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the named crop model exists on disk.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assets</span><span class="o">.</span><span class="n">has_crop_model</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SimViewModel.validate_mesh">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.validate_mesh">[docs]</a>
-    <span class="k">def</span> <span class="nf">validate_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">collision</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">collision</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check a mesh&#39;s extension, initial bytes, and 50 MiB size limit.</span>
 
 <span class="sd">        Raise SimAssetError on rejection; this does not fully parse glTF data.</span>
@@ -798,7 +798,7 @@
 
 <div class="viewcode-block" id="SimViewModel.create_crop_model">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.create_crop_model">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_crop_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">visual</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_crop_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">visual</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
                           <span class="n">collision</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write a new crop model and return its stripped name.</span>
 
@@ -811,7 +811,7 @@
 
 <div class="viewcode-block" id="SimViewModel.import_soil_zip">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.import_soil_zip">[docs]</a>
-    <span class="k">def</span> <span class="nf">import_soil_zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">import_soil_zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Replace the imported soil textures with ZIP image maps and return their base names.</span>
 
 <span class="sd">        Flatten folders and keep only .jpg, .jpeg, and .png files.</span>
@@ -824,14 +824,14 @@
 
 <div class="viewcode-block" id="SimViewModel.classify_map">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.classify_map">[docs]</a>
-    <span class="k">def</span> <span class="nf">classify_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">classify_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the PBR role guessed for a soil texture file.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assets</span><span class="o">.</span><span class="n">classify_map</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SimViewModel.rebuild_world">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.view_models.sim_view_model.html#devkit_ui.view_models.sim_view_model.SimViewModel.rebuild_world">[docs]</a>
-    <span class="k">def</span> <span class="nf">rebuild_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spacing_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">row_width_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rebuild_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spacing_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">row_width_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">weed_density</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rebuild the world from the saved map and return the weed count worldgen reported.</span>
 

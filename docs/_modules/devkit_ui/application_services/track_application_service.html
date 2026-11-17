@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.application_services.track_application_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -748,20 +748,20 @@
 <span class="sd">This owns the timer, the node counter and the entry/middle role sequence. What a recorded node</span>
 <span class="sd">is, and where it is saved, stays with the caller&#39;s drop function. No ROS or NiceGUI imports.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Protocol</span>
 
 
 <div class="viewcode-block" id="Cancellable">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.Cancellable">[docs]</a>
-<span class="k">class</span> <span class="nc">Cancellable</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Cancellable</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A repeating timer that can be stopped.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Cancellable.cancel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.Cancellable.cancel">[docs]</a>
-    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the timer.&quot;&quot;&quot;</span></div>
 </div>
 
@@ -774,12 +774,12 @@
 
 <div class="viewcode-block" id="TrackApplicationService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService">[docs]</a>
-<span class="k">class</span> <span class="nc">TrackApplicationService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TrackApplicationService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Record nodes at the robot&#39;s position at a fixed interval until stopped.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TrackApplicationService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">create_timer</span><span class="p">:</span> <span class="n">TimerFactory</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">create_timer</span><span class="p">:</span> <span class="n">TimerFactory</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Keep the factory that makes the repeating timer; nothing runs until start().&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_create_timer</span> <span class="o">=</span> <span class="n">create_timer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">:</span> <span class="n">Cancellable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -788,12 +788,12 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether a track is being recorded.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the last attempted node number, including numbering continued from existing nodes.</span>
 
 <span class="sd">        The number advances before drop is called, even if drop or on_recorded raises.</span>
@@ -803,7 +803,7 @@
 
 <div class="viewcode-block" id="TrackApplicationService.start">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService.start">[docs]</a>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">row_role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">row_role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
               <span class="n">existing_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">drop</span><span class="p">:</span> <span class="n">DropFunction</span><span class="p">,</span>
               <span class="n">on_recorded</span><span class="p">:</span> <span class="n">RecordedCallback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record one node at once, then one every interval seconds; return True on startup.</span>
@@ -826,7 +826,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_first</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="k">def</span> <span class="nf">record</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">record</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Record the next node in the sequence.&quot;&quot;&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_counter</span><span class="si">}</span><span class="s1">&#39;</span>
@@ -845,7 +845,7 @@
 
 <div class="viewcode-block" id="TrackApplicationService.stop">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.track_application_service.html#devkit_ui.application_services.track_application_service.TrackApplicationService.stop">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the timer and return the last attempted node number, including existing numbering.</span>
 
 <span class="sd">        Reset the counter to 0; the next start derives numbering from existing_names again.</span>

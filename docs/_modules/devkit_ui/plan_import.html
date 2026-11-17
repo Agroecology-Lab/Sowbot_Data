@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.plan_import &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -768,9 +768,9 @@
 <span class="sd">gives it, before the row numbers are offset. Only multi-field files carry a field number, so</span>
 <span class="sd">for any other file lf_rows is empty and its rows cannot be named in a station mission.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">NamedTuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTuple</span>
 
 <span class="n">SCHEMA_VERSION</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">MAX_ROWS</span> <span class="o">=</span> <span class="mi">2000</span>
@@ -781,14 +781,14 @@
 
 <div class="viewcode-block" id="PlanError">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_import.html#devkit_ui.plan_import.PlanError">[docs]</a>
-<span class="k">class</span> <span class="nc">PlanError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The plan file is malformed or unsafe to import.&quot;&quot;&quot;</span></div>
 
 
 
 <div class="viewcode-block" id="Plan">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_import.html#devkit_ui.plan_import.Plan">[docs]</a>
-<span class="k">class</span> <span class="nc">Plan</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Plan</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
     <span class="n">swaths</span><span class="p">:</span> <span class="nb">list</span>          <span class="c1"># [[(lat, lon), ...], ...] in mission order</span>
     <span class="n">origin_ll</span><span class="p">:</span> <span class="nb">tuple</span>      <span class="c1"># (lat, lon): the planner&#39;s projection origin</span>
     <span class="n">break_after</span><span class="p">:</span> <span class="nb">set</span>      <span class="c1"># swath indices with no headland edge to the next swath</span>
@@ -797,14 +797,14 @@
 
 
 
-<span class="k">def</span> <span class="nf">_num</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_num</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a finite numeric value as a float, or raise PlanError labeled with what.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">what</span><span class="si">}</span><span class="s1">: not a finite number&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_latlon</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_latlon</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return validated latitude/longitude degrees, or raise PlanError for invalid values.&quot;&quot;&quot;</span>
     <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">_num</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">what</span><span class="p">),</span> <span class="n">_num</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">what</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="o">-</span><span class="mi">90</span> <span class="o">&lt;=</span> <span class="n">lat</span> <span class="o">&lt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="o">-</span><span class="mi">180</span> <span class="o">&lt;=</span> <span class="n">lon</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">):</span>
@@ -812,7 +812,7 @@
     <span class="k">return</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span>
 
 
-<span class="k">def</span> <span class="nf">_dist_m</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_dist_m</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate distance in metres between two (latitude, longitude) pairs in degrees.&quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="mf">6_378_137.0</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
@@ -820,7 +820,7 @@
     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_merge_fields</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">field_of</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_merge_fields</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">field_of</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Offset row numbers between fields and find the swaths that end a field.</span>
 
 <span class="sd">    ``rows`` and ``field_of`` contain corresponding entries in mission order.</span>
@@ -847,7 +847,7 @@
 
 <div class="viewcode-block" id="parse_plan">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.plan_import.html#devkit_ui.plan_import.parse_plan">[docs]</a>
-<span class="k">def</span> <span class="nf">parse_plan</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">robot_ll</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_distance_m</span><span class="o">=</span><span class="n">DEFAULT_MAX_DISTANCE_M</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_plan</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">robot_ll</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_distance_m</span><span class="o">=</span><span class="n">DEFAULT_MAX_DISTANCE_M</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse a version-1 GeoJSON plan into swaths, origin, breaks and parameters.</span>
 
 <span class="sd">    Multi-field plans use the first field&#39;s origin and parameters, preserve row</span>
@@ -866,7 +866,7 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;not valid JSON: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+        <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;not valid JSON: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;FeatureCollection&#39;</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">PlanError</span><span class="p">(</span><span class="s1">&#39;not a GeoJSON FeatureCollection&#39;</span><span class="p">)</span>
     <span class="n">props</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">)</span>

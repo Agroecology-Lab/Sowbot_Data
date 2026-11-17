@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_mavlink_bridge.mavlink_bridge_node &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -763,39 +763,40 @@
 <span class="sd">confident old value. With publish_tf set, odom -&gt; base_link is broadcast from the same</span>
 <span class="sd">pose as fc/odom, under the same gating. It is off by default: only one node may own that edge.</span>
 
-<span class="sd">Open item (tracked in safety_roadmap.md, not duplicated here): which LEVIA-H7 UART carries</span>
-<span class="sd">MAVLink (O31). MAVLINK_ENDPOINT and MAVLINK_BAUD depend on it.</span>
+<span class="sd">mavlink.md assigns the MAVLink link to U20 / UART4 / SERIAL5 on the LEVIA-H7. That is a design</span>
+<span class="sd">assignment, not yet confirmed on hardware (O31). MAVLINK_ENDPOINT and MAVLINK_BAUD depend on it.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="kn">import</span> <span class="nn">rclpy</span>
-<span class="kn">from</span> <span class="nn">diagnostic_msgs.msg</span> <span class="kn">import</span> <span class="n">DiagnosticArray</span><span class="p">,</span> <span class="n">DiagnosticStatus</span><span class="p">,</span> <span class="n">KeyValue</span>
-<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">TransformStamped</span><span class="p">,</span> <span class="n">Twist</span>
-<span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Odometry</span>
-<span class="kn">from</span> <span class="nn">pymavlink</span> <span class="kn">import</span> <span class="n">mavutil</span>
-<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
-<span class="kn">from</span> <span class="nn">rtcm_msgs.msg</span> <span class="kn">import</span> <span class="n">Message</span> <span class="k">as</span> <span class="n">RtcmMessage</span>
-<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">NavSatFix</span>
-<span class="kn">from</span> <span class="nn">tf2_ros</span> <span class="kn">import</span> <span class="n">TransformBroadcaster</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diagnostic_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagnosticArray</span><span class="p">,</span> <span class="n">DiagnosticStatus</span><span class="p">,</span> <span class="n">KeyValue</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometry_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransformStamped</span><span class="p">,</span> <span class="n">Twist</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nav_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Odometry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymavlink</span><span class="w"> </span><span class="kn">import</span> <span class="n">mavutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rtcm_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span> <span class="k">as</span> <span class="n">RtcmMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sensor_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">NavSatFix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_srvs.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trigger</span>  <span class="c1"># pylint: disable=import-error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tf2_ros</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransformBroadcaster</span>
 
-<span class="kn">from</span> <span class="nn">devkit_mavlink_bridge.modules</span> <span class="kn">import</span> <span class="n">gps_status_handler</span> <span class="k">as</span> <span class="n">gps</span>
-<span class="kn">from</span> <span class="nn">devkit_mavlink_bridge.modules.ekf_state_handler</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_mavlink_bridge.modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">gps_status_handler</span> <span class="k">as</span> <span class="n">gps</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_mavlink_bridge.modules.ekf_state_handler</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">build_odometry</span><span class="p">,</span>
     <span class="n">ekf_absolute_position_valid</span><span class="p">,</span>
     <span class="n">ekf_flag_names</span><span class="p">,</span>
     <span class="n">ekf_pose_valid</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_mavlink_bridge.modules.latest_messages</span> <span class="kn">import</span> <span class="n">LatestMessages</span>
-<span class="kn">from</span> <span class="nn">devkit_mavlink_bridge.modules.link_monitor</span> <span class="kn">import</span> <span class="n">LOST</span><span class="p">,</span> <span class="n">NEVER</span><span class="p">,</span> <span class="n">OK</span><span class="p">,</span> <span class="n">HeartbeatMonitor</span>
-<span class="kn">from</span> <span class="nn">devkit_mavlink_bridge.modules.position_target_handler</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_mavlink_bridge.modules.latest_messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">LatestMessages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_mavlink_bridge.modules.link_monitor</span><span class="w"> </span><span class="kn">import</span> <span class="n">LOST</span><span class="p">,</span> <span class="n">NEVER</span><span class="p">,</span> <span class="n">OK</span><span class="p">,</span> <span class="n">HeartbeatMonitor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_mavlink_bridge.modules.position_target_handler</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">twist_to_position_target</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">devkit_mavlink_bridge.modules.rtcm_handler</span> <span class="kn">import</span> <span class="n">SEQUENCE_MODULUS</span><span class="p">,</span> <span class="n">rtcm_to_gps_rtcm_data</span>
-<span class="kn">from</span> <span class="nn">devkit_mavlink_bridge.modules.velocity_limits</span> <span class="kn">import</span> <span class="n">limit_velocity</span>
-<span class="kn">from</span> <span class="nn">devkit_mavlink_bridge.modules.velocity_watchdog</span> <span class="kn">import</span> <span class="n">CmdVelWatchdog</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_mavlink_bridge.modules.rtcm_handler</span><span class="w"> </span><span class="kn">import</span> <span class="n">SEQUENCE_MODULUS</span><span class="p">,</span> <span class="n">rtcm_to_gps_rtcm_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_mavlink_bridge.modules.velocity_limits</span><span class="w"> </span><span class="kn">import</span> <span class="n">limit_velocity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_mavlink_bridge.modules.velocity_watchdog</span><span class="w"> </span><span class="kn">import</span> <span class="n">CmdVelWatchdog</span>
 
 <span class="c1"># ArduPilot Rover&#39;s GUID_TIMEOUT (default 3.0 s) only stops the rover if the</span>
 <span class="c1"># bridge stops sending. The bridge therefore must not keep re-sending a command</span>
@@ -804,6 +805,7 @@
 <span class="c1"># At the 1.6 m/s top speed the 3 s default alone is ~4.8 m of travel. Lowering</span>
 <span class="c1"># GUID_TIMEOUT on the flight controller (try ~1 s) is a second layer; measure</span>
 <span class="c1"># the real stopping distance, these are starting values only.</span>
+<span class="n">_ROVER_GUIDED_MODE</span> <span class="o">=</span> <span class="mi">15</span>  <span class="c1"># ArduPilot Rover custom_mode for GUIDED</span>
 <span class="n">_DEFAULT_REPUBLISH_PERIOD_S</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">_DEFAULT_CMD_VEL_TIMEOUT_S</span> <span class="o">=</span> <span class="mf">0.5</span>
 
@@ -852,12 +854,12 @@
 
 <div class="viewcode-block" id="MavlinkBridgeNode">
 <a class="viewcode-back" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode">[docs]</a>
-<span class="k">class</span> <span class="nc">MavlinkBridgeNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MavlinkBridgeNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Bridges cmd_vel out to, and EKF3 state and GPS status in from, ArduPilot Rover over MAVLink.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MavlinkBridgeNode.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect to MAVLink and register the ROS subscription, publishers and timers.</span>
 
 <span class="sd">        ROS parameters (seconds unless noted, default in brackets): republish_period_s [0.1],</span>
@@ -873,7 +875,11 @@
 <span class="sd">        ntrip_client), forwarded as GPS_RTCM_DATA.</span>
 <span class="sd">        With require_fc_heartbeat the bridge forwards zero velocity, and no RTCM, unless the flight</span>
 <span class="sd">        controller&#39;s HEARTBEAT was seen within fc_heartbeat_timeout_s. MAVLINK_ENDPOINT selects the connection;</span>
-<span class="sd">        MAVLINK_BAUD defaults to 115200. The bridge does not arm or change mode.</span>
+<span class="sd">        MAVLINK_BAUD defaults to 115200.</span>
+<span class="sd">        Services (std_srvs/Trigger): fc/disarm is always available. fc/arm and fc/set_guided refuse</span>
+<span class="sd">        unless allow_arm_from_ros [false] is set. fc/arm also needs a live link, GUIDED mode and no</span>
+<span class="sd">        fresh nonzero cmd_vel. A response means the command was sent, not accepted: the flight</span>
+<span class="sd">        controller&#39;s COMMAND_ACK and heartbeat are logged.</span>
 <span class="sd">        Raise ValueError for a nonpositive period or limit, a nonpositive or nonfinite timeout,</span>
 <span class="sd">        a nonpositive or nonfinite rate, a missing or placeholder endpoint, or a baud value that</span>
 <span class="sd">        cannot be parsed as an int.</span>
@@ -901,6 +907,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;gps_frame_id&#39;</span><span class="p">,</span> <span class="s1">&#39;gps_link&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;publish_tf&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;rtcm_topic&#39;</span><span class="p">,</span> <span class="s1">&#39;rtcm&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;allow_arm_from_ros&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="n">republish_period_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;republish_period_s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="n">cmd_vel_timeout_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;cmd_vel_timeout_s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="n">heartbeat_period_s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;heartbeat_period_s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
@@ -940,7 +947,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_rtcm_sequence</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_odom_blocked</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s1">&#39;no data yet&#39;</span>
 
-        <span class="n">mavlink_endpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_MAVLINK_ENDPOINT_ENV</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">mavlink_endpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_MAVLINK_ENDPOINT_ENV</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot; </span><span class="se">\t\r\n</span><span class="s2">&#39;</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">mavlink_endpoint</span> <span class="ow">or</span> <span class="n">mavlink_endpoint</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="n">_MAVLINK_ENDPOINT_PLACEHOLDER</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">_MAVLINK_ENDPOINT_ENV</span><span class="si">}</span><span class="s1"> must be set to a valid MAVLink connection endpoint&#39;</span><span class="p">)</span>
@@ -951,6 +958,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Twist</span><span class="p">,</span> <span class="s1">&#39;cmd_vel&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_cmd_vel</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
             <span class="n">RtcmMessage</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;rtcm_topic&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_rtcm</span><span class="p">,</span> <span class="n">_RTCM_QUEUE_DEPTH</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_allow_arm</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;allow_arm_from_ros&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_service</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="s1">&#39;fc/disarm&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_disarm</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_service</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="s1">&#39;fc/arm&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_arm</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_service</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="s1">&#39;fc/set_guided&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_set_guided</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_odom_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">Odometry</span><span class="p">,</span> <span class="s1">&#39;fc/odom&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tf_broadcaster</span> <span class="o">=</span> <span class="n">TransformBroadcaster</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;publish_tf&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ekf_fix_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">NavSatFix</span><span class="p">,</span> <span class="s1">&#39;fc/ekf_fix&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -967,6 +978,7 @@
             <span class="s1">&#39;GPS2_RAW&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_gps</span><span class="p">,</span>
             <span class="s1">&#39;EKF_STATUS_REPORT&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_ekf_status</span><span class="p">,</span>
             <span class="s1">&#39;COMMAND_ACK&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_command_ack</span><span class="p">,</span>
+            <span class="s1">&#39;STATUSTEXT&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_status_text</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span><span class="n">republish_period_s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_republish</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span><span class="n">heartbeat_period_s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_heartbeat</span><span class="p">)</span>
@@ -979,21 +991,21 @@
             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">republish_period_s</span><span class="si">}</span><span class="s1">s, zero velocity once cmd_vel is older than </span><span class="si">{</span><span class="n">cmd_vel_timeout_s</span><span class="si">}</span><span class="s1">s&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_positive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_positive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a ROS parameter as a float; raise ValueError unless it is positive and finite.&quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> must be a positive finite number, got </span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span>
 
-    <span class="k">def</span> <span class="nf">_on_cmd_vel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Twist</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_cmd_vel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Twist</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record linear.x (m/s), angular.z (rad/s), and their monotonic arrival time.</span>
 
 <span class="sd">        If either component is nonfinite, leave the previous command and arrival time unchanged.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_watchdog</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_rtcm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">RtcmMessage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_rtcm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">RtcmMessage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Forward one RTCM3 frame to the flight controller as GPS_RTCM_DATA.</span>
 
 <span class="sd">        Frames are dropped, with a throttled warning, while the flight controller link is not ok</span>
@@ -1014,7 +1026,7 @@
         <span class="k">for</span> <span class="n">fields</span> <span class="ow">in</span> <span class="n">fragments</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">mav</span><span class="o">.</span><span class="n">gps_rtcm_data_send</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_republish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_republish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Send the current velocity target, or zero if no command exists or it has gone stale.</span>
 
 <span class="sd">        Zero is also sent while the flight controller&#39;s heartbeat is missing and</span>
@@ -1042,21 +1054,26 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">mav</span><span class="o">.</span><span class="n">set_position_target_local_ned_send</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_send_heartbeat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_send_heartbeat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Announce the bridge as a ground station so ArduPilot&#39;s GCS failsafe sees a live link.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">mav</span><span class="o">.</span><span class="n">heartbeat_send</span><span class="p">,</span>
                    <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_TYPE_GCS</span><span class="p">,</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_AUTOPILOT_INVALID</span><span class="p">,</span>
                    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_STATE_ACTIVE</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">send</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call a pymavlink send function, logging OSError (including serial errors) instead of raising.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">send</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call a pymavlink send function, logging OSError (including serial errors) instead of raising.</span>
+
+<span class="sd">        Return whether the send went out.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">send</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s1">&#39;MAVLink send failed: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">throttle_duration_sec</span><span class="o">=</span><span class="n">_SEND_ERROR_LOG_PERIOD_S</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">_poll_link</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_poll_link</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read pending messages, dispatch them, and log link changes.</span>
 
 <span class="sd">        HEARTBEATs from the flight controller drive the link monitor. State messages are used</span>
@@ -1081,7 +1098,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">kind</span><span class="p">](</span><span class="n">message</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_log_link_change</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_from_flight_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_from_flight_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True while the link is ok if the source matches the selected system.</span>
 
 <span class="sd">        When no target system is selected, accept any source system while the link is ok.</span>
@@ -1091,7 +1108,7 @@
         <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">target_system</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="n">target</span> <span class="ow">or</span> <span class="n">message</span><span class="o">.</span><span class="n">get_srcSystem</span><span class="p">()</span> <span class="o">==</span> <span class="n">target</span>
 
-    <span class="k">def</span> <span class="nf">_on_heartbeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_heartbeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Record a HEARTBEAT from the flight controller; ignore other ground stations and echoes.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_TYPE_GCS</span>
                 <span class="ow">or</span> <span class="n">message</span><span class="o">.</span><span class="n">autopilot</span> <span class="o">==</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_AUTOPILOT_INVALID</span><span class="p">):</span>
@@ -1101,7 +1118,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span><span class="o">.</span><span class="n">beat</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_note_flight_controller</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_note_flight_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_note_flight_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Log arming and mode changes reported in the flight controller&#39;s HEARTBEAT.&quot;&quot;&quot;</span>
         <span class="n">armed</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">base_mode</span> <span class="o">&amp;</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_MODE_FLAG_SAFETY_ARMED</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">armed</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fc_armed</span> <span class="ow">or</span> <span class="n">message</span><span class="o">.</span><span class="n">custom_mode</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fc_mode</span><span class="p">:</span>
@@ -1109,7 +1126,7 @@
                 <span class="sa">f</span><span class="s1">&#39;flight controller </span><span class="si">{</span><span class="s2">&quot;armed&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">armed</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;disarmed&quot;</span><span class="si">}</span><span class="s1">, custom_mode </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">custom_mode</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_fc_armed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fc_mode</span> <span class="o">=</span> <span class="n">armed</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">custom_mode</span>
 
-    <span class="k">def</span> <span class="nf">_log_link_change</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log_link_change</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Log when the flight-controller link is first seen, lost or regained.</span>
 
 <span class="sd">        On loss the stored state is discarded, so nothing from before the gap can be reused.</span>
@@ -1128,7 +1145,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_request_message_intervals</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_link_state</span> <span class="o">=</span> <span class="n">state</span>
 
-    <span class="k">def</span> <span class="nf">_request_message_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_request_message_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the flight controller for the state and GPS messages at the configured rates.</span>
 
 <span class="sd">        Uses MAV_CMD_SET_MESSAGE_INTERVAL, so SRn_* parameters need not be set.</span>
@@ -1140,28 +1157,121 @@
                 <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_CMD_SET_MESSAGE_INTERVAL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
                 <span class="n">message_id</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e6</span> <span class="o">/</span> <span class="n">rate_hz</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_rerequest_message_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rerequest_message_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Repeat the interval requests while the link is ok, in case a reboot cleared them.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span><span class="o">.</span><span class="n">state</span><span class="p">()</span> <span class="o">==</span> <span class="n">OK</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_request_message_intervals</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_on_command_ack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Warn when the flight controller refuses a message-interval request.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_CMD_SET_MESSAGE_INTERVAL</span>
-                <span class="ow">and</span> <span class="n">message</span><span class="o">.</span><span class="n">result</span> <span class="o">!=</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_RESULT_ACCEPTED</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_status_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Relay the flight controller&#39;s STATUSTEXT (PreArm failures, fence and failsafe text) to the log.</span>
+
+<span class="sd">        MAV_SEVERITY 0-3 (emergency to error) is logged as an error, 4 (warning) as a warning</span>
+<span class="sd">        and the rest as information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;flight controller: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">severity</span> <span class="o">&lt;=</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_SEVERITY_ERROR</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">message</span><span class="o">.</span><span class="n">severity</span> <span class="o">==</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_SEVERITY_WARNING</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_command_ack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Warn when the flight controller refuses a message-interval request, and log arm and mode results.&quot;&quot;&quot;</span>
+        <span class="n">accepted</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">result</span> <span class="o">==</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_RESULT_ACCEPTED</span>
+        <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_CMD_SET_MESSAGE_INTERVAL</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">accepted</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s1">&#39;flight controller refused a message-interval request (result </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
                 <span class="n">throttle_duration_sec</span><span class="o">=</span><span class="n">_SEND_ERROR_LOG_PERIOD_S</span><span class="p">)</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">{</span><span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_CMD_COMPONENT_ARM_DISARM</span><span class="p">:</span> <span class="s1">&#39;arm/disarm&#39;</span><span class="p">,</span>
+                 <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_CMD_DO_SET_MODE</span><span class="p">:</span> <span class="s1">&#39;mode change&#39;</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">command</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+            <span class="n">log</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span> <span class="k">if</span> <span class="n">accepted</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span>
+            <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;flight controller </span><span class="si">{</span><span class="s2">&quot;accepted&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">accepted</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;refused&quot;</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">names</span><span class="p">[</span><span class="n">message</span><span class="o">.</span><span class="n">command</span><span class="p">]</span><span class="si">}</span><span class="s1"> &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;(result </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">); see its STATUSTEXT for the reason&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_attitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_command_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">needs_permission</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the response with success cleared when a command must not be sent, else None.&quot;&quot;&quot;</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">success</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">needs_permission</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_arm</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;refused: allow_arm_from_ros is false&#39;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span><span class="o">.</span><span class="n">state</span><span class="p">()</span> <span class="o">!=</span> <span class="n">OK</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;refused: no live flight controller heartbeat&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_send_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="o">*</span><span class="n">params</span><span class="p">,</span> <span class="n">verb</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send a COMMAND_LONG to the flight controller and fill the response.&quot;&quot;&quot;</span>
+        <span class="n">sent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">mav</span><span class="o">.</span><span class="n">command_long_send</span><span class="p">,</span>
+                          <span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">target_system</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">target_component</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">success</span> <span class="o">=</span> <span class="n">sent</span>
+        <span class="k">if</span> <span class="n">sent</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">verb</span><span class="si">}</span><span class="s1"> sent; confirm with the armed/mode log line and the flight controller reply&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">verb</span><span class="si">}</span><span class="s1"> requested over ROS&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">verb</span><span class="si">}</span><span class="s1"> not sent: MAVLink write failed&#39;</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Disarm. Always allowed: it moves the rover towards a stop. The flight controller decides whether to obey.&quot;&quot;&quot;</span>
+        <span class="n">refused</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_command_ready</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">needs_permission</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">refused</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">refused</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_command</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_CMD_COMPONENT_ARM_DISARM</span><span class="p">,</span>
+                                  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">verb</span><span class="o">=</span><span class="s1">&#39;disarm&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_arm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Arm in GUIDED. Refused while a fresh nonzero cmd_vel is present, so arming cannot start motion.&quot;&quot;&quot;</span>
+        <span class="n">refused</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_command_ready</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">needs_permission</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">refused</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">refused</span>
+        <span class="n">linear_x</span><span class="p">,</span> <span class="n">angular_z</span><span class="p">,</span> <span class="n">stale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_watchdog</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fc_mode</span> <span class="o">!=</span> <span class="n">_ROVER_GUIDED_MODE</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;refused: flight controller is not in GUIDED&#39;</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">stale</span> <span class="ow">and</span> <span class="p">(</span><span class="n">linear_x</span> <span class="ow">or</span> <span class="n">angular_z</span><span class="p">):</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;refused: a nonzero cmd_vel is current; stop the source first&#39;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fc_armed</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">success</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;already armed&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="n">twist_to_position_target</span><span class="p">(</span>
+                <span class="n">linear_x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                <span class="n">angular_z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                <span class="n">time_boot_ms</span><span class="o">=</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">monotonic_ns</span><span class="p">()</span> <span class="o">//</span> <span class="mi">1_000_000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span><span class="p">,</span>
+                <span class="n">target_system</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">target_system</span><span class="p">,</span>
+                <span class="n">target_component</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">target_component</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mav</span><span class="o">.</span><span class="n">mav</span><span class="o">.</span><span class="n">set_position_target_local_ned_send</span><span class="p">,</span> <span class="o">**</span><span class="n">fields</span><span class="p">):</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;refused: zero velocity target write failed&#39;</span>
+                <span class="k">return</span> <span class="n">response</span>
+            <span class="c1"># param2 stays 0: never 21196, which would skip the flight controller&#39;s arming checks.</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_command</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_CMD_COMPONENT_ARM_DISARM</span><span class="p">,</span>
+                                      <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">verb</span><span class="o">=</span><span class="s1">&#39;arm&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_set_guided</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Select GUIDED, after which the flight controller acts on forwarded cmd_vel once armed.&quot;&quot;&quot;</span>
+        <span class="n">refused</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_command_ready</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">needs_permission</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">refused</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">refused</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_command</span><span class="p">(</span>
+            <span class="n">response</span><span class="p">,</span> <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_CMD_DO_SET_MODE</span><span class="p">,</span>
+            <span class="n">mavutil</span><span class="o">.</span><span class="n">mavlink</span><span class="o">.</span><span class="n">MAV_MODE_FLAG_CUSTOM_MODE_ENABLED</span><span class="p">,</span> <span class="n">_ROVER_GUIDED_MODE</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">verb</span><span class="o">=</span><span class="s1">&#39;set GUIDED&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_attitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Keep the latest ATTITUDE_QUATERNION to pair with the next LOCAL_POSITION_NED.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_latest</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;attitude&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_ekf_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_ekf_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Keep the latest EKF_STATUS_REPORT for odometry gating, fix validity and diagnostics.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_latest</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;ekf_status&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_local_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_local_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish fc/odom from a LOCAL_POSITION_NED and the latest attitude, if both are usable.</span>
 
 <span class="sd">        Nothing is published unless EKF3 reports a valid pose (see ekf_pose_valid), the</span>
@@ -1202,7 +1312,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tf_broadcaster</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_broadcast_odom_tf</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_broadcast_odom_tf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">odometry</span><span class="p">:</span> <span class="n">Odometry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_broadcast_odom_tf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">odometry</span><span class="p">:</span> <span class="n">Odometry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Broadcast the pose in an Odometry message as the transform from its frame to its child frame.&quot;&quot;&quot;</span>
         <span class="n">transform</span> <span class="o">=</span> <span class="n">TransformStamped</span><span class="p">()</span>
         <span class="n">transform</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">odometry</span><span class="o">.</span><span class="n">header</span>
@@ -1214,7 +1324,7 @@
         <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">orientation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tf_broadcaster</span><span class="o">.</span><span class="n">sendTransform</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_note_odom_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocked</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_note_odom_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocked</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Log once when fc/odom stops being published, with the reason, and once when it resumes.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">blocked</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_odom_blocked</span><span class="p">:</span>
             <span class="k">return</span>
@@ -1224,7 +1334,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;not publishing fc/odom: </span><span class="si">{</span><span class="n">blocked</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_odom_blocked</span> <span class="o">=</span> <span class="n">blocked</span>
 
-    <span class="k">def</span> <span class="nf">_on_global_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_global_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish fc/ekf_fix from GLOBAL_POSITION_INT.</span>
 
 <span class="sd">        Mark the fix valid only with a recent EKF_STATUS_REPORT satisfying</span>
@@ -1239,7 +1349,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_publish_navsat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ekf_fix_pub</span><span class="p">,</span> <span class="n">gps</span><span class="o">.</span><span class="n">navsat_fields</span><span class="p">(</span>
             <span class="n">status</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="nf">_on_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish the receiver&#39;s own fix for GPS_RAW_INT (gps1) or GPS2_RAW (gps2), and keep it.&quot;&quot;&quot;</span>
         <span class="n">kind</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_latest</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
@@ -1247,7 +1357,7 @@
             <span class="n">message</span><span class="o">.</span><span class="n">fix_type</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s1">&#39;alt_ellipsoid&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
             <span class="nb">getattr</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s1">&#39;h_acc&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s1">&#39;v_acc&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="nf">_publish_navsat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publisher</span><span class="p">,</span> <span class="n">fields</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_publish_navsat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publisher</span><span class="p">,</span> <span class="n">fields</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish NavSatFix fields stamped now in the GPS frame.&quot;&quot;&quot;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">NavSatFix</span><span class="p">()</span>
         <span class="n">msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
@@ -1261,7 +1371,7 @@
         <span class="n">msg</span><span class="o">.</span><span class="n">position_covariance_type</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;position_covariance_type&#39;</span><span class="p">]</span>
         <span class="n">publisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_publish_diagnostics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_publish_diagnostics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish link, EKF3 and GPS health on fc/diagnostics, marking missing data as stale.&quot;&quot;&quot;</span>
         <span class="n">array</span> <span class="o">=</span> <span class="n">DiagnosticArray</span><span class="p">()</span>
         <span class="n">array</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
@@ -1275,7 +1385,7 @@
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_diagnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagnosticStatus</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_diagnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagnosticStatus</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a DiagnosticStatus from a level constant from gps_status_handler.&quot;&quot;&quot;</span>
         <span class="n">status</span> <span class="o">=</span> <span class="n">DiagnosticStatus</span><span class="p">()</span>
         <span class="n">status</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;devkit_mavlink_bridge: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
@@ -1287,7 +1397,7 @@
         <span class="n">status</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">KeyValue</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
         <span class="k">return</span> <span class="n">status</span>
 
-    <span class="k">def</span> <span class="nf">_link_diagnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_link_diagnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return (level, summary, values) for the flight controller link.&quot;&quot;&quot;</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
         <span class="n">level</span> <span class="o">=</span> <span class="p">{</span><span class="n">OK</span><span class="p">:</span> <span class="n">gps</span><span class="o">.</span><span class="n">LEVEL_OK</span><span class="p">,</span> <span class="n">LOST</span><span class="p">:</span> <span class="n">gps</span><span class="o">.</span><span class="n">LEVEL_ERROR</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">gps</span><span class="o">.</span><span class="n">LEVEL_STALE</span><span class="p">)</span>
@@ -1297,7 +1407,7 @@
             <span class="n">values</span><span class="p">[</span><span class="s1">&#39;custom_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fc_mode</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">level</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;heartbeat </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">values</span>
 
-    <span class="k">def</span> <span class="nf">_ekf_diagnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_ekf_diagnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return (level, summary, values) for EKF3 from the latest EKF_STATUS_REPORT.</span>
 
 <span class="sd">        The variances are EKF3&#39;s normalised innovation test ratios, reported as sent. The level</span>
@@ -1322,7 +1432,7 @@
 
 <div class="viewcode-block" id="main">
 <a class="viewcode-back" href="../../_autosummary/devkit_mavlink_bridge.mavlink_bridge_node.html#devkit_mavlink_bridge.mavlink_bridge_node.main">[docs]</a>
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the MAVLink bridge node until ROS shuts down.&quot;&quot;&quot;</span>
     <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
     <span class="n">node</span> <span class="o">=</span> <span class="n">MavlinkBridgeNode</span><span class="p">()</span>

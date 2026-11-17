@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.pages.obstacle_cards &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -744,21 +744,21 @@
              
   <h1>Source code for devkit_ui.pages.obstacle_cards</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;NiceGUI cards for marking, drawing and listing obstacles on the Run and Plan tabs.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
-<span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">ui</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.view_models.obstacle_view_model</span> <span class="kn">import</span> <span class="n">ObstacleViewModel</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.obstacle_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObstacleViewModel</span>
 
 <span class="n">_log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_remove_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_remove_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove a leaflet layer from the map; a failure (for example a client that already left) is logged at debug.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">layer</span><span class="o">.</span><span class="n">run_method</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">)</span>
@@ -770,7 +770,7 @@
 
 <div class="viewcode-block" id="attach_nav_card">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.obstacle_cards.html#devkit_ui.pages.obstacle_cards.attach_nav_card">[docs]</a>
-<span class="k">def</span> <span class="nf">attach_nav_card</span><span class="p">(</span><span class="n">vm</span><span class="p">:</span> <span class="n">ObstacleViewModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">attach_nav_card</span><span class="p">(</span><span class="n">vm</span><span class="p">:</span> <span class="n">ObstacleViewModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Render the “Mark Obstacle” card and keep its status display synchronized with the view model.</span>
 
@@ -792,7 +792,7 @@
                 <span class="nb">min</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span>
             <span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-24&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">bind_value</span><span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="s1">&#39;default_radius&#39;</span><span class="p">)</span>
 
-            <span class="k">def</span> <span class="nf">_mark_here</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">_mark_here</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                Mark a circular obstacle at the latest GPS position.</span>
 
@@ -817,7 +817,7 @@
                     <span class="n">undo_dialog</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;position=bottom seamless&#39;</span><span class="p">)</span>
                     <span class="n">undo_dialog</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
 
-                    <span class="k">def</span> <span class="nf">_close_undo_dialog</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">def</span><span class="w"> </span><span class="nf">_close_undo_dialog</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">                        </span><span class="sd">&quot;&quot;&quot;Close the obstacle undo dialog if it is still available.&quot;&quot;&quot;</span>
                         <span class="k">if</span> <span class="ow">not</span> <span class="n">undo_dialog</span><span class="o">.</span><span class="n">is_deleted</span><span class="p">:</span>
                             <span class="n">undo_dialog</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -831,7 +831,7 @@
 
     <span class="n">_prev</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_refresh</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the Nav card&#39;s status text and color when the message changes.&quot;&quot;&quot;</span>
         <span class="n">cur</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">status</span>
         <span class="k">if</span> <span class="n">cur</span> <span class="o">==</span> <span class="n">_prev</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
@@ -855,14 +855,14 @@
 
 <div class="viewcode-block" id="MissionDrawHandle">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.obstacle_cards.html#devkit_ui.pages.obstacle_cards.MissionDrawHandle">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionDrawHandle</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionDrawHandle</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;State + accessors shared between the sidebar controls and the list</span>
 <span class="sd">    panel. Created by attach_mission_sidebar_controls; consumed by</span>
 <span class="sd">    attach_mission_obstacle_panel.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MissionDrawHandle.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.obstacle_cards.html#devkit_ui.pages.obstacle_cards.MissionDrawHandle.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vm</span><span class="p">:</span> <span class="n">ObstacleViewModel</span><span class="p">,</span> <span class="n">mission_map</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vm</span><span class="p">:</span> <span class="n">ObstacleViewModel</span><span class="p">,</span> <span class="n">mission_map</span><span class="p">,</span>
                  <span class="n">obstacle_pad_widget</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Store shared widgets and initialize drawing state and obstacle layers.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vm</span>           <span class="o">=</span> <span class="n">vm</span>
@@ -881,7 +881,7 @@
 
 <div class="viewcode-block" id="MissionDrawHandle.clear_in_progress">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.obstacle_cards.html#devkit_ui.pages.obstacle_cards.MissionDrawHandle.clear_in_progress">[docs]</a>
-    <span class="k">def</span> <span class="nf">clear_in_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear_in_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Tear down any in-progress polygon. Called by the outer Clear</span>
 <span class="sd">        button so user intent (&#39;clear everything&#39;) actually clears.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">corners</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
@@ -897,7 +897,7 @@
 
 <div class="viewcode-block" id="attach_mission_sidebar_controls">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.obstacle_cards.html#devkit_ui.pages.obstacle_cards.attach_mission_sidebar_controls">[docs]</a>
-<span class="k">def</span> <span class="nf">attach_mission_sidebar_controls</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">attach_mission_sidebar_controls</span><span class="p">(</span>
         <span class="n">vm</span><span class="p">:</span> <span class="n">ObstacleViewModel</span><span class="p">,</span> <span class="n">mission_map</span><span class="p">,</span>
         <span class="n">boundary_click</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">MissionDrawHandle</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders the Field/Obstacle draw-mode toggle, shape sub-toggle,</span>
@@ -942,19 +942,19 @@
 
     <span class="n">handle</span> <span class="o">=</span> <span class="n">MissionDrawHandle</span><span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">mission_map</span><span class="p">,</span> <span class="n">obstacle_pad</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_mode</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_mode</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Select the draw mode and show obstacle controls only in obstacle mode.&quot;&quot;&quot;</span>
         <span class="n">handle</span><span class="o">.</span><span class="n">draw_mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span>
         <span class="n">obs_controls</span><span class="o">.</span><span class="n">set_visibility</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span> <span class="o">==</span> <span class="s1">&#39;obstacle&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_shape</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_shape</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Select the obstacle shape used for subsequent map clicks.&quot;&quot;&quot;</span>
         <span class="n">handle</span><span class="o">.</span><span class="n">obs_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span>
 
     <span class="n">mode_toggle</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;update:model-value&#39;</span><span class="p">,</span>  <span class="n">_on_mode</span><span class="p">)</span>
     <span class="n">shape_toggle</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;update:model-value&#39;</span><span class="p">,</span> <span class="n">_on_shape</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_redraw_in_progress</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_redraw_in_progress</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Replace the polygon preview, drawing it when at least two corners exist.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">handle</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">_remove_layer</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -968,7 +968,7 @@
                        <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;dashArray&#39;</span><span class="p">:</span> <span class="s1">&#39;4 3&#39;</span><span class="p">}],</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_finish_polygon</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_finish_polygon</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit the polygon corners and clear the drawing only if accepted.&quot;&quot;&quot;</span>
         <span class="n">added</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">add_polygon</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">corners</span><span class="p">))</span>
         <span class="c1"># On failure (dup name etc.) keep in-progress state for retry.</span>
@@ -978,7 +978,7 @@
 
     <span class="n">finish_btn</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">_finish_polygon</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_on_map_click</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_map_click</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Route a map click to the boundary, a circle, or an in-progress polygon.&quot;&quot;&quot;</span>
         <span class="n">lat</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;latlng&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
         <span class="n">lon</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;latlng&#39;</span><span class="p">][</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span>
@@ -1000,7 +1000,7 @@
 
 <div class="viewcode-block" id="attach_mission_obstacle_panel">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.pages.obstacle_cards.html#devkit_ui.pages.obstacle_cards.attach_mission_obstacle_panel">[docs]</a>
-<span class="k">def</span> <span class="nf">attach_mission_obstacle_panel</span><span class="p">(</span><span class="n">handle</span><span class="p">:</span> <span class="n">MissionDrawHandle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">attach_mission_obstacle_panel</span><span class="p">(</span><span class="n">handle</span><span class="p">:</span> <span class="n">MissionDrawHandle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders the obstacle list + Leaflet rendering panel in the current</span>
 <span class="sd">    ui context. Call from below the map (wide layout).&quot;&quot;&quot;</span>
     <span class="n">vm</span>          <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">vm</span>
@@ -1016,7 +1016,7 @@
 
     <span class="n">_prev</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">_refresh</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Refresh status on changes and rebuild the list and map layers on a new version.&quot;&quot;&quot;</span>
         <span class="n">v</span>      <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">version</span>
         <span class="n">status</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">status</span>

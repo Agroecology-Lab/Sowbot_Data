@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.obstacles &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -784,21 +784,21 @@
 <span class="sd">place obstacles thousands of kilometres from the origin.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">UTC</span><span class="p">,</span> <span class="n">datetime</span>
 
-<span class="kn">import</span> <span class="nn">yaml</span>
-<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Point32</span><span class="p">,</span> <span class="n">PolygonStamped</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometry_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point32</span><span class="p">,</span> <span class="n">PolygonStamped</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.map_anchor</span> <span class="kn">import</span> <span class="n">MapAnchor</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.qos</span> <span class="kn">import</span> <span class="n">LATCHED_QOS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.map_anchor</span><span class="w"> </span><span class="kn">import</span> <span class="n">MapAnchor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.qos</span><span class="w"> </span><span class="kn">import</span> <span class="n">LATCHED_QOS</span>
 
 <span class="c1"># Returns the current projection anchor, or None while it cannot be known.</span>
 <span class="n">AnchorSource</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">MapAnchor</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span>
@@ -823,7 +823,7 @@
 
 <div class="viewcode-block" id="latlon_to_xy">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.latlon_to_xy">[docs]</a>
-<span class="k">def</span> <span class="nf">latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">latlon_to_xy</span><span class="p">(</span><span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                  <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert (lat, lon) to local ENU (x, y) metres relative to (lat0, lon0).&quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lon</span> <span class="o">-</span> <span class="n">lon0</span><span class="p">)</span> <span class="o">*</span> <span class="n">_R_EARTH</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat0</span><span class="p">))</span>
@@ -834,7 +834,7 @@
 
 <div class="viewcode-block" id="xy_to_latlon">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.xy_to_latlon">[docs]</a>
-<span class="k">def</span> <span class="nf">xy_to_latlon</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">xy_to_latlon</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                  <span class="n">lat0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon0</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Inverse of latlon_to_xy.&quot;&quot;&quot;</span>
     <span class="n">lat</span> <span class="o">=</span> <span class="n">lat0</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">y</span> <span class="o">/</span> <span class="n">_R_EARTH</span><span class="p">)</span>
@@ -845,7 +845,7 @@
 
 <div class="viewcode-block" id="circle_to_ring_ll">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.circle_to_ring_ll">[docs]</a>
-<span class="k">def</span> <span class="nf">circle_to_ring_ll</span><span class="p">(</span><span class="n">center_lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center_lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">circle_to_ring_ll</span><span class="p">(</span><span class="n">center_lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">center_lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                       <span class="n">radius_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Tessellate a circle into a closed WGS84 ring.</span>
 <span class="sd">    Side count scales with radius, clamped to [16, 64].&quot;&quot;&quot;</span>
@@ -865,7 +865,7 @@
 
 <div class="viewcode-block" id="obstacle_to_ring_ll">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacle_to_ring_ll">[docs]</a>
-<span class="k">def</span> <span class="nf">obstacle_to_ring_ll</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">obstacle_to_ring_ll</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Single obstacle dict → closed lat/lon ring, or [] for degenerate input.&quot;&quot;&quot;</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;circle&#39;</span><span class="p">:</span>
@@ -886,7 +886,7 @@
 
 <div class="viewcode-block" id="obstacles_to_rings_ll">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.obstacles_to_rings_ll">[docs]</a>
-<span class="k">def</span> <span class="nf">obstacles_to_rings_ll</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">obstacles_to_rings_ll</span><span class="p">(</span>
         <span class="n">obstacles</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;All obstacles → F2C-ready list of rings. Drops degenerate entries.&quot;&quot;&quot;</span>
     <span class="n">rings</span> <span class="o">=</span> <span class="p">[</span><span class="n">obstacle_to_ring_ll</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">obstacles</span><span class="p">]</span>
@@ -896,7 +896,7 @@
 
 <div class="viewcode-block" id="validate_obstacle">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.validate_obstacle">[docs]</a>
-<span class="k">def</span> <span class="nf">validate_obstacle</span><span class="p">(</span><span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_obstacle</span><span class="p">(</span><span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">,</span>
                       <span class="n">points_ll</span><span class="p">)</span> <span class="o">-&gt;</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate add() inputs. Returns an error string or None.</span>
 
@@ -931,7 +931,7 @@
 
 <div class="viewcode-block" id="ObstacleManager">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager">[docs]</a>
-<span class="k">class</span> <span class="nc">ObstacleManager</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ObstacleManager</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Owns the obstacle list, persistence, and the ROS publisher.</span>
 
 <span class="sd">    Readers poll these properties:</span>
@@ -943,7 +943,7 @@
 
 <div class="viewcode-block" id="ObstacleManager.__init__">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">,</span> <span class="n">get_anchor</span><span class="p">:</span> <span class="n">AnchorSource</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OBSTACLES_FILE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">,</span> <span class="n">get_anchor</span><span class="p">:</span> <span class="n">AnchorSource</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OBSTACLES_FILE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Store the RosGateway and the source of the map-to-GPS projection anchor.</span>
 
 <span class="sd">        get_anchor returns None until odometry and a usable GPS fix have both arrived. The manager</span>
@@ -969,7 +969,7 @@
 
 <div class="viewcode-block" id="ObstacleManager.start">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.start">[docs]</a>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create the publisher, load saved obstacles in the background, and start the</span>
 <span class="sd">        cold-start anchor watcher.</span>
 
@@ -990,23 +990,23 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">obstacles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obstacles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the current obstacle snapshot.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a counter that increases on every change to the obstacles.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the last action&#39;s status text; an error starts with &#39;ERROR&#39;.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span>
 
 <div class="viewcode-block" id="ObstacleManager.set_status">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.set_status">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the status text. Last writer wins; the race is accepted (see module docs).&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="n">s</span></div>
 
@@ -1015,7 +1015,7 @@
 
 <div class="viewcode-block" id="ObstacleManager.add">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.add">[docs]</a>
-    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
             <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">radius_m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
@@ -1096,7 +1096,7 @@
 
 <div class="viewcode-block" id="ObstacleManager.delete">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.delete">[docs]</a>
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove matching obstacles from memory and start background saving and publication.</span>
 
 <span class="sd">        Return False and set an error status if name is absent; otherwise return True.</span>
@@ -1121,7 +1121,7 @@
 
 <div class="viewcode-block" id="ObstacleManager.rings_ll">
 <a class="viewcode-back" href="../../_autosummary/devkit_ui.obstacles.html#devkit_ui.obstacles.ObstacleManager.rings_ll">[docs]</a>
-    <span class="k">def</span> <span class="nf">rings_ll</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rings_ll</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;F2C-ready snapshot. Safe to call from any thread.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">obstacles_to_rings_ll</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obstacles</span><span class="p">)</span></div>
 
@@ -1130,7 +1130,7 @@
 
     <span class="c1"># ── persistence ───────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load the YAML obstacle snapshot, update state, and attempt publication.</span>
 
 <span class="sd">        Leave state unchanged when the file is missing.</span>
@@ -1153,7 +1153,7 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_ros</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to load obstacles: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_persist_and_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success_msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_persist_and_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success_msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Atomic write (tmp + os.replace), then publish.</span>
 
 <span class="sd">        Snapshot under lock, write + publish lock-free. The topic can</span>
@@ -1179,14 +1179,14 @@
 
     <span class="c1"># ── publishing ────────────────────────────────────────────────────────</span>
 
-    <span class="k">def</span> <span class="nf">_current_anchor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MapAnchor</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_current_anchor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MapAnchor</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the projection anchor, or None while it is not yet known.</span>
 
 <span class="sd">        Errors from the anchor source propagate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_anchor</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish each obstacle as a PolygonStamped in the map frame.</span>
 <span class="sd">        Silent no-op if there&#39;s no publisher or projection anchor.</span>
 
@@ -1223,7 +1223,7 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_ros</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;publish failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_cold_start_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_cold_start_publish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run by a 2 Hz timer during cold start. Publishes once GPS+odom</span>
 <span class="sd">        arrive, then cancels itself — all subsequent updates flow through</span>
 <span class="sd">        _persist_and_publish.&quot;&quot;&quot;</span>
@@ -1238,7 +1238,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_anchor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_cancel_anchor_timer</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_cancel_anchor_timer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_cancel_anchor_timer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor_timer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_anchor_timer</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>

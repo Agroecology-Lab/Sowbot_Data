@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_f2c_planner.test_projection &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -745,11 +745,11 @@
   <h1>Source code for devkit_f2c_planner.test_projection</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Unit tests for the lat/lon &lt;-&gt; local-xy projection and field_centroid_xy().&quot;&quot;&quot;</span>
 <span class="c1"># pylint: disable=protected-access</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
 
-<span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_planner</span> <span class="kn">import</span> <span class="n">f2c_xy_to_latlon</span>
-<span class="kn">from</span> <span class="nn">devkit_f2c_planner.f2c_test_helpers</span> <span class="kn">import</span> <span class="n">planner</span><span class="p">,</span> <span class="n">silence_planner_log</span><span class="p">,</span> <span class="n">to_ll</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_f2c_planner.f2c_planner</span><span class="w"> </span><span class="kn">import</span> <span class="n">f2c_xy_to_latlon</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_f2c_planner.f2c_test_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">planner</span><span class="p">,</span> <span class="n">silence_planner_log</span><span class="p">,</span> <span class="n">to_ll</span>
 
 <span class="c1"># Anchors: UK, southern hemisphere / western longitude, equator, Australia.</span>
 <span class="n">ANCHORS</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">55.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">9.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">40.5</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">33.9</span><span class="p">,</span> <span class="mf">151.2</span><span class="p">)]</span>
@@ -760,7 +760,7 @@
 
 <div class="viewcode-block" id="haversine_m">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.haversine_m">[docs]</a>
-<span class="k">def</span> <span class="nf">haversine_m</span><span class="p">(</span><span class="n">lat1</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon1</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lat2</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon2</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">6_378_137.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">haversine_m</span><span class="p">(</span><span class="n">lat1</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon1</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lat2</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon2</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">6_378_137.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">,</span> <span class="p">(</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span><span class="p">))</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat1</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">lon2</span> <span class="o">-</span> <span class="n">lon1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
     <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">))</span></div>
@@ -769,11 +769,11 @@
 
 <div class="viewcode-block" id="ProjectionTest">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest">[docs]</a>
-<span class="k">class</span> <span class="nc">ProjectionTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProjectionTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="ProjectionTest.test_anchor_maps_to_origin">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest.test_anchor_maps_to_origin">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_anchor_maps_to_origin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_anchor_maps_to_origin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify each projection anchor maps to the local origin.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span> <span class="ow">in</span> <span class="n">ANCHORS</span><span class="p">:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="p">(</span><span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">)):</span>
@@ -782,7 +782,7 @@
 
 <div class="viewcode-block" id="ProjectionTest.test_one_degree_north_is_one_degree_of_arc_at_any_latitude">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest.test_one_degree_north_is_one_degree_of_arc_at_any_latitude">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_one_degree_north_is_one_degree_of_arc_at_any_latitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_one_degree_north_is_one_degree_of_arc_at_any_latitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify a degree north has the same projected length at every anchor latitude.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span> <span class="ow">in</span> <span class="n">ANCHORS</span><span class="p">:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="p">(</span><span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">)):</span>
@@ -793,7 +793,7 @@
 
 <div class="viewcode-block" id="ProjectionTest.test_east_is_scaled_by_cosine_of_anchor_latitude">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest.test_east_is_scaled_by_cosine_of_anchor_latitude">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_east_is_scaled_by_cosine_of_anchor_latitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_east_is_scaled_by_cosine_of_anchor_latitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify eastward projection scales longitude by the cosine of the anchor latitude.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">cos_lat0</span> <span class="ow">in</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)]:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">lat0</span><span class="o">=</span><span class="n">lat0</span><span class="p">):</span>
@@ -804,7 +804,7 @@
 
 <div class="viewcode-block" id="ProjectionTest.test_axes_point_east_and_north">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest.test_axes_point_east_and_north">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_axes_point_east_and_north</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_axes_point_east_and_north</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify positive axes point east and north, and negative axes west and south.&quot;&quot;&quot;</span>
         <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span> <span class="o">=</span> <span class="mf">55.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">f2c_latlon_to_xy</span><span class="p">(</span><span class="n">lat0</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">lon0</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">)</span>
@@ -817,7 +817,7 @@
 
 <div class="viewcode-block" id="ProjectionTest.test_roundtrip_latlon_xy_latlon">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest.test_roundtrip_latlon_xy_latlon">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_roundtrip_latlon_xy_latlon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_roundtrip_latlon_xy_latlon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify geographic coordinates survive projection to local metres and back.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span> <span class="ow">in</span> <span class="n">ANCHORS</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">dlat</span><span class="p">,</span> <span class="n">dlon</span> <span class="ow">in</span> <span class="p">[(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.005</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.015</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">)]:</span>
@@ -830,7 +830,7 @@
 
 <div class="viewcode-block" id="ProjectionTest.test_roundtrip_xy_latlon_xy">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest.test_roundtrip_xy_latlon_xy">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_roundtrip_xy_latlon_xy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_roundtrip_xy_latlon_xy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify local coordinates survive conversion to latitude and longitude and back.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span> <span class="ow">in</span> <span class="n">ANCHORS</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">1500.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1500.0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">800.0</span><span class="p">,</span> <span class="mf">1200.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">250.5</span><span class="p">,</span> <span class="mf">250.5</span><span class="p">)]:</span>
@@ -843,7 +843,7 @@
 
 <div class="viewcode-block" id="ProjectionTest.test_public_inverse_returns_latitude_then_longitude_in_degrees">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest.test_public_inverse_returns_latitude_then_longitude_in_degrees">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_public_inverse_returns_latitude_then_longitude_in_degrees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_public_inverse_returns_latitude_then_longitude_in_degrees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check the public inverse independently of the forward projection at high latitudes.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span> <span class="ow">in</span> <span class="p">((</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">60.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">70.0</span><span class="p">)):</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="p">(</span><span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span><span class="p">)):</span>
@@ -856,7 +856,7 @@
 
 <div class="viewcode-block" id="ProjectionTest.test_distances_match_great_circle_within_field_scale">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.ProjectionTest.test_distances_match_great_circle_within_field_scale">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_distances_match_great_circle_within_field_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_distances_match_great_circle_within_field_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Equirectangular error stays under 0.01 % out to ~1.4 km from the anchor.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">lat0</span><span class="p">,</span> <span class="n">lon0</span> <span class="ow">in</span> <span class="n">ANCHORS</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[(</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">1000.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1000.0</span><span class="p">)]:</span>
@@ -870,17 +870,17 @@
 
 <div class="viewcode-block" id="FieldCentroidTest">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.FieldCentroidTest">[docs]</a>
-<span class="k">class</span> <span class="nc">FieldCentroidTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FieldCentroidTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="FieldCentroidTest.setUp">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.FieldCentroidTest.setUp">[docs]</a>
-    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">silence_planner_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FieldCentroidTest.test_rectangle_centroid_is_its_midpoint">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.FieldCentroidTest.test_rectangle_centroid_is_its_midpoint">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_rectangle_centroid_is_its_midpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rectangle_centroid_is_its_midpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">corners</span> <span class="o">=</span> <span class="n">to_ll</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)])</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">field_centroid_xy</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -889,7 +889,7 @@
 
 <div class="viewcode-block" id="FieldCentroidTest.test_winding_direction_does_not_matter">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.FieldCentroidTest.test_winding_direction_does_not_matter">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_winding_direction_does_not_matter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_winding_direction_does_not_matter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">corners</span> <span class="o">=</span> <span class="n">to_ll</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)])</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">field_centroid_xy</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
         <span class="n">x_rev</span><span class="p">,</span> <span class="n">y_rev</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">field_centroid_xy</span><span class="p">([</span><span class="n">corners</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="nb">reversed</span><span class="p">(</span><span class="n">corners</span><span class="p">[</span><span class="mi">1</span><span class="p">:])])</span>
@@ -899,7 +899,7 @@
 
 <div class="viewcode-block" id="FieldCentroidTest.test_frame_is_anchored_at_first_corner">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.FieldCentroidTest.test_frame_is_anchored_at_first_corner">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_frame_is_anchored_at_first_corner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_frame_is_anchored_at_first_corner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Starting from the opposite corner puts the anchor there: centroid is (-50, -25).&quot;&quot;&quot;</span>
         <span class="n">corners</span> <span class="o">=</span> <span class="n">to_ll</span><span class="p">([(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">field_centroid_xy</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
@@ -909,7 +909,7 @@
 
 <div class="viewcode-block" id="FieldCentroidTest.test_self_intersecting_boundary_does_not_raise">
 <a class="viewcode-back" href="../../_autosummary/devkit_f2c_planner.test_projection.html#devkit_f2c_planner.test_projection.FieldCentroidTest.test_self_intersecting_boundary_does_not_raise">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_self_intersecting_boundary_does_not_raise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_self_intersecting_boundary_does_not_raise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">bowtie</span> <span class="o">=</span> <span class="n">to_ll</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">field_centroid_xy</span><span class="p">(</span><span class="n">bowtie</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.pages.plan.mission_queue_card &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -743,13 +743,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.pages.plan.mission_queue_card</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
-<span class="kn">from</span> <span class="nn">nicegui</span> <span class="kn">import</span> <span class="n">ui</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nicegui</span><span class="w"> </span><span class="kn">import</span> <span class="n">ui</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.actions</span> <span class="kn">import</span> <span class="n">ACTIONS</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.mission_view_model</span> <span class="kn">import</span> <span class="n">MissionQueue</span><span class="p">,</span> <span class="n">MissionViewModel</span>
-<span class="kn">from</span> <span class="nn">devkit_ui.view_models.plan_view_model</span> <span class="kn">import</span> <span class="n">PlanViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ACTIONS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.mission_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionQueue</span><span class="p">,</span> <span class="n">MissionViewModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.view_models.plan_view_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlanViewModel</span>
 
 <span class="n">MUTED</span> <span class="o">=</span> <span class="s1">&#39;color:#8c959f&#39;</span>
 <span class="n">GREY</span> <span class="o">=</span> <span class="s1">&#39;color:#57606a&#39;</span>
@@ -765,12 +765,12 @@
 
 <div class="viewcode-block" id="MissionQueueCard">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.plan.mission_queue_card.html#devkit_ui.pages.plan.mission_queue_card.MissionQueueCard">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionQueueCard</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionQueueCard</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">card</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pick an implement, queue rows from the map, and run or cancel the queued mission.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MissionQueueCard.__init__">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.plan.mission_queue_card.html#devkit_ui.pages.plan.mission_queue_card.MissionQueueCard.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">MissionQueue</span><span class="p">,</span> <span class="n">plan_vm</span><span class="p">:</span> <span class="n">PlanViewModel</span><span class="p">,</span> <span class="n">mission_vm</span><span class="p">:</span> <span class="n">MissionViewModel</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">MissionQueue</span><span class="p">,</span> <span class="n">plan_vm</span><span class="p">:</span> <span class="n">PlanViewModel</span><span class="p">,</span> <span class="n">mission_vm</span><span class="p">:</span> <span class="n">MissionViewModel</span><span class="p">,</span>
                  <span class="n">on_delete_row</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the action picker, the available rows, the queue and the Run and Cancel buttons.</span>
 
@@ -831,19 +831,19 @@
         <span class="n">ui</span><span class="o">.</span><span class="n">timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_available</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_show_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_show_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show a mission status line in the colour of its level.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status_lbl</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status_lbl</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;color:</span><span class="si">{</span><span class="n">STATUS_COLOURS</span><span class="p">[</span><span class="n">level</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MissionQueueCard.set_run_enabled">
 <a class="viewcode-back" href="../../../../_autosummary/devkit_ui.pages.plan.mission_queue_card.html#devkit_ui.pages.plan.mission_queue_card.MissionQueueCard.set_run_enabled">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_run_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_run_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable or disable Run Mission, which is off while a mission is running.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_btn</span><span class="o">.</span><span class="n">set_enabled</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_rebuild_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show an input for each parameter of the selected action.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_param_row</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_param_inputs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
@@ -857,7 +857,7 @@
                     <span class="nb">min</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">min</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">max</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">step</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">precision</span><span class="p">,</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;w-32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="s1">&#39;dense outlined&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_add_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Queue a row with the selected action and the parameter values entered.&quot;&quot;&quot;</span>
         <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_action</span><span class="o">.</span><span class="n">value</span> <span class="ow">or</span> <span class="s1">&#39;drive&#39;</span>
         <span class="n">action</span> <span class="o">=</span> <span class="n">ACTIONS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
@@ -866,7 +866,7 @@
                   <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_param_inputs</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">row_id</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_render_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_render_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Redraw the queued steps with their move and remove buttons.&quot;&quot;&quot;</span>
         <span class="n">items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">items</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queue_col</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
@@ -893,7 +893,7 @@
                     <span class="n">ui</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;✕&#39;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">props</span><span class="p">(</span>
                         <span class="s1">&#39;flat dense&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">classes</span><span class="p">(</span><span class="s1">&#39;text-xs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="n">RED</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_refresh_available</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh_available</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Redraw the available rows once the loaded map has stopped changing.</span>
 
 <span class="sd">        The map is compared on each tick. A new map is drawn on the next tick that still sees</span>

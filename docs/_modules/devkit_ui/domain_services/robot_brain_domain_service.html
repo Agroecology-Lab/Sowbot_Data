@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.domain_services.robot_brain_domain_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -743,18 +743,18 @@
            <div itemprop="articleBody">
              
   <h1>Source code for devkit_ui.domain_services.robot_brain_domain_service</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">Empty</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Empty</span>
 
-<span class="kn">from</span> <span class="nn">devkit_ui.ros_gateway</span> <span class="kn">import</span> <span class="n">RosGateway</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.ros_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosGateway</span>
 
 <span class="n">ROBOT_BRAIN_COMMANDS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;enable&#39;</span><span class="p">,</span> <span class="s1">&#39;disable&#39;</span><span class="p">,</span> <span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="s1">&#39;restart&#39;</span><span class="p">,</span> <span class="s1">&#39;configure&#39;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="RobotBrainDomainService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.robot_brain_domain_service.html#devkit_ui.domain_services.robot_brain_domain_service.RobotBrainDomainService">[docs]</a>
-<span class="k">class</span> <span class="nc">RobotBrainDomainService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RobotBrainDomainService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Publish control commands to the robot brain (the ESP32 running Lizard).</span>
 
 <span class="sd">    The topics are esp/enable, esp/disable, esp/reset, esp/restart and esp/configure;</span>
@@ -763,7 +763,7 @@
 
 <div class="viewcode-block" id="RobotBrainDomainService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.robot_brain_domain_service.html#devkit_ui.domain_services.robot_brain_domain_service.RobotBrainDomainService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="p">:</span> <span class="n">RosGateway</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create one empty-message publisher for each supported robot brain command.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pubs</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">command</span><span class="p">:</span> <span class="n">ros</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">Empty</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;esp/</span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -773,7 +773,7 @@
 
 <div class="viewcode-block" id="RobotBrainDomainService.send">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.domain_services.robot_brain_domain_service.html#devkit_ui.domain_services.robot_brain_domain_service.RobotBrainDomainService.send">[docs]</a>
-    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish an empty message on esp/&lt;command&gt;.</span>
 
 <span class="sd">        Raises:</span>

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_mavlink_bridge.modules.latest_messages &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -749,18 +749,18 @@
 <span class="sd">from the sender&#39;s boot time or ROS time.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
 
 <div class="viewcode-block" id="LatestMessages">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages">[docs]</a>
-<span class="k">class</span> <span class="nc">LatestMessages</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LatestMessages</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Keep the most recent message of each kind and when it arrived.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="LatestMessages.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clock</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clock</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start empty, reading arrival times from clock.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span> <span class="o">=</span> <span class="n">clock</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span></div>
@@ -768,14 +768,14 @@
 
 <div class="viewcode-block" id="LatestMessages.put">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.put">[docs]</a>
-    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Store message as the latest of its kind, stamped now.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="n">kind</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="LatestMessages.age_s">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.age_s">[docs]</a>
-    <span class="k">def</span> <span class="nf">age_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">age_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return seconds since the last message of this kind, or None if none has arrived.&quot;&quot;&quot;</span>
         <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
@@ -783,7 +783,7 @@
 
 <div class="viewcode-block" id="LatestMessages.fresh">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.fresh">[docs]</a>
-    <span class="k">def</span> <span class="nf">fresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_age_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_age_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the latest message of this kind if no older than max_age_s, else None.&quot;&quot;&quot;</span>
         <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_age_s</span><span class="p">:</span>
@@ -793,7 +793,7 @@
 
 <div class="viewcode-block" id="LatestMessages.clear">
 <a class="viewcode-back" href="../../../_autosummary/devkit_mavlink_bridge.modules.latest_messages.html#devkit_mavlink_bridge.modules.latest_messages.LatestMessages.clear">[docs]</a>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Forget every message, so nothing from before a link loss can be reused.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
 </div>

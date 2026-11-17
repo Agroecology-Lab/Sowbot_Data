@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_ui.application_services.obstacle_application_service &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -750,64 +750,64 @@
 <span class="sd">results; the radius default and its conversion from a bound input stay in the view model.</span>
 <span class="sd">No ROS or NiceGUI imports.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.application_services.telemetry_application_service</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.application_services.telemetry_application_service</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">TelemetryApplicationService</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">devkit_ui.obstacles</span> <span class="kn">import</span> <span class="n">ObstacleManager</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">devkit_ui.obstacles</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObstacleManager</span>
 
 <span class="n">MIN_POLYGON_CORNERS</span> <span class="o">=</span> <span class="mi">3</span>
 
 
 <div class="viewcode-block" id="ObstacleApplicationService">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService">[docs]</a>
-<span class="k">class</span> <span class="nc">ObstacleApplicationService</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ObstacleApplicationService</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Use cases for the obstacles drawn on the Run and Plan tabs.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ObstacleApplicationService.__init__">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="n">ObstacleManager</span><span class="p">,</span> <span class="n">telemetry</span><span class="p">:</span> <span class="n">TelemetryApplicationService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="n">ObstacleManager</span><span class="p">,</span> <span class="n">telemetry</span><span class="p">:</span> <span class="n">TelemetryApplicationService</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Keep the obstacle manager and the telemetry service that supplies the latest GPS fix.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span> <span class="o">=</span> <span class="n">manager</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_telemetry</span> <span class="o">=</span> <span class="n">telemetry</span></div>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">obstacles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obstacles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the current in-memory obstacles, which may still be awaiting persistence.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">obstacles</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a counter that increases whenever the obstacles change.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">version</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the last action&#39;s status text; an error starts with &#39;ERROR&#39;.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">status</span>
 
 <div class="viewcode-block" id="ObstacleApplicationService.set_status">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService.set_status">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show a status message, for errors a caller detects itself.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ObstacleApplicationService.rings_ll">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService.rings_ll">[docs]</a>
-    <span class="k">def</span> <span class="nf">rings_ll</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rings_ll</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the obstacles as WGS84 rings for the planner.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">rings_ll</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="ObstacleApplicationService.mark_here">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService.mark_here">[docs]</a>
-    <span class="k">def</span> <span class="nf">mark_here</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mark_here</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a circle of radius_m meters at the latest GPS fix.</span>
 
 <span class="sd">        Return the allocated name, or None if there is no GPS message yet or the</span>
@@ -825,7 +825,7 @@
 
 <div class="viewcode-block" id="ObstacleApplicationService.add_circle">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService.add_circle">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_circle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_circle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a circle of radius_m meters at WGS84 (lat, lon) in degrees.</span>
 
 <span class="sd">        Return its allocated name, or None on rejection with the reason in status.</span>
@@ -836,7 +836,7 @@
 
 <div class="viewcode-block" id="ObstacleApplicationService.add_polygon">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService.add_polygon">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_polygon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_polygon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points_ll</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a polygon from WGS84 (lat, lon) corners in degrees.</span>
 
 <span class="sd">        Require at least three corners; repeating the first corner is unnecessary.</span>
@@ -852,7 +852,7 @@
 
 <div class="viewcode-block" id="ObstacleApplicationService.delete">
 <a class="viewcode-back" href="../../../_autosummary/devkit_ui.application_services.obstacle_application_service.html#devkit_ui.application_services.obstacle_application_service.ObstacleApplicationService.delete">[docs]</a>
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the named obstacle; return False if it does not exist.</span>
 
 <span class="sd">        Return True after in-memory removal and background saving have started.</span>

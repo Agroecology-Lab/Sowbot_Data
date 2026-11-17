@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sowbot_avoid &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -751,7 +751,7 @@
 <p>Robot-to-robot collision avoidance over MeshCore (Sowbot #202).</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.Agent">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">route</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/agent.html#Agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Agent" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">route</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/agent.html#Agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Agent" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Agent.__init__">
@@ -778,7 +778,7 @@ Claims that include the node we stand on are ignored.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Agent.run">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/agent.html#Agent.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Agent.run" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/agent.html#Agent.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Agent.run" title="Link to this definition"></a></dt>
 <dd><p>Follow the route, then mark the agent done. Driver errors propagate.</p>
 <p>If blocked long enough, the agent may add a side-step to its route,
 announce the revised claims and wait for arbitration before retrying.
@@ -789,12 +789,12 @@ At the side-step stop it waits until the route onward is announced clear.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.Driver">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><a class="reference internal" href="../_modules/sowbot_avoid/driver.html#Driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Driver" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Driver</span></span><a class="reference internal" href="../_modules/sowbot_avoid/driver.html#Driver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Driver" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Implement this against the robot’s motion stack (ROS 2 Nav2 action, ArduPilot, etc.).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Driver.drive">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">drive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/driver.html#Driver.drive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Driver.drive" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/driver.html#Driver.drive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Driver.drive" title="Link to this definition"></a></dt>
 <dd><p>Drive along edge a -&gt; b and return when the robot has arrived at b.</p>
 <p>The base implementation raises NotImplementedError.</p>
 </dd></dl>
@@ -803,7 +803,7 @@ At the side-step stop it waits until the route onward is announced clear.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.Frame">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/frame.html#Frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Frame" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/frame.html#Frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Frame" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>One announcement: the sender stands on nodes[0] and intends to drive through nodes[1:].</p>
 <dl class="py method">
@@ -814,7 +814,7 @@ At the side-step stop it waits until the route onward is announced clear.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Frame.decode">
-<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/frame.html#Frame.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Frame.decode" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/frame.html#Frame.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Frame.decode" title="Link to this definition"></a></dt>
 <dd><p>Decode a frame, returning None for robot ID zero or a length that is not 1 to 3 nodes.</p>
 </dd></dl>
 
@@ -834,24 +834,24 @@ ValueError; out-of-range nodes raise OverflowError.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.Frame.nodes">
-<span class="sig-name descname"><span class="pre">nodes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></span><a class="headerlink" href="#sowbot_avoid.Frame.nodes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#sowbot_avoid.Frame.nodes" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.Frame.rid">
-<span class="sig-name descname"><span class="pre">rid</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#sowbot_avoid.Frame.rid" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">rid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#sowbot_avoid.Frame.rid" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.Frame.seq">
-<span class="sig-name descname"><span class="pre">seq</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#sowbot_avoid.Frame.seq" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#sowbot_avoid.Frame.seq" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.Graph">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clearance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">park</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/graph.html#Graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Graph" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clearance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">park</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/graph.html#Graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Graph" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Graph.__init__">
@@ -878,14 +878,14 @@ only when they share a node.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Graph.load">
-<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clearance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/graph.html#Graph.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Graph.load" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clearance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/graph.html#Graph.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Graph.load" title="Link to this definition"></a></dt>
 <dd><p>Load a graph from JSON with edges and optional nodes and park fields.</p>
 <p>File and JSON errors propagate, as does KeyError if edges is absent.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Graph.path">
-<span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_ok</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">Graph.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/graph.html#Graph.path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Graph.path" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_ok=&lt;function</span> <span class="pre">Graph.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/graph.html#Graph.path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Graph.path" title="Link to this definition"></a></dt>
 <dd><p>Shortest hop path a to b over edges allowed by edge_ok, or None.</p>
 </dd></dl>
 
@@ -897,7 +897,7 @@ only when they share a node.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="sowbot_avoid.Graph.rows">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">rows</span></span><a class="headerlink" href="#sowbot_avoid.Graph.rows" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rows</span></span><a class="headerlink" href="#sowbot_avoid.Graph.rows" title="Link to this definition"></a></dt>
 <dd><p>Return the stopping-node candidates used by the agent.</p>
 <p>Explicit rows are returned as the stored mutable set; the default is a
 new set of nodes in edges excluding park nodes on each access.</p>
@@ -907,7 +907,7 @@ new set of nodes in edges excluding park nodes on each access.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.LoopBus">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">LoopBus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#LoopBus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.LoopBus" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">LoopBus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#LoopBus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.LoopBus" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Simulated shared channel: one collision domain, overlapping frames lost, random loss, rx delay.</p>
 <dl class="py method">
@@ -935,7 +935,7 @@ Scale multiplies airtime and delivery delay.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.MeshRadio">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">MeshRadio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sowbot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_hop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baud</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">115200</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.MeshRadio" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">MeshRadio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sowbot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_hop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baud</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">115200</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.MeshRadio" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="sowbot_avoid.radio.html#sowbot_avoid.radio.Radio" title="sowbot_avoid.radio.Radio"><code class="xref py py-class docutils literal notranslate"><span class="pre">Radio</span></code></a></p>
 <p>One MeshCore companion radio through meshcore_py.</p>
 <dl class="py method">
@@ -948,7 +948,7 @@ Zero hop sends directly, while false permits flooding through repeaters.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.MeshRadio.send">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.MeshRadio.send" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.MeshRadio.send" title="Link to this definition"></a></dt>
 <dd><p>Send channel data.</p>
 <p>An error response from the radio raises RuntimeError, so the caller sees that
 the frame was not sent. Exceptions from the radio command propagate as well.</p>
@@ -956,7 +956,7 @@ the frame was not sent. Exceptions from the radio command propagate as well.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.MeshRadio.start">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.MeshRadio.start" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.MeshRadio.start" title="Link to this definition"></a></dt>
 <dd><p>Connect, optionally configure the channel, and begin fetching messages.</p>
 <p>Import, connection, and invalid hex secret errors propagate. RuntimeError is
 raised if the radio rejects the channel setup or has no channel at the
@@ -966,7 +966,7 @@ The port is disconnected again if anything after the connection fails.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.MeshRadio.stop">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.MeshRadio.stop" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#MeshRadio.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.MeshRadio.stop" title="Link to this definition"></a></dt>
 <dd><p>Disconnect the companion radio; disconnect errors propagate.</p>
 </dd></dl>
 
@@ -974,21 +974,21 @@ The port is disconnected again if anything after the connection fails.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sowbot_avoid.Radio">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Radio</span></span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Radio" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.</span></span><span class="sig-name descname"><span class="pre">Radio</span></span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Radio" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.Radio.cb">
-<span class="sig-name descname"><span class="pre">cb</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#sowbot_avoid.Radio.cb" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cb</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sowbot_avoid.Radio.cb" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sowbot_avoid.Radio.last_rx">
-<span class="sig-name descname"><span class="pre">last_rx</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#sowbot_avoid.Radio.last_rx" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">last_rx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#sowbot_avoid.Radio.last_rx" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Radio.send">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Radio.send" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Radio.send" title="Link to this definition"></a></dt>
 <dd><p>Send a payload; subclasses must implement this operation.</p>
 </dd></dl>
 
@@ -1000,13 +1000,13 @@ The port is disconnected again if anything after the connection fails.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Radio.start">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Radio.start" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Radio.start" title="Link to this definition"></a></dt>
 <dd><p>Start the radio; the base implementation does nothing.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.Radio.stop">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Radio.stop" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/radio.html#Radio.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.Radio.stop" title="Link to this definition"></a></dt>
 <dd><p>Stop the radio; the base implementation does nothing.</p>
 </dd></dl>
 

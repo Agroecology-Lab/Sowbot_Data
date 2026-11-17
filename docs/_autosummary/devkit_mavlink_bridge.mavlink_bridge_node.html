@@ -7,15 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>devkit_mavlink_bridge.mavlink_bridge_node &mdash; Feldfreund DevKit ROS caatinga-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=9d891252"></script>
-      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -768,8 +768,8 @@ fc/diagnostics  diagnostic_msgs/DiagnosticArray  link, EKF3 flags and variance r
 <p>Nothing is published from stale or invalid data, so a consumer sees a gap rather than a
 confident old value. With publish_tf set, odom -&gt; base_link is broadcast from the same
 pose as fc/odom, under the same gating. It is off by default: only one node may own that edge.</p>
-<p>Open item (tracked in safety_roadmap.md, not duplicated here): which LEVIA-H7 UART carries
-MAVLink (O31). MAVLINK_ENDPOINT and MAVLINK_BAUD depend on it.</p>
+<p>mavlink.md assigns the MAVLink link to U20 / UART4 / SERIAL5 on the LEVIA-H7. That is a design
+assignment, not yet confirmed on hardware (O31). MAVLINK_ENDPOINT and MAVLINK_BAUD depend on it.</p>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -788,7 +788,7 @@ MAVLink (O31). MAVLINK_ENDPOINT and MAVLINK_BAUD depend on it.</p>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.mavlink_bridge_node.</span></span><span class="sig-name descname"><span class="pre">MavlinkBridgeNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/mavlink_bridge_node.html#MavlinkBridgeNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">devkit_mavlink_bridge.mavlink_bridge_node.</span></span><span class="sig-name descname"><span class="pre">MavlinkBridgeNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/devkit_mavlink_bridge/mavlink_bridge_node.html#MavlinkBridgeNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#devkit_mavlink_bridge.mavlink_bridge_node.MavlinkBridgeNode" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
 <p>Bridges cmd_vel out to, and EKF3 state and GPS status in from, ArduPilot Rover over MAVLink.</p>
 <dl class="py method">
@@ -808,7 +808,11 @@ Corrections: rtcm_topic [‘rtcm’], an rtcm_msgs/Message per RTCM3 frame (as p
 ntrip_client), forwarded as GPS_RTCM_DATA.
 With require_fc_heartbeat the bridge forwards zero velocity, and no RTCM, unless the flight
 controller’s HEARTBEAT was seen within fc_heartbeat_timeout_s. MAVLINK_ENDPOINT selects the connection;
-MAVLINK_BAUD defaults to 115200. The bridge does not arm or change mode.
+MAVLINK_BAUD defaults to 115200.
+Services (std_srvs/Trigger): fc/disarm is always available. fc/arm and fc/set_guided refuse
+unless allow_arm_from_ros [false] is set. fc/arm also needs a live link, GUIDED mode and no
+fresh nonzero cmd_vel. A response means the command was sent, not accepted: the flight
+controller’s COMMAND_ACK and heartbeat are logged.
 Raise ValueError for a nonpositive period or limit, a nonpositive or nonfinite timeout,
 a nonpositive or nonfinite rate, a missing or placeholder endpoint, or a baud value that
 cannot be parsed as an int.
