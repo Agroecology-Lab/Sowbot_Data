@@ -66,7 +66,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#build-launch">2. Build &amp; Launch</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1">Linux</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gazebo">Gazebo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#optical-flow-sensor-pmw3901-paa5100">Optical flow sensor (PMW3901 / PAA5100)</a></li>
 </ul>
 </li>
 </ul>
@@ -1166,7 +1165,7 @@ xhost<span class="w"> </span>+local:docker
 </pre></div>
 </div>
 <p>Access http://localhost to access the WebUI</p>
-<p>On a real robot with the LEVIA-H7 flight controller, create <code class="docutils literal notranslate"><span class="pre">.env</span></code> from <code class="docutils literal notranslate"><span class="pre">.env.example</span></code> first. See “Real robot bring-up” in <code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>.</p>
+<p>On a real robot with the LEVIA-H7 flight controller, create <code class="docutils literal notranslate"><span class="pre">.env</span></code> from <code class="docutils literal notranslate"><span class="pre">.env.example</span></code> first. See <a class="reference external" href="https://github.com/Agroecology-Lab/Sowbot/blob/caatinga-dev/src/devkit_mavlink_bridge/mavlink.md#real-robot-bring-up">Real robot bring-up</a></p>
 <p><strong>The dashboard has a joystick and a soft e-stop and listens on port 80 of the robot.</strong>
 Set <code class="docutils literal notranslate"><span class="pre">SOWBOT_UI_PASSWORD</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code> to require a password (HTTP Basic, user name ignored).
 Without it, anyone on the robot’s network can drive it.
@@ -1188,36 +1187,6 @@ xhost<span class="w"> </span>+local:docker
 ./manage.py
 </pre></div>
 </div>
-</section>
-<section id="optical-flow-sensor-pmw3901-paa5100">
-<h4>Optical flow sensor (PMW3901 / PAA5100)<a class="headerlink" href="#optical-flow-sensor-pmw3901-paa5100" title="Link to this heading"></a></h4>
-<p><a class="reference external" href="https://github.com/adityakamath/optical_flow_ros"><code class="docutils literal notranslate"><span class="pre">optical_flow_ros</span></code></a> is built into the image (Dockerfile Stage 8, pinned by <code class="docutils literal notranslate"><span class="pre">OPTICAL_FLOW_ROS_COMMIT</span></code>).
-Its pip dependencies (<code class="docutils literal notranslate"><span class="pre">pmw3901</span></code>, <code class="docutils literal notranslate"><span class="pre">gpiod</span></code>, <code class="docutils literal notranslate"><span class="pre">gpiodevice</span></code>) are installed at pinned versions in Stage 5.2b.</p>
-<p>Run inside the container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>devkit_bringup<span class="w"> </span>optical_flow.launch.py
-</pre></div>
-</div>
-<p>Do not use upstream’s <code class="docutils literal notranslate"><span class="pre">optical_flow_launch.py</span></code>: it broadcasts <code class="docutils literal notranslate"><span class="pre">odom</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">base_link</span></code>, which FusionCore owns.</p>
-<ul class="simple">
-<li><p>Sensor parameters: <code class="docutils literal notranslate"><span class="pre">config/sensor_params.yaml</span></code> in the upstream package (<code class="docutils literal notranslate"><span class="pre">board</span></code>, <code class="docutils literal notranslate"><span class="pre">spi_nr</span></code>, <code class="docutils literal notranslate"><span class="pre">spi_slot</span></code>, <code class="docutils literal notranslate"><span class="pre">rotation</span></code>, <code class="docutils literal notranslate"><span class="pre">z_height</span></code>, <code class="docutils literal notranslate"><span class="pre">sensor_timeout</span></code>).
-<code class="docutils literal notranslate"><span class="pre">src/devkit_bringup/config/optical_flow.yaml</span></code> is loaded after it and sets <code class="docutils literal notranslate"><span class="pre">publish_tf:</span> <span class="pre">false</span></code>.
-Put local driver settings there, not in the cloned source.</p></li>
-<li><p>The launch remaps <code class="docutils literal notranslate"><span class="pre">odom</span></code> to <code class="docutils literal notranslate"><span class="pre">flow_odom</span></code> and publishes <code class="docutils literal notranslate"><span class="pre">/diagnostics</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">flow_odom</span></code> is not consumed by FusionCore (its inputs are hardcoded to <code class="docutils literal notranslate"><span class="pre">/gnss/fix</span></code> and <code class="docutils literal notranslate"><span class="pre">/odom/wheels</span></code>).</p></li>
-<li><p>Upstream tested on Raspberry Pi (SPI).
-Not tested here on the supported SBCs.</p></li>
-<li><p>Requires <code class="docutils literal notranslate"><span class="pre">/dev/spidev*</span></code> on the host; the container runs privileged with <code class="docutils literal notranslate"><span class="pre">/dev</span></code> mounted.</p></li>
-</ul>
-<p>Known limitations of the pinned driver, not fixed here:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">flow_odom</span></code> is not fit for fusion.
-The orientation is left unset (0, 0, 0, 0), every covariance is zero and angular velocity is zero.
-Do not feed it to an estimator without fixing the message.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/diagnostics</span></code> reports OK whenever the node runs.
-A sensor timeout is published as zero motion, so it is not a health signal.</p></li>
-<li><p>Each read can block for up to <code class="docutils literal notranslate"><span class="pre">sensor_timeout</span></code> (0.5 s) inside a 100 Hz timer.
-A stationary sensor therefore publishes slower than 100 Hz, and the linear velocity (distance divided by the nominal 0.01 s) is wrong whenever a callback runs late.</p></li>
-</ul>
 </section>
 </section>
 </section>
