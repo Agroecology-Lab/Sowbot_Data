@@ -772,7 +772,7 @@ node has no docks and nothing in the package assumes one.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#sowbot_avoid.topo.is_dock" title="sowbot_avoid.topo.is_dock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_dock</span></code></a>(name)</p></td>
 <td><p>True for the names dock, dock1, dock2, .</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sowbot_avoid.topo.load_topo" title="sowbot_avoid.topo.load_topo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_topo</span></code></a>(path[, clearance])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sowbot_avoid.topo.load_topo" title="sowbot_avoid.topo.load_topo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_topo</span></code></a>(path[, clearance, drop_docks])</p></td>
 <td><p>Load the YAML topological map, or a JSON fixture written by <cite>to_fixture</cite>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#sowbot_avoid.topo.to_fixture" title="sowbot_avoid.topo.to_fixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_fixture</span></code></a>(topo, path)</p></td>
@@ -889,8 +889,10 @@ node has no docks and nothing in the package assumes one.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sowbot_avoid.topo.load_topo">
-<span class="sig-prename descclassname"><span class="pre">sowbot_avoid.topo.</span></span><span class="sig-name descname"><span class="pre">load_topo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clearance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/topo.html#load_topo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.topo.load_topo" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sowbot_avoid.topo.</span></span><span class="sig-name descname"><span class="pre">load_topo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clearance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_docks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/topo.html#load_topo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.topo.load_topo" title="Link to this definition"></a></dt>
 <dd><p>Load the YAML topological map, or a JSON fixture written by <cite>to_fixture</cite>.</p>
+<p>drop_docks removes every dock (a node named dock, dock1, …, or marked role: dock in a YAML
+map’s meta) and its edges, so the graph is the field alone.</p>
 </dd></dl>
 
 <dl class="py function">
