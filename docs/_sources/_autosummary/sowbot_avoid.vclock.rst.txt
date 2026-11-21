@@ -1,0 +1,18 @@
+sowbot\_avoid.vclock
+====================
+
+.. automodule:: sowbot_avoid.vclock
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      run
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      VirtualLoop
+   
