@@ -821,248 +821,99 @@ See <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst
 <thead>
 <tr class="row-odd"><th class="head"><p>#</p></th>
 <th class="head"><p>Feature</p></th>
-<th class="head"><p>Description</p></th>
 <th class="head"><p>Status</p></th>
 <th class="head"><p>TRL</p></th>
-<th class="head"><p>Phase</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><strong>FOUNDATION</strong></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><strong>2025</strong></p></td>
-</tr>
-<tr class="row-odd"><td><p>F1</p></td>
-<td><p>Containerised deployment</p></td>
-<td><p>Full ROS 2 Jazzy stack managed via Docker and <code class="docutils literal notranslate"><span class="pre">manage.py</span></code>. Live volume mapping to <code class="docutils literal notranslate"><span class="pre">/workspace</span></code>. Build, full-build, and <code class="docutils literal notranslate"><span class="pre">+sim</span></code> build modes.</p></td>
-<td><p>Done</p></td>
-<td><p>6</p></td>
-<td><p>2025</p></td>
-</tr>
-<tr class="row-even"><td><p>F2</p></td>
-<td><p>Stable device addressing</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">tools/fixusb.py</span></code> with Jetson/generic architecture detection, kernel <code class="docutils literal notranslate"><span class="pre">low_latency</span></code> mode, and udev symlink generation. Writes <code class="docutils literal notranslate"><span class="pre">.env</span></code> consumed by all launch files. Note: <code class="docutils literal notranslate"><span class="pre">run_neo()</span></code> never calls <code class="docutils literal notranslate"><span class="pre">tools/fixusb.py</span></code> so <code class="docutils literal notranslate"><span class="pre">.env</span></code> is not written for neo-only runs.</p></td>
-<td><p>Done</p></td>
-<td><p>6</p></td>
-<td><p>2025</p></td>
-</tr>
-<tr class="row-odd"><td><p>F3</p></td>
-<td><p>Teleop dashboard</p></td>
-<td><p>NiceGUI web cockpit on <code class="docutils literal notranslate"><span class="pre">:80</span></code>. Four tabs: <strong>Run</strong>, <strong>Plan</strong>, <strong>Sim</strong>, <strong>System</strong>. Joystick, e-stop, topo map, node-drop, track mode, fields2cover corner entry, F2C row plan generator, reorderable mission queue, telemetry, safety indicators, GPS leaflet map. LiteFarm GeoJSON export on System, Tools card (M11).</p></td>
-<td><p>Done</p></td>
-<td><p>6</p></td>
-<td><p>2025</p></td>
-</tr>
-<tr class="row-even"><td><p>F4</p></td>
-<td><p>ublox DGNSS driver</p></td>
-<td><p>Dual F9P moving-base configuration with dynamic port assignment via <code class="docutils literal notranslate"><span class="pre">tools/fixusb.py</span></code>.</p></td>
-<td><p>Done</p></td>
-<td><p>6</p></td>
-<td><p>2026</p></td>
-</tr>
-<tr class="row-odd"><td><p>F5</p></td>
-<td><p>Diagnostics TUI</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">tools/agbot-diagnostic.py</span></code> terminal status view of all hardware topics. Run inside container via <code class="docutils literal notranslate"><span class="pre">tools/login.sh</span></code>.</p></td>
-<td><p>Done</p></td>
-<td><p>6</p></td>
-<td><p>2025</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>MVP FIELD</strong></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><strong>2026</strong></p></td>
+<tr class="row-even"><td><p>F1–F5</p></td>
+<td><p>Containerised deployment, stable device addressing (<code class="docutils literal notranslate"><span class="pre">fixusb.py</span></code>), NiceGUI dashboard, dual F9P driver, diagnostics TUI</p></td>
+<td><p>Done, bench and sim only</p></td>
+<td><p>4</p></td>
 </tr>
 <tr class="row-odd"><td><p>M1</p></td>
-<td><p>Agri Open Core platform integration</p></td>
-<td><p>Demonstrates AOC platform abstraction on affordable ARM hardware accessible to smallholders.</p></td>
+<td><p>Agri Open Core platform integration (Topo nav, Sentor)</p></td>
 <td><p>Done</p></td>
-<td><p>3</p></td>
-<td><p>2026</p></td>
+<td><p>4</p></td>
 </tr>
 <tr class="row-even"><td><p>M2</p></td>
-<td><p>Topological navigation + Nav2</p></td>
-<td><p>LCAS <code class="docutils literal notranslate"><span class="pre">topological_navigation</span></code> at a commit pinned in the Dockerfile, building in Docker. RViz visualisation confirmed working. Self-contained <code class="docutils literal notranslate"><span class="pre">navigation2.py</span></code> with A* route planning, explicit state machine, and <code class="docutils literal notranslate"><span class="pre">row_traversal</span></code> / <code class="docutils literal notranslate"><span class="pre">NavigateToPose</span></code> / <code class="docutils literal notranslate"><span class="pre">goal_align</span></code> edge actions. <code class="docutils literal notranslate"><span class="pre">fake_nav2_server</span></code> with <code class="docutils literal notranslate"><span class="pre">/limbic_row_follow</span></code> stub enables full pipeline testing in sim. <code class="docutils literal notranslate"><span class="pre">sim_nav.launch.py</span></code> now routes through real Nav2. <strong>Multi-row mission following (entry/exit node pairs across boustrophedon rows) validated end-to-end in Gazebo.</strong> Pending: Jazzy field validation on hardware.</p></td>
+<td><p>Topological navigation + Nav2, multi-row missions</p></td>
 <td><p>Sim only. Blocked: hardware field validation</p></td>
 <td><p>4</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p>M2a</p></td>
-<td><p>fusioncore Nav2 bridge</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">fusioncore_node</span></code> launched via <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code> when the MAVLink bridge is not running; with the bridge, EKF3 is the estimator and FusionCore is shadow only (M9). Nav2 topic remapping shim wired. Pending: end-to-end test on live hardware.</p></td>
-<td><p>Blocked: live hardware test</p></td>
+<tr class="row-odd"><td><p>M3</p></td>
+<td><p>Open-field row-crop planning (fields2cover, <a class="reference external" href="https://agroecology-lab.github.io/Sowbot/">web planner</a>)</p></td>
+<td><p>Sim only. Blocked: field survey, obstacle costmap layer</p></td>
 <td><p>4</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-even"><td><p>M3</p></td>
-<td><p>Open-field row-crop scenario</p></td>
-<td><p>Live node-drop in UI. F2C row plan generator implemented in <code class="docutils literal notranslate"><span class="pre">PlanApplicationService</span></code> (corners → swaths → topo rows via <code class="docutils literal notranslate"><span class="pre">run_f2c()</span></code>). F2C planner clips swaths against the obstacle list. YAML written to <code class="docutils literal notranslate"><span class="pre">/workspace/maps/</span></code>, <code class="docutils literal notranslate"><span class="pre">switch_topological_map</span></code> with fallback. Topo map auto-generated at container start. Multi-row traversal across generated swaths confirmed in sim. <a class="reference external" href="https://agroecology-lab.github.io/feldfreund_devkit_ros/">Web version of planner available</a> Pending: tmap2 authoring from real field survey; obstacle costmap layer (obstacles are published on <code class="docutils literal notranslate"><span class="pre">/obstacles</span></code> but no costmap consumes them).</p></td>
-<td><p>Sim only. Blocked: real-field tmap2 survey, obstacle costmap layer</p></td>
-<td><p>4</p></td>
-<td><p>2026</p></td>
-</tr>
-<tr class="row-odd"><td><p>M4</p></td>
+<tr class="row-even"><td><p>M4</p></td>
 <td><p>RTK-GNSS localisation</p></td>
-<td><p>Full pipeline implemented: dual F9P, shims, UKF fusion, NTRIP. Lever-arm offsets in <code class="docutils literal notranslate"><span class="pre">fusioncore.yaml</span></code> are zeroed placeholders (commented <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">measured</span></code> TODOs); <code class="docutils literal notranslate"><span class="pre">manage.py</span></code> exits 1 at startup unless <code class="docutils literal notranslate"><span class="pre">ALLOW_UNMEASURED_LEVER_ARM=1</span></code>. Pending: antenna lever-arm measurement, live hardware test. Do not quote accuracy before the lever arms are measured.</p></td>
-<td><p>Blocked: lever-arm measurement, live hardware test</p></td>
+<td><p>Blocked: hardware test</p></td>
 <td><p>3</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-even"><td><p>M5</p></td>
+<tr class="row-odd"><td><p>M5</p></td>
 <td><p>Dual-SBC ROS 2 stack</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">manage.py</span></code> detects crossover interface, builds <code class="docutils literal notranslate"><span class="pre">CYCLONEDDS_URI</span></code> peer config and injects into Docker. <code class="docutils literal notranslate"><span class="pre">neo.launch.py</span></code> and <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code> finalised for Limbic+Neo split. DDS peer path is the active one.</p></td>
-<td><p>Implemented. No hardware test recorded</p></td>
+<td><p>Implemented, no hardware test</p></td>
 <td><p>3</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p>M6</p></td>
+<tr class="row-even"><td><p>M6</p></td>
 <td><p>Gazebo simulation</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">sowbot_sim.launch.py</span></code> + <code class="docutils literal notranslate"><span class="pre">sim_nav.launch.py</span></code> fully restructured. <code class="docutils literal notranslate"><span class="pre">kill_fake_nav2_on_clock</span></code> implemented. <code class="docutils literal notranslate"><span class="pre">use_sim_time=True</span></code> now threaded through topo stack. Gazebo does not model track slip, so these results do not carry over to the tracked hardware. <strong>Multi-row mission following demonstrated end-to-end (see video above).</strong></p></td>
-<td><p>Done</p></td>
+<td><p>Done. Does not model track slip</p></td>
 <td><p>4</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-even"><td><p>M7</p></td>
+<tr class="row-odd"><td><p>M7</p></td>
 <td><p>Sentor safety monitoring</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">sowbot_monitor.yaml</span></code> fully authored (e-stop, bumpers, battery, camera, odom, neo_vision heartbeat, node monitors). <code class="docutils literal notranslate"><span class="pre">sentor_node.py</span></code> wired into <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code>. Pending: smoke-test on live hardware; battery voltage cutoff needs field confirmation (<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">TODO:</span> <span class="pre">CONFIRM</span></code> in YAML). GNSS fix and heading monitors report only; no response is defined yet.</p></td>
-<td><p>Blocked: hardware smoke test, battery cutoff</p></td>
+<td><p>Implemented, wired into <code class="docutils literal notranslate"><span class="pre">devkit.launch.py</span></code> for real hardware. Not yet run on hardware; battery cutoff unconfirmed</p></td>
 <td><p>3</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p>M8</p></td>
+<tr class="row-even"><td><p>M8</p></td>
 <td><p>Visual crop-row navigation</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">sowbot_row_follow</span></code> package implemented. ExG+Otsu, visual servo, <code class="docutils literal notranslate"><span class="pre">limbic_row_follow_node.py</span></code> as Nav2 action server. Cancel and heartbeat-loss safety. TSM row-swap hold with 6-second debounce implemented. Tested and iterated against a lettuce crop in the UK.</p></td>
-<td><p>Tested on lettuce. No metrics published</p></td>
+<td><p>Tested &amp; iterated on lettuce rows</p></td>
 <td><p>4</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-even"><td><p>M9</p></td>
+<tr class="row-odd"><td><p>M9</p></td>
 <td><p>ArduPilot on LEVIA-H7 controller path</p></td>
-<td><p>Replaces ESP32/Lizard. <code class="docutils literal notranslate"><span class="pre">devkit_mavlink_bridge</span></code> commands zero when <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> is stale and publishes EKF3 state and GPS status (<code class="docutils literal notranslate"><span class="pre">fc/odom</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/ekf_fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps1/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/gps2/fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fc/diagnostics</span></code>); unit-tested against doubles, not yet run against a flight controller. EKF3 is the sole estimator and FusionCore is not launched with the bridge (<code class="docutils literal notranslate"><span class="pre">src/devkit_mavlink_bridge/mavlink.md</span></code>). LEVIA-H7 is unvalidated and has no confirmed ArduPilot hwdef (safety_roadmap.md O31).</p></td>
-<td><p>WIP, bring-up</p></td>
+<td><p>Bring-up. Never run against a flight controller</p></td>
 <td><p>2</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p>M10</p></td>
+<tr class="row-even"><td><p>M10</p></td>
 <td><p>MeshCore robot-to-robot avoidance</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">src/devkit-meshcore-avoid</span></code> (<code class="docutils literal notranslate"><span class="pre">sowbot_avoid</span></code>). Simulation only; never run on hardware. Not a safety function. Not referenced by the Docker build, <code class="docutils literal notranslate"><span class="pre">manage.py</span></code> or the launch files.</p></td>
-<td><p>Sim only. Blocked: hardware test, integration</p></td>
+<td><p>Sim only, not integrated, not a safety function</p></td>
 <td><p>2</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-even"><td><p>M11</p></td>
+<tr class="row-odd"><td><p>M11</p></td>
 <td><p>LiteFarm interface (optional)</p></td>
-<td><p>Imports a LiteFarm farm map (rows, docks, routes; <code class="docutils literal notranslate"><span class="pre">content_hash</span></code> checked, <code class="docutils literal notranslate"><span class="pre">hash8</span></code> stamped into the topo map). Exports row plans as GeoJSON (System tab, Tools card; <code class="docutils literal notranslate"><span class="pre">row_plan_cli</span></code>). <code class="docutils literal notranslate"><span class="pre">row_plan_cli</span> <span class="pre">--import-to</span></code> POSTs to <code class="docutils literal notranslate"><span class="pre">/row_plan/import</span></code>; no UI button for the POST. Format: <code class="docutils literal notranslate"><span class="pre">docs/row-plan-geojson.md</span></code>.</p></td>
-<td><p>Implemented, optional. Unit-tested without hardware</p></td>
+<td><p>Implemented, unit-tested without hardware</p></td>
 <td><p>3</p></td>
-<td><p>2026</p></td>
 </tr>
-<tr class="row-odd"><td><p>M12</p></td>
+<tr class="row-even"><td><p>M12</p></td>
 <td><p>Remote missions</p></td>
-<td><p>Mission store and spec (<code class="docutils literal notranslate"><span class="pre">missions.md</span></code>). No intake, radio link or base station; <code class="docutils literal notranslate"><span class="pre">add_remote</span></code> has no callers.</p></td>
-<td><p>Partial, spec only</p></td>
+<td><p>Spec only</p></td>
 <td><p>2</p></td>
-<td><p>2026</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>PRODUCTION</strong></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><strong>~2027</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>P1</p></td>
 <td><p>Phase 1: dev platform (current)</p></td>
-<td><p>Controller: ArduPilot on LEVIA-H7 (M9); ESP32/Lizard is legacy. Supervised-only until the 24V stop loop, radar validation and beacon are done (safety_roadmap.md O7, O8, O14). Audience: university labs, ag-tech researchers, software startups. No compliance claimed, standards used as informal design reference only, user’s own risk per README. <a class="reference internal" href="#safety_roadmap.md#product-classification"><span class="xref myst">Product classification</span></a> depends on the shipped configuration and incorporation boundary (O16); complete machinery requires conformity assessment, documentation and applicable marking.</p></td>
-<td><p>In progress. Blocked: O7, O8, O14; shipment blocked on O16</p></td>
-<td><p>4</p></td>
-<td><p>2026</p></td>
+<td><p>In progress, supervised use only. Blocked: O7, O8, O14, O16</p></td>
+<td><p>3</p></td>
 </tr>
 <tr class="row-even"><td><p>P2</p></td>
 <td><p>Phase 2: OEM modular subsystems</p></td>
-<td><p>Packages the Phase 1 stack (<a class="reference external" href="https://github.com/piecol/LEVIA-H7">Ardupilot on Levia STM32 H7</a>, M9) for integrators. Audience: startups integrating Sowbot’s core. No third-party certification needed yet, formal internal assessment only. Can offer <a class="reference external" href="https://github.com/Agroecology-Lab/Sowbot/blob/caatinga-dev/safety_roadmap.md">PLd hardware subsystem</a></p></td>
 <td><p>Research</p></td>
 <td><p>2</p></td>
-<td><p>2027</p></td>
 </tr>
 <tr class="row-odd"><td><p>P3</p></td>
-<td><p>Phase 3: commercial sale to farmers <a class="reference external" href="https://github.com/Agroecology-Lab/Sowbot/blob/caatinga-dev/safety_roadmap.md">(Safety sub-systems hardened)</a></p></td>
-<td><p>Full ISO 18497 compliance, ISO 13849 PLc certification (or equivalent), third-party safety audit, field trial history, and an insurance/liability structure. All required before sale, none yet scoped.</p></td>
-<td><p>Planned</p></td>
+<td><p>Phase 3: commercial sale to farmers</p></td>
+<td><p>Planned. ISO 18497 / 13849 certification not scoped</p></td>
 <td><p>1</p></td>
-<td><p>2027+</p></td>
-</tr>
-<tr class="row-even"><td><p>P4</p></td>
-<td><p>CANopen bus</p></td>
-<td><p>ISO 11898 FDCAN at 500 kbit/s / 2 Mbit/s. lely-core CANopen master on T527 native M_CAN. DSP402 drive profile.</p></td>
-<td><p>Research</p></td>
-<td><p>2</p></td>
-<td><p>2027</p></td>
-</tr>
-<tr class="row-odd"><td><p>P5</p></td>
-<td><p>RT kernel + core isolation</p></td>
-<td><p>PREEMPT_RT on Limbic T527. <code class="docutils literal notranslate"><span class="pre">isolcpus=4-7</span></code>, RTK EKF on core 2 (SCHED_FIFO 60), AOC nav on cores 4-6, watchdog on core 5. GbE/CAN IRQ pinned to core 0.</p></td>
-<td><p>Planned</p></td>
-<td><p>2</p></td>
-<td><p>2027</p></td>
-</tr>
-<tr class="row-even"><td><p>P6</p></td>
-<td><p>ROFS image</p></td>
-<td><p>Read-only rootfs, Ubuntu Noble minimal or Yocto with RT kernel, pre-built LCAS topo nav, Nav2, <code class="docutils literal notranslate"><span class="pre">rmw_zenoh_cpp</span></code> (the current stack uses <code class="docutils literal notranslate"><span class="pre">rmw_cyclonedds_cpp</span></code>, M5). Immutable field deployment.</p></td>
-<td><p>Research</p></td>
-<td><p>1</p></td>
-<td><p>2027</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>END-EFFECTORS</strong></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><strong>TBD</strong></p></td>
-</tr>
-<tr class="row-even"><td><p>E1</p></td>
-<td><p>Delta weeding module</p></td>
-<td><p>Open-Weeding-Delta precision mechanical weeding. CANopen actuator node on delta controller.</p></td>
-<td><p>Research</p></td>
-<td><p>1</p></td>
-<td><p>TBD</p></td>
-</tr>
-<tr class="row-odd"><td><p>E2</p></td>
-<td><p>LASER weeding module</p></td>
-<td><p>Laudando LASER integration. Requires E-Stop interlocking with CANopen safety chain.</p></td>
-<td><p>Research</p></td>
-<td><p>1</p></td>
-<td><p>TBD</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>DATASETS &amp; COLLABORATION</strong></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p><strong>Ongoing</strong></p></td>
-</tr>
-<tr class="row-odd"><td><p>D1</p></td>
-<td><p>UK open-field dataset</p></td>
-<td><p>Field imagery and GNSS logs from UK agroecological farm conditions. CC licence.</p></td>
-<td><p>Planned</p></td>
-<td><p>2</p></td>
-<td><p>2026</p></td>
 </tr>
 <tr class="row-even"><td><p>D2</p></td>
 <td><p>Caatinga biome dataset</p></td>
-<td><p>Semi-arid row-crop imagery from caatingarobotics. Validated on T527 AIPU.</p></td>
 <td><p>Active</p></td>
-<td><p>5</p></td>
-<td><p>2026</p></td>
+<td><p>4</p></td>
 </tr>
 </tbody>
 </table>
-<p><sub>TRL = Technology Readiness Level (1–9, ESA/NASA scale): 1–2 concept/formulation, 3 proof of concept, 4 validated in lab/simulation, 5 validated in relevant (non-lab) environment, 6 demonstrated in relevant environment, 7 operational prototype, 8 qualified system, 9 field-proven.
-Self-assessed per feature, not a formal review — adjust as needed.</sub></p>
+<p><sub>TRL (1–9, ESA/NASA scale): 1–2 concept, 3 proof of concept, 4 validated in lab or simulation, 5 validated in a relevant environment, 6 demonstrated in a relevant environment. Self-assessed. Nothing is scored above 4 until field results are published (see below).</sub></p>
 <section id="field-results">
 <h3>Field results<a class="headerlink" href="#field-results" title="Link to this heading"></a></h3>
 <p>None published yet.
