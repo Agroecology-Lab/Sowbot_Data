@@ -523,6 +523,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="sowbot_avoid.html#sowbot_avoid.Driver"><code class="docutils literal notranslate"><span class="pre">Driver</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="sowbot_avoid.html#sowbot_avoid.Driver.drive"><code class="docutils literal notranslate"><span class="pre">Driver.drive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sowbot_avoid.html#sowbot_avoid.Driver.retreat"><code class="docutils literal notranslate"><span class="pre">Driver.retreat()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="sowbot_avoid.html#sowbot_avoid.Frame"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a><ul>
@@ -772,6 +773,14 @@
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/driver.html#Driver.drive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.driver.Driver.drive" title="Link to this definition"></a></dt>
 <dd><p>Drive along edge a -&gt; b and return when the robot has arrived at b.</p>
 <p>The base implementation raises NotImplementedError.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sowbot_avoid.driver.Driver.retreat">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retreat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/driver.html#Driver.retreat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.driver.Driver.retreat" title="Link to this definition"></a></dt>
+<dd><p>Return to a after <cite>drive(a, b)</cite> was cancelled part-way along the edge.</p>
+<p>Only needed when the agent runs with react=True. The base implementation raises
+NotImplementedError.</p>
 </dd></dl>
 
 </dd></dl>

@@ -520,6 +520,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/sowbot_avoid.html#sowbot_avoid.Driver"><code class="docutils literal notranslate"><span class="pre">Driver</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/sowbot_avoid.html#sowbot_avoid.Driver.drive"><code class="docutils literal notranslate"><span class="pre">Driver.drive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/sowbot_avoid.html#sowbot_avoid.Driver.retreat"><code class="docutils literal notranslate"><span class="pre">Driver.retreat()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/sowbot_avoid.html#sowbot_avoid.Frame"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a><ul>
@@ -763,8 +764,19 @@
 <span class="sd">        The base implementation raises NotImplementedError.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
-</div>
 
+
+
+<div class="viewcode-block" id="Driver.retreat">
+<a class="viewcode-back" href="../../_autosummary/sowbot_avoid.driver.html#sowbot_avoid.Driver.retreat">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">retreat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return to a after `drive(a, b)` was cancelled part-way along the edge.</span>
+
+<span class="sd">        Only needed when the agent runs with react=True. The base implementation raises</span>
+<span class="sd">        NotImplementedError.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+</div>
 
 </pre></div>
 

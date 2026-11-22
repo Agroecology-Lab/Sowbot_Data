@@ -520,6 +520,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/sowbot_avoid.html#sowbot_avoid.Driver"><code class="docutils literal notranslate"><span class="pre">Driver</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_autosummary/sowbot_avoid.html#sowbot_avoid.Driver.drive"><code class="docutils literal notranslate"><span class="pre">Driver.drive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/sowbot_avoid.html#sowbot_avoid.Driver.retreat"><code class="docutils literal notranslate"><span class="pre">Driver.retreat()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/sowbot_avoid.html#sowbot_avoid.Frame"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a><ul>
@@ -772,7 +773,7 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">Agent</span><span class="p">:</span>
 <div class="viewcode-block" id="Agent.__init__">
 <a class="viewcode-back" href="../../_autosummary/sowbot_avoid.agent.html#sowbot_avoid.Agent.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">route</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">radio</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rid</span><span class="p">,</span> <span class="n">route</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">radio</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">react</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure an agent with a nonempty route of node IDs.</span>
 
 <span class="sd">        ValueError for a robot ID outside 1-255, an empty route, a node outside</span>
@@ -799,7 +800,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">wake</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">blocked_since</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sidesteps</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hold_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hold_end</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># route index of a side-step stop where we wait for the route to clear</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">react</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stops</span> <span class="o">=</span> <span class="n">react</span><span class="p">,</span> <span class="mi">0</span>       <span class="c1"># react: stop part-way along an edge on a conflicting frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">moving</span> <span class="o">=</span> <span class="kc">None</span>                      <span class="c1"># the edge being driven, while react is on</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="p">[]</span>                         <span class="c1"># frames that arrived while driving</span></div>
 
 
     <span class="c1"># ---- receive -------------------------------------------------------------------------------</span>
@@ -815,6 +819,8 @@
             <span class="k">return</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">book</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">rid</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">seen</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">rid</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">moving</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wake</span><span class="o">.</span><span class="n">set</span><span class="p">()</span></div>
 
 
@@ -900,12 +906,58 @@
                     <span class="k">continue</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">blocked_since</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">drive</span><span class="p">(</span><span class="o">*</span><span class="n">edge</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_drive</span><span class="p">(</span><span class="n">edge</span><span class="p">):</span>
+                <span class="k">continue</span>                                            <span class="c1"># stopped and back at the start node: announce again</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cur</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span>
             <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">TAIL</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;finished&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">True</span></div>
 
+
+    <span class="c1"># ---- driving -------------------------------------------------------------------------------</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_met</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;True if frame f, received while driving edge, conflicts with it.</span>
+
+<span class="sd">        The sender&#39;s hold counts. Its claims count unless they include the node we left: a robot</span>
+<span class="sd">        behind us announces the edge into that node and waits for our claim to clear.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">conflict</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">hold</span><span class="p">()):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">c</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">conflict</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">claims</span><span class="p">())</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_drive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drive edge. Return True on arrival.</span>
+
+<span class="sd">        With react on, a frame that conflicts with the edge (see _met) cancels the drive: the</span>
+<span class="sd">        driver is told to retreat to the node we left, and False is returned. Without react the</span>
+<span class="sd">        drive runs to the end, as the driver call only returns on arrival.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">react</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">drive</span><span class="p">(</span><span class="o">*</span><span class="n">edge</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">moving</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="n">edge</span><span class="p">,</span> <span class="p">[]</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">drive</span><span class="p">(</span><span class="o">*</span><span class="n">edge</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">task</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wake</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_met</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span><span class="p">):</span>
+                    <span class="k">break</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">waiter</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wake</span><span class="o">.</span><span class="n">wait</span><span class="p">())</span>
+                <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">({</span><span class="n">task</span><span class="p">,</span> <span class="n">waiter</span><span class="p">},</span> <span class="n">return_when</span><span class="o">=</span><span class="n">asyncio</span><span class="o">.</span><span class="n">FIRST_COMPLETED</span><span class="p">)</span>
+                <span class="n">waiter</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">moving</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">):</span>
+            <span class="k">await</span> <span class="n">task</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stops</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;stopped mid-edge&#39;</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">retreat</span><span class="p">(</span><span class="o">*</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
 
     <span class="c1"># ---- deadlock ------------------------------------------------------------------------------</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_stuck</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockers</span><span class="p">):</span>

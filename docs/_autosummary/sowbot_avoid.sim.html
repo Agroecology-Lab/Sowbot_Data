@@ -523,6 +523,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="sowbot_avoid.html#sowbot_avoid.Driver"><code class="docutils literal notranslate"><span class="pre">Driver</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="sowbot_avoid.html#sowbot_avoid.Driver.drive"><code class="docutils literal notranslate"><span class="pre">Driver.drive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sowbot_avoid.html#sowbot_avoid.Driver.retreat"><code class="docutils literal notranslate"><span class="pre">Driver.retreat()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="sowbot_avoid.html#sowbot_avoid.Frame"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a><ul>
@@ -784,13 +785,20 @@
 <dt class="sig sig-object py" id="sowbot_avoid.sim.SimDriver.drive">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/sim.html#SimDriver.drive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.sim.SimDriver.drive" title="Link to this definition"></a></dt>
 <dd><p>Simulate travel between node coordinates, updating the world position.</p>
-<p>Missing coordinates raise KeyError; zero speed raises ZeroDivisionError.</p>
+<p>Cancelling it stops the robot where it is. Missing coordinates raise KeyError; zero speed
+raises ZeroDivisionError.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sowbot_avoid.sim.SimDriver.place">
 <span class="sig-name descname"><span class="pre">place</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/sim.html#SimDriver.place"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.sim.SimDriver.place" title="Link to this definition"></a></dt>
 <dd><p>Place the robot at a graph node; a missing coordinate raises KeyError.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sowbot_avoid.sim.SimDriver.retreat">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retreat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/sim.html#SimDriver.retreat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.sim.SimDriver.retreat" title="Link to this definition"></a></dt>
+<dd><p>Drive back from wherever a cancelled drive(a, b) stopped to node a.</p>
 </dd></dl>
 
 </dd></dl>
@@ -817,7 +825,7 @@ and the first node of the last row (west). For n=3 they are 10, 11 and 12.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sowbot_avoid.sim.simulate">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.sim.</span></span><span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">routes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/sim.html#simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.sim.simulate" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sowbot_avoid.sim.</span></span><span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">routes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">react</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sowbot_avoid/sim.html#simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sowbot_avoid.sim.simulate" title="Link to this definition"></a></dt>
 <dd><p>Run routes keyed by robot ID on the simulated grid, or on graph when given.</p>
 <p>Every robot stands at its first node from the start. delays maps a robot ID to
 seconds (unscaled) before its agent starts; until then peers cannot see it.</p>
@@ -828,7 +836,7 @@ an agent, yields partial results; other errors propagate.</p>
 separation), sep_live (between running robots), sep_parked (involving a
 finished robot), and pair (IDs at the minimum sep, or None). Separations use
 graph coordinate units and are infinite if no pair was observed. It also
-includes frames, lost, sidesteps, and secs (elapsed unscaled seconds).</p>
+includes frames, lost, sidesteps, stops (mid-edge stops, with react=True), and secs (elapsed unscaled seconds).</p>
 </dd></dl>
 
 </section>
